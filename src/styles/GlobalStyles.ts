@@ -3,6 +3,8 @@ import { createGlobalStyle, css } from "styled-components";
 const GlobalStyles = createGlobalStyle`${css`
 	html {
 		box-sizing: border-box;
+		max-width: 1440px;
+		margin: 0 auto;
 	}
 	*,
 	:after,
