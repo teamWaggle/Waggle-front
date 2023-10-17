@@ -16,15 +16,15 @@
     "sourceType": "module"
   },
   "rules": {
-    // "jsx-a11y/label-has-associated-control": [
-    // 	2,
-    // 	{
-    // 		"labelComponents": ["CustomInputLabel"],
-    // 		"labelAttributes": ["inputLabel"],
-    // 		"controlComponents": ["CustomInput"],
-    // 		"depth": 3
-    // 	}
-    // ],
+    "jsx-a11y/label-has-associated-control": [
+    	2,
+    	{
+    		"labelComponents": ["CustomInputLabel"],
+    		"labelAttributes": ["inputLabel"],
+    		"controlComponents": ["CustomInput"],
+    		"depth": 3
+    	}
+    ],
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
     "import/extensions": "off",
@@ -38,38 +38,38 @@
     "react/jsx-filename-extension": [
       1,
       { "extensions": [".js", ".jsx", ".ts", "tsx"] }
+    ],
+    "arrow-body-style": "off",
+    "no-param-reassign": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "camelcase": "off",
+    "import/order": [
+    	"error",
+    	{
+    		"groups": ["builtin", "external",  "parent", "sibling", "index"],
+    		"pathGroups": [
+    			{
+    				"pattern": "{react*,react*/*}",
+    				"group": "external",
+    				"position": "before"
+    			}
+    		],
+    		"pathGroupsExcludedImportTypes": [],
+    		"alphabetize": {
+    			"order": "asc",
+    			"caseInsensitive": true
+    		},
+    		"newlines-between": "never"
+    	}
     ]
-    // "arrow-body-style": "off",
-    // "no-param-reassign": "off",
-    // "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    // "camelcase": "off"
-    // "import/order": [
-    // 	"error",
-    // 	{
-    // 		"groups": ["builtin", "external", "unknown", ["sibling", "parent"]],
-    // 		"pathGroups": [
-    // 			{
-    // 				"pattern": "{react*,react*/*}",
-    // 				"group": "external",
-    // 				"position": "before"
-    // 			}
-    // 		],
-    // 		"pathGroupsExcludedImportTypes": [],
-    // 		"alphabetize": {
-    // 			"order": "asc",
-    // 			"caseInsensitive": true
-    // 		},
-    // 		"newlines-between": "always"
-    // 	}
-    // ]
   },
   "ignorePatterns": [".eslintrc.json", "vite.config.ts"],
   "settings": {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx", ".js"]
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
-      "node": { "extensions": [".js", ".ts"] }
+      "node": { "extensions": [".ts"] }
     }
   }
 }
