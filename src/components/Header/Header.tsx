@@ -1,5 +1,4 @@
 import { ContainerHeader, LogoDiv, Nav } from "./Header.styles";
-
 import SearchBar from "../SearchBar/SearchBar";
 
 const Header = () => {
