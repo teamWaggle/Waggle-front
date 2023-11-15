@@ -1,75 +1,60 @@
 {
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint","import"],
   "extends": [
-    "prettier",
-    "airbnb",
-    "airbnb/hooks",
+    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
   "rules": {
-    // "jsx-a11y/label-has-associated-control": [
-    // 	2,
-    // 	{
-    // 		"labelComponents": ["CustomInputLabel"],
-    // 		"labelAttributes": ["inputLabel"],
-    // 		"controlComponents": ["CustomInput"],
-    // 		"depth": 3
-    // 	}
-    // ],
-    "import/prefer-default-export": "off",
-    "import/no-extraneous-dependencies": "off",
-    "import/extensions": "off",
-    "import/no-unresolved": "off",
-    "react/function-component-definition": 0,
-    "react/jsx-boolean-value": "off",
-    "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-no-useless-fragment": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/jsx-filename-extension": [
-      1,
-      { "extensions": [".js", ".jsx", ".ts", "tsx"] }
-    ]
+    // "import/extensions": "off",
+    // "import/no-unresolved": "off",
+    // "react/jsx-boolean-value": "off",
+    // "react/prop-types": "off",
+    // "react/react-in-jsx-scope": "off",
+    // "react/jsx-no-useless-fragment": "off",
+    // "react/jsx-props-no-spreading": "off",
     // "arrow-body-style": "off",
     // "no-param-reassign": "off",
     // "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    // "camelcase": "off"
-    // "import/order": [
-    // 	"error",
-    // 	{
-    // 		"groups": ["builtin", "external", "unknown", ["sibling", "parent"]],
-    // 		"pathGroups": [
-    // 			{
-    // 				"pattern": "{react*,react*/*}",
-    // 				"group": "external",
-    // 				"position": "before"
-    // 			}
-    // 		],
-    // 		"pathGroupsExcludedImportTypes": [],
-    // 		"alphabetize": {
-    // 			"order": "asc",
-    // 			"caseInsensitive": true
-    // 		},
-    // 		"newlines-between": "always"
-    // 	}
-    // ]
+    // "camelcase": "off",
+    "import/order":[
+      "error",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "unknown",
+            "internal",
+            ["sibling", "parent"]
+          ],
+          "pathGroups": [
+            {
+              "pattern": "{react*,react*/*}",
+              "group": "external",
+              "position": "before"
+            }
+          ],
+          "pathGroupsExcludedImportTypes": [],
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          },
+          "newlines-between": "always"
+        }
+      ]
   },
-  "ignorePatterns": [".eslintrc.json", "vite.config.ts"],
-  "settings": {
+  "settings": { 
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx", ".js"]
-    },
-    "import/resolver": {
-      "node": { "extensions": [".js", ".ts"] }
+      "@typescript-eslint/parser": [".ts", ".tsx", ".js"] 
+    }, 
+    "import/resolver": { 
+      "typescript": "./tsconfig.json" 
     }
   }
 }
