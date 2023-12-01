@@ -10,7 +10,7 @@ const theme: DefaultTheme = {
 		btn_01: "#ffcc00",
 		btn_02: "#fff700",
 		btn_03: "#81d93a",
-		btn_04: "#ffcc8c",
+		btn_04: "#ffcc80",
 		btn_danger: "#ff552d",
 		btn_success: "#d2d2d2",
 		border: "#d2d2d2",
