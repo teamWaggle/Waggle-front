@@ -132,10 +132,6 @@ export const GlobalStyle = css`
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
 	}
-	html {
-		max-width: 1536px;
-		margin: 0 auto;
-	}
 
 	@font-face {
 		font-family: "Montserrat";
