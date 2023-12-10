@@ -5,6 +5,8 @@ export const headerStyle = css({
 	position: "sticky",
 	top: 0,
 
+	maxWidth: "1536px",
+	margin: "0 auto",
 	zIndex: 1,
 
 	backgroundColor: Theme.color.white,
@@ -20,7 +22,7 @@ export const textStyle = css({
 	fontFamily: "Montserrat",
 	fontSize: "22px",
 	fontStyle: "normal",
-	fontWeight: 600,
+	fontWeight: 700,
 	lineHeight: "normal",
 	letterSpacing: "-0.44px",
 });
