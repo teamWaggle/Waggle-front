@@ -1,7 +1,7 @@
-import React from "react";
+import Flex from "@components/common/Flex/Flex";
 
 const Sidebar = () => {
-	return <div></div>;
+	return <Flex styles={{ width: "315px", height: "203px" }}></Flex>;
 };
 
 export default Sidebar;
