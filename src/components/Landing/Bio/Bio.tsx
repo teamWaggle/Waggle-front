@@ -1,6 +1,6 @@
 import Flex from "@components/common/Flex/Flex";
 
-import { sectionStyle, textStyle } from "@components/Bio/Bio.style";
+import { sectionStyle, textStyle } from "@components/Landing/Bio/Bio.style";
 
 const Bio = () => {
 	return (
