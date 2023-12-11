@@ -1,6 +1,47 @@
-// import { Theme } from "@/styles/Theme";
-// import { css } from "@emotion/react";
+import styled from "styled-components";
 
-// export const searchStyle = css({
-// 	maxWidth: "1536px",
-// });
+export const LayoutDiv = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 30px;
+`;
+
+export const FilterDiv = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	& > p {
+		color: #1b1b1b;
+		font-family: Pretendard;
+		font-size: 20px;
+		font-weight: 600;
+		line-height: normal;
+	}
+`;
+
+export const SearchDiv = styled.div`
+	position: relative;
+	display: flex;
+	padding: 0 8px;
+	border-radius: 27.5px;
+	border: 2px solid #ff9900;
+	width: 756px;
+	height: 55px;
+	box-shadow: 0px 2px 5px 0px rgba(0, 40, 37, 0.1);
+
+	& > input {
+		width: 700px;
+		border: none;
+		outline: none;
+		background: transparent;
+	}
+
+	& > button {
+		all: unset;
+		position: absolute;
+		top: 14px;
+		right: 14px;
+		cursor: pointer;
+	}
+`;

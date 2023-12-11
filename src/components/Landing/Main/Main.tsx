@@ -1,4 +1,5 @@
 import Searchbar from "../Searchbar/Searchbar";
+import Sidebar from "../Sidebar/Sidebar";
 
 import { mainStyle } from "./Main.styles";
 
@@ -8,6 +9,7 @@ const Main = () => {
 			<section>
 				<Searchbar />
 			</section>
+			<Sidebar />
 		</div>
 	);
 };
