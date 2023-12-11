@@ -2,7 +2,7 @@ import {
 	headerStyle,
 	logoStyle,
 	textStyle,
-} from "@components/Header/Header.style";
+} from "@/components/Landing/Header/Header.style";
 
 import Logo from "@assets/svg/logo.svg?react";
 
