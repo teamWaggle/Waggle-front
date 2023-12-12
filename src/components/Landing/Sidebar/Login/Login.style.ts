@@ -4,13 +4,12 @@ export const LayoutDiv = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
-	height: 203px;
 	border-radius: 20px;
 	border: 2px solid #ff9900;
 	box-shadow: 0px 2px 7px 0px rgba(0, 40, 37, 0.1);
 	justify-content: center;
 	align-items: center;
-	padding: 0 16px;
+	padding: 36px 16px;
 	font-family: Pretendard;
 	line-height: normal;
 
