@@ -10,7 +10,7 @@ import { mainStyle } from "./Main.styles";
 const Main = () => {
 	return (
 		<div css={mainStyle}>
-			<Flex>
+			<Flex styles={{ gap: "46px" }}>
 				<section>
 					<Searchbar />
 					<Flex styles={{ justify: "flex-end", margin: "30px 0 92px" }}>

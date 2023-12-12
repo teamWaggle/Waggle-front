@@ -27,7 +27,7 @@ const mockItems = [
 
 const Post = () => {
 	return (
-		<Flex styles={{ align: "center", wrap: "wrap", gap: "14px" }}>
+		<Flex styles={{ align: "center", wrap: "wrap", gap: "12px" }}>
 			{mockItems.map((data) => (
 				<PostCard key={data.id} />
 			))}
