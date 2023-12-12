@@ -17,6 +17,7 @@ export const FilterDiv = styled.div`
 		font-size: 20px;
 		font-weight: 600;
 		line-height: normal;
+		white-space: nowrap;
 	}
 `;
 
@@ -26,7 +27,7 @@ export const SearchDiv = styled.div`
 	padding: 0 8px;
 	border-radius: 27.5px;
 	border: 2px solid #ff9900;
-	width: 756px;
+	width: 100%;
 	height: 55px;
 	box-shadow: 0px 2px 5px 0px rgba(0, 40, 37, 0.1);
 
