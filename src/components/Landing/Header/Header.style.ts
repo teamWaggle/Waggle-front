@@ -4,12 +4,13 @@ import { css } from "@emotion/react";
 export const headerStyle = css({
 	position: "sticky",
 	top: 0,
+	zIndex: 1,
+	backgroundColor: Theme.color.white,
+});
 
+export const innerStyle = css({
 	maxWidth: "1536px",
 	margin: "0 auto",
-	zIndex: 1,
-
-	backgroundColor: Theme.color.white,
 });
 
 export const logoStyle = css({
@@ -18,7 +19,6 @@ export const logoStyle = css({
 
 export const textStyle = css({
 	color: Theme.color.black,
-
 	fontFamily: "Montserrat",
 	fontSize: "22px",
 	fontStyle: "normal",
