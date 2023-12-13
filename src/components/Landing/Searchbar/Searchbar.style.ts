@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Theme } from "@/styles/Theme";
+import { Theme } from "@/styles/themetest";
 
 export const textStyle = css({
 	color: Theme.color.text,

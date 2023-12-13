@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Theme } from "@/styles/Theme";
+import { Theme } from "@/styles/themetest";
 
 export const layoutStyle = css({
 	boxShadow: "0px 2px 7px 0px rgba(0, 40, 37, 0.1)",

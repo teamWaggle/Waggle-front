@@ -9,7 +9,7 @@ import { RecoilRoot } from "recoil";
 
 import App from "./App";
 import { GlobalStyle } from "@/styles/GlobalStyle";
-import { Theme } from "@styles/Theme";
+import { Theme } from "@/styles/themetest";
 
 const queryClient = new QueryClient();
 
