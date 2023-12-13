@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Theme } from "@/styles/themetest";
+import { Theme } from "@/styles/Theme";
 
 export const layoutStyle = css({
 	borderRadius: "20px",
