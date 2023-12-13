@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import { css } from "@emotion/react";
 
-export const Img = styled.img`
-	width: 100%;
-	height: 100%;
-`;
+export const imgStyle = css({
+	width: "100%",
+	height: "100%",
+});

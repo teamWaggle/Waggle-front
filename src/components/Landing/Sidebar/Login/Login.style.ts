@@ -1,53 +1,40 @@
-import styled from "styled-components";
+import { css } from "@emotion/react";
+import { Theme } from "@/styles/Theme";
 
-export const LayoutDiv = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 18px;
-	border-radius: 20px;
-	border: 2px solid #ff9900;
-	box-shadow: 0px 2px 7px 0px rgba(0, 40, 37, 0.1);
-	justify-content: center;
-	align-items: center;
-	padding: 36px 16px;
-	font-family: Pretendard;
-	line-height: normal;
+export const layoutStyle = css({
+	borderRadius: "20px",
+	border: `2px solid ${Theme.color.brand_primary}`,
+	boxShadow: "0px 2px 7px 0px rgba(0, 40, 37, 0.1)",
+	padding: "36px 16px",
+	fontFamily: "Pretendard",
+	lineHeight: "normal",
+});
 
-	& > h3 {
-		color: #1b1b1b;
-		font-size: 20px;
-		font-weight: 700;
-	}
+export const titleStyle = css({
+	color: Theme.color.text,
+	fontSize: "20px",
+	fontWeight: 700,
+});
 
-	& > button {
-		all: unset;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 10px;
-		padding: 15px 70px;
-		border-radius: 8px;
-		background-color: #f90;
+export const buttonStyle = css({
+	all: "unset",
+	display: "flex",
+	justifyContent: "center",
+	alignItems: "center",
+	gap: "10px",
+	padding: "15px 70px",
+	borderRadius: "8px",
+	backgroundColor: Theme.color.brand_primary,
+});
 
-		& > p {
-			color: #fff;
-			font-size: 16px;
-			font-weight: 700;
-			white-space: nowrap;
-		}
+export const textStyle = css({
+	color: Theme.color.white,
+	fontWeight: 700,
+	whiteSpace: "nowrap",
+});
 
-		& > svg {
-			width: 92px;
-
-			& > g > path {
-				fill: #fff;
-			}
-		}
-	}
-
-	& > h4 {
-		color: #686868;
-		font-size: 17px;
-		font-weight: 700;
-	}
-`;
+export const subStyle = css({
+	color: Theme.color.readonly_text,
+	fontSize: "17px",
+	fontWeight: 700,
+});
