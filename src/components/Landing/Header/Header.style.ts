@@ -1,4 +1,4 @@
-import { Theme } from "@/styles/themetest";
+import { Theme } from "@/styles/Theme";
 import { css } from "@emotion/react";
 
 export const headerStyle = css({
