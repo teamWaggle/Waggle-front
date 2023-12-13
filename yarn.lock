@@ -4092,6 +4092,56 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/match-sorter-utils@npm:^8.7.0":
+  version: 8.8.4
+  resolution: "@tanstack/match-sorter-utils@npm:8.8.4"
+  dependencies:
+    remove-accents: "npm:0.4.2"
+  checksum: 41ce46d25d46b2a281b96efb0a25496b38bace1e352460a4f6a228d501eb603e362a3b0fb4b793e75180ef7146fa787b7f7b7d9e657785997bb1d5127389d5f8
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:4.29.19":
+  version: 4.29.19
+  resolution: "@tanstack/query-core@npm:4.29.19"
+  checksum: bc8c8e16223205bd75d574fdf0f85d4f3da0406e8f5e376a876b5bfa54d2b019fa43b63d51ccdfa7646f6c1585d8784adc0b73e80ea45ca6b43e3a438bc0c030
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:4.29.23":
+  version: 4.29.23
+  resolution: "@tanstack/react-query-devtools@npm:4.29.23"
+  dependencies:
+    "@tanstack/match-sorter-utils": "npm:^8.7.0"
+    superjson: "npm:^1.10.0"
+    use-sync-external-store: "npm:^1.2.0"
+  peerDependencies:
+    "@tanstack/react-query": 4.29.23
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: a7ad4d40151b8b6e7f74696d687e4a0a819394917daf30346f462ac291b3cd32d7c874c7a094616b325a1573f323fed97671b6faf40e8d82f5aa3d34a17a54cb
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:4.29.19":
+  version: 4.29.19
+  resolution: "@tanstack/react-query@npm:4.29.19"
+  dependencies:
+    "@tanstack/query-core": "npm:4.29.19"
+    use-sync-external-store: "npm:^1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-native: "*"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: bb54d07d6bdebab3d715669f759d3fa21547dafb1140fc54f3a2b3d4b0ee28b7c31bf37eeffc6bfe0f5a5a4a8899fb44b4d53f4414a456bd3502ad4944ab199d
+  languageName: node
+  linkType: hard
+
 "@testing-library/dom@npm:^9.3.1":
   version: 9.3.3
   resolution: "@testing-library/dom@npm:9.3.3"
@@ -5385,6 +5435,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.6.2":
+  version: 1.6.2
+  resolution: "axios@npm:1.6.2"
+  dependencies:
+    follow-redirects: "npm:^1.15.0"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 9b77e030e85e4f9cbcba7bb52fbff67d6ce906c92d213e0bd932346a50140faf83733bf786f55bd58301bd92f9973885c7b87d6348023e10f7eaf286d0791a1d
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^3.2.1":
   version: 3.2.1
   resolution: "axobject-query@npm:3.2.1"
@@ -6086,6 +6147,15 @@ __metadata:
   version: 0.5.0
   resolution: "cookie@npm:0.5.0"
   checksum: c01ca3ef8d7b8187bae434434582288681273b5a9ed27521d4d7f9f7928fe0c920df0decd9f9d3bbd2d14ac432b8c8cf42b98b3bdd5bfe0e6edddeebebe8b61d
+  languageName: node
+  linkType: hard
+
+"copy-anything@npm:^3.0.2":
+  version: 3.0.5
+  resolution: "copy-anything@npm:3.0.5"
+  dependencies:
+    is-what: "npm:^4.1.8"
+  checksum: 01eadd500c7e1db71d32d95a3bfaaedcb839ef891c741f6305ab0461398056133de08f2d1bf4c392b364e7bdb7ce498513896e137a7a183ac2516b065c28a4fe
   languageName: node
   linkType: hard
 
@@ -7645,6 +7715,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.15.0":
+  version: 1.15.3
+  resolution: "follow-redirects@npm:1.15.3"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 915a2cf22e667bdf47b1a43cc6b7dce14d95039e9bbf9a24d0e739abfbdfa00077dd43c86d4a7a19efefcc7a99af144920a175eedc3888d268af5df67c272ee5
+  languageName: node
+  linkType: hard
+
 "for-each@npm:^0.3.3":
   version: 0.3.3
   resolution: "for-each@npm:0.3.3"
@@ -8738,6 +8818,13 @@ __metadata:
     call-bind: "npm:^1.0.2"
     get-intrinsic: "npm:^1.1.1"
   checksum: ef5136bd446ae4603229b897f73efd0720c6ab3ec6cc05c8d5c4b51aa9f95164713c4cad0a22ff1fedf04865ff86cae4648bc1d5eead4b6388e1150525af1cc1
+  languageName: node
+  linkType: hard
+
+"is-what@npm:^4.1.8":
+  version: 4.1.16
+  resolution: "is-what@npm:4.1.16"
+  checksum: 611f1947776826dcf85b57cfb7bd3b3ea6f4b94a9c2f551d4a53f653cf0cb9d1e6518846648256d46ee6c91d114b6d09d2ac8a07306f7430c5900f87466aae5b
   languageName: node
   linkType: hard
 
@@ -10467,7 +10554,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"proxy-from-env@npm:^1.0.0":
+"proxy-from-env@npm:^1.0.0, proxy-from-env@npm:^1.1.0":
   version: 1.1.0
   resolution: "proxy-from-env@npm:1.1.0"
   checksum: fe7dd8b1bdbbbea18d1459107729c3e4a2243ca870d26d34c2c1bcd3e4425b7bcc5112362df2d93cc7fb9746f6142b5e272fd1cc5c86ddf8580175186f6ad42b
@@ -10966,6 +11053,13 @@ __metadata:
     mdast-util-to-string: "npm:^1.0.0"
     unist-util-visit: "npm:^2.0.0"
   checksum: 7cc2857936fce9c9c00b9c7d70de46d594cedf93bd8560fd006164dee7aacccdf472654ee35b33f4fb4bd0af882d89998c6d0c9088c2e95702a9fc15ebae002a
+  languageName: node
+  linkType: hard
+
+"remove-accents@npm:0.4.2":
+  version: 0.4.2
+  resolution: "remove-accents@npm:0.4.2"
+  checksum: 5cbc00efa52df29ce947a0c572ff975b011f5f197ebe7b4f6e527de26aba534cba12d502e3040b72e46ad01de3d4f2d5ef57a6593c964965e43ddb60438da0f8
   languageName: node
   linkType: hard
 
@@ -11781,6 +11875,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"superjson@npm:^1.10.0":
+  version: 1.13.3
+  resolution: "superjson@npm:1.13.3"
+  dependencies:
+    copy-anything: "npm:^3.0.2"
+  checksum: 389a0a0c86884dd0558361af5d6d7f37102b71dda9595a665fe8b39d1ba0e57c859e39a9bd79b6f1fde6f4dcceac49a1c205f248d292744b2a340ee52846efdb
+  languageName: node
+  linkType: hard
+
 "supports-color@npm:^5.3.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
@@ -12445,6 +12548,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"use-sync-external-store@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "use-sync-external-store@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: ac4814e5592524f242921157e791b022efe36e451fe0d4fd4d204322d5433a4fc300d63b0ade5185f8e0735ded044c70bcf6d2352db0f74d097a238cebd2da02
+  languageName: node
+  linkType: hard
+
 "util-deprecate@npm:^1.0.1, util-deprecate@npm:^1.0.2, util-deprecate@npm:~1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -12590,6 +12702,8 @@ __metadata:
     "@storybook/react": "npm:^7.6.4"
     "@storybook/react-vite": "npm:^7.6.4"
     "@storybook/test": "npm:^7.6.4"
+    "@tanstack/react-query": "npm:4.29.19"
+    "@tanstack/react-query-devtools": "npm:4.29.23"
     "@types/eslint": "npm:^8"
     "@types/node": "npm:^20.8.7"
     "@types/react": "npm:^18.2.15"
@@ -12597,6 +12711,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^6.8.0"
     "@typescript-eslint/parser": "npm:^6.8.0"
     "@vitejs/plugin-react": "npm:^4.0.3"
+    axios: "npm:^1.6.2"
     eslint: "npm:8.2.0"
     eslint-config-prettier: "npm:^9.0.0"
     eslint-config-react-app: "npm:^7.0.1"
