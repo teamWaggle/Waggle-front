@@ -5,5 +5,30 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "useTabs": true,
-  "printWidth": 80
+  "printWidth": 80,
+  "importOrder": [
+    "^react(.*)",
+    "^@tanstack/(.*)$",
+    "^recoil(.*)",
+    "^axios(.*)",
+    "^msw(.*)",
+    "^browser-image-compression(.*)",
+    "^hang-log-design-system(.*)",
+    "^@pages/(.*)$",
+    "^@components/(.*)$",
+    "^@hooks/(.*)$",
+    "^@store/(.*)$",
+    "^@api/(.*)$",
+    "^@utils/(.*)$",
+    "^@router/(.*)$",
+    "^@type/(.*)$",
+    "^@constants/(.*)$",
+    "^@assets/(.*)$",
+    "^@styles/(.*)$",
+    "^@stories/(.*)$",
+    "^@mocks/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
