@@ -1,48 +1,36 @@
-import styled from "styled-components";
+import { css } from "@emotion/react";
+import { Theme } from "@/styles/Theme";
 
-export const LayoutDiv = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 30px;
-`;
+export const textStyle = css({
+	color: Theme.color.text,
+	fontFamily: "Pretendard",
+	fontSize: "20px",
+	fontWeight: 600,
+	lineHeight: "normal",
+	whiteSpace: "nowrap",
+});
 
-export const FilterDiv = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 8px;
+export const searchStyle = css({
+	position: "relative",
+	padding: "0 8px",
+	borderRadius: "27.5px",
+	border: `2px solid ${Theme.color.brand_primary}`,
+	width: "100%",
+	height: "55px",
+	boxShadow: "0px 2px 5px 0px rgba(0, 40, 37, 0.1)",
+});
 
-	& > p {
-		color: #1b1b1b;
-		font-family: Pretendard;
-		font-size: 20px;
-		font-weight: 600;
-		line-height: normal;
-		white-space: nowrap;
-	}
-`;
+export const inputStyle = css({
+	width: "700px",
+	border: "none",
+	outline: "none",
+	background: Theme.color.transparent,
+});
 
-export const SearchDiv = styled.div`
-	position: relative;
-	display: flex;
-	padding: 0 8px;
-	border-radius: 27.5px;
-	border: 2px solid #ff9900;
-	width: 100%;
-	height: 55px;
-	box-shadow: 0px 2px 5px 0px rgba(0, 40, 37, 0.1);
-
-	& > input {
-		width: 700px;
-		border: none;
-		outline: none;
-		background: transparent;
-	}
-
-	& > button {
-		all: unset;
-		position: absolute;
-		top: 14px;
-		right: 14px;
-		cursor: pointer;
-	}
-`;
+export const buttonStyle = css({
+	all: "unset",
+	position: "absolute",
+	top: "14px",
+	right: "14px",
+	cursor: "pointer",
+});

@@ -13,6 +13,7 @@ const color = {
 	border: "#d2d2d2",
 	white: "#fff",
 	black: "#000",
+	transparent: "transparent",
 };
 
 export const Theme = {
