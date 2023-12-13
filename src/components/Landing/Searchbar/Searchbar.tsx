@@ -17,12 +17,12 @@ const Searchbar = () => {
 				<p css={textStyle}>전체 검색</p>
 				<SearchArrowIcon />
 			</Flex>
-			<div css={searchStyle}>
+			<Flex styles={{ align: "center" }} css={searchStyle}>
 				<input css={inputStyle} />
 				<button css={buttonStyle}>
 					<SearchButtonIcon />
 				</button>
-			</div>
+			</Flex>
 		</Flex>
 	);
 };
