@@ -1,7 +1,6 @@
 import Flex from "@components/common/Flex/Flex";
 
-import Login from "./Login/Login";
-import Widget from "./Widget/Widget";
+import Profile from "./Profile/Profile";
 
 const Sidebar = () => {
 	return (
@@ -9,12 +8,12 @@ const Sidebar = () => {
 			styles={{
 				direction: "column",
 				width: "315px",
-				gap: "20px",
+				gap: "14px",
+				align: "center",
 			}}
 			tag="aside"
 		>
-			<Login />
-			<Widget />
+			<Profile />
 		</Flex>
 	);
 };
