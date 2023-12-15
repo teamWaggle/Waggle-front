@@ -9,7 +9,7 @@ const Main = () => {
 		<div css={mainStyle}>
 			<Flex styles={{ gap: "46px" }}>
 				<section>
-					<Searchbar />
+					<Searchbar defaultText="해결" />
 				</section>
 			</Flex>
 		</div>
