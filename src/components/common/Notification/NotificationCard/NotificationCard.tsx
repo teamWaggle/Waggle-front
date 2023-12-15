@@ -14,6 +14,7 @@ const NotificationCard = () => {
 				padding: "18px",
 				borderRadius: "20px",
 				border: `1px solid ${Theme.color.border}`,
+				width: "315px",
 			}}
 			css={layoutStyle}
 		>
