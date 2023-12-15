@@ -11,6 +11,7 @@ const Sidebar = () => {
 				width: "315px",
 				gap: "20px",
 			}}
+			tag="aside"
 		>
 			<Login />
 			<Widget />

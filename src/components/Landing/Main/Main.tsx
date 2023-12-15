@@ -5,26 +5,24 @@ import Post from "../Post/Post";
 
 import Flex from "@components/common/Flex/Flex";
 
-import { mainStyle, notiStyle } from "./Main.styles";
+import { mainStyle } from "./Main.styles";
 
-import NotiIcon from "@assets/svg/notification.svg?react";
+import Notification from "@components/common/Notification/Notification";
 
 const Main = () => {
 	return (
 		<div css={mainStyle}>
 			<Flex styles={{ gap: "46px" }}>
 				<section>
-					<Searchbar />
+					<Searchbar defaultText="전체검색" />
 					<Flex styles={{ justify: "flex-end", margin: "30px 0 92px" }}>
-						<SortButton />
+						<SortButton defaultText="인기순" />
 					</Flex>
 					<Post />
 				</section>
 				<Sidebar />
 			</Flex>
-			<div css={notiStyle}>
-				<NotiIcon />
-			</div>
+			<Notification />
 		</div>
 	);
 };
