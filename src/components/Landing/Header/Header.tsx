@@ -27,8 +27,12 @@ const Header = () => {
 				>
 					<Logo css={logoStyle} onClick={() => navigate("/")} />
 					<Flex styles={{ align: "center", gap: "100px" }}>
-						<p css={textStyle}>SIREN</p>
-						<p css={textStyle}>Q&A</p>
+						<p css={textStyle} onClick={() => navigate("/siren")}>
+							SIREN
+						</p>
+						<p css={textStyle} onClick={() => navigate("/question")}>
+							Q&A
+						</p>
 						<p css={textStyle}>CONNECTION</p>
 						<p css={textStyle}>TEAM PLANNING</p>
 						<p css={textStyle}>My Waggle</p>
