@@ -14,7 +14,7 @@ const Main = () => {
 		<div css={mainStyle}>
 			<Flex styles={{ gap: "46px" }}>
 				<section>
-					<Searchbar />
+					<Searchbar defaultText="전체검색" />
 					<Flex styles={{ justify: "flex-end", margin: "30px 0 92px" }}>
 						<SortButton defaultText="인기순" />
 					</Flex>

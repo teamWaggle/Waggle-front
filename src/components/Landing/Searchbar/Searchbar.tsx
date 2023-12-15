@@ -6,10 +6,12 @@ import Flex from "@components/common/Flex/Flex";
 
 import SortButton from "../SortButton/SortButton";
 
-const Searchbar = () => {
+import { sortButtonType } from "@/types/sortButtonType";
+
+const Searchbar = ({ defaultText }: sortButtonType) => {
 	return (
 		<Flex styles={{ align: "center", gap: "30px" }}>
-			<SortButton defaultText="전체검색" />
+			<SortButton defaultText={defaultText} />
 			<Flex styles={{ align: "center" }} css={searchStyle}>
 				<input css={inputStyle} />
 				<button css={buttonStyle}>
