@@ -35,8 +35,8 @@ const Title = () => {
 		<section css={sectionStyle}>
 			<Flex styles={{ justify: "space-between", align: "center" }}>
 				<Flex styles={{ gap: "16px" }}>
-					<SortButton />
-					<SortButton />
+					<SortButton defaultText="인기순" />
+					<SortButton defaultText="해결" />
 				</Flex>
 				<Flex styles={{ gap: "16px" }}>
 					{tagItems.map((data) => (
