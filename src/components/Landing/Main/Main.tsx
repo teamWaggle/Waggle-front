@@ -16,7 +16,7 @@ const Main = () => {
 				<section>
 					<Searchbar />
 					<Flex styles={{ justify: "flex-end", margin: "30px 0 92px" }}>
-						<SortButton />
+						<SortButton defaultText="인기순" />
 					</Flex>
 					<Post />
 				</section>

@@ -1,15 +1,6 @@
 import { css } from "@emotion/react";
 import { Theme } from "@/styles/Theme";
 
-export const textStyle = css({
-	color: Theme.color.text,
-	fontFamily: "Pretendard",
-	fontSize: "20px",
-	fontWeight: 600,
-	lineHeight: "normal",
-	whiteSpace: "nowrap",
-});
-
 export const searchStyle = css({
 	position: "relative",
 	padding: "0 8px",
