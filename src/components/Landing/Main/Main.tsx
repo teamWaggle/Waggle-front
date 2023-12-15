@@ -5,9 +5,9 @@ import Post from "../Post/Post";
 
 import Flex from "@components/common/Flex/Flex";
 
-import { mainStyle, notiStyle } from "./Main.styles";
+import { mainStyle } from "./Main.styles";
 
-import NotiIcon from "@assets/svg/notification.svg?react";
+import Notification from "@components/common/Notification/Notification";
 
 const Main = () => {
 	return (
@@ -22,9 +22,7 @@ const Main = () => {
 				</section>
 				<Sidebar />
 			</Flex>
-			<div css={notiStyle}>
-				<NotiIcon />
-			</div>
+			<Notification />
 		</div>
 	);
 };

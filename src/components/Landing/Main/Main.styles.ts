@@ -6,9 +6,3 @@ export const mainStyle = css({
 	padding: "60px 146px",
 	position: "relative",
 });
-
-export const notiStyle = css({
-	position: "fixed",
-	bottom: "20px",
-	left: "220px",
-});

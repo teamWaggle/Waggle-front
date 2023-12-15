@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 
 export const layoutStyle = css({
 	boxShadow: "0px 2px 7px 0px rgba(0, 40, 37, 0.10)",
+	backgroundColor: Theme.color.white,
 });
 
 export const imgStyle = css({
