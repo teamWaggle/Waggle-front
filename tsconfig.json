@@ -19,7 +19,8 @@
       "@api/*": ["./src/api/*"],
       "@router/*": ["./src/router/*"],
       "@store/*": ["./src/store/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@stories/*": ["./src/stories/*"]
     },
     "resolveJsonModule": true,
     "isolatedModules": true,

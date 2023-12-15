@@ -1,43 +1,8 @@
 import { css } from "@emotion/react";
 
-export interface FlexStylingProps {
-	direction?: "row" | "column";
-	wrap?: "nowrap" | "wrap" | "wrap-reverse";
-	basis?: "auto" | "0" | "200px";
-	grow?: string;
-	shrink?: string;
-	align?:
-		| "normal"
-		| "stretch"
-		| "center"
-		| "start"
-		| "end"
-		| "flex-start"
-		| "flex-end"
-		| "self-start"
-		| "self-end"
-		| "baseline"
-		| "inherit"
-		| "initial"
-		| "unset";
-	justify?:
-		| "center"
-		| "start"
-		| "flex-start"
-		| "end"
-		| "flex-end"
-		| "left"
-		| "right"
-		| "normal"
-		| "space-between"
-		| "space-around"
-		| "space-evenly"
-		| "stretch"
-		| "inherit"
-		| "initial"
-		| "revert"
-		| "unset";
-	gap?: string;
+export interface BoxStylingProps {
+	width?: string;
+	height?: string;
 	margin?: string;
 	marginRight?: string;
 	marginTop?: string;
@@ -55,22 +20,16 @@ export interface FlexStylingProps {
 	borderRight?: string;
 	borderBottom?: string;
 	borderLeft?: string;
-	width?: string;
-	height?: string;
+	backgroundColor?: string;
+	color?: string;
 	position?: "static" | "absolute" | "relative" | "fixed" | "inherit";
 	boxShadow?: string;
 }
 
-export const getFlexStyling = ({
-	direction = "row",
-	wrap = "nowrap",
-	basis = "auto",
-	grow = "1",
-	shrink = "0",
-	align = "flex-start",
-	justify = "flex-start",
-	gap = "0px",
-	margin = "0",
+export const getBoxStyling = ({
+	width = "",
+	height = "",
+	margin = "",
 	marginRight = "",
 	marginTop = "",
 	marginLeft = "",
@@ -87,21 +46,14 @@ export const getFlexStyling = ({
 	borderRight = "",
 	borderBottom = "",
 	borderLeft = "",
-	width = "",
-	height = "",
+	backgroundColor = "",
+	color = "",
 	position = "static",
 	boxShadow = "",
-}: FlexStylingProps) => {
+}: BoxStylingProps) => {
 	return css({
-		display: "flex",
-		flexDirection: direction,
-		flexWrap: wrap,
-		flexBasis: basis,
-		grow,
-		flexShrink: shrink,
-		alignItems: align,
-		justifyContent: justify,
-		gap,
+		width,
+		height,
 		margin,
 		marginRight,
 		marginTop,
@@ -119,8 +71,8 @@ export const getFlexStyling = ({
 		borderRight,
 		borderBottom,
 		borderLeft,
-		width,
-		height,
+		backgroundColor,
+		color,
 		position,
 		boxShadow,
 	});
