@@ -26,4 +26,5 @@ export const textStyle = css({
 	fontWeight: 700,
 	lineHeight: "normal",
 	letterSpacing: "-0.44px",
+	cursor: "pointer",
 });

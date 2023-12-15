@@ -3,6 +3,5 @@ import { css } from "@emotion/react";
 export const mainStyle = css({
 	maxWidth: "1536px",
 	margin: "0 auto",
-	padding: "60px 146px",
-	position: "relative",
+	padding: "56px 146px",
 });
