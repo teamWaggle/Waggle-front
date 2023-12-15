@@ -2,6 +2,8 @@ import Flex from "@components/common/Flex/Flex";
 
 import Profile from "./Profile/Profile";
 
+import NotificationCard from "@/components/common/NotificationCard/NotificationCard";
+
 const Sidebar = () => {
 	return (
 		<Flex
@@ -14,6 +16,9 @@ const Sidebar = () => {
 			tag="aside"
 		>
 			<Profile />
+			<NotificationCard />
+			<NotificationCard />
+			<NotificationCard />
 		</Flex>
 	);
 };
