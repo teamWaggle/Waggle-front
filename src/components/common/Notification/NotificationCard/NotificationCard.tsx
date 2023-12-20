@@ -19,9 +19,7 @@ const NotificationCard = () => {
 			css={layoutStyle}
 		>
 			<img src={ProfileImg} alt="profileImg" css={imgStyle} />
-			<p css={textStyle}>
-				내가 팔로우하는 @ksjdkla님이 아직 고민해결을 못했어요 😭
-			</p>
+			<p css={textStyle}>내가 팔로우하는 @ksjdkla님이 아직 고민해결을 못했어요 😭</p>
 		</Flex>
 	);
 };
