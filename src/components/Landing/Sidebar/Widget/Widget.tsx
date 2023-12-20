@@ -1,11 +1,4 @@
-import {
-	layoutStyle,
-	titleStyle,
-	subStyle,
-	cardStyle,
-	imgStyle,
-	textStyle,
-} from "./Widget.style";
+import { layoutStyle, titleStyle, subStyle, cardStyle, imgStyle, textStyle } from "./Widget.style";
 
 import SampleImg from "@assets/png/post-sample.png";
 

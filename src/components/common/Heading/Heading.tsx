@@ -16,11 +16,7 @@ const TAG_BY_SIZE = {
 	xSmall: "h6",
 } as const;
 
-const Heading = ({
-	size = "medium",
-	children,
-	...attributes
-}: HeadingProps) => {
+const Heading = ({ size = "medium", children, ...attributes }: HeadingProps) => {
 	const HeadingTag = TAG_BY_SIZE[size];
 
 	return (

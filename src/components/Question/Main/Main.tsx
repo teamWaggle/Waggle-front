@@ -14,9 +14,7 @@ const Main = () => {
 			<Flex styles={{ gap: "46px" }}>
 				<section>
 					<Searchbar defaultText="해결" />
-					<Flex
-						styles={{ direction: "column", gap: "24px", marginTop: "24px" }}
-					>
+					<Flex styles={{ direction: "column", gap: "24px", marginTop: "24px" }}>
 						<QuestionCard />
 						<QuestionCard />
 						<QuestionCard />
