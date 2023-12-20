@@ -7,5 +7,8 @@ export default defineConfig({
 	plugins: [react(), vitePluginSvgr(), tsconfigPaths()],
 	server: {
 		port: 3000,
+		proxy: {
+			"/api": "http://13.124.182.138:8080/",
+		},
 	},
 });
