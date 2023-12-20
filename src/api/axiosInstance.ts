@@ -10,9 +10,6 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(checkToken, handleAPIError);
 
-axiosInstance.interceptors.response.use(
-	(response) => response,
-	handleTokenError,
-);
+axiosInstance.interceptors.response.use((response) => response, handleTokenError);
 
 axiosInstance.interceptors.response.use((response) => response, handleAPIError);

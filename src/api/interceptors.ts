@@ -28,9 +28,7 @@ export const checkToken = (config: InternalAxiosRequestConfig) => {
 	return config;
 };
 
-export const handleTokenError = async (
-	error: AxiosError<ErrorResponseData>,
-) => {
+export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => {
 	const originalRequest = error.config;
 
 	if (!error.response || !originalRequest) {
