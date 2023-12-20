@@ -58,6 +58,7 @@ export interface FlexStylingProps {
 	width?: string;
 	height?: string;
 	position?: "static" | "absolute" | "relative" | "fixed" | "inherit";
+	boxShadow?: string;
 }
 
 export const getFlexStyling = ({
@@ -89,6 +90,7 @@ export const getFlexStyling = ({
 	width = "",
 	height = "",
 	position = "static",
+	boxShadow = "",
 }: FlexStylingProps) => {
 	return css({
 		display: "flex",
@@ -120,5 +122,6 @@ export const getFlexStyling = ({
 		width,
 		height,
 		position,
+		boxShadow,
 	});
 };
