@@ -27,6 +27,7 @@ const Login = () => {
 				justify: "center",
 				direction: "column",
 				gap: "18px",
+				width: "315px",
 			}}
 			css={layoutStyle}
 		>
