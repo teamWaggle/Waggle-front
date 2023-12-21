@@ -18,14 +18,10 @@ export const textStyle = css({
 	fontWeight: 500,
 });
 
-export const lineStyle = css({
-	width: "100%",
-	height: "1px",
-	background: "#e6e6e6",
-});
-
-export const logoutTextStyle = css({
+export const logoutBoxStyle = css({
 	color: Theme.color.text,
 	fontWeight: 600,
 	fontFamily: "Montserrat",
+	padding: "12px 36px",
+	width: "100%",
 });
