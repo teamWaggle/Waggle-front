@@ -1,16 +1,24 @@
-import { buttonStyle, layoutStyle, titleStyle, textStyle, subStyle } from "./Login.style";
-
-import Logo from "@assets/svg/logo-white.svg?react";
-
-import Flex from "@components/common/Flex/Flex";
+// import { useRecoilValue } from "recoil";
 
 import { useLogInMutation } from "@hooks/api/useLogInMutation";
+
+// import { isLoggedInState } from "@store/auth";
+
+import Logo from "@assets/svg/logo-white.svg?react";
+import Flex from "@components/common/Flex/Flex";
+
+import { buttonStyle, layoutStyle, titleStyle, textStyle, subStyle } from "./Login.style";
 
 const Login = () => {
 	const { mutateLogIn } = useLogInMutation();
 
-	const username = "admin123";
+	// const isLoggedIn = useRecoilValue(isLoggedInState);
+
+	const username = "admin";
 	const password = "admin1234!";
+
+	// console.log(isLoggedIn);
+	// console.log(localStorage.getItem("ACCESS_TOKEN"));
 
 	return (
 		<Flex
