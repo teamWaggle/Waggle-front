@@ -2,15 +2,16 @@ import Flex from "@components/common/Flex/Flex";
 import Box from "@components/common/Box/Box";
 import Heading from "@components/common/Heading/Heading";
 import Text from "@components/common/Text/Text";
+import Divider from "@components/common/Divider/Divider";
 
 import ProfileImg from "@assets/svg/profile-gray.svg?react";
 
-import { boxStyle, headingStyle, lineStyle, logoutTextStyle, textStyle } from "./Profile.style";
+import { boxStyle, headingStyle, logoutBoxStyle, textStyle } from "./Profile.style";
 
 const Profile = () => {
 	return (
 		<Box css={boxStyle}>
-			<Flex styles={{ align: "center", gap: "14px", padding: "30px 24px" }}>
+			<Flex styles={{ align: "center", gap: "14px", padding: "30px 24px 54px" }}>
 				<ProfileImg />
 				<Box>
 					<Heading size="small" css={headingStyle}>
@@ -19,9 +20,11 @@ const Profile = () => {
 					<Text css={textStyle}>basekorea@gmail.com</Text>
 				</Box>
 			</Flex>
-			<Box css={lineStyle} />
-			<Flex styles={{ justify: "flex-end", padding: "16px 36px", width: "100%" }}>
-				<Text css={logoutTextStyle}>LOGOUT</Text>
+
+			<Divider />
+
+			<Flex styles={{ justify: "flex-end" }} css={logoutBoxStyle}>
+				<Text>LOGOUT</Text>
 			</Flex>
 		</Box>
 	);
