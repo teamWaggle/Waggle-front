@@ -1,6 +1,7 @@
 import Flex from "@components/common/Flex/Flex";
 
-import Login from "./Login/Login";
+// import Login from "./Login/Login";
+import Profile from "./Profile/Profile";
 import Widget from "./Widget/Widget";
 
 const Sidebar = () => {
@@ -13,7 +14,8 @@ const Sidebar = () => {
 			}}
 			tag="aside"
 		>
-			<Login />
+			{/* <Login /> */}
+			<Profile />
 			<Widget />
 		</Flex>
 	);
