@@ -14,6 +14,7 @@ const color = {
 	white: "#fff",
 	black: "#000",
 	transparent: "transparent",
+	divider_gray: "#e6e6e6",
 };
 
 const text = {
