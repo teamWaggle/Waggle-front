@@ -1,10 +1,4 @@
-import {
-	sectionStyle,
-	tagStyle,
-	searchStyle,
-	inputStyle,
-	buttonStyle,
-} from "./Title.style";
+import { sectionStyle, tagStyle, searchStyle, inputStyle, buttonStyle } from "./Title.style";
 
 import Flex from "@components/common/Flex/Flex";
 
@@ -40,11 +34,7 @@ const Title = () => {
 				</Flex>
 				<Flex styles={{ gap: "16px" }}>
 					{tagItems.map((data) => (
-						<Flex
-							styles={{ justify: "center", align: "center" }}
-							css={tagStyle}
-							key={data.title}
-						>
+						<Flex styles={{ justify: "center", align: "center" }} css={tagStyle} key={data.title}>
 							{data.title}
 						</Flex>
 					))}

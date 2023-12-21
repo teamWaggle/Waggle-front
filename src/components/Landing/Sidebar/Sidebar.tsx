@@ -1,9 +1,16 @@
+import { useRecoilValue } from "recoil";
+
+import { isLoggedInState } from "@store/auth";
+
 import Flex from "@components/common/Flex/Flex";
 
 import Login from "./Login/Login";
+import Profile from "./Profile/Profile";
 import Widget from "./Widget/Widget";
 
 const Sidebar = () => {
+	const isLoggedIn = useRecoilValue(isLoggedInState);
+
 	return (
 		<Flex
 			styles={{
@@ -13,7 +20,7 @@ const Sidebar = () => {
 			}}
 			tag="aside"
 		>
-			<Login />
+			{isLoggedIn ? <Profile /> : <Login />}
 			<Widget />
 		</Flex>
 	);

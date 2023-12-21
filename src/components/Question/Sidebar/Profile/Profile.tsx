@@ -31,24 +31,15 @@ const Profile = () => {
 					width: "100%",
 				}}
 			>
-				<Flex
-					styles={{ justify: "space-between", width: "100%" }}
-					css={textStyle}
-				>
+				<Flex styles={{ justify: "space-between", width: "100%" }} css={textStyle}>
 					<h3>미해결 질문</h3>
 					<h3>0개 {">"}</h3>
 				</Flex>
-				<Flex
-					styles={{ justify: "space-between", width: "100%" }}
-					css={textStyle}
-				>
+				<Flex styles={{ justify: "space-between", width: "100%" }} css={textStyle}>
 					<h3>지금까지 한 질문</h3>
 					<h3>0개 {">"}</h3>
 				</Flex>
-				<Flex
-					styles={{ justify: "space-between", width: "100%" }}
-					css={textStyle}
-				>
+				<Flex styles={{ justify: "space-between", width: "100%" }} css={textStyle}>
 					<h3>내가 한 답변</h3>
 					<h3>0개 {">"}</h3>
 				</Flex>

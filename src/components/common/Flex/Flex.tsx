@@ -14,12 +14,7 @@ export interface FlexProps extends ComponentPropsWithoutRef<"div"> {
 	styles?: FlexStylingProps;
 }
 
-const Flex = ({
-	tag = "div",
-	styles = {},
-	children,
-	...attributes
-}: FlexProps) => {
+const Flex = ({ tag = "div", styles = {}, children, ...attributes }: FlexProps) => {
 	const Tag = tag;
 
 	return (
