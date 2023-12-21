@@ -1,8 +1,10 @@
-// import { useRecoilValue } from "recoil";
+import { useEffect } from "react";
+
+import { useSetRecoilState } from "recoil";
 
 import { useLogInMutation } from "@hooks/api/useLogInMutation";
 
-// import { isLoggedInState } from "@store/auth";
+import { isLoggedInState } from "@/store/auth";
 
 import Logo from "@assets/svg/logo-white.svg?react";
 import Flex from "@components/common/Flex/Flex";
@@ -12,13 +14,16 @@ import { buttonStyle, layoutStyle, titleStyle, textStyle, subStyle } from "./Log
 const Login = () => {
 	const { mutateLogIn } = useLogInMutation();
 
-	// const isLoggedIn = useRecoilValue(isLoggedInState);
+	const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
 	const username = "admin";
 	const password = "admin1234!";
 
-	// console.log(isLoggedIn);
-	// console.log(localStorage.getItem("ACCESS_TOKEN"));
+	useEffect(() => {
+		if (localStorage.getItem("ACCESS_TOKEN")) {
+			setIsLoggedIn(true);
+		}
+	}, [setIsLoggedIn]);
 
 	return (
 		<Flex
