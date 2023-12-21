@@ -11,7 +11,7 @@ export interface ErrorResponseData {
 }
 
 export const checkToken = (config: InternalAxiosRequestConfig) => {
-	if (!config.useAuth || !config.headers || config.headers.Authorization) {
+	if (!config.headers || config.headers.Authorization) {
 		return config;
 	}
 
