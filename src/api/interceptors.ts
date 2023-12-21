@@ -1,8 +1,8 @@
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 
-import { axiosInstance } from "./axiosInstance";
+// import { axiosInstance } from "./axiosInstance";
 import { HTTPError } from "./HTTPError";
-import { postNewToken } from "./auth/postNewToken";
+// import { postNewToken } from "./auth/postNewToken";
 
 export interface ErrorResponseData {
 	statusCode?: number;
@@ -17,11 +17,11 @@ export const checkToken = (config: InternalAxiosRequestConfig) => {
 
 	const accessToken = localStorage.getItem("ACCESS_TOKEN");
 
-	if (!accessToken) {
-		window.location.href = "/";
+	// if (!accessToken) {
+	// 	window.location.href = "/";
 
-		throw new Error("토큰이 유효하지 않습니다");
-	}
+	// 	throw new Error("토큰이 유효하지 않습니다");
+	// }
 
 	config.headers.Authorization = `BEARER ${accessToken}`;
 
@@ -35,17 +35,17 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 		throw new Error("에러가 발생했습니다.");
 	}
 
-	const { status } = error.response;
+	// const { status } = error.response;
 
-	if (status === 400) {
-		const { accessToken } = await postNewToken();
+	// if (status === 400) {
+	// 	const { accessToken } = await postNewToken();
 
-		originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+	// 	originalRequest.headers.Authorization = `Bearer ${accessToken}`;
 
-		localStorage.setItem("ACCESS_TOKEN", accessToken);
+	// 	localStorage.setItem("ACCESS_TOKEN", accessToken);
 
-		return axiosInstance(originalRequest);
-	}
+	// 	return axiosInstance(originalRequest);
+	// }
 };
 
 export const handleAPIError = (error: AxiosError<ErrorResponseData>) => {

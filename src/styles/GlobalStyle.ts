@@ -26,7 +26,7 @@ export const GlobalStyle = css`
 
 	@font-face {
 		font-family: "Pretendard";
-		src: url("./font/Pretendard.ttf");
+		src: url("./fonts/Pretendard.ttf");
 	}
 
 	@font-face {

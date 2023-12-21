@@ -25,3 +25,8 @@ export const logoutBoxStyle = css({
 	padding: "12px 36px",
 	width: "100%",
 });
+
+export const buttonStyle = css({
+	all: "unset",
+	cursor: "pointer",
+});
