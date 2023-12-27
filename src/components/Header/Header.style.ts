@@ -9,11 +9,6 @@ export const headerStyle = css({
 	borderBottom: `1px solid ${Theme.color.readonly_text}`,
 });
 
-export const innerStyle = css({
-	maxWidth: "1536px",
-	margin: "0 auto",
-});
-
 export const logoStyle = css({
 	cursor: "pointer",
 });
@@ -21,10 +16,6 @@ export const logoStyle = css({
 export const textStyle = css({
 	color: Theme.color.black,
 	fontFamily: "Montserrat",
-	fontSize: "22px",
-	fontStyle: "normal",
-	fontWeight: 700,
-	lineHeight: "normal",
-	letterSpacing: "-0.44px",
+	fontWeight: 600,
 	cursor: "pointer",
 });
