@@ -1,12 +1,11 @@
-import Flex from "@components/common/Flex/Flex";
-
-import { imgStyle } from "./PostCard.style";
-
 import SampleImg from "@assets/png/post-sample.png";
+
+import { Flex } from "@components/common";
+import { imgStyle } from "@/components/Landing/Post/Post.style";
 
 const PostCard = () => {
 	return (
-		<Flex styles={{ align: "center", width: "286px", height: "286px" }}>
+		<Flex styles={{ align: "center", width: "252px", height: "252px" }}>
 			<img src={SampleImg} alt="sampleImg" css={imgStyle} />
 		</Flex>
 	);
