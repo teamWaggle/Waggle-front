@@ -3,12 +3,12 @@ import { Theme } from "@/styles/Theme";
 
 export const searchStyle = css({
 	position: "relative",
-	padding: "0 8px",
+	padding: "2px 12px",
 	borderRadius: "27.5px",
-	border: `2px solid ${Theme.color.brand_primary}`,
-	width: "calc(100% - 162px)",
-	height: "55px",
-	boxShadow: "0px 2px 5px 0px rgba(0, 40, 37, 0.1)",
+	border: `1px solid ${Theme.color.brand_primary}`,
+	width: "calc(100% - 152px)",
+	height: "34px",
+	boxShadow: Theme.boxShadow.shadow2,
 });
 
 export const inputStyle = css({
@@ -18,10 +18,14 @@ export const inputStyle = css({
 	background: Theme.color.transparent,
 });
 
+export const textStyle = css({
+	color: Theme.color.readonly_text,
+	position: "absolute",
+});
+
 export const buttonStyle = css({
 	all: "unset",
 	position: "absolute",
-	top: "14px",
 	right: "14px",
 	cursor: "pointer",
 	display: "flex",

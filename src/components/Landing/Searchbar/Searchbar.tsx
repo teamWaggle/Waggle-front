@@ -1,19 +1,21 @@
-import { searchStyle, inputStyle, buttonStyle } from "./Searchbar.style";
-
 import SearchButtonIcon from "@assets/svg/search-button.svg?react";
 
-import Flex from "@components/common/Flex/Flex";
+import { Flex, Text } from "@components/common";
+import { SortButton } from "@components/Landing";
 
-import SortButton from "../SortButton/SortButton";
+import { sortButtonType } from "@type/sortButtonType";
 
-import { sortButtonType } from "@/types/sortButtonType";
+import { searchStyle, inputStyle, buttonStyle, textStyle } from "./Searchbar.style";
 
 const Searchbar = ({ defaultText }: sortButtonType) => {
 	return (
-		<Flex styles={{ align: "center", gap: "30px" }}>
+		<Flex styles={{ align: "center", gap: "50px" }}>
 			<SortButton defaultText={defaultText} />
 			<Flex styles={{ align: "center" }} css={searchStyle}>
 				<input css={inputStyle} />
+				<Text size="small" css={textStyle}>
+					검색어를 입력해주세요
+				</Text>
 				<button css={buttonStyle}>
 					<SearchButtonIcon />
 				</button>

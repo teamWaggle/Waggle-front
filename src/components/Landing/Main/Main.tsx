@@ -1,17 +1,14 @@
-import Searchbar from "../Searchbar/Searchbar";
-import Sidebar from "../Sidebar/Sidebar";
-import SortButton from "../SortButton/SortButton";
-import Post from "../Post/Post";
+import { Searchbar, Sidebar, SortButton, Post } from "@components/Landing";
 
 import Flex from "@components/common/Flex/Flex";
 
 import { mainStyle } from "./Main.styles";
 
-import Notification from "@components/common/Notification/Notification";
+// import Notification from "@components/common/Notification/Notification";
 
 const Main = () => {
 	return (
-		<div css={mainStyle}>
+		<main css={mainStyle}>
 			<Flex styles={{ gap: "46px" }}>
 				<section>
 					<Searchbar defaultText="전체검색" />
@@ -22,8 +19,8 @@ const Main = () => {
 				</section>
 				<Sidebar />
 			</Flex>
-			<Notification />
-		</div>
+			{/* <Notification /> */}
+		</main>
 	);
 };
 
