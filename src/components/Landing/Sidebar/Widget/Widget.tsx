@@ -1,8 +1,8 @@
-import { layoutStyle, titleStyle, subStyle, cardStyle, imgStyle, textStyle } from "./Widget.style";
+import { Flex, Text } from "@components/common";
+import SirenWidgetCard from "@components/Landing/Sidebar/Widget/SirenWidgetCard";
+import { titleStyle, subStyle } from "@components/Landing/Sidebar/Widget/Widget.style";
 
-import SampleImg from "@assets/png/post-sample.png";
-
-import Flex from "@components/common/Flex/Flex";
+import { Theme } from "@styles/Theme";
 
 const Widget = () => {
 	return (
@@ -11,59 +11,21 @@ const Widget = () => {
 				direction: "column",
 				align: "center",
 				justify: "center",
-				padding: "30px 20px",
+				padding: "32px 22px 26px",
+				border: `1px solid ${Theme.color.brand_primary}`,
+				borderRadius: "14px",
+				boxShadow: Theme.boxShadow.shadow2,
 			}}
-			css={layoutStyle}
 		>
-			<h2 css={titleStyle}>Waggle SIREN</h2>
-			<h3 css={subStyle}>위험에 처한 강아지들을 도와주세요</h3>
-			<Flex
-				styles={{
-					align: "center",
-					gap: "16px",
-					padding: "10px 18px",
-					marginBottom: "16px",
-				}}
-				css={cardStyle}
-			>
-				<img src={SampleImg} alt="sampleImg" css={imgStyle} />
-				<p css={textStyle}>Siren Title 대충 16글자는 들어감</p>
-			</Flex>
-			<Flex
-				styles={{
-					align: "center",
-					gap: "16px",
-					padding: "10px 18px",
-					marginBottom: "16px",
-				}}
-				css={cardStyle}
-			>
-				<img src={SampleImg} alt="sampleImg" css={imgStyle} />
-				<p css={textStyle}>Siren Title 대충 16글자는 들어감</p>
-			</Flex>
-			<Flex
-				styles={{
-					align: "center",
-					gap: "16px",
-					padding: "10px 18px",
-					marginBottom: "16px",
-				}}
-				css={cardStyle}
-			>
-				<img src={SampleImg} alt="sampleImg" css={imgStyle} />
-				<p css={textStyle}>Siren Title 대충 16글자는 들어감</p>
-			</Flex>
-			<Flex
-				styles={{
-					align: "center",
-					gap: "16px",
-					padding: "10px 18px",
-					marginBottom: "16px",
-				}}
-				css={cardStyle}
-			>
-				<img src={SampleImg} alt="sampleImg" css={imgStyle} />
-				<p css={textStyle}>Siren Title 대충 16글자는 들어감</p>
+			<Text size="xLarge" css={titleStyle}>
+				Waggle SIREN
+			</Text>
+			<Text css={subStyle}>위험에 처한 강아지들을 도와주세요</Text>
+			<Flex styles={{ direction: "column", justify: "center", gap: "27px" }}>
+				<SirenWidgetCard />
+				<SirenWidgetCard />
+				<SirenWidgetCard />
+				<SirenWidgetCard />
 			</Flex>
 		</Flex>
 	);

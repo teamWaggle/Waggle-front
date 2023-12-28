@@ -1,7 +1,7 @@
 import SampleImg from "@assets/png/post-sample.png";
 
 import { Flex } from "@components/common";
-import { imgStyle } from "@/components/Landing/Post/Post.style";
+import { imgStyle } from "@components/Landing/Post/Post.style";
 
 const PostCard = () => {
 	return (

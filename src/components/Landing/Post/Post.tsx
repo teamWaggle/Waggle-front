@@ -27,9 +27,9 @@ const mockItems = [
 
 const Post = () => {
 	return (
-		<Flex styles={{ gap: "16px", direction: "column", marginTop: "162px" }}>
+		<Flex styles={{ gap: "16px", direction: "column", marginTop: "62px" }}>
 			<PostTitle />
-			<Flex styles={{ align: "center", wrap: "wrap", gap: "12px" }}>
+			<Flex styles={{ align: "center", wrap: "wrap", justify: "space-between", gap: "22px" }}>
 				{mockItems.map((data) => (
 					<PostCard key={data.id} />
 				))}
