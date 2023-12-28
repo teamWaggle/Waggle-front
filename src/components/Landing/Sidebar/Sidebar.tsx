@@ -1,12 +1,9 @@
 import { useRecoilValue } from "recoil";
 
+import { Flex } from "@/components/common";
+import { Login, Profile, Widget } from "@components/Landing/Sidebar";
+
 import { isLoggedInState } from "@store/auth";
-
-import Flex from "@components/common/Flex/Flex";
-
-import Login from "./Login/Login";
-import Profile from "./Profile/Profile";
-import Widget from "./Widget/Widget";
 
 const Sidebar = () => {
 	const isLoggedIn = useRecoilValue(isLoggedInState);
@@ -15,8 +12,7 @@ const Sidebar = () => {
 		<Flex
 			styles={{
 				direction: "column",
-				width: "315px",
-				gap: "20px",
+				gap: "32px",
 			}}
 			tag="aside"
 		>

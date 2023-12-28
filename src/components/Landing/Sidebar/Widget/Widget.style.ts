@@ -1,46 +1,53 @@
 import { css } from "@emotion/react";
 import { Theme } from "@/styles/Theme";
 
-export const layoutStyle = css({
-	boxShadow: "0px 2px 7px 0px rgba(0, 40, 37, 0.1)",
-	borderRadius: "20px",
-	border: `2px solid ${Theme.color.brand_primary}`,
-});
-
 export const titleStyle = css({
 	color: Theme.color.brand_primary,
 	fontFamily: "Montserrat",
-	fontSize: "27px",
+	fontSize: "22px",
 	fontWeight: 600,
-	lineHeight: "normal",
 });
 
 export const subStyle = css({
 	color: Theme.color.text,
 	fontFamily: "Pretendard",
-	fontSize: "18px",
 	fontWeight: 600,
-	lineHeight: "normal",
-	margin: "20px 0 24px",
-});
-
-export const cardStyle = css({
-	borderRadius: "10px",
-	boxShadow: "0px 0px 2px 0px rgba(0, 0, 0, 0.25)",
-	maxWidth: "272px",
-	position: "relative",
+	margin: "16px 0 28px",
 });
 
 export const imgStyle = css({
-	width: "90px",
-	height: "90px",
-	borderRadius: "16px",
+	width: "68px",
+	height: "68px",
+	borderRadius: "8px",
 });
 
 export const textStyle = css({
 	color: Theme.color.text,
-	fontFamily: "Pretendard",
-	fontSize: "19px",
-	fontWeight: 700,
-	lineHeight: "normal",
+	fontSize: "14px",
+	lineHeight: "18px",
+	fontWeight: 600,
+	overflow: "hidden",
+	textOverflow: "ellipsis",
+	width: "152px",
+	height: "36px",
+	WebkitLineClamp: 2,
+	WebkitBoxOrient: "vertical",
+});
+
+export const subTextStyle = css({
+	color: Theme.color.readonly_text,
+	fontSize: "9px",
+	lineHeight: "11px",
+});
+
+export const tagStyle = css({
+	position: "absolute",
+	top: "-14px",
+	left: "-16px",
+	backgroundColor: Theme.color.btn_02,
+	borderRadius: "17px",
+	padding: "4px 10px",
+	color: Theme.color.text,
+	fontFamily: "Inter",
+	fontWeight: "500",
 });

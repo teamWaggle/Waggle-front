@@ -12,4 +12,8 @@ export const headingStyle = css({
 	fontFamily: "Montserrat",
 	fontWeight: 600,
 	fontSize: "30px",
+
+	"& > svg": {
+		marginLeft: "4px",
+	},
 });
