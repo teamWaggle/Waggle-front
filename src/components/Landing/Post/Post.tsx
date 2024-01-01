@@ -1,5 +1,6 @@
 import { Flex } from "@components/common";
 import { PostTitle, PostCard } from "@components/Landing";
+// import PostDetail from "./PostDetail/PostDetail";
 
 const mockItems = [
 	{
@@ -33,6 +34,8 @@ const Post = () => {
 				{mockItems.map((data) => (
 					<PostCard key={data.id} />
 				))}
+
+				{/* <PostDetail /> */}
 			</Flex>
 		</Flex>
 	);
