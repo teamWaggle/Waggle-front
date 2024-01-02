@@ -1,15 +1,21 @@
-import { sectionStyle, tagStyle, searchStyle, inputStyle, buttonStyle } from "./Title.style";
+import { useState } from "react";
 
-import Flex from "@components/common/Flex/Flex";
+import {
+	sectionStyle,
+	tagStyle,
+	tagDisabledStyle,
+	searchStyle,
+	inputStyle,
+	buttonStyle,
+} from "./Title.style";
+
+import { Flex, Box, Text } from "@components/common";
 
 import SortButton from "@/components/Landing/SortButton/SortButton";
 
 import SearchButtonIcon from "@assets/svg/search-button.svg?react";
 
 const tagItems = [
-	{
-		title: "전체",
-	},
 	{
 		title: "임시보호",
 	},
@@ -25,28 +31,37 @@ const tagItems = [
 ];
 
 const Title = () => {
+	const [tagName, setTagName] = useState("임시보호");
+
 	return (
-		<section css={sectionStyle}>
+		<Box tag="section" css={sectionStyle}>
 			<Flex styles={{ justify: "space-between", align: "center" }}>
-				<Flex styles={{ gap: "16px" }}>
-					<SortButton defaultText="인기순" />
-					<SortButton defaultText="해결" />
-				</Flex>
-				<Flex styles={{ gap: "16px" }}>
-					{tagItems.map((data) => (
-						<Flex styles={{ justify: "center", align: "center" }} css={tagStyle} key={data.title}>
-							{data.title}
-						</Flex>
-					))}
+				<Flex styles={{ gap: "22px" }}>
+					<Flex styles={{ gap: "10px" }}>
+						<SortButton defaultText="인기순" />
+						<SortButton defaultText="해결" />
+					</Flex>
+					<Flex styles={{ gap: "14px" }}>
+						{tagItems.map((data) => (
+							<Flex
+								styles={{ justify: "center", align: "center" }}
+								css={data.title === tagName ? tagStyle : tagDisabledStyle}
+								key={data.title}
+								onClick={() => setTagName(data.title)}
+							>
+								<Text>{data.title}</Text>
+							</Flex>
+						))}
+					</Flex>
 				</Flex>
 				<Flex styles={{ align: "center" }} css={searchStyle}>
 					<input css={inputStyle} />
-					<button css={buttonStyle}>
+					<Flex tag="button" styles={{ align: "center", justify: "center" }} css={buttonStyle}>
 						<SearchButtonIcon />
-					</button>
+					</Flex>
 				</Flex>
 			</Flex>
-		</section>
+		</Box>
 	);
 };
 

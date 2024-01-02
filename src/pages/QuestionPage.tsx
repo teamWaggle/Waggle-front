@@ -1,4 +1,5 @@
-import { Header } from "@components/Landing/Header";
+import Header from "@components/Header/Header";
+
 import Bio from "@components/Question/Bio/Bio";
 import Main from "@components/Question/Main/Main";
 

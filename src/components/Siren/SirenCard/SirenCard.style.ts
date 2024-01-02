@@ -8,29 +8,25 @@ export const cardStyle = css({
 });
 
 export const imgStyle = css({
-	width: "294px",
-	height: "250px",
+	width: "279px",
+	height: "224px",
 	objectFit: "cover",
 	borderRadius: "20px 20px 0 0",
 });
 
 export const infoStyle = css({
 	borderRadius: "0 0 20px 20px",
-	fontFamily: "Pretendard",
-	lineHeight: "normal",
 	padding: "16px",
 	width: "100%",
 });
 
 export const titleStyle = css({
 	color: Theme.color.brand_primary,
-	fontSize: "23px",
-	fontWeight: 800,
+	fontWeight: 700,
 });
 
 export const subStyle = css({
 	color: Theme.color.readonly_text,
-	fontSize: "15px",
 	fontWeight: 600,
 	marginTop: "6px",
 });
@@ -38,7 +34,7 @@ export const subStyle = css({
 export const textStyle = css({
 	color: Theme.color.brand_primary,
 	fontWeight: 600,
-	marginLeft: "5px",
+	marginLeft: "8px",
 });
 
 export const dateStyle = css({

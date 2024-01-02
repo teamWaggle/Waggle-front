@@ -1,25 +1,24 @@
-import { Theme } from "@/styles/Theme";
-
-import Flex from "@components/common/Flex/Flex";
-
-import { buttonStyle } from "./SortButton.style";
-
 import SortArrowIcon from "@assets/svg/sort-arrow.svg?react";
 
+import { Flex, Text } from "@components/common";
+
+import { Theme } from "@styles/Theme";
+
 import { sortButtonType } from "@type/sortButtonType";
+
+import { textStyle } from "./SortButton.style";
 
 const SortButton = ({ defaultText }: sortButtonType) => {
 	return (
 		<Flex
 			styles={{
 				align: "center",
-				gap: "16px",
-				padding: "12px 14px",
-				borderRadius: "6px",
+				padding: "2px 6px 2px 12px",
+				borderRadius: "4px",
 				border: `1px solid ${Theme.color.border}`,
 			}}
 		>
-			<button css={buttonStyle}>{defaultText}</button>
+			<Text css={textStyle}>{defaultText}</Text>
 			<SortArrowIcon />
 		</Flex>
 	);

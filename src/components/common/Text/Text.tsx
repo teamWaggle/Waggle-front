@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef } from "react";
 import { getSizeStyling } from "@components/common/Text/Text.style";
 
 export interface TextProps extends ComponentPropsWithoutRef<"p"> {
-	size?: Extract<Size, "xSmall" | "small" | "medium" | "large">;
+	size?: Extract<Size, "xSmall" | "small" | "medium" | "large" | "xLarge">;
 }
 
 const Text = ({ size = "medium", children, ...attributes }: TextProps) => {
