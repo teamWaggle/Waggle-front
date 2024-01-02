@@ -44,7 +44,7 @@ const Main = () => {
 				styles={{
 					align: "center",
 					wrap: "wrap",
-					gap: "22px",
+					gap: "8px",
 				}}
 			>
 				{mockItems.map((data) => (

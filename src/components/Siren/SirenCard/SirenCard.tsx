@@ -1,4 +1,4 @@
-import Flex from "@components/common/Flex/Flex";
+import { Flex, Heading, Text } from "@components/common";
 import {
 	cardStyle,
 	dateStyle,
@@ -18,8 +18,10 @@ const SirenCard = () => {
 		<Flex styles={{ direction: "column" }} css={cardStyle}>
 			<img src={SampleImg} alt="sampleImg" css={imgStyle} />
 			<Flex styles={{ direction: "column" }} css={infoStyle}>
-				<h2 css={titleStyle}>강아지 찾아요 도와주세요</h2>
-				<h3 css={subStyle}>경기도 의정부시 행복로 66</h3>
+				<Heading size="xSmall" css={titleStyle}>
+					강아지 찾아요 도와주세요
+				</Heading>
+				<Text css={subStyle}>경기도 의정부시 행복로 66</Text>
 				<Flex
 					styles={{
 						justify: "space-between",
@@ -30,9 +32,13 @@ const SirenCard = () => {
 				>
 					<Flex styles={{ align: "flex-end" }}>
 						<SirenOnIcon />
-						<p css={textStyle}>100</p>
+						<Text size="xSmall" css={textStyle}>
+							100
+						</Text>
 					</Flex>
-					<p css={dateStyle}>2023.10.12</p>
+					<Text size="xSmall" css={dateStyle}>
+						2023.10.12
+					</Text>
 				</Flex>
 			</Flex>
 		</Flex>

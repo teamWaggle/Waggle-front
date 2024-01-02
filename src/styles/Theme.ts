@@ -1,6 +1,7 @@
 const color = {
 	brand_primary: "#ff9900",
 	text: "#1b1b1b",
+	text_02: "#282828",
 	input_text: "#292929",
 	readonly_text: "#686868",
 	disabled_text: "#7f7f7f",
