@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { Flex, Heading, Text } from "@components/common";
 import {
 	cardStyle,
@@ -14,8 +16,14 @@ import SampleImg from "@assets/png/post-sample.png";
 import SirenOnIcon from "@assets/svg/siren-on.svg?react";
 
 const SirenCard = () => {
+	const navigate = useNavigate();
+
 	return (
-		<Flex styles={{ direction: "column" }} css={cardStyle}>
+		<Flex
+			styles={{ direction: "column" }}
+			css={cardStyle}
+			onClick={() => navigate("/siren/view/1")}
+		>
 			<img src={SampleImg} alt="sampleImg" css={imgStyle} />
 			<Flex styles={{ direction: "column" }} css={infoStyle}>
 				<Heading size="xSmall" css={titleStyle}>
