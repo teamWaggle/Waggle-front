@@ -4,6 +4,7 @@ import { layoutStyle } from "./Detail.style";
 
 import Title from "./Title/Title";
 import Content from "./Content/Content";
+import Comment from "./Comment/Comment";
 
 const Detail = () => {
 	return (
@@ -14,6 +15,8 @@ const Detail = () => {
 				<Content />
 			</Flex>
 			<Divider />
+
+			<Comment />
 		</Box>
 	);
 };
