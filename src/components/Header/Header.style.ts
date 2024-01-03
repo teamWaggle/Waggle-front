@@ -6,7 +6,7 @@ export const headerStyle = css({
 	top: 0,
 	zIndex: 1,
 	backgroundColor: Theme.color.white,
-	borderBottom: `1px solid ${Theme.color.readonly_text}`,
+	borderBottom: `1px solid ${Theme.color.border}`,
 });
 
 export const logoStyle = css({
