@@ -2,15 +2,16 @@ import Modal from "./Modal";
 import { useRecoilValue } from "recoil";
 import { modalState } from "@store/modal";
 
-const RecoilModalRoot = () => {
+const ModalRoot = () => {
 	const modals = useRecoilValue(modalState);
+
 	return (
 		<div id="recoil-modal">
 			{modals.map((modal) => (
-				<Modal key={modal.key} {...modal}></Modal>
+				<Modal {...modal}></Modal>
 			))}
 		</div>
 	);
 };
 
-export default RecoilModalRoot;
+export default ModalRoot;

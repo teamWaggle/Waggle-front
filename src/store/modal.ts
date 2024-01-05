@@ -1,11 +1,8 @@
 import { atom } from "recoil";
 
-export type ModalProps = {
-	key?: string;
-	component?: () => JSX.Element;
-};
+import { ModalType } from "@/types/modal";
 
-export const modalState = atom<ModalProps[]>({
+export const modalState = atom<ModalType[]>({
 	key: "modalState",
 	default: [],
 });
