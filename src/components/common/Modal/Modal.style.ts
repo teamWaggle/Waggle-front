@@ -8,7 +8,7 @@ export const backdropStyle = css({
 	zIndex: 3,
 	width: "100%",
 	height: "100%",
-	backgroundColor: "rgba(0,0,0,0.15)",
+	backgroundColor: "rgba(0,0,0,0.4)",
 	cursor: "pointer",
 });
 
@@ -17,20 +17,10 @@ export const dialogStyle = css({
 	top: "50%",
 	transform: "translateY(-50%)",
 	zIndex: 4,
-	display: "flex",
-	flexDirection: "column",
-	justifyContent: "center",
-	alignItems: "center",
-
-	minWidth: "300px",
-	padding: "24px",
+	display: "block",
 	margin: "0 auto",
-
+	backgroundColor: Theme.color.transparent,
 	border: "none",
-	borderRadius: "16px",
-
-	backgroundColor: Theme.color.white,
-	boxShadow: Theme.boxShadow.shadow2,
 });
 
 export const closeButtonStyling = css({
