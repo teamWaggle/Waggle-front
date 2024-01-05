@@ -3,16 +3,15 @@ import SampleImg from "@assets/png/post-sample.png";
 import { Flex } from "@components/common";
 import { imgStyle } from "@components/Landing/Post/Post.style";
 
-import useRecoilModal from "@/hooks/useRecoilModal";
+import useModal from "@/hooks/useModal";
 
 const PostCard = () => {
-	const modal = useRecoilModal();
+	const modal = useModal();
 
 	const open = () => {
-		modal.openModal({
-			component: () => <Flex>fasdfsadfsa</Flex>,
-		});
+		modal.openModal({ key: "testModal" });
 	};
+
 	return (
 		<Flex styles={{ align: "center", width: "252px", height: "252px" }} onClick={open}>
 			<img src={SampleImg} alt="sampleImg" css={imgStyle} />
