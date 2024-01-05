@@ -1,7 +1,7 @@
-import { Flex } from "@components/common";
+import { Flex, Box, Text } from "@components/common";
 import CommentCard from "./CommentCard";
 
-import { boxStyle } from "./Comment.style";
+import { boxStyle, commentTextareaStyle, submitButtonStyle } from "./Comment.style";
 
 const Comment = () => {
 	return (
@@ -13,6 +13,12 @@ const Comment = () => {
 				<CommentCard />
 				<CommentCard />
 			</Flex>
+			<Box styles={{ position: "relative", marginBottom: "60px" }}>
+				<textarea css={commentTextareaStyle} />
+				<Flex tag="button" styles={{ justify: "center", align: "center" }} css={submitButtonStyle}>
+					<Text>등록</Text>
+				</Flex>
+			</Box>
 		</Flex>
 	);
 };
