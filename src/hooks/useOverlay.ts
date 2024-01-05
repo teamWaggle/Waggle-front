@@ -9,7 +9,6 @@ export const useOverlay = () => {
 
 	const close = useCallback(() => {
 		setIsOpen(false);
-		console.log("test");
 	}, [setIsOpen]);
 
 	return { isOpen, open, close };

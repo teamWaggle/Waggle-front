@@ -3,6 +3,6 @@ import Divider from "@components/common/Divider/Divider";
 import Flex from "@components/common/Flex/Flex";
 import Heading from "@components/common/Heading/Heading";
 import Text from "@components/common/Text/Text";
-import Modal from "@components/common/Modal/Modal";
+import BaseModal from "@components/common/Modal/Modal";
 
-export { Box, Divider, Flex, Heading, Text, Modal };
+export { Box, Divider, Flex, Heading, Text, BaseModal };

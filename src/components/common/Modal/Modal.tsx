@@ -1,56 +1,43 @@
-import { useCallback, useEffect } from "react";
-import { createPortal } from "react-dom";
+import styled from "@emotion/styled";
 
-import { backdropStyle, dialogStyle } from "@components/common/Modal/Modal.style";
+type Props = {
+	close?: () => void;
+	component?: () => JSX.Element;
+};
 
-export interface ModalProps {
-	isOpen: boolean;
-	isBackdropClosable?: boolean;
-	closeModal: () => void;
-	children: React.ReactNode;
-}
-
-const Modal = ({
-	closeModal,
-	isOpen = false,
-	isBackdropClosable = true,
-	children,
-	...attributes
-}: ModalProps) => {
-	const handleEscKeyPress = useCallback(
-		(event: KeyboardEvent) => {
-			if (event.key === "Escape" && isBackdropClosable) {
-				closeModal();
-			}
-		},
-		[closeModal],
-	);
-
-	useEffect(() => {
-		if (isOpen) {
-			document.body.style.overflow = "hidden";
-			window.addEventListener("keydown", handleEscKeyPress);
-		}
-
-		return () => {
-			document.body.style.overflow = "auto";
-			window.removeEventListener("keydown", handleEscKeyPress);
-		};
-	}, [isOpen, handleEscKeyPress]);
-
-	return createPortal(
-		<>
-			{isOpen && (
-				<>
-					<div css={backdropStyle} onClick={() => closeModal()} />
-					<dialog aria-modal={isOpen} css={dialogStyle} {...attributes}>
-						{children}
-					</dialog>
-				</>
-			)}
-		</>,
-		document.body,
+const Alert = ({ component, close }: Props) => {
+	return (
+		<Wrapper>
+			<Overlay onClick={close}></Overlay>
+			<Content> {component && component()}</Content>
+		</Wrapper>
 	);
 };
 
-export default Modal;
+export default Alert;
+
+const Wrapper = styled.div``;
+const Overlay = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 0.4);
+`;
+const Content = styled.div`
+	position: fixed;
+	display: grid;
+	gap: 16px;
+	top: 50%;
+	left: 50%;
+	padding: 16px;
+	min-width: 200px;
+	max-width: 400px;
+	border-radius: 12px;
+	overflow: hidden;
+	background-color: white;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+`;
