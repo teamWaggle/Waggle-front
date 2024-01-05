@@ -11,6 +11,8 @@ import App from "./App";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import { Theme } from "@/styles/Theme";
 
+import RecoilModalRoot from "./components/common/Modal/ModalRoot";
+
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -19,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 			<RecoilRoot>
 				<ThemeProvider theme={Theme}>
 					<Global styles={GlobalStyle} />
+					<RecoilModalRoot></RecoilModalRoot>
 					<App />
 				</ThemeProvider>
 			</RecoilRoot>
