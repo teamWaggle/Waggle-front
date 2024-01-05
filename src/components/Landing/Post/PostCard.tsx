@@ -5,11 +5,13 @@ import { imgStyle } from "@components/Landing/Post/Post.style";
 
 import useModal from "@/hooks/useModal";
 
+import Detail from "./Detail/Detail";
+
 const PostCard = () => {
 	const modal = useModal();
 
 	const open = () => {
-		modal.openModal({ key: "testModal" });
+		modal.openModal({ key: "postDetail", component: () => <Detail /> });
 	};
 
 	return (
