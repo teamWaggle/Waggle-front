@@ -1,22 +1,22 @@
 import SampleImg from "@assets/png/post-sample.png";
 
-import { Flex, Modal } from "@components/common";
+import { Flex } from "@components/common";
 import { imgStyle } from "@components/Landing/Post/Post.style";
 
-import { useOverlay } from "@/hooks/useOverlay";
+import useModal from "@/hooks/useModal";
+
+import Detail from "./Detail/Detail";
 
 const PostCard = () => {
-	const { isOpen, open, close } = useOverlay();
+	const modal = useModal();
 
-	console.log("test ");
+	const open = () => {
+		modal.openModal({ key: "postDetail", component: () => <Detail /> });
+	};
 
 	return (
 		<Flex styles={{ align: "center", width: "252px", height: "252px" }} onClick={open}>
 			<img src={SampleImg} alt="sampleImg" css={imgStyle} />
-
-			<Modal isOpen={isOpen} closeModal={close}>
-				sfasdf
-			</Modal>
 		</Flex>
 	);
 };
