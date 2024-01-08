@@ -4,6 +4,7 @@ import { Theme } from "@styles/Theme";
 export const imgStyle = css({
 	width: "100%",
 	height: "100%",
+	objectFit: "cover",
 	borderRadius: "4px",
 });
 

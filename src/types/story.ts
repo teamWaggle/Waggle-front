@@ -7,14 +7,14 @@ export interface StoryType {
 
 export interface StoryResultType {
 	id: number;
-	content: string;
-	username: string;
-	profileImg: string;
-	createdDate: string;
-	recoomendCount: number;
-	recommendIt: boolean;
-	hashtags: string[];
-	medias: string[];
+	content?: string;
+	username?: string;
+	profileImg?: string;
+	createdDate?: string;
+	recoomendCount?: number;
+	recommendIt?: boolean;
+	hashtags?: string[];
+	medias?: string[];
 }
 
 export interface StoryListType {
@@ -33,11 +33,11 @@ export interface StoryListResultType {
 
 export interface StoryListInfoType {
 	id: number;
-	username: string;
-	profileImg: string;
-	createdData: string;
+	username?: string;
+	profileImg?: string;
+	createdDate?: string;
 	thumbnail: string;
-	recommendCount: number;
-	recommendIt: boolean;
-	hashtags: string[];
+	recommendCount?: number;
+	recommendIt?: boolean;
+	hashtags?: string[];
 }
