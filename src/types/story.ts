@@ -16,3 +16,28 @@ export interface StoryResultType {
 	hashtags: string[];
 	medias: string[];
 }
+
+export interface StoryListType {
+	isSuccess: boolean;
+	code: number;
+	message: string;
+	result: StoryListResultType;
+}
+
+export interface StoryListResultType {
+	storyList: StoryListInfoType[];
+	totalQuestions: number;
+	first: boolean;
+	last: boolean;
+}
+
+export interface StoryListInfoType {
+	id: number;
+	username: string;
+	profileImg: string;
+	createdData: string;
+	thumbnail: string;
+	recommendCount: number;
+	recommendIt: boolean;
+	hashtags: string[];
+}
