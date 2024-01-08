@@ -1,6 +1,8 @@
 import { Flex } from "@components/common";
 import { PostTitle, PostCard } from "@components/Landing";
 
+import { useStoryQuery } from "@hooks/api/useStoryQuery";
+
 const mockItems = [
 	{
 		id: 1,
@@ -26,6 +28,10 @@ const mockItems = [
 ];
 
 const Post = () => {
+	const { storyData } = useStoryQuery(54);
+
+	console.log(storyData);
+
 	return (
 		<Flex styles={{ gap: "16px", direction: "column", marginTop: "62px" }}>
 			<PostTitle />
