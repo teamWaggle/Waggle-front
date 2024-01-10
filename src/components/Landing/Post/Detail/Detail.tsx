@@ -16,8 +16,6 @@ const Detail = ({ id }: StoryResultType) => {
 
 	const { commentData } = useCommentQuery(0, id);
 
-	console.log(commentData);
-
 	return (
 		<>
 			{storyData && (
@@ -40,7 +38,7 @@ const Detail = ({ id }: StoryResultType) => {
 								</Flex>
 							</Flex>
 						</Flex>
-						<Divider length="calc(100% - 5px)" />
+						<Divider length="309px" />
 						{commentData &&
 							commentData.result.commentList.map((comment) => (
 								<Comment key={comment.id} {...comment} />
