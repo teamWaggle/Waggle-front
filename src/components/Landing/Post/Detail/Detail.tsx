@@ -7,11 +7,16 @@ import Comment from "./Comment";
 import { layoutStyle, imgStyle, profileStyle, infoBoxStyle, contentStyle } from "./Detail.style";
 
 import { useStoryQuery } from "@hooks/api/useStoryQuery";
+import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 
 import { StoryResultType } from "@/types/story";
 
 const Detail = ({ id }: StoryResultType) => {
 	const { storyData } = useStoryQuery(id);
+
+	const { commentData } = useCommentQuery(0, id);
+
+	console.log(commentData);
 
 	return (
 		<>
@@ -36,10 +41,10 @@ const Detail = ({ id }: StoryResultType) => {
 							</Flex>
 						</Flex>
 						<Divider length="calc(100% - 5px)" />
-						<Comment />
-						<Comment />
-						<Comment />
-						<Comment />
+						{commentData &&
+							commentData.result.commentList.map((comment) => (
+								<Comment key={comment.id} {...comment} />
+							))}
 					</Flex>
 				</Flex>
 			)}
