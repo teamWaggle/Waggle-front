@@ -9,7 +9,7 @@ const useModal = () => {
 	const openModal = ({ key, component }: ModalType) => {
 		const modalProps = {
 			key,
-			close: () => setModals([...modals]),
+			close: () => setModals([]),
 			component,
 		};
 

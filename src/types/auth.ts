@@ -5,13 +5,6 @@ export interface TokenType {
 	result: ResultType;
 }
 
-// export interface ErrorType {
-// 	code: number;
-// 	isSuccess: boolean;
-// 	message: string;
-// 	result: string;
-// }
-
 export interface ResultType {
 	accessToken: string;
 	grantType: string;
