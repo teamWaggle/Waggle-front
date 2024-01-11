@@ -9,19 +9,23 @@ import { layoutStyle, imgStyle, profileStyle, infoBoxStyle, contentStyle } from 
 import { useStoryQuery } from "@hooks/api/useStoryQuery";
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 
-import { StoryResultType } from "@/types/story";
+interface DetailType {
+	id: number;
+}
 
-const Detail = ({ id }: StoryResultType) => {
+const Detail = ({ id }: DetailType) => {
 	const { storyData } = useStoryQuery(id);
 
 	const { commentData } = useCommentQuery(0, id);
+
+	const imgIndex = 0;
 
 	return (
 		<>
 			{storyData && (
 				<Flex css={layoutStyle}>
 					<Flex styles={{ width: "741px", height: "100%", borderRadius: "42px 0 0 42px" }}>
-						<img src={SampleImg} alt="profileImg" css={imgStyle} />
+						<img src={storyData.result.medias[imgIndex]} alt="profileImg" css={imgStyle} />
 					</Flex>
 
 					<Flex styles={{ direction: "column" }}>

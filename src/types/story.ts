@@ -14,7 +14,7 @@ export interface StoryResultType {
 	recoomendCount?: number;
 	recommendIt?: boolean;
 	hashtags?: string[];
-	medias?: string[];
+	medias: string[];
 }
 
 export interface StoryListType {
