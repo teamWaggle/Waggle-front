@@ -1,7 +1,7 @@
 import { Flex, Box, Heading, Text } from "@components/common";
 import { buttonStyle, boxStyle, titleStyle } from "./Bio.style";
 
-import SirenCard from "../SirenCard/SirenCard";
+// import SirenCard from "../SirenCard/SirenCard";
 
 const Bio = () => {
 	return (
@@ -19,9 +19,9 @@ const Bio = () => {
 					</Flex>
 				</Flex>
 				<Flex styles={{ gap: "12px" }}>
+					{/* <SirenCard />
 					<SirenCard />
-					<SirenCard />
-					<SirenCard />
+					<SirenCard /> */}
 				</Flex>
 			</Flex>
 		</Box>

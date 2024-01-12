@@ -11,25 +11,32 @@ import {
 	titleStyle,
 } from "./SirenCard.style";
 
-import SampleImg from "@assets/png/post-sample.png";
-
 import SirenOnIcon from "@assets/svg/siren-on.svg?react";
 
-const SirenCard = () => {
+import type { SirenListInfoType } from "@/types/siren";
+
+const SirenCard = ({
+	id,
+	thumbnail,
+	title,
+	lostLocate,
+	recommendCount,
+	lostDate,
+}: SirenListInfoType) => {
 	const navigate = useNavigate();
 
 	return (
 		<Flex
 			styles={{ direction: "column" }}
 			css={cardStyle}
-			onClick={() => navigate("/siren/view/1")}
+			onClick={() => navigate(`/siren/view/${id}`)}
 		>
-			<img src={SampleImg} alt="sampleImg" css={imgStyle} />
+			<img src={thumbnail} alt="thumbnail" css={imgStyle} />
 			<Flex styles={{ direction: "column" }} css={infoStyle}>
 				<Heading size="xSmall" css={titleStyle}>
-					강아지 찾아요 도와주세요
+					{title}
 				</Heading>
-				<Text css={subStyle}>경기도 의정부시 행복로 66</Text>
+				<Text css={subStyle}>{lostLocate}</Text>
 				<Flex
 					styles={{
 						justify: "space-between",
@@ -41,11 +48,11 @@ const SirenCard = () => {
 					<Flex styles={{ align: "flex-end" }}>
 						<SirenOnIcon />
 						<Text size="xSmall" css={textStyle}>
-							100
+							{recommendCount}
 						</Text>
 					</Flex>
 					<Text size="xSmall" css={dateStyle}>
-						2023.10.12
+						{lostDate}
 					</Text>
 				</Flex>
 			</Flex>
