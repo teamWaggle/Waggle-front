@@ -1,3 +1,28 @@
+export interface SirenType {
+	isSuccess: boolean;
+	code: number;
+	message: string;
+	result: SirenResultType;
+}
+
+export interface SirenResultType {
+	id?: number;
+	title?: string;
+	petKind?: string;
+	petAge?: number;
+	petGender?: string;
+	contact?: string;
+	lostDate?: string;
+	lostLocate?: string;
+	content?: string;
+	category?: string;
+	medias?: string[];
+	username?: string;
+	profileImg?: string;
+	recommendIt?: boolean;
+	recommendCount?: number;
+}
+
 export interface SirenListType {
 	isSuccess: boolean;
 	code: number;
