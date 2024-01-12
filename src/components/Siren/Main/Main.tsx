@@ -4,40 +4,11 @@ import Flex from "@/components/common/Flex/Flex";
 
 import SirenCard from "../SirenCard/SirenCard";
 
-const mockItems = [
-	{
-		id: 1,
-	},
-	{
-		id: 2,
-	},
-	{
-		id: 3,
-	},
-	{
-		id: 4,
-	},
-	{
-		id: 5,
-	},
-	{
-		id: 6,
-	},
-	{
-		id: 7,
-	},
-	{
-		id: 8,
-	},
-	{
-		id: 9,
-	},
-	{
-		id: 10,
-	},
-];
+import { useSirenListQuery } from "@/hooks/api/useSirenListQuery";
 
 const Main = () => {
+	const { sirenList } = useSirenListQuery(0);
+
 	return (
 		<section css={sectionStyle}>
 			<Flex
@@ -47,9 +18,18 @@ const Main = () => {
 					gap: "8px",
 				}}
 			>
-				{mockItems.map((data) => (
-					<SirenCard key={data.id} />
-				))}
+				{sirenList &&
+					sirenList.result.helpList.map((sirenInfo) => (
+						<SirenCard
+							key={sirenInfo.id}
+							id={sirenInfo.id}
+							thumbnail={sirenInfo.thumbnail}
+							title={sirenInfo.title}
+							lostLocate={sirenInfo.lostLocate}
+							recommendCount={sirenInfo.recommendCount}
+							lostDate={sirenInfo.lostDate}
+						/>
+					))}
 			</Flex>
 		</section>
 	);
