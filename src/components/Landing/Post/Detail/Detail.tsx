@@ -1,19 +1,22 @@
-import SampleImg from "@assets/png/post-sample2.png";
-
+import SampleImg from "@/assets/png/post-sample2.png";
 import { Flex, Divider, Text } from "@/components/common";
-
-import Comment from "./Comment";
-
-import { layoutStyle, imgStyle, profileStyle, infoBoxStyle, contentStyle } from "./Detail.style";
-
-import { useStoryQuery } from "@hooks/api/useStoryQuery";
+import Comment from "@/components/Landing/Post/Detail/Comment";
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
+import { useStoryQuery } from "@/hooks/api/useStoryQuery";
 
-interface DetailType {
+import {
+	layoutStyle,
+	imgStyle,
+	profileStyle,
+	infoBoxStyle,
+	contentStyle,
+} from "@/components/Landing/Post/Detail/Detail.style";
+
+interface idType {
 	id: number;
 }
 
-const Detail = ({ id }: DetailType) => {
+const Detail = ({ id }: idType) => {
 	const { storyData } = useStoryQuery(id);
 
 	const { commentData } = useCommentQuery(0, id);

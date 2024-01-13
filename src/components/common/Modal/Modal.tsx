@@ -2,7 +2,7 @@ import { useEffect, useCallback } from "react";
 
 import { useRecoilValue } from "recoil";
 
-import { modalState } from "@store/modal";
+import { modalState } from "@/store/modal";
 
 import { backdropStyle, dialogStyle } from "./Modal.style";
 

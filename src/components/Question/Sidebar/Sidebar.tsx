@@ -1,8 +1,6 @@
-import Flex from "@components/common/Flex/Flex";
-
-import Profile from "./Profile/Profile";
-
-import NotificationCard from "@components/common/Notification/NotificationCard/NotificationCard";
+import Flex from "@/components/common/Flex/Flex";
+import NotificationCard from "@/components/common/Notification/NotificationCard/NotificationCard";
+import { Profile } from "@/components/Question";
 
 const Sidebar = () => {
 	return (

@@ -1,9 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import LandingPage from "./pages/LandingPage";
-import SirenPage from "./pages/SirenPage";
-import QuestionPage from "./pages/QuestionPage";
-import SirenDetailPage from "./pages/SirenDetailPage";
+import { LandingPage, SirenPage, SirenDetailPage, QuestionPage } from "@/pages";
 
 const App = () => {
 	return (

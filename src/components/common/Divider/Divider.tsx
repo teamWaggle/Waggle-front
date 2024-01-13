@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { getDirectionStyling } from "@components/common/Divider/Divider.style";
+import { getDirectionStyling } from "@/components/common/Divider/Divider.style";
 
 export interface DividerProps extends ComponentPropsWithoutRef<"div"> {
 	length?: string;

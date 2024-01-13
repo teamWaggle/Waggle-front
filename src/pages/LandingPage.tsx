@@ -1,6 +1,5 @@
-import Header from "@components/Header/Header";
-import Bio from "@components/Landing/Bio/Bio";
-import Main from "@components/Landing/Main/Main";
+import Header from "@/components/Header/Header";
+import { Bio, Main } from "@/components/Landing";
 
 const LandingPage = () => {
 	return (

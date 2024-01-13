@@ -1,8 +1,8 @@
 import { css } from "@emotion/react";
 
-import type { DividerProps } from "@components/common/Divider/Divider";
+import { Theme } from "@/styles/Theme";
 
-import { Theme } from "@styles/Theme";
+import type { DividerProps } from "@/components/common/Divider/Divider";
 
 export const getDirectionStyling = (
 	direction: Required<DividerProps>["direction"],

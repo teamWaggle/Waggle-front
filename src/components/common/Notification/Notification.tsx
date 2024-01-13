@@ -1,10 +1,9 @@
-import NotificationIcon from "@assets/svg/notification.svg?react";
-
-import Flex from "@components/common/Flex/Flex";
-
-import { notificationStyle, cardBoxStyle } from "./Notification.style";
+import NotificationIcon from "@/assets/svg/notification.svg?react";
+import { Flex } from "@/components/common";
 
 import NotificationCard from "./NotificationCard/NotificationCard";
+
+import { notificationStyle, cardBoxStyle } from "./Notification.style";
 
 const Notification = () => {
 	return (

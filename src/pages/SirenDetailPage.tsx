@@ -1,6 +1,5 @@
-import Header from "@components/Header/Header";
-
-import Detail from "@components/Siren/Detail/Detail";
+import Header from "@/components/Header/Header";
+import { Detail } from "@/components/Siren/Detail";
 
 const SirenDetailPage = () => {
 	return (

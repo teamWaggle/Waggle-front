@@ -12,43 +12,73 @@
       "plugin:prettier/recommended"
     ],
     "rules": {
-      // "import/extensions": "off",
-      // "import/no-unresolved": "off",
-      // "react/jsx-boolean-value": "off",
-      // "react/prop-types": "off",
-      // "react/react-in-jsx-scope": "off",
-      // "react/jsx-no-useless-fragment": "off",
-      // "react/jsx-props-no-spreading": "off",
-      // "arrow-body-style": "off",
-      // "no-param-reassign": "off",
-      // "prettier/prettier": ["error", { "endOfLine": "auto" }],
-      // "camelcase": "off",
-      // "import/order":[
-      //   "error",
-      //     {
-      //       "groups": [
-      //         "builtin",
-      //         "external",
-      //         "unknown",
-      //         "internal",
-      //         ["sibling", "parent"]
-      //       ],
-      //       "pathGroups": [
-      //         {
-      //           "pattern": "{react*,react*/*}",
-      //           "group": "external",
-      //           "position": "before"
-      //         }
-      //       ],
-      //       "pathGroupsExcludedImportTypes": [],
-      //       "alphabetize": {
-      //         "order": "asc",
-      //         "caseInsensitive": true
-      //       },
-      //       "newlines-between": "always"
-      //     }
-      //   ]
-    "import/order": "off"
+      "import/order":[
+        "error",
+          {
+            "groups": [
+              "builtin",
+              "external",
+              "internal",
+              ["sibling", "parent", "index"],
+              "type",
+              "unknown"
+            ],
+            "pathGroups": [
+              {
+                "pattern": "{react*,react*/*}",
+                "group": "external",
+                "position": "before"
+              },
+              {
+                "pattern": "{axios*,axios*/*}",
+                "group": "external",
+                "position": "before"
+              },
+              {
+                "pattern": "{@emotion*,@emotion*/*}",
+                "group": "external",
+                "position": "before"
+              },
+              {
+                "pattern": "{recoil*,recoil*/*}",
+                "group": "external",
+                "position": "before"
+              },
+              {
+                "pattern": "{@storybook*,@storybook*/*}",
+                "group": "external",
+                "position": "before"
+              },
+              {
+                "pattern": "{@tanstack*,@tanstack*/*}",
+                "group": "external",
+                "position": "before"
+              },
+              {
+                "pattern": "@/pages/**/*.style",
+                "group": "unknown"
+              },
+              {
+                "pattern": "@/components/**/*.style",
+                "group": "unknown"
+              },
+              {
+                "pattern": "../**/*.style",
+                "group": "unknown"
+              },
+              {
+                "pattern": "./**/*.style",
+                "group": "unknown"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": ["react", "unknown"],
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            },
+            "newlines-between": "always"
+          }
+        ]
     },
     "settings": { 
       "import/parsers": {

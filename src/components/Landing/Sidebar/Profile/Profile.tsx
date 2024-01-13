@@ -1,18 +1,22 @@
-import { useLogoutMutation } from "@hooks/api/useLogoutMutation";
+import ProfileImg from "@/assets/svg/profile-gray.svg?react";
+import Box from "@/components/common/Box/Box";
+import Divider from "@/components/common/Divider/Divider";
+import Flex from "@/components/common/Flex/Flex";
+import Heading from "@/components/common/Heading/Heading";
+import Text from "@/components/common/Text/Text";
+import { useLogoutMutation } from "@/hooks/api/useLogoutMutation";
 
 // import { useSetRecoilState } from "recoil";
 
 // import { isLoggedInState } from "@/store/auth";
 
-import Flex from "@components/common/Flex/Flex";
-import Box from "@components/common/Box/Box";
-import Heading from "@components/common/Heading/Heading";
-import Text from "@components/common/Text/Text";
-import Divider from "@components/common/Divider/Divider";
-
-import ProfileImg from "@assets/svg/profile-gray.svg?react";
-
-import { boxStyle, buttonStyle, headingStyle, logoutBoxStyle, textStyle } from "./Profile.style";
+import {
+	boxStyle,
+	buttonStyle,
+	headingStyle,
+	logoutBoxStyle,
+	textStyle,
+} from "@/components/Landing/Sidebar/Profile/Profile.style";
 
 const Profile = () => {
 	const { mutateLogOut } = useLogoutMutation();
