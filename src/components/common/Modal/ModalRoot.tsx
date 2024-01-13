@@ -1,6 +1,8 @@
-import Modal from "./Modal";
 import { useRecoilValue } from "recoil";
-import { modalState } from "@store/modal";
+
+import { modalState } from "@/store/modal";
+
+import Modal from "./Modal";
 
 const ModalRoot = () => {
 	const modals = useRecoilValue(modalState);

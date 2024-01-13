@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
-import { modalState } from "@store/modal";
 
+import { modalState } from "@/store/modal";
 import { ModalType } from "@/types/modal";
 
 const useModal = () => {

@@ -1,10 +1,9 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { useSetRecoilState } from "recoil";
 
-import { isLoggedInState } from "@store/auth";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { deleteLogout } from "@api/auth/deleteLogout";
+import { deleteLogout } from "@/api/auth/deleteLogout";
+import { isLoggedInState } from "@/store/auth";
 
 export const useLogoutMutation = () => {
 	const queryClient = useQueryClient();

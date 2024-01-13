@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-
 import type { AxiosError } from "axios";
 
-import { getStoryList } from "@api/story/getStoryList";
+import { useQuery } from "@tanstack/react-query";
 
-import type { StoryListType } from "@type/story";
+import { getStoryList } from "@/api/story/getStoryList";
+
+import type { StoryListType } from "@/types/story";
 
 export const useStoryListQuery = (currentPage: number) => {
 	const queryFn: { storyList: () => Promise<StoryListType> } = {

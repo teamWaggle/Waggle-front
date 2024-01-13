@@ -1,8 +1,12 @@
-import { Flex, Heading, Text } from "@components/common";
-
-import { tagStyle, headingStyle, profileStyle, textStyle } from "./Title.style";
-
+import { Flex, Heading, Text } from "@/components/common";
 import { SirenResultType } from "@/types/siren";
+
+import {
+	tagStyle,
+	headingStyle,
+	profileStyle,
+	textStyle,
+} from "@/components/Siren/Detail/Title/Title.style";
 
 const Title = ({ profileImg, category, title, username, lostDate }: SirenResultType) => {
 	return (

@@ -2,21 +2,18 @@ import { useEffect } from "react";
 
 import { useSetRecoilState } from "recoil";
 
-import Logo from "@assets/svg/logo-white.svg?react";
-
+import Logo from "@/assets/svg/logo-white.svg?react";
 import { Flex, Text } from "@/components/common";
+import { useLogInMutation } from "@/hooks/api/useLogInMutation";
+import { isLoggedInState } from "@/store/auth";
+import { Theme } from "@/styles/Theme";
+
 import {
 	titleStyle,
 	buttonStyle,
 	textStyle,
 	subTextStyle,
-} from "@components/Landing/Sidebar/Login/Login.style";
-
-import { useLogInMutation } from "@hooks/api/useLogInMutation";
-
-import { isLoggedInState } from "@/store/auth";
-
-import { Theme } from "@styles/Theme";
+} from "@/components/Landing/Sidebar/Login/Login.style";
 
 const Login = () => {
 	const { mutateLogIn } = useLogInMutation();

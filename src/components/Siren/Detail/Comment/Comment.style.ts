@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
-import { Theme } from "@styles/Theme";
+
+import { Theme } from "@/styles/Theme";
 
 export const boxStyle = css({
 	maxWidth: "1536px",

@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Global, ThemeProvider } from "@emotion/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Global, ThemeProvider } from "@emotion/react";
 
 import { RecoilRoot } from "recoil";
 
-import App from "./App";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import App from "@/App";
+import ModalRoot from "@/components/common/Modal/ModalRoot";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import { Theme } from "@/styles/Theme";
-
-import ModalRoot from "./components/common/Modal/ModalRoot";
 
 const queryClient = new QueryClient();
 

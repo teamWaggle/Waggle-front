@@ -1,5 +1,6 @@
-import { Flex, Box, Heading, Text } from "@components/common";
-import { buttonStyle, boxStyle, titleStyle } from "./Bio.style";
+import { Flex, Box, Heading, Text } from "@/components/common";
+
+import { buttonStyle, boxStyle, titleStyle } from "@/components/Siren/Bio/Bio.style";
 
 // import SirenCard from "../SirenCard/SirenCard";
 

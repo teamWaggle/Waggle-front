@@ -1,11 +1,14 @@
-import SearchButtonIcon from "@assets/svg/search-button.svg?react";
+import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
+import { Flex, Text } from "@/components/common";
+import { SortButton } from "@/components/Landing";
+import { sortButtonType } from "@/types/common";
 
-import { Flex, Text } from "@components/common";
-import { SortButton } from "@components/Landing";
-
-import { sortButtonType } from "@type/sortButtonType";
-
-import { searchStyle, inputStyle, buttonStyle, textStyle } from "./Searchbar.style";
+import {
+	searchStyle,
+	inputStyle,
+	buttonStyle,
+	textStyle,
+} from "@/components/Landing/Searchbar/Searchbar.style";
 
 const Searchbar = ({ defaultText }: sortButtonType) => {
 	return (
