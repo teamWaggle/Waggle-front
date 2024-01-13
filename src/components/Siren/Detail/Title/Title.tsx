@@ -1,26 +1,21 @@
-import { Flex, Box, Heading, Text } from "@components/common";
+import { Flex, Heading, Text } from "@components/common";
 
-import { tagStyle, headingStyle, textStyle } from "./Title.style";
+import { tagStyle, headingStyle, profileStyle, textStyle } from "./Title.style";
 
-const Title = () => {
+import { SirenResultType } from "@/types/siren";
+
+const Title = ({ profileImg, category, title, username, lostDate }: SirenResultType) => {
 	return (
 		<Flex styles={{ direction: "column", gap: "12px", marginBottom: "18px" }}>
 			<Flex styles={{ justify: "center", align: "center" }} css={tagStyle}>
-				<Text>강아지 찾아요</Text>
+				<Text>{category}</Text>
 			</Flex>
-			<Heading css={headingStyle}>강아지 찾아요 도와주세요</Heading>
+			<Heading css={headingStyle}>{title}</Heading>
 			<Flex styles={{ align: "center", gap: "14px" }}>
-				<Box
-					styles={{
-						width: "40px",
-						height: "40px",
-						borderRadius: "50%",
-						backgroundColor: "#d9d9d9",
-					}}
-				/>
-				<Text css={textStyle}>멍댕멍댕</Text>
+				<img src={profileImg} alt={profileImg} css={profileStyle} />
+				<Text css={textStyle}>{username}</Text>
 				<Text css={textStyle}>조회 129</Text>
-				<Text css={textStyle}>23.12.27 20:10</Text>
+				<Text css={textStyle}>{lostDate}</Text>
 			</Flex>
 		</Flex>
 	);

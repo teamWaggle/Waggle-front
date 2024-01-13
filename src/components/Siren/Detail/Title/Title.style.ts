@@ -14,6 +14,13 @@ export const headingStyle = css({
 	fontWeight: 700,
 });
 
+export const profileStyle = css({
+	width: "40px",
+	height: "40px",
+	borderRadius: "50%",
+	objectFit: "cover",
+});
+
 export const textStyle = css({
 	color: Theme.color.disabled_text,
 	fontWeight: 500,

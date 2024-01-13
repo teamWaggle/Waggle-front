@@ -24,17 +24,11 @@ export const contentTextStyle = css({
 	fontWeight: 500,
 });
 
-export const iconBoxStyle = css({
-	width: "85px",
-	height: "85px",
-	borderRadius: "50%",
-	backgroundColor: Theme.color.border,
-	color: Theme.color.white,
-	fontWeight: 500,
-});
+export const getHeadingStyling = (recommendIt: boolean | undefined) => {
+	return css({
+		fontFamily: "Montserrat",
+		fontWeight: 500,
 
-export const headingStyle = css({
-	color: Theme.color.border,
-	fontFamily: "Montserrat",
-	fontWeight: 500,
-});
+		color: recommendIt ? Theme.color.brand_primary : Theme.color.border,
+	});
+};
