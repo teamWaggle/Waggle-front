@@ -1,7 +1,5 @@
-import Header from "@components/Header/Header";
-
-import Bio from "@components/Question/Bio/Bio";
-import Main from "@components/Question/Main/Main";
+import Header from "@/components/Header/Header";
+import { Bio, Main } from "@/components/Question";
 
 const QuestionPage = () => {
 	return (

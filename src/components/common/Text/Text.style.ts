@@ -1,8 +1,8 @@
 import { css } from "@emotion/react";
 
-import type { TextProps } from "@components/common/Text/Text";
+import { Theme } from "@/styles/Theme";
 
-import { Theme } from "@styles/Theme";
+import type { TextProps } from "@/components/common/Text/Text";
 
 export const getSizeStyling = (size: Required<TextProps>["size"]) => {
 	const style = {

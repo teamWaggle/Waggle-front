@@ -1,11 +1,9 @@
-import { Flex } from "@components/common";
-import { imgStyle } from "@components/Landing/Post/Post.style";
-
+import { Flex } from "@/components/common";
+import Detail from "@/components/Landing/Post/Detail/Detail";
 import useModal from "@/hooks/useModal";
-
-import Detail from "./Detail/Detail";
-
 import { StoryListInfoType } from "@/types/story";
+
+import { imgStyle } from "@/components/Landing/Post/Post.style";
 
 const PostCard = ({ id, thumbnail }: StoryListInfoType) => {
 	const modal = useModal();

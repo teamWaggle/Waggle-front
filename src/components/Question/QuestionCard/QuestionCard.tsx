@@ -1,4 +1,5 @@
-import Flex from "@components/common/Flex/Flex";
+import LikeIcon from "@/assets/svg/question-like.svg?react";
+import Flex from "@/components/common/Flex/Flex";
 
 import {
 	cardStyle,
@@ -8,9 +9,7 @@ import {
 	contentStyle,
 	iconStyle,
 	iconTextStyle,
-} from "./QuestionCard.style";
-
-import LikeIcon from "@assets/svg/question-like.svg?react";
+} from "@/components/Question/QuestionCard/QuestionCard.style";
 
 const QuestionCard = () => {
 	return (

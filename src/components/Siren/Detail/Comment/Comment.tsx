@@ -1,7 +1,11 @@
-import { Flex, Box, Text } from "@components/common";
-import CommentCard from "./CommentCard";
+import { Flex, Box, Text } from "@/components/common";
+import CommentCard from "@/components/Siren/Detail/Comment/CommentCard";
 
-import { boxStyle, commentTextareaStyle, submitButtonStyle } from "./Comment.style";
+import {
+	boxStyle,
+	commentTextareaStyle,
+	submitButtonStyle,
+} from "@/components/Siren/Detail/Comment/Comment.style";
 
 const Comment = () => {
 	return (

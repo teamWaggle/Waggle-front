@@ -1,12 +1,8 @@
-import Flex from "@components/common/Flex/Flex";
+import { Flex } from "@/components/common";
+import Searchbar from "@/components/Landing/Searchbar/Searchbar";
+import { QuestionCard, Sidebar } from "@/components/Question";
 
-import Searchbar from "@components/Landing/Searchbar/Searchbar";
-
-import QuestionCard from "../QuestionCard/QuestionCard";
-
-import Sidebar from "../Sidebar/Sidebar";
-
-import { mainStyle } from "./Main.style";
+import { mainStyle } from "@/components/Question/Main/Main.style";
 
 const Main = () => {
 	return (

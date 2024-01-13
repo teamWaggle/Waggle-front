@@ -1,7 +1,8 @@
-import type { Size } from "@/types/size";
 import type { ComponentPropsWithoutRef } from "react";
 
-import { getSizeStyling } from "@components/common/Text/Text.style";
+import type { Size } from "@/types/size";
+
+import { getSizeStyling } from "@/components/common/Text/Text.style";
 
 export interface TextProps extends ComponentPropsWithoutRef<"p"> {
 	size?: Extract<Size, "xSmall" | "small" | "medium" | "large" | "xLarge">;

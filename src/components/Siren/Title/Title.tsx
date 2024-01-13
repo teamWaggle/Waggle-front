@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
+import { Flex, Box, Text } from "@/components/common";
+import SortButton from "@/components/Landing/SortButton/SortButton";
+
 import {
 	sectionStyle,
 	tagStyle,
@@ -7,13 +11,7 @@ import {
 	searchStyle,
 	inputStyle,
 	buttonStyle,
-} from "./Title.style";
-
-import { Flex, Box, Text } from "@components/common";
-
-import SortButton from "@/components/Landing/SortButton/SortButton";
-
-import SearchButtonIcon from "@assets/svg/search-button.svg?react";
+} from "@/components/Siren/Title/Title.style";
 
 const tagItems = [
 	{

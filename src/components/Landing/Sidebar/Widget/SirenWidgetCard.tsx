@@ -1,14 +1,13 @@
-import SampleImg from "@assets/png/post-sample.png";
+import SampleImg from "@/assets/png/post-sample.png";
+import { Flex, Text } from "@/components/common";
+import { Theme } from "@/styles/Theme";
 
-import { Flex, Text } from "@components/common";
 import {
 	imgStyle,
 	textStyle,
 	subTextStyle,
 	tagStyle,
-} from "@components/Landing/Sidebar/Widget/Widget.style";
-
-import { Theme } from "@styles/Theme";
+} from "@/components/Landing/Sidebar/Widget/Widget.style";
 
 const SirenWidgetCard = () => {
 	return (

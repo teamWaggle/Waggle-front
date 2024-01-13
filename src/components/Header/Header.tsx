@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import Logo from "@assets/svg/logo.svg?react";
-
-import { Flex, Box, Text } from "@components/common";
+import Logo from "@/assets/svg/logo.svg?react";
+import { Flex, Box, Text } from "@/components/common";
 
 import { headerStyle, logoStyle, textStyle } from "@/components/Header/Header.style";
 
