@@ -1,8 +1,7 @@
-import { axiosInstance } from "@api/axiosInstance";
+import { axiosInstance } from "@/api/axiosInstance";
+import { END_POINTS } from "@/constants/api";
 
-import type { StoryListType } from "@type/story";
-
-import { END_POINTS } from "@constants/api";
+import type { StoryListType } from "@/types/story";
 
 export const getStoryList = async (currentPage: number) => {
 	const { data } = await axiosInstance.get<StoryListType>(END_POINTS.STORY_LIST(currentPage));

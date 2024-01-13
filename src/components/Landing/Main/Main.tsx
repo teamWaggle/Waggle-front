@@ -1,7 +1,6 @@
-import { Searchbar, Sidebar, Post } from "@components/Landing";
-
-import Flex from "@components/common/Flex/Flex";
-import { mainStyle } from "@components/Landing/Main/Main.styles";
+import Flex from "@/components/common/Flex/Flex";
+import { Searchbar, Sidebar, Post } from "@/components/Landing";
+import { mainStyle } from "@/components/Landing/Main/Main.styles";
 
 const Main = () => {
 	return (

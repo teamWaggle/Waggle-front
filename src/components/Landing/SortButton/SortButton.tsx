@@ -1,12 +1,10 @@
-import SortArrowIcon from "@assets/svg/sort-arrow.svg?react";
+import SortArrowIcon from "@/assets/svg/sort-arrow.svg?react";
+import { Flex, Text } from "@/components/common";
+import { Theme } from "@/styles/Theme";
 
-import { Flex, Text } from "@components/common";
+import type { sortButtonType } from "@/types/common";
 
-import { Theme } from "@styles/Theme";
-
-import { sortButtonType } from "@type/sortButtonType";
-
-import { textStyle } from "./SortButton.style";
+import { textStyle } from "@/components/Landing/SortButton/SortButton.style";
 
 const SortButton = ({ defaultText }: sortButtonType) => {
 	return (

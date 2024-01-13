@@ -1,8 +1,5 @@
-import Header from "@components/Header/Header";
-
-import Bio from "@components/Siren/Bio/Bio";
-import Title from "@components/Siren/Title/Title";
-import Main from "@components/Siren/Main/Main";
+import Header from "@/components/Header/Header";
+import { Bio, Main, Title } from "@/components/Siren";
 
 const SirenPage = () => {
 	return (

@@ -1,9 +1,13 @@
-import SampleImg from "@assets/png/post-sample2.png";
-
+import SampleImg from "@/assets/png/post-sample2.png";
 import { Flex, Text } from "@/components/common";
-import { profileStyle, infoBoxStyle, contentStyle } from "./Detail.style";
 
 import type { CommentListInfoType } from "@/types/comment";
+
+import {
+	profileStyle,
+	infoBoxStyle,
+	contentStyle,
+} from "@/components/Landing/Post/Detail/Detail.style";
 
 const Comment = ({ username, content }: CommentListInfoType) => {
 	return (

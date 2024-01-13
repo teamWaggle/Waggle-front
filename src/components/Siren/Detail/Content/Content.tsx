@@ -1,9 +1,9 @@
-import FemaleIcon from "@assets/svg/female.svg?react";
-import MaleIcon from "@assets/svg/Male.svg?react";
-import RecommendOffIcon from "@assets/svg/recommendOff.svg?react";
-import RecommendOnIcon from "@assets/svg/recommendOn.svg?react";
-
-import { Flex, Box, Text, Heading, Divider } from "@components/common";
+import FemaleIcon from "@/assets/svg/female.svg?react";
+import MaleIcon from "@/assets/svg/Male.svg?react";
+import RecommendOffIcon from "@/assets/svg/recommendOff.svg?react";
+import RecommendOnIcon from "@/assets/svg/recommendOn.svg?react";
+import { Flex, Box, Text, Heading, Divider } from "@/components/common";
+import { SirenResultType } from "@/types/siren";
 
 import {
 	textStyle,
@@ -11,9 +11,7 @@ import {
 	imgStyle,
 	contentTextStyle,
 	getHeadingStyling,
-} from "./Content.style";
-
-import { SirenResultType } from "@/types/siren";
+} from "@/components/Siren/Detail/Content/Content.style";
 
 const Content = ({
 	lostLocate,

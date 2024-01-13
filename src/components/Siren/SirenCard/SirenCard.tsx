@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Heading, Text } from "@components/common";
+import SirenOnIcon from "@/assets/svg/siren-on.svg?react";
+import { Flex, Heading, Text } from "@/components/common";
+
+import type { SirenListInfoType } from "@/types/siren";
+
 import {
 	cardStyle,
 	dateStyle,
@@ -9,11 +13,7 @@ import {
 	subStyle,
 	textStyle,
 	titleStyle,
-} from "./SirenCard.style";
-
-import SirenOnIcon from "@assets/svg/siren-on.svg?react";
-
-import type { SirenListInfoType } from "@/types/siren";
+} from "@/components/Siren/SirenCard/SirenCard.style";
 
 const SirenCard = ({
 	id,

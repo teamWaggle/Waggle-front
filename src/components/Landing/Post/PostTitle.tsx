@@ -1,8 +1,8 @@
-import LogIcon from "@assets/svg/log.svg?react";
+import LogIcon from "@/assets/svg/log.svg?react";
+import { Flex, Heading } from "@/components/common";
+import { SortButton } from "@/components/Landing";
 
-import { Flex, Heading } from "@components/common";
-import { SortButton } from "@components/Landing";
-import { headingStyle } from "@components/Landing/Post/Post.style";
+import { headingStyle } from "@/components/Landing/Post/Post.style";
 
 const PostTitle = () => {
 	return (

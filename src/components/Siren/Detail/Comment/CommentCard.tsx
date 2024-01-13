@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-import SampleImg from "@assets/png/post-sample.png";
-import OptionIcon from "@assets/svg/option.svg?react";
-
-import { Flex, Text, Box } from "@components/common";
+import SampleImg from "@/assets/png/post-sample.png";
+import OptionIcon from "@/assets/svg/option.svg?react";
+import { Flex, Text, Box } from "@/components/common";
 
 import {
 	imgStyle,
@@ -13,7 +12,7 @@ import {
 	replyBoxStyle,
 	replyTextareaStyle,
 	submitButtonStyle,
-} from "./Comment.style";
+} from "@/components/Siren/Detail/Comment/Comment.style";
 
 const CommentCard = () => {
 	const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);

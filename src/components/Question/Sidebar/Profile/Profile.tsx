@@ -1,10 +1,12 @@
-import Flex from "@components/common/Flex/Flex";
+import DefaultProfileIcon from "@/assets/svg/profile-default.svg?react";
+import Flex from "@/components/common/Flex/Flex";
+import { Theme } from "@/styles/Theme";
 
-import { Theme } from "@styles/Theme";
-
-import { layoutStyle, textStyle, titleStyle } from "./Profile.style";
-
-import DefaultProfileIcon from "@assets/svg/profile-default.svg?react";
+import {
+	layoutStyle,
+	textStyle,
+	titleStyle,
+} from "@/components/Question/Sidebar/Profile/Profile.style";
 
 const Profile = () => {
 	return (

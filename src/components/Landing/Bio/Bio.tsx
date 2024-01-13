@@ -1,6 +1,6 @@
-import { Flex, Heading } from "@components/common";
+import { Flex, Heading } from "@/components/common";
 
-import { sectionStyle, textStyle } from "@components/Landing/Bio/Bio.style";
+import { sectionStyle, textStyle } from "@/components/Landing/Bio/Bio.style";
 
 const Bio = () => {
 	return (

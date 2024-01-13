@@ -1,8 +1,12 @@
-import { sectionStyle, boxStyle, titleStyle, buttonStyle } from "./Bio.style";
+import { Flex } from "@/components/common";
+import { QuestionCard } from "@/components/Question";
 
-import Flex from "@components/common/Flex/Flex";
-
-import QuestionCard from "../QuestionCard/QuestionCard";
+import {
+	sectionStyle,
+	boxStyle,
+	titleStyle,
+	buttonStyle,
+} from "@/components/Question/Bio/Bio.style";
 
 const Bio = () => {
 	return (
