@@ -66,7 +66,7 @@ export const textStyle = css({
 	fontWeight: 500,
 	position: "relative",
 
-	"&:before": {
+	"&:before, &:after": {
 		position: "absolute",
 		top: "9px",
 		left: "-126px",
@@ -77,12 +77,7 @@ export const textStyle = css({
 	},
 
 	"&:after": {
-		position: "absolute",
-		top: "9px",
+		left: "auto",
 		right: "-126px",
-		content: "''",
-		width: "116px",
-		height: "1px",
-		backgroundColor: Theme.color.border,
 	},
 });
