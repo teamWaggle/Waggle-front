@@ -4,6 +4,8 @@
 
 // import { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import Logo from "@/assets/svg/logo-white.svg?react";
 import { Flex, Text } from "@/components/common";
 // import { useLogInMutation } from "@/hooks/api/useLogInMutation";
@@ -34,6 +36,8 @@ const Login = () => {
 	// }, [setIsLoggedIn]);
 
 	// const [isLogin, setIsLogin] = useState(false);
+
+	const navigate = useNavigate();
 
 	const modal = useModal();
 
@@ -67,7 +71,9 @@ const Login = () => {
 				<Logo />
 				<Text css={textStyle}>로그인</Text>
 			</Flex>
-			<Text css={subTextStyle}>회원가입하기</Text>
+			<Text css={subTextStyle} onClick={() => navigate("/signup")}>
+				회원가입하기
+			</Text>
 		</Flex>
 	);
 };
