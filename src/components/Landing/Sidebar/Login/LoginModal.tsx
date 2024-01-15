@@ -48,9 +48,9 @@ const LoginModal = () => {
 						/>
 					)}
 				</Box>
-				<Flex tag="button" styles={{ justify: "center", align: "center" }} css={buttonStyle}>
+				<Box tag="button" css={buttonStyle}>
 					<Text>로그인</Text>
-				</Flex>
+				</Box>
 			</Flex>
 
 			<Flex styles={{ gap: "24px" }}>
