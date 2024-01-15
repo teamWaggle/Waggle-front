@@ -1,4 +1,5 @@
 import { Flex, Heading, Text, Logo } from "@/components/common";
+import SignUpForm from "@/components/SignUp/SignUpForm";
 
 import {
 	layoutStyle,
@@ -49,6 +50,7 @@ const SignUp = () => {
 					</Flex>
 				))}
 			</Flex>
+			<SignUpForm />
 		</Flex>
 	);
 };
