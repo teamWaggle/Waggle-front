@@ -1,11 +1,15 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
-import { useSetRecoilState } from "recoil";
+// import { useSetRecoilState } from "recoil";
+
+// import { useState } from "react";
 
 import Logo from "@/assets/svg/logo-white.svg?react";
 import { Flex, Text } from "@/components/common";
-import { useLogInMutation } from "@/hooks/api/useLogInMutation";
-import { isLoggedInState } from "@/store/auth";
+// import { useLogInMutation } from "@/hooks/api/useLogInMutation";
+// import { isLoggedInState } from "@/store/auth";
+import LoginModal from "@/components/Landing/Sidebar/Login/LoginModal";
+import useModal from "@/hooks/useModal";
 import { Theme } from "@/styles/Theme";
 
 import {
@@ -16,18 +20,29 @@ import {
 } from "@/components/Landing/Sidebar/Login/Login.style";
 
 const Login = () => {
-	const { mutateLogIn } = useLogInMutation();
+	// const { mutateLogIn } = useLogInMutation();
 
-	const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+	// const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
-	const username = "admin";
-	const password = "admin1234!";
+	// const username = "admin";
+	// const password = "admin1234!";
 
-	useEffect(() => {
-		if (localStorage.getItem("ACCESS_TOKEN")) {
-			setIsLoggedIn(true);
-		}
-	}, [setIsLoggedIn]);
+	// useEffect(() => {
+	// 	if (localStorage.getItem("ACCESS_TOKEN")) {
+	// 		setIsLoggedIn(true);
+	// 	}
+	// }, [setIsLoggedIn]);
+
+	// const [isLogin, setIsLogin] = useState(false);
+
+	const modal = useModal();
+
+	const open = () => {
+		modal.openModal({
+			key: `LoginModal`,
+			component: () => <LoginModal />,
+		});
+	};
 
 	return (
 		<Flex
@@ -47,7 +62,7 @@ const Login = () => {
 				styles={{ justify: "center", align: "center", gap: "14px" }}
 				tag="button"
 				css={buttonStyle}
-				onClick={() => mutateLogIn({ username, password })}
+				onClick={open}
 			>
 				<Logo />
 				<Text css={textStyle}>로그인</Text>
