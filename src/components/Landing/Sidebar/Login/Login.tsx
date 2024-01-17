@@ -1,15 +1,7 @@
-// import { useEffect } from "react";
-
-// import { useSetRecoilState } from "recoil";
-
-// import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 
 import Logo from "@/assets/svg/logo-white.svg?react";
 import { Flex, Text } from "@/components/common";
-// import { useLogInMutation } from "@/hooks/api/useLogInMutation";
-// import { isLoggedInState } from "@/store/auth";
 import LoginModal from "@/components/Landing/Sidebar/Login/LoginModal";
 import useModal from "@/hooks/useModal";
 import { Theme } from "@/styles/Theme";
@@ -22,21 +14,6 @@ import {
 } from "@/components/Landing/Sidebar/Login/Login.style";
 
 const Login = () => {
-	// const { mutateLogIn } = useLogInMutation();
-
-	// const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-
-	// const username = "admin";
-	// const password = "admin1234!";
-
-	// useEffect(() => {
-	// 	if (localStorage.getItem("ACCESS_TOKEN")) {
-	// 		setIsLoggedIn(true);
-	// 	}
-	// }, [setIsLoggedIn]);
-
-	// const [isLogin, setIsLogin] = useState(false);
-
 	const navigate = useNavigate();
 
 	const modal = useModal();
