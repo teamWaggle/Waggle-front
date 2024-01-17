@@ -7,6 +7,12 @@ export const textStyle = css({
 	fontWeight: 600,
 });
 
+export const formTextStyle = css({
+	color: Theme.color.text,
+	fontWeight: 600,
+	paddingLeft: "8px",
+});
+
 export const buttonStyle = css({
 	all: "unset",
 	padding: "8px 14px",
@@ -19,20 +25,22 @@ export const buttonTextStyle = css({
 	fontWeight: 500,
 });
 
-export const inputStyle = css({
-	width: "444px",
-	height: "44px",
-	borderRadius: "4px",
-	border: `1px solid ${Theme.color.border}`,
-	padding: "0 18px",
-	color: Theme.color.input_text,
-	fontWeight: 500,
-	fontSize: "16px",
+export const getInputStyle = (width: string) => {
+	return css({
+		width: width,
+		height: "44px",
+		borderRadius: "4px",
+		border: `1px solid ${Theme.color.border}`,
+		padding: "0 18px",
+		color: Theme.color.input_text,
+		fontWeight: 500,
+		fontSize: "16px",
 
-	"&::placeholder": {
-		color: Theme.color.border,
-	},
-});
+		"&::placeholder": {
+			color: Theme.color.border,
+		},
+	});
+};
 
 export const brandColorTextStyle = css({
 	color: Theme.color.brand_primary,
@@ -83,11 +91,13 @@ export const addressInputStyle = css({
 	},
 });
 
-export const nextButtonStyle = css({
-	all: "unset",
-	padding: "8px 14px",
-	borderRadius: "4px",
-	backgroundColor: Theme.color.brand_primary,
-	color: Theme.color.white,
-	fontWeight: 600,
-});
+export const getNextButtonStyle = (text: string) => {
+	return css({
+		all: "unset",
+		padding: "8px 14px",
+		borderRadius: "4px",
+		backgroundColor: text === "이전" ? Theme.color.disabled_text : Theme.color.brand_primary,
+		color: Theme.color.white,
+		fontWeight: 600,
+	});
+};
