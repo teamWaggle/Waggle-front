@@ -1,5 +1,5 @@
 import FillPasswordCheckIcon from "@/assets/svg/FillPasswordCheckIcon.svg?react";
-import { Flex, Text } from "@/components/common";
+import { Flex, Box, Text, SocialLogin } from "@/components/common";
 
 import {
 	textStyle,
@@ -8,6 +8,7 @@ import {
 	buttonTextStyle,
 	inputStyle,
 	passwordCheckTextStyle,
+	signUpButtonStyle,
 } from "@/components/SignUp/SignUpForm.style";
 
 const formData = [
@@ -50,7 +51,7 @@ const passwordCheckData = [
 
 const SignUpForm = () => {
 	return (
-		<Flex styles={{ marginTop: "78px" }}>
+		<Flex styles={{ direction: "column", gap: "55px", marginTop: "78px", align: "center" }}>
 			<Flex styles={{ direction: "column", gap: "30px" }}>
 				{formData.map((data) => (
 					<Flex key={data.title} styles={{ direction: "column", gap: "8px" }}>
@@ -87,6 +88,12 @@ const SignUpForm = () => {
 					</Flex>
 				))}
 			</Flex>
+
+			<Box tag="button" css={signUpButtonStyle}>
+				<Text>가입하기</Text>
+			</Box>
+
+			<SocialLogin textSize="small" locate="sign" />
 		</Flex>
 	);
 };
