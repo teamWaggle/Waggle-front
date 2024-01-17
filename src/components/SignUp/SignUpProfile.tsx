@@ -5,15 +5,16 @@ import { Theme } from "@/styles/Theme";
 
 import {
 	textStyle,
+	formTextStyle,
 	buttonStyle,
 	buttonTextStyle,
-	inputStyle,
+	getInputStyle,
 	brandColorTextStyle,
 	textareaStyle,
 	dividerStyle,
 	addressStyle,
 	addressInputStyle,
-	nextButtonStyle,
+	getNextButtonStyle,
 } from "@/components/SignUp/SignUpProfile.style";
 
 const SignUpProfile = () => {
@@ -54,10 +55,13 @@ const SignUpProfile = () => {
 						{/* 닉네임 영역 */}
 						<Flex styles={{ direction: "column", gap: "8px" }}>
 							<Flex styles={{ gap: "4px", align: "center" }}>
-								<Text css={textStyle}>닉네임</Text>
+								<Text css={formTextStyle}>닉네임</Text>
 								<RequiredIcon />
 							</Flex>
-							<input css={inputStyle} placeholder="닉네임을 입력해주세요! 언제든지 변경 가능해요" />
+							<input
+								css={getInputStyle("444px")}
+								placeholder="닉네임을 입력해주세요! 언제든지 변경 가능해요"
+							/>
 							<Flex styles={{ gap: "16px", align: "center" }}>
 								<Box tag="button" css={buttonStyle}>
 									<Text css={buttonTextStyle}>닉네임 중복 확인</Text>
@@ -68,7 +72,7 @@ const SignUpProfile = () => {
 
 						{/* 자기소개 영역 */}
 						<Flex styles={{ direction: "column", gap: "8px" }}>
-							<Text css={textStyle}>자기소개</Text>
+							<Text css={formTextStyle}>자기소개</Text>
 							<textarea
 								css={textareaStyle}
 								placeholder="취미, 좋아하는 산책 장소 등으로 자신을 소개해보세요"
@@ -97,7 +101,7 @@ const SignUpProfile = () => {
 				</Flex>
 			</Box>
 
-			<Box tag="button" css={nextButtonStyle}>
+			<Box tag="button" css={getNextButtonStyle("다음")}>
 				<Text size="large">다음</Text>
 			</Box>
 		</Flex>
