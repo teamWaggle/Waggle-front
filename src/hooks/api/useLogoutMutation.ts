@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import { useSetRecoilState } from "recoil";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -6,6 +9,8 @@ import { deleteLogout } from "@/api/auth/deleteLogout";
 import { isLoggedInState } from "@/store/auth";
 
 export const useLogoutMutation = () => {
+	const navigate = useNavigate();
+
 	const queryClient = useQueryClient();
 
 	const setIsLoggedIn = useSetRecoilState(isLoggedInState);
@@ -16,10 +21,10 @@ export const useLogoutMutation = () => {
 			localStorage.removeItem("ACCESS_TOKEN");
 			queryClient.clear();
 			setIsLoggedIn(false);
-			console.log("logout");
+			navigate("/");
 		},
 		onError: () => {
-			console.log("logout error");
+			toast.error("로그아웃에 실패했습니다. 잠시 후 다시 시도해주세요");
 		},
 	});
 
