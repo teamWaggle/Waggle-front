@@ -30,15 +30,15 @@ export const boxStyle = css({
 	},
 });
 
-boxStyle;
-
-export const circleBoxStyle = css({
-	width: "25px",
-	height: "25px",
-	backgroundColor: Theme.color.brand_primary,
-	color: Theme.color.white,
-	borderRadius: "50%",
-});
+export const getCircleBoxStyle = (disabled: boolean) => {
+	return css({
+		width: "25px",
+		height: "25px",
+		backgroundColor: disabled ? Theme.color.brand_primary : Theme.color.border,
+		color: Theme.color.white,
+		borderRadius: "50%",
+	});
+};
 
 export const circleNumberStyle = css({
 	textAlign: "center",
@@ -46,7 +46,9 @@ export const circleNumberStyle = css({
 	fontWeight: 600,
 });
 
-export const circleTextStyle = css({
-	color: Theme.color.text,
-	fontWeight: 600,
-});
+export const getCircleTextStyle = (disabled: boolean) => {
+	return css({
+		color: disabled ? Theme.color.text : Theme.color.disabled_text,
+		fontWeight: 600,
+	});
+};
