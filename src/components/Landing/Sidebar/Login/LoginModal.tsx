@@ -90,7 +90,6 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 						)}
 					</Box>
 					<button type="submit" css={buttonStyle}>
-						{/* <Text>로그인</Text> */}
 						로그인
 					</button>
 				</form>

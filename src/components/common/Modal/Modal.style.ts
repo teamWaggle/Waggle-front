@@ -32,5 +32,3 @@ export const closeButtonStyling = css({
 	width: "16px",
 	height: "16px",
 });
-
-export const closeIconStyling = css({});
