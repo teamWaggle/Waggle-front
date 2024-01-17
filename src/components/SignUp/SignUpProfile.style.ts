@@ -82,3 +82,12 @@ export const addressInputStyle = css({
 		color: Theme.color.disabled_text,
 	},
 });
+
+export const nextButtonStyle = css({
+	all: "unset",
+	padding: "8px 14px",
+	borderRadius: "4px",
+	backgroundColor: Theme.color.brand_primary,
+	color: Theme.color.white,
+	fontWeight: 600,
+});
