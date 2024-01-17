@@ -61,6 +61,7 @@ const RAW_RUNTIME_STATE =
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:18.2.0"],\
           ["react-router-dom", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:6.20.1"],\
+          ["react-toastify", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:10.0.3"],\
           ["recoil", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:0.7.7"],\
           ["storybook", "npm:7.6.4"],\
           ["styled-components", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:6.1.1"],\
@@ -10602,6 +10603,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["clsx", [\
+      ["npm:2.1.0", {\
+        "packageLocation": "../../../.yarn/berry/cache/clsx-npm-2.1.0-29d286e1de-10c0.zip/node_modules/clsx/",\
+        "packageDependencies": [\
+          ["clsx", "npm:2.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["color-convert", [\
       ["npm:1.9.3", {\
         "packageLocation": "../../../.yarn/berry/cache/color-convert-npm-1.9.3-1fe690075e-10c0.zip/node_modules/color-convert/",\
@@ -16496,6 +16506,33 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-toastify", [\
+      ["npm:10.0.3", {\
+        "packageLocation": "../../../.yarn/berry/cache/react-toastify-npm-10.0.3-faecef83e5-10c0.zip/node_modules/react-toastify/",\
+        "packageDependencies": [\
+          ["react-toastify", "npm:10.0.3"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:10.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/react-toastify-virtual-b797fa75f9/4/.yarn/berry/cache/react-toastify-npm-10.0.3-faecef83e5-10c0.zip/node_modules/react-toastify/",\
+        "packageDependencies": [\
+          ["react-toastify", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:10.0.3"],\
+          ["@types/react", "npm:18.2.41"],\
+          ["@types/react-dom", "npm:18.2.17"],\
+          ["clsx", "npm:2.1.0"],\
+          ["react", "npm:18.2.0"],\
+          ["react-dom", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["read-pkg", [\
       ["npm:5.2.0", {\
         "packageLocation": "../../../.yarn/berry/cache/read-pkg-npm-5.2.0-50426bd8dc-10c0.zip/node_modules/read-pkg/",\
@@ -18732,6 +18769,7 @@ const RAW_RUNTIME_STATE =
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:18.2.0"],\
           ["react-router-dom", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:6.20.1"],\
+          ["react-toastify", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:10.0.3"],\
           ["recoil", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:0.7.7"],\
           ["storybook", "npm:7.6.4"],\
           ["styled-components", "virtual:d596a5c81e179134ab0c4333be4b8e7c2873d77a7db2e86756ccd05d4ba4e3610552c960252c134d875811a8ae91060b3e4d6768284a421585f1b62a4d117364#npm:6.1.1"],\

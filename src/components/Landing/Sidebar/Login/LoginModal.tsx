@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
+import { useLogInMutation } from "@/hooks/api/useLogInMutation";
 
 import {
 	layoutStyle,
@@ -12,8 +14,38 @@ import {
 	findTextStyle,
 } from "@/components/Landing/Sidebar/Login/LoginModal.style";
 
-const LoginModal = () => {
+interface LoginModalType {
+	modalClose: () => void;
+}
+
+const LoginModal = ({ modalClose }: LoginModalType) => {
+	const { mutateLogIn } = useLogInMutation();
+
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+
 	const [passwordShow, setPasswordShow] = useState(false);
+
+	const validateForm = () => {
+		if (!username.trim() || !password.trim()) {
+			toast.error("이메일과 비밀번호는 반드시 입력되어야 합니다.");
+
+			return false;
+		}
+
+		return true;
+	};
+
+	const handleSubmit = (e: FormEvent) => {
+		e.preventDefault();
+
+		if (!validateForm()) {
+			return;
+		}
+
+		mutateLogIn({ username, password });
+		modalClose();
+	};
 
 	return (
 		<Flex
@@ -28,26 +60,41 @@ const LoginModal = () => {
 			css={layoutStyle}
 		>
 			<Logo width={138} height={30} />
-			<Flex styles={{ direction: "column", gap: "13px", margin: "36px 0 24px" }}>
-				<input css={inputStyle} placeholder="이메일(아이디)" />
-				<Box styles={{ position: "relative" }}>
-					<input css={inputStyle} placeholder="비밀번호" />
-					{passwordShow ? (
-						<PasswordShowIcon
-							css={passwordIconStyle}
-							onClick={() => setPasswordShow(!passwordShow)}
+			<Box styles={{ margin: "36px 0 24px" }}>
+				<form onSubmit={handleSubmit}>
+					<input
+						css={inputStyle}
+						placeholder="이메일(아이디)"
+						type="text"
+						onChange={(e) => setUsername(e.target.value)}
+						value={username}
+					/>
+					<Box styles={{ position: "relative", marginTop: "13px" }}>
+						<input
+							css={inputStyle}
+							placeholder="비밀번호"
+							type="password"
+							onChange={(e) => setPassword(e.target.value)}
+							value={password}
 						/>
-					) : (
-						<PasswordNotShowIcon
-							css={passwordIconStyle}
-							onClick={() => setPasswordShow(!passwordShow)}
-						/>
-					)}
-				</Box>
-				<Box tag="button" css={buttonStyle}>
-					<Text>로그인</Text>
-				</Box>
-			</Flex>
+						{passwordShow ? (
+							<PasswordShowIcon
+								css={passwordIconStyle}
+								onClick={() => setPasswordShow(!passwordShow)}
+							/>
+						) : (
+							<PasswordNotShowIcon
+								css={passwordIconStyle}
+								onClick={() => setPasswordShow(!passwordShow)}
+							/>
+						)}
+					</Box>
+					<button type="submit" css={buttonStyle}>
+						{/* <Text>로그인</Text> */}
+						로그인
+					</button>
+				</form>
+			</Box>
 
 			<Flex styles={{ gap: "24px" }}>
 				<Text size="xSmall" css={findTextStyle}>
