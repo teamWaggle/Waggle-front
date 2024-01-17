@@ -2,12 +2,6 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const layoutStyle = css({
-	maxWidth: "1536px",
-	margin: "0 auto",
-	padding: "110px 196px",
-});
-
 export const headingStyle = css({
 	color: Theme.color.text,
 	fontWeight: 600,

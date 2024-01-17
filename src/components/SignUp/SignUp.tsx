@@ -1,17 +1,15 @@
 import { useState } from "react";
 
+import { css } from "@emotion/react";
+
 import { Flex } from "@/components/common";
 import SignUpEmail from "@/components/SignUp/SignUpEmail";
 import SignUpPet from "@/components/SignUp/SignUpPet";
 import SignUpProfile from "@/components/SignUp/SignUpProfile";
 import SignUpTitle from "@/components/SignUp/SignUpTitle";
 
-import { layoutStyle } from "@/components/SignUp/SignUp.style";
-
 const SignUp = () => {
 	const [titleTab, setTitleTab] = useState("이메일 인증");
-
-	// console.log(titleTab);
 
 	return (
 		<Flex styles={{ direction: "column", align: "center" }} css={layoutStyle}>
@@ -31,3 +29,9 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+const layoutStyle = css({
+	maxWidth: "1536px",
+	margin: "0 auto",
+	padding: "110px 196px",
+});

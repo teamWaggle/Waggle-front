@@ -8,7 +8,7 @@ import {
 	getCircleBoxStyle,
 	circleNumberStyle,
 	getCircleTextStyle,
-} from "@/components/SignUp/SignUp.style";
+} from "@/components/SignUp/SignUpTitle.style";
 
 const circleData = [
 	{

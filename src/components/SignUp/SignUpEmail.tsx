@@ -1,15 +1,10 @@
 import FillPasswordCheckIcon from "@/assets/svg/FillPasswordCheckIcon.svg?react";
 import { Flex, Box, Text, SocialLogin } from "@/components/common";
+import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
+import { Theme } from "@/styles/Theme";
 
-import {
-	textStyle,
-	emailInputStyle,
-	buttonStyle,
-	buttonTextStyle,
-	inputStyle,
-	passwordCheckTextStyle,
-	signUpButtonStyle,
-} from "@/components/SignUp/SignUpEmail.style";
+import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
+import { buttonStyle, signUpButtonStyle } from "@/components/SignUp/SignUpEmail.style";
 
 const formData = [
 	{
@@ -55,10 +50,10 @@ const SignUpEmail = () => {
 			<Flex styles={{ direction: "column", gap: "30px" }}>
 				{formData.map((data) => (
 					<Flex key={data.title} styles={{ direction: "column", gap: "8px" }}>
-						<Text css={textStyle}>{data.title}</Text>
+						<Text css={getFormTextStyle(true)}>{data.title}</Text>
 						<Flex styles={{ align: "center", gap: "30px" }}>
 							<input
-								css={data.title === "이메일" ? emailInputStyle : inputStyle}
+								css={data.title === "이메일" ? getInputStyle("280px") : getInputStyle("412px")}
 								placeholder={data.placeholder}
 							/>
 
@@ -68,7 +63,7 @@ const SignUpEmail = () => {
 									styles={{ align: "center", justify: "center" }}
 									css={buttonStyle}
 								>
-									<Text css={buttonTextStyle}>이메일 인증</Text>
+									<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>이메일 인증</Text>
 								</Flex>
 							)}
 						</Flex>
@@ -78,7 +73,7 @@ const SignUpEmail = () => {
 								{passwordCheckData.map((data) => (
 									<Flex styles={{ gap: "4px", align: "center" }} key={data.text}>
 										{data.icon}
-										<Text size="small" css={passwordCheckTextStyle}>
+										<Text size="small" css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 											{data.text}
 										</Text>
 									</Flex>
