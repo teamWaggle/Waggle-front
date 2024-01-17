@@ -16,6 +16,8 @@ import { isLoggedInState } from "@/store/auth";
 
 import "react-toastify/dist/ReactToastify.css";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
 	const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
