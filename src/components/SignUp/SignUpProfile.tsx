@@ -8,9 +8,11 @@ import {
 	buttonStyle,
 	buttonTextStyle,
 	inputStyle,
-	nicknameTextStyle,
+	brandColorTextStyle,
 	textareaStyle,
 	dividerStyle,
+	addressStyle,
+	addressInputStyle,
 } from "@/components/SignUp/SignUpProfile.style";
 
 const SignUpProfile = () => {
@@ -52,7 +54,7 @@ const SignUpProfile = () => {
 							<Box tag="button" css={buttonStyle}>
 								<Text css={buttonTextStyle}>닉네임 중복 확인</Text>
 							</Box>
-							<Text css={nicknameTextStyle}>사용할 수 있는 닉네임입니다</Text>
+							<Text css={brandColorTextStyle}>사용할 수 있는 닉네임입니다</Text>
 						</Flex>
 					</Flex>
 
@@ -68,6 +70,23 @@ const SignUpProfile = () => {
 			</Flex>
 
 			<Divider length="487px" css={dividerStyle} />
+
+			<Flex styles={{ direction: "column", gap: "8px", padding: "0 38px" }}>
+				<Flex styles={{ gap: "4px", align: "center" }}>
+					<Text css={textStyle}>프로필 주소</Text>
+					<RequiredIcon />
+				</Flex>
+				<Flex styles={{ align: "center", gap: "6px" }}>
+					<Text css={addressStyle}>https://www.waggle.com/users/@</Text>
+					<input css={addressInputStyle} placeholder="나만의 프로필 주소를 만들어보세요" />
+				</Flex>
+				<Flex styles={{ align: "center", gap: "16px" }}>
+					<Box tag="button" css={buttonStyle}>
+						<Text css={buttonTextStyle}>프로필 주소 중복 확인</Text>
+					</Box>
+					<Text css={brandColorTextStyle}>사용할 수 있는 주소입니다</Text>
+				</Flex>
+			</Flex>
 		</Box>
 	);
 };
