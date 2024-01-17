@@ -1,11 +1,8 @@
 import { useState } from "react";
 
-import GoogleIcon from "@/assets/svg/GoogleIcon.svg?react";
-import KaKaoIcon from "@/assets/svg/KaKaoIcon.svg?react";
-import NaverIcon from "@/assets/svg/NaverIcon.svg?react";
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
-import { Flex, Box, Text, Logo } from "@/components/common";
+import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
 
 import {
 	layoutStyle,
@@ -13,7 +10,6 @@ import {
 	passwordIconStyle,
 	buttonStyle,
 	findTextStyle,
-	textStyle,
 } from "@/components/Landing/Sidebar/Login/LoginModal.style";
 
 const LoginModal = () => {
@@ -65,16 +61,7 @@ const LoginModal = () => {
 				</Text>
 			</Flex>
 
-			<Flex styles={{ direction: "column", align: "center", marginTop: "24px" }}>
-				<Text size="xSmall" css={textStyle}>
-					간편 로그인
-				</Text>
-				<Flex styles={{ gap: "20px", marginTop: "16px" }}>
-					<NaverIcon />
-					<KaKaoIcon />
-					<GoogleIcon />
-				</Flex>
-			</Flex>
+			<SocialLogin textSize="xSmall" locate="login" />
 		</Flex>
 	);
 };

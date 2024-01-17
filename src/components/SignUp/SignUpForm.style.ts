@@ -58,3 +58,14 @@ export const passwordCheckTextStyle = css({
 	color: Theme.color.disabled_text,
 	fontWeight: 500,
 });
+
+export const signUpButtonStyle = css({
+	all: "unset",
+	width: "412px",
+	height: "44px",
+	borderRadius: "4px",
+	backgroundColor: Theme.color.brand_primary,
+	color: Theme.color.white,
+	textAlign: "center",
+	cursor: "pointer",
+});
