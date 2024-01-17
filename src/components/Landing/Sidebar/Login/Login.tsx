@@ -41,10 +41,14 @@ const Login = () => {
 
 	const modal = useModal();
 
+	const close = () => {
+		modal.closeModal();
+	};
+
 	const open = () => {
 		modal.openModal({
 			key: `LoginModal`,
-			component: () => <LoginModal />,
+			component: () => <LoginModal modalClose={close} />,
 		});
 	};
 

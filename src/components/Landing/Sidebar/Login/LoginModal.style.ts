@@ -38,6 +38,7 @@ export const buttonStyle = css({
 	color: Theme.color.white,
 	textAlign: "center",
 	cursor: "pointer",
+	marginTop: "13px",
 });
 
 export const findTextStyle = css({

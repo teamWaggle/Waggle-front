@@ -16,7 +16,11 @@ const useModal = () => {
 		setModals([...modals].concat(modalProps));
 	};
 
-	return { openModal };
+	const closeModal = () => {
+		setModals([]);
+	};
+
+	return { openModal, closeModal };
 };
 
 export default useModal;
