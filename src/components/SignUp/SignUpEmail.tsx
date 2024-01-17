@@ -9,7 +9,7 @@ import {
 	inputStyle,
 	passwordCheckTextStyle,
 	signUpButtonStyle,
-} from "@/components/SignUp/SignUpForm.style";
+} from "@/components/SignUp/SignUpEmail.style";
 
 const formData = [
 	{
@@ -49,7 +49,7 @@ const passwordCheckData = [
 	},
 ];
 
-const SignUpForm = () => {
+const SignUpEmail = () => {
 	return (
 		<Flex styles={{ direction: "column", gap: "55px", marginTop: "78px", align: "center" }}>
 			<Flex styles={{ direction: "column", gap: "30px" }}>
@@ -98,4 +98,4 @@ const SignUpForm = () => {
 	);
 };
 
-export default SignUpForm;
+export default SignUpEmail;
