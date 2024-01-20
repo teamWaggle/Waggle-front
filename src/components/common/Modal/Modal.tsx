@@ -2,9 +2,14 @@ import { useEffect, useCallback } from "react";
 
 import { useRecoilValue } from "recoil";
 
+import CloseIcon from "@/assets/svg/CloseIcon.svg?react";
 import { modalState } from "@/store/modal";
 
-import { backdropStyle, dialogStyle } from "./Modal.style";
+import {
+	backdropStyle,
+	dialogStyle,
+	closeButtonStyling,
+} from "@/components/common/Modal/Modal.style";
 
 type Props = {
 	close?: () => void;
@@ -38,7 +43,10 @@ const Modal = ({ component, close }: Props) => {
 	return (
 		<>
 			<div css={backdropStyle} onClick={close}></div>
-			<dialog css={dialogStyle}> {component && component()}</dialog>
+			<dialog css={dialogStyle}>
+				{component && component()}
+				<CloseIcon css={closeButtonStyling} onClick={close} />
+			</dialog>
 		</>
 	);
 };

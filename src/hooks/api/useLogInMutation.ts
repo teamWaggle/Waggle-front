@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 import { useSetRecoilState } from "recoil";
 
 import { useMutation } from "@tanstack/react-query";
@@ -12,21 +14,16 @@ export const useLogInMutation = () => {
 
 	const logInMutation = useMutation({
 		mutationFn: postLogIn,
-		onSuccess: ({ code, isSuccess, message, result }: TokenType) => {
+		onSuccess: ({ result }: TokenType) => {
 			localStorage.setItem("ACCESS_TOKEN", result.accessToken);
 			axiosInstance.defaults.headers.Authorization = `Bearer ${result.accessToken}`;
 
 			setIsLoggedIn(true);
-
-			console.log(code);
-			console.log(isSuccess);
-			console.log(message);
-			console.log(result.accessToken);
 		},
 		onError: () => {
-			setIsLoggedIn(false);
+			toast.error("오류가 발생했습니다. 잠시 후 다시 시도해주세요");
 
-			console.log("login error");
+			setIsLoggedIn(false);
 		},
 	});
 

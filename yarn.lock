@@ -5987,6 +5987,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "clsx@npm:2.1.0"
+  checksum: c09c00ad14f638366ca814097e6cab533dfa1972a358da5b557be487168acbb25b4c1395e89ffa842a8a61ba87a462d2b4885bc9d4f8410b598f3cb339599cdb
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^1.9.0":
   version: 1.9.3
   resolution: "color-convert@npm:1.9.3"
@@ -10860,6 +10867,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-toastify@npm:^10.0.3":
+  version: 10.0.3
+  resolution: "react-toastify@npm:10.0.3"
+  dependencies:
+    clsx: "npm:^2.1.0"
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: 1494fa8e84a21ffeb1a7391037439f6597bf56a92120ff7b5db2f4fde0ed40cb0f098abb4909ad6eedffa9b555a41b6da3c32e47c9269eacf71ed30249619358
+  languageName: node
+  linkType: hard
+
 "react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
@@ -12748,6 +12767,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-router-dom: "npm:^6.17.0"
+    react-toastify: "npm:^10.0.3"
     recoil: "npm:^0.7.7"
     storybook: "npm:^7.6.4"
     styled-components: "npm:^6.1.1"
