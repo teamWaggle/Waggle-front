@@ -15,3 +15,24 @@ export interface UserType {
 	username: string;
 	password: string;
 }
+
+export interface FormDataType {
+	formData: SignUpFormType;
+}
+
+export interface SignUpFormType {
+	email: string;
+	username: string;
+	password: string;
+	nickname: string;
+	address: string;
+	phone: string;
+	profileImgUrl: string;
+}
+
+export interface SignUpResponseType {
+	isSuccess: boolean;
+	code: number;
+	message: string;
+	result: number;
+}
