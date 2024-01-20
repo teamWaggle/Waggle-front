@@ -26,19 +26,9 @@ export const dialogStyle = css({
 
 export const closeButtonStyling = css({
 	position: "absolute",
-	right: "24px",
-	top: "24px",
-	alignSelf: "flex-end",
-
-	marginBottom: Theme.spacer.spacing1,
-
-	border: "none",
-	backgroundColor: "transparent",
-
+	right: "22px",
+	top: "22px",
 	cursor: "pointer",
-});
-
-export const closeIconStyling = css({
 	width: "16px",
 	height: "16px",
 });
