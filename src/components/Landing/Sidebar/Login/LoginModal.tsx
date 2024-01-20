@@ -1,4 +1,4 @@
-import { FormEvent, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { toast } from "react-toastify";
 
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
@@ -54,7 +54,7 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 		}
 	};
 
-	const handleSubmit = (e: FormEvent) => {
+	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
 		if (!validateForm()) {
