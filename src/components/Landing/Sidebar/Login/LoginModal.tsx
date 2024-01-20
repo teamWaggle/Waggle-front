@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useRef } from "react";
 import { toast } from "react-toastify";
 
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
@@ -21,6 +21,8 @@ interface LoginModalType {
 const LoginModal = ({ modalClose }: LoginModalType) => {
 	const { mutateLogIn } = useLogInMutation();
 
+	const passwordRef = useRef<HTMLInputElement>(null);
+
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -34,6 +36,22 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 		}
 
 		return true;
+	};
+
+	const handleShowPassword = async () => {
+		const password = await passwordRef.current;
+
+		if (password === null) {
+			return;
+		}
+
+		await setPasswordShow(!passwordShow);
+
+		if (!passwordShow) {
+			password.type = "text";
+		} else {
+			password.type = "password";
+		}
 	};
 
 	const handleSubmit = (e: FormEvent) => {
@@ -73,20 +91,15 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 						<input
 							css={inputStyle}
 							placeholder="비밀번호"
-							type="password"
+							type="text"
 							onChange={(e) => setPassword(e.target.value)}
 							value={password}
+							ref={passwordRef}
 						/>
 						{passwordShow ? (
-							<PasswordShowIcon
-								css={passwordIconStyle}
-								onClick={() => setPasswordShow(!passwordShow)}
-							/>
+							<PasswordShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
 						) : (
-							<PasswordNotShowIcon
-								css={passwordIconStyle}
-								onClick={() => setPasswordShow(!passwordShow)}
-							/>
+							<PasswordNotShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
 						)}
 					</Box>
 					<button type="submit" css={buttonStyle}>
