@@ -55,35 +55,22 @@ const SignUpEmail = () => {
 	const [password, setPassword] = useState("");
 	const [passwordCheck, setPasswordCheck] = useState("");
 
-	console.log(email);
-	console.log(emailAuthNumber);
-	console.log(password);
-	console.log(passwordCheck);
-
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
 		const formData = new FormData();
 
-		// const formData = new FormData<SignUpFormType>();
-
-		const request2 = {
-			email: "test3@email.com",
-			username: "test33",
-			password: "testtest",
-			nickname: "testtest3te",
+		const request = {
+			email,
+			username: "",
+			password,
+			nickname: "",
 			address: "string",
 			phone: "string",
-			profileImgUrl: "string",
+			profileImgUrl: null,
 		};
 
-		formData.append("request", JSON.stringify(request2));
-
-		console.log(JSON.stringify(request2));
-
-		// for (const value of formData.values()) {
-		// 	console.log(value);
-		// }
+		formData.append("request", JSON.stringify(request));
 
 		mutateSignUp(formData);
 	};
