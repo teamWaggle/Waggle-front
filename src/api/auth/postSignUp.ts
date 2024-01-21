@@ -14,13 +14,7 @@ export const postSignUp = async (formData: FormData) => {
 	// 	config,
 	// );
 
-	return axiosInstance.post<FormDataType>(
-		END_POINTS.SIGN_UP,
-		{
-			formData,
-		},
-		config,
-	);
+	return axiosInstance.post<FormDataType>(END_POINTS.SIGN_UP, formData, config);
 
 	// return data;
 };
