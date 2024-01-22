@@ -1,0 +1,56 @@
+import { css } from "@emotion/react";
+
+import { Theme } from "@/styles/Theme";
+
+export const flexStyle = css({
+	display: "flex",
+	alignItems: "center",
+	flexDirection: "column",
+	height: "100%",
+	flexWrap: "nowrap",
+	backgroundColor: Theme.color.white,
+	boxSizing: "border-box",
+});
+
+export const weekdayTextStyle = css({
+	color: Theme.color.readonly_text,
+	fontSize: Theme.text.xSmall.fontSize,
+	lineHeight: Theme.text.xSmall.lineHeight,
+});
+
+export const dateTextStyle = (isSameMonth?: boolean) =>
+	css({
+		color: isSameMonth ? Theme.color.black : Theme.color.readonly_text,
+		fontSize: Theme.text.xSmall.fontSize,
+		lineHeight: Theme.text.xSmall.lineHeight,
+	});
+
+export const scheduleFlexBox = css({
+	display: "flex",
+	flexDirection: "column",
+	width: "100%",
+	height: "100%",
+	border: "none",
+});
+
+export const scheduleTextStyle = (lastSchedule?: boolean) =>
+	css({
+		overflow: "hidden",
+		textOverflow: "ellipsis",
+		whiteSpace: "nowrap",
+		color: Theme.color.white,
+		height: "18px",
+		marginBottom: "2px",
+		width: lastSchedule ? "calc(100% - 16px)" : "calc(100% + 1px)",
+		borderRadius: lastSchedule ? "0 .5rem .5rem 0" : "0px",
+		paddingLeft: "16px",
+		backgroundColor: Theme.color.btn_danger,
+		fontsize: "12px",
+	});
+
+export const moreTextStyle = css({
+	color: Theme.color.text,
+	paddingLeft: "16px",
+	fontSize: Theme.text.xSmall.fontSize,
+	lineHeight: Theme.text.xSmall.lineHeight,
+});
