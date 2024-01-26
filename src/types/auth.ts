@@ -17,7 +17,7 @@ export interface UserType {
 }
 
 export interface FormDataType {
-	formData: SignUpFormType;
+	request: SignUpFormType;
 }
 
 export interface SignUpFormType {
