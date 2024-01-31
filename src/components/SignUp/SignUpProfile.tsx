@@ -1,6 +1,9 @@
+import { useState } from "react";
+
 import ProfileIcon from "@/assets/svg/ProfileIcon.svg?react";
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 import { Flex, Box, Text, Divider } from "@/components/common";
+import { useCheckNicknameMutation } from "@/hooks/api/useCheckNicknameMutation";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -17,6 +20,10 @@ import {
 } from "@/components/SignUp/SignUpProfile.style";
 
 const SignUpProfile = () => {
+	const { mutateCheckNickname } = useCheckNicknameMutation();
+
+	const [nickname, setNickname] = useState("");
+
 	return (
 		<Flex
 			styles={{
@@ -62,9 +69,11 @@ const SignUpProfile = () => {
 							<input
 								css={getInputStyle("444px")}
 								placeholder="닉네임을 입력해주세요! 언제든지 변경 가능해요"
+								value={nickname}
+								onChange={(e) => setNickname(e.target.value)}
 							/>
 							<Flex styles={{ gap: "16px", align: "center" }}>
-								<Box tag="button" css={buttonStyle}>
+								<Box tag="button" css={buttonStyle} onClick={() => mutateCheckNickname(nickname)}>
 									<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 										닉네임 중복 확인
 									</Text>
