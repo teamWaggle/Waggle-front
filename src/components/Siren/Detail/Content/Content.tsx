@@ -1,5 +1,5 @@
-import FemaleIcon from "@/assets/svg/female.svg?react";
-import MaleIcon from "@/assets/svg/Male.svg?react";
+import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
+import MaleIcon from "@/assets/svg/ic-male.svg?react";
 import RecommendOffIcon from "@/assets/svg/recommendOff.svg?react";
 import RecommendOnIcon from "@/assets/svg/recommendOn.svg?react";
 import { Flex, Box, Text, Heading, Divider } from "@/components/common";
@@ -62,7 +62,7 @@ const Content = ({
 						</Text>
 
 						{data.title === "강아지 성별" ? (
-							<>{data.data === "Male" ? <MaleIcon /> : <FemaleIcon />}</>
+							<>{data.data === "Male" ? <MaleIcon /> : <FeMaleIcon />}</>
 						) : (
 							<>
 								<Text size="large" css={subTextStyle}>

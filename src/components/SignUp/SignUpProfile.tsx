@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-import DefatulProfileImg from "@/assets/png/profile.png";
+import DefaultProfileImg from "@/assets/png/profile.png";
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 import { Flex, Box, Text, Divider } from "@/components/common";
 import { ALLOW_FILE_EXTENSION, FILE_SIZE_MAX_LIMIT } from "@/constants/file";
@@ -84,7 +84,7 @@ const SignUpProfile = () => {
 				<Flex styles={{ direction: "column", padding: "0 38px" }}>
 					{/* 프로필 영역 */}
 					<Flex styles={{ align: "center", gap: "60px" }}>
-						<img src={fileURL ? fileURL : DefatulProfileImg} alt="profileImg" css={imgStyle} />
+						<img src={fileURL ? fileURL : DefaultProfileImg} alt="profileImg" css={imgStyle} />
 						<Flex styles={{ direction: "column", gap: "14px" }}>
 							<Text css={getFormTextStyle(false)}>프로필 이미지</Text>
 							<input type="file" id="profileImg" onChange={handleChangeImg} css={inputStyle} />

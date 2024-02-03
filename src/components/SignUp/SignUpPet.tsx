@@ -13,7 +13,7 @@ const SignUpPet = () => {
 		{ id: `card${cardNum}`, component: <SignUpPetCard id={`card${cardNum}`} /> },
 	]);
 
-	const handleCard = () => {
+	const handleCardAdd = () => {
 		const addList = {
 			id: `card${cardNum + 1}`,
 			component: <SignUpPetCard id={`card${cardNum}`} />,
@@ -29,7 +29,7 @@ const SignUpPet = () => {
 				<SignUpPetCard key={data.id} id={data.id} />
 			))}
 
-			<Box tag="button" css={addCardButtonStyle} onClick={handleCard}>
+			<Box tag="button" css={addCardButtonStyle} onClick={handleCardAdd}>
 				<Text size="large">반려견 카드 추가하기</Text>
 			</Box>
 
