@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
-import ProfileIcon from "@/assets/svg/ProfileIcon.svg?react";
+import DefatulProfileImg from "@/assets/png/profile.png";
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 import { Flex, Box, Text, Divider } from "@/components/common";
+import { ALLOW_FILE_EXTENSION, FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 import { useCheckNicknameMutation } from "@/hooks/api/useCheckNicknameMutation";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+import { fileExtensionValid } from "@/utils/image";
 
 import {
 	getFormTextStyle,
@@ -13,6 +16,8 @@ import {
 	getTextareaStyle,
 } from "@/components/SignUp/SignUp.shared.style";
 import {
+	imgStyle,
+	inputStyle,
 	buttonStyle,
 	dividerStyle,
 	addressInputStyle,
@@ -23,6 +28,38 @@ const SignUpProfile = () => {
 	const { mutateCheckNickname } = useCheckNicknameMutation();
 
 	const [nickname, setNickname] = useState("");
+
+	const [fileURL, setFileURL] = useState<string>("");
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const [file, setFile] = useState<File | null>();
+
+	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const target = e.currentTarget;
+		const files = (target.files as FileList)[0];
+
+		if (files === undefined) {
+			return;
+		}
+
+		if (!fileExtensionValid(files)) {
+			target.value = "";
+
+			toast.error(`업로드 가능한 확장자가 아닙니다. [가능한 확장자 : ${ALLOW_FILE_EXTENSION}]`);
+
+			return;
+		}
+
+		if (files.size > FILE_SIZE_MAX_LIMIT) {
+			target.value = "";
+			toast.error("업로드 가능한 최대 용량은 1MB입니다. ");
+			return;
+		}
+
+		setFile(files);
+
+		const newFileURL = URL.createObjectURL(files);
+		setFileURL(newFileURL);
+	};
 
 	return (
 		<Flex
@@ -45,14 +82,15 @@ const SignUpProfile = () => {
 				<Flex styles={{ direction: "column", padding: "0 38px" }}>
 					{/* 프로필 영역 */}
 					<Flex styles={{ align: "center", gap: "60px" }}>
-						<ProfileIcon />
+						<img src={fileURL ? fileURL : DefatulProfileImg} alt="profileImg" css={imgStyle} />
 						<Flex styles={{ direction: "column", gap: "14px" }}>
 							<Text css={getFormTextStyle(false)}>프로필 이미지</Text>
-							<Box tag="button" css={buttonStyle}>
+							<input type="file" id="profileImg" onChange={handleChangeImg} css={inputStyle} />
+							<label htmlFor="profileImg" css={buttonStyle}>
 								<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 									컴퓨터에서 파일 선택
 								</Text>
-							</Box>
+							</label>
 							<Text size="small" css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 								확장자: png, jpg, jpeg / 용량: 1MB 이하
 							</Text>
