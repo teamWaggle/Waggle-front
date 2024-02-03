@@ -8,7 +8,6 @@ export const addCardButtonStyle = css({
 	width: "554px",
 	height: "44px",
 	textAlign: "center",
-	marginTop: "30px",
 	borderRadius: "2px",
 	backgroundColor: Theme.color.brand_primary,
 	color: Theme.color.white,
