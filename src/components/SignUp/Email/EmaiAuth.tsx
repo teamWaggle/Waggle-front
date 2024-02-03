@@ -3,7 +3,7 @@ import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 // import { useEmailAuthSendMutation } from "@/hooks/api/useEmailAuthSendMutation";
 
-import { buttonStyle } from "@/components/SignUp/SignUpEmail.style";
+import { buttonStyle } from "@/components/SignUp/Email/SignUpEmail.style";
 
 const EmaiAuth = () => {
 	// const { mutateEmailAuthSend } = useEmailAuthSendMutation();

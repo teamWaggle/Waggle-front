@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
-import SignUpPetCard from "@/components/SignUp/SignUpPetCard";
+import SignUpPetCard from "@/components/SignUp/Pet/SignUpPetCard";
 
-import { addCardButtonStyle } from "@/components/SignUp/SignUpPet.style";
-import { getNextButtonStyle } from "@/components/SignUp/SignUpProfile.style";
+import { addCardButtonStyle } from "@/components/SignUp/Pet/SignUpPet.style";
+import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 
 const SignUpPet = () => {
 	const [cardNum, setCardNum] = useState(1);
