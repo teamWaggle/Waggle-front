@@ -3,9 +3,9 @@ import { useState } from "react";
 import { css } from "@emotion/react";
 
 import { Flex } from "@/components/common";
-import SignUpEmail from "@/components/SignUp/SignUpEmail";
-import SignUpPet from "@/components/SignUp/SignUpPet";
-import SignUpProfile from "@/components/SignUp/SignUpProfile";
+import SignUpEmail from "@/components/SignUp/Email/SignUpEmail";
+import SignUpPet from "@/components/SignUp/Pet/SignUpPet";
+import SignUpProfile from "@/components/SignUp/Profile/SignUpProfile";
 import SignUpTitle from "@/components/SignUp/SignUpTitle";
 
 const SignUp = () => {
