@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 import { Flex, Text, SocialLogin } from "@/components/common";
-import EmaiAuth from "@/components/SignUp/EmaiAuth";
-import PasswordValidator from "@/components/SignUp/PasswordValidator";
+import EmaiAuth from "@/components/SignUp/Email/EmaiAuth";
+import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 import { emailFormData } from "@/constants/auth";
 import { useSignUpMutation } from "@/hooks/api/useSignUpMutation";
 
+import { signUpButtonStyle } from "@/components/SignUp/Email/SignUpEmail.style";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
-import { signUpButtonStyle } from "@/components/SignUp/SignUpEmail.style";
 
 interface formValueType {
 	[key: string]: string;

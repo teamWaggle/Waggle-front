@@ -11,18 +11,18 @@ import { Theme } from "@/styles/Theme";
 import { fileExtensionValid } from "@/utils/file";
 
 import {
-	getFormTextStyle,
-	getInputStyle,
-	getTextareaStyle,
-} from "@/components/SignUp/SignUp.shared.style";
-import {
 	imgStyle,
 	inputStyle,
 	buttonStyle,
 	dividerStyle,
 	addressInputStyle,
+} from "@/components/SignUp/Profile/SignUpProfile.style";
+import {
+	getFormTextStyle,
+	getInputStyle,
+	getTextareaStyle,
 	getNextButtonStyle,
-} from "@/components/SignUp/SignUpProfile.style";
+} from "@/components/SignUp/SignUp.shared.style";
 
 const SignUpProfile = () => {
 	const { mutateCheckNickname } = useCheckNicknameMutation();

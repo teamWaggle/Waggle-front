@@ -13,12 +13,12 @@ import { Theme } from "@/styles/Theme";
 import { fileExtensionValid } from "@/utils/file";
 import { convertPetNumToText } from "@/utils/pet";
 
+import { imgStyle, inputStyle, buttonStyle } from "@/components/SignUp/Profile/SignUpProfile.style";
 import {
 	getFormTextStyle,
 	getInputStyle,
 	getTextareaStyle,
 } from "@/components/SignUp/SignUp.shared.style";
-import { imgStyle, inputStyle, buttonStyle } from "@/components/SignUp/SignUpProfile.style";
 
 interface PetCardType {
 	id: string;
