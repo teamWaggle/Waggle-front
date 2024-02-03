@@ -8,7 +8,7 @@ import { ALLOW_FILE_EXTENSION, FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 import { useCheckNicknameMutation } from "@/hooks/api/useCheckNicknameMutation";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
-import { fileExtensionValid } from "@/utils/image";
+import { fileExtensionValid } from "@/utils/file";
 
 import {
 	getFormTextStyle,
@@ -28,6 +28,8 @@ const SignUpProfile = () => {
 	const { mutateCheckNickname } = useCheckNicknameMutation();
 
 	const [nickname, setNickname] = useState("");
+	const [introduction, setIntroduction] = useState("");
+	const [profileAddress, setProfileAddress] = useState("");
 
 	const [fileURL, setFileURL] = useState<string>("");
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -128,6 +130,8 @@ const SignUpProfile = () => {
 							<textarea
 								css={getTextareaStyle("112px")}
 								placeholder="취미, 좋아하는 산책 장소 등으로 자신을 소개해보세요"
+								value={introduction}
+								onChange={(e) => setIntroduction(e.target.value)}
 							/>
 						</Flex>
 					</Flex>
@@ -144,7 +148,12 @@ const SignUpProfile = () => {
 						<Text css={getDefaultTextStyle(Theme.color.text, 500)}>
 							https://www.waggle.com/users/@
 						</Text>
-						<input css={addressInputStyle} placeholder="나만의 프로필 주소를 만들어보세요" />
+						<input
+							css={addressInputStyle}
+							placeholder="나만의 프로필 주소를 만들어보세요"
+							value={profileAddress}
+							onChange={(e) => setProfileAddress(e.target.value)}
+						/>
 					</Flex>
 					<Flex styles={{ align: "center", gap: "16px" }}>
 						<Box tag="button" css={buttonStyle}>
