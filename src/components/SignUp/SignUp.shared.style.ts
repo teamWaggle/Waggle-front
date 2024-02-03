@@ -44,6 +44,10 @@ export const getTextareaStyle = (height: string) => {
 		wordBreak: "break-all",
 		whiteSpace: "pre-wrap",
 
+		"&:focus": {
+			border: "2px solid #275ec5",
+		},
+
 		"&::placeholder": {
 			color: Theme.color.border,
 		},
