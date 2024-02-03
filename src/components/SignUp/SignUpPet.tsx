@@ -1,91 +1,35 @@
-import FeMaleIcon from "@/assets/svg/female.svg?react";
-import MaleIcon from "@/assets/svg/Male.svg?react";
-import PetProfileIcon from "@/assets/svg/PetProfileIcon.svg?react";
-import { Flex, Box, Heading, Text } from "@/components/common";
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
+import { useState } from "react";
 
-import {
-	getFormTextStyle,
-	getInputStyle,
-	getTextareaStyle,
-} from "@/components/SignUp/SignUp.shared.style";
+import { Flex, Box, Text } from "@/components/common";
+import SignUpPetCard from "@/components/SignUp/SignUpPetCard";
+
 import { addCardButtonStyle } from "@/components/SignUp/SignUpPet.style";
-import { buttonStyle, getNextButtonStyle } from "@/components/SignUp/SignUpProfile.style";
+import { getNextButtonStyle } from "@/components/SignUp/SignUpProfile.style";
 
 const SignUpPet = () => {
+	const [cardNum, setCardNum] = useState(1);
+
+	const [cardList, setCardList] = useState([
+		{ id: `card${cardNum}`, component: <SignUpPetCard id={`card${cardNum}`} /> },
+	]);
+
+	const handleCard = () => {
+		const addList = {
+			id: `card${cardNum + 1}`,
+			component: <SignUpPetCard id={`card${cardNum}`} />,
+		};
+
+		setCardList([...cardList, addList]);
+		setCardNum((prev) => prev + 1);
+	};
+
 	return (
-		<Flex styles={{ direction: "column", width: "554px", marginTop: "50px" }}>
-			<Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
-				나의 첫 번째 반려견
-			</Heading>
+		<Flex styles={{ direction: "column", width: "554px", marginTop: "50px", gap: "30px" }}>
+			{cardList.map((data) => (
+				<SignUpPetCard key={data.id} id={data.id} />
+			))}
 
-			<Flex
-				styles={{
-					direction: "column",
-					gap: "30px",
-					width: "554px",
-					height: "698px",
-					borderRadius: "2px",
-					border: `1px solid ${Theme.color.border}`,
-					padding: "60px",
-					marginTop: "12px",
-				}}
-			>
-				{/* 프로필 영역 */}
-				<Flex styles={{ align: "center", gap: "60px" }}>
-					<PetProfileIcon />
-					<Flex styles={{ direction: "column", gap: "14px" }}>
-						<Text css={getFormTextStyle(false)}>프로필 이미지</Text>
-						<Box tag="button" css={buttonStyle}>
-							<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
-								컴퓨터에서 파일 선택
-							</Text>
-						</Box>
-						<Text size="small" css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
-							확장자: png, jpg, jpeg / 용량: 1MB 이하
-						</Text>
-					</Flex>
-				</Flex>
-
-				<Flex styles={{ direction: "column", gap: "4px" }}>
-					<Text css={getFormTextStyle(true)}>강아지 이름</Text>
-					<input
-						css={getInputStyle("444px")}
-						placeholder="사랑스러운 반려견의 이름을 입력해주세요"
-					/>
-				</Flex>
-
-				<Flex styles={{ align: "center", gap: "60px" }}>
-					<Flex styles={{ direction: "column", gap: "4px" }}>
-						<Text css={getFormTextStyle(true)}>강아지 나이</Text>
-						<input css={getInputStyle("214px")} placeholder="강아지 나이를 입력해주세요" />
-					</Flex>
-
-					<Flex styles={{ direction: "column", gap: "4px" }}>
-						<Text css={getFormTextStyle(false)}>강아지 성별</Text>
-						<Flex styles={{ gap: "16px", height: "44px", align: "center" }}>
-							<FeMaleIcon />
-							<MaleIcon />
-						</Flex>
-					</Flex>
-				</Flex>
-
-				<Flex styles={{ direction: "column", gap: "4px" }}>
-					<Text css={getFormTextStyle(true)}>강아지 종</Text>
-					<input css={getInputStyle("444px")} placeholder="강아지종을 입력해주세요" />
-				</Flex>
-
-				<Flex styles={{ direction: "column", gap: "4px" }}>
-					<Text css={getFormTextStyle(true)}>반려견 소개</Text>
-					<textarea
-						css={getTextareaStyle("70px")}
-						placeholder="즐겨먹는 간식, 습관 등으로 반려견을 소개해주세요"
-					/>
-				</Flex>
-			</Flex>
-
-			<Box tag="button" css={addCardButtonStyle}>
+			<Box tag="button" css={addCardButtonStyle} onClick={handleCard}>
 				<Text size="large">반려견 카드 추가하기</Text>
 			</Box>
 
