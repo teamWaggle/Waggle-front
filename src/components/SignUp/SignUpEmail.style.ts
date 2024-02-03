@@ -23,3 +23,10 @@ export const signUpButtonStyle = css({
 	textAlign: "center",
 	cursor: "pointer",
 });
+
+export const getPasswordTextStyle = (disabled: boolean) => {
+	return css({
+		color: disabled ? Theme.color.brand_primary : Theme.color.disabled_text,
+		fontWeight: 500,
+	});
+};

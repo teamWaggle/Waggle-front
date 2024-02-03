@@ -1,33 +1,20 @@
 import { useState } from "react";
 
-import FillPasswordCheckIcon from "@/assets/svg/FillPasswordCheckIcon.svg?react";
+import PasswordCheckDisabledIcon from "@/assets/svg/ic-password-check-disabled.svg?react";
+import PasswordCheckIcon from "@/assets/svg/ic-password-check.svg?react";
 import { Flex, Text, SocialLogin } from "@/components/common";
 // import { useEmailAuthSendMutation } from "@/hooks/api/useEmailAuthSendMutation";
+import { passwordCheckData } from "@/constants/auth";
 import { useSignUpMutation } from "@/hooks/api/useSignUpMutation";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
-import { buttonStyle, signUpButtonStyle } from "@/components/SignUp/SignUpEmail.style";
-
-const passwordCheckData = [
-	{
-		icon: <FillPasswordCheckIcon />,
-		text: "영문",
-	},
-	{
-		icon: <FillPasswordCheckIcon />,
-		text: "숫자",
-	},
-	{
-		icon: <FillPasswordCheckIcon />,
-		text: "특수문자",
-	},
-	{
-		icon: <FillPasswordCheckIcon />,
-		text: "8자리 이상",
-	},
-];
+import {
+	buttonStyle,
+	signUpButtonStyle,
+	getPasswordTextStyle,
+} from "@/components/SignUp/SignUpEmail.style";
 
 const SignUpEmail = () => {
 	const { mutateSignUp } = useSignUpMutation();
@@ -119,8 +106,8 @@ const SignUpEmail = () => {
 						<Flex styles={{ padding: "0 8px", gap: "10px" }}>
 							{passwordCheckData.map((data) => (
 								<Flex styles={{ gap: "4px", align: "center" }} key={data.text}>
-									{data.icon}
-									<Text size="small" css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
+									{data.validator(password) ? <PasswordCheckIcon /> : <PasswordCheckDisabledIcon />}
+									<Text size="small" css={getPasswordTextStyle(data.validator(password))}>
 										{data.text}
 									</Text>
 								</Flex>
