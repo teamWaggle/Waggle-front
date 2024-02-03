@@ -2,11 +2,23 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
+export const imgStyle = css({
+	width: "148px",
+	height: "148px",
+	borderRadius: "50%",
+	objectFit: "cover",
+});
+
+export const inputStyle = css({
+	display: "none",
+});
+
 export const buttonStyle = css({
 	all: "unset",
 	padding: "8px 14px",
 	borderRadius: "4px",
 	border: `1px solid ${Theme.color.border}`,
+	cursor: "pointer",
 });
 
 export const dividerStyle = css({
