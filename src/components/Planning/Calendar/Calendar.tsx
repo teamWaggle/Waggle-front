@@ -17,11 +17,11 @@ import {
 } from "date-fns";
 
 import { Box, Flex } from "@/components/common";
-import CalendarCard from "@/components/TeamPlanning/Calendar/CalendarCard/CalendarCard";
-import CalendarHeader from "@/components/TeamPlanning/Calendar/CalendarHeader/CalendarHeader";
+import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
+import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
 import { ScheduleType } from "@/types/canlendar";
 
-import { boxStyle, flexStyle } from "@/components/TeamPlanning/Calendar/Calendar.style";
+import { boxStyle, flexStyle } from "@/components/Planning/Calendar/Calendar.style";
 
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());

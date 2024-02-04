@@ -19,8 +19,8 @@ const navData = [
 		link: "/connection",
 	},
 	{
-		title: "TEAM PLANNING",
-		link: "/team",
+		title: "PLANNING",
+		link: "/planning",
 	},
 	{
 		title: "My Waggle",
