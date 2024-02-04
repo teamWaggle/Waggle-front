@@ -9,3 +9,10 @@ export const textStyle = css({
 	minWidth: "170px",
 	textAlign: "center",
 });
+
+export const flexStyle = css({
+	alignItems: "center",
+	margin: "0 auto",
+	minWidth: "1128px",
+	justifyContent: "center",
+});

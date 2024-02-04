@@ -1,12 +1,13 @@
+import { Flex } from "@/components/common";
 import Calendar from "@/components/Planning/Calendar/Calendar";
 
 import { sectionStyle } from "@/components/Planning/Bio/Bio.style";
 
 const Bio = () => {
 	return (
-		<section css={sectionStyle}>
+		<Flex tag={"section"} css={sectionStyle}>
 			<Calendar />
-		</section>
+		</Flex>
 	);
 };
 
