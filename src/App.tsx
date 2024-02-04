@@ -4,7 +4,14 @@ import { ToastContainer } from "react-toastify";
 
 import { useSetRecoilState } from "recoil";
 
-import { LandingPage, SirenPage, SirenDetailPage, QuestionPage, SignUpPage } from "@/pages";
+import {
+	LandingPage,
+	SirenPage,
+	SirenDetailPage,
+	QuestionPage,
+	SignUpPage,
+	TeamPlanningPage,
+} from "@/pages";
 import { isLoggedInState } from "@/store/auth";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -28,6 +35,7 @@ const App = () => {
 					<Route path="/question" element={<QuestionPage />} />
 					<Route path="/siren/view/:id" element={<SirenDetailPage />} />
 					<Route path="/signup" element={<SignUpPage />} />
+					<Route path="/planning" element={<TeamPlanningPage />} />
 				</Routes>
 			</BrowserRouter>
 		</>
