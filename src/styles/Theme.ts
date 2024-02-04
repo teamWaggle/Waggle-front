@@ -19,10 +19,10 @@ const color = {
 	team1: "#00BDBD",
 	team2: "#0075FF",
 	team3: "#FF9900",
-	team4: "-webkit-linear-gradient(180deg, #FF5D01 0%, #F90 100%))",
+	team4: "#FA6C2F",
 	team5: "#00C920",
-	team6: "-webkit-linear-gradient(180deg, #0075FF 0%, #00E4E4 100%)",
-	team7: "-webkit-linear-gradient(180deg, #F90 0%, #FEE500 100%)",
+	team6: "#FC727A",
+	team7: "#4E3212",
 	team8: "#3F3F3F",
 };
 

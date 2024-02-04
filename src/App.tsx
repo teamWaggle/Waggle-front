@@ -10,7 +10,7 @@ import {
 	SirenDetailPage,
 	QuestionPage,
 	SignUpPage,
-	TeamPlanningPage,
+	PlanningPage,
 } from "@/pages";
 import { isLoggedInState } from "@/store/auth";
 
@@ -35,7 +35,7 @@ const App = () => {
 					<Route path="/question" element={<QuestionPage />} />
 					<Route path="/siren/view/:id" element={<SirenDetailPage />} />
 					<Route path="/signup" element={<SignUpPage />} />
-					<Route path="/planning" element={<TeamPlanningPage />} />
+					<Route path="/planning" element={<PlanningPage />} />
 				</Routes>
 			</BrowserRouter>
 		</>
