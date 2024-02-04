@@ -19,19 +19,30 @@ import {
 import { Box, Flex } from "@/components/common";
 import CalendarCard from "@/components/TeamPlanning/Calendar/CalendarCard/CalendarCard";
 import CalendarHeader from "@/components/TeamPlanning/Calendar/CalendarHeader/CalendarHeader";
+import { ScheduleType } from "@/types/canlendar";
 
 import { boxStyle, flexStyle } from "@/components/TeamPlanning/Calendar/Calendar.style";
 
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-	const schedules = [
+	const schedules: ScheduleType[] = [
 		{
 			scheduleId: 0,
 			teamId: 0,
-			title: "string",
+			title: "string123",
 			content: "string",
 			startTime: parseISO("2024-01-22T05:21:37.279Z"),
 			endTime: parseISO("2024-01-22T05:21:37.279Z"),
+			color: "team1",
+		},
+		{
+			scheduleId: 0,
+			teamId: 0,
+			title: "string424",
+			content: "string",
+			startTime: parseISO("2024-01-22T05:21:37.279Z"),
+			endTime: parseISO("2024-01-22T05:21:37.279Z"),
+			color: "team1",
 		},
 		{
 			scheduleId: 0,
@@ -40,6 +51,7 @@ const Calendar = () => {
 			content: "string",
 			startTime: parseISO("2024-01-22T05:21:37.279Z"),
 			endTime: parseISO("2024-01-22T05:21:37.279Z"),
+			color: "team2",
 		},
 		{
 			scheduleId: 0,
@@ -48,6 +60,7 @@ const Calendar = () => {
 			content: "string",
 			startTime: parseISO("2024-01-22T05:21:37.279Z"),
 			endTime: parseISO("2024-01-22T05:21:37.279Z"),
+			color: "team3",
 		},
 		{
 			scheduleId: 0,
@@ -55,7 +68,8 @@ const Calendar = () => {
 			title: "string",
 			content: "string",
 			startTime: parseISO("2024-01-22T05:21:37.279Z"),
-			endTime: parseISO("2024-01-22T05:21:37.279Z"),
+			endTime: parseISO("2024-01-25T05:21:37.279Z"),
+			color: "team3",
 		},
 		{
 			scheduleId: 1,
@@ -64,6 +78,7 @@ const Calendar = () => {
 			content: "string",
 			startTime: parseISO("2024-01-25T05:21:37.279Z"),
 			endTime: parseISO("2024-01-28T05:21:37.279Z"),
+			color: "team1",
 		},
 		{
 			scheduleId: 1,
@@ -72,14 +87,16 @@ const Calendar = () => {
 			content: "string",
 			startTime: parseISO("2024-01-25T05:21:37.279Z"),
 			endTime: parseISO("2024-01-28T05:21:37.279Z"),
+			color: "team4",
 		},
 		{
 			scheduleId: 1,
 			teamId: 0,
 			title: "string",
 			content: "string",
-			startTime: parseISO("2024-02-01T05:21:37.279Z"),
+			startTime: parseISO("2024-01-28T05:21:37.279Z"),
 			endTime: parseISO("2024-02-04T05:21:37.279Z"),
+			color: "team6",
 		},
 	];
 	const CalendarCards = useMemo(() => {

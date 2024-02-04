@@ -17,11 +17,11 @@ const CalendarHeader = ({
 }) => {
 	return (
 		<>
-			<LeftArrowIcon onClick={onClickPrevMonth} />
+			<LeftArrowIcon onClick={onClickPrevMonth} style={{ cursor: "pointer" }} />
 			<Heading css={textStyle}>
 				{format(currentMonth, "yyyy")}년 {format(currentMonth, "M")}월
 			</Heading>
-			<RightArrowIcon onClick={onClickNextMonth} />
+			<RightArrowIcon onClick={onClickNextMonth} style={{ cursor: "pointer" }} />
 		</>
 	);
 };

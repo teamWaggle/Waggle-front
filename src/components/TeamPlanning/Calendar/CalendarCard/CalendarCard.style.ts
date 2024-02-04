@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
+import { TeamColorType } from "@/types/canlendar";
 
 export const flexStyle = css({
 	display: "flex",
@@ -33,7 +34,7 @@ export const scheduleFlexBox = css({
 	border: "none",
 });
 
-export const scheduleTextStyle = (lastSchedule?: boolean) =>
+export const scheduleTextStyle = (color: TeamColorType, lastSchedule?: boolean) =>
 	css({
 		overflow: "hidden",
 		textOverflow: "ellipsis",
@@ -44,7 +45,7 @@ export const scheduleTextStyle = (lastSchedule?: boolean) =>
 		width: lastSchedule ? "calc(100% - 16px)" : "calc(100% + 1px)",
 		borderRadius: lastSchedule ? "0 .5rem .5rem 0" : "0px",
 		paddingLeft: "16px",
-		backgroundColor: Theme.color.btn_danger,
+		backgroundColor: Theme.color[color],
 		fontsize: "12px",
 	});
 
