@@ -16,89 +16,90 @@ import {
 	isWithinInterval,
 } from "date-fns";
 
-import { Box, Flex } from "@/components/common";
+import { Box } from "@/components/common";
 import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
 import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
 import { ScheduleType } from "@/types/canlendar";
 
-import { boxStyle, flexStyle } from "@/components/Planning/Calendar/Calendar.style";
+import { boxStyle } from "@/components/Planning/Calendar/Calendar.style";
 
+const schedules: ScheduleType[] = [
+	{
+		scheduleId: 0,
+		teamId: 0,
+		title: "string123",
+		content: "string",
+		startTime: parseISO("2024-01-22T05:21:37.279Z"),
+		endTime: parseISO("2024-01-22T05:21:37.279Z"),
+		color: "team1",
+	},
+	{
+		scheduleId: 0,
+		teamId: 0,
+		title: "string424",
+		content: "string",
+		startTime: parseISO("2024-01-22T05:21:37.279Z"),
+		endTime: parseISO("2024-01-22T05:21:37.279Z"),
+		color: "team1",
+	},
+	{
+		scheduleId: 0,
+		teamId: 0,
+		title: "string",
+		content: "string",
+		startTime: parseISO("2024-01-22T05:21:37.279Z"),
+		endTime: parseISO("2024-01-22T05:21:37.279Z"),
+		color: "team2",
+	},
+	{
+		scheduleId: 0,
+		teamId: 0,
+		title: "string",
+		content: "string",
+		startTime: parseISO("2024-01-22T05:21:37.279Z"),
+		endTime: parseISO("2024-01-22T05:21:37.279Z"),
+		color: "team3",
+	},
+	{
+		scheduleId: 0,
+		teamId: 0,
+		title: "string",
+		content: "string",
+		startTime: parseISO("2024-01-22T05:21:37.279Z"),
+		endTime: parseISO("2024-01-25T05:21:37.279Z"),
+		color: "team3",
+	},
+	{
+		scheduleId: 1,
+		teamId: 0,
+		title: "string",
+		content: "string",
+		startTime: parseISO("2024-01-25T05:21:37.279Z"),
+		endTime: parseISO("2024-01-28T05:21:37.279Z"),
+		color: "team1",
+	},
+	{
+		scheduleId: 1,
+		teamId: 0,
+		title: "string",
+		content: "string",
+		startTime: parseISO("2024-01-25T05:21:37.279Z"),
+		endTime: parseISO("2024-01-28T05:21:37.279Z"),
+		color: "team4",
+	},
+	{
+		scheduleId: 1,
+		teamId: 0,
+		title: "string",
+		content: "string",
+		startTime: parseISO("2024-01-28T05:21:37.279Z"),
+		endTime: parseISO("2024-02-04T05:21:37.279Z"),
+		color: "team6",
+	},
+];
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-	const schedules: ScheduleType[] = [
-		{
-			scheduleId: 0,
-			teamId: 0,
-			title: "string123",
-			content: "string",
-			startTime: parseISO("2024-01-22T05:21:37.279Z"),
-			endTime: parseISO("2024-01-22T05:21:37.279Z"),
-			color: "team1",
-		},
-		{
-			scheduleId: 0,
-			teamId: 0,
-			title: "string424",
-			content: "string",
-			startTime: parseISO("2024-01-22T05:21:37.279Z"),
-			endTime: parseISO("2024-01-22T05:21:37.279Z"),
-			color: "team1",
-		},
-		{
-			scheduleId: 0,
-			teamId: 0,
-			title: "string",
-			content: "string",
-			startTime: parseISO("2024-01-22T05:21:37.279Z"),
-			endTime: parseISO("2024-01-22T05:21:37.279Z"),
-			color: "team2",
-		},
-		{
-			scheduleId: 0,
-			teamId: 0,
-			title: "string",
-			content: "string",
-			startTime: parseISO("2024-01-22T05:21:37.279Z"),
-			endTime: parseISO("2024-01-22T05:21:37.279Z"),
-			color: "team3",
-		},
-		{
-			scheduleId: 0,
-			teamId: 0,
-			title: "string",
-			content: "string",
-			startTime: parseISO("2024-01-22T05:21:37.279Z"),
-			endTime: parseISO("2024-01-25T05:21:37.279Z"),
-			color: "team3",
-		},
-		{
-			scheduleId: 1,
-			teamId: 0,
-			title: "string",
-			content: "string",
-			startTime: parseISO("2024-01-25T05:21:37.279Z"),
-			endTime: parseISO("2024-01-28T05:21:37.279Z"),
-			color: "team1",
-		},
-		{
-			scheduleId: 1,
-			teamId: 0,
-			title: "string",
-			content: "string",
-			startTime: parseISO("2024-01-25T05:21:37.279Z"),
-			endTime: parseISO("2024-01-28T05:21:37.279Z"),
-			color: "team4",
-		},
-		{
-			scheduleId: 1,
-			teamId: 0,
-			title: "string",
-			content: "string",
-			startTime: parseISO("2024-01-28T05:21:37.279Z"),
-			endTime: parseISO("2024-02-04T05:21:37.279Z"),
-			color: "team6",
-		},
-	];
+
 	const CalendarCards = useMemo(() => {
 		const monthStart = startOfMonth(currentMonth);
 		const monthEnd = endOfMonth(monthStart);
@@ -118,6 +119,7 @@ const Calendar = () => {
 
 			return (
 				<CalendarCard
+					key={day.toString()}
 					index={index}
 					isSameMonth={isSameMonth(monthStart, day)}
 					day={day}
@@ -135,13 +137,11 @@ const Calendar = () => {
 	};
 	return (
 		<>
-			<Flex css={flexStyle}>
-				<CalendarHeader
-					currentMonth={currentMonth}
-					onClickNextMonth={handleNextMonth}
-					onClickPrevMonth={handlePrevMonth}
-				/>
-			</Flex>
+			<CalendarHeader
+				currentMonth={currentMonth}
+				onClickNextMonth={handleNextMonth}
+				onClickPrevMonth={handlePrevMonth}
+			/>
 			<Box css={boxStyle}>{CalendarCards}</Box>
 		</>
 	);

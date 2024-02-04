@@ -4,7 +4,6 @@ import { Theme } from "@/styles/Theme";
 import { TeamColorType } from "@/types/canlendar";
 
 export const flexStyle = css({
-	display: "flex",
 	alignItems: "center",
 	flexDirection: "column",
 	height: "100%",
@@ -27,7 +26,6 @@ export const dateTextStyle = (isSameMonth?: boolean) =>
 	});
 
 export const scheduleFlexBox = css({
-	display: "flex",
 	flexDirection: "column",
 	width: "100%",
 	height: "100%",

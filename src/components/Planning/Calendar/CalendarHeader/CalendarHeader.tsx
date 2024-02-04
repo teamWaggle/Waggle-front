@@ -2,9 +2,12 @@ import { format } from "date-fns";
 
 import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
-import { Heading } from "@/components/common";
+import { Flex, Heading } from "@/components/common";
 
-import { textStyle } from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader.style";
+import {
+	flexStyle,
+	textStyle,
+} from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader.style";
 
 const CalendarHeader = ({
 	currentMonth,
@@ -16,13 +19,13 @@ const CalendarHeader = ({
 	onClickNextMonth: () => void;
 }) => {
 	return (
-		<>
+		<Flex css={flexStyle}>
 			<LeftArrowIcon onClick={onClickPrevMonth} style={{ cursor: "pointer" }} />
 			<Heading css={textStyle}>
 				{format(currentMonth, "yyyy")}년 {format(currentMonth, "M")}월
 			</Heading>
 			<RightArrowIcon onClick={onClickNextMonth} style={{ cursor: "pointer" }} />
-		</>
+		</Flex>
 	);
 };
 
