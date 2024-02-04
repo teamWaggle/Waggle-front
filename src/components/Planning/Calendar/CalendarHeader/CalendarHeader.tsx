@@ -4,7 +4,7 @@ import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
 import { Heading } from "@/components/common";
 
-import { textStyle } from "@/components/TeamPlanning/Calendar/CalendarHeader/CalendarHeader.style";
+import { textStyle } from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader.style";
 
 const CalendarHeader = ({
 	currentMonth,

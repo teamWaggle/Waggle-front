@@ -10,7 +10,7 @@ import {
 	scheduleFlexBox,
 	scheduleTextStyle,
 	weekdayTextStyle,
-} from "@/components/TeamPlanning/Calendar/CalendarCard/CalendarCard.style";
+} from "@/components/Planning/Calendar/CalendarCard/CalendarCard.style";
 
 const weekday = ["월", "화", "수", "목", "금", "토", "일"];
 
