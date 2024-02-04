@@ -16,6 +16,14 @@ const color = {
 	black: "#000",
 	transparent: "transparent",
 	divider_gray: "#e6e6e6",
+	team1: "#00BDBD",
+	team2: "#0075FF",
+	team3: "#FF9900",
+	team4: "-webkit-linear-gradient(180deg, #FF5D01 0%, #F90 100%))",
+	team5: "#00C920",
+	team6: "-webkit-linear-gradient(180deg, #0075FF 0%, #00E4E4 100%)",
+	team7: "-webkit-linear-gradient(180deg, #F90 0%, #FEE500 100%)",
+	team8: "#3F3F3F",
 };
 
 const text = {

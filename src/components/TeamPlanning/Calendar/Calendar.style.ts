@@ -5,7 +5,7 @@ import { Theme } from "@/styles/Theme";
 export const flexStyle = css({
 	alignItems: "center",
 	margin: "0 auto",
-	width: "1128px",
+	minWidth: "1128px",
 	justifyContent: "center",
 });
 export const boxStyle = css({

@@ -1,6 +1,7 @@
 import { format, isSameDay } from "date-fns";
 
 import { Box, Flex, Text } from "@/components/common";
+import { CalendarCardType } from "@/types/canlendar";
 
 import {
 	dateTextStyle,
@@ -13,31 +14,17 @@ import {
 
 const weekday = ["월", "화", "수", "목", "금", "토", "일"];
 
-const CalendarCard = ({
-	index,
-	day,
-	isSameMonth,
-	schedules,
-}: {
-	index: number;
-	day: Date;
-	schedules: Array<{
-		scheduleId: number;
-		teamId: number;
-		title: string;
-		content: string;
-		startTime: Date;
-		endTime: Date;
-	}>;
-	isSameMonth?: boolean;
-}) => {
+const CalendarCard = ({ index, day, isSameMonth, schedules }: CalendarCardType) => {
 	return (
 		<Flex css={flexStyle}>
 			<Text css={weekdayTextStyle}>{index < 7 ? weekday[index] : ""}</Text>
 			<Text css={dateTextStyle(isSameMonth)}>{format(day, "d")}</Text>
 			<Flex css={scheduleFlexBox}>
 				{schedules.slice(0, 2).map((schedule, i) => (
-					<Box key={i} css={scheduleTextStyle(isSameDay(schedule.endTime, day))}>
+					<Box
+						key={i}
+						css={scheduleTextStyle(schedules[i].color, isSameDay(schedule.endTime, day))}
+					>
 						{isSameDay(schedule.startTime, day) ? schedule.title : ""}
 					</Box>
 				))}
