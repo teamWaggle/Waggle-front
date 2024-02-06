@@ -95,6 +95,7 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 							onChange={(e) => setPassword(e.target.value)}
 							value={password}
 							ref={passwordRef}
+							maxLength={20}
 						/>
 						{passwordShow ? (
 							<PasswordShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
