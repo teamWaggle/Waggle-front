@@ -38,14 +38,14 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 		return true;
 	};
 
-	const handleShowPassword = async () => {
-		const password = await passwordRef.current;
+	const handleShowPassword = () => {
+		const password = passwordRef.current;
 
 		if (password === null) {
 			return;
 		}
 
-		await setPasswordShow(!passwordShow);
+		setPasswordShow(!passwordShow);
 
 		if (!passwordShow) {
 			password.type = "text";
