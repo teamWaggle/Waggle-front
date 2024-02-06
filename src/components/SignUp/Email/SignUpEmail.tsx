@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Flex, Text, SocialLogin } from "@/components/common";
-import EmaiAuth from "@/components/SignUp/Email/EmaiAuth";
+import EmailAuth from "@/components/SignUp/Email/EmailAuth";
 import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 import { emailFormData } from "@/constants/auth";
 import { useSignUpMutation } from "@/hooks/api/useSignUpMutation";
@@ -80,7 +80,7 @@ const SignUpEmail = () => {
 								onChange={handleFormValue}
 							/>
 
-							{text === "이메일" && <EmaiAuth />}
+							{text === "이메일" && <EmailAuth />}
 						</Flex>
 
 						{text === "비밀번호" && <PasswordValidator password={password} />}

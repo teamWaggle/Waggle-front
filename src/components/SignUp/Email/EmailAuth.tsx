@@ -5,7 +5,7 @@ import { Theme } from "@/styles/Theme";
 
 import { buttonStyle } from "@/components/SignUp/Email/SignUpEmail.style";
 
-const EmaiAuth = () => {
+const EmailAuth = () => {
 	// const { mutateEmailAuthSend } = useEmailAuthSendMutation();
 
 	// const handleEmailSend = () => {
@@ -26,4 +26,4 @@ const EmaiAuth = () => {
 	);
 };
 
-export default EmaiAuth;
+export default EmailAuth;
