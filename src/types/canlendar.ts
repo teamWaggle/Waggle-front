@@ -10,6 +10,7 @@ export type TeamColorType =
 
 export interface TeamCardType {
 	title: string;
+	photoUrl: string;
 	subtitle: string;
 	groupSize: number;
 	color: TeamColorType;
