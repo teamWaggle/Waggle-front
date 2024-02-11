@@ -1,7 +1,7 @@
 import { format, isSameDay } from "date-fns";
 
 import { Box, Flex, Text } from "@/components/common";
-import { CalendarCardType } from "@/types/canlendar";
+import { CalendarCardType } from "@/types/planning";
 
 import {
 	dateTextStyle,
