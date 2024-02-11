@@ -29,6 +29,12 @@ export const profileStyle = css({
 export const commentLayoutStyle = css({
 	overflow: "auto",
 	height: "430px",
+	msOverflowStyle: "none",
+	scrollbarWidth: "none",
+
+	"&::-webkit-scrollbar": {
+		display: "none",
+	},
 });
 
 export const contentBoxStyle = css({
@@ -37,6 +43,12 @@ export const contentBoxStyle = css({
 
 export const commentBoxStyle = css({
 	maxWidth: "215px",
+});
+
+export const handleReplyTextStyle = css({
+	cursor: "pointer",
+	color: Theme.color.readonly_text,
+	fontWeight: 500,
 });
 
 export const getCommentTextStyle = (isReply: boolean) => {
@@ -48,3 +60,24 @@ export const getCommentTextStyle = (isReply: boolean) => {
 		wordWrap: "break-word",
 	});
 };
+
+export const replyInputStyle = css({
+	all: "unset",
+	boxSizing: "border-box",
+	borderBottom: `1px solid ${Theme.color.brand_primary}`,
+	padding: "8px 30px 8px 0",
+	color: Theme.color.disabled_text,
+	fontSize: "12px",
+	fontWeight: 500,
+	width: "215px",
+});
+
+export const replyButtonStyle = css({
+	all: "unset",
+	fontSize: "14px",
+	fontWeight: 600,
+	color: Theme.color.brand_primary,
+	position: "absolute",
+	right: 0,
+	bottom: "8px",
+});
