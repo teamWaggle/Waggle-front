@@ -9,7 +9,8 @@ export const backdropStyle = css({
 	zIndex: 3,
 	width: "100%",
 	height: "100%",
-	backgroundColor: "rgba(0,0,0,0.4)",
+	backgroundColor: "rgba(9, 4, 4, 0.53)",
+	backdropFilter: "blur(10px)",
 	cursor: "pointer",
 });
 
@@ -26,8 +27,8 @@ export const dialogStyle = css({
 
 export const closeButtonStyling = css({
 	position: "absolute",
-	right: "22px",
-	top: "22px",
+	right: "24px",
+	top: "24px",
 	cursor: "pointer",
 	width: "16px",
 	height: "16px",
