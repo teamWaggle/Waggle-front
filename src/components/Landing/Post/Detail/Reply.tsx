@@ -11,14 +11,21 @@ import {
 	profileStyle,
 	getCommentTextStyle,
 	commentBoxStyle,
+	replyInputStyle,
+	replyButtonStyle,
+	handleReplyTextStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
-const Reply = () => {
+interface replyType {
+	onClose: () => void;
+}
+
+const Reply = ({ onClose }: replyType) => {
 	return (
 		<Flex styles={{ direction: "column", paddingLeft: "43px", marginTop: "10px", gap: "10px" }}>
 			<Flex styles={{ align: "center", gap: "6px" }}>
 				<div css={dividerStyle} />
-				<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
+				<Text size="xSmall" css={handleReplyTextStyle} onClick={onClose}>
 					답글 접기
 				</Text>
 			</Flex>
@@ -34,6 +41,13 @@ const Reply = () => {
 				<Text size="small" css={getCommentTextStyle(true)}>
 					강아지가 너무 귀엽네요 멍멍멍 멍강아지가 너무 귀엽네요 멍멍멍멍
 				</Text>
+			</Box>
+
+			<Box styles={{ position: "relative" }}>
+				<input type="text" css={replyInputStyle} placeholder="답글 작성" />
+				<button type="submit" css={replyButtonStyle}>
+					등록
+				</button>
 			</Box>
 		</Flex>
 	);

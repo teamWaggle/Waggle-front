@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import SampleImg from "@/assets/png/post-sample2.png";
 
 import { Flex, Box, Text } from "@/components/common";
@@ -12,9 +14,12 @@ import {
 	profileStyle,
 	getCommentTextStyle,
 	commentBoxStyle,
+	handleReplyTextStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
 const Comment = ({ username, content }: CommentListInfoType) => {
+	const [replyOpen, setReplyOpen] = useState(false);
+
 	return (
 		<Flex styles={{ direction: "column", padding: "0 30px 0 18px", marginTop: "20px" }}>
 			<Flex styles={{ gap: "10px", align: "center" }}>
@@ -34,11 +39,15 @@ const Comment = ({ username, content }: CommentListInfoType) => {
 				<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
 					2024.01.07
 				</Text>
-				<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
+				<Text
+					size="xSmall"
+					css={handleReplyTextStyle}
+					onClick={() => setReplyOpen((prev) => !prev)}
+				>
 					답글
 				</Text>
 			</Flex>
-			<Reply />
+			{replyOpen && <Reply onClose={() => setReplyOpen(false)} />}
 		</Flex>
 	);
 };
