@@ -9,12 +9,13 @@ export type TeamColorType =
 	| "team8";
 
 export interface TeamCardType {
-	title: string;
-	photoUrl: string;
-	subtitle: string;
-	groupSize: number;
-	color: TeamColorType;
-	onClick: () => void;
+	teamId: number;
+	name: string;
+	coverImageUrl: string;
+	description: string;
+	teamSize: number;
+	maxTeamSize: number;
+	colorScheme: TeamColorType;
 }
 export interface ScheduleType {
 	scheduleId: number;

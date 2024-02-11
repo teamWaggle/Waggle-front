@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
-import { TeamColorType } from "@/types/canlendar";
+import { TeamColorType } from "@/types/planning";
 
 export const flexStyle = css({
 	alignItems: "center",

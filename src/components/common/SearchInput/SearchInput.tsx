@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
 import { Flex } from "@/components/common";
 
@@ -8,7 +10,7 @@ import {
 } from "@/components/common/SearchInput/SearchInput.style";
 
 interface SearchBarProps {
-	onChange: () => void;
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 	width: string;
 }
 
@@ -20,7 +22,7 @@ const SearchBar = ({ onChange, width }: SearchBarProps) => {
 				type="text"
 				placeholder="검색어를 입력해주세요."
 				onChange={onChange}
-			></input>
+			/>
 			<Flex tag="button" styles={{ align: "center", justify: "center" }} css={searchButtonStyle}>
 				<SearchButtonIcon />
 			</Flex>

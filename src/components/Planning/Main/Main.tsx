@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, SearchInput, Text } from "@/components/common";
 import Slider from "@/components/Planning/Main/Slider/Slider";
 import TeamCard from "@/components/Planning/TeamCard/TeamCard";
-import { TeamCardType } from "@/types/canlendar";
+import { TeamCardType } from "@/types/planning";
 
 import {
 	sectionStyle,
@@ -13,52 +13,49 @@ import {
 
 const mockData: TeamCardType[] = [
 	{
-		title: "신나는 강아지 유치원",
-		subtitle: "성북구에 있는 강아지 유치원이에요! 강아지,사람과 함께 와글와글와글",
-		groupSize: 3,
-		color: "team1",
-		onClick: () => {},
-		photoUrl: "https://source.unsplash.com/random/300x300",
+		teamId: 1,
+		name: "신나는 강아지 유치원",
+		description: "성북구에 있는 강아지 유치원이에요! 강아지,사람과 함께 와글와글와글",
+		teamSize: 3,
+		maxTeamSize: 50,
+		colorScheme: "team1",
+		coverImageUrl: "https://source.unsplash.com/random/300x300",
 	},
 	{
-		title: "ddd",
-		subtitle: "eww",
-		groupSize: 3,
-		color: "team2",
-		onClick: () => {},
-		photoUrl: "https://source.unsplash.com/random/300x300",
+		teamId: 2,
+		name: "신나는 강아지 유치원",
+		description: "성북구에 있는 강아지 유치원이에요! 강아지,사람과 함께 와글와글와글",
+		teamSize: 3,
+		maxTeamSize: 50,
+		colorScheme: "team3",
+		coverImageUrl: "https://source.unsplash.com/random/300x300",
 	},
 	{
-		title: "ddd",
-		subtitle: "eww",
-		groupSize: 3,
-		color: "team3",
-		onClick: () => {},
-		photoUrl: "https://source.unsplash.com/random/300x300",
+		teamId: 3,
+		name: "신나는 강아지 유치원",
+		description: "성북구에 있는 강아지 유치원이에요! 강아지,사람과 함께 와글와글와글",
+		teamSize: 3,
+		maxTeamSize: 50,
+		colorScheme: "team8",
+		coverImageUrl: "https://source.unsplash.com/random/300x300",
 	},
 	{
-		title: "ddd",
-		subtitle: "eww",
-		groupSize: 3,
-		color: "team4",
-		onClick: () => {},
-		photoUrl: "https://source.unsplash.com/random/300x300",
+		teamId: 4,
+		name: "신나는 강아지 유치원",
+		description: "성북구에 있는 강아지 유치원이에요! 강아지,사람과 함께 와글와글와글",
+		teamSize: 3,
+		maxTeamSize: 50,
+		colorScheme: "team7",
+		coverImageUrl: "https://source.unsplash.com/random/300x300",
 	},
 	{
-		title: "ddd",
-		subtitle: "eww",
-		groupSize: 3,
-		color: "team1",
-		onClick: () => {},
-		photoUrl: "https://source.unsplash.com/random/300x300",
-	},
-	{
-		title: "ddd",
-		subtitle: "eww",
-		groupSize: 3,
-		color: "team8",
-		onClick: () => {},
-		photoUrl: "https://source.unsplash.com/random/300x300",
+		teamId: 5,
+		name: "신나는 강아지 유치원",
+		description: "성북구에 있는 강아지 유치원이에요! 강아지,사람과 함께 와글와글와글",
+		teamSize: 3,
+		maxTeamSize: 50,
+		colorScheme: "team5",
+		coverImageUrl: "https://source.unsplash.com/random/300x300",
 	},
 ];
 
@@ -81,16 +78,8 @@ const Main = () => {
 				<SearchInput onChange={() => {}} width="247px" />
 			</Flex>
 			<Box css={gridBoxStyle}>
-				{mockData.map((data, index) => (
-					<TeamCard
-						key={index}
-						photoUrl={data.photoUrl}
-						title={data.title}
-						subtitle={data.subtitle}
-						groupSize={data.groupSize}
-						color={data.color}
-						onClick={data.onClick}
-					/>
+				{mockData.map((data) => (
+					<TeamCard key={data.teamId} data={data} />
 				))}
 			</Box>
 		</Box>
