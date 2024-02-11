@@ -1,6 +1,6 @@
 import ProfileTeamCardIcon from "@/assets/svg/profile-teamCard.svg?react";
 import { Box, Flex, Text } from "@/components/common";
-import { TeamCardType } from "@/types/canlendar";
+import { TeamCardType } from "@/types/planning";
 
 import {
 	boxStyle,
@@ -12,25 +12,28 @@ import {
 	textStyle,
 } from "@/components/Planning/TeamCard/TeamCard.style";
 
-const TeamCard = ({ photoUrl, title, subtitle, groupSize, color, onClick }: TeamCardType) => {
+const TeamCard = ({ data }: { data: TeamCardType }) => {
+	const { name, coverImageUrl, description, teamSize, maxTeamSize, colorScheme } = data;
+	const handleOnClick = () => {
+		console.log(data.name);
+	};
 	return (
-		<Box css={boxStyle} onClick={onClick}>
-			<img src={photoUrl} alt="" css={imgStyle} />
+		<Box css={boxStyle} onClick={handleOnClick}>
+			<img src={coverImageUrl} alt={name} css={imgStyle} />
 			<Box css={textBoxStyle}>
-				<Flex style={{ alignItems: "center" }}>
-					<Box css={circleDivStyle(color)} />
-					&nbsp;
-					<Text size="medium" css={textStyle(color)}>
-						{title}
+				<Flex styles={{ align: "center", gap: "4px", marginBottom: "4px" }}>
+					<Box css={circleDivStyle(colorScheme)} />
+					<Text size="medium" css={textStyle(colorScheme)}>
+						{name}
 					</Text>
 				</Flex>
-				<Text size="small" css={subtitleTextStyle} style={{ marginBottom: "8px" }}>
-					{subtitle}
+				<Text size="small" css={subtitleTextStyle}>
+					{description}
 				</Text>
-				<Flex style={{ alignItems: "center" }}>
+				<Flex styles={{ align: "center" }}>
 					<ProfileTeamCardIcon /> &nbsp;
 					<Text css={groupCountTextStyle} size="small">
-						{groupSize}/50
+						{teamSize}/{maxTeamSize}
 					</Text>
 				</Flex>
 			</Box>

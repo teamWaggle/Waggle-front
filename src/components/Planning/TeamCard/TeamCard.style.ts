@@ -1,11 +1,10 @@
 import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
-import { TeamColorType } from "@/types/canlendar";
+import { TeamColorType } from "@/types/planning";
 
 export const boxStyle = css({
-	border: "2px solid ",
-	borderColor: Theme.color.brand_primary,
+	border: `2px solid ${Theme.color.brand_primary}`,
 	borderRadius: "20px",
 	height: "327px",
 	width: "270px",
@@ -19,7 +18,7 @@ export const imgStyle = css({
 });
 
 export const textBoxStyle = css({
-	padding: "8px 16px 0px 16px",
+	padding: "8px 16px 0px",
 });
 
 export const circleDivStyle = (color: TeamColorType) =>
@@ -35,7 +34,16 @@ export const textStyle = (color: TeamColorType) =>
 	css({
 		color: Theme.color[color],
 		fontWeight: "bold",
-		marginBottom: "4px",
 	});
-export const subtitleTextStyle = css({ color: Theme.color.readonly_text });
+export const subtitleTextStyle = css({
+	color: Theme.color.readonly_text,
+	marginBottom: "8px",
+	height: "40px",
+	textOverflow: "ellipsis",
+	overflow: "hidden",
+	display: "-webkit-box",
+	WebkitLineClamp: 2,
+	WebkitBoxOrient: "vertical",
+	width: "100%",
+});
 export const groupCountTextStyle = css({ color: Theme.color.disabled_text });

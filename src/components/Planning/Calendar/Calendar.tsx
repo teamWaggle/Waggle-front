@@ -19,7 +19,7 @@ import {
 import { Box } from "@/components/common";
 import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
 import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
-import { ScheduleType } from "@/types/canlendar";
+import { ScheduleType } from "@/types/planning";
 
 import { boxStyle } from "@/components/Planning/Calendar/Calendar.style";
 
