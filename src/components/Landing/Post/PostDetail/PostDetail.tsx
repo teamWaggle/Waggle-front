@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
 import { Flex, Box, Divider, Text } from "@/components/common";
@@ -9,6 +11,7 @@ import { useStoryQuery } from "@/hooks/api/useStoryQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+import { covertToUTC } from "@/utils/convertToUTC";
 
 import {
 	layoutStyle,
@@ -28,7 +31,17 @@ const PostDetail = ({ id }: idType) => {
 
 	const { commentData } = useCommentQuery(0, id);
 
+	const [createdDate, setCreatedDate] = useState("");
+
 	const imgIndex = 0;
+
+	useEffect(() => {
+		if (storyData) {
+			const date = new Date(storyData.result.createdDate);
+
+			setCreatedDate(covertToUTC(date).date);
+		}
+	}, [storyData]);
 
 	return (
 		<>
@@ -57,7 +70,10 @@ const PostDetail = ({ id }: idType) => {
 							}}
 						>
 							{/* 프로필 영역 */}
-							<Profile img={storyData.result.profileImg} username={storyData.result.username} />
+							<Profile
+								img={storyData.result.member.profileImgUrl}
+								nickname={storyData.result.member.nickname}
+							/>
 
 							{/* 콘텐츠 본문 영역 */}
 							<Box css={contentBoxStyle}>
@@ -68,7 +84,7 @@ const PostDetail = ({ id }: idType) => {
 							{/* 게시 날짜 영역 */}
 							<Flex styles={{ justify: "flex-end", width: "100%" }}>
 								<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
-									{storyData.result.createdDate}
+									{createdDate}
 								</Text>
 							</Flex>
 						</Flex>

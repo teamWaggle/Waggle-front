@@ -15,10 +15,10 @@ import {
 
 interface ProfileType {
 	img: string | undefined;
-	username: string | undefined;
+	nickname: string | undefined;
 }
 
-const Profile = ({ img, username }: ProfileType) => {
+const Profile = ({ img, nickname }: ProfileType) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	return (
@@ -26,7 +26,7 @@ const Profile = ({ img, username }: ProfileType) => {
 			<Flex styles={{ align: "center", gap: "10px" }}>
 				<img src={img} alt="profileImg" css={profileStyle} />
 				<Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
-					{username}
+					{nickname}
 				</Text>
 			</Flex>
 			<Flex
