@@ -23,13 +23,13 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 
 	const passwordRef = useRef<HTMLInputElement>(null);
 
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const [passwordShow, setPasswordShow] = useState(false);
 
 	const validateForm = () => {
-		if (!username.trim() || !password.trim()) {
+		if (!email.trim() || !password.trim()) {
 			toast.error("이메일과 비밀번호는 반드시 입력되어야 합니다.");
 
 			return false;
@@ -61,7 +61,7 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 			return;
 		}
 
-		mutateLogIn({ username, password });
+		mutateLogIn({ email, password });
 		modalClose();
 	};
 
@@ -84,8 +84,8 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 						css={inputStyle}
 						placeholder="이메일(아이디)"
 						type="text"
-						onChange={(e) => setUsername(e.target.value)}
-						value={username}
+						onChange={(e) => setEmail(e.target.value)}
+						value={email}
 					/>
 					<Box styles={{ position: "relative", marginTop: "13px" }}>
 						<input
