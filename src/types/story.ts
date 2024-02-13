@@ -5,16 +5,22 @@ export interface StoryType {
 	result: StoryResultType;
 }
 
+export interface StoryResultMemberType {
+	id: number;
+	nickname: string;
+	profileImgUrl: string;
+	userUrl: string;
+}
+
 export interface StoryResultType {
 	id: number;
 	content?: string;
-	username?: string;
-	profileImg?: string;
-	createdDate?: string;
+	createdDate: string | Date;
 	recommendCount?: number;
-	recommendIt?: boolean;
+	recommend?: boolean;
 	hashtags?: string[];
 	medias: string[];
+	member: StoryResultMemberType;
 }
 
 export interface StoryListType {
@@ -26,18 +32,13 @@ export interface StoryListType {
 
 export interface StoryListResultType {
 	storyList: StoryListInfoType[];
-	totalQuestions: number;
+	totalStories: number;
 	first: boolean;
 	last: boolean;
 }
 
 export interface StoryListInfoType {
 	id: number;
-	username?: string;
-	profileImg?: string;
 	createdDate?: string;
 	thumbnail: string;
-	recommendCount?: number;
-	recommendIt?: boolean;
-	hashtags?: string[];
 }
