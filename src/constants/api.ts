@@ -1,4 +1,7 @@
+export const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export const END_POINTS = {
+	TOKEN: "/api/tokens/refresh",
 	LOGIN: "/api/tokens",
 	SIGN_UP: "/api/members",
 	EMAIL_AUTH_SEND: "/api/members/email/send",
