@@ -48,9 +48,13 @@ export const scheduleTextStyle = (color: TeamColorType, lastSchedule?: boolean) 
 		fontsize: "12px",
 	});
 
-export const moreTextStyle = css({
+export const moreBoxStyle = css({
+	position: "relative",
 	color: Theme.color.text,
-	paddingLeft: "16px",
 	fontSize: Theme.text.xSmall.fontSize,
 	lineHeight: Theme.text.xSmall.lineHeight,
+});
+
+export const moreTextStyle = css({
+	marginLeft: "16px",
 });
