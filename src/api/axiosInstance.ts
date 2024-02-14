@@ -1,17 +1,24 @@
 import axios from "axios";
 
+import { checkToken, handleAPIError, handleTokenError } from "@/api/interceptors";
 import { BASE_URL } from "@/constants/api";
 
-import { checkToken, handleAPIError, handleTokenError } from "./interceptors";
-
+// 미인증 axios
 export const axiosInstance = axios.create({
 	baseURL: BASE_URL,
 	timeout: 3000,
 	withCredentials: true,
 });
 
-axiosInstance.interceptors.request.use(checkToken, handleAPIError);
+// 인증 axios
+export const authorizedAxiosInstance = axios.create({
+	baseURL: BASE_URL,
+	timeout: 3000,
+	withCredentials: true,
+});
 
-axiosInstance.interceptors.response.use((response) => response, handleTokenError);
+authorizedAxiosInstance.interceptors.request.use(checkToken, handleAPIError);
 
-axiosInstance.interceptors.response.use((response) => response, handleAPIError);
+authorizedAxiosInstance.interceptors.response.use((response) => response, handleTokenError);
+
+authorizedAxiosInstance.interceptors.response.use((response) => response, handleAPIError);

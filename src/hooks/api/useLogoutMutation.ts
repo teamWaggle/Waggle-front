@@ -20,6 +20,7 @@ export const useLogoutMutation = () => {
 		onSuccess: () => {
 			localStorage.removeItem("ACCESS_TOKEN");
 			queryClient.clear();
+
 			setIsLoggedIn(false);
 			navigate("/");
 		},
