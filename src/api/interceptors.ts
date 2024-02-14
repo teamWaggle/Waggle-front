@@ -1,8 +1,9 @@
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 
-// import { axiosInstance } from "./axiosInstance";
-import { HTTPError } from "./HTTPError";
-// import { postNewToken } from "./auth/postNewToken";
+import { postRefreshToken } from "@/api/auth/postRefreshToken";
+import { authorizedAxiosInstance } from "@/api/axiosInstance";
+import { HTTPError } from "@/api/HTTPError";
+import { ACCESS_TOKEN_KEY, ERROR_CODE, HTTP_STATUS_CODE } from "@/constants/api";
 
 export interface ErrorResponseData {
 	statusCode?: number;
@@ -15,15 +16,15 @@ export const checkToken = (config: InternalAxiosRequestConfig) => {
 		return config;
 	}
 
-	const accessToken = localStorage.getItem("ACCESS_TOKEN");
+	const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
-	// if (!accessToken) {
-	// 	window.location.href = "/";
+	if (!accessToken) {
+		window.location.href = "/";
 
-	// 	throw new Error("토큰이 유효하지 않습니다");
-	// }
+		throw new Error("토큰이 유효하지 않습니다");
+	}
 
-	config.headers.Authorization = `BEARER ${accessToken}`;
+	config.headers.Authorization = `Bearer ${accessToken}`;
 
 	return config;
 };
@@ -35,17 +36,37 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 		throw new Error("에러가 발생했습니다.");
 	}
 
-	// const { status } = error.response;
+	const { data, status } = error.response;
 
-	// if (status === 400) {
-	// 	const { accessToken } = await postNewToken();
+	// 토큰 만료 에러 코드 추가 예정
+	if (status === HTTP_STATUS_CODE.BAD_REQUEST) {
+		const { result } = await postRefreshToken();
 
-	// 	originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+		originalRequest.headers.Authorization = `Bearer ${result.accessToken}`;
 
-	// 	localStorage.setItem("ACCESS_TOKEN", accessToken);
+		localStorage.setItem(ACCESS_TOKEN_KEY, result.accessToken);
 
-	// 	return axiosInstance(originalRequest);
-	// }
+		return authorizedAxiosInstance(originalRequest);
+	}
+
+	// 토큰 만료 에러 코드 추가 예정
+	if (
+		status === HTTP_STATUS_CODE.BAD_REQUEST &&
+		(data.code === ERROR_CODE.INVALID_REFRESH_TOKEN ||
+			data.code === ERROR_CODE.MISMATCH_REFRESH_TOKEN ||
+			data.code === ERROR_CODE.INVALID_TOKEN ||
+			data.code === ERROR_CODE.UNAUTHORIZED_MEMBER ||
+			data.code === ERROR_CODE.TOKEN_NO_AUTHORITY ||
+			data.code === ERROR_CODE.REDIRECT_NOT_MATCHING ||
+			data.code === ERROR_CODE.ROLE_CANNOT_EXECUTE_URI ||
+			data.code === ERROR_CODE.MUST_AUTHORIZED_URI ||
+			data.code === ERROR_CODE.REFRESH_NOT_EXIST_IN_COOKIE ||
+			data.code === ERROR_CODE.MISMATCH_EMAIL_AND_PASSWORD)
+	) {
+		localStorage.removeItem(ACCESS_TOKEN_KEY);
+
+		throw new HTTPError(status, data.message, data.code);
+	}
 };
 
 export const handleAPIError = (error: AxiosError<ErrorResponseData>) => {
@@ -55,8 +76,8 @@ export const handleAPIError = (error: AxiosError<ErrorResponseData>) => {
 
 	const { data, status } = error.response;
 
-	if (status >= 500) {
-		throw new HTTPError(500, data.message);
+	if (status >= HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {
+		throw new HTTPError(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, data.message);
 	}
 
 	throw new HTTPError(status, data.message, data.code);
