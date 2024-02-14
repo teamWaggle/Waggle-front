@@ -5,7 +5,7 @@ import { useSetRecoilState } from "recoil";
 import { useMutation } from "@tanstack/react-query";
 
 import { postLogIn } from "@/api/auth/postLogin";
-import { axiosInstance } from "@/api/axiosInstance";
+import { authorizedAxiosInstance } from "@/api/axiosInstance";
 import { isLoggedInState } from "@/store/auth";
 import { TokenType } from "@/types/auth";
 
@@ -16,7 +16,8 @@ export const useLogInMutation = () => {
 		mutationFn: postLogIn,
 		onSuccess: ({ result }: TokenType) => {
 			localStorage.setItem("ACCESS_TOKEN", result.accessToken);
-			axiosInstance.defaults.headers.Authorization = `Bearer ${result.accessToken}`;
+
+			authorizedAxiosInstance.defaults.headers.Authorization = `Bearer ${result.accessToken}`;
 
 			setIsLoggedIn(true);
 		},
