@@ -1,6 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { Flex, Heading, Text, Logo } from "@/components/common";
+import { signUpTabData, TAB_KEY } from "@/constants/tab";
 
 import {
 	headingStyle,
@@ -8,52 +9,38 @@ import {
 	getCircleBoxStyle,
 	circleNumberStyle,
 	getCircleTextStyle,
-} from "@/components/SignUp/SignUpTitle.style";
+} from "@/components/SignUp/SignUpTab.style";
 
-const circleData = [
-	{
-		number: 1,
-		text: "이메일 인증",
-	},
-	{
-		number: 2,
-		text: "프로필 입력",
-	},
-	{
-		number: 3,
-		text: "반려견 등록",
-	},
-];
+const SignUpTab = () => {
+	const navigate = useNavigate();
 
-interface SignUpTabType {
-	tab: string;
-	changeTab: Dispatch<SetStateAction<string>>;
-}
+	const [searchParams] = useSearchParams();
 
-const SignUpTitle = ({ tab, changeTab }: SignUpTabType) => {
 	return (
 		<>
 			<Logo width={138} height={30} />
+
 			<Heading size="small" css={headingStyle}>
 				회원가입
 			</Heading>
+
 			<Flex styles={{ align: "center", marginTop: "40px", gap: "160px" }}>
-				{circleData.map((data) => (
+				{signUpTabData.map((data) => (
 					<Flex
 						styles={{ direction: "column", gap: "6px", align: "center", position: "relative" }}
 						css={boxStyle}
 						key={data.text}
-						onClick={() => changeTab(data.text)}
+						onClick={() => navigate(`/signup?${TAB_KEY}=${data.id}`)}
 					>
 						<Flex
 							styles={{ justify: "center", align: "center" }}
-							css={getCircleBoxStyle(tab === data.text)}
+							css={getCircleBoxStyle(searchParams.get(TAB_KEY) === data.id)}
 						>
 							<Text size="small" css={circleNumberStyle}>
 								{data.number}
 							</Text>
 						</Flex>
-						<Text size="small" css={getCircleTextStyle(tab === data.text)}>
+						<Text size="small" css={getCircleTextStyle(searchParams.get(TAB_KEY) === data.id)}>
 							{data.text}
 						</Text>
 					</Flex>
@@ -63,4 +50,4 @@ const SignUpTitle = ({ tab, changeTab }: SignUpTabType) => {
 	);
 };
 
-export default SignUpTitle;
+export default SignUpTab;
