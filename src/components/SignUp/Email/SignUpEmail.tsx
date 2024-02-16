@@ -2,10 +2,13 @@ import { useState, useRef } from "react";
 
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
+
 import { Flex, Text, SocialLogin } from "@/components/common";
 import EmailAuth from "@/components/SignUp/Email/EmailAuth";
 import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
+
 import { emailFormData } from "@/constants/auth";
+
 import { useSignUpMutation } from "@/hooks/api/useSignUpMutation";
 
 import { passwordIconStyle } from "@/components/Landing/Sidebar/Login/LoginModal.style";

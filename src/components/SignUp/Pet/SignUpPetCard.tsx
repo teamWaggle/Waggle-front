@@ -6,10 +6,14 @@ import FeMaleDisabledIcon from "@/assets/svg/ic-female-disabled.svg?react";
 import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleDisabledIcon from "@/assets/svg/ic-male-disabled.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
+
 import { Flex, Heading, Text } from "@/components/common";
+
 import { ALLOW_FILE_EXTENSION, FILE_SIZE_MAX_LIMIT } from "@/constants/file";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
 import { fileExtensionValid } from "@/utils/file";
 import { convertPetNumToText } from "@/utils/pet";
 

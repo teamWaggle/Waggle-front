@@ -1,5 +1,6 @@
 import { Flex, Text } from "@/components/common";
 import SirenWidgetCard from "@/components/Landing/Sidebar/Widget/SirenWidgetCard";
+
 import { Theme } from "@/styles/Theme";
 
 import { titleStyle, subStyle } from "@/components/Landing/Sidebar/Widget/Widget.style";

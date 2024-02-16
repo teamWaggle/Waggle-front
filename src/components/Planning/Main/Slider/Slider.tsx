@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import LeftArrowIcon from "@/assets/svg/left-arrow-brand-primary.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow-brand-primary.svg?react";
+
 import { Box, Flex } from "@/components/common";
 import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 import { TeamCardType } from "@/types/planning";

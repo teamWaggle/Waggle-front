@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import SirenOnIcon from "@/assets/svg/siren-on.svg?react";
+
 import { Flex, Heading, Text } from "@/components/common";
 
 import type { SirenListInfoType } from "@/types/siren";

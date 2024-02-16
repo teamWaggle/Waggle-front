@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import SampleImg from "@/assets/png/post-sample.png";
 import OptionIcon from "@/assets/svg/option.svg?react";
+
 import { Flex, Text, Box } from "@/components/common";
 
 import {

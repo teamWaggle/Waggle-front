@@ -1,4 +1,5 @@
 import SampleImg from "@/assets/png/post-sample2.png";
+
 import { Flex, Text } from "@/components/common";
 
 import type { CommentListInfoType } from "@/types/comment";

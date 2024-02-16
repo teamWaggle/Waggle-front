@@ -3,6 +3,7 @@ import { useEffect, useCallback } from "react";
 import { useRecoilValue } from "recoil";
 
 import CloseIcon from "@/assets/svg/CloseIcon.svg?react";
+
 import { modalState } from "@/store/modal";
 
 import {

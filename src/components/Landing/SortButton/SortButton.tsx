@@ -1,5 +1,7 @@
 import SortArrowIcon from "@/assets/svg/sort-arrow.svg?react";
+
 import { Flex, Text } from "@/components/common";
+
 import { Theme } from "@/styles/Theme";
 
 import type { sortButtonType } from "@/types/common";

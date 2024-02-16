@@ -1,5 +1,6 @@
 import { Flex } from "@/components/common";
 import { PostTitle, PostCard } from "@/components/Landing";
+
 import { useStoryListQuery } from "@/hooks/api/useStoryListQuery";
 
 const Post = () => {
