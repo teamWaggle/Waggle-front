@@ -20,6 +20,7 @@ export const getInputStyle = (width: string) => {
 		color: Theme.color.input_text,
 		fontWeight: 500,
 		fontSize: "16px",
+		outlineColor: Theme.color.btn_danger,
 
 		"&::placeholder": {
 			color: Theme.color.border,

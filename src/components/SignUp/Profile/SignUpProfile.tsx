@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -45,6 +45,10 @@ const SignUpProfile = () => {
 
 	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
 
+	const nicknameRef = useRef<HTMLInputElement>(null);
+	const userUrlRef = useRef<HTMLInputElement>(null);
+	const nameRef = useRef<HTMLInputElement>(null);
+
 	const [nickname, setNickname] = useState("");
 	const [userUrl, setUserUrl] = useState("");
 	const [name, setName] = useState("");
@@ -58,30 +62,35 @@ const SignUpProfile = () => {
 
 	const validateForm = () => {
 		if (!nickname) {
+			nicknameRef.current?.focus();
 			toast.error("닉네임을 입력해주세요");
 
 			return false;
 		}
 
 		if (!nicknameCheckComplete) {
+			nicknameRef.current?.focus();
 			toast.error("닉네임 중복 확인을 해주세요");
 
 			return false;
 		}
 
 		if (!userUrl) {
+			userUrlRef.current?.focus();
 			toast.error("프로필 주소를 입력해주세요");
 
 			return false;
 		}
 
 		if (!userUrlCheckComplete) {
+			userUrlRef.current?.focus();
 			toast.error("프로필 주소 중복 확인을 해주세요");
 
 			return false;
 		}
 
 		if (!name) {
+			nameRef.current?.focus();
 			toast.error("이름을 입력해주세요");
 
 			return false;
@@ -205,6 +214,7 @@ const SignUpProfile = () => {
 							placeholder="닉네임을 입력해주세요! 언제든지 변경 가능해요"
 							value={nickname}
 							onChange={(e) => setNickname(e.target.value)}
+							ref={nicknameRef}
 						/>
 						<Flex styles={{ gap: "16px", align: "center" }}>
 							<Box tag="button" css={buttonStyle} onClick={handleNicknameCheck}>
@@ -255,6 +265,7 @@ const SignUpProfile = () => {
 								placeholder="나만의 프로필 주소를 만들어보세요"
 								value={userUrl}
 								onChange={(e) => setUserUrl(e.target.value)}
+								ref={userUrlRef}
 							/>
 						</Flex>
 
@@ -281,6 +292,7 @@ const SignUpProfile = () => {
 							placeholder="이름을 입력해주세요"
 							value={name}
 							onChange={(e) => setName(e.target.value)}
+							ref={nameRef}
 						/>
 					</Flex>
 
