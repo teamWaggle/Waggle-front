@@ -1,9 +1,11 @@
 import ProfileImg from "@/assets/svg/profile-gray.svg?react";
+
 import Box from "@/components/common/Box/Box";
 import Divider from "@/components/common/Divider/Divider";
 import Flex from "@/components/common/Flex/Flex";
 import Heading from "@/components/common/Heading/Heading";
 import Text from "@/components/common/Text/Text";
+
 import { useLogoutMutation } from "@/hooks/api/useLogoutMutation";
 
 // import { useSetRecoilState } from "recoil";

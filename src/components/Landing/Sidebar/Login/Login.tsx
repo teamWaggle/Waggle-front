@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
 import Logo from "@/assets/svg/logo-white.svg?react";
+
 import { Flex, Text } from "@/components/common";
 import LoginModal from "@/components/Landing/Sidebar/Login/LoginModal";
+
 import useModal from "@/hooks/useModal";
+
 import { Theme } from "@/styles/Theme";
 
 import {

@@ -10,6 +10,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import App from "@/App";
 import ModalRoot from "@/components/common/Modal/ModalRoot";
+
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import { Theme } from "@/styles/Theme";
 

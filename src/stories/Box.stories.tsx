@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import Box from "@/components/common/Box/Box";
 import { containerStyle } from "@/stories/styles";
+
 import { Theme } from "@/styles/Theme";
 
 const meta = {

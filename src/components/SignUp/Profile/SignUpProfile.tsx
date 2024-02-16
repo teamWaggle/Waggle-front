@@ -3,11 +3,16 @@ import { toast } from "react-toastify";
 
 import DefaultProfileImg from "@/assets/png/profile.png";
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
+
 import { Flex, Box, Text, Divider } from "@/components/common";
+
 import { ALLOW_FILE_EXTENSION, FILE_SIZE_MAX_LIMIT } from "@/constants/file";
+
 import { useCheckNicknameMutation } from "@/hooks/api/useCheckNicknameMutation";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
 import { fileExtensionValid } from "@/utils/file";
 
 import {
