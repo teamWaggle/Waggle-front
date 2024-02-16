@@ -1,7 +1,8 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
 import { TeamColorType } from "@/types/planning";
+
+import { Theme } from "@/styles/Theme";
 
 export const boxStyle = css({
 	border: `2px solid ${Theme.color.brand_primary}`,

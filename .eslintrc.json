@@ -55,6 +55,41 @@
                 "position": "before"
               },
               {
+                "pattern": "@/assets/**/*",
+                "group": "internal",
+                "position": "before"
+              },
+              {
+                "pattern": "@/api/**/*",
+                "group": "type",
+                "position": "before"
+              },
+              {
+                "pattern": "@/constants/**/*",
+                "group": "type",
+                "position": "before"
+              },
+              {
+                "pattern": "@/hooks/**/*",
+                "group": "type",
+                "position": "before"
+              },
+              {
+                "pattern": "@/pages/**/*",
+                "group": "type",
+                "position": "before"
+              },
+              {
+                "pattern": "@/styles/**/*",
+                "group": "type",
+                "position": "before"
+              },
+              {
+                "pattern": "@/utils/**/*",
+                "group": "type",
+                "position": "before"
+              },
+              {
                 "pattern": "@/pages/**/*.style",
                 "group": "unknown"
               },

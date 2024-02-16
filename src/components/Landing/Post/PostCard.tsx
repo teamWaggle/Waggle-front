@@ -1,7 +1,8 @@
 import { Flex } from "@/components/common";
 import Detail from "@/components/Landing/Post/Detail/Detail";
-import useModal from "@/hooks/useModal";
 import { StoryListInfoType } from "@/types/story";
+
+import useModal from "@/hooks/useModal";
 
 import { imgStyle } from "@/components/Landing/Post/Post.style";
 

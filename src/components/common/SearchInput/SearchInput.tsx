@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 
 import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
+
 import { Flex } from "@/components/common";
 
 import {

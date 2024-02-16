@@ -1,4 +1,5 @@
 import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
+
 import { Flex, Text } from "@/components/common";
 import { SortButton } from "@/components/Landing";
 import { sortButtonType } from "@/types/common";

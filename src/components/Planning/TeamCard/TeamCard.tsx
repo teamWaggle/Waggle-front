@@ -1,4 +1,5 @@
 import ProfileTeamCardIcon from "@/assets/svg/profile-teamCard.svg?react";
+
 import { Box, Flex, Text } from "@/components/common";
 import { TeamCardType } from "@/types/planning";
 

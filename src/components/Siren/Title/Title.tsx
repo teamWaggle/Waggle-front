@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
+
 import { Flex, Box, Text } from "@/components/common";
 import SortButton from "@/components/Landing/SortButton/SortButton";
 

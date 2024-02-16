@@ -1,5 +1,7 @@
 import ProfileImg from "@/assets/png/post-sample.png";
+
 import Flex from "@/components/common/Flex/Flex";
+
 import { Theme } from "@/styles/Theme";
 
 import { imgStyle, layoutStyle, textStyle } from "./NotificationCard.style";

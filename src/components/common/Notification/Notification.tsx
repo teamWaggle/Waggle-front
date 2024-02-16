@@ -1,4 +1,5 @@
 import NotificationIcon from "@/assets/svg/notification.svg?react";
+
 import { Flex } from "@/components/common";
 
 import NotificationCard from "./NotificationCard/NotificationCard";

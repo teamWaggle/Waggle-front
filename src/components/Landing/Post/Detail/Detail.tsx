@@ -1,6 +1,8 @@
 import SampleImg from "@/assets/png/post-sample2.png";
+
 import { Flex, Divider, Text } from "@/components/common";
 import Comment from "@/components/Landing/Post/Detail/Comment";
+
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 import { useStoryQuery } from "@/hooks/api/useStoryQuery";
 

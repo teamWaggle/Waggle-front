@@ -1,6 +1,8 @@
 import PasswordCheckDisabledIcon from "@/assets/svg/ic-password-check-disabled.svg?react";
 import PasswordCheckIcon from "@/assets/svg/ic-password-check.svg?react";
+
 import { Flex, Text } from "@/components/common";
+
 import { passwordCheckData } from "@/constants/auth";
 
 import { getPasswordTextStyle } from "@/components/SignUp/Email/SignUpEmail.style";

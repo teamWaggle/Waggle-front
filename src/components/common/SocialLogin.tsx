@@ -3,7 +3,9 @@ import { css } from "@emotion/react";
 import GoogleIcon from "@/assets/svg/GoogleIcon.svg?react";
 import KaKaoIcon from "@/assets/svg/KaKaoIcon.svg?react";
 import NaverIcon from "@/assets/svg/NaverIcon.svg?react";
+
 import { Flex, Text } from "@/components/common";
+
 import { Theme } from "@/styles/Theme";
 
 interface SocialLoginType {

@@ -1,6 +1,7 @@
 import type { AxiosResponse } from "axios";
 
 import { axiosInstance } from "@/api/axiosInstance";
+
 import { END_POINTS } from "@/constants/api";
 
 import type { TokenType, UserType } from "@/types/auth";

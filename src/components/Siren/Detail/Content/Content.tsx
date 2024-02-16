@@ -2,6 +2,7 @@ import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
 import RecommendOffIcon from "@/assets/svg/recommendOff.svg?react";
 import RecommendOnIcon from "@/assets/svg/recommendOn.svg?react";
+
 import { Flex, Box, Text, Heading, Divider } from "@/components/common";
 import { SirenResultType } from "@/types/siren";
 
