@@ -20,7 +20,7 @@ const CalendarHeader = ({
 	onClickNextMonth: () => void;
 }) => {
 	return (
-		<Flex css={flexStyle}>
+		<Flex tag={"section"} css={flexStyle}>
 			<LeftArrowIcon onClick={onClickPrevMonth} style={{ cursor: "pointer" }} />
 			<Heading css={textStyle}>
 				{format(currentMonth, "yyyy")}년 {format(currentMonth, "M")}월
