@@ -39,6 +39,7 @@ const SignUpEmail = () => {
 
 	const navigate = useNavigate();
 
+	const emailRef = useRef<HTMLInputElement>(null);
 	const emailAuthCodeRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
 	const passwordCheckRef = useRef<HTMLInputElement>(null);
@@ -94,9 +95,37 @@ const SignUpEmail = () => {
 	};
 
 	const validateForm = () => {
+		if (!email) {
+			emailRef.current?.focus();
+			toast.error("이메일을 입력해주세요.");
+
+			return false;
+		}
+
+		if (!emailAuthCode) {
+			emailAuthCodeRef.current?.focus();
+			toast.error("이메일 인증 번호를 입력해주세요.");
+
+			return false;
+		}
+
 		if (!emailAuthComplete) {
 			emailAuthCodeRef.current?.focus();
 			toast.error("이메일 인증 번호가 일치하지 않습니다. 다시 입력해주세요.");
+
+			return false;
+		}
+
+		if (!password) {
+			passwordRef.current?.focus();
+			toast.error("비밀번호를 입력해주세요.");
+
+			return false;
+		}
+
+		if (!passwordCheck) {
+			passwordCheckRef.current?.focus();
+			toast.error("비밀번호 확인을 입력해주세요.");
 
 			return false;
 		}
@@ -149,11 +178,13 @@ const SignUpEmail = () => {
 									onChange={handleFormValue}
 									type={type}
 									ref={
-										id === "emailAuthCode"
-											? emailAuthCodeRef
-											: id === "password"
-											  ? passwordRef
-											  : passwordCheckRef
+										id === "email"
+											? emailRef
+											: id === "emailAuthCode"
+											  ? emailAuthCodeRef
+											  : id === "password"
+											    ? passwordRef
+											    : passwordCheckRef
 									}
 									maxLength={maxLength}
 								/>
