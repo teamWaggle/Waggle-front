@@ -21,6 +21,13 @@ export const buttonStyle = css({
 	cursor: "pointer",
 });
 
+export const getNicknameTextStyle = (isComplete: boolean) => {
+	return css({
+		color: isComplete ? Theme.color.brand_primary : Theme.color.btn_danger,
+		fontWeight: 500,
+	});
+};
+
 export const addressInputStyle = css({
 	all: "unset",
 	boxSizing: "border-box",
