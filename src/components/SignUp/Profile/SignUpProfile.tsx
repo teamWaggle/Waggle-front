@@ -27,6 +27,7 @@ import {
 	imgStyle,
 	inputStyle,
 	buttonStyle,
+	getNicknameTextStyle,
 	addressInputStyle,
 	getSelectBoxStyle,
 } from "@/components/SignUp/Profile/SignUpProfile.style";
@@ -37,7 +38,7 @@ import {
 } from "@/components/SignUp/SignUp.shared.style";
 
 const SignUpProfile = () => {
-	const { mutateCheckNickname } = useCheckNicknameMutation();
+	const checkNicknameMutation = useCheckNicknameMutation();
 	const { mutateMemberInfo } = useMemberInfoFirstMutation();
 
 	const navigate = useNavigate();
@@ -45,10 +46,59 @@ const SignUpProfile = () => {
 	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
 
 	const [nickname, setNickname] = useState("");
-	const [profileAddress, setProfileAddress] = useState("");
+	const [userUrl, setUserUrl] = useState("");
 	const [name, setName] = useState("");
 
 	const [fileURL, setFileURL] = useState<string>("");
+
+	const [isNicknameCheck, setIsNicknameCheck] = useState(false);
+	const [nicknameCheckComplete, setNicknameCheckComplete] = useState(false);
+
+	const [userUrlCheckComplete] = useState(false);
+
+	const validateForm = () => {
+		if (!nickname) {
+			toast.error("닉네임을 입력해주세요");
+
+			return false;
+		}
+
+		if (!nicknameCheckComplete) {
+			toast.error("닉네임 중복 확인을 해주세요");
+
+			return false;
+		}
+
+		if (!userUrl) {
+			toast.error("프로필 주소를 입력해주세요");
+
+			return false;
+		}
+
+		if (!userUrlCheckComplete) {
+			toast.error("프로필 주소 중복 확인을 해주세요");
+
+			return false;
+		}
+
+		if (!name) {
+			toast.error("이름을 입력해주세요");
+
+			return false;
+		}
+
+		return true;
+	};
+
+	const handleNicknameCheck = () => {
+		setIsNicknameCheck(true);
+
+		checkNicknameMutation.mutate(nickname, {
+			onSuccess: () => {
+				setNicknameCheckComplete(true);
+			},
+		});
+	};
 
 	const handleOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
 		const innerText = e.currentTarget.innerText;
@@ -87,6 +137,10 @@ const SignUpProfile = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
+		if (!validateForm()) {
+			return;
+		}
+
 		const formData = new FormData();
 		const birthday = dateFormatToUTC(state.yearText, state.monthText, state.dayText);
 
@@ -94,7 +148,7 @@ const SignUpProfile = () => {
 			nickname,
 			name,
 			birthday,
-			userUrl: profileAddress,
+			userUrl,
 			profileImgUrl: fileURL,
 		};
 
@@ -153,14 +207,16 @@ const SignUpProfile = () => {
 							onChange={(e) => setNickname(e.target.value)}
 						/>
 						<Flex styles={{ gap: "16px", align: "center" }}>
-							<Box tag="button" css={buttonStyle} onClick={() => mutateCheckNickname(nickname)}>
+							<Box tag="button" css={buttonStyle} onClick={handleNicknameCheck}>
 								<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 									닉네임 중복 확인
 								</Text>
 							</Box>
 
-							<Text css={getDefaultTextStyle(Theme.color.brand_primary, 500)}>
-								사용할 수 있는 닉네임입니다
+							<Text css={getNicknameTextStyle(isNicknameCheck && nicknameCheckComplete)}>
+								{isNicknameCheck && !nicknameCheckComplete && "사용할 수 없는 닉네임입니다"}
+
+								{isNicknameCheck && nicknameCheckComplete && "사용할 수 있는 닉네임입니다"}
 							</Text>
 						</Flex>
 					</Flex>
@@ -197,8 +253,8 @@ const SignUpProfile = () => {
 							<input
 								css={addressInputStyle}
 								placeholder="나만의 프로필 주소를 만들어보세요"
-								value={profileAddress}
-								onChange={(e) => setProfileAddress(e.target.value)}
+								value={userUrl}
+								onChange={(e) => setUserUrl(e.target.value)}
 							/>
 						</Flex>
 
