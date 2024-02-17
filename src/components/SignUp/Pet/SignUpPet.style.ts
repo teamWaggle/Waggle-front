@@ -16,3 +16,9 @@ export const formLayoutStyle = css({
 	border: `1px solid ${Theme.color.border}`,
 	padding: "60px",
 });
+
+export const buttonLayoutStyle = css({
+	alignItems: "center",
+	justifyContent: "space-between",
+	width: "100%",
+});
