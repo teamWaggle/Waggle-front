@@ -11,6 +11,7 @@ import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 
 import { emailFormData } from "@/constants/auth";
 
+import { useLogInMutation } from "@/hooks/api/useLogInMutation";
 import { useSignUpMutation } from "@/hooks/api/useSignUpMutation";
 
 import { passwordIconStyle } from "@/components/Landing/Sidebar/Login/LoginModal.style";
@@ -31,7 +32,8 @@ interface emailFormDataType {
 }
 
 const SignUpEmail = () => {
-	const { mutateSignUp } = useSignUpMutation();
+	const { mutateLogIn } = useLogInMutation();
+	const signUpMutation = useSignUpMutation();
 
 	const emailAuthCodeRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
@@ -119,7 +121,10 @@ const SignUpEmail = () => {
 			return;
 		}
 
-		mutateSignUp({ email, password });
+		signUpMutation.mutate(
+			{ email, password },
+			{ onSuccess: () => mutateLogIn({ email, password }) },
+		);
 	};
 
 	return (
@@ -137,7 +142,6 @@ const SignUpEmail = () => {
 									value={formValue[id]}
 									onChange={handleFormValue}
 									type={type}
-									// ref={id === "password" ? passwordRef : passwordCheckRef}
 									ref={
 										id === "emailAuthCode"
 											? emailAuthCodeRef

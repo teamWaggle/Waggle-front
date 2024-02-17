@@ -12,11 +12,12 @@ import { yearData, monthData, dayData } from "@/constants/auth";
 import { ALLOW_FILE_EXTENSION, FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
 import { useCheckNicknameMutation } from "@/hooks/api/useCheckNicknameMutation";
+import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
 
-// import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import { dateFormatToUTC } from "@/utils/dateFormatToUTC";
 import { fileExtensionValid } from "@/utils/file";
 import { findEmailReducer, fintEmailInitialState } from "@/utils/findEmailUtils";
 
@@ -35,7 +36,7 @@ import {
 
 const SignUpProfile = () => {
 	const { mutateCheckNickname } = useCheckNicknameMutation();
-	// const { mutateMemberInfo } = useMemberInfoFirstMutation();
+	const { mutateMemberInfo } = useMemberInfoFirstMutation();
 
 	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
 
@@ -44,8 +45,6 @@ const SignUpProfile = () => {
 	const [name, setName] = useState("");
 
 	const [fileURL, setFileURL] = useState<string>("");
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [file, setFile] = useState<File | null>();
 
 	const handleOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
 		const innerText = e.currentTarget.innerText;
@@ -77,29 +76,28 @@ const SignUpProfile = () => {
 			return;
 		}
 
-		setFile(files);
-
 		const newFileURL = URL.createObjectURL(files);
 		setFileURL(newFileURL);
 	};
 
-	// const handleSubmit = (e: React.FormEvent) => {
-	// 	e.preventDefault();
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
 
-	// 	const formData = new FormData();
+		const formData = new FormData();
+		const birthday = dateFormatToUTC(state.yearText, state.monthText, state.dayText);
 
-	// 	const request = {
-	// 		nickname,
-	// 		name,
-	// 		birthday: "abc",
-	// 		userUrl: profileAddress,
-	// 		profileImgUrl: fileURL,
-	// 	};
+		const request = {
+			nickname,
+			name,
+			birthday,
+			userUrl: profileAddress,
+			profileImgUrl: fileURL,
+		};
 
-	// 	formData.append("request", JSON.stringify(request));
+		formData.append("request", JSON.stringify(request));
 
-	// 	mutateMemberInfo(formData);
-	// };
+		mutateMemberInfo(formData);
+	};
 
 	return (
 		<Flex
@@ -278,7 +276,7 @@ const SignUpProfile = () => {
 				</Flex>
 			</Box>
 
-			<Box tag="button" css={getNextButtonStyle("다음")}>
+			<Box tag="button" css={getNextButtonStyle("다음")} onClick={handleSubmit}>
 				<Text size="large">다음</Text>
 			</Box>
 		</Flex>

@@ -38,7 +38,6 @@ export const addressInputStyle = css({
 export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 	return css({
 		borderRadius: open ? "4px 4px 0 0" : "4px",
-		// borderRadius: "4px",
 		border: `1px solid ${Theme.color.border}`,
 		backgroundColor: Theme.color.white,
 		position: "relative",

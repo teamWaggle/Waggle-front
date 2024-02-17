@@ -15,5 +15,5 @@ export const useSignUpMutation = () => {
 		},
 	});
 
-	return { mutateSignUp: signUpMutation.mutate };
+	return signUpMutation;
 };
