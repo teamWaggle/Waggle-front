@@ -3,8 +3,8 @@ import { useState } from "react";
 import SampleImg from "@/assets/png/post-sample2.png";
 
 import { Flex, Box, Text } from "@/components/common";
-import Profile from "@/components/Landing/Post/Detail/Profile";
-import Reply from "@/components/Landing/Post/Detail/Reply";
+import Profile from "@/components/Landing/Post/PostDetail/Profile";
+import Reply from "@/components/Landing/Post/PostDetail/Reply";
 
 import { useReplyQuery } from "@/hooks/api/useReplyQuery";
 
@@ -17,7 +17,7 @@ import {
 	getCommentTextStyle,
 	commentBoxStyle,
 	handleReplyTextStyle,
-} from "@/components/Landing/Post/Detail/Detail.style";
+} from "@/components/Landing/Post/PostDetail/PostDetail.style";
 
 const Comment = ({ id, username, content }: CommentListInfoType) => {
 	const { replyData } = useReplyQuery(0, id);

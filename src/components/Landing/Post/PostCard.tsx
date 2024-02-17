@@ -1,7 +1,7 @@
 import MediaIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex } from "@/components/common";
-import Detail from "@/components/Landing/Post/Detail/Detail";
+import PostDetail from "@/components/Landing/Post/PostDetail/PostDetail";
 import { StoryListInfoType } from "@/types/story";
 
 import useModal from "@/hooks/useModal";
@@ -14,7 +14,7 @@ const PostCard = ({ id, thumbnail }: StoryListInfoType) => {
 	const postDetailOpen = () => {
 		modal.openModal({
 			key: `postDetail${id}`,
-			component: () => <Detail id={id} />,
+			component: () => <PostDetail id={id} />,
 		});
 	};
 
