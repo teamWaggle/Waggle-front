@@ -1,17 +1,16 @@
 import { atom } from "recoil";
 
-import { ModalType, MoreModalType } from "@/types/modal";
+import { ModalType, MoreModalStateType } from "@/types/modal";
 
 export const modalState = atom<ModalType[]>({
 	key: "modalState",
 	default: [],
 });
 
-export const moreModalState = atom<MoreModalType>({
+export const moreModalState = atom<MoreModalStateType>({
 	key: "moreModalState",
 	default: {
 		day: null,
-		// scheduleDay: null,
 	},
 });
 
