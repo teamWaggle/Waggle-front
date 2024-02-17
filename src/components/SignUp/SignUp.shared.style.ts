@@ -62,5 +62,6 @@ export const getNextButtonStyle = (text: string) => {
 		backgroundColor: text === "이전" ? Theme.color.disabled_text : Theme.color.brand_primary,
 		color: Theme.color.white,
 		fontWeight: 600,
+		cursor: "pointer",
 	});
 };

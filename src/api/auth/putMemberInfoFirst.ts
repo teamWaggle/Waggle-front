@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/api/axiosInstance";
+import { authorizedAxiosInstance } from "@/api/axiosInstance";
 
 import { END_POINTS } from "@/constants/api";
 
@@ -19,5 +19,5 @@ export const putMemberInfoFirst = async (formData: FormData) => {
 		headers: { "Content-Type": "multipart/form-data" },
 	};
 
-	return axiosInstance.put<FormDataType>(END_POINTS.MEMBER_INFO_FIRST, formData, config);
+	return authorizedAxiosInstance.put<FormDataType>(END_POINTS.MEMBER_INFO_FIRST, formData, config);
 };
