@@ -36,6 +36,7 @@ export const inputStyle = css({
 	padding: "0 18px",
 	color: Theme.color.input_text,
 	fontWeight: 500,
+	fontSize: "16px",
 
 	"&::placeholder": {
 		color: Theme.color.border,
