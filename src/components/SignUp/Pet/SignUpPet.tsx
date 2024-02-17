@@ -30,7 +30,7 @@ import {
 } from "@/components/SignUp/SignUp.shared.style";
 
 const SignUpPet = () => {
-	const { mutatePetInfo } = usePetInfoMutation();
+	const petInfoMutation = usePetInfoMutation();
 
 	const navigate = useNavigate();
 
@@ -41,6 +41,14 @@ const SignUpPet = () => {
 	const [introduction, setIntroduction] = useState("");
 
 	const [fileURL, setFileURL] = useState<string>("");
+
+	const validateForm = () => {
+		if (!name && !age && !breed && !introduction) {
+			return false;
+		}
+
+		return true;
+	};
 
 	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const target = e.currentTarget;
@@ -83,8 +91,9 @@ const SignUpPet = () => {
 
 		formData.append("request", JSON.stringify(request));
 
-		mutatePetInfo(formData);
-		navigate("/");
+		if (validateForm()) {
+			petInfoMutation.mutate(formData, { onSuccess: () => navigate("/") });
+		}
 	};
 
 	return (
