@@ -1,5 +1,6 @@
 import SampleImg from "@/assets/png/post-sample2.png";
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
+import MoreButtonIcon from "@/assets/svg/ic-more-button.svg?react";
 
 import { Flex, Box, Divider, Text } from "@/components/common";
 import Comment from "@/components/Landing/Post/Detail/Comment";
@@ -18,6 +19,7 @@ import {
 	commentLayoutStyle,
 	getReplyInputStyle,
 	replyButtonStyle,
+	moreButtonStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
 interface idType {
@@ -31,7 +33,7 @@ const Detail = ({ id }: idType) => {
 
 	const imgIndex = 0;
 
-	console.log(storyData);
+	console.log(storyData?.result);
 
 	return (
 		<>
@@ -60,11 +62,16 @@ const Detail = ({ id }: idType) => {
 							}}
 						>
 							{/* 프로필 영역 */}
-							<Flex styles={{ gap: "10px", align: "center" }}>
-								<img src={SampleImg} alt="profileImg" css={profileStyle} />
-								<Text size="small" css={getDefaultTextStyle(Theme.color.input_text, 700)}>
-									{storyData.result.username}
-								</Text>
+							<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
+								<Flex styles={{ align: "center", gap: "10px" }}>
+									<img src={SampleImg} alt="profileImg" css={profileStyle} />
+									<Text size="small" css={getDefaultTextStyle(Theme.color.input_text, 700)}>
+										{storyData.result.username}
+									</Text>
+								</Flex>
+								<Flex styles={{ justify: "flex-end" }} css={moreButtonStyle}>
+									<MoreButtonIcon />
+								</Flex>
 							</Flex>
 
 							{/* 콘텐츠 본문 영역 */}
