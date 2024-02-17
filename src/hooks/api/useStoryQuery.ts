@@ -13,5 +13,5 @@ export const useStoryQuery = (boardId: number) => {
 
 	const { data } = useQuery<StoryType, AxiosError>(["story"], queryFn.story);
 
-	return { storyData: data! };
+	return { storyData: data };
 };

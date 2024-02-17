@@ -13,5 +13,5 @@ export const useSirenListQuery = (currentPage: number) => {
 
 	const { data } = useQuery<SirenListType, AxiosError>(["sirenList"], queryFn.sirenList);
 
-	return { sirenList: data! };
+	return { sirenList: data };
 };
