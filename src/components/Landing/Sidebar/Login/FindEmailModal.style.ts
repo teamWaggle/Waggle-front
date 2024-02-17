@@ -42,20 +42,47 @@ export const inputStyle = css({
 	},
 });
 
-export const selectBoxStyle = css({
-	width: "100px",
-	height: "44px",
-	borderRadius: "4px",
-	border: `1px solid ${Theme.color.border}`,
-	backgroundColor: Theme.color.white,
-	padding: "10px 18px",
-	position: "relative",
-	color: Theme.color.border,
-	fontWeight: 500,
+export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
+	return css({
+		borderRadius: open ? "4px 4px 0 0" : "4px",
+		border: `1px solid ${Theme.color.border}`,
+		backgroundColor: Theme.color.white,
+		position: "relative",
+		color: isSelected ? Theme.color.text : Theme.color.border,
+		fontWeight: 500,
+		width: "102px",
+		cursor: "pointer",
 
-	"& > svg": {
-		position: "absolute",
-		top: "18px",
-		right: "20px",
-	},
-});
+		"& > p": {
+			padding: "10px 18px",
+		},
+
+		"& > svg": {
+			position: "absolute",
+			top: "18px",
+			right: "20px",
+		},
+
+		"& > ul": {
+			width: "100px",
+			maxHeight: "132px",
+			overflowY: "auto",
+			display: open ? "block" : "none",
+
+			"& > li": {
+				padding: "10px 18px",
+				borderBottom: `1px solid ${Theme.color.border}`,
+				color: Theme.color.black,
+				cursor: "pointer",
+
+				"&:hover": {
+					backgroundColor: "#ececec",
+				},
+
+				"&:first-of-type": {
+					borderTop: `1px solid ${Theme.color.border}`,
+				},
+			},
+		},
+	});
+};
