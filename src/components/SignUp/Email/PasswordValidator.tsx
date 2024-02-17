@@ -7,13 +7,7 @@ import { Flex, Text } from "@/components/common";
 
 import { passwordCheckData } from "@/constants/auth";
 
-import {
-	validateAllClear,
-	hasEngInPassword,
-	hasNumInPassword,
-	hasSpecialCharInPassword,
-	checkLengthInPassword,
-} from "@/utils/validator";
+import { validateAllClear } from "@/utils/validator";
 
 import { getPasswordTextStyle } from "@/components/SignUp/Email/SignUpEmail.style";
 
@@ -24,14 +18,7 @@ interface validatorType {
 
 const PasswordValidator = ({ password, validateComplete }: validatorType) => {
 	useEffect(() => {
-		validateComplete(
-			validateAllClear(
-				hasEngInPassword(password),
-				hasNumInPassword(password),
-				hasSpecialCharInPassword(password),
-				checkLengthInPassword(password),
-			),
-		);
+		validateComplete(validateAllClear(password));
 	}, [password]);
 
 	return (
