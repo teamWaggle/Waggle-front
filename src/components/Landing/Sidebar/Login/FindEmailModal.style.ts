@@ -5,9 +5,8 @@ import { Theme } from "@/styles/Theme";
 export const layoutStyle = css({
 	backgroundColor: Theme.color.white,
 	borderRadius: "8px",
-	padding: "62px 65px 0",
+	padding: "62px 65px",
 	width: "460px",
-	height: "580px",
 });
 
 export const headingStyle = css({
@@ -116,4 +115,11 @@ export const resultBoxStyle = css({
 	border: `1px solid ${Theme.color.border}`,
 	padding: "16px 77px",
 	textAlign: "center",
+});
+
+export const passwordIconStyle = css({
+	position: "absolute",
+	bottom: "13px",
+	right: "18px",
+	cursor: "pointer",
 });
