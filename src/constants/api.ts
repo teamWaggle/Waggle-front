@@ -16,6 +16,7 @@ export const END_POINTS = {
 	SIREN_LIST: (curretPage: number) => `/api/helps?currentPage=${curretPage}`,
 	REPLY: (currentPage: number, commentId: number) =>
 		`/api/replies/${commentId}?currentPage=${currentPage}`,
+	PET: "/api/pets",
 };
 
 export const HTTP_STATUS_CODE = {
