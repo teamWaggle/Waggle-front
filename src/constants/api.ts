@@ -5,6 +5,7 @@ export const END_POINTS = {
 	LOGIN: "/api/tokens",
 	SIGN_UP: "/api/members",
 	EMAIL_AUTH_SEND: "/api/members/email/send",
+	EMAIL_AUTH_VERIFY: "/api/members/email/verify",
 	CHECK_NICKNAME: (nickname: string) => `/api/members/check-nickname?nickname=${nickname}`,
 	STORY: (boardId: number) => `/api/stories/${boardId}`,
 	STORY_LIST: (currentPage: number) => `/api/stories?currentPage=${currentPage}`,

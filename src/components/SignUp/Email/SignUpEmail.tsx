@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
+import { toast } from "react-toastify";
 
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
 import { Flex, Text, SocialLogin } from "@/components/common";
 import EmailAuth from "@/components/SignUp/Email/EmailAuth";
+import EmailVerify from "@/components/SignUp/Email/EmailVerify";
 import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 
 import { emailFormData } from "@/constants/auth";
@@ -31,12 +33,13 @@ interface emailFormDataType {
 const SignUpEmail = () => {
 	const { mutateSignUp } = useSignUpMutation();
 
+	const emailAuthCodeRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
 	const passwordCheckRef = useRef<HTMLInputElement>(null);
 
 	const [formValue, setFormValue] = useState<formValueType>({
 		email: "",
-		emailAuthNumber: "",
+		emailAuthCode: "",
 		password: "",
 		passwordCheck: "",
 	});
@@ -44,8 +47,10 @@ const SignUpEmail = () => {
 	const [passwordShow, setPasswordShow] = useState(false);
 	const [passwordCheckShow, setPasswordCheckShow] = useState(false);
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { email, emailAuthNumber, password, passwordCheck } = formValue;
+	const [validateComplete, setValidateComplete] = useState(false);
+	const [emailAuthComplete, setEmailAuthComplete] = useState(false);
+
+	const { email, emailAuthCode, password, passwordCheck } = formValue;
 
 	const handleFormValue = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const changed = {
@@ -82,18 +87,43 @@ const SignUpEmail = () => {
 		}
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const validateForm = () => {
+		if (!emailAuthComplete) {
+			emailAuthCodeRef.current?.focus();
+			toast.error("이메일 인증 번호가 일치하지 않습니다. 다시 입력해주세요.");
+
+			return false;
+		}
+
+		if (!validateComplete) {
+			passwordRef.current?.focus();
+			toast.error("비밀번호가 양식이 일치하지 않습니다. 다시 입력해주세요.");
+
+			return false;
+		}
+
+		if (password !== passwordCheck) {
+			passwordCheckRef.current?.focus();
+			toast.error("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+
+			return false;
+		}
+
+		return true;
+	};
+
+	const handleSignUp = (e: React.FormEvent) => {
 		e.preventDefault();
+
+		if (!validateForm()) {
+			return;
+		}
 
 		mutateSignUp({ email, password });
 	};
 
 	return (
-		<Flex
-			tag="form"
-			onSubmit={handleSubmit}
-			styles={{ direction: "column", gap: "55px", marginTop: "78px", align: "center" }}
-		>
+		<Flex styles={{ direction: "column", gap: "55px", marginTop: "78px", align: "center" }}>
 			<Flex styles={{ direction: "column", gap: "30px" }}>
 				{emailFormData.map(
 					({ id, text, width, placeholder, type, maxLength }: emailFormDataType) => (
@@ -107,7 +137,14 @@ const SignUpEmail = () => {
 									value={formValue[id]}
 									onChange={handleFormValue}
 									type={type}
-									ref={id === "password" ? passwordRef : passwordCheckRef}
+									// ref={id === "password" ? passwordRef : passwordCheckRef}
+									ref={
+										id === "emailAuthCode"
+											? emailAuthCodeRef
+											: id === "password"
+											  ? passwordRef
+											  : passwordCheckRef
+									}
 									maxLength={maxLength}
 								/>
 
@@ -143,16 +180,26 @@ const SignUpEmail = () => {
 									</>
 								)}
 
-								{text === "이메일" && <EmailAuth />}
+								{text === "이메일" && <EmailAuth email={email} />}
+
+								{text === "이메일 인증번호" && (
+									<EmailVerify
+										email={email}
+										authCode={emailAuthCode}
+										emailAuthComplete={setEmailAuthComplete}
+									/>
+								)}
 							</Flex>
 
-							{text === "비밀번호" && <PasswordValidator password={password} />}
+							{text === "비밀번호" && (
+								<PasswordValidator password={password} validateComplete={setValidateComplete} />
+							)}
 						</Flex>
 					),
 				)}
 			</Flex>
 
-			<button type="submit" css={signUpButtonStyle}>
+			<button css={signUpButtonStyle} onClick={handleSignUp}>
 				가입하기
 			</button>
 
