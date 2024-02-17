@@ -8,6 +8,7 @@ import SignUpEmail from "@/components/SignUp/Email/SignUpEmail";
 import SignUpPet from "@/components/SignUp/Pet/SignUpPet";
 import SignUpProfile from "@/components/SignUp/Profile/SignUpProfile";
 import SignUpTab from "@/components/SignUp/SignUpTab";
+
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 const SignUp = () => {

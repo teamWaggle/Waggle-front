@@ -1,6 +1,7 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { Flex, Heading, Text, Logo } from "@/components/common";
+
 import { signUpTabData, TAB_KEY } from "@/constants/tab";
 
 import {
