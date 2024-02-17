@@ -27,17 +27,24 @@ const App = () => {
 		}
 	}, [setIsLoggedIn]);
 
+	const RoutesProps = [
+		{ path: "/", element: <LandingPage /> },
+		{ path: "/siren", element: <SirenPage /> },
+		{ path: "/question", element: <QuestionPage /> },
+		{ path: "/siren/view/:id", element: <SirenDetailPage /> },
+		{ path: "/signup", element: <SignUpPage /> },
+		{ path: "/planning", element: <PlanningPage /> },
+		// {path:'/teamPlanning',element:}
+	];
+
 	return (
 		<>
 			<ToastContainer position="top-center" style={{ width: "auto" }} autoClose={1000} />
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<LandingPage />} />
-					<Route path="/siren" element={<SirenPage />} />
-					<Route path="/question" element={<QuestionPage />} />
-					<Route path="/siren/view/:id" element={<SirenDetailPage />} />
-					<Route path="/signup" element={<SignUpPage />} />
-					<Route path="/planning" element={<PlanningPage />} />
+					{RoutesProps.map((route, index) => (
+						<Route key={index} path={route.path} element={route.element} />
+					))}
 				</Routes>
 			</BrowserRouter>
 		</>
