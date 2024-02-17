@@ -20,6 +20,7 @@ export const textStyle = css({
 	color: Theme.color.text,
 	fontWeight: 500,
 	textAlign: "center",
+	whiteSpace: "pre-wrap",
 });
 
 export const formTextStyle = css({
@@ -46,6 +47,7 @@ export const inputStyle = css({
 export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 	return css({
 		borderRadius: open ? "4px 4px 0 0" : "4px",
+		// borderRadius: "4px",
 		border: `1px solid ${Theme.color.border}`,
 		backgroundColor: Theme.color.white,
 		position: "relative",
@@ -65,14 +67,18 @@ export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 		},
 
 		"& > ul": {
-			width: "100px",
+			width: "102px",
 			maxHeight: "132px",
 			overflowY: "auto",
 			display: open ? "block" : "none",
+			position: "absolute",
+			backgroundColor: Theme.color.white,
+			marginLeft: "-1px",
 
 			"& > li": {
 				padding: "10px 18px",
-				borderBottom: `1px solid ${Theme.color.border}`,
+				border: `1px solid ${Theme.color.border}`,
+				borderBottom: "none",
 				color: Theme.color.black,
 				cursor: "pointer",
 
@@ -80,10 +86,28 @@ export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 					backgroundColor: "#ececec",
 				},
 
-				"&:first-of-type": {
-					borderTop: `1px solid ${Theme.color.border}`,
+				"&:last-of-type": {
+					borderBottom: `1px solid ${Theme.color.border}`,
 				},
 			},
 		},
 	});
 };
+
+export const buttonStyle = css({
+	all: "unset",
+	width: "331px",
+	height: "44px",
+	borderRadius: "4px",
+	backgroundColor: Theme.color.brand_primary,
+	color: Theme.color.white,
+	textAlign: "center",
+	cursor: "pointer",
+});
+
+export const resultBoxStyle = css({
+	width: "331px",
+	borderRadius: "4px",
+	border: `1px solid ${Theme.color.border}`,
+	padding: "16px 77px",
+});
