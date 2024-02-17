@@ -1,5 +1,14 @@
 import { REGEX } from "@/constants/regex";
 
+export const validateAllClear = (
+	eng: boolean,
+	num: boolean,
+	specialChar: boolean,
+	length: boolean,
+) => {
+	return eng && num && specialChar && length;
+};
+
 export const hasEngInPassword = (password: string) => {
 	return REGEX.ENG_REG.test(password);
 };

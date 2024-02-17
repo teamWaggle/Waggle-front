@@ -33,10 +33,10 @@ export const emailFormData = [
 		type: "text",
 	},
 	{
-		id: "emailAuthNumber",
+		id: "emailAuthCode",
 		text: "이메일 인증번호",
-		width: "412px",
-		placeholder: "이메일로 인증받은 번호 8자리를 입력해주세요",
+		width: "280px",
+		placeholder: "인증번호 8자리 입력",
 		type: "text",
 		maxLength: 8,
 	},

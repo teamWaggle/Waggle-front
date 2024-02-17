@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import PasswordCheckDisabledIcon from "@/assets/svg/ic-password-check-disabled.svg?react";
 import PasswordCheckIcon from "@/assets/svg/ic-password-check.svg?react";
 
@@ -5,18 +7,39 @@ import { Flex, Text } from "@/components/common";
 
 import { passwordCheckData } from "@/constants/auth";
 
+import {
+	validateAllClear,
+	hasEngInPassword,
+	hasNumInPassword,
+	hasSpecialCharInPassword,
+	checkLengthInPassword,
+} from "@/utils/validator";
+
 import { getPasswordTextStyle } from "@/components/SignUp/Email/SignUpEmail.style";
 
 interface validatorType {
 	password: string;
+	validateComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const PasswordValidator = ({ password }: validatorType) => {
+const PasswordValidator = ({ password, validateComplete }: validatorType) => {
+	useEffect(() => {
+		validateComplete(
+			validateAllClear(
+				hasEngInPassword(password),
+				hasNumInPassword(password),
+				hasSpecialCharInPassword(password),
+				checkLengthInPassword(password),
+			),
+		);
+	}, [password]);
+
 	return (
 		<Flex styles={{ padding: "0 8px", gap: "10px" }}>
 			{passwordCheckData.map((data) => (
 				<Flex styles={{ gap: "4px", align: "center" }} key={data.text}>
 					{data.validator(password) ? <PasswordCheckIcon /> : <PasswordCheckDisabledIcon />}
+
 					<Text size="small" css={getPasswordTextStyle(data.validator(password))}>
 						{data.text}
 					</Text>
