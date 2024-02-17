@@ -1,6 +1,7 @@
 import SampleImg from "@/assets/png/post-sample2.png";
 
 import { Flex, Box, Text } from "@/components/common";
+import Reply from "@/components/Landing/Post/Detail/Reply";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -9,7 +10,7 @@ import type { CommentListInfoType } from "@/types/comment";
 
 import {
 	profileStyle,
-	commentTextStyle,
+	getCommentTextStyle,
 	commentBoxStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
@@ -24,7 +25,7 @@ const Comment = ({ username, content }: CommentListInfoType) => {
 			</Flex>
 
 			<Box css={commentBoxStyle}>
-				<Text size="small" css={commentTextStyle}>
+				<Text size="small" css={getCommentTextStyle(false)}>
 					{content}
 				</Text>
 			</Box>
@@ -37,6 +38,7 @@ const Comment = ({ username, content }: CommentListInfoType) => {
 					답글
 				</Text>
 			</Flex>
+			<Reply />
 		</Flex>
 	);
 };

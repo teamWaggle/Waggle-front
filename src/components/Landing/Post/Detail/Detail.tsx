@@ -14,6 +14,7 @@ import {
 	imgStyle,
 	profileStyle,
 	contentBoxStyle,
+	commentLayoutStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
 interface idType {
@@ -82,10 +83,14 @@ const Detail = ({ id }: idType) => {
 						<Divider length="309px" />
 
 						{/* 코멘트 영역 */}
-						{commentData &&
-							commentData.result.commentList.map((comment) => (
-								<Comment key={comment.id} {...comment} />
-							))}
+						<Box css={commentLayoutStyle}>
+							{commentData &&
+								commentData.result.commentList.map((comment) => (
+									<Comment key={comment.id} {...comment} />
+								))}
+						</Box>
+
+						<Divider length="309px" />
 					</Flex>
 				</Flex>
 			)}
