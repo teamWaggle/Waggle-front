@@ -17,10 +17,13 @@ import {
 } from "@/components/Landing/Post/Detail/Detail.style";
 
 interface replyType {
+	id: number;
+	content: string;
+	username: string;
 	onClose: () => void;
 }
 
-const Reply = ({ onClose }: replyType) => {
+const Reply = ({ content, username, onClose }: replyType) => {
 	return (
 		<Flex styles={{ direction: "column", paddingLeft: "43px", marginTop: "10px", gap: "10px" }}>
 			<Flex styles={{ align: "center", gap: "6px" }}>
@@ -33,13 +36,13 @@ const Reply = ({ onClose }: replyType) => {
 			<Flex styles={{ gap: "10px", align: "center" }}>
 				<img src={SampleImg} alt="profileImg" css={profileStyle} />
 				<Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
-					고양아 멍멍해봐
+					{username}
 				</Text>
 			</Flex>
 
 			<Box css={commentBoxStyle}>
 				<Text size="small" css={getCommentTextStyle(true)}>
-					강아지가 너무 귀엽네요 멍멍멍 멍강아지가 너무 귀엽네요 멍멍멍멍
+					{content}
 				</Text>
 			</Box>
 

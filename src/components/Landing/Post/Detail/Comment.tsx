@@ -5,6 +5,8 @@ import SampleImg from "@/assets/png/post-sample2.png";
 import { Flex, Box, Text } from "@/components/common";
 import Reply from "@/components/Landing/Post/Detail/Reply";
 
+import { useReplyQuery } from "@/hooks/api/useReplyQuery";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -17,7 +19,9 @@ import {
 	handleReplyTextStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
-const Comment = ({ username, content }: CommentListInfoType) => {
+const Comment = ({ id, username, content }: CommentListInfoType) => {
+	const { replyData } = useReplyQuery(0, id);
+
 	const [replyOpen, setReplyOpen] = useState(false);
 
 	return (
@@ -47,7 +51,17 @@ const Comment = ({ username, content }: CommentListInfoType) => {
 					답글
 				</Text>
 			</Flex>
-			{replyOpen && <Reply onClose={() => setReplyOpen(false)} />}
+			{replyOpen &&
+				replyData &&
+				replyData.result.replyList.map((reply) => (
+					<Reply
+						key={reply.id}
+						onClose={() => setReplyOpen(false)}
+						id={reply.id}
+						content={reply.content}
+						username={reply.username}
+					/>
+				))}
 		</Flex>
 	);
 };
