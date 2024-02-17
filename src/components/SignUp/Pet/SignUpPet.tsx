@@ -19,7 +19,7 @@ import { Theme } from "@/styles/Theme";
 
 import { fileExtensionValid } from "@/utils/file";
 
-import { imgStyle } from "@/components/SignUp/Pet/SignUpPet.style";
+import { formLayoutStyle, imgStyle } from "@/components/SignUp/Pet/SignUpPet.style";
 import {
 	inputNoneDisplayStyle,
 	commonButtonStyle,
@@ -97,24 +97,13 @@ const SignUpPet = () => {
 	};
 
 	return (
-		<Flex styles={{ direction: "column", width: "554px", marginTop: "50px", gap: "30px" }}>
-			<Flex styles={{ direction: "column", gap: "30px" }}>
+		<Flex styles={{ direction: "column", marginTop: "50px", gap: "30px" }}>
+			<Flex styles={{ direction: "column", gap: "16px" }}>
 				<Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
 					나의 첫 번째 반려견
 				</Heading>
 
-				<Flex
-					styles={{
-						direction: "column",
-						gap: "30px",
-						width: "554px",
-						height: "698px",
-						borderRadius: "2px",
-						border: `1px solid ${Theme.color.border}`,
-						padding: "60px",
-						marginTop: "12px",
-					}}
-				>
+				<Flex css={formLayoutStyle}>
 					{/* 프로필 영역 */}
 					<Flex styles={{ align: "center", gap: "60px" }}>
 						<img src={fileURL ? fileURL : DefaultProfileImg} alt="petProfileImg" css={imgStyle} />
