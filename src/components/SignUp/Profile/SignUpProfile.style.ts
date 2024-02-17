@@ -9,18 +9,6 @@ export const imgStyle = css({
 	objectFit: "cover",
 });
 
-export const inputStyle = css({
-	display: "none",
-});
-
-export const buttonStyle = css({
-	all: "unset",
-	padding: "8px 14px",
-	borderRadius: "4px",
-	border: `1px solid ${Theme.color.border}`,
-	cursor: "pointer",
-});
-
 export const getNicknameTextStyle = (isComplete: boolean) => {
 	return css({
 		color: isComplete ? Theme.color.brand_primary : Theme.color.btn_danger,
