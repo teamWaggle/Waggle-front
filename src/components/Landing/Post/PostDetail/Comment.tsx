@@ -63,7 +63,7 @@ const Comment = ({ id, member, content, createdDate }: CommentListInfoType) => {
 						onClose={() => setReplyOpen(false)}
 						id={reply.id}
 						content={reply.content}
-						username={reply.username}
+						member={reply.member}
 					/>
 				))}
 		</Flex>
