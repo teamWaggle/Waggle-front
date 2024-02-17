@@ -7,6 +7,7 @@ import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
 import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
 import FindEmailModal from "@/components/Landing/Sidebar/Login/FindEmailModal";
+import FindPasswordModal from "@/components/Landing/Sidebar/Login/FindPasswordModal";
 
 import { useLogInMutation } from "@/hooks/api/useLogInMutation";
 import useModal from "@/hooks/useModal";
@@ -83,6 +84,13 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 		});
 	};
 
+	const handleFindPasswordModal = () => {
+		modal.openModal({
+			key: `FindPasswordModal`,
+			component: () => <FindPasswordModal modalClose={handleCloseModal} />,
+		});
+	};
+
 	return (
 		<Flex
 			styles={{
@@ -127,7 +135,7 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 				<Text size="xSmall" css={findTextStyle} onClick={handleFindEmailModal}>
 					아이디(이메일) 찾기
 				</Text>
-				<Text size="xSmall" css={findTextStyle}>
+				<Text size="xSmall" css={findTextStyle} onClick={handleFindPasswordModal}>
 					비밀번호 찾기
 				</Text>
 				<Text size="xSmall" css={findTextStyle} onClick={() => navigate("/signup?tab=email")}>
