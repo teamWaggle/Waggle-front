@@ -21,7 +21,7 @@ import { Theme } from "@/styles/Theme";
 
 import { dateFormatToUTC } from "@/utils/dateFormatToUTC";
 import { fileExtensionValid } from "@/utils/file";
-import { findEmailReducer, fintEmailInitialState } from "@/utils/findEmailUtils";
+import { findEmailReducer, findEmailInitialState } from "@/utils/findEmailUtils";
 
 import {
 	imgStyle,
@@ -43,7 +43,7 @@ const SignUpProfile = () => {
 
 	const navigate = useNavigate();
 
-	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
+	const [state, dispatch] = useReducer(findEmailReducer, findEmailInitialState);
 
 	const nicknameRef = useRef<HTMLInputElement>(null);
 	const userUrlRef = useRef<HTMLInputElement>(null);
