@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { Theme } from "@/styles/Theme";
 
 export const boxStyle = css({
+	position: "relative",
 	margin: "0 auto",
 	display: "grid",
 	gridGap: "1px",

@@ -56,5 +56,6 @@ export const moreBoxStyle = css({
 });
 
 export const moreTextStyle = css({
+	cursor: "pointer",
 	marginLeft: "16px",
 });

@@ -4,13 +4,10 @@ import {
 	addMonths,
 	subMonths,
 	startOfMonth,
-	endOfMonth,
 	startOfWeek,
-	endOfWeek,
 	addDays,
 	isSameMonth,
 	subDays,
-	differenceInDays,
 	parseISO,
 	isSameDay,
 	isWithinInterval,
@@ -18,8 +15,12 @@ import {
 
 import { Box } from "@/components/common";
 import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
+import MoreModal from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreModal";
 import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
 import { ScheduleType } from "@/types/planning";
+
+import { generatePositionColumn } from "@/utils/generatePositionColumn";
+import { generatePositionRow } from "@/utils/generatePositionRow";
 
 import { boxStyle } from "@/components/Planning/Calendar/Calendar.style";
 
@@ -29,12 +30,12 @@ const schedules: ScheduleType[] = [
 		teamId: 0,
 		title: "string123",
 		content: "string",
-		startTime: parseISO("2024-01-22T05:21:37.279Z"),
-		endTime: parseISO("2024-01-22T05:21:37.279Z"),
+		startTime: parseISO("2024-01-01T05:21:37.279Z"),
+		endTime: parseISO("2024-01-25T05:21:37.279Z"),
 		color: "team1",
 	},
 	{
-		scheduleId: 0,
+		scheduleId: 1,
 		teamId: 0,
 		title: "string424",
 		content: "string",
@@ -43,16 +44,16 @@ const schedules: ScheduleType[] = [
 		color: "team1",
 	},
 	{
-		scheduleId: 0,
+		scheduleId: 2,
 		teamId: 0,
 		title: "string",
 		content: "string",
-		startTime: parseISO("2024-01-22T05:21:37.279Z"),
-		endTime: parseISO("2024-01-22T05:21:37.279Z"),
+		startTime: parseISO("2024-01-23T05:21:37.279Z"),
+		endTime: parseISO("2024-01-24T05:21:37.279Z"),
 		color: "team2",
 	},
 	{
-		scheduleId: 0,
+		scheduleId: 3,
 		teamId: 0,
 		title: "string",
 		content: "string",
@@ -61,7 +62,7 @@ const schedules: ScheduleType[] = [
 		color: "team3",
 	},
 	{
-		scheduleId: 0,
+		scheduleId: 4,
 		teamId: 0,
 		title: "string",
 		content: "string",
@@ -70,7 +71,7 @@ const schedules: ScheduleType[] = [
 		color: "team3",
 	},
 	{
-		scheduleId: 1,
+		scheduleId: 5,
 		teamId: 0,
 		title: "string",
 		content: "string",
@@ -79,7 +80,7 @@ const schedules: ScheduleType[] = [
 		color: "team1",
 	},
 	{
-		scheduleId: 1,
+		scheduleId: 6,
 		teamId: 0,
 		title: "string",
 		content: "string",
@@ -88,27 +89,31 @@ const schedules: ScheduleType[] = [
 		color: "team4",
 	},
 	{
-		scheduleId: 1,
+		scheduleId: 7,
 		teamId: 0,
 		title: "string",
 		content: "string",
 		startTime: parseISO("2024-01-28T05:21:37.279Z"),
-		endTime: parseISO("2024-02-04T05:21:37.279Z"),
+		endTime: parseISO("2024-02-11T05:21:37.279Z"),
 		color: "team6",
 	},
 ];
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
 
+	const monthStart = startOfMonth(currentMonth);
+	const startDate = subDays(startOfWeek(monthStart), -1);
+	const days = Array.from({ length: 42 }, (_, index) => addDays(startDate, index));
+
+	const handlePrevMonth = () => {
+		setCurrentMonth(subMonths(currentMonth, 1));
+	};
+
+	const handleNextMonth = () => {
+		setCurrentMonth(addMonths(currentMonth, 1));
+	};
+
 	const CalendarCards = useMemo(() => {
-		const monthStart = startOfMonth(currentMonth);
-		const monthEnd = endOfMonth(monthStart);
-		const startDate = subDays(startOfWeek(monthStart), -1);
-		const endDate = subDays(endOfWeek(monthEnd), -1);
-
-		const dayCount = differenceInDays(endDate, startDate) + 1;
-		const days = Array.from({ length: dayCount }, (_, index) => addDays(startDate, index));
-
 		return days.map((day, index) => {
 			const daySchedules = schedules.filter(
 				(schedule) =>
@@ -116,25 +121,29 @@ const Calendar = () => {
 					isSameDay(schedule.endTime, day) ||
 					isWithinInterval(day, { start: schedule.startTime, end: schedule.endTime }),
 			);
-
+			const position = {
+				row: generatePositionRow(index),
+				column: generatePositionColumn(index),
+				index,
+			};
+			const daySchedulesWithPosition = daySchedules.map((schedule) => {
+				return schedule;
+			});
 			return (
 				<CalendarCard
 					key={day.toString()}
 					index={index}
 					isSameMonth={isSameMonth(monthStart, day)}
 					day={day}
-					schedules={daySchedules}
-				/>
+					schedules={daySchedulesWithPosition}
+					position={position}
+				>
+					<MoreModal day={day} schedules={daySchedules} position={position} />
+				</CalendarCard>
 			);
 		});
 	}, [currentMonth]);
 
-	const handlePrevMonth = () => {
-		setCurrentMonth(subMonths(currentMonth, 1));
-	};
-	const handleNextMonth = () => {
-		setCurrentMonth(addMonths(currentMonth, 1));
-	};
 	return (
 		<>
 			<CalendarHeader
@@ -142,7 +151,10 @@ const Calendar = () => {
 				onClickNextMonth={handleNextMonth}
 				onClickPrevMonth={handlePrevMonth}
 			/>
-			<Box css={boxStyle}>{CalendarCards}</Box>
+
+			<Box tag={"main"} css={boxStyle}>
+				{CalendarCards}
+			</Box>
 		</>
 	);
 };

@@ -26,9 +26,17 @@ export interface ScheduleType {
 	endTime: Date;
 	color: TeamColorType;
 }
+
+export interface SchedulePositionType {
+	row: number;
+	column: number;
+	index: number;
+}
+
 export interface CalendarCardType {
 	index: number;
 	day: Date;
 	schedules: Array<ScheduleType>;
 	isSameMonth?: boolean;
+	position: SchedulePositionType;
 }
