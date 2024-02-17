@@ -28,7 +28,7 @@ export const profileStyle = css({
 
 export const commentLayoutStyle = css({
 	overflow: "auto",
-	height: "430px",
+	height: "450px",
 	msOverflowStyle: "none",
 	scrollbarWidth: "none",
 
@@ -61,16 +61,18 @@ export const getCommentTextStyle = (isReply: boolean) => {
 	});
 };
 
-export const replyInputStyle = css({
-	all: "unset",
-	boxSizing: "border-box",
-	borderBottom: `1px solid ${Theme.color.brand_primary}`,
-	padding: "8px 30px 8px 0",
-	color: Theme.color.disabled_text,
-	fontSize: "12px",
-	fontWeight: 500,
-	width: "215px",
-});
+export const getReplyInputStyle = (width: string) => {
+	return css({
+		all: "unset",
+		boxSizing: "border-box",
+		borderBottom: `1px solid ${Theme.color.brand_primary}`,
+		padding: "8px 30px 8px 0",
+		color: Theme.color.disabled_text,
+		fontSize: "12px",
+		fontWeight: 500,
+		width: width,
+	});
+};
 
 export const replyButtonStyle = css({
 	all: "unset",
