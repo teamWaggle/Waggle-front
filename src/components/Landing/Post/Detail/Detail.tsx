@@ -1,4 +1,5 @@
 import SampleImg from "@/assets/png/post-sample2.png";
+import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
 import { Flex, Box, Divider, Text } from "@/components/common";
 import Comment from "@/components/Landing/Post/Detail/Comment";
@@ -15,6 +16,8 @@ import {
 	profileStyle,
 	contentBoxStyle,
 	commentLayoutStyle,
+	getReplyInputStyle,
+	replyButtonStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
 interface idType {
@@ -27,6 +30,8 @@ const Detail = ({ id }: idType) => {
 	const { commentData } = useCommentQuery(0, id);
 
 	const imgIndex = 0;
+
+	console.log(storyData);
 
 	return (
 		<>
@@ -94,6 +99,23 @@ const Detail = ({ id }: idType) => {
 						</Box>
 
 						<Divider length="309px" />
+
+						{/* 코멘트 작성 영역 */}
+						<Flex styles={{ direction: "column", gap: "10px", padding: "15px 24px" }}>
+							<Flex styles={{ align: "center", gap: "2px" }}>
+								<HeartEmptyIcon />
+								<Text size="small" css={getDefaultTextStyle(Theme.color.disabled_text, 600)}>
+									{storyData.result.recommendCount}
+								</Text>
+							</Flex>
+
+							<Box styles={{ position: "relative" }}>
+								<input type="text" css={getReplyInputStyle("260px")} placeholder="답글 작성" />
+								<button type="submit" css={replyButtonStyle}>
+									등록
+								</button>
+							</Box>
+						</Flex>
 					</Flex>
 				</Flex>
 			)}

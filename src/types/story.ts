@@ -11,7 +11,7 @@ export interface StoryResultType {
 	username?: string;
 	profileImg?: string;
 	createdDate?: string;
-	recoomendCount?: number;
+	recommendCount?: number;
 	recommendIt?: boolean;
 	hashtags?: string[];
 	medias: string[];

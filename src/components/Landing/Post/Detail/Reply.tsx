@@ -11,7 +11,7 @@ import {
 	profileStyle,
 	getCommentTextStyle,
 	commentBoxStyle,
-	replyInputStyle,
+	getReplyInputStyle,
 	replyButtonStyle,
 	handleReplyTextStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
@@ -47,7 +47,7 @@ const Reply = ({ content, username, onClose }: replyType) => {
 			</Box>
 
 			<Box styles={{ position: "relative" }}>
-				<input type="text" css={replyInputStyle} placeholder="답글 작성" />
+				<input type="text" css={getReplyInputStyle("215px")} placeholder="답글 작성" />
 				<button type="submit" css={replyButtonStyle}>
 					등록
 				</button>
