@@ -26,6 +26,11 @@ export const profileStyle = css({
 	objectFit: "cover",
 });
 
+export const commentLayoutStyle = css({
+	overflow: "auto",
+	height: "430px",
+});
+
 export const contentBoxStyle = css({
 	maxWidth: "270px",
 });
@@ -34,10 +39,12 @@ export const commentBoxStyle = css({
 	maxWidth: "215px",
 });
 
-export const commentTextStyle = css({
-	color: Theme.color.text,
-	fontWeight: 500,
-	paddingLeft: "43px",
-	margin: "-6px 0 2px",
-	wordWrap: "break-word",
-});
+export const getCommentTextStyle = (isReply: boolean) => {
+	return css({
+		color: Theme.color.text,
+		fontWeight: 500,
+		paddingLeft: isReply ? "0px" : "43px",
+		margin: "-6px 0 2px",
+		wordWrap: "break-word",
+	});
+};
