@@ -1,11 +1,11 @@
-import { Flex, Text } from "@/components/common";
+import { Box, Text } from "@/components/common";
 
 import { useEmailAuthVerifyMutation } from "@/hooks/api/useEmailAuthVerifyMutation";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { buttonStyle } from "@/components/SignUp/Email/SignUpEmail.style";
+import { commonButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 
 interface EmailVerifyType {
 	email: string;
@@ -26,14 +26,9 @@ const EmailVerify = ({ email, authCode, emailAuthComplete }: EmailVerifyType) =>
 	};
 
 	return (
-		<Flex
-			tag="button"
-			styles={{ align: "center", justify: "center" }}
-			css={buttonStyle}
-			onClick={handleEmailAuthVerify}
-		>
+		<Box tag="button" css={commonButtonStyle} onClick={handleEmailAuthVerify}>
 			<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>인증 하기</Text>
-		</Flex>
+		</Box>
 	);
 };
 

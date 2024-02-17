@@ -20,8 +20,9 @@ import { Theme } from "@/styles/Theme";
 import { fileExtensionValid } from "@/utils/file";
 
 import { imgStyle } from "@/components/SignUp/Pet/SignUpPet.style";
-import { inputStyle, buttonStyle } from "@/components/SignUp/Profile/SignUpProfile.style";
 import {
+	inputNoneDisplayStyle,
+	commonButtonStyle,
 	getFormTextStyle,
 	getInputStyle,
 	getTextareaStyle,
@@ -110,8 +111,13 @@ const SignUpPet = () => {
 						<img src={fileURL ? fileURL : DefaultProfileImg} alt="petProfileImg" css={imgStyle} />
 						<Flex styles={{ direction: "column", gap: "14px" }}>
 							<Text css={getFormTextStyle(false)}>프로필 이미지</Text>
-							<input type="file" id="profileImg" onChange={handleChangeImg} css={inputStyle} />
-							<label htmlFor="profileImg" css={buttonStyle}>
+							<input
+								type="file"
+								id="profileImg"
+								onChange={handleChangeImg}
+								css={inputNoneDisplayStyle}
+							/>
+							<label htmlFor="profileImg" css={commonButtonStyle}>
 								<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 									컴퓨터에서 파일 선택
 								</Text>
