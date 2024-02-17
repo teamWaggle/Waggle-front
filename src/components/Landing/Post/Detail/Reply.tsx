@@ -1,21 +1,18 @@
 import { css } from "@emotion/react";
 
 import SampleImg from "@/assets/png/post-sample2.png";
-import MoreButtonIcon from "@/assets/svg/ic-more-button.svg?react";
 
 import { Flex, Box, Text } from "@/components/common";
+import Profile from "@/components/Landing/Post/Detail/Profile";
 
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
 import {
-	profileStyle,
 	getCommentTextStyle,
 	commentBoxStyle,
 	getReplyInputStyle,
 	replyButtonStyle,
 	handleReplyTextStyle,
-	moreButtonStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
 interface replyType {
@@ -43,17 +40,8 @@ const Reply = ({ content, username, onClose }: replyType) => {
 				</Text>
 			</Flex>
 
-			<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
-				<Flex styles={{ align: "center", gap: "10px" }}>
-					<img src={SampleImg} alt="profileImg" css={profileStyle} />
-					<Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
-						{username}
-					</Text>
-				</Flex>
-				<Flex styles={{ justify: "flex-end" }} css={moreButtonStyle}>
-					<MoreButtonIcon />
-				</Flex>
-			</Flex>
+			{/* 프로필 영역 */}
+			<Profile img={SampleImg} username={username} />
 
 			<Box css={commentBoxStyle}>
 				<Text size="small" css={getCommentTextStyle(true)}>

@@ -1,9 +1,9 @@
 import SampleImg from "@/assets/png/post-sample2.png";
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
-import MoreButtonIcon from "@/assets/svg/ic-more-button.svg?react";
 
 import { Flex, Box, Divider, Text } from "@/components/common";
 import Comment from "@/components/Landing/Post/Detail/Comment";
+import Profile from "@/components/Landing/Post/Detail/Profile";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 import { useStoryQuery } from "@/hooks/api/useStoryQuery";
@@ -14,12 +14,10 @@ import { Theme } from "@/styles/Theme";
 import {
 	layoutStyle,
 	imgStyle,
-	profileStyle,
 	contentBoxStyle,
 	commentLayoutStyle,
 	getReplyInputStyle,
 	replyButtonStyle,
-	moreButtonStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
 interface idType {
@@ -32,8 +30,6 @@ const Detail = ({ id }: idType) => {
 	const { commentData } = useCommentQuery(0, id);
 
 	const imgIndex = 0;
-
-	console.log(storyData?.result);
 
 	return (
 		<>
@@ -62,17 +58,7 @@ const Detail = ({ id }: idType) => {
 							}}
 						>
 							{/* 프로필 영역 */}
-							<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
-								<Flex styles={{ align: "center", gap: "10px" }}>
-									<img src={SampleImg} alt="profileImg" css={profileStyle} />
-									<Text size="small" css={getDefaultTextStyle(Theme.color.input_text, 700)}>
-										{storyData.result.username}
-									</Text>
-								</Flex>
-								<Flex styles={{ justify: "flex-end" }} css={moreButtonStyle}>
-									<MoreButtonIcon />
-								</Flex>
-							</Flex>
+							<Profile img={SampleImg} username={storyData.result.username} />
 
 							{/* 콘텐츠 본문 영역 */}
 							<Box css={contentBoxStyle}>
@@ -80,7 +66,6 @@ const Detail = ({ id }: idType) => {
 									{storyData.result.content}
 								</Text>
 							</Box>
-
 							{/* 게시 날짜 영역 */}
 							<Flex styles={{ justify: "flex-end", width: "100%" }}>
 								<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
