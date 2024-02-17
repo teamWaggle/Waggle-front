@@ -17,22 +17,12 @@ const PasswordCheck = ({
 	changePasswordCheck: React.Dispatch<React.SetStateAction<string>>;
 	passwordCheckRef: React.RefObject<HTMLInputElement>;
 }) => {
-	const [passwordCheckShow, setPasswordCheckShow] = useState(false);
+	const [passwordShow, setPasswordShow] = useState(false);
+	const [passwordType, setPasswordType] = useState("password");
 
 	const handleShowPassword = () => {
-		const passwordCheck = passwordCheckRef.current;
-
-		if (passwordCheck === null) {
-			return;
-		}
-
-		setPasswordCheckShow(!passwordCheckShow);
-
-		if (!passwordCheckShow) {
-			passwordCheck.type = "text";
-		} else {
-			passwordCheck.type = "password";
-		}
+		setPasswordType(passwordType === "password" ? "text" : "password");
+		setPasswordShow(passwordType === "password" ? true : false);
 	};
 
 	return (
@@ -44,13 +34,13 @@ const PasswordCheck = ({
 					placeholder="••••••••"
 					value={passwordCheck}
 					onChange={(e) => changePasswordCheck(e.target.value)}
-					type="password"
+					type={passwordType}
 					ref={passwordCheckRef}
 					maxLength={20}
 				/>
 
 				<>
-					{passwordCheckShow ? (
+					{passwordShow ? (
 						<PasswordShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
 					) : (
 						<PasswordNotShowIcon css={passwordIconStyle} onClick={handleShowPassword} />

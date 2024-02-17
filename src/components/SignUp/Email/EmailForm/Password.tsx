@@ -18,21 +18,11 @@ const Password = ({
 	passwordRef: React.RefObject<HTMLInputElement>;
 }) => {
 	const [passwordShow, setPasswordShow] = useState(false);
+	const [passwordType, setPasswordType] = useState("password");
 
 	const handleShowPassword = () => {
-		const password = passwordRef.current;
-
-		if (password === null) {
-			return;
-		}
-
-		setPasswordShow(!passwordShow);
-
-		if (!passwordShow) {
-			password.type = "text";
-		} else {
-			password.type = "password";
-		}
+		setPasswordType(passwordType === "password" ? "text" : "password");
+		setPasswordShow(passwordType === "password" ? true : false);
 	};
 
 	return (
@@ -45,7 +35,7 @@ const Password = ({
 					placeholder="••••••••"
 					value={password}
 					onChange={(e) => changePassword(e.target.value)}
-					type="password"
+					type={passwordType}
 					ref={passwordRef}
 					maxLength={20}
 				/>
