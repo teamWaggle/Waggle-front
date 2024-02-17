@@ -12,7 +12,7 @@ import {
 	SignUpPage,
 	PlanningPage,
 } from "@/pages";
-import { isLoggedInState } from "@/store/auth";
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import "react-toastify/dist/ReactToastify.css";
 

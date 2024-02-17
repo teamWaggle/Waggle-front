@@ -2,7 +2,7 @@ import { useRecoilValue } from "recoil";
 
 import { Flex } from "@/components/common";
 import { Login, Profile, Widget } from "@/components/Landing/Sidebar";
-import { isLoggedInState } from "@/store/auth";
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 const Sidebar = () => {
 	const isLoggedIn = useRecoilValue(isLoggedInState);

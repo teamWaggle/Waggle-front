@@ -1,11 +1,11 @@
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
-import { modalState } from "@/store/modal";
+import { modalState, scheduleModalState } from "@/recoil/atoms/modal";
 import { ModalType } from "@/types/modal";
 
 const useModal = () => {
-	const [modals, setModals] = useRecoilState(modalState);
-
+	const setModals = useSetRecoilState(modalState);
+	const setScheduleModals = useSetRecoilState(scheduleModalState);
 	const openModal = ({ key, component }: ModalType) => {
 		const modalProps = {
 			key,
@@ -13,14 +13,28 @@ const useModal = () => {
 			component,
 		};
 
-		setModals([...modals].concat(modalProps));
+		setModals((prev) => [...prev, modalProps]);
 	};
 
 	const closeModal = () => {
 		setModals([]);
 	};
 
-	return { openModal, closeModal };
+	const openScheduleModal = ({ key, component }: ModalType) => {
+		const modalProps = {
+			key,
+			close: () => setScheduleModals([]),
+			component,
+		};
+
+		setScheduleModals([modalProps]);
+	};
+
+	const closeScheduleModal = () => {
+		setScheduleModals([]);
+	};
+
+	return { openModal, closeModal, openScheduleModal, closeScheduleModal };
 };
 
 export default useModal;

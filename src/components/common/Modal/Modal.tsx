@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 
 import CloseIcon from "@/assets/svg/CloseIcon.svg?react";
 
-import { modalState } from "@/store/modal";
+import { modalState } from "@/recoil/atoms/modal";
 
 import {
 	backdropStyle,
