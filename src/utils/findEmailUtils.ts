@@ -15,7 +15,7 @@ interface findEmailStateType {
 	dayText: string | undefined;
 }
 
-export const fintEmailInitialState = {
+export const findEmailInitialState = {
 	year: false,
 	month: false,
 	day: false,
