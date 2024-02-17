@@ -1,6 +1,10 @@
+import { useState } from "react";
+
 import SelectArrowIcon from "@/assets/svg/ic-select-arrow.svg?react";
 
 import { Flex, Box, Heading, Text, Logo } from "@/components/common";
+
+import { yearData } from "@/constants/auth";
 
 import type { modalCloseType } from "@/types/modal";
 
@@ -10,15 +14,28 @@ import {
 	textStyle,
 	formTextStyle,
 	inputStyle,
-	selectBoxStyle,
+	getSelectBoxStyle,
 } from "@/components/Landing/Sidebar/Login/FindEmailModal.style";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FindEmailModal = ({ modalClose }: modalCloseType) => {
+	const [openYearOption, setOpenYearOption] = useState(false);
+	const [yearOptionText, setYearOptionText] = useState("생년");
+	const [isSelectText, setIsSelectText] = useState(false);
+
+	const handleYearOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
+		const innerText = e.currentTarget.innerText;
+
+		setYearOptionText(innerText);
+		setOpenYearOption(false);
+		setIsSelectText(true);
+	};
+
 	return (
 		<Flex
 			styles={{
 				direction: "column",
+				align: "center",
 				gap: "60px",
 			}}
 			css={layoutStyle}
@@ -51,10 +68,14 @@ const FindEmailModal = ({ modalClose }: modalCloseType) => {
 				<Flex styles={{ direction: "column", gap: "8px" }}>
 					<Text css={formTextStyle}>생년월일</Text>
 					<Flex styles={{ gap: "13px" }}>
-						<Box css={selectBoxStyle}>
-							<Text>생년</Text>
+						<Box css={getSelectBoxStyle(openYearOption, isSelectText)}>
+							<Text onClick={() => setOpenYearOption((prev) => !prev)}>{yearOptionText}</Text>
 							<ul>
-								<li></li>
+								{yearData.map((data) => (
+									<li key={data.year} onClick={handleYearOptionText}>
+										{data.year}
+									</li>
+								))}
 							</ul>
 							<SelectArrowIcon />
 						</Box>
