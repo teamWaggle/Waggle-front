@@ -13,5 +13,5 @@ export const useReplyQuery = (currentPage: number, commentId: number) => {
 
 	const { data } = useQuery<ReplyType, AxiosError>(["reply", commentId], queryFn.reply);
 
-	return { replyData: data! };
+	return { replyData: data };
 };

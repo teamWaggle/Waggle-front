@@ -13,5 +13,5 @@ export const useSirenQuery = (boardId: number) => {
 
 	const { data } = useQuery<SirenType, AxiosError>(["siren"], queryFn.siren);
 
-	return { siren: data! };
+	return { siren: data };
 };

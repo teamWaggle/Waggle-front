@@ -13,5 +13,5 @@ export const useCommentQuery = (currentPage: number, boardId: number) => {
 
 	const { data } = useQuery<CommentType, AxiosError>(["comment"], queryFn.comment);
 
-	return { commentData: data! };
+	return { commentData: data };
 };
