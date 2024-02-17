@@ -13,6 +13,7 @@ import { ALLOW_FILE_EXTENSION, FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
 import { useCheckNicknameMutation } from "@/hooks/api/useCheckNicknameMutation";
 
+// import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -34,6 +35,7 @@ import {
 
 const SignUpProfile = () => {
 	const { mutateCheckNickname } = useCheckNicknameMutation();
+	// const { mutateMemberInfo } = useMemberInfoFirstMutation();
 
 	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
 
@@ -80,6 +82,24 @@ const SignUpProfile = () => {
 		const newFileURL = URL.createObjectURL(files);
 		setFileURL(newFileURL);
 	};
+
+	// const handleSubmit = (e: React.FormEvent) => {
+	// 	e.preventDefault();
+
+	// 	const formData = new FormData();
+
+	// 	const request = {
+	// 		nickname,
+	// 		name,
+	// 		birthday: "abc",
+	// 		userUrl: profileAddress,
+	// 		profileImgUrl: fileURL,
+	// 	};
+
+	// 	formData.append("request", JSON.stringify(request));
+
+	// 	mutateMemberInfo(formData);
+	// };
 
 	return (
 		<Flex
