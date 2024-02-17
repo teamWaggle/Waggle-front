@@ -1,11 +1,11 @@
 import { css } from "@emotion/react";
 
-import SampleImg from "@/assets/png/post-sample2.png";
-
 import { Flex, Box, Text } from "@/components/common";
 import Profile from "@/components/Landing/Post/PostDetail/Profile";
 
 import { Theme } from "@/styles/Theme";
+
+import type { ReplyListInfoType } from "@/types/reply";
 
 import {
 	getCommentTextStyle,
@@ -15,14 +15,7 @@ import {
 	handleReplyTextStyle,
 } from "@/components/Landing/Post/PostDetail/PostDetail.style";
 
-interface replyType {
-	id: number;
-	content: string;
-	username: string;
-	onClose: () => void;
-}
-
-const Reply = ({ content, username, onClose }: replyType) => {
+const Reply = ({ content, member, onClose }: ReplyListInfoType) => {
 	return (
 		<Flex
 			styles={{
@@ -41,7 +34,7 @@ const Reply = ({ content, username, onClose }: replyType) => {
 			</Flex>
 
 			{/* 프로필 영역 */}
-			<Profile img={SampleImg} username={username} />
+			<Profile img={member.profileImgUrl} nickname={member.nickname} />
 
 			<Box css={commentBoxStyle}>
 				<Text size="small" css={getCommentTextStyle(true)}>
