@@ -28,8 +28,6 @@ const Detail = ({ id }: idType) => {
 
 	const imgIndex = 0;
 
-	console.log(commentData);
-
 	return (
 		<>
 			{storyData && (
@@ -86,7 +84,12 @@ const Detail = ({ id }: idType) => {
 						<Box css={commentLayoutStyle}>
 							{commentData &&
 								commentData.result.commentList.map((comment) => (
-									<Comment key={comment.id} {...comment} />
+									<Comment
+										key={comment.id}
+										id={comment.id}
+										content={comment.content}
+										username={comment.username}
+									/>
 								))}
 						</Box>
 
