@@ -1,4 +1,4 @@
-import { authorizedAxiosInstance } from "@/api/axiosInstance";
+import { authorizedAxiosInstance } from "@/api/customAxios";
 
 import { END_POINTS } from "@/constants/api";
 
