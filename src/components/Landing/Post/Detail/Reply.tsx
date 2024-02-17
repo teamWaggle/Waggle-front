@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
 import SampleImg from "@/assets/png/post-sample2.png";
+import MoreButtonIcon from "@/assets/svg/ic-more-button.svg?react";
 
 import { Flex, Box, Text } from "@/components/common";
 
@@ -14,6 +15,7 @@ import {
 	getReplyInputStyle,
 	replyButtonStyle,
 	handleReplyTextStyle,
+	moreButtonStyle,
 } from "@/components/Landing/Post/Detail/Detail.style";
 
 interface replyType {
@@ -25,7 +27,15 @@ interface replyType {
 
 const Reply = ({ content, username, onClose }: replyType) => {
 	return (
-		<Flex styles={{ direction: "column", paddingLeft: "43px", marginTop: "10px", gap: "10px" }}>
+		<Flex
+			styles={{
+				direction: "column",
+				paddingLeft: "43px",
+				marginTop: "10px",
+				gap: "10px",
+				width: "100%",
+			}}
+		>
 			<Flex styles={{ align: "center", gap: "6px" }}>
 				<div css={dividerStyle} />
 				<Text size="xSmall" css={handleReplyTextStyle} onClick={onClose}>
@@ -33,11 +43,16 @@ const Reply = ({ content, username, onClose }: replyType) => {
 				</Text>
 			</Flex>
 
-			<Flex styles={{ gap: "10px", align: "center" }}>
-				<img src={SampleImg} alt="profileImg" css={profileStyle} />
-				<Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
-					{username}
-				</Text>
+			<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
+				<Flex styles={{ align: "center", gap: "10px" }}>
+					<img src={SampleImg} alt="profileImg" css={profileStyle} />
+					<Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
+						{username}
+					</Text>
+				</Flex>
+				<Flex styles={{ justify: "flex-end" }} css={moreButtonStyle}>
+					<MoreButtonIcon />
+				</Flex>
 			</Flex>
 
 			<Box css={commentBoxStyle}>
