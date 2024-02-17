@@ -1,24 +1,19 @@
-import { Flex, Text } from "@/components/common";
+import { Box, Text } from "@/components/common";
 
 import { useEmailAuthSendMutation } from "@/hooks/api/useEmailAuthSendMutation";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { buttonStyle } from "@/components/SignUp/Email/SignUpEmail.style";
+import { commonButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 
 const EmailAuth = ({ email }: { email: string }) => {
 	const { mutateEmailAuthSend } = useEmailAuthSendMutation();
 
 	return (
-		<Flex
-			tag="button"
-			styles={{ align: "center", justify: "center" }}
-			css={buttonStyle}
-			onClick={() => mutateEmailAuthSend(email)}
-		>
+		<Box tag="button" css={commonButtonStyle} onClick={() => mutateEmailAuthSend(email)}>
 			<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>인증 코드 전송</Text>
-		</Flex>
+		</Box>
 	);
 };
 

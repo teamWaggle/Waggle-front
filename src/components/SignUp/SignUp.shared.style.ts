@@ -66,3 +66,15 @@ export const getNextButtonStyle = (text: string) => {
 		cursor: "pointer",
 	});
 };
+
+export const inputNoneDisplayStyle = css({
+	display: "none",
+});
+
+export const commonButtonStyle = css({
+	all: "unset",
+	padding: "8px 14px",
+	borderRadius: "4px",
+	border: `1px solid ${Theme.color.border}`,
+	cursor: "pointer",
+});

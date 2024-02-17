@@ -25,13 +25,13 @@ import { findEmailReducer, fintEmailInitialState } from "@/utils/findEmailUtils"
 
 import {
 	imgStyle,
-	inputStyle,
-	buttonStyle,
 	getNicknameTextStyle,
 	addressInputStyle,
 	getSelectBoxStyle,
 } from "@/components/SignUp/Profile/SignUpProfile.style";
 import {
+	inputNoneDisplayStyle,
+	commonButtonStyle,
 	getFormTextStyle,
 	getInputStyle,
 	getNextButtonStyle,
@@ -191,8 +191,13 @@ const SignUpProfile = () => {
 						<img src={fileURL ? fileURL : DefaultProfileImg} alt="profileImg" css={imgStyle} />
 						<Flex styles={{ direction: "column", gap: "14px" }}>
 							<Text css={getFormTextStyle(false)}>프로필 이미지</Text>
-							<input type="file" id="profileImg" onChange={handleChangeImg} css={inputStyle} />
-							<label htmlFor="profileImg" css={buttonStyle}>
+							<input
+								type="file"
+								id="profileImg"
+								onChange={handleChangeImg}
+								css={inputNoneDisplayStyle}
+							/>
+							<label htmlFor="profileImg" css={commonButtonStyle}>
 								<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 									컴퓨터에서 파일 선택
 								</Text>
@@ -217,7 +222,7 @@ const SignUpProfile = () => {
 							ref={nicknameRef}
 						/>
 						<Flex styles={{ gap: "16px", align: "center" }}>
-							<Box tag="button" css={buttonStyle} onClick={handleNicknameCheck}>
+							<Box tag="button" css={commonButtonStyle} onClick={handleNicknameCheck}>
 								<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 									닉네임 중복 확인
 								</Text>
@@ -270,7 +275,7 @@ const SignUpProfile = () => {
 						</Flex>
 
 						<Flex styles={{ align: "center", gap: "16px" }}>
-							<Box tag="button" css={buttonStyle}>
+							<Box tag="button" css={commonButtonStyle}>
 								<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 									프로필 주소 중복 확인
 								</Text>
