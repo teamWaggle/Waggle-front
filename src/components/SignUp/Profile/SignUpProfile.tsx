@@ -1,4 +1,5 @@
 import { useState, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import DefaultProfileImg from "@/assets/png/profile.png";
@@ -10,6 +11,7 @@ import { Flex, Box, Text } from "@/components/common";
 
 import { yearData, monthData, dayData } from "@/constants/auth";
 import { ALLOW_FILE_EXTENSION, FILE_SIZE_MAX_LIMIT } from "@/constants/file";
+import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useCheckNicknameMutation } from "@/hooks/api/useCheckNicknameMutation";
 import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
@@ -37,6 +39,8 @@ import {
 const SignUpProfile = () => {
 	const { mutateCheckNickname } = useCheckNicknameMutation();
 	const { mutateMemberInfo } = useMemberInfoFirstMutation();
+
+	const navigate = useNavigate();
 
 	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
 
@@ -97,6 +101,8 @@ const SignUpProfile = () => {
 		formData.append("request", JSON.stringify(request));
 
 		mutateMemberInfo(formData);
+
+		navigate(`/signup?${TAB_KEY}=${SIGN_UP_TAB_KEY.PET}`);
 	};
 
 	return (
