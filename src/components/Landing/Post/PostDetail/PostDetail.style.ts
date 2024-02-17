@@ -19,17 +19,8 @@ export const imgStyle = css({
 	borderRadius: "36px 0 0 36px",
 });
 
-export const profileStyle = css({
-	width: "33px",
-	height: "33px",
-	borderRadius: "50%",
-	objectFit: "cover",
-});
-
-export const moreButtonStyle = css({
-	cursor: "pointer",
-	width: "10px",
-	height: "10px",
+export const contentBoxStyle = css({
+	maxWidth: "270px",
 });
 
 export const commentLayoutStyle = css({
@@ -42,10 +33,6 @@ export const commentLayoutStyle = css({
 	"&::-webkit-scrollbar": {
 		display: "none",
 	},
-});
-
-export const contentBoxStyle = css({
-	maxWidth: "270px",
 });
 
 export const commentBoxStyle = css({

@@ -1,9 +1,8 @@
-import SampleImg from "@/assets/png/post-sample2.png";
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
 import { Flex, Box, Divider, Text } from "@/components/common";
-import Comment from "@/components/Landing/Post/Detail/Comment";
-import Profile from "@/components/Landing/Post/Detail/Profile";
+import Comment from "@/components/Landing/Post/PostDetail/Comment";
+import Profile from "@/components/Landing/Post/PostDetail/Profile";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 import { useStoryQuery } from "@/hooks/api/useStoryQuery";
@@ -18,13 +17,13 @@ import {
 	commentLayoutStyle,
 	getReplyInputStyle,
 	replyButtonStyle,
-} from "@/components/Landing/Post/Detail/Detail.style";
+} from "@/components/Landing/Post/PostDetail/PostDetail.style";
 
 interface idType {
 	id: number;
 }
 
-const Detail = ({ id }: idType) => {
+const PostDetail = ({ id }: idType) => {
 	const { storyData } = useStoryQuery(id);
 
 	const { commentData } = useCommentQuery(0, id);
@@ -58,7 +57,7 @@ const Detail = ({ id }: idType) => {
 							}}
 						>
 							{/* 프로필 영역 */}
-							<Profile img={SampleImg} username={storyData.result.username} />
+							<Profile img={storyData.result.profileImg} username={storyData.result.username} />
 
 							{/* 콘텐츠 본문 영역 */}
 							<Box css={contentBoxStyle}>
@@ -115,4 +114,4 @@ const Detail = ({ id }: idType) => {
 	);
 };
 
-export default Detail;
+export default PostDetail;

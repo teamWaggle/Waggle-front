@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import SampleImg from "@/assets/png/post-sample2.png";
 
 import { Flex, Box, Text } from "@/components/common";
-import Profile from "@/components/Landing/Post/Detail/Profile";
+import Profile from "@/components/Landing/Post/PostDetail/Profile";
 
 import { Theme } from "@/styles/Theme";
 
@@ -13,7 +13,7 @@ import {
 	getReplyInputStyle,
 	replyButtonStyle,
 	handleReplyTextStyle,
-} from "@/components/Landing/Post/Detail/Detail.style";
+} from "@/components/Landing/Post/PostDetail/PostDetail.style";
 
 interface replyType {
 	id: number;
