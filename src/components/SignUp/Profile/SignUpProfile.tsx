@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { toast } from "react-toastify";
 
 import DefaultProfileImg from "@/assets/png/profile.png";
+import PasswordCheckIcon from "@/assets/svg/ic-password-check.svg?react";
+import SelectArrowIcon from "@/assets/svg/ic-select-arrow.svg?react";
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 
-import { Flex, Box, Text, Divider } from "@/components/common";
+import { Flex, Box, Text } from "@/components/common";
 
+import { yearData, monthData, dayData } from "@/constants/auth";
 import { ALLOW_FILE_EXTENSION, FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
 import { useCheckNicknameMutation } from "@/hooks/api/useCheckNicknameMutation";
@@ -14,31 +17,41 @@ import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
 import { fileExtensionValid } from "@/utils/file";
+import { findEmailReducer, fintEmailInitialState } from "@/utils/findEmailUtils";
 
 import {
 	imgStyle,
 	inputStyle,
 	buttonStyle,
-	dividerStyle,
 	addressInputStyle,
+	getSelectBoxStyle,
 } from "@/components/SignUp/Profile/SignUpProfile.style";
 import {
 	getFormTextStyle,
 	getInputStyle,
-	getTextareaStyle,
 	getNextButtonStyle,
 } from "@/components/SignUp/SignUp.shared.style";
 
 const SignUpProfile = () => {
 	const { mutateCheckNickname } = useCheckNicknameMutation();
 
+	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
+
 	const [nickname, setNickname] = useState("");
-	const [introduction, setIntroduction] = useState("");
 	const [profileAddress, setProfileAddress] = useState("");
+	const [name, setName] = useState("");
 
 	const [fileURL, setFileURL] = useState<string>("");
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [file, setFile] = useState<File | null>();
+
+	const handleOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
+		const innerText = e.currentTarget.innerText;
+
+		dispatch({ type: `CHANGE_${e.currentTarget.ariaLabel}_TEXT`, payload: innerText });
+		dispatch({ type: `CHANGE_${e.currentTarget.ariaLabel}_OPTION` });
+		dispatch({ type: `SELECT_${e.currentTarget.ariaLabel}` });
+	};
 
 	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const target = e.currentTarget;
@@ -80,13 +93,12 @@ const SignUpProfile = () => {
 		>
 			<Box
 				styles={{
-					height: "760px",
 					borderRadius: "2px",
 					border: `1px solid ${Theme.color.border}`,
-					padding: "60px 0 72px",
+					padding: "60px 38px 62px",
 				}}
 			>
-				<Flex styles={{ direction: "column", padding: "0 38px" }}>
+				<Flex styles={{ direction: "column", gap: "36px" }}>
 					{/* 프로필 영역 */}
 					<Flex styles={{ align: "center", gap: "60px" }}>
 						<img src={fileURL ? fileURL : DefaultProfileImg} alt="profileImg" css={imgStyle} />
@@ -104,71 +116,144 @@ const SignUpProfile = () => {
 						</Flex>
 					</Flex>
 
-					<Flex styles={{ marginTop: "30px", direction: "column", gap: "30px" }}>
-						{/* 닉네임 영역 */}
+					{/* 닉네임 영역 */}
+					<Flex styles={{ direction: "column", gap: "8px" }}>
+						<Flex styles={{ gap: "4px", align: "center" }}>
+							<Text css={getFormTextStyle(true)}>닉네임</Text>
+							<RequiredIcon />
+						</Flex>
+						<input
+							css={getInputStyle("444px")}
+							placeholder="닉네임을 입력해주세요! 언제든지 변경 가능해요"
+							value={nickname}
+							onChange={(e) => setNickname(e.target.value)}
+						/>
+						<Flex styles={{ gap: "16px", align: "center" }}>
+							<Box tag="button" css={buttonStyle} onClick={() => mutateCheckNickname(nickname)}>
+								<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
+									닉네임 중복 확인
+								</Text>
+							</Box>
+
+							<Text css={getDefaultTextStyle(Theme.color.brand_primary, 500)}>
+								사용할 수 있는 닉네임입니다
+							</Text>
+						</Flex>
+					</Flex>
+
+					{/* 닉네임 용도 설명 영역 */}
+					<Flex styles={{ direction: "column", gap: "12px" }}>
+						<Text css={getDefaultTextStyle(Theme.color.text, 600)}>닉네임은 이런 곳에 쓰여요!</Text>
 						<Flex styles={{ direction: "column", gap: "8px" }}>
-							<Flex styles={{ gap: "4px", align: "center" }}>
-								<Text css={getFormTextStyle(true)}>닉네임</Text>
-								<RequiredIcon />
+							<Flex styles={{ align: "center", gap: "6px" }}>
+								<PasswordCheckIcon />
+								<Text size="small" css={getDefaultTextStyle(Theme.color.text, 500)}>
+									닉네임으로 게시물을 작성하거나 댓글을 남길 수 있어요
+								</Text>
 							</Flex>
-							<input
-								css={getInputStyle("444px")}
-								placeholder="닉네임을 입력해주세요! 언제든지 변경 가능해요"
-								value={nickname}
-								onChange={(e) => setNickname(e.target.value)}
-							/>
-							<Flex styles={{ gap: "16px", align: "center" }}>
-								<Box tag="button" css={buttonStyle} onClick={() => mutateCheckNickname(nickname)}>
-									<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
-										닉네임 중복 확인
-									</Text>
-								</Box>
-								<Text css={getDefaultTextStyle(Theme.color.brand_primary, 500)}>
-									사용할 수 있는 닉네임입니다
+							<Flex styles={{ align: "center", gap: "6px" }}>
+								<PasswordCheckIcon />
+								<Text size="small" css={getDefaultTextStyle(Theme.color.text, 500)}>
+									상대방이 나를 언급할 때 내 닉네임을 사용해 태그할 수 있어요
 								</Text>
 							</Flex>
 						</Flex>
+					</Flex>
 
-						{/* 자기소개 영역 */}
-						<Flex styles={{ direction: "column", gap: "8px" }}>
-							<Text css={getFormTextStyle(true)}>자기소개</Text>
-							<textarea
-								css={getTextareaStyle("112px")}
-								placeholder="취미, 좋아하는 산책 장소 등으로 자신을 소개해보세요"
-								value={introduction}
-								onChange={(e) => setIntroduction(e.target.value)}
+					{/* 프로필 주소 영역 */}
+					<Flex styles={{ direction: "column", gap: "8px" }}>
+						<Flex styles={{ gap: "4px", align: "center" }}>
+							<Text css={getFormTextStyle(false)}>프로필 주소</Text>
+							<RequiredIcon />
+						</Flex>
+						<Flex styles={{ align: "center", gap: "6px" }}>
+							<Text css={getDefaultTextStyle(Theme.color.text, 500)}>
+								https://www.waggle.com/users/@
+							</Text>
+							<input
+								css={addressInputStyle}
+								placeholder="나만의 프로필 주소를 만들어보세요"
+								value={profileAddress}
+								onChange={(e) => setProfileAddress(e.target.value)}
 							/>
 						</Flex>
-					</Flex>
-				</Flex>
 
-				<Divider length="487px" css={dividerStyle} />
-
-				<Flex styles={{ direction: "column", gap: "8px", padding: "0 38px" }}>
-					<Flex styles={{ gap: "4px", align: "center" }}>
-						<Text css={getFormTextStyle(false)}>프로필 주소</Text>
-						<RequiredIcon />
+						<Flex styles={{ align: "center", gap: "16px" }}>
+							<Box tag="button" css={buttonStyle}>
+								<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
+									프로필 주소 중복 확인
+								</Text>
+							</Box>
+							<Text css={getDefaultTextStyle(Theme.color.brand_primary, 500)}>
+								사용할 수 있는 주소입니다
+							</Text>
+						</Flex>
 					</Flex>
-					<Flex styles={{ align: "center", gap: "6px" }}>
-						<Text css={getDefaultTextStyle(Theme.color.text, 500)}>
-							https://www.waggle.com/users/@
-						</Text>
+
+					{/* 이름 영역 */}
+					<Flex styles={{ direction: "column", gap: "8px" }}>
+						<Flex styles={{ gap: "4px", align: "center" }}>
+							<Text css={getFormTextStyle(true)}>이름(실명)</Text>
+							<RequiredIcon />
+						</Flex>
 						<input
-							css={addressInputStyle}
-							placeholder="나만의 프로필 주소를 만들어보세요"
-							value={profileAddress}
-							onChange={(e) => setProfileAddress(e.target.value)}
+							css={getInputStyle("444px")}
+							placeholder="이름을 입력해주세요"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
 						/>
 					</Flex>
-					<Flex styles={{ align: "center", gap: "16px" }}>
-						<Box tag="button" css={buttonStyle}>
-							<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
-								프로필 주소 중복 확인
-							</Text>
-						</Box>
-						<Text css={getDefaultTextStyle(Theme.color.brand_primary, 500)}>
-							사용할 수 있는 주소입니다
-						</Text>
+
+					{/* 생년월일 영역 */}
+					<Flex styles={{ direction: "column", gap: "8px" }}>
+						<Flex styles={{ gap: "4px", align: "center" }}>
+							<Text css={getFormTextStyle(true)}>생년월일</Text>
+							<RequiredIcon />
+						</Flex>
+						<Flex styles={{ gap: "13px" }}>
+							{/* 생년 */}
+							<Box css={getSelectBoxStyle(state.year, state.yearSelect)}>
+								<Text onClick={() => dispatch({ type: "CHANGE_YEAR_OPTION" })}>
+									{state.yearText}
+								</Text>
+								<ul>
+									{yearData.map((data) => (
+										<li key={data.selectText} onClick={handleOptionText} aria-label="YEAR">
+											{data.selectText}
+										</li>
+									))}
+								</ul>
+								<SelectArrowIcon />
+							</Box>
+
+							{/* 월 선택 */}
+							<Box css={getSelectBoxStyle(state.month, state.monthSelect)}>
+								<Text onClick={() => dispatch({ type: "CHANGE_MONTH_OPTION" })}>
+									{state.monthText}
+								</Text>
+								<ul>
+									{monthData.map((data) => (
+										<li key={data.selectText} onClick={handleOptionText} aria-label="MONTH">
+											{data.selectText}
+										</li>
+									))}
+								</ul>
+								<SelectArrowIcon />
+							</Box>
+
+							{/* 일 선택 */}
+							<Box css={getSelectBoxStyle(state.day, state.daySelect)}>
+								<Text onClick={() => dispatch({ type: "CHANGE_DAY_OPTION" })}>{state.dayText}</Text>
+								<ul>
+									{dayData.map((data) => (
+										<li key={data.selectText} onClick={handleOptionText} aria-label="DAY">
+											{data.selectText}
+										</li>
+									))}
+								</ul>
+								<SelectArrowIcon />
+							</Box>
+						</Flex>
 					</Flex>
 				</Flex>
 			</Box>
