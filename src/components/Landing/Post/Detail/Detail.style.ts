@@ -26,7 +26,14 @@ export const profileStyle = css({
 	objectFit: "cover",
 });
 
+export const moreButtonStyle = css({
+	cursor: "pointer",
+	width: "10px",
+	height: "10px",
+});
+
 export const commentLayoutStyle = css({
+	width: "100%",
 	overflow: "auto",
 	height: "450px",
 	msOverflowStyle: "none",
