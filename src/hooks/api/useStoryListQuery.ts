@@ -13,5 +13,5 @@ export const useStoryListQuery = (currentPage: number) => {
 
 	const { data } = useQuery<StoryListType, AxiosError>(["storyList"], queryFn.storyList);
 
-	return { storyList: data! };
+	return { storyList: data };
 };
