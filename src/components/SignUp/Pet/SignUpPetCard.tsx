@@ -15,7 +15,6 @@ import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
 import { fileExtensionValid } from "@/utils/file";
-import { convertPetNumToText } from "@/utils/pet";
 
 import { imgStyle, inputStyle, buttonStyle } from "@/components/SignUp/Profile/SignUpProfile.style";
 import {
@@ -23,6 +22,7 @@ import {
 	getInputStyle,
 	getTextareaStyle,
 } from "@/components/SignUp/SignUp.shared.style";
+import { convertPetNumToText } from "@/utils/pet";
 
 interface PetCardType {
 	id: string;
