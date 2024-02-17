@@ -4,7 +4,7 @@ import { useSetRecoilState } from "recoil";
 
 import { useMutation } from "@tanstack/react-query";
 
-import { isLoggedInState } from "@/store/auth";
+import { isLoggedInState } from "@/recoil/atoms/auth";
 import { TokenType } from "@/types/auth";
 
 import { postLogIn } from "@/api/auth/postLogin";
