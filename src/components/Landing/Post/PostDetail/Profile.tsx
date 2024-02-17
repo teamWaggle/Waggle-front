@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import MoreButtonIcon from "@/assets/svg/ic-more-button.svg?react";
 
 import { Flex, Text } from "@/components/common";
@@ -5,14 +7,20 @@ import { Flex, Text } from "@/components/common";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { profileStyle, moreButtonStyle } from "@/components/Landing/Post/Detail/Detail.style";
+import {
+	profileStyle,
+	moreButtonStyle,
+	menuStyle,
+} from "@/components/Landing/Post/PostDetail/Profile.style";
 
 interface ProfileType {
-	img: string;
+	img: string | undefined;
 	username: string | undefined;
 }
 
 const Profile = ({ img, username }: ProfileType) => {
+	const [menuOpen, setMenuOpen] = useState(false);
+
 	return (
 		<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
 			<Flex styles={{ align: "center", gap: "10px" }}>
@@ -21,8 +29,18 @@ const Profile = ({ img, username }: ProfileType) => {
 					{username}
 				</Text>
 			</Flex>
-			<Flex styles={{ justify: "flex-end" }} css={moreButtonStyle}>
+			<Flex
+				styles={{ justify: "flex-end" }}
+				css={moreButtonStyle}
+				onClick={() => setMenuOpen((prev) => !prev)}
+			>
 				<MoreButtonIcon />
+				{menuOpen && (
+					<ul css={menuStyle}>
+						<li>수정하기</li>
+						<li>삭제하기</li>
+					</ul>
+				)}
 			</Flex>
 		</Flex>
 	);
