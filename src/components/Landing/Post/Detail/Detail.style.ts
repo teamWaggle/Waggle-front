@@ -20,17 +20,24 @@ export const imgStyle = css({
 });
 
 export const profileStyle = css({
-	width: "48px",
-	height: "48px",
+	width: "33px",
+	height: "33px",
 	borderRadius: "50%",
 	objectFit: "cover",
 });
 
-export const infoBoxStyle = css({
-	maxWidth: "225px",
+export const contentBoxStyle = css({
+	maxWidth: "270px",
 });
 
-export const contentStyle = css({
-	color: Theme.color.input_text,
-	fontWeight: "500",
+export const commentBoxStyle = css({
+	maxWidth: "215px",
+});
+
+export const commentTextStyle = css({
+	color: Theme.color.text,
+	fontWeight: 500,
+	paddingLeft: "43px",
+	margin: "-6px 0 2px",
+	wordWrap: "break-word",
 });
