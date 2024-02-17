@@ -16,18 +16,9 @@ export interface UserType {
 	password: string;
 }
 
-export interface FormDataType {
-	request: SignUpFormType;
-}
-
-export interface SignUpFormType {
+export interface EmailAuthVerifyType {
 	email: string;
-	username: string;
-	password: string;
-	nickname: string;
-	address: string;
-	phone: string;
-	profileImgUrl: string;
+	authCode: string;
 }
 
 export interface SignUpResponseType {
