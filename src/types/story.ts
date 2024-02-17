@@ -1,15 +1,10 @@
+import type { MemberType } from "@/types/auth";
+
 export interface StoryType {
 	isSuccess: boolean;
 	code: number;
 	message: string;
 	result: StoryResultType;
-}
-
-export interface StoryResultMemberType {
-	id: number;
-	nickname: string;
-	profileImgUrl: string;
-	userUrl: string;
 }
 
 export interface StoryResultType {
@@ -20,7 +15,7 @@ export interface StoryResultType {
 	recommend?: boolean;
 	hashtags?: string[];
 	medias: string[];
-	member: StoryResultMemberType;
+	member: MemberType;
 }
 
 export interface StoryListType {

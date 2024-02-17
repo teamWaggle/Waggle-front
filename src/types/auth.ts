@@ -36,3 +36,10 @@ export interface SignUpResponseType {
 	message: string;
 	result: number;
 }
+
+export interface MemberType {
+	id: number;
+	nickname: string;
+	profileImgUrl: string;
+	userUrl: string;
+}
