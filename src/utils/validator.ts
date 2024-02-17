@@ -1,12 +1,12 @@
 import { REGEX } from "@/constants/regex";
 
-export const validateAllClear = (
-	eng: boolean,
-	num: boolean,
-	specialChar: boolean,
-	length: boolean,
-) => {
-	return eng && num && specialChar && length;
+export const validateAllClear = (password: string) => {
+	return (
+		hasEngInPassword(password) &&
+		hasNumInPassword(password) &&
+		hasSpecialCharInPassword(password) &&
+		checkLengthInPassword(password)
+	);
 };
 
 export const hasEngInPassword = (password: string) => {
