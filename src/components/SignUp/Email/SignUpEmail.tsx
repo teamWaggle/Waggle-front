@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
@@ -10,6 +11,7 @@ import EmailVerify from "@/components/SignUp/Email/EmailVerify";
 import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 
 import { emailFormData } from "@/constants/auth";
+import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useLogInMutation } from "@/hooks/api/useLogInMutation";
 import { useSignUpMutation } from "@/hooks/api/useSignUpMutation";
@@ -34,6 +36,8 @@ interface emailFormDataType {
 const SignUpEmail = () => {
 	const { mutateLogIn } = useLogInMutation();
 	const signUpMutation = useSignUpMutation();
+
+	const navigate = useNavigate();
 
 	const emailAuthCodeRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
@@ -125,6 +129,8 @@ const SignUpEmail = () => {
 			{ email, password },
 			{ onSuccess: () => mutateLogIn({ email, password }) },
 		);
+
+		navigate(`/signup?${TAB_KEY}=${SIGN_UP_TAB_KEY.PROFILE}`);
 	};
 
 	return (
