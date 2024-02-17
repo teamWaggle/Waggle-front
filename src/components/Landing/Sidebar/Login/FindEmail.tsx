@@ -6,7 +6,7 @@ import { Flex, Box, Text } from "@/components/common";
 
 import { yearData, monthData, dayData } from "@/constants/auth";
 
-import { findEmailReducer, fintEmailInitialState } from "@/utils/fintEmailUtils";
+import { findEmailReducer, fintEmailInitialState } from "@/utils/findEmailUtils";
 
 import {
 	formTextStyle,
