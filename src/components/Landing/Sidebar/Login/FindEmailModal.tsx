@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useReducer } from "react";
 
 import SelectArrowIcon from "@/assets/svg/ic-select-arrow.svg?react";
 
 import { Flex, Box, Heading, Text, Logo } from "@/components/common";
 
-import { yearData } from "@/constants/auth";
+import { yearData, monthData, dayData } from "@/constants/auth";
+
+import { findEmailReducer, fintEmailInitialState } from "@/utils/fintEmailUtils";
 
 import type { modalCloseType } from "@/types/modal";
 
@@ -19,16 +21,14 @@ import {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FindEmailModal = ({ modalClose }: modalCloseType) => {
-	const [openYearOption, setOpenYearOption] = useState(false);
-	const [yearOptionText, setYearOptionText] = useState("생년");
-	const [isSelectText, setIsSelectText] = useState(false);
+	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
 
-	const handleYearOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
+	const handleOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
 		const innerText = e.currentTarget.innerText;
 
-		setYearOptionText(innerText);
-		setOpenYearOption(false);
-		setIsSelectText(true);
+		dispatch({ type: `CHANGE_${e.currentTarget.ariaLabel}_TEXT`, payload: innerText });
+		dispatch({ type: `CHANGE_${e.currentTarget.ariaLabel}_OPTION` });
+		dispatch({ type: `SELECT_${e.currentTarget.ariaLabel}` });
 	};
 
 	return (
@@ -68,12 +68,41 @@ const FindEmailModal = ({ modalClose }: modalCloseType) => {
 				<Flex styles={{ direction: "column", gap: "8px" }}>
 					<Text css={formTextStyle}>생년월일</Text>
 					<Flex styles={{ gap: "13px" }}>
-						<Box css={getSelectBoxStyle(openYearOption, isSelectText)}>
-							<Text onClick={() => setOpenYearOption((prev) => !prev)}>{yearOptionText}</Text>
+						{/* 생년 */}
+						<Box css={getSelectBoxStyle(state.year, state.yearSelect)}>
+							<Text onClick={() => dispatch({ type: "CHANGE_YEAR_OPTION" })}>{state.yearText}</Text>
 							<ul>
 								{yearData.map((data) => (
-									<li key={data.year} onClick={handleYearOptionText}>
-										{data.year}
+									<li key={data.selectText} onClick={handleOptionText} aria-label="YEAR">
+										{data.selectText}
+									</li>
+								))}
+							</ul>
+							<SelectArrowIcon />
+						</Box>
+
+						{/* 월 선택 */}
+						<Box css={getSelectBoxStyle(state.month, state.monthSelect)}>
+							<Text onClick={() => dispatch({ type: "CHANGE_MONTH_OPTION" })}>
+								{state.monthText}
+							</Text>
+							<ul>
+								{monthData.map((data) => (
+									<li key={data.selectText} onClick={handleOptionText} aria-label="MONTH">
+										{data.selectText}
+									</li>
+								))}
+							</ul>
+							<SelectArrowIcon />
+						</Box>
+
+						{/* 일 선택 */}
+						<Box css={getSelectBoxStyle(state.day, state.daySelect)}>
+							<Text onClick={() => dispatch({ type: "CHANGE_DAY_OPTION" })}>{state.dayText}</Text>
+							<ul>
+								{dayData.map((data) => (
+									<li key={data.selectText} onClick={handleOptionText} aria-label="DAY">
+										{data.selectText}
 									</li>
 								))}
 							</ul>
