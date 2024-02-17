@@ -11,6 +11,7 @@ import { useStoryQuery } from "@/hooks/api/useStoryQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
 import { covertToUTC } from "@/utils/convertToUTC";
 
 import {
@@ -100,7 +101,8 @@ const PostDetail = ({ id }: idType) => {
 										key={comment.id}
 										id={comment.id}
 										content={comment.content}
-										username={comment.username}
+										createdDate={comment.createdDate}
+										member={comment.member}
 									/>
 								))}
 						</Box>

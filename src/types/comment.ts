@@ -1,3 +1,5 @@
+import type { MemberType } from "@/types/auth";
+
 export interface CommentType {
 	isSuccess: boolean;
 	code: number;
@@ -15,5 +17,7 @@ export interface CommentResultType {
 export interface CommentListInfoType {
 	id: number;
 	content: string;
-	username: string;
+	createdDate: string;
+	mentionedNickname?: string[];
+	member: MemberType;
 }
