@@ -6,8 +6,6 @@ import { useStoryListQuery } from "@/hooks/api/useStoryListQuery";
 const Post = () => {
 	const { storyList } = useStoryListQuery(0);
 
-	console.log(storyList);
-
 	return (
 		<Flex styles={{ gap: "16px", direction: "column", marginTop: "62px" }}>
 			<PostTitle />
