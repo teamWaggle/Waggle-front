@@ -3,6 +3,7 @@ import { Box } from "@/components/common";
 import {
 	mentionCheckerStyle,
 	mentionBoxStyle,
+	mentionCheckerDefaultStyle,
 } from "@/components/common/Text/MentionChecker/MentionChecker.style";
 
 const MentionChecker = ({ content }: { content: string }) => {
@@ -22,7 +23,7 @@ const MentionChecker = ({ content }: { content: string }) => {
 				} else {
 					// @로 시작하지 않는 경우 그냥 출력
 					return (
-						<Box tag={"span"} key={index}>
+						<Box tag={"span"} key={index} css={mentionCheckerDefaultStyle}>
 							&nbsp;{part}
 						</Box>
 					);
