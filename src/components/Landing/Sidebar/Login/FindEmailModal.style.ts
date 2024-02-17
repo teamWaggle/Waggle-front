@@ -74,6 +74,12 @@ export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 			position: "absolute",
 			backgroundColor: Theme.color.white,
 			marginLeft: "-1px",
+			msOverflowStyle: "none",
+			scrollbarWidth: "none",
+
+			"&::-webkit-scrollbar": {
+				display: "none",
+			},
 
 			"& > li": {
 				padding: "10px 18px",
