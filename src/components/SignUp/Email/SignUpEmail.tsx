@@ -85,21 +85,7 @@ const SignUpEmail = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
-		const formData = new FormData();
-
-		const request = {
-			email,
-			username: "string",
-			password,
-			nickname: "string",
-			address: "string",
-			phone: "string",
-			profileImgUrl: null,
-		};
-
-		formData.append("request", JSON.stringify(request));
-
-		mutateSignUp(formData);
+		mutateSignUp({ email, password });
 	};
 
 	return (

@@ -1,14 +1,11 @@
 import { AxiosResponse } from "axios";
 
-import { authorizedAxiosInstance } from "@/api/axiosInstance";
+import { axiosInstance } from "@/api/axiosInstance";
 
 import { END_POINTS } from "@/constants/api";
 
-import type { SignUpResponseType } from "@/types/auth";
+import type { CommonResponseType } from "@/types/common";
 
 export const postEmailAuthSend = (email: string) => {
-	return authorizedAxiosInstance.post<AxiosResponse<SignUpResponseType>>(
-		END_POINTS.EMAIL_AUTH_SEND,
-		email,
-	);
+	return axiosInstance.post<AxiosResponse<CommonResponseType>>(END_POINTS.EMAIL_AUTH_SEND, email);
 };

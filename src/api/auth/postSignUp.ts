@@ -1,21 +1,20 @@
+import type { AxiosResponse } from "axios";
+
 import { axiosInstance } from "@/api/axiosInstance";
 
 import { END_POINTS } from "@/constants/api";
 
-import type { FormDataType } from "@/types/auth";
+import type { UserType } from "@/types/auth";
+import type { CommonResponseType } from "@/types/common";
 
-export const postSignUp = async (formData: FormData) => {
-	const config = {
-		headers: { "Content-Type": "multipart/form-data" },
-	};
+export const postSignUp = async ({ email, password }: UserType) => {
+	const { data } = await axiosInstance.post<UserType, AxiosResponse<CommonResponseType>>(
+		END_POINTS.SIGN_UP,
+		{
+			email,
+			password,
+		},
+	);
 
-	// const { data } = await axiosInstance.post<SignUpFormType, AxiosResponse<SignUpResponseType>>(
-	// 	END_POINTS.SIGN_UP,
-	// 	formData,
-	// 	config,
-	// );
-
-	return axiosInstance.post<FormDataType>(END_POINTS.SIGN_UP, formData, config);
-
-	// return data;
+	return data;
 };
