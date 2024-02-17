@@ -1,3 +1,5 @@
+import { MemberType } from "@/types/auth";
+
 export interface ReplyType {
 	isSuccess: boolean;
 	code: number;
@@ -15,6 +17,8 @@ export interface ReplyResultType {
 export interface ReplyListInfoType {
 	id: number;
 	content: string;
-	username: string;
-	mentionMembers: string[];
+	createdDate?: string;
+	member: MemberType;
+	mentionMembers?: string[];
+	onClose?: () => void;
 }
