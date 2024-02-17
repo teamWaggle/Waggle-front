@@ -1,7 +1,7 @@
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 
 import { postRefreshToken } from "@/api/auth/postRefreshToken";
-import { authorizedAxiosInstance } from "@/api/customAxios";
+import { authorizedAxiosInstance } from "@/api/axiosInstance";
 import { HTTPError } from "@/api/HTTPError";
 
 import { ACCESS_TOKEN_KEY, ERROR_CODE, HTTP_STATUS_CODE } from "@/constants/api";
