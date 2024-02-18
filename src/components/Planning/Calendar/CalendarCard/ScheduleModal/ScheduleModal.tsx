@@ -38,35 +38,33 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
 	};
 
 	return (
-		<section ref={ScheduleModalRef}>
-			<Flex css={scheduleModalBoxStyle(position)}>
-				<Flex css={scheduleTitleBoxStyle}>
-					<Flex styles={{ align: "center", gap: "8px" }}>
-						<Box css={circleDivStyle(schedule.color)} />
-						<Heading size="small" css={scheduleTitleStyle}>
-							{schedule.title}
-						</Heading>
-					</Flex>
-					<Flex styles={{ gap: "15px" }}>
-						<KebabMenuIcon css={scheduleModalIcon} />
-						<ScheduleModalCloseIcon css={scheduleModalIcon} onClick={handleCloseModal} />
-					</Flex>
+		<section css={scheduleModalBoxStyle(position)} ref={ScheduleModalRef}>
+			<Flex css={scheduleTitleBoxStyle}>
+				<Flex styles={{ align: "center", gap: "8px" }}>
+					<Box css={circleDivStyle(schedule.color)} />
+					<Heading size="small" css={scheduleTitleStyle}>
+						{schedule.title}
+					</Heading>
 				</Flex>
-				<Text css={scheduleModalTime}>{format(schedule.startTime, "yyyy년 M월dd일 aa h시")}</Text>
-				<Flex styles={{ gap: "8px" }}>
-					<GroupIcon />
-					<Box css={scheduleModalTeamName(schedule.color)}>신나는 강아지 유치원</Box>
+				<Flex styles={{ gap: "15px" }}>
+					<KebabMenuIcon css={scheduleModalIcon} />
+					<ScheduleModalCloseIcon css={scheduleModalIcon} onClick={handleCloseModal} />
 				</Flex>
-				<Flex css={scheduleCommentBoxStyle}>
-					<Comment />
-					<Comment />
-					<Comment />
-					<Comment />
-				</Flex>
-				<Flex styles={{ width: "100%", marginTop: "8px" }}>
-					<input placeholder="댓글 달기" type="text" css={commentInputStyle} />
-					<button css={commentSubmitButtonStyle}>등록</button>
-				</Flex>
+			</Flex>
+			<Text css={scheduleModalTime}>{format(schedule.startTime, "yyyy년 M월dd일 aa h시")}</Text>
+			<Flex styles={{ gap: "8px" }}>
+				<GroupIcon />
+				<Box css={scheduleModalTeamName(schedule.color)}>신나는 강아지 유치원</Box>
+			</Flex>
+			<Flex css={scheduleCommentBoxStyle}>
+				<Comment />
+				<Comment />
+				<Comment />
+				<Comment />
+			</Flex>
+			<Flex styles={{ width: "100%", marginTop: "8px" }}>
+				<input placeholder="댓글 달기" type="text" css={commentInputStyle} />
+				<button css={commentSubmitButtonStyle}>등록</button>
 			</Flex>
 		</section>
 	);

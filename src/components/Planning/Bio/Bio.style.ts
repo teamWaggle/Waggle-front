@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { Theme } from "@/styles/Theme";
 
 export const sectionStyle = css({
+	position: "relative",
 	height: "665px",
 	minWidth: "1536px",
 	maxWidth: "100%",

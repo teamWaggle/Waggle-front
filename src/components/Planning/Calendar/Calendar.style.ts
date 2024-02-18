@@ -2,6 +2,10 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
+export const containerStyle = css({
+	position: "relative",
+});
+
 export const boxStyle = css({
 	position: "relative",
 	margin: "0 auto",
