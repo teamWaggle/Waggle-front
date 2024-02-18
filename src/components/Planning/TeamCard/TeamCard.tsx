@@ -1,7 +1,8 @@
 import ProfileTeamCardIcon from "@/assets/svg/profile-teamCard.svg?react";
 
 import { Box, Flex, Text } from "@/components/common";
-import { TeamCardType } from "@/types/planning";
+
+import type { TeamCardType } from "@/types/planning";
 
 import {
 	boxStyle,
@@ -19,7 +20,7 @@ const TeamCard = ({ data }: { data: TeamCardType }) => {
 		console.log(data.name);
 	};
 	return (
-		<Box tag={"article"} css={boxStyle} onClick={handleOnClick}>
+		<Box tag="article" css={boxStyle} onClick={handleOnClick}>
 			<img src={coverImageUrl} alt={name} css={imgStyle} />
 			<Box css={textBoxStyle}>
 				<Flex styles={{ align: "center", gap: "4px", marginBottom: "4px" }}>

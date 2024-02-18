@@ -156,7 +156,7 @@ const Calendar = () => {
 				onClickPrevMonth={handlePrevMonth}
 			/>
 			<Box css={containerStyle}>
-				<Box tag={"main"} css={boxStyle}>
+				<Box tag="main" css={boxStyle}>
 					{CalendarCards}
 				</Box>
 				{scheduleModals.map((modal, index) => {

@@ -16,18 +16,13 @@ import {
 const Comment = () => {
 	return (
 		<Flex css={commentBoxStyle}>
-			<Box tag={"figure"}>
+			<Box tag="figure">
 				<img css={imgStyle} src="https://source.unsplash.com/random/300x300" alt="" />
 			</Box>
-			<Flex tag={"section"} styles={{ width: "100%", direction: "column" }}>
-				<Flex
-					tag={"article"}
-					styles={{ width: "300px", align: "center", justify: "space-between" }}
-				>
+			<Flex tag="section" styles={{ width: "100%", direction: "column" }}>
+				<Flex tag="article" styles={{ width: "300px", align: "center", justify: "space-between" }}>
 					<Flex styles={{ gap: "16px" }}>
-						<Text size="medium" css={commentUserNameStyle}>
-							강아지몽몽
-						</Text>
+						<Text css={commentUserNameStyle}>강아지몽몽</Text>
 						<Text size="xSmall" css={commentTimeStyle}>
 							{format(new Date(), "yyyy.M.dd")}
 						</Text>

@@ -5,7 +5,7 @@ import { sectionStyle } from "@/components/Planning/Bio/Bio.style";
 
 const Bio = () => {
 	return (
-		<Flex tag={"section"} css={sectionStyle}>
+		<Flex tag="section" css={sectionStyle}>
 			<Calendar />
 		</Flex>
 	);

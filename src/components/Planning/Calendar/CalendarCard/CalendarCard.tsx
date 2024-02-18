@@ -51,7 +51,7 @@ const CalendarCard = ({
 	};
 
 	return (
-		<Flex tag={"section"} css={flexStyle}>
+		<Flex tag="section" css={flexStyle}>
 			<Text css={weekdayTextStyle}>{index < 7 ? weekday[index] : ""}</Text>
 			<Text css={dateTextStyle(isSameMonth)}>{format(day, "d")}</Text>
 			<Flex css={scheduleFlexBox}>
