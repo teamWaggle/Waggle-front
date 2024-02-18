@@ -1,8 +1,8 @@
 import { css } from "@emotion/react";
 
-import { TeamColorType } from "@/types/planning";
-
 import { Theme } from "@/styles/Theme";
+
+import type { TeamColorType } from "@/types/planning";
 
 export const flexStyle = css({
 	alignItems: "center",

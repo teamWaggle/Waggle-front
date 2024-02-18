@@ -12,6 +12,7 @@
       "plugin:prettier/recommended"
     ],
     "rules": {
+      "@typescript-eslint/consistent-type-imports": "error",
       "import/order":[
         "error",
           {
@@ -115,12 +116,12 @@
           }
         ]
     },
-    "settings": { 
+    "settings": {
       "import/parsers": {
-        "@typescript-eslint/parser": [".ts", ".tsx", ".js"] 
-      }, 
-      "import/resolver": { 
-        "typescript": "./tsconfig.json" 
+        "@typescript-eslint/parser": [".ts", ".tsx", ".js"]
+      },
+      "import/resolver": {
+        "typescript": "./tsconfig.json"
       }
     }
   }

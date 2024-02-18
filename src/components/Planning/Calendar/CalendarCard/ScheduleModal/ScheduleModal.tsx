@@ -11,9 +11,10 @@ import ScheduleModalCloseIcon from "@/assets/svg/scheduleModalClose.svg?react";
 import { Box, Flex, Heading, Text } from "@/components/common";
 import Comment from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/Comment/Comment";
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
-import { ScheduleModalType } from "@/types/modal";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
+
+import type { ScheduleModalType } from "@/types/modal";
 
 import {
 	scheduleModalBoxStyle,
