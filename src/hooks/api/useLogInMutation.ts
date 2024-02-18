@@ -5,10 +5,11 @@ import { useSetRecoilState } from "recoil";
 import { useMutation } from "@tanstack/react-query";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
-import { TokenType } from "@/types/auth";
 
 import { postLogIn } from "@/api/auth/postLogin";
 import { authorizedAxiosInstance } from "@/api/axiosInstance";
+
+import type { TokenType } from "@/types/auth";
 
 export const useLogInMutation = () => {
 	const setIsLoggedIn = useSetRecoilState(isLoggedInState);

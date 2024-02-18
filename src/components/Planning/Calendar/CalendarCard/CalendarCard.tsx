@@ -1,4 +1,4 @@
-import { Fragment, PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 import { useRecoilState } from "recoil";
 
@@ -7,11 +7,12 @@ import { format, isSameDay } from "date-fns";
 import { Box, Flex, Text } from "@/components/common";
 import ScheduleModal from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal";
 import { moreModalSelector } from "@/recoil/selectors/modalSelector";
-import { CalendarCardType, ScheduleType } from "@/types/planning";
 
 import { MAX_CALENDAR_CONTENT } from "@/constants/calendar";
 
 import useModal from "@/hooks/useModal";
+
+import type { CalendarCardType, ScheduleType } from "@/types/planning";
 
 import {
 	dateTextStyle,
@@ -55,24 +56,21 @@ const CalendarCard = ({
 			<Text css={dateTextStyle(isSameMonth)}>{format(day, "d")}</Text>
 			<Flex css={scheduleFlexBox}>
 				{schedulesSlice.map((schedule, i) => (
-					<Fragment key={schedule.scheduleId + dayString}>
-						<Box
-							css={scheduleTextStyle(schedulesSlice[i].color, isSameDay(schedule.endTime, day))}
-							onClick={() => handleScheduleOnclick(schedule)}
-						>
-							{isSameDay(schedule.startTime, day) ? schedule.title : ""}
-						</Box>
-					</Fragment>
+					<Box
+						key={schedule.scheduleId + dayString}
+						css={scheduleTextStyle(schedulesSlice[i].color, isSameDay(schedule.endTime, day))}
+						onClick={() => handleScheduleOnclick(schedule)}
+					>
+						{isSameDay(schedule.startTime, day) ? schedule.title : ""}
+					</Box>
 				))}
 				{schedules.length > 2 && (
-					<>
-						<Box css={moreBoxStyle}>
-							<Text css={moreTextStyle} size="xSmall" onClick={handleMoreOnClick}>
-								{schedules.length - 2}개 더보기
-							</Text>
-							{isMoreOpen.day === dayString && children}
-						</Box>
-					</>
+					<Box css={moreBoxStyle}>
+						<Text css={moreTextStyle} size="xSmall" onClick={handleMoreOnClick}>
+							{schedules.length - 2}개 더보기
+						</Text>
+						{isMoreOpen.day === dayString && children}
+					</Box>
 				)}
 			</Flex>
 		</Flex>

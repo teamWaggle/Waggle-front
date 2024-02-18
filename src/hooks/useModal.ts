@@ -1,7 +1,8 @@
 import { useSetRecoilState } from "recoil";
 
 import { modalState, scheduleModalState } from "@/recoil/atoms/modal";
-import { ModalType } from "@/types/modal";
+
+import type { ModalType } from "@/types/modal";
 
 const useModal = () => {
 	const setModals = useSetRecoilState(modalState);

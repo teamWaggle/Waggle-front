@@ -20,10 +20,11 @@ import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCa
 import MoreModal from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreModal";
 import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
-import { ScheduleType } from "@/types/planning";
 
 import { generateCalendarPositionColumn } from "@/utils/generateCalendarPositionColumn";
 import { generateCalendarPositionRow } from "@/utils/generateCalendarPositionRow";
+
+import type { ScheduleType } from "@/types/planning";
 
 import { boxStyle, containerStyle } from "@/components/Planning/Calendar/Calendar.style";
 

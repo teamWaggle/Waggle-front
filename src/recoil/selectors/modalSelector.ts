@@ -1,7 +1,8 @@
 import { selector } from "recoil";
 
 import { moreModalState, scheduleModalState } from "@/recoil/atoms/modal";
-import { ModalType, MoreModalStateType } from "@/types/modal";
+
+import type { ModalType, MoreModalStateType } from "@/types/modal";
 
 export const moreModalSelector = selector<MoreModalStateType>({
 	key: "moreModalSelector",

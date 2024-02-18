@@ -1,4 +1,4 @@
-import { SchedulePositionType, ScheduleType } from "@/types/planning";
+import type { SchedulePositionType, ScheduleType } from "@/types/planning";
 
 export interface ModalType {
 	key: string;
