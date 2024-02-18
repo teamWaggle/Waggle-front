@@ -8,8 +8,8 @@ export const scheduleModalBoxStyle = ({ row, column, index }: SchedulePositionTy
 	css({
 		position: "absolute",
 		zIndex: 2,
-		top: `${index / 7 > 3 ? row - 73 : row + 175}` + "px",
-		left: `${index % 7 < 4 ? column + 366 : column - 247}` + "px",
+		top: `${index / 7 < 3 ? row : row - 250}` + "px",
+		left: `${index % 7 < 4 ? column + 161 : column - 450}` + "px",
 		width: "450px",
 		height: "400px",
 		backgroundColor: Theme.color.white,
@@ -17,6 +17,7 @@ export const scheduleModalBoxStyle = ({ row, column, index }: SchedulePositionTy
 		borderRadius: "20px",
 		padding: "24px",
 		flexDirection: "column",
+		display: "flex",
 	});
 
 export const circleDivStyle = (color: TeamColorType) =>

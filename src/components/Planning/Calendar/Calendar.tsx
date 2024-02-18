@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 
+import { useRecoilValue } from "recoil";
+
 import {
 	addMonths,
 	subMonths,
@@ -17,12 +19,13 @@ import { Box } from "@/components/common";
 import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
 import MoreModal from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreModal";
 import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
+import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 import { ScheduleType } from "@/types/planning";
 
-import { generatePositionColumn } from "@/utils/generatePositionColumn";
-import { generatePositionRow } from "@/utils/generatePositionRow";
+import { generateCalendarPositionColumn } from "@/utils/generateCalendarPositionColumn";
+import { generateCalendarPositionRow } from "@/utils/generateCalendarPositionRow";
 
-import { boxStyle } from "@/components/Planning/Calendar/Calendar.style";
+import { boxStyle, containerStyle } from "@/components/Planning/Calendar/Calendar.style";
 
 const schedules: ScheduleType[] = [
 	{
@@ -100,7 +103,7 @@ const schedules: ScheduleType[] = [
 ];
 const Calendar = () => {
 	const [currentMonth, setCurrentMonth] = useState(new Date());
-
+	const scheduleModals = useRecoilValue(scheduleModalSelector);
 	const monthStart = startOfMonth(currentMonth);
 	const startDate = subDays(startOfWeek(monthStart), -1);
 	const days = Array.from({ length: 42 }, (_, index) => addDays(startDate, index));
@@ -122,8 +125,8 @@ const Calendar = () => {
 					isWithinInterval(day, { start: schedule.startTime, end: schedule.endTime }),
 			);
 			const position = {
-				row: generatePositionRow(index),
-				column: generatePositionColumn(index),
+				row: generateCalendarPositionRow(index),
+				column: generateCalendarPositionColumn(index),
 				index,
 			};
 			const daySchedulesWithPosition = daySchedules.map((schedule) => {
@@ -151,9 +154,14 @@ const Calendar = () => {
 				onClickNextMonth={handleNextMonth}
 				onClickPrevMonth={handlePrevMonth}
 			/>
-
-			<Box tag={"main"} css={boxStyle}>
-				{CalendarCards}
+			<Box css={containerStyle}>
+				<Box tag={"main"} css={boxStyle}>
+					{CalendarCards}
+				</Box>
+				{scheduleModals.map((modal, index) => {
+					const ModalComponent: React.ComponentType = modal.component || (() => null);
+					return <ModalComponent key={scheduleModals[index].key} />;
+				})}
 			</Box>
 		</>
 	);
