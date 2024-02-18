@@ -7,8 +7,6 @@ export const mentionBoxStyle = css({
 	width: "300px",
 	display: "inline",
 	whiteSpace: "normal",
-
-	// width: "fit-content",	fontSize: "12px",
 });
 
 export const mentionCheckerStyle = css({
