@@ -2,9 +2,10 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Flex, SocialLogin } from "@/components/common";
-import { Email, EmailAuthCode, Password, PasswordCheck } from "@/components/SignUp/Email/EmailForm";
+import { Email, EmailAuthCode, Password } from "@/components/SignUp/Email/EmailForm";
 import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 
+import { passwordFormData } from "@/constants/auth";
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useLogInMutation } from "@/hooks/api/useLogInMutation";
@@ -50,7 +51,7 @@ const SignUpEmail = () => {
 				"비밀번호가 양식이 일치하지 않습니다. 다시 입력해주세요.",
 			) === false ||
 			useValidateForm(
-				password !== passwordCheck,
+				password === passwordCheck,
 				passwordCheckRef,
 				"비밀번호가 일치하지 않습니다. 다시 입력해주세요.",
 			) === false
@@ -92,18 +93,20 @@ const SignUpEmail = () => {
 				/>
 
 				{/* 비밀번호 영역 */}
-				<Flex styles={{ direction: "column", gap: "8px" }}>
-					<Password password={password} changePassword={setPassword} passwordRef={passwordRef} />
+				{passwordFormData.map((data) => (
+					<Flex key={data.id} styles={{ direction: "column", gap: "8px" }}>
+						<Password
+							password={data.id === "password" ? password : passwordCheck}
+							changePassword={data.id === "password" ? setPassword : setPasswordCheck}
+							passwordRef={data.id === "password" ? passwordRef : passwordCheckRef}
+							title={data.text}
+						/>
 
-					<PasswordValidator password={password} validateComplete={setValidateComplete} />
-				</Flex>
-
-				{/* 비밀번호 확인 영역 */}
-				<PasswordCheck
-					passwordCheck={passwordCheck}
-					changePasswordCheck={setPasswordCheck}
-					passwordCheckRef={passwordCheckRef}
-				/>
+						{data.id === "password" && (
+							<PasswordValidator password={password} validateComplete={setValidateComplete} />
+						)}
+					</Flex>
+				))}
 			</Flex>
 
 			<button css={signUpButtonStyle} onClick={handleSignUp}>

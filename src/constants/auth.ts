@@ -24,37 +24,14 @@ export const passwordCheckData = [
 	},
 ];
 
-export const emailFormData = [
-	{
-		id: "email",
-		text: "이메일",
-		width: "280px",
-		placeholder: "Waggle@email.com",
-		type: "text",
-	},
-	{
-		id: "emailAuthCode",
-		text: "이메일 인증번호",
-		width: "280px",
-		placeholder: "인증번호 8자리 입력",
-		type: "text",
-		maxLength: 8,
-	},
+export const passwordFormData = [
 	{
 		id: "password",
 		text: "비밀번호",
-		width: "412px",
-		placeholder: "••••••••",
-		type: "password",
-		maxLength: 20,
 	},
 	{
 		id: "passwordCheck",
 		text: "비밀번호 확인",
-		width: "412px",
-		placeholder: "••••••••",
-		type: "password",
-		maxLength: 20,
 	},
 ];
 

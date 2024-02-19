@@ -12,22 +12,22 @@ const Password = ({
 	password,
 	changePassword,
 	passwordRef,
+	title,
 }: {
 	password: string;
 	changePassword: React.Dispatch<React.SetStateAction<string>>;
 	passwordRef: React.RefObject<HTMLInputElement>;
+	title: string;
 }) => {
-	const [passwordShow, setPasswordShow] = useState(false);
 	const [passwordType, setPasswordType] = useState("password");
 
 	const handleShowPassword = () => {
 		setPasswordType(passwordType === "password" ? "text" : "password");
-		setPasswordShow(passwordType === "password" ? true : false);
 	};
 
 	return (
 		<>
-			<Text css={getFormTextStyle(true)}>비밀번호</Text>
+			<Text css={getFormTextStyle(true)}>{title}</Text>
 
 			<Flex styles={{ align: "center", gap: "30px", position: "relative" }}>
 				<input
@@ -41,7 +41,7 @@ const Password = ({
 				/>
 
 				<>
-					{passwordShow ? (
+					{passwordType === "text" ? (
 						<PasswordShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
 					) : (
 						<PasswordNotShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
