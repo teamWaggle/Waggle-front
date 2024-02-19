@@ -7,13 +7,14 @@ import { format } from "date-fns";
 import { Box, Flex, Text } from "@/components/common";
 import ScheduleModal from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal";
 import { moreModalSelector } from "@/recoil/selectors/modalSelector";
-import { type MoreModalType } from "@/types/modal";
-import { type ScheduleType } from "@/types/planning";
 
 import { MAX_CALENDAR_CONTENT } from "@/constants/calendar";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
 import useModal from "@/hooks/useModal";
+
+import type { MoreModalType } from "@/types/modal";
+import type { ScheduleType } from "@/types/planning";
 
 import {
 	moreModalContainerStyle,
