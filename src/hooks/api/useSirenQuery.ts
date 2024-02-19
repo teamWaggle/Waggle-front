@@ -2,9 +2,9 @@ import type { AxiosError } from "axios";
 
 import { useQuery } from "@tanstack/react-query";
 
-import { SirenType } from "@/types/siren";
-
 import { getSiren } from "@/api/siren/getSiren";
+
+import type { SirenType } from "@/types/siren";
 
 export const useSirenQuery = (boardId: number) => {
 	const queryFn: { siren: () => Promise<SirenType> } = {

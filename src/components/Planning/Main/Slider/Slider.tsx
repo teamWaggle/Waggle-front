@@ -5,7 +5,8 @@ import RightArrowIcon from "@/assets/svg/right-arrow-brand-primary.svg?react";
 
 import { Box, Flex } from "@/components/common";
 import TeamCard from "@/components/Planning/TeamCard/TeamCard";
-import { TeamCardType } from "@/types/planning";
+
+import type { TeamCardType } from "@/types/planning";
 
 import {
 	rightArrowIconStyle,
