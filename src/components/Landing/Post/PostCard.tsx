@@ -2,9 +2,10 @@ import MediaIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex } from "@/components/common";
 import PostDetail from "@/components/Landing/Post/PostDetail/PostDetail";
-import { StoryListInfoType } from "@/types/story";
 
 import useModal from "@/hooks/useModal";
+
+import type { StoryListInfoType } from "@/types/story";
 
 import { imgStyle, iconStyle } from "@/components/Landing/Post/Post.style";
 

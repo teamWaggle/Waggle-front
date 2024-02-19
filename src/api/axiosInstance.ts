@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { checkToken, handleAPIError, handleTokenError } from "@/api/interceptors";
+
 import { BASE_URL } from "@/constants/api";
 
 // 미인증 axios

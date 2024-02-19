@@ -1,5 +1,6 @@
 import { Flex, Heading, Text } from "@/components/common";
-import { SirenResultType } from "@/types/siren";
+
+import type { SirenResultType } from "@/types/siren";
 
 import {
 	tagStyle,

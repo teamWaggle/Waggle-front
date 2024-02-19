@@ -1,4 +1,4 @@
-import { MemberType } from "@/types/auth";
+import type { MemberType } from "@/types/auth";
 
 export interface ReplyType {
 	isSuccess: boolean;

@@ -1,7 +1,8 @@
 import { Box, Flex, Heading, SearchInput, Text } from "@/components/common";
 import Slider from "@/components/Planning/Main/Slider/Slider";
 import TeamCard from "@/components/Planning/TeamCard/TeamCard";
-import { TeamCardType } from "@/types/planning";
+
+import type { TeamCardType } from "@/types/planning";
 
 import {
 	sectionStyle,

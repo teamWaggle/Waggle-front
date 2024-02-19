@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import type { ChangeEvent } from "react";
 
 import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
 
