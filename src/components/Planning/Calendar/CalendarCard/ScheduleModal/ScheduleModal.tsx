@@ -10,6 +10,7 @@ import ScheduleModalCloseIcon from "@/assets/svg/scheduleModalClose.svg?react";
 
 import { Box, Flex, Heading, Text } from "@/components/common";
 import Comment from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/Comment/Comment";
+import OptionDropdown from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/OptionDropdown/OptionDropdown";
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
@@ -30,16 +31,16 @@ import {
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal.style";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
-	const ScheduleModalRef = useRef<HTMLDivElement>(null);
+	const scheduleModalRef = useRef<HTMLDivElement>(null);
 	const closeScheduleModal = useResetRecoilState(scheduleModalSelector);
-	useClickOutSide(ScheduleModalRef, closeScheduleModal);
+	useClickOutSide(scheduleModalRef, closeScheduleModal);
 
 	const handleCloseModal = () => {
 		closeScheduleModal();
 	};
 
 	return (
-		<section css={scheduleModalBoxStyle(position)} ref={ScheduleModalRef}>
+		<section css={scheduleModalBoxStyle(position)} ref={scheduleModalRef}>
 			<Flex css={scheduleTitleBoxStyle}>
 				<Flex styles={{ align: "center", gap: "8px" }}>
 					<Box css={circleDivStyle(schedule.color)} />
@@ -48,7 +49,9 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
 					</Heading>
 				</Flex>
 				<Flex styles={{ gap: "15px" }}>
-					<KebabMenuIcon css={scheduleModalIcon} />
+					<OptionDropdown>
+						<KebabMenuIcon css={scheduleModalIcon} />
+					</OptionDropdown>
 					<ScheduleModalCloseIcon css={scheduleModalIcon} onClick={handleCloseModal} />
 				</Flex>
 			</Flex>
