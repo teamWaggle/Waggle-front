@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useState, useReducer } from "react";
 
 import SelectArrowIcon from "@/assets/svg/ic-select-arrow.svg?react";
 
@@ -6,6 +6,9 @@ import { Flex, Box, Text } from "@/components/common";
 
 import { yearData, monthData, dayData } from "@/constants/auth";
 
+import { useFindEmailMutation } from "@/hooks/api/useFindEmailMutation";
+
+import { dateFormatToUTC } from "@/utils/dateFormatToUTC";
 import { findEmailReducer, fintEmailInitialState } from "@/utils/findEmailUtils";
 
 import {
@@ -16,6 +19,10 @@ import {
 } from "@/components/Landing/Sidebar/Login/FindEmailModal.style";
 
 const FindEmail = () => {
+	const findEmailMutation = useFindEmailMutation();
+
+	const [name, setName] = useState("");
+
 	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
 
 	const handleOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
@@ -26,13 +33,32 @@ const FindEmail = () => {
 		dispatch({ type: `SELECT_${e.currentTarget.ariaLabel}` });
 	};
 
+	const handleAuthClick = () => {
+		const birthday = dateFormatToUTC(state.yearText, state.monthText, state.dayText);
+
+		findEmailMutation.mutate(
+			{ name, birthday },
+			{
+				onSuccess: () => {
+					console.log("abcdd");
+				},
+			},
+		);
+	};
+
 	return (
 		<>
 			<Flex styles={{ direction: "column", gap: "8px" }}>
 				<Flex styles={{ direction: "column", gap: "8px" }}>
 					<Text css={formTextStyle}>이름</Text>
-					<input css={inputStyle} placeholder="이름을 입력해주세요" />
+					<input
+						css={inputStyle}
+						placeholder="이름을 입력해주세요"
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					/>
 				</Flex>
+
 				<Flex styles={{ direction: "column", gap: "8px" }}>
 					<Text css={formTextStyle}>생년월일</Text>
 					<Flex styles={{ gap: "13px" }}>
@@ -79,7 +105,7 @@ const FindEmail = () => {
 					</Flex>
 				</Flex>
 			</Flex>
-			<button type="submit" css={buttonStyle}>
+			<button css={buttonStyle} onClick={handleAuthClick}>
 				인증하기
 			</button>
 		</>

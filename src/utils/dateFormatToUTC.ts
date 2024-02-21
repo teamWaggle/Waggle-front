@@ -14,5 +14,5 @@ export const dateFormatToUTC = (
 		formatDay = `0${day}`;
 	}
 
-	return `${year}-${formatMonth}-${formatDay}T00:00:00.000Z`;
+	return `${year}-${formatMonth}-${formatDay}`;
 };

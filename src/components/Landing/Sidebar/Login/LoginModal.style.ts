@@ -49,6 +49,7 @@ export const findTextStyle = css({
 	fontWeight: 500,
 	textDecoration: "underline",
 	position: "relative",
+	cursor: "pointer",
 
 	"&:after": {
 		position: "absolute",

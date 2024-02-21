@@ -7,6 +7,8 @@ export const END_POINTS = {
 	EMAIL_AUTH_SEND: "/api/members/email/send",
 	EMAIL_AUTH_VERIFY: "/api/members/email/verify",
 	MEMBER_INFO_FIRST: "/api/members/info",
+	FIND_EMAIL: (name: string, birthday: string) =>
+		`/api/member/email/find?name=${name}&birthday=${birthday}`,
 	CHECK_NICKNAME: (nickname: string) => `/api/members/check-nickname?nickname=${nickname}`,
 	STORY: (boardId: number) => `/api/stories/${boardId}`,
 	STORY_LIST: (currentPage: number) => `/api/stories?currentPage=${currentPage}`,

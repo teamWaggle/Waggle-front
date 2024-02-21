@@ -34,3 +34,14 @@ export interface MemberType {
 	profileImgUrl: string;
 	userUrl: string;
 }
+
+interface FindEmailResultType {
+	emails: string[];
+}
+
+export interface FindEmailResponseType {
+	isSuccess: boolean;
+	code: number;
+	message: string;
+	result: FindEmailResultType;
+}
