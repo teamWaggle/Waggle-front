@@ -12,7 +12,6 @@ import {
 	textStyle,
 } from "@/components/Landing/Sidebar/Login/FindEmailModal.style";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FindEmailModal = ({ modalClose }: modalCloseType) => {
 	const [mode, setMode] = useState("find");
 	const [email, setEmail] = useState<string[]>([""]);
