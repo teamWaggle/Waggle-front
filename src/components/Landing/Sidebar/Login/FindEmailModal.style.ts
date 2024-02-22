@@ -47,7 +47,6 @@ export const inputStyle = css({
 export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 	return css({
 		borderRadius: open ? "4px 4px 0 0" : "4px",
-		// borderRadius: "4px",
 		border: `1px solid ${Theme.color.border}`,
 		backgroundColor: Theme.color.white,
 		position: "relative",
@@ -68,7 +67,7 @@ export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 
 		"& > ul": {
 			width: "102px",
-			maxHeight: "132px",
+			height: "148px",
 			overflowY: "auto",
 			display: open ? "block" : "none",
 			position: "absolute",
@@ -76,6 +75,7 @@ export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 			marginLeft: "-1px",
 			msOverflowStyle: "none",
 			scrollbarWidth: "none",
+			border: `1px solid ${Theme.color.border}`,
 
 			"&::-webkit-scrollbar": {
 				display: "none",
@@ -83,8 +83,7 @@ export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 
 			"& > li": {
 				padding: "10px 18px",
-				border: `1px solid ${Theme.color.border}`,
-				borderBottom: "none",
+				borderBottom: `1px solid ${Theme.color.border}`,
 				color: Theme.color.black,
 				cursor: "pointer",
 
@@ -93,7 +92,7 @@ export const getSelectBoxStyle = (open: boolean, isSelected: boolean) => {
 				},
 
 				"&:last-of-type": {
-					borderBottom: `1px solid ${Theme.color.border}`,
+					borderBottom: "none",
 				},
 			},
 		},
