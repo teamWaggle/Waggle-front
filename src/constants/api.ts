@@ -6,7 +6,9 @@ export const END_POINTS = {
 	SIGN_UP: "/api/members",
 	EMAIL_AUTH_SEND: "/api/members/email/send",
 	EMAIL_AUTH_VERIFY: "/api/members/email/verify",
+	PASSWORD_AUTH_VERIFY: "/api/members/email/verify/password",
 	MEMBER_INFO_FIRST: "/api/members/info",
+	CHANGE_PASSWORD: (memberId: number) => `/api/members/${memberId}/password`,
 	FIND_EMAIL: (name: string, birthday: string) =>
 		`/api/members/email/find?name=${name}&birthday=${birthday}`,
 	CHECK_NICKNAME: (nickname: string) => `/api/members/check-nickname?nickname=${nickname}`,

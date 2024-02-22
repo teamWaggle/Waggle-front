@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
@@ -31,8 +30,6 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 	const [password, setPassword] = useState("");
 
 	const [passwordShow, setPasswordShow] = useState(false);
-
-	const navigate = useNavigate();
 
 	const modal = useModal();
 
@@ -85,6 +82,8 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 	};
 
 	const handleFindPasswordModal = () => {
+		modal.closeModal();
+
 		modal.openModal({
 			key: `FindPasswordModal`,
 			component: () => <FindPasswordModal modalClose={handleCloseModal} />,
@@ -138,7 +137,11 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 				<Text size="xSmall" css={findTextStyle} onClick={handleFindPasswordModal}>
 					비밀번호 찾기
 				</Text>
-				<Text size="xSmall" css={findTextStyle} onClick={() => navigate("/signup?tab=email")}>
+				<Text
+					size="xSmall"
+					css={findTextStyle}
+					onClick={() => (window.location.href = "/signup?tab=email")}
+				>
 					회원가입
 				</Text>
 			</Flex>

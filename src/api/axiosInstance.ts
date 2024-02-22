@@ -7,14 +7,14 @@ import { BASE_URL } from "@/constants/api";
 // 미인증 axios
 export const axiosInstance = axios.create({
 	baseURL: BASE_URL,
-	timeout: 3000,
+	timeout: 5000,
 	withCredentials: true,
 });
 
 // 인증 axios
 export const authorizedAxiosInstance = axios.create({
 	baseURL: BASE_URL,
-	timeout: 3000,
+	timeout: 5000,
 	withCredentials: true,
 });
 
