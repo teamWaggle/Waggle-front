@@ -24,7 +24,6 @@ import {
 	buttonStyle,
 } from "./FindEmailModal.style";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FindPasswordModal = ({ modalClose }: modalCloseType) => {
 	const { mutateEmailAuthSend } = useEmailAuthSendMutation();
 	const passwordAuthVerifyMutation = usePasswordAuthVerifyMutation();

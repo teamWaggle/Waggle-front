@@ -29,7 +29,7 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const [passwordShow, setPasswordShow] = useState(false);
+	const [passwordType, setPasswordType] = useState("password");
 
 	const modal = useModal();
 
@@ -47,20 +47,24 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 		return true;
 	};
 
+	// const handleShowPassword = () => {
+	// 	const password = passwordRef.current;
+
+	// 	if (password === null) {
+	// 		return;
+	// 	}
+
+	// 	setPasswordShow(!passwordShow);
+
+	// 	if (!passwordShow) {
+	// 		password.type = "text";
+	// 	} else {
+	// 		password.type = "password";
+	// 	}
+	// };
+
 	const handleShowPassword = () => {
-		const password = passwordRef.current;
-
-		if (password === null) {
-			return;
-		}
-
-		setPasswordShow(!passwordShow);
-
-		if (!passwordShow) {
-			password.type = "text";
-		} else {
-			password.type = "password";
-		}
+		setPasswordType(passwordType === "password" ? "text" : "password");
 	};
 
 	const handleSubmit = (e: React.FormEvent) => {
@@ -112,13 +116,13 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 						<input
 							css={inputStyle}
 							placeholder="비밀번호"
-							type="text"
+							type={passwordType}
 							onChange={(e) => setPassword(e.target.value)}
 							value={password}
 							ref={passwordRef}
 							maxLength={20}
 						/>
-						{passwordShow ? (
+						{passwordType === "text" ? (
 							<PasswordShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
 						) : (
 							<PasswordNotShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
