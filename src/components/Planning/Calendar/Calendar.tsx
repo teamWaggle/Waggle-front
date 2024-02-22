@@ -17,7 +17,6 @@ import {
 
 import { Box } from "@/components/common";
 import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
-import MoreModal from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreModal";
 import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 
@@ -141,9 +140,7 @@ const Calendar = () => {
 					day={day}
 					schedules={daySchedulesWithPosition}
 					position={position}
-				>
-					<MoreModal day={day} schedules={daySchedules} position={position} />
-				</CalendarCard>
+				/>
 			);
 		});
 	}, [currentMonth]);

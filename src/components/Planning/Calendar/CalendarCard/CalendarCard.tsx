@@ -1,12 +1,11 @@
 import type { PropsWithChildren } from "react";
 
-import { useRecoilState } from "recoil";
-
 import { format, isSameDay } from "date-fns";
 
 import { Box, Flex, Text } from "@/components/common";
+import MoreButton from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreButton";
+import MoreModal from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreModal";
 import ScheduleModal from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal";
-import { moreModalSelector } from "@/recoil/selectors/modalSelector";
 
 import { MAX_CALENDAR_CONTENT } from "@/constants/calendar";
 
@@ -17,8 +16,6 @@ import type { CalendarCardType, ScheduleType } from "@/types/planning";
 import {
 	dateTextStyle,
 	flexStyle,
-	moreBoxStyle,
-	moreTextStyle,
 	scheduleFlexBox,
 	scheduleTextStyle,
 	weekdayTextStyle,
@@ -27,21 +24,15 @@ import {
 const weekday = ["월", "화", "수", "목", "금", "토", "일"];
 
 const CalendarCard = ({
-	index,
 	day,
 	isSameMonth,
 	schedules,
-	children,
 	position,
 }: PropsWithChildren<CalendarCardType>) => {
-	const [isMoreOpen, setIsMoreOpen] = useRecoilState(moreModalSelector);
+	const { index } = position;
 	const { openScheduleModal } = useModal();
 	const schedulesSlice = schedules.slice(0, MAX_CALENDAR_CONTENT);
 	const dayString = format(day, "d");
-
-	const handleMoreOnClick = () => {
-		setIsMoreOpen({ day: dayString });
-	};
 
 	const handleScheduleOnclick = (schedule: ScheduleType) => {
 		openScheduleModal({
@@ -49,7 +40,6 @@ const CalendarCard = ({
 			component: () => <ScheduleModal schedule={schedule} position={position} />,
 		});
 	};
-
 	return (
 		<Flex tag="section" css={flexStyle}>
 			<Text css={weekdayTextStyle}>{index < 7 ? weekday[index] : ""}</Text>
@@ -65,12 +55,9 @@ const CalendarCard = ({
 					</Box>
 				))}
 				{schedules.length > 2 && (
-					<Box css={moreBoxStyle}>
-						<Text css={moreTextStyle} size="xSmall" onClick={handleMoreOnClick}>
-							{schedules.length - 2}개 더보기
-						</Text>
-						{isMoreOpen.day === dayString && children}
-					</Box>
+					<MoreButton schedules={schedules}>
+						<MoreModal day={day} schedules={schedules} position={position} />
+					</MoreButton>
 				)}
 			</Flex>
 		</Flex>
