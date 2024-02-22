@@ -13,7 +13,7 @@ const Dropdown = ({ children }: { children: ReactNode }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 	const toggleDropdown = () => {
-		setIsDropdownOpen(!isDropdownOpen);
+		setIsDropdownOpen((prev) => !prev);
 	};
 	const handleCloseDropdown = () => {
 		setIsDropdownOpen(false);
