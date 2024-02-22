@@ -55,7 +55,7 @@ const Login = () => {
 				<Logo />
 				<Text css={textStyle}>로그인</Text>
 			</Flex>
-			<Text css={subTextStyle} onClick={() => navigate("/signup")}>
+			<Text css={subTextStyle} onClick={() => navigate("/signup?tab=email")}>
 				회원가입하기
 			</Text>
 		</Flex>
