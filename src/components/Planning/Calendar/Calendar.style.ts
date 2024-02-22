@@ -7,7 +7,6 @@ export const containerStyle = css({
 });
 
 export const boxStyle = css({
-	position: "relative",
 	margin: "0 auto",
 	display: "grid",
 	gridGap: "1px",
