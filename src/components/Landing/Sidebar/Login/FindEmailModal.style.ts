@@ -115,4 +115,5 @@ export const resultBoxStyle = css({
 	borderRadius: "4px",
 	border: `1px solid ${Theme.color.border}`,
 	padding: "16px 77px",
+	textAlign: "center",
 });

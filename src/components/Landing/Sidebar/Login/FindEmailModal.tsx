@@ -14,7 +14,8 @@ import {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FindEmailModal = ({ modalClose }: modalCloseType) => {
-	const [mode] = useState("find");
+	const [mode, setMode] = useState("find");
+	const [email, setEmail] = useState<string[]>([""]);
 
 	return (
 		<Flex
@@ -43,7 +44,11 @@ const FindEmailModal = ({ modalClose }: modalCloseType) => {
 				</Text>
 			</Flex>
 
-			{mode === "find" ? <FindEmail /> : <ResultEmail />}
+			{mode === "find" ? (
+				<FindEmail setMode={setMode} setEmail={setEmail} />
+			) : (
+				<ResultEmail email={email} modalClose={modalClose} />
+			)}
 		</Flex>
 	);
 };
