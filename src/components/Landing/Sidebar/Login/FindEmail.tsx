@@ -11,6 +11,8 @@ import { useFindEmailMutation } from "@/hooks/api/useFindEmailMutation";
 import { dateFormatToUTC } from "@/utils/dateFormatToUTC";
 import { findEmailReducer, fintEmailInitialState } from "@/utils/findEmailUtils";
 
+import type { FindEmailResponseType } from "@/types/auth";
+
 import {
 	formTextStyle,
 	inputStyle,
@@ -18,7 +20,13 @@ import {
 	buttonStyle,
 } from "@/components/Landing/Sidebar/Login/FindEmailModal.style";
 
-const FindEmail = () => {
+const FindEmail = ({
+	setMode,
+	setEmail,
+}: {
+	setMode: React.Dispatch<React.SetStateAction<string>>;
+	setEmail: React.Dispatch<React.SetStateAction<string[]>>;
+}) => {
 	const findEmailMutation = useFindEmailMutation();
 
 	const [name, setName] = useState("");
@@ -39,8 +47,9 @@ const FindEmail = () => {
 		findEmailMutation.mutate(
 			{ name, birthday },
 			{
-				onSuccess: () => {
-					console.log("abcdd");
+				onSuccess: ({ result }: FindEmailResponseType) => {
+					setEmail(result.emails);
+					setMode("result");
 				},
 			},
 		);
@@ -48,7 +57,7 @@ const FindEmail = () => {
 
 	return (
 		<>
-			<Flex styles={{ direction: "column", gap: "8px" }}>
+			<Flex styles={{ direction: "column", gap: "20px" }}>
 				<Flex styles={{ direction: "column", gap: "8px" }}>
 					<Text css={formTextStyle}>이름</Text>
 					<input

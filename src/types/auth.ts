@@ -35,7 +35,7 @@ export interface MemberType {
 	userUrl: string;
 }
 
-interface FindEmailResultType {
+export interface FindEmailResultType {
 	emails: string[];
 }
 
