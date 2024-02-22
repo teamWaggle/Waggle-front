@@ -23,7 +23,7 @@ const Email = ({
 		<Flex styles={{ direction: "column", gap: "8px" }}>
 			<Text css={getFormTextStyle(true)}>이메일</Text>
 
-			<Flex styles={{ align: "center", gap: "30px", position: "relative" }}>
+			<Flex styles={{ align: "center", gap: "12px", position: "relative" }}>
 				<input
 					css={getInputStyle("280px")}
 					placeholder="Waggle@email.com"
