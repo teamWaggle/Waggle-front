@@ -5,8 +5,12 @@ import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
 import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
+import FindEmailModal from "@/components/Landing/Sidebar/Login/FindEmailModal";
 
 import { useLogInMutation } from "@/hooks/api/useLogInMutation";
+import useModal from "@/hooks/useModal";
+
+import type { modalCloseType } from "@/types/modal";
 
 import {
 	layoutStyle,
@@ -16,11 +20,7 @@ import {
 	findTextStyle,
 } from "@/components/Landing/Sidebar/Login/LoginModal.style";
 
-interface LoginModalType {
-	modalClose: () => void;
-}
-
-const LoginModal = ({ modalClose }: LoginModalType) => {
+const LoginModal = ({ modalClose }: modalCloseType) => {
 	const { mutateLogIn } = useLogInMutation();
 
 	const passwordRef = useRef<HTMLInputElement>(null);
@@ -29,6 +29,12 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 	const [password, setPassword] = useState("");
 
 	const [passwordShow, setPasswordShow] = useState(false);
+
+	const modal = useModal();
+
+	const handleCloseModal = () => {
+		modal.closeModal();
+	};
 
 	const validateForm = () => {
 		if (!email.trim() || !password.trim()) {
@@ -67,15 +73,18 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 		modalClose();
 	};
 
+	const handleFindEmailModal = () => {
+		modal.openModal({
+			key: `FindEmailModal`,
+			component: () => <FindEmailModal modalClose={handleCloseModal} />,
+		});
+	};
+
 	return (
 		<Flex
 			styles={{
 				direction: "column",
 				align: "center",
-				padding: "70px 40px 0",
-				position: "relative",
-				width: "390px",
-				height: "490px",
 			}}
 			css={layoutStyle}
 		>
@@ -112,7 +121,7 @@ const LoginModal = ({ modalClose }: LoginModalType) => {
 			</Box>
 
 			<Flex styles={{ gap: "24px" }}>
-				<Text size="xSmall" css={findTextStyle}>
+				<Text size="xSmall" css={findTextStyle} onClick={handleFindEmailModal}>
 					아이디(이메일) 찾기
 				</Text>
 				<Text size="xSmall" css={findTextStyle}>

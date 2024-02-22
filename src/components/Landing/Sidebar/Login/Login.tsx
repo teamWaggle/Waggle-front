@@ -21,14 +21,14 @@ const Login = () => {
 
 	const modal = useModal();
 
-	const close = () => {
+	const handleCloseModal = () => {
 		modal.closeModal();
 	};
 
-	const open = () => {
+	const handleLoginModal = () => {
 		modal.openModal({
 			key: `LoginModal`,
-			component: () => <LoginModal modalClose={close} />,
+			component: () => <LoginModal modalClose={handleCloseModal} />,
 		});
 	};
 
@@ -50,7 +50,7 @@ const Login = () => {
 				styles={{ justify: "center", align: "center", gap: "14px" }}
 				tag="button"
 				css={buttonStyle}
-				onClick={open}
+				onClick={handleLoginModal}
 			>
 				<Logo />
 				<Text css={textStyle}>로그인</Text>
