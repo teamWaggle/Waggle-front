@@ -9,7 +9,7 @@ import type { CommonResponseType } from "@/types/common";
 
 export const postPasswordAuthVerify = async ({ email, authCode }: EmailAuthVerifyType) => {
 	const { data } = await axiosInstance.post<EmailAuthVerifyType, AxiosResponse<CommonResponseType>>(
-		END_POINTS.EMAIL_AUTH_VERIFY,
+		END_POINTS.PASSWORD_AUTH_VERIFY,
 		{
 			email,
 			authCode,
