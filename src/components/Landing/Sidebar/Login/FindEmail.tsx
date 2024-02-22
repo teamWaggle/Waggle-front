@@ -9,7 +9,7 @@ import { yearData, monthData, dayData } from "@/constants/auth";
 import { useFindEmailMutation } from "@/hooks/api/useFindEmailMutation";
 
 import { dateFormatToUTC } from "@/utils/dateFormatToUTC";
-import { findEmailReducer, fintEmailInitialState } from "@/utils/findEmailUtils";
+import { findEmailReducer, findEmailInitialState } from "@/utils/findEmailUtils";
 
 import type { FindEmailResponseType } from "@/types/auth";
 
@@ -31,7 +31,7 @@ const FindEmail = ({
 
 	const [name, setName] = useState("");
 
-	const [state, dispatch] = useReducer(findEmailReducer, fintEmailInitialState);
+	const [state, dispatch] = useReducer(findEmailReducer, findEmailInitialState);
 
 	const handleOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
 		const innerText = e.currentTarget.innerText;

@@ -35,7 +35,7 @@ const EmailAuthCode = ({
 	return (
 		<Flex styles={{ direction: "column", gap: "8px" }}>
 			<Text css={getFormTextStyle(true)}>이메일 인증번호</Text>
-			<Flex styles={{ align: "center", gap: "30px", position: "relative" }}>
+			<Flex styles={{ align: "center", gap: "12px", position: "relative" }}>
 				<input
 					css={getInputStyle("280px")}
 					placeholder="인증번호 8자리 입력"
@@ -46,7 +46,7 @@ const EmailAuthCode = ({
 				/>
 
 				<Box tag="button" css={commonButtonStyle} onClick={handleEmailAuthVerify}>
-					<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>인증 하기</Text>
+					<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>인증번호 인증</Text>
 				</Box>
 			</Flex>
 		</Flex>
