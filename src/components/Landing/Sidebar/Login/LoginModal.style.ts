@@ -5,6 +5,9 @@ import { Theme } from "@/styles/Theme";
 export const layoutStyle = css({
 	backgroundColor: Theme.color.white,
 	borderRadius: "8px",
+	padding: "70px 40px 0",
+	width: "390px",
+	height: "490px",
 });
 
 export const inputStyle = css({
