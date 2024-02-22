@@ -13,11 +13,13 @@ const Password = ({
 	changePassword,
 	passwordRef,
 	title,
+	isFind,
 }: {
 	password: string;
 	changePassword: React.Dispatch<React.SetStateAction<string>>;
 	passwordRef: React.RefObject<HTMLInputElement>;
 	title: string;
+	isFind?: boolean;
 }) => {
 	const [passwordType, setPasswordType] = useState("password");
 
@@ -31,7 +33,7 @@ const Password = ({
 
 			<Flex styles={{ align: "center", gap: "30px", position: "relative" }}>
 				<input
-					css={getInputStyle("412px")}
+					css={getInputStyle(isFind ? "330px" : "412px")}
 					placeholder="••••••••"
 					value={password}
 					onChange={(e) => changePassword(e.target.value)}
