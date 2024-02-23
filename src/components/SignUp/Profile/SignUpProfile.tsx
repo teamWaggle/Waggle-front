@@ -40,8 +40,7 @@ const SignUpProfile = () => {
 	const [fileURL, setFileURL] = useState<string>("");
 
 	const [nicknameCheckComplete, setNicknameCheckComplete] = useState(false);
-
-	const [userUrlCheckComplete] = useState(false);
+	const [userUrlCheckComplete, setUserUrlCheckComplete] = useState(false);
 
 	const validateForm = () => {
 		if (!nickname) {
@@ -141,7 +140,13 @@ const SignUpProfile = () => {
 					<NicknameDescription />
 
 					{/* 프로필 주소 영역 */}
-					<ProfileAddress userUrl={userUrl} changeUserUrl={setUserUrl} userUrlRef={userUrlRef} />
+					<ProfileAddress
+						userUrl={userUrl}
+						changeUserUrl={setUserUrl}
+						userUrlRef={userUrlRef}
+						userUrlCheckComplete={userUrlCheckComplete}
+						changeUserUrlCheckComplete={setUserUrlCheckComplete}
+					/>
 
 					{/* 이름 영역 */}
 					<Name name={name} changeName={setName} nameRef={nameRef} />

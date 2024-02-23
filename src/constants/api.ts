@@ -12,6 +12,7 @@ export const END_POINTS = {
 	FIND_EMAIL: (name: string, birthday: string) =>
 		`/api/members/email/find?name=${name}&birthday=${birthday}`,
 	CHECK_NICKNAME: (nickname: string) => `/api/members/check-nickname?nickname=${nickname}`,
+	CHECK_USERURL: (userUrl: string) => `/api/members/check-user-url?userUrl=${userUrl}`,
 	STORY: (boardId: number) => `/api/stories/${boardId}`,
 	STORY_LIST: (currentPage: number) => `/api/stories?currentPage=${currentPage}`,
 	COMMENT: (currentPage: number, boardId: number) =>

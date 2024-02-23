@@ -62,9 +62,10 @@ const Nickname = ({
 				</Box>
 
 				<Text css={getNicknameTextStyle(isNicknameCheck && nicknameCheckComplete)}>
-					{isNicknameCheck && !nicknameCheckComplete && "사용할 수 없는 닉네임입니다"}
-
-					{isNicknameCheck && nicknameCheckComplete && "사용할 수 있는 닉네임입니다"}
+					{isNicknameCheck &&
+						(nicknameCheckComplete
+							? "사용할 수 있는 닉네임입니다"
+							: "사용할 수 없는 닉네임입니다.")}
 				</Text>
 			</Flex>
 		</Flex>

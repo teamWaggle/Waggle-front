@@ -11,6 +11,13 @@ export interface CommonResponseType {
 	result: number;
 }
 
+export interface CommonResponseResultBooleanType {
+	isSuccess: boolean;
+	code: number;
+	message: string;
+	result: boolean;
+}
+
 export interface DropdownButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode;
 }
