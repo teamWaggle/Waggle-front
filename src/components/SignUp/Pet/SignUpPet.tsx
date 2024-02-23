@@ -61,9 +61,15 @@ const SignUpPet = () => {
 
 	return (
 		<Flex styles={{ direction: "column", marginTop: "50px", gap: "30px" }}>
-			<Flex styles={{ direction: "column", gap: "16px" }}>
-				<Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
-					나의 첫 번째 반려견
+			<Flex styles={{ direction: "column", gap: "40px", align: "center" }}>
+				<Heading
+					size="xSmall"
+					css={getDefaultTextStyle(Theme.color.text, 600)}
+					style={{ textAlign: "center" }}
+				>
+					나의 반려견을 등록해보세요!
+					<br />
+					My Waggle에서 언제든지 반려견을 등록하고 수정할 수 있어요
 				</Heading>
 
 				<Flex css={formLayoutStyle}>
@@ -90,7 +96,9 @@ const SignUpPet = () => {
 			</Flex>
 
 			<Flex css={buttonLayoutStyle}>
-				<button css={getNextButtonStyle("이전")}>이전</button>
+				<button css={getNextButtonStyle("이전")} onClick={() => navigate("/")}>
+					건너뛰기
+				</button>
 
 				<button css={getNextButtonStyle("저장하기")} onClick={handleSaveClick}>
 					저장하기
