@@ -9,7 +9,7 @@ import { useReplyQuery } from "@/hooks/api/useReplyQuery";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { covertToUTC } from "@/utils/convertToUTC";
+import { convertToUTC } from "@/utils/convertToUTC";
 
 import type { CommentListInfoType } from "@/types/comment";
 
@@ -29,7 +29,7 @@ const Comment = ({ id, member, content, createdDate }: CommentListInfoType) => {
 		if (createdDate) {
 			const date = new Date(createdDate);
 
-			setDate(covertToUTC(date).date);
+			setDate(convertToUTC(date).date);
 		}
 	}, [createdDate]);
 

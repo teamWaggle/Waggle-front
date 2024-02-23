@@ -12,7 +12,7 @@ import { useStoryQuery } from "@/hooks/api/useStoryQuery";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { covertToUTC } from "@/utils/convertToUTC";
+import { convertToUTC } from "@/utils/convertToUTC";
 
 import {
 	layoutStyle,
@@ -40,7 +40,7 @@ const PostDetail = ({ id }: idType) => {
 		if (storyData) {
 			const date = new Date(storyData.result.createdDate);
 
-			setCreatedDate(covertToUTC(date).date);
+			setCreatedDate(convertToUTC(date).date);
 		}
 	}, [storyData]);
 
