@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 import SelectArrowIcon from "@/assets/svg/ic-select-arrow.svg?react";
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
@@ -12,7 +12,11 @@ import { findEmailReducer, findEmailInitialState } from "@/utils/findEmailUtils"
 import { getSelectBoxStyle } from "@/components/SignUp/Profile/SignUpProfile.style";
 import { getFormTextStyle } from "@/components/SignUp/SignUp.shared.style";
 
-const Birthday = () => {
+const Birthday = ({
+	setSelectBirthday,
+}: {
+	setSelectBirthday: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
 	const [state, dispatch] = useReducer(findEmailReducer, findEmailInitialState);
 
 	const handleOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
@@ -22,6 +26,20 @@ const Birthday = () => {
 		dispatch({ type: `CHANGE_${e.currentTarget.ariaLabel}_OPTION` });
 		dispatch({ type: `SELECT_${e.currentTarget.ariaLabel}` });
 	};
+
+	const validateSelectBox = () => {
+		if (state.yearText === "생년" || state.monthText === "월 선택" || state.dayText === "일 선택") {
+			return false;
+		}
+
+		return true;
+	};
+
+	useEffect(() => {
+		if (validateSelectBox()) {
+			setSelectBirthday(true);
+		}
+	}, [state, handleOptionText]);
 
 	return (
 		<Flex styles={{ direction: "column", gap: "8px" }}>

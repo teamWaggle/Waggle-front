@@ -1,6 +1,5 @@
 import { useState, useReducer, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 import { Flex, Box, Text } from "@/components/common";
 import {
@@ -15,6 +14,7 @@ import {
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
+import { useValidateForm } from "@/hooks/useValidateForm";
 
 import { Theme } from "@/styles/Theme";
 
@@ -33,6 +33,7 @@ const SignUpProfile = () => {
 	const nicknameRef = useRef<HTMLInputElement>(null);
 	const userUrlRef = useRef<HTMLInputElement>(null);
 	const nameRef = useRef<HTMLInputElement>(null);
+	const birthdayRef = useRef<HTMLInputElement>(null);
 
 	const [nickname, setNickname] = useState("");
 	const [userUrl, setUserUrl] = useState("");
@@ -41,40 +42,19 @@ const SignUpProfile = () => {
 
 	const [nicknameCheckComplete, setNicknameCheckComplete] = useState(false);
 	const [userUrlCheckComplete, setUserUrlCheckComplete] = useState(false);
+	const [selectBirthday, setSelectBirthday] = useState(false);
 
 	const validateForm = () => {
-		if (!nickname) {
-			nicknameRef.current?.focus();
-			toast.error("닉네임을 입력해주세요");
-
-			return false;
-		}
-
-		if (!nicknameCheckComplete) {
-			nicknameRef.current?.focus();
-			toast.error("닉네임 중복 확인을 해주세요");
-
-			return false;
-		}
-
-		if (!userUrl) {
-			userUrlRef.current?.focus();
-			toast.error("프로필 주소를 입력해주세요");
-
-			return false;
-		}
-
-		if (!userUrlCheckComplete) {
-			userUrlRef.current?.focus();
-			toast.error("프로필 주소 중복 확인을 해주세요");
-
-			return false;
-		}
-
-		if (!name) {
-			nameRef.current?.focus();
-			toast.error("이름을 입력해주세요");
-
+		if (
+			useValidateForm(nickname, nicknameRef, "닉네임을 입력해주세요") === false ||
+			useValidateForm(nicknameCheckComplete, nicknameRef, "닉네임 중복 확인을 해주세요") ===
+				false ||
+			useValidateForm(userUrl, userUrlRef, "프로필 주소를 입력해주세요") === false ||
+			useValidateForm(userUrlCheckComplete, userUrlRef, "프로필 주소 중복 확인을 해주세요") ===
+				false ||
+			useValidateForm(name, nameRef, "이름을 입력해주세요") === false ||
+			useValidateForm(selectBirthday, birthdayRef, "생년월일을 입력해주세요") === false
+		) {
 			return false;
 		}
 
@@ -152,7 +132,7 @@ const SignUpProfile = () => {
 					<Name name={name} changeName={setName} nameRef={nameRef} />
 
 					{/* 생년월일 영역 */}
-					<Birthday />
+					<Birthday setSelectBirthday={setSelectBirthday} />
 				</Flex>
 			</Box>
 
