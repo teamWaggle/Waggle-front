@@ -2,13 +2,17 @@ export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const GOOGLE_AUTH_API_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${
 	import.meta.env.VITE_GOOGLE_CLIENT_ID
-}&response_type=token&redirect_uri=${BASE_URL}/${
+}&response_type=token&redirect_uri=${BASE_URL}${
 	import.meta.env.VITE_GOOGLE_REDIRECT_URI
 }&scope=https://www.googleapis.com/auth/userinfo.email`;
 
 export const KAKAO_AUTH_API_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${
 	import.meta.env.VITE_KAKAO_API_KEY
-}&redirect_uri=${BASE_URL}/${import.meta.env.VITE_KAKAO_REDIRECT_URI}&response_type=code`;
+}&redirect_uri=${BASE_URL}${import.meta.env.VITE_KAKAO_REDIRECT_URI}&response_type=code`;
+
+export const NAVER_AUTH_API_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${
+	import.meta.env.VITE_NAVER_CLIENT_ID
+}&redirect_uri=${BASE_URL}${import.meta.env.VITE_NAVER_REDIRECT_URI}&state=false`;
 
 export const END_POINTS = {
 	TOKEN: "/api/tokens/refresh",

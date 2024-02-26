@@ -4,7 +4,7 @@ import NaverIcon from "@/assets/svg/NaverIcon.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
-import { GOOGLE_AUTH_API_URL, KAKAO_AUTH_API_URL } from "@/constants/api";
+import { GOOGLE_AUTH_API_URL, KAKAO_AUTH_API_URL, NAVER_AUTH_API_URL } from "@/constants/api";
 
 import {
 	layoutStyle,
@@ -24,7 +24,7 @@ const SocialLogin = ({ textSize, locate }: SocialLoginType) => {
 				간편 로그인
 			</Text>
 			<Flex css={socialButtonStyle(locate)}>
-				<NaverIcon />
+				<NaverIcon onClick={() => window.location.assign(NAVER_AUTH_API_URL)} />
 				<KaKaoIcon onClick={() => window.location.assign(KAKAO_AUTH_API_URL)} />
 				<GoogleIcon onClick={() => window.location.assign(GOOGLE_AUTH_API_URL)} />
 			</Flex>
