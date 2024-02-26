@@ -8,6 +8,7 @@ import ScheduleModalCloseIcon from "@/assets/svg/scheduleModalClose.svg?react";
 
 import { Box, Flex, Heading, Text } from "@/components/common";
 import Comment from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/Comment/Comment";
+import CommentInput from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentInput/CommentInput";
 import OptionDropdown from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/OptionDropdown/OptionDropdown";
 import { format } from "date-fns";
 
@@ -26,8 +27,6 @@ import {
 	scheduleModalTime,
 	scheduleModalTeamName,
 	scheduleCommentBoxStyle,
-	commentInputStyle,
-	commentSubmitButtonStyle,
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal.style";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
@@ -38,7 +37,6 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
 	const handleCloseModal = () => {
 		closeScheduleModal();
 	};
-
 	return (
 		<section css={scheduleModalBoxStyle(position)} ref={scheduleModalRef}>
 			<Flex css={scheduleTitleBoxStyle}>
@@ -66,10 +64,7 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
 				<Comment />
 				<Comment />
 			</Flex>
-			<Flex styles={{ width: "100%", marginTop: "8px" }}>
-				<input placeholder="댓글 달기" type="text" css={commentInputStyle} />
-				<button css={commentSubmitButtonStyle}>등록</button>
-			</Flex>
+			<CommentInput />
 		</section>
 	);
 };
