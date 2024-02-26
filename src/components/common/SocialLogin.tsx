@@ -6,6 +6,8 @@ import NaverIcon from "@/assets/svg/NaverIcon.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
+import { GOOGLE_AUTH_API_URL } from "@/constants/api";
+
 import { Theme } from "@/styles/Theme";
 
 interface SocialLoginType {
@@ -14,6 +16,12 @@ interface SocialLoginType {
 }
 
 const SocialLogin = ({ textSize, locate }: SocialLoginType) => {
+	const oAuthURL = GOOGLE_AUTH_API_URL;
+
+	const oAuthHandler = () => {
+		window.location.assign(oAuthURL);
+	};
+
 	return (
 		<Flex
 			styles={{
@@ -28,7 +36,7 @@ const SocialLogin = ({ textSize, locate }: SocialLoginType) => {
 			<Flex styles={{ gap: "20px", marginTop: locate === "login" ? "16px" : "30px" }}>
 				<NaverIcon />
 				<KaKaoIcon />
-				<GoogleIcon />
+				<GoogleIcon onClick={oAuthHandler} />
 			</Flex>
 		</Flex>
 	);
