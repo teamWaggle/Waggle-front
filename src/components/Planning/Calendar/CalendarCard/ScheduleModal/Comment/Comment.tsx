@@ -32,7 +32,7 @@ const Comment = () => {
 					</Flex>
 				</Flex>
 				<Flex css={commentTextBoxStyle}>
-					<MentionChecker content="@아아 안녕허세요안녕허세요안녕허세요" />
+					<MentionChecker content="@[아아] 안녕허세요안녕허세요안녕허세요" />
 				</Flex>
 			</Flex>
 		</Flex>

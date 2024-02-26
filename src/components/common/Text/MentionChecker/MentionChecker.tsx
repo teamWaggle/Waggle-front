@@ -14,10 +14,11 @@ const MentionChecker = ({ content }: { content: string }) => {
 			{parts.map((part, index) => {
 				// @로 시작하는 부분인지 확인
 				if (part.startsWith("@")) {
+					const replacePart = part.replace(/[[\]]/g, "");
 					// @로 시작하는 경우, 스타일을 적용하여 출력
 					return (
 						<Box tag="span" css={mentionCheckerStyle} key={index}>
-							{part}
+							{replacePart}
 						</Box>
 					);
 				} else {

@@ -81,24 +81,3 @@ export const scheduleCommentBoxStyle = css({
 	height: "200px",
 	overflow: "auto",
 });
-
-export const commentInputStyle = css({
-	width: "100%",
-	height: "32px",
-	border: "none",
-	borderBottom: `1px solid ${Theme.color.brand_primary}`,
-	color: Theme.color.text,
-	outline: "none",
-	padding: "0 8px",
-});
-
-export const commentSubmitButtonStyle = css({
-	width: "50px",
-	height: "28px",
-	border: "none",
-	backgroundColor: Theme.color.brand_primary,
-	color: Theme.color.white,
-	cursor: "pointer",
-	borderRadius: "4px",
-	marginLeft: "8px",
-});
