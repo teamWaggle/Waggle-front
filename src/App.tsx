@@ -16,8 +16,6 @@ import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import "react-toastify/dist/ReactToastify.css";
-
 const App = () => {
 	const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
@@ -34,7 +32,6 @@ const App = () => {
 		{ path: "/siren/view/:id", element: <SirenDetailPage /> },
 		{ path: "/signup", element: <SignUpPage /> },
 		{ path: "/planning", element: <PlanningPage /> },
-		// {path:'/teamPlanning',element:}
 	];
 
 	return (

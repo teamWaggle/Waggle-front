@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 
 import { Flex, Box, Text } from "@/components/common";
-import Profile from "@/components/Landing/Post/PostDetail/Profile";
+import Profile from "@/components/Story/StoryDetail/Profile";
 
 import { Theme } from "@/styles/Theme";
 
@@ -13,7 +13,7 @@ import {
 	getReplyInputStyle,
 	replyButtonStyle,
 	handleReplyTextStyle,
-} from "@/components/Landing/Post/PostDetail/PostDetail.style";
+} from "@/components/Story/StoryDetail/StoryDetail.style";
 
 const Reply = ({ content, member, onClose }: ReplyListInfoType) => {
 	return (

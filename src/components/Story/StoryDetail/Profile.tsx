@@ -11,7 +11,7 @@ import {
 	profileStyle,
 	moreButtonStyle,
 	menuStyle,
-} from "@/components/Landing/Post/PostDetail/Profile.style";
+} from "@/components/Story/StoryDetail/Profile.style";
 
 interface ProfileType {
 	img: string | undefined;

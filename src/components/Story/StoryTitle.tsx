@@ -3,9 +3,9 @@ import LogIcon from "@/assets/svg/log.svg?react";
 import { Flex, Heading, Text } from "@/components/common";
 import { SortButton } from "@/components/Landing";
 
-import { headingStyle, buttonStyle } from "@/components/Landing/Post/Post.style";
+import { headingStyle, buttonStyle } from "@/components/Story/Story.style";
 
-const PostTitle = () => {
+const StoryTitle = () => {
 	return (
 		<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
 			<Flex styles={{ align: "center", gap: "20px" }}>
@@ -23,4 +23,4 @@ const PostTitle = () => {
 	);
 };
 
-export default PostTitle;
+export default StoryTitle;

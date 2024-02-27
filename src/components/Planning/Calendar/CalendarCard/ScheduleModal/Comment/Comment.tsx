@@ -1,9 +1,8 @@
-import { format } from "date-fns";
-
 import PenIcon from "@/assets/svg/pen.svg?react";
 import TrashIcon from "@/assets/svg/trashCan.svg?react";
 
 import { Box, Flex, MentionChecker, Text } from "@/components/common";
+import { format } from "date-fns";
 
 import {
 	commentBoxStyle,

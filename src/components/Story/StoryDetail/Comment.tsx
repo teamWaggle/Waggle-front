@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
-import Profile from "@/components/Landing/Post/PostDetail/Profile";
-import Reply from "@/components/Landing/Post/PostDetail/Reply";
+import Profile from "@/components/Story/StoryDetail/Profile";
+import Reply from "@/components/Story/StoryDetail/Reply";
 
 import { useReplyQuery } from "@/hooks/api/useReplyQuery";
 
@@ -17,7 +17,7 @@ import {
 	getCommentTextStyle,
 	commentBoxStyle,
 	handleReplyTextStyle,
-} from "@/components/Landing/Post/PostDetail/PostDetail.style";
+} from "@/components/Story/StoryDetail/StoryDetail.style";
 
 const Comment = ({ id, member, content, createdDate }: CommentListInfoType) => {
 	const { replyData } = useReplyQuery(0, id);
