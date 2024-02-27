@@ -2,8 +2,6 @@ import { useRef } from "react";
 
 import { useResetRecoilState } from "recoil";
 
-import { format } from "date-fns";
-
 import GroupIcon from "@/assets/svg/group.svg?react";
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
 import ScheduleModalCloseIcon from "@/assets/svg/scheduleModalClose.svg?react";
@@ -12,6 +10,7 @@ import { Box, Flex, Heading, Text } from "@/components/common";
 import Comment from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/Comment/Comment";
 import OptionDropdown from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/OptionDropdown/OptionDropdown";
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
+import { format } from "date-fns";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
 

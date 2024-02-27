@@ -1,28 +1,28 @@
 import MediaIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex } from "@/components/common";
-import PostDetail from "@/components/Landing/Post/PostDetail/PostDetail";
+import StoryDetail from "@/components/Story/StoryDetail/StoryDetail";
 
 import useModal from "@/hooks/useModal";
 
 import type { StoryListInfoType } from "@/types/story";
 
-import { imgStyle, iconStyle } from "@/components/Landing/Post/Post.style";
+import { imgStyle, iconStyle } from "@/components/Story/Story.style";
 
-const PostCard = ({ id, thumbnail }: StoryListInfoType) => {
+const StoryCard = ({ id, thumbnail }: StoryListInfoType) => {
 	const modal = useModal();
 
-	const postDetailOpen = () => {
+	const storyDetailOpen = () => {
 		modal.openModal({
-			key: `postDetail${id}`,
-			component: () => <PostDetail id={id} />,
+			key: `StoryDetail${id}`,
+			component: () => <StoryDetail id={id} />,
 		});
 	};
 
 	return (
 		<Flex
 			styles={{ align: "center", width: "252px", height: "252px", position: "relative" }}
-			onClick={postDetailOpen}
+			onClick={storyDetailOpen}
 		>
 			<img src={thumbnail} alt="profileImg" css={imgStyle} />
 			<MediaIcon css={iconStyle} />
@@ -30,4 +30,4 @@ const PostCard = ({ id, thumbnail }: StoryListInfoType) => {
 	);
 };
 
-export default PostCard;
+export default StoryCard;

@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
 import { Flex, Box, Divider, Text } from "@/components/common";
-import Comment from "@/components/Landing/Post/PostDetail/Comment";
-import Profile from "@/components/Landing/Post/PostDetail/Profile";
+import Comment from "@/components/Story/StoryDetail/Comment";
+import Profile from "@/components/Story/StoryDetail/Profile";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 import { useStoryQuery } from "@/hooks/api/useStoryQuery";
@@ -21,13 +21,13 @@ import {
 	commentLayoutStyle,
 	getReplyInputStyle,
 	replyButtonStyle,
-} from "@/components/Landing/Post/PostDetail/PostDetail.style";
+} from "@/components/Story/StoryDetail/StoryDetail.style";
 
 interface idType {
 	id: number;
 }
 
-const PostDetail = ({ id }: idType) => {
+const StoryDetail = ({ id }: idType) => {
 	const { storyData } = useStoryQuery(id);
 
 	const { commentData } = useCommentQuery(0, id);
@@ -132,4 +132,4 @@ const PostDetail = ({ id }: idType) => {
 	);
 };
 
-export default PostDetail;
+export default StoryDetail;
