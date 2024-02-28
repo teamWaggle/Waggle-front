@@ -13,12 +13,18 @@ export const layoutStyle = css({
 });
 
 export const headerStyle = css({
-	justifyContent: "space-between",
+	justifyContent: "center",
 	alignItems: "center",
 	width: "100%",
-	height: "44px",
+	height: "54px",
 	padding: "0 36px",
 	borderBottom: `1px solid ${Theme.color.border}`,
+	position: "relative",
+
+	"& > svg": {
+		position: "absolute",
+		left: "24px",
+	},
 });
 
 export const imgBoxStyle = css({
@@ -32,6 +38,14 @@ export const imgBoxStyle = css({
 		objectFit: "cover",
 		borderBottomLeftRadius: "36px",
 	},
+});
+
+export const contentBoxStyle = css({
+	flexDirection: "column",
+	justifyContent: "space-between",
+	padding: "14px 28px",
+	width: "319px",
+	height: "100%",
 });
 
 export const profileImgStyle = css({
@@ -63,4 +77,11 @@ export const lengthTextStyle = css({
 	color: Theme.color.readonly_text,
 	fontWeight: 500,
 	alignSelf: "flex-end",
+});
+
+export const uploadButtonStyle = css({
+	alignSelf: "flex-end",
+	justifySelf: "flex-end",
+	fontWeight: 600,
+	color: Theme.color.brand_primary,
 });
