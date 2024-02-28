@@ -1,11 +1,10 @@
-import { Box, Flex, Heading, SearchInput, Text } from "@/components/common";
+import { Box, Flex, Heading, SearchInput, Text, MainContainer } from "@/components/common";
 import Slider from "@/components/Planning/Main/Slider/Slider";
 import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 
 import type { TeamCardType } from "@/types/planning";
 
 import {
-	sectionStyle,
 	headingStyle,
 	buttonStyle,
 	flexStyle,
@@ -62,7 +61,7 @@ const mockData: TeamCardType[] = [
 
 const Main = () => {
 	return (
-		<Box tag="section" css={sectionStyle}>
+		<MainContainer>
 			<Flex css={flexStyle}>
 				<Heading css={headingStyle} size="medium">
 					My TEAM
@@ -83,7 +82,7 @@ const Main = () => {
 					<TeamCard key={data.teamId} data={data} />
 				))}
 			</Box>
-		</Box>
+		</MainContainer>
 	);
 };
 

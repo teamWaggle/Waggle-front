@@ -2,12 +2,6 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const sectionStyle = css({
-	width: "1536px",
-	margin: "0 auto",
-	padding: "0 196px",
-});
-
 export const flexStyle = css({
 	justifyContent: "space-between",
 	alignItems: "center",

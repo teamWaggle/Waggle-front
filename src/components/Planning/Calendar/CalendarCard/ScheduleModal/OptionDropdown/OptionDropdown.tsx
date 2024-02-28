@@ -9,7 +9,7 @@ const OptionDropdown = ({ children }: { children: ReactNode }) => {
 		<Dropdown>
 			<DropdownButton css={dropdownButtonStyle}>{children}</DropdownButton>
 			<DropdownList>
-				<DropdownItem>일정 삭제</DropdownItem>
+				<DropdownItem onClick={() => {}}>일정 삭제</DropdownItem>
 				<DropdownItem>일정 취소</DropdownItem>
 				<DropdownItem>일정 수정</DropdownItem>
 				<DropdownItem>권한 위임</DropdownItem>

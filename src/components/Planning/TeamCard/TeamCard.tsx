@@ -1,4 +1,6 @@
-import ProfileTeamCardIcon from "@/assets/svg/profile-teamcard.svg?react";
+import { useNavigate } from "react-router-dom";
+
+import ProfileTeamCardIcon from "@/assets/svg/profile-teamCard.svg?react";
 
 import { Box, Flex, Text } from "@/components/common";
 
@@ -16,9 +18,12 @@ import {
 
 const TeamCard = ({ data }: { data: TeamCardType }) => {
 	const { name, coverImageUrl, description, teamSize, maxTeamSize, colorScheme } = data;
+	const navigate = useNavigate();
 	const handleOnClick = () => {
 		console.log(data.name);
+		navigate(`/team/${data.name}`);
 	};
+
 	return (
 		<Box tag="article" css={boxStyle} onClick={handleOnClick}>
 			<img src={coverImageUrl} alt={name} css={imgStyle} />
