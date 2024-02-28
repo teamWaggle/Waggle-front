@@ -14,19 +14,14 @@ import {
 const users = [
 	{
 		id: "isaac",
-		img: "https://source.unsplash.com/random/12x12",
-
 		display: "Isaac Newton",
 	},
 	{
 		id: "sam",
-		img: "https://source.unsplash.com/random/12x12",
 		display: "Sam Victor",
 	},
 	{
 		id: "emma",
-		img: "https://source.unsplash.com/random/12x12",
-
 		display: "emmanuel@nobody.com",
 	},
 ];
@@ -50,7 +45,7 @@ const CommentInput = () => {
 						trigger="@"
 						style={mentionStyle}
 						data={users}
-						markup="@[__display__]"
+						markup="@[__display__](__id__)"
 						appendSpaceOnAdd={true}
 						displayTransform={(_id, display) => `@${display}`}
 						renderSuggestion={(_suggestion, _search, highlightedDisplay) => (
