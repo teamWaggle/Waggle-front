@@ -1,3 +1,4 @@
+import MainContainer from "@/components/common/Container/MainContainer/MainContainer";
 import Box from "@/components/common/Design/Box/Box";
 import Carousel from "@/components/common/Design/Carousel/Carousel";
 import Divider from "@/components/common/Design/Divider/Divider";
@@ -13,6 +14,7 @@ import Text from "@/components/common/Design/Text/Text";
 import Logo from "@/components/common/Logo";
 import SearchInput from "@/components/common/SearchInput/SearchInput";
 import SocialLogin from "@/components/common/SocialLogin";
+
 export {
 	Box,
 	Carousel,
@@ -29,4 +31,5 @@ export {
 	DropdownButton,
 	DropdownItem,
 	DropdownList,
+	MainContainer,
 };

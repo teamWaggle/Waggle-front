@@ -9,6 +9,7 @@ import {
 	SirenCreatePage,
 	SirenDetailPage,
 	SirenPage,
+	TeamPage,
 } from "@/pages";
 import * as Lazy from "@/router/lazy";
 
@@ -52,6 +53,7 @@ const AppRouter = () => {
 					path: "/siren-new",
 					element: <SirenCreatePage />,
 				},
+				{ path: "/team/:teamName", element: <TeamPage /> },
 			],
 		},
 	]);

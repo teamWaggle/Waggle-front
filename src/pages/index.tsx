@@ -5,6 +5,7 @@ import SignUpPage from "./SignUpPage";
 import SirenCreatePage from "./SirenCreatePage";
 import SirenDetailPage from "./SirenDetailPage";
 import SirenPage from "./SirenPage";
+import TeamPage from "./TeamPage";
 
 export {
 	LandingPage,
@@ -14,4 +15,5 @@ export {
 	SignUpPage,
 	PlanningPage,
 	SirenCreatePage,
+	TeamPage,
 };

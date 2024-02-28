@@ -9,6 +9,7 @@ export const boxStyle = css({
 	borderRadius: "20px",
 	height: "327px",
 	width: "270px",
+	cursor: "pointer",
 });
 
 export const imgStyle = css({
