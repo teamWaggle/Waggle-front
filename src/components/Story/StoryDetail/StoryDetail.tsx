@@ -42,6 +42,10 @@ const StoryDetail = ({ id }: idType) => {
 		}
 	}, [storyData]);
 
+	if (!storyData) {
+		return <div>로딩중...</div>;
+	}
+
 	return (
 		<>
 			{storyData && (

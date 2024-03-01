@@ -64,6 +64,7 @@ const Comment = ({ id, member, content, createdDate }: CommentListInfoType) => {
 						id={reply.id}
 						content={reply.content}
 						member={reply.member}
+						createdDate={reply.createdDate}
 					/>
 				))}
 		</Flex>
