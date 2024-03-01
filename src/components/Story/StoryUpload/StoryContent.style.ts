@@ -28,8 +28,11 @@ export const headerStyle = css({
 });
 
 export const imgBoxStyle = css({
-	width: "740px",
-	height: "100%",
+	// width: "740px",
+	// height: "100%",
+	width: "100px",
+	display: "flex",
+	height: "100px",
 	borderRight: `1px solid #d2d2d2`,
 
 	"& > img": {

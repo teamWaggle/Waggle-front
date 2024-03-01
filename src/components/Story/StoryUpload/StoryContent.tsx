@@ -19,7 +19,7 @@ import {
 	uploadButtonStyle,
 } from "@/components/Story/StoryUpload/StoryContent.style";
 
-const StoryContent = ({ media }: { media: string }) => {
+const StoryContent = ({ media }: { media: string[] }) => {
 	const [content, setContent] = useState("");
 
 	return (
@@ -33,7 +33,9 @@ const StoryContent = ({ media }: { media: string }) => {
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				<Box css={imgBoxStyle}>
-					<img src={media} alt="media" />
+					{media.map((data) => (
+						<img src={data} alt="media" />
+					))}
 				</Box>
 
 				<Flex css={contentBoxStyle}>
