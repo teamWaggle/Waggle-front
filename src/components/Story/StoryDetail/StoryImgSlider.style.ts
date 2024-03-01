@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
 
+import { Theme } from "@/styles/Theme";
+
 export const layoutStyle = css({
 	alignItems: "center",
 	justifyContent: "center",
@@ -29,7 +31,7 @@ export const sliderBoxStyle = (width: string) => {
 	});
 };
 
-export const imgStyle = (width: number) => {
+export const imgStyle = (width?: number) => {
 	return css({
 		width: width,
 		height: "100%",
@@ -38,7 +40,7 @@ export const imgStyle = (width: number) => {
 	});
 };
 
-export const arrowBoxStyle = (direction: string) => {
+export const arrowBoxStyle = (isShow: boolean) => {
 	return css({
 		width: "40px",
 		height: "40px",
@@ -46,7 +48,33 @@ export const arrowBoxStyle = (direction: string) => {
 		alignItems: "center",
 		justifyContent: "center",
 		position: "absolute",
-		left: direction === "left" ? "20px" : "auto",
-		right: direction === "right" ? "20px" : "auto",
+		cursor: "pointer",
+		display: isShow ? "none" : "flex",
+
+		"&.leftArrow": {
+			left: "20px",
+		},
+
+		"&.rightArrow": {
+			right: "20px",
+		},
+	});
+};
+
+export const imgDotBoxStyle = css({
+	position: "absolute",
+	width: "100%",
+	display: "flex",
+	gap: "9px",
+	justifyContent: "center",
+	bottom: "20px",
+});
+
+export const imgDotStyle = (currentIndex: boolean) => {
+	return css({
+		backgroundColor: currentIndex ? Theme.color.white : Theme.color.border,
+		width: "12px",
+		height: "12px",
+		borderRadius: "50%",
 	});
 };
