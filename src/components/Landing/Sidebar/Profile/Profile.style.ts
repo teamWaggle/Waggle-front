@@ -2,32 +2,38 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const boxStyle = css({
-	borderRadius: Theme.spacer.spacing5,
-	border: `2px solid ${Theme.color.brand_primary}`,
-	boxShadow: Theme.boxShadow.shadow3,
-	width: "315px",
+export const layoutStyle = css({
+	borderRadius: Theme.spacer.spacing3_5,
+	border: `1px solid ${Theme.color.brand_primary}`,
+	boxShadow: Theme.boxShadow.shadow2,
+	padding: "22px",
+	alignItems: "center",
+	gap: "14px",
 });
 
-export const headingStyle = css({
+export const nicknameStyle = css({
+	overflow: "hidden",
+	textOverflow: "ellipsis",
+	whiteSpace: "nowrap",
 	color: Theme.color.text,
+	width: "120px",
 	fontWeight: 700,
 });
 
-export const textStyle = css({
-	color: Theme.color.text,
-	fontWeight: 500,
-});
-
-export const logoutBoxStyle = css({
-	color: Theme.color.text,
-	fontWeight: 600,
-	fontFamily: "Montserrat",
-	padding: "12px 36px",
-	width: "100%",
-});
-
-export const buttonStyle = css({
+export const buttonBoxStyle = css({
 	all: "unset",
+	display: "flex",
+	justifyContent: "center",
+	alignItems: "center",
+	gap: "4px",
+	width: "60px",
+	height: "22px",
+	border: `1px solid ${Theme.color.border}`,
+	borderRadius: "10px",
 	cursor: "pointer",
+});
+
+export const buttonTextStyle = css({
+	fontSize: "10px",
+	color: Theme.color.readonly_text,
 });
