@@ -15,8 +15,52 @@ import { layoutStyle, labelStyle } from "@/components/Story/StoryUpload/StoryUpl
 const StoryUpload = () => {
 	const [fileURL, setFileURL] = useState<string[]>([]);
 	const [fileUpload, setFileUpload] = useState(false);
+	const [isDragOver, setIsDragOver] = useState(false);
 
 	const modal = useModal();
+
+	const handleDragIn = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		e.stopPropagation();
+	};
+
+	const handleDragOut = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		setIsDragOver(false);
+	};
+
+	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		if (e.dataTransfer!.files) {
+			setIsDragOver(true);
+		}
+	};
+
+	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		e.stopPropagation();
+		setIsDragOver(false);
+
+		if (!e.dataTransfer) {
+			return;
+		}
+
+		const dropFiles = e.dataTransfer.files;
+		const imgUrlList: string[] = [];
+
+		for (let i = 0; i < dropFiles.length; i++) {
+			const img = new Image();
+			img.src = URL.createObjectURL(dropFiles[i]);
+			imgUrlList.push(img.src);
+		}
+
+		setFileURL(imgUrlList);
+		setFileUpload(true);
+	};
 
 	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const files = e.currentTarget.files;
@@ -48,7 +92,13 @@ const StoryUpload = () => {
 	}, [fileUpload]);
 
 	return (
-		<Flex css={layoutStyle}>
+		<Flex
+			css={layoutStyle(isDragOver)}
+			onDrop={handleDrop}
+			onDragEnter={handleDragIn}
+			onDragLeave={handleDragOut}
+			onDragOver={handleDragOver}
+		>
 			<UploadMediaIcon />
 			<Text size="xLarge" css={getDefaultTextStyle(Theme.color.white, 600)}>
 				사진과 동영상을 여기다 끌어다 놓으세요
