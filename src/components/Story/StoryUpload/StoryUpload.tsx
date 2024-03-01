@@ -13,21 +13,26 @@ import { Theme } from "@/styles/Theme";
 import { layoutStyle, labelStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 
 const StoryUpload = () => {
-	const [fileURL, setFileURL] = useState<string>("");
+	const [fileURL, setFileURL] = useState<string[]>([]);
 	const [fileUpload, setFileUpload] = useState(false);
 
 	const modal = useModal();
 
 	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const target = e.currentTarget;
-		const files = (target.files as FileList)[0];
+		const files = e.currentTarget.files;
+		const imgUrlList: string[] = [];
 
-		if (files === undefined) {
+		if (!files) {
 			return;
 		}
 
-		const newFileURL = URL.createObjectURL(files);
-		setFileURL(newFileURL);
+		for (let i = 0; i < files.length; i++) {
+			const img = new Image();
+			img.src = URL.createObjectURL(files[i]);
+			imgUrlList.push(img.src);
+		}
+
+		setFileURL(imgUrlList);
 		setFileUpload(true);
 	};
 
@@ -53,7 +58,13 @@ const StoryUpload = () => {
 					컴퓨터에서 선택
 				</Text>
 			</label>
-			<input type="file" multiple id="media" onChange={handleChangeImg} />
+			<input
+				type="file"
+				multiple
+				id="media"
+				onChange={handleChangeImg}
+				accept="image/jpeg, image/png, image/heic, image/heif"
+			/>
 		</Flex>
 	);
 };
