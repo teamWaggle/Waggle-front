@@ -5,6 +5,7 @@ import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 import { Flex, Box, Divider, Text } from "@/components/common";
 import Comment from "@/components/Story/StoryDetail/Comment";
 import Profile from "@/components/Story/StoryDetail/Profile";
+import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 import { useStoryQuery } from "@/hooks/api/useStoryQuery";
@@ -16,7 +17,6 @@ import { convertToUTC } from "@/utils/convertToUTC";
 
 import {
 	layoutStyle,
-	imgStyle,
 	contentBoxStyle,
 	commentLayoutStyle,
 	getReplyInputStyle,
@@ -33,8 +33,6 @@ const StoryDetail = ({ id }: idType) => {
 	const { commentData } = useCommentQuery(0, id);
 
 	const [createdDate, setCreatedDate] = useState("");
-
-	const imgIndex = 0;
 
 	useEffect(() => {
 		if (storyData) {
@@ -53,11 +51,10 @@ const StoryDetail = ({ id }: idType) => {
 						styles={{
 							width: "741px",
 							height: "100%",
-							borderRadius: "42px 0 0 42px",
 							borderRight: "1px solid #d2d2d2",
 						}}
 					>
-						<img src={storyData.result.medias[imgIndex]} alt="profileImg" css={imgStyle} />
+						<StoryImgSlider medias={storyData.result.medias} />
 					</Flex>
 
 					{/* 본문 영역 */}

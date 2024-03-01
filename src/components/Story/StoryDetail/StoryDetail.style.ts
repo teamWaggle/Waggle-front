@@ -12,13 +12,6 @@ export const layoutStyle = css({
 	position: "relative",
 });
 
-export const imgStyle = css({
-	width: "100%",
-	height: "100%",
-	objectFit: "cover",
-	borderRadius: "36px 0 0 36px",
-});
-
 export const contentBoxStyle = css({
 	maxWidth: "270px",
 });
