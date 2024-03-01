@@ -84,4 +84,5 @@ export const uploadButtonStyle = css({
 	justifySelf: "flex-end",
 	fontWeight: 600,
 	color: Theme.color.brand_primary,
+	cursor: "pointer",
 });
