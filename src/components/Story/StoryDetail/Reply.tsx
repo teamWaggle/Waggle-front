@@ -1,9 +1,13 @@
+import { useState, useEffect } from "react";
+
 import { css } from "@emotion/react";
 
 import { Flex, Box, Text } from "@/components/common";
 import Profile from "@/components/Story/StoryDetail/Profile";
 
 import { Theme } from "@/styles/Theme";
+
+import { convertToUTC } from "@/utils/convertToUTC";
 
 import type { ReplyListInfoType } from "@/types/reply";
 
@@ -13,9 +17,20 @@ import {
 	getReplyInputStyle,
 	replyButtonStyle,
 	handleReplyTextStyle,
+	replyDateTextStyle,
 } from "@/components/Story/StoryDetail/StoryDetail.style";
 
-const Reply = ({ content, member, onClose }: ReplyListInfoType) => {
+const Reply = ({ content, member, onClose, createdDate }: ReplyListInfoType) => {
+	const [date, setDate] = useState("");
+
+	useEffect(() => {
+		if (createdDate) {
+			const date = new Date(createdDate);
+
+			setDate(convertToUTC(date).date);
+		}
+	}, [createdDate]);
+
 	return (
 		<Flex
 			styles={{
@@ -40,6 +55,7 @@ const Reply = ({ content, member, onClose }: ReplyListInfoType) => {
 				<Text size="small" css={getCommentTextStyle(true)}>
 					{content}
 				</Text>
+				<Text css={replyDateTextStyle}>{date}</Text>
 			</Box>
 
 			<Box styles={{ position: "relative" }}>

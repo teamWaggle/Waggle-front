@@ -22,7 +22,7 @@ const StoryImgSlider = ({ medias }: { medias: string[] }) => {
 	const wrapRef = useRef<HTMLDivElement>(null);
 	const sliderRef = useRef<HTMLDivElement>(null);
 
-	const [mediaWidth, setMediaWidth] = useState(wrapRef.current?.offsetWidth);
+	const [mediaWidth, setMediaWidth] = useState(741);
 
 	useEffect(() => {
 		if (!wrapRef.current) return;

@@ -61,6 +61,14 @@ export const getReplyInputStyle = (width: string) => {
 	});
 };
 
+export const replyDateTextStyle = css({
+	fontSize: "10px",
+	lineHeight: "12px",
+	fontWeight: 500,
+	color: Theme.color.readonly_text,
+	marginTop: "4px",
+});
+
 export const replyButtonStyle = css({
 	all: "unset",
 	fontSize: "14px",
