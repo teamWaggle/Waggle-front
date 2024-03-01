@@ -6,7 +6,9 @@ export const layoutStyle = css({
 	borderRadius: Theme.spacer.spacing3_5,
 	border: `1px solid ${Theme.color.brand_primary}`,
 	boxShadow: Theme.boxShadow.shadow2,
-	padding: "22px",
+	width: "310px",
+	height: "106px",
+	justifyContent: "center",
 	alignItems: "center",
 	gap: "14px",
 });

@@ -1,5 +1,5 @@
-import Flex from "@/components/common/Flex/Flex";
-import { Searchbar, Sidebar } from "@/components/Landing";
+import { Flex, SearchInput } from "@/components/common";
+import { Sidebar, SortButton } from "@/components/Landing";
 import { Story } from "@/components/Story";
 
 import { mainStyle } from "@/components/Landing/Main/Main.style";
@@ -7,11 +7,14 @@ import { mainStyle } from "@/components/Landing/Main/Main.style";
 const Main = () => {
 	return (
 		<main css={mainStyle}>
-			<Flex styles={{ gap: "30px" }}>
-				<section>
-					<Searchbar defaultText="전체검색" />
+			<Flex styles={{ justify: "space-between" }}>
+				<Flex tag="section" styles={{ direction: "column", gap: "62px", width: "814px" }}>
+					<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
+						<SortButton defaultText="전체 검색" />
+						<SearchInput onChange={() => {}} width="644px" />
+					</Flex>
 					<Story />
-				</section>
+				</Flex>
 				<Sidebar />
 			</Flex>
 		</main>

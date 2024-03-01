@@ -12,10 +12,11 @@ const Widget = () => {
 				direction: "column",
 				align: "center",
 				justify: "center",
-				padding: "32px 22px 26px",
+				padding: "32px 0 26px",
 				border: `1px solid ${Theme.color.brand_primary}`,
 				borderRadius: "14px",
 				boxShadow: Theme.boxShadow.shadow2,
+				width: "310px",
 			}}
 		>
 			<Text size="xLarge" css={titleStyle}>

@@ -19,7 +19,7 @@ const SearchBar = ({ onChange, width }: SearchBarProps) => {
 	return (
 		<Flex styles={{ align: "center" }} css={searchStyle(width)}>
 			<input
-				css={searchInputStyle}
+				css={searchInputStyle(width)}
 				type="text"
 				placeholder="검색어를 입력해주세요."
 				onChange={onChange}

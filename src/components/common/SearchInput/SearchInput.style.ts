@@ -13,15 +13,17 @@ export const searchStyle = (width: string) =>
 		boxShadow: "0px 2px 5px 0px rgba(0, 40, 37, 0.1)",
 	});
 
-export const searchInputStyle = css({
-	height: "32px",
-	width: "247px",
-	paddingRight: "20px",
-	border: "none",
-	outline: "none",
-	borderRadius: "27.5px",
-	background: Theme.color.transparent,
-});
+export const searchInputStyle = (width: string) => {
+	return css({
+		height: "32px",
+		width: width,
+		paddingRight: "20px",
+		border: "none",
+		outline: "none",
+		borderRadius: "27.5px",
+		background: Theme.color.transparent,
+	});
+};
 
 export const searchButtonStyle = css({
 	all: "unset",
