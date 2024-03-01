@@ -15,7 +15,7 @@ import {
 	imgDotStyle,
 } from "@/components/Story/StoryDetail/StoryImgSlider.style";
 
-const StoryImgSlider = ({ medias }: { medias: string[] }) => {
+const StoryImgSlider = ({ medias, isUpload }: { medias: string[]; isUpload?: boolean }) => {
 	const [sliderIndex, setSliderIndex] = useState(0);
 	const totalIndex = medias.length - 1;
 
@@ -80,7 +80,7 @@ const StoryImgSlider = ({ medias }: { medias: string[] }) => {
 			<div css={imgBoxStyle} ref={wrapRef} onScroll={detectScroll}>
 				<div css={sliderBoxStyle(`${(totalIndex + 1) * 100}%`)} ref={sliderRef}>
 					{medias.map((media) => (
-						<img key={media} src={media} alt="img" css={imgStyle(mediaWidth)} />
+						<img key={media} src={media} alt="img" css={imgStyle(mediaWidth, isUpload)} />
 					))}
 				</div>
 			</div>

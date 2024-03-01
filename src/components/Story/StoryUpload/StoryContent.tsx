@@ -3,7 +3,8 @@ import { useState } from "react";
 import SampleImg from "@/assets/png/post-sample.png";
 import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Text } from "@/components/common";
+import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -32,11 +33,9 @@ const StoryContent = ({ media }: { media: string[] }) => {
 			</Flex>
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
-				<Box css={imgBoxStyle}>
-					{media.map((data) => (
-						<img src={data} alt="media" />
-					))}
-				</Box>
+				<Flex css={imgBoxStyle}>
+					<StoryImgSlider medias={media} isUpload />
+				</Flex>
 
 				<Flex css={contentBoxStyle}>
 					<Flex styles={{ direction: "column", gap: "12px", width: "100%" }}>
