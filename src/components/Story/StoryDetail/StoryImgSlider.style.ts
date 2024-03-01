@@ -28,15 +28,16 @@ export const sliderBoxStyle = (width: string) => {
 		display: "flex",
 		alignItems: "center",
 		width: width,
+		height: "100%",
 	});
 };
 
-export const imgStyle = (width?: number) => {
+export const imgStyle = (width?: number, isUpload?: boolean) => {
 	return css({
 		width: width,
 		height: "100%",
 		objectFit: "cover",
-		borderRadius: "42px 0 0 42px",
+		borderRadius: isUpload ? "0 0 0 42px" : "42px 0 0 42px",
 	});
 };
 

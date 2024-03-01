@@ -28,19 +28,9 @@ export const headerStyle = css({
 });
 
 export const imgBoxStyle = css({
-	// width: "740px",
-	// height: "100%",
-	width: "100px",
-	display: "flex",
-	height: "100px",
+	width: "740px",
+	height: "100%",
 	borderRight: `1px solid #d2d2d2`,
-
-	"& > img": {
-		width: "100%",
-		height: "100%",
-		objectFit: "cover",
-		borderBottomLeftRadius: "36px",
-	},
 });
 
 export const contentBoxStyle = css({
