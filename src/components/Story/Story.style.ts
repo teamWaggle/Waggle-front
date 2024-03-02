@@ -32,6 +32,7 @@ export const buttonStyle = css({
 	backgroundColor: Theme.color.brand_primary,
 	color: Theme.color.white,
 	borderRadius: "4px",
+	cursor: "pointer",
 
 	"& > p": {
 		lineHeight: "24px",

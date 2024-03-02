@@ -32,9 +32,9 @@ export const sliderBoxStyle = (width: string) => {
 	});
 };
 
-export const imgStyle = (width?: number, isUpload?: boolean) => {
+export const imgStyle = (isUpload?: boolean) => {
 	return css({
-		width: width,
+		width: "740px",
 		height: "100%",
 		objectFit: "cover",
 		borderRadius: isUpload ? "0 0 0 42px" : "42px 0 0 42px",

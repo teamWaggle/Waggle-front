@@ -7,6 +7,7 @@ import type { ModalType } from "@/types/modal";
 const useModal = () => {
 	const setModals = useSetRecoilState(modalState);
 	const setScheduleModals = useSetRecoilState(scheduleModalState);
+
 	const openModal = ({ key, component }: ModalType) => {
 		const modalProps = {
 			key,
