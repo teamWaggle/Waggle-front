@@ -82,3 +82,20 @@ export const galleryPlusIconBoxStyle = css({
 	marginRight: "12px",
 	cursor: "pointer",
 });
+
+export const imgDotBoxStyle = css({
+	position: "absolute",
+	width: "100%",
+	gap: "9px",
+	justifyContent: "center",
+	bottom: "20px",
+});
+
+export const imgDotStyle = (currentIndex: boolean) => {
+	return css({
+		backgroundColor: currentIndex ? Theme.color.brand_primary : Theme.color.border,
+		width: "12px",
+		height: "12px",
+		borderRadius: "50%",
+	});
+};
