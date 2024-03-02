@@ -19,6 +19,8 @@ import {
 	galleryIconBoxStyle,
 	galleryBoxStyle,
 	galleryPlusIconBoxStyle,
+	imgDotBoxStyle,
+	imgDotStyle,
 } from "@/components/Story/StoryUpload/UploadCut.style";
 
 const UploadCut = ({ medias }: { medias: string[] }) => {
@@ -83,6 +85,13 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 						</Flex>
 					)}
 				</div>
+
+				<Flex css={imgDotBoxStyle}>
+					{fileURL.length > 0 &&
+						[...Array(fileURL.length)].map((_, index) => (
+							<div key={index} css={imgDotStyle(mediaCurrentIndex === index)} />
+						))}
+				</Flex>
 			</Flex>
 		</Flex>
 	);

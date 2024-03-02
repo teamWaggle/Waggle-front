@@ -65,7 +65,6 @@ export const arrowBoxStyle = (isShow: boolean) => {
 export const imgDotBoxStyle = css({
 	position: "absolute",
 	width: "100%",
-	display: "flex",
 	gap: "9px",
 	justifyContent: "center",
 	bottom: "20px",
@@ -73,7 +72,7 @@ export const imgDotBoxStyle = css({
 
 export const imgDotStyle = (currentIndex: boolean) => {
 	return css({
-		backgroundColor: currentIndex ? Theme.color.white : Theme.color.border,
+		backgroundColor: currentIndex ? Theme.color.brand_primary : Theme.color.border,
 		width: "12px",
 		height: "12px",
 		borderRadius: "50%",
