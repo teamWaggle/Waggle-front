@@ -1,8 +1,10 @@
 import { useState, useRef } from "react";
 
 import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
-import LeftArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
+import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
+import LeftArrowIcon from "@/assets/svg/ic-left-arrow-slider.svg?react";
 import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
+import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
 
 import { Flex, Text } from "@/components/common";
 import GallerySlider from "@/components/Story/StoryUpload/GallerySlider";
@@ -21,6 +23,7 @@ import {
 	galleryPlusIconBoxStyle,
 	imgDotBoxStyle,
 	imgDotStyle,
+	arrowBoxStyle,
 } from "@/components/Story/StoryUpload/UploadCut.style";
 
 const UploadCut = ({ medias }: { medias: string[] }) => {
@@ -31,6 +34,18 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 	const galleryRef = useRef<HTMLDivElement>(null);
 
 	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
+
+	const handleLeftArrowClick = () => {
+		if (mediaCurrentIndex === 0) return;
+
+		setMediaCurrentIndex((prev) => prev - 1);
+	};
+
+	const handleRightArrowClick = () => {
+		if (mediaCurrentIndex === fileURL.length - 1) return;
+
+		setMediaCurrentIndex((prev) => prev + 1);
+	};
 
 	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const files = e.currentTarget.files;
@@ -52,7 +67,7 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 	return (
 		<Flex css={layoutStyle}>
 			<Flex css={headerStyle}>
-				<LeftArrowIcon />
+				<PrevArrowIcon />
 				<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 600)}>
 					자르기
 				</Text>
@@ -85,6 +100,22 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 						</Flex>
 					)}
 				</div>
+
+				<Flex
+					css={arrowBoxStyle(mediaCurrentIndex === 0)}
+					onClick={handleLeftArrowClick}
+					className="leftArrow"
+				>
+					<LeftArrowIcon width={40} height={40} />
+				</Flex>
+
+				<Flex
+					css={arrowBoxStyle(mediaCurrentIndex === fileURL.length - 1)}
+					onClick={handleRightArrowClick}
+					className="rightArrow"
+				>
+					<RightArrowIcon width={40} height={40} />
+				</Flex>
 
 				<Flex css={imgDotBoxStyle}>
 					{fileURL.length > 0 &&
