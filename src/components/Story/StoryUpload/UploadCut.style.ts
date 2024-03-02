@@ -99,3 +99,25 @@ export const imgDotStyle = (currentIndex: boolean) => {
 		borderRadius: "50%",
 	});
 };
+
+export const arrowBoxStyle = (isShow: boolean) => {
+	return css({
+		width: "40px",
+		height: "40px",
+		borderRadius: "50%",
+		alignItems: "center",
+		justifyContent: "center",
+		position: "absolute",
+		cursor: "pointer",
+		display: isShow ? "none" : "flex",
+		top: "50%",
+
+		"&.leftArrow": {
+			left: "20px",
+		},
+
+		"&.rightArrow": {
+			right: "20px",
+		},
+	});
+};
