@@ -4,7 +4,7 @@ import { Theme } from "@/styles/Theme";
 
 export const layoutStyle = css({
 	width: "1060px",
-	height: "736px",
+	height: "790px",
 	backgroundColor: Theme.color.white,
 	border: `5px solid ${Theme.color.white}`,
 	borderRadius: "42px",

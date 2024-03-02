@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 import LeftArrowIcon from "@/assets/svg/ic-left-arrow-slider.svg?react";
 import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
@@ -20,15 +20,6 @@ const StoryImgSlider = ({ medias, isUpload }: { medias: string[]; isUpload?: boo
 	const totalIndex = medias.length - 1;
 
 	const wrapRef = useRef<HTMLDivElement>(null);
-	const sliderRef = useRef<HTMLDivElement>(null);
-
-	const [mediaWidth, setMediaWidth] = useState(741);
-
-	useEffect(() => {
-		if (!wrapRef.current) return;
-
-		setMediaWidth(wrapRef.current.offsetWidth);
-	}, []);
 
 	const handleLeftArrowClick = () => {
 		const wrap = wrapRef.current;
@@ -62,8 +53,6 @@ const StoryImgSlider = ({ medias, isUpload }: { medias: string[]; isUpload?: boo
 		const wrap = wrapRef.current;
 		if (wrap === null) return;
 
-		const scrollLeft = wrap.scrollLeft;
-
 		let timer = null;
 
 		if (timer !== null) {
@@ -71,16 +60,16 @@ const StoryImgSlider = ({ medias, isUpload }: { medias: string[]; isUpload?: boo
 		}
 
 		timer = setTimeout(function () {
-			setSliderIndex(Math.round(scrollLeft / wrap.clientWidth));
+			setSliderIndex(Math.round(wrap.scrollLeft / wrap.clientWidth));
 		}, 150);
 	};
 
 	return (
 		<Flex css={layoutStyle}>
 			<div css={imgBoxStyle} ref={wrapRef} onScroll={detectScroll}>
-				<div css={sliderBoxStyle(`${(totalIndex + 1) * 100}%`)} ref={sliderRef}>
+				<div css={sliderBoxStyle(`${(totalIndex + 1) * 100}%`)}>
 					{medias.map((media) => (
-						<img key={media} src={media} alt="img" css={imgStyle(mediaWidth, isUpload)} />
+						<img key={media} src={media} alt="img" css={imgStyle(isUpload)} />
 					))}
 				</div>
 			</div>

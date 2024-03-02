@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
 
 import { Flex, Text } from "@/components/common";
-import StoryContent from "@/components/Story/StoryUpload/StoryContent";
+// import StoryContent from "@/components/Story/StoryUpload/StoryContent";
+import UploadCut from "@/components/Story/StoryUpload/UploadCut";
 
 import useModal from "@/hooks/useModal";
 
@@ -13,6 +14,7 @@ import { Theme } from "@/styles/Theme";
 import { layoutStyle, labelStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 
 const StoryUpload = () => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [fileURL, setFileURL] = useState<string[]>([]);
 	const [fileUpload, setFileUpload] = useState(false);
 	const [isDragOver, setIsDragOver] = useState(false);
@@ -84,9 +86,14 @@ const StoryUpload = () => {
 		if (fileUpload) {
 			modal.closeModal();
 
+			// modal.openModal({
+			// 	key: `StoryContentModal`,
+			// 	component: () => <StoryContent media={fileURL} />,
+			// });
+
 			modal.openModal({
-				key: `StoryContentModal`,
-				component: () => <StoryContent media={fileURL} />,
+				key: `UploadCutModal`,
+				component: () => <UploadCut />,
 			});
 		}
 	}, [fileUpload]);
