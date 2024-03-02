@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-import SampleImg from "@/assets/png/post-sample.png";
 import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
 import LeftArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex, Text } from "@/components/common";
 import GallerySlider from "@/components/Story/StoryUpload/GallerySlider";
+
+import useClickOutSide from "@/hooks/useClickOutSide";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -20,9 +21,14 @@ import {
 	galleryPlusIconBoxStyle,
 } from "@/components/Story/StoryUpload/UploadCut.style";
 
-const UploadCut = () => {
+const UploadCut = ({ medias }: { medias: string[] }) => {
+	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-	const [fileURL, setFileURL] = useState<string[]>([]);
+	const [fileURL, setFileURL] = useState<string[]>(medias);
+
+	const galleryRef = useRef<HTMLDivElement>(null);
+
+	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
 
 	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const files = e.currentTarget.files;
@@ -38,7 +44,7 @@ const UploadCut = () => {
 			imgUrlList.push(img.src);
 		}
 
-		setFileURL(imgUrlList);
+		setFileURL((prev) => [...prev, ...imgUrlList]);
 	};
 
 	return (
@@ -51,14 +57,18 @@ const UploadCut = () => {
 			</Flex>
 
 			<Flex css={imgBoxStyle}>
-				<img src={SampleImg} alt="sample" />
+				<img src={fileURL[mediaCurrentIndex]} alt="sample" />
 
-				<Flex css={galleryIconBoxStyle} onClick={() => setIsGalleryOpen(true)}>
-					<GalleryIcon />
+				<div css={galleryIconBoxStyle} ref={galleryRef}>
+					<GalleryIcon onClick={() => setIsGalleryOpen((prev) => !prev)} />
 
 					{isGalleryOpen && (
 						<Flex css={galleryBoxStyle}>
-							<GallerySlider medias={fileURL} />
+							<GallerySlider
+								medias={fileURL}
+								mediaCurrentIndex={mediaCurrentIndex}
+								setMediaCurrentIndex={setMediaCurrentIndex}
+							/>
 
 							<label css={galleryPlusIconBoxStyle} htmlFor="media">
 								<PlusIcon />
@@ -72,7 +82,7 @@ const UploadCut = () => {
 							/>
 						</Flex>
 					)}
-				</Flex>
+				</div>
 			</Flex>
 		</Flex>
 	);

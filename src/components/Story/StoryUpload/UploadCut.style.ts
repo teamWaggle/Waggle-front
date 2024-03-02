@@ -36,13 +36,13 @@ export const imgBoxStyle = css({
 		width: "100%",
 		height: "100%",
 		objectFit: "cover",
+		borderRadius: "0 0 42px 42px",
 	},
 });
 
 export const galleryBoxStyle = css({
 	gap: "24px",
 	alignItems: "center",
-	maxWidth: "682px",
 	height: "134px",
 	padding: "14px",
 	borderRadius: "10px",
@@ -57,6 +57,7 @@ export const galleryBoxStyle = css({
 });
 
 export const galleryIconBoxStyle = css({
+	display: "flex",
 	width: "50px",
 	height: "50px",
 	borderRadius: "50%",
