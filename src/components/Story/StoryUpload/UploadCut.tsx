@@ -1,10 +1,15 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, Fragment } from "react";
 
 import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
 import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 import LeftArrowIcon from "@/assets/svg/ic-left-arrow-slider.svg?react";
 import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
+import CutIcon from "@/assets/svg/upload/ic-cut.svg?react";
+import FatRectangleIcon from "@/assets/svg/upload/ic-fat-rectangle.svg?react";
+import OrigianlIcon from "@/assets/svg/upload/ic-original.svg?react";
+import SquareIcon from "@/assets/svg/upload/ic-square-cut.svg?react";
+import ThinRectangleIcon from "@/assets/svg/upload/ic-thin-rectangle.svg?react";
 
 import { Flex, Text } from "@/components/common";
 import CutImgUnit from "@/components/Story/StoryUpload/CutImgUnit";
@@ -15,12 +20,16 @@ import useClickOutSide from "@/hooks/useClickOutSide";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import type { FileProp } from "@/types/upload";
+import type { FileProp, SizeType } from "@/types/upload";
 
 import {
 	layoutStyle,
 	headerStyle,
 	imgBoxStyle,
+	cutIconBoxStyle,
+	cutBoxStyle,
+	cutItemBoxStyle,
+	dividerStyle,
 	galleryIconBoxStyle,
 	galleryBoxStyle,
 	galleryPlusIconBoxStyle,
@@ -31,15 +40,99 @@ import {
 
 type HandlingType = "ratio" | "resize" | "gallery" | null | "first";
 
+const SIZE_MENU: {
+	text: string;
+	icon: React.ReactNode;
+	type: SizeType;
+}[] = [
+	{ text: "원본", icon: <OrigianlIcon />, type: "original" },
+	{ text: "1:1", icon: <SquareIcon />, type: "square" },
+	{ text: "4:5", icon: <ThinRectangleIcon />, type: "thin" },
+	{ text: "16:9", icon: <FatRectangleIcon />, type: "fat" },
+];
+
+const getRatioCalculatedBoxWidth = (sizeType: SizeType, currentWidth: number) => {
+	switch (sizeType) {
+		case "thin":
+			return currentWidth * 0.8;
+		default:
+			return currentWidth;
+	}
+};
+
+const getRatioCalculatedBoxHeight = (sizeType: SizeType, currentWidth: number) => {
+	switch (sizeType) {
+		case "original":
+			return currentWidth / 1.93;
+		case "fat":
+			return (currentWidth * 9) / 16;
+		default:
+			return currentWidth;
+	}
+};
+
+export const getProcessedMinSize = (
+	processedCurrentWidth: number,
+	imageSize: number,
+	sizeMode: SizeType,
+): {
+	minWidth: number;
+	minHeight: number;
+} => {
+	if (sizeMode !== "square") {
+		switch (sizeMode) {
+			case "thin":
+				if (imageSize > 1) {
+					return {
+						minWidth: processedCurrentWidth * imageSize,
+						minHeight: processedCurrentWidth,
+					};
+				} else {
+					return {
+						minWidth: processedCurrentWidth * 0.8,
+						minHeight: (processedCurrentWidth * 0.8) / imageSize,
+					};
+				}
+			case "original":
+				return {
+					minWidth: processedCurrentWidth,
+					minHeight: processedCurrentWidth / imageSize,
+				};
+			case "fat":
+				return {
+					minWidth: processedCurrentWidth,
+					minHeight: processedCurrentWidth / imageSize,
+				};
+		}
+	} else {
+		if (imageSize > 1) {
+			return {
+				minWidth: processedCurrentWidth * imageSize,
+				minHeight: processedCurrentWidth,
+			};
+		} else {
+			return {
+				minWidth: processedCurrentWidth,
+				minHeight: processedCurrentWidth / imageSize,
+			};
+		}
+	}
+};
+
 const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+	const [isCutOpen, setIsCutOpen] = useState(false);
 	const [file, setFile] = useState<FileProp[]>(medias);
+
+	const [sizeMode, setSizeMode] = useState<SizeType>("original");
 
 	const [handlingMode, setHandlingMode] = useState<HandlingType>("first");
 	const [, setRatioState] = useState<boolean | null>(null);
 	const [, setResizeState] = useState<boolean | null>(null);
 	const [, setGalleryState] = useState<boolean | null>(null);
+
+	const currentWidth = 730;
 
 	const galleryRef = useRef<HTMLDivElement>(null);
 	const imgRef = useRef<HTMLDivElement>(null);
@@ -69,9 +162,17 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 	const fixOverTranformedImg = useCallback(
 		(scale: number) => {
 			if (!imgRef.current) return;
-			const widthGap = (imgRef.current.offsetWidth * (scale / 100 + 1) - 1) / 2 / 740;
+			const widthGap =
+				(imgRef.current.offsetWidth * (scale / 100 + 1) -
+					getRatioCalculatedBoxWidth(sizeMode, currentWidth)) /
+				2 /
+				file[mediaCurrentIndex].width;
 
-			const heightGap = (imgRef.current.offsetHeight * (scale / 100 + 1) - 1) / 2 / 740;
+			const heightGap =
+				(imgRef.current.offsetHeight * (scale / 100 + 1) -
+					getRatioCalculatedBoxHeight(sizeMode, currentWidth)) /
+				2 /
+				file[mediaCurrentIndex].width;
 
 			const currentFile = file[mediaCurrentIndex];
 
@@ -120,16 +221,23 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 		for (let i = 0; i < files.length; i++) {
 			const img = new Image();
 			img.src = URL.createObjectURL(files[i]);
-			imgUrlList.push({
-				url: img.src,
-				translateX: 0,
-				translateY: 0,
-				scale: 0,
-				grabbedPosition: { x: 0, y: 0 },
-			});
-		}
+			img.onload = () => {
+				imgUrlList.push({
+					url: img.src,
+					width: img.width,
+					height: img.height,
+					size: img.width / img.height,
+					translateX: 0,
+					translateY: 0,
+					scale: 0,
+					grabbedPosition: { x: 0, y: 0 },
+				});
 
-		setFile((prev) => [...prev, ...imgUrlList]);
+				if (img.complete) {
+					setFile((prev) => [...prev, ...imgUrlList]);
+				}
+			};
+		}
 	};
 
 	return (
@@ -142,8 +250,6 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 			</Flex>
 
 			<Flex css={imgBoxStyle}>
-				{/* <img src={file[mediaCurrentIndex].url} alt="sample" /> */}
-
 				<div css={galleryIconBoxStyle} ref={galleryRef}>
 					<GalleryIcon onClick={() => setIsGalleryOpen((prev) => !prev)} />
 
@@ -168,7 +274,28 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 						</Flex>
 					)}
 				</div>
+				<div css={cutIconBoxStyle}>
+					<CutIcon onClick={() => setIsCutOpen((prev) => !prev)} />
 
+					{isCutOpen && (
+						<Flex css={cutBoxStyle}>
+							{SIZE_MENU.map((sizeMenu, index) => (
+								<Fragment key={sizeMenu.text}>
+									<Flex
+										css={cutItemBoxStyle}
+										className={sizeMenu.type === sizeMode ? "active" : ""}
+										onClick={() => setSizeMode(sizeMenu.type)}
+									>
+										<Text>{sizeMenu.text}</Text>
+										{sizeMenu.icon}
+									</Flex>
+
+									{index < SIZE_MENU.length - 1 && <div css={dividerStyle} />}
+								</Fragment>
+							))}
+						</Flex>
+					)}
+				</div>
 				<Flex
 					css={arrowBoxStyle(mediaCurrentIndex === 0)}
 					onClick={handleLeftArrowClick}
@@ -176,7 +303,6 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 				>
 					<LeftArrowIcon width={40} height={40} />
 				</Flex>
-
 				<Flex
 					css={arrowBoxStyle(mediaCurrentIndex === file.length - 1)}
 					onClick={handleRightArrowClick}
@@ -184,15 +310,17 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 				>
 					<RightArrowIcon width={40} height={40} />
 				</Flex>
-
 				<Flex css={imgDotBoxStyle}>
 					{file.length > 0 &&
 						[...Array(file.length)].map((_, index) => (
 							<div key={index} css={imgDotStyle(mediaCurrentIndex === index)} />
 						))}
 				</Flex>
+
 				<CutImgUnit
 					currentFile={file[mediaCurrentIndex]}
+					sizeMode={sizeMode}
+					processedCurrentWidth={currentWidth}
 					imgRef={imgRef}
 					onGrabStart={() => {
 						setHandlingMode(null);
