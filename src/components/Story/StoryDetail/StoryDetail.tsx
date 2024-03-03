@@ -58,7 +58,7 @@ const StoryDetail = ({ id }: idType) => {
 							borderRight: "1px solid #d2d2d2",
 						}}
 					>
-						<StoryImgSlider medias={storyData.result.medias} />
+						<StoryImgSlider mediaUrl={storyData.result.mediaList} />
 					</Flex>
 
 					{/* 본문 영역 */}
@@ -115,7 +115,7 @@ const StoryDetail = ({ id }: idType) => {
 							<Flex styles={{ align: "center", gap: "2px" }}>
 								<HeartEmptyIcon />
 								<Text size="small" css={getDefaultTextStyle(Theme.color.disabled_text, 600)}>
-									{storyData.result.recommendCount}
+									{storyData.result.recommendationInfo.recommendCount}
 								</Text>
 							</Flex>
 

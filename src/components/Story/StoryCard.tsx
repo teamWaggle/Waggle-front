@@ -9,13 +9,13 @@ import type { StoryListInfoType } from "@/types/story";
 
 import { imgStyle, iconStyle } from "@/components/Story/Story.style";
 
-const StoryCard = ({ id, thumbnail }: StoryListInfoType) => {
+const StoryCard = ({ boardId, thumbnail }: StoryListInfoType) => {
 	const modal = useModal();
 
 	const storyDetailOpen = () => {
 		modal.openModal({
-			key: `StoryDetail${id}`,
-			component: () => <StoryDetail id={id} />,
+			key: `StoryDetail${boardId}`,
+			component: () => <StoryDetail id={boardId} />,
 		});
 	};
 

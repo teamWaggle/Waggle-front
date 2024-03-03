@@ -12,7 +12,11 @@ const Story = () => {
 			<Flex styles={{ align: "center", wrap: "wrap", justify: "space-between", width: "100%" }}>
 				{storyList &&
 					storyList.result.storyList.map((storyInfo) => (
-						<StoryCard key={storyInfo.id} id={storyInfo.id} thumbnail={storyInfo.thumbnail} />
+						<StoryCard
+							key={storyInfo.boardId}
+							boardId={storyInfo.boardId}
+							thumbnail={storyInfo.thumbnail}
+						/>
 					))}
 			</Flex>
 		</Flex>

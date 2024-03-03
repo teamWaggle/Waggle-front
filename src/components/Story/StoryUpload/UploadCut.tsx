@@ -10,6 +10,7 @@ import CutIcon from "@/assets/svg/upload/ic-cut.svg?react";
 import { Flex, Text } from "@/components/common";
 import CutImgUnit from "@/components/Story/StoryUpload/CutImgUnit";
 import GallerySlider from "@/components/Story/StoryUpload/GallerySlider";
+import StoryContent from "@/components/Story/StoryUpload/StoryContent";
 import UploadWarningModal from "@/components/Story/StoryUpload/UploadWarningModal";
 
 import { SIZE_MENU } from "@/constants/upload";
@@ -57,12 +58,21 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
 	useClickOutSide(cutRef, () => setIsCutOpen(false));
 
-	const prevButtonClick = () => {
+	const handlePrevButtonClick = () => {
 		modal.openModal({
 			key: `UploadWarningModal`,
 			component: () => <UploadWarningModal />,
 			isUpper: true,
 			notCloseIcon: true,
+		});
+	};
+
+	const handleNextButtonClick = () => {
+		modal.closeModal();
+
+		modal.openModal({
+			key: `StoryContentModal`,
+			component: () => <StoryContent medias={file} />,
 		});
 	};
 
@@ -111,11 +121,11 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 	return (
 		<Flex css={layoutStyle}>
 			<Flex css={headerStyle}>
-				<PrevArrowIcon onClick={prevButtonClick} />
+				<PrevArrowIcon onClick={handlePrevButtonClick} />
 				<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 600)}>
 					자르기
 				</Text>
-				<Text size="xLarge" css={nextButtonStyle}>
+				<Text size="xLarge" css={nextButtonStyle} onClick={handleNextButtonClick}>
 					다음
 				</Text>
 			</Flex>
