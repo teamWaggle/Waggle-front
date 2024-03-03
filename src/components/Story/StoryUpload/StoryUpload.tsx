@@ -11,11 +11,15 @@ import useModal from "@/hooks/useModal";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import type { FileProp } from "@/types/upload";
+
 import { layoutStyle, labelStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 
 const StoryUpload = () => {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [fileURL, setFileURL] = useState<string[]>([]);
+	const [file, setFile] = useState<FileProp[]>([
+		{ url: "", translateX: 0, translateY: 0, scale: 0, grabbedPosition: { x: 0, y: 0 } },
+	]);
+
 	const [fileUpload, setFileUpload] = useState(false);
 	const [isDragOver, setIsDragOver] = useState(false);
 
@@ -52,21 +56,27 @@ const StoryUpload = () => {
 		}
 
 		const dropFiles = e.dataTransfer.files;
-		const imgUrlList: string[] = [];
+		const imgUrlList: FileProp[] = [];
 
 		for (let i = 0; i < dropFiles.length; i++) {
 			const img = new Image();
 			img.src = URL.createObjectURL(dropFiles[i]);
-			imgUrlList.push(img.src);
+			imgUrlList.push({
+				url: img.src,
+				translateX: 0,
+				translateY: 0,
+				scale: 0,
+				grabbedPosition: { x: 0, y: 0 },
+			});
 		}
 
-		setFileURL(imgUrlList);
+		setFile(imgUrlList);
 		setFileUpload(true);
 	};
 
 	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const files = e.currentTarget.files;
-		const imgUrlList: string[] = [];
+		const imgUrlList: FileProp[] = [];
 
 		if (!files) {
 			return;
@@ -75,10 +85,16 @@ const StoryUpload = () => {
 		for (let i = 0; i < files.length; i++) {
 			const img = new Image();
 			img.src = URL.createObjectURL(files[i]);
-			imgUrlList.push(img.src);
+			imgUrlList.push({
+				url: img.src,
+				translateX: 0,
+				translateY: 0,
+				scale: 0,
+				grabbedPosition: { x: 0, y: 0 },
+			});
 		}
 
-		setFileURL(imgUrlList);
+		setFile(imgUrlList);
 		setFileUpload(true);
 	};
 
@@ -93,7 +109,7 @@ const StoryUpload = () => {
 
 			modal.openModal({
 				key: `UploadCutModal`,
-				component: () => <UploadCut medias={fileURL} />,
+				component: () => <UploadCut medias={file} />,
 			});
 		}
 	}, [fileUpload]);

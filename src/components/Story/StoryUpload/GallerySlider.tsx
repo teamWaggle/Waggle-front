@@ -4,6 +4,8 @@ import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
 import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
 
+import type { FileProp } from "@/types/upload";
+
 import {
 	layoutStyle,
 	sliderBoxStyle,
@@ -19,7 +21,7 @@ const GallerySlider = ({
 	mediaCurrentIndex,
 	setMediaCurrentIndex,
 }: {
-	medias: string[];
+	medias: FileProp[];
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 }) => {
@@ -84,8 +86,8 @@ const GallerySlider = ({
 					{medias.map((file, index) => (
 						<div css={imgBoxStyle}>
 							<img
-								key={`${file}${index}`}
-								src={file}
+								key={`${file.url}${index}`}
+								src={file.url}
 								css={imgStyle}
 								onClick={() => setMediaCurrentIndex(index)}
 							/>
