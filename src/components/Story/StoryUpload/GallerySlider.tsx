@@ -84,13 +84,8 @@ const GallerySlider = ({
 			<div css={sliderBoxStyle(medias.length)} ref={wrapRef} onScroll={galleryScrollHandler}>
 				<div css={sliderStyle}>
 					{medias.map((file, index) => (
-						<div css={imgBoxStyle}>
-							<img
-								key={`${file.url}${index}`}
-								src={file.url}
-								css={imgStyle}
-								onClick={() => setMediaCurrentIndex(index)}
-							/>
+						<div key={`${file.url}${index}`} css={imgBoxStyle}>
+							<img src={file.url} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
 							{mediaCurrentIndex === index && (
 								<div css={closeIconBoxStyle} onClick={() => console.log("abc")}>
 									<CloseIcon fill="#fff" />
