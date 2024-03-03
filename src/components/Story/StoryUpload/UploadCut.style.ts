@@ -24,7 +24,16 @@ export const headerStyle = css({
 	"& > svg": {
 		position: "absolute",
 		left: "24px",
+		cursor: "pointer",
 	},
+});
+
+export const nextButtonStyle = css({
+	position: "absolute",
+	right: "24px",
+	color: Theme.color.brand_primary,
+	fontWeight: 600,
+	cursor: "pointer",
 });
 
 export const imgBoxStyle = css({

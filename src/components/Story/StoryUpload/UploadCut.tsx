@@ -10,10 +10,12 @@ import CutIcon from "@/assets/svg/upload/ic-cut.svg?react";
 import { Flex, Text } from "@/components/common";
 import CutImgUnit from "@/components/Story/StoryUpload/CutImgUnit";
 import GallerySlider from "@/components/Story/StoryUpload/GallerySlider";
+import UploadWarningModal from "@/components/Story/StoryUpload/UploadWarningModal";
 
 import { SIZE_MENU } from "@/constants/upload";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
+import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -23,6 +25,7 @@ import type { FileProp, SizeType } from "@/types/upload";
 import {
 	layoutStyle,
 	headerStyle,
+	nextButtonStyle,
 	imgBoxStyle,
 	cutIconBoxStyle,
 	cutBoxStyle,
@@ -47,10 +50,21 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 	const cutRef = useRef<HTMLDivElement>(null);
 	const imgRef = useRef<HTMLDivElement>(null);
 
+	const modal = useModal();
+
 	const currentWidth = 730;
 
 	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
 	useClickOutSide(cutRef, () => setIsCutOpen(false));
+
+	const prevButtonClick = () => {
+		modal.openModal({
+			key: `UploadWarningModal`,
+			component: () => <UploadWarningModal />,
+			isUpper: true,
+			notCloseIcon: true,
+		});
+	};
 
 	const handleLeftArrowClick = () => {
 		if (mediaCurrentIndex === 0) return;
@@ -97,9 +111,12 @@ const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 	return (
 		<Flex css={layoutStyle}>
 			<Flex css={headerStyle}>
-				<PrevArrowIcon />
+				<PrevArrowIcon onClick={prevButtonClick} />
 				<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 600)}>
 					자르기
+				</Text>
+				<Text size="xLarge" css={nextButtonStyle}>
+					다음
 				</Text>
 			</Flex>
 
