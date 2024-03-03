@@ -1,15 +1,16 @@
 import { css } from "@emotion/react";
 
-export const layoutStyle = (url: string) => {
+export const layoutStyle = (url: string, width: number, height: number) => {
 	return css({
-		width: "100%",
-		height: "100%",
+		width: `${width}px`,
+		height: `${height}px`,
 		transition: "width 0.3s, height 0.3s",
 		overflow: "hidden",
 		cursor: "grab",
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
+		borderRadius: height === 730 ? "0 0 42px 42px" : "",
 
 		"& > div": {
 			backgroundImage: `url(${url})`,

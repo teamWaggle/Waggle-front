@@ -30,14 +30,10 @@ export const headerStyle = css({
 export const imgBoxStyle = css({
 	width: "100%",
 	height: "calc(100% - 54px)",
+	alignItems: "center",
+	justifyContent: "center",
 	position: "relative",
-
-	"& > img": {
-		width: "100%",
-		height: "100%",
-		objectFit: "cover",
-		borderRadius: "0 0 42px 42px",
-	},
+	borderRadius: "0 0 42px 42px",
 });
 
 export const galleryBoxStyle = css({
@@ -56,6 +52,60 @@ export const galleryBoxStyle = css({
 	},
 });
 
+export const cutBoxStyle = css({
+	width: "97px",
+	flexDirection: "column",
+	position: "absolute",
+	left: 0,
+	bottom: "60px",
+	backgroundColor: "rgba(0, 0, 0, 0.7)",
+	borderRadius: "10px",
+});
+
+export const dividerStyle = css({
+	width: "100%",
+	borderBottom: `1px solid ${Theme.color.disabled_text}`,
+});
+
+export const cutItemBoxStyle = css({
+	gap: "12px",
+	alignItems: "center",
+	marginLeft: "14px",
+	padding: "12px 4px",
+	color: Theme.color.disabled_text,
+
+	"& > p": {
+		width: "30px",
+	},
+
+	"& > svg": {
+		fill: Theme.color.disabled_text,
+	},
+
+	"&.active": {
+		color: Theme.color.white,
+
+		"& > svg": {
+			fill: Theme.color.white,
+		},
+	},
+});
+
+export const cutIconBoxStyle = css({
+	display: "flex",
+	width: "50px",
+	height: "50px",
+	borderRadius: "50%",
+	backgroundColor: "rgba(0, 0, 0, 0.7)",
+	alignItems: "center",
+	justifyContent: "center",
+	position: "absolute",
+	bottom: "24px",
+	left: "24px",
+	cursor: "pointer",
+	zIndex: 1,
+});
+
 export const galleryIconBoxStyle = css({
 	display: "flex",
 	width: "50px",
@@ -68,6 +118,7 @@ export const galleryIconBoxStyle = css({
 	bottom: "24px",
 	right: "24px",
 	cursor: "pointer",
+	zIndex: 1,
 });
 
 export const galleryPlusIconBoxStyle = css({

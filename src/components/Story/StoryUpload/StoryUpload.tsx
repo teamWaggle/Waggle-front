@@ -17,7 +17,16 @@ import { layoutStyle, labelStyle } from "@/components/Story/StoryUpload/StoryUpl
 
 const StoryUpload = () => {
 	const [file, setFile] = useState<FileProp[]>([
-		{ url: "", translateX: 0, translateY: 0, scale: 0, grabbedPosition: { x: 0, y: 0 } },
+		{
+			width: 0,
+			height: 0,
+			url: "",
+			size: 0,
+			translateX: 0,
+			translateY: 0,
+			scale: 0,
+			grabbedPosition: { x: 0, y: 0 },
+		},
 	]);
 
 	const [fileUpload, setFileUpload] = useState(false);
@@ -61,13 +70,18 @@ const StoryUpload = () => {
 		for (let i = 0; i < dropFiles.length; i++) {
 			const img = new Image();
 			img.src = URL.createObjectURL(dropFiles[i]);
-			imgUrlList.push({
-				url: img.src,
-				translateX: 0,
-				translateY: 0,
-				scale: 0,
-				grabbedPosition: { x: 0, y: 0 },
-			});
+			img.onload = () => {
+				imgUrlList.push({
+					url: img.src,
+					width: img.width,
+					height: img.height,
+					size: img.width / img.height,
+					translateX: 0,
+					translateY: 0,
+					scale: 0,
+					grabbedPosition: { x: 0, y: 0 },
+				});
+			};
 		}
 
 		setFile(imgUrlList);
@@ -85,17 +99,24 @@ const StoryUpload = () => {
 		for (let i = 0; i < files.length; i++) {
 			const img = new Image();
 			img.src = URL.createObjectURL(files[i]);
-			imgUrlList.push({
-				url: img.src,
-				translateX: 0,
-				translateY: 0,
-				scale: 0,
-				grabbedPosition: { x: 0, y: 0 },
-			});
-		}
+			img.onload = () => {
+				imgUrlList.push({
+					url: img.src,
+					width: img.width,
+					height: img.height,
+					size: img.width / img.height,
+					translateX: 0,
+					translateY: 0,
+					scale: 0,
+					grabbedPosition: { x: 0, y: 0 },
+				});
 
-		setFile(imgUrlList);
-		setFileUpload(true);
+				if (img.complete) {
+					setFile(imgUrlList);
+					setFileUpload(true);
+				}
+			};
+		}
 	};
 
 	useEffect(() => {
