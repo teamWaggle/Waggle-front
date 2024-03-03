@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 
 import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
 import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
@@ -7,12 +7,15 @@ import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
 
 import { Flex, Text } from "@/components/common";
+import CutImgUnit from "@/components/Story/StoryUpload/CutImgUnit";
 import GallerySlider from "@/components/Story/StoryUpload/GallerySlider";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
+import type { FileProp } from "@/types/upload";
 
 import {
 	layoutStyle,
@@ -26,14 +29,73 @@ import {
 	arrowBoxStyle,
 } from "@/components/Story/StoryUpload/UploadCut.style";
 
-const UploadCut = ({ medias }: { medias: string[] }) => {
+type HandlingType = "ratio" | "resize" | "gallery" | null | "first";
+
+const UploadCut = ({ medias }: { medias: FileProp[] }) => {
 	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-	const [fileURL, setFileURL] = useState<string[]>(medias);
+	const [file, setFile] = useState<FileProp[]>(medias);
+
+	const [handlingMode, setHandlingMode] = useState<HandlingType>("first");
+	const [, setRatioState] = useState<boolean | null>(null);
+	const [, setResizeState] = useState<boolean | null>(null);
+	const [, setGalleryState] = useState<boolean | null>(null);
 
 	const galleryRef = useRef<HTMLDivElement>(null);
+	const imgRef = useRef<HTMLDivElement>(null);
 
 	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
+
+	const toggleInputState = useCallback((type: HandlingType) => {
+		switch (type) {
+			case "ratio":
+				setRatioState((prev) => (prev === true ? false : true));
+				setResizeState((prev) => (prev !== null ? false : null));
+				setGalleryState((prev) => (prev !== null ? false : null));
+				break;
+			case "resize":
+				setResizeState((prev) => (prev === true ? false : true));
+				setRatioState((prev) => (prev !== null ? false : null));
+				setGalleryState((prev) => (prev !== null ? false : null));
+				break;
+			case "gallery":
+				setGalleryState((prev) => (prev === true ? false : true));
+				setRatioState((prev) => (prev !== null ? false : null));
+				setResizeState((prev) => (prev !== null ? false : null));
+				break;
+		}
+	}, []);
+
+	const fixOverTranformedImg = useCallback(
+		(scale: number) => {
+			if (!imgRef.current) return;
+			const widthGap = (imgRef.current.offsetWidth * (scale / 100 + 1) - 1) / 2 / 740;
+
+			const heightGap = (imgRef.current.offsetHeight * (scale / 100 + 1) - 1) / 2 / 740;
+
+			const currentFile = file[mediaCurrentIndex];
+
+			if (widthGap === 0) {
+				currentFile.translateX = 0;
+			} else {
+				if (currentFile.translateX > widthGap) {
+					currentFile.translateX = widthGap;
+				} else if (currentFile.translateX < -widthGap) {
+					currentFile.translateX = -widthGap;
+				}
+			}
+			if (heightGap === 0) {
+				currentFile.translateY = 0;
+			} else {
+				if (currentFile.translateY > heightGap) {
+					currentFile.translateY = heightGap;
+				} else if (currentFile.translateY < -heightGap) {
+					currentFile.translateY = -heightGap;
+				}
+			}
+		},
+		[mediaCurrentIndex],
+	);
 
 	const handleLeftArrowClick = () => {
 		if (mediaCurrentIndex === 0) return;
@@ -42,14 +104,14 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 	};
 
 	const handleRightArrowClick = () => {
-		if (mediaCurrentIndex === fileURL.length - 1) return;
+		if (mediaCurrentIndex === file.length - 1) return;
 
 		setMediaCurrentIndex((prev) => prev + 1);
 	};
 
 	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const files = e.currentTarget.files;
-		const imgUrlList: string[] = [];
+		const imgUrlList: FileProp[] = [];
 
 		if (!files) {
 			return;
@@ -58,10 +120,16 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 		for (let i = 0; i < files.length; i++) {
 			const img = new Image();
 			img.src = URL.createObjectURL(files[i]);
-			imgUrlList.push(img.src);
+			imgUrlList.push({
+				url: img.src,
+				translateX: 0,
+				translateY: 0,
+				scale: 0,
+				grabbedPosition: { x: 0, y: 0 },
+			});
 		}
 
-		setFileURL((prev) => [...prev, ...imgUrlList]);
+		setFile((prev) => [...prev, ...imgUrlList]);
 	};
 
 	return (
@@ -74,7 +142,7 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 			</Flex>
 
 			<Flex css={imgBoxStyle}>
-				<img src={fileURL[mediaCurrentIndex]} alt="sample" />
+				{/* <img src={file[mediaCurrentIndex].url} alt="sample" /> */}
 
 				<div css={galleryIconBoxStyle} ref={galleryRef}>
 					<GalleryIcon onClick={() => setIsGalleryOpen((prev) => !prev)} />
@@ -82,7 +150,7 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 					{isGalleryOpen && (
 						<Flex css={galleryBoxStyle}>
 							<GallerySlider
-								medias={fileURL}
+								medias={file}
 								mediaCurrentIndex={mediaCurrentIndex}
 								setMediaCurrentIndex={setMediaCurrentIndex}
 							/>
@@ -110,7 +178,7 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 				</Flex>
 
 				<Flex
-					css={arrowBoxStyle(mediaCurrentIndex === fileURL.length - 1)}
+					css={arrowBoxStyle(mediaCurrentIndex === file.length - 1)}
 					onClick={handleRightArrowClick}
 					className="rightArrow"
 				>
@@ -118,11 +186,20 @@ const UploadCut = ({ medias }: { medias: string[] }) => {
 				</Flex>
 
 				<Flex css={imgDotBoxStyle}>
-					{fileURL.length > 0 &&
-						[...Array(fileURL.length)].map((_, index) => (
+					{file.length > 0 &&
+						[...Array(file.length)].map((_, index) => (
 							<div key={index} css={imgDotStyle(mediaCurrentIndex === index)} />
 						))}
 				</Flex>
+				<CutImgUnit
+					currentFile={file[mediaCurrentIndex]}
+					imgRef={imgRef}
+					onGrabStart={() => {
+						setHandlingMode(null);
+						toggleInputState(handlingMode);
+					}}
+					onFixTransform={fixOverTranformedImg}
+				/>
 			</Flex>
 		</Flex>
 	);
