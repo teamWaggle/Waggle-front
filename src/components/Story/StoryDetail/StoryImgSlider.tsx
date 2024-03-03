@@ -5,6 +5,8 @@ import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
 
 import { Flex } from "@/components/common";
 
+import type { FileProp } from "@/types/upload";
+
 import {
 	layoutStyle,
 	imgBoxStyle,
@@ -15,9 +17,17 @@ import {
 	imgDotStyle,
 } from "@/components/Story/StoryDetail/StoryImgSlider.style";
 
-const StoryImgSlider = ({ medias, isUpload }: { medias: string[]; isUpload?: boolean }) => {
+const StoryImgSlider = ({
+	mediaUrl,
+	medias,
+	isUpload,
+}: {
+	mediaUrl?: string[];
+	medias?: FileProp[];
+	isUpload?: boolean;
+}) => {
 	const [sliderIndex, setSliderIndex] = useState(0);
-	const totalIndex = medias.length - 1;
+	const totalIndex = isUpload ? medias && medias.length : mediaUrl && mediaUrl.length - 1;
 
 	const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -38,7 +48,7 @@ const StoryImgSlider = ({ medias, isUpload }: { medias: string[]; isUpload?: boo
 	const handleRightArrowClick = () => {
 		const wrap = wrapRef.current;
 
-		if (wrap === null) return;
+		if (wrap === null || !totalIndex) return;
 		if (sliderIndex >= totalIndex) return;
 
 		wrap.scrollBy({
@@ -67,11 +77,19 @@ const StoryImgSlider = ({ medias, isUpload }: { medias: string[]; isUpload?: boo
 	return (
 		<Flex css={layoutStyle}>
 			<div css={imgBoxStyle} ref={wrapRef} onScroll={detectScroll}>
-				<div css={sliderBoxStyle(`${(totalIndex + 1) * 100}%`)}>
-					{medias.map((media) => (
-						<img key={media} src={media} alt="img" css={imgStyle(isUpload)} />
-					))}
-				</div>
+				{totalIndex && (
+					<div css={sliderBoxStyle(`${(totalIndex + 1) * 100}%`)}>
+						{isUpload
+							? medias &&
+							  medias.map((media) => (
+									<img key={media.url} src={media.url} alt="img" css={imgStyle(isUpload)} />
+							  ))
+							: mediaUrl &&
+							  mediaUrl.map((media) => (
+									<img key={media} src={media} alt="img" css={imgStyle(isUpload)} />
+							  ))}
+					</div>
+				)}
 			</div>
 			<Flex
 				css={arrowBoxStyle(sliderIndex === 0)}
@@ -88,7 +106,8 @@ const StoryImgSlider = ({ medias, isUpload }: { medias: string[]; isUpload?: boo
 				<RightArrowIcon />
 			</Flex>
 			<Flex css={imgDotBoxStyle}>
-				{totalIndex > 0 &&
+				{totalIndex &&
+					totalIndex > 1 &&
 					[...Array(totalIndex + 1)].map((_, index) => (
 						<div key={index} css={imgDotStyle(sliderIndex === index)} />
 					))}

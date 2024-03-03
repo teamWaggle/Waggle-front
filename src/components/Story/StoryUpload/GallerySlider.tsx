@@ -87,7 +87,7 @@ const GallerySlider = ({
 						<div key={`${file.url}${index}`} css={imgBoxStyle}>
 							<img src={file.url} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
 							{mediaCurrentIndex === index && (
-								<div css={closeIconBoxStyle} onClick={() => console.log("abc")}>
+								<div css={closeIconBoxStyle}>
 									<CloseIcon fill="#fff" />
 								</div>
 							)}

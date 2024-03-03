@@ -29,7 +29,7 @@ export interface SignUpResponseType {
 }
 
 export interface MemberType {
-	id: number;
+	memberId: number;
 	nickname: string;
 	profileImgUrl: string;
 	userUrl: string;

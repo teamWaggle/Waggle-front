@@ -9,6 +9,8 @@ import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import type { FileProp } from "@/types/upload";
+
 import {
 	layoutStyle,
 	headerStyle,
@@ -20,7 +22,7 @@ import {
 	uploadButtonStyle,
 } from "@/components/Story/StoryUpload/StoryContent.style";
 
-const StoryContent = ({ media }: { media: string[] }) => {
+const StoryContent = ({ medias }: { medias: FileProp[] }) => {
 	const [content, setContent] = useState("");
 
 	return (
@@ -34,7 +36,7 @@ const StoryContent = ({ media }: { media: string[] }) => {
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				<Flex css={imgBoxStyle}>
-					<StoryImgSlider medias={media} isUpload />
+					<StoryImgSlider medias={medias} isUpload />
 				</Flex>
 
 				<Flex css={contentBoxStyle}>

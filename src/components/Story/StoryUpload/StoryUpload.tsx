@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
 
 import { Flex, Text } from "@/components/common";
-// import StoryContent from "@/components/Story/StoryUpload/StoryContent";
 import UploadCut from "@/components/Story/StoryUpload/UploadCut";
 
 import useModal from "@/hooks/useModal";
@@ -122,11 +121,6 @@ const StoryUpload = () => {
 	useEffect(() => {
 		if (fileUpload) {
 			modal.closeModal();
-
-			// modal.openModal({
-			// 	key: `StoryContentModal`,
-			// 	component: () => <StoryContent media={fileURL} />,
-			// });
 
 			modal.openModal({
 				key: `UploadCutModal`,

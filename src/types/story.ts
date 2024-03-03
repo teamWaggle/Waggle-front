@@ -8,14 +8,19 @@ export interface StoryType {
 }
 
 export interface StoryResultType {
-	id: number;
-	content?: string;
+	boardId: number;
+	content: string;
 	createdDate: string | Date;
-	recommendCount?: number;
-	recommend?: boolean;
-	hashtags?: string[];
-	medias: string[];
+	isOwner: boolean;
+	hashtagList: string[];
+	mediaList: string[];
 	member: MemberType;
+	recommendationInfo: RecommendationInfoType;
+}
+
+export interface RecommendationInfoType {
+	isRecommend: boolean;
+	recommendCount: number;
 }
 
 export interface StoryListType {
@@ -27,13 +32,12 @@ export interface StoryListType {
 
 export interface StoryListResultType {
 	storyList: StoryListInfoType[];
-	totalStories: number;
-	first: boolean;
-	last: boolean;
+	storyCount: number;
+	isFirst: boolean;
+	isLast: boolean;
 }
 
 export interface StoryListInfoType {
-	id: number;
-	createdDate?: string;
+	boardId: number;
 	thumbnail: string;
 }
