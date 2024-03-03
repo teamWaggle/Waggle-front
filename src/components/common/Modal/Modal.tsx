@@ -14,7 +14,7 @@ import {
 	closeButtonStyling,
 } from "@/components/common/Modal/Modal.style";
 
-const Modal = ({ component, close, notCloseIcon, isWhiteIcon }: ModalType) => {
+const Modal = ({ component, close, notCloseIcon, isWhiteIcon, isUpper }: ModalType) => {
 	const modals = useRecoilValue(modalState);
 
 	const handleEscKeyPress = useCallback(
@@ -40,8 +40,8 @@ const Modal = ({ component, close, notCloseIcon, isWhiteIcon }: ModalType) => {
 
 	return (
 		<>
-			<div css={backdropStyle} onClick={close} />
-			<dialog css={dialogStyle}>
+			<div css={backdropStyle(isUpper)} onClick={close} />
+			<dialog css={dialogStyle(isUpper)}>
 				{component && component()}
 				{!notCloseIcon && <CloseIcon css={closeButtonStyling(isWhiteIcon)} onClick={close} />}
 			</dialog>
