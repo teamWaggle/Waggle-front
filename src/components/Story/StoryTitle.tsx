@@ -15,6 +15,7 @@ const StoryTitle = () => {
 		modal.openModal({
 			key: `StoryUpload`,
 			component: () => <StoryUpload />,
+			isWhiteIcon: true,
 		});
 	};
 

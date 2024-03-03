@@ -6,18 +6,15 @@ import CloseIcon from "@/assets/svg/CloseIcon.svg?react";
 
 import { modalState } from "@/recoil/atoms/modal";
 
+import type { ModalType } from "@/types/modal";
+
 import {
 	backdropStyle,
 	dialogStyle,
 	closeButtonStyling,
 } from "@/components/common/Modal/Modal.style";
 
-type Props = {
-	close?: () => void;
-	component?: () => JSX.Element;
-};
-
-const Modal = ({ component, close }: Props) => {
+const Modal = ({ component, close, notCloseIcon, isWhiteIcon }: ModalType) => {
 	const modals = useRecoilValue(modalState);
 
 	const handleEscKeyPress = useCallback(
@@ -43,10 +40,10 @@ const Modal = ({ component, close }: Props) => {
 
 	return (
 		<>
-			<div css={backdropStyle} onClick={close}></div>
+			<div css={backdropStyle} onClick={close} />
 			<dialog css={dialogStyle}>
 				{component && component()}
-				<CloseIcon css={closeButtonStyling} onClick={close} />
+				{!notCloseIcon && <CloseIcon css={closeButtonStyling(isWhiteIcon)} onClick={close} />}
 			</dialog>
 		</>
 	);

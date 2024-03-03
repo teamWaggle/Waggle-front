@@ -25,11 +25,17 @@ export const dialogStyle = css({
 	border: "none",
 });
 
-export const closeButtonStyling = css({
-	position: "absolute",
-	right: "24px",
-	top: "24px",
-	cursor: "pointer",
-	width: "16px",
-	height: "16px",
-});
+export const closeButtonStyling = (isWhiteIcon?: boolean) => {
+	return css({
+		position: "absolute",
+		right: "24px",
+		top: "24px",
+		cursor: "pointer",
+		width: "16px",
+		height: "16px",
+
+		"& > g > line": {
+			stroke: isWhiteIcon ? Theme.color.white : "",
+		},
+	});
+};

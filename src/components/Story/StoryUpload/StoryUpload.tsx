@@ -131,6 +131,7 @@ const StoryUpload = () => {
 			modal.openModal({
 				key: `UploadCutModal`,
 				component: () => <UploadCut medias={file} />,
+				notCloseIcon: true,
 			});
 		}
 	}, [fileUpload]);
