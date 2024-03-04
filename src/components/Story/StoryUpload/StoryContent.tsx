@@ -6,6 +6,9 @@ import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
 import { Flex, Text } from "@/components/common";
 import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider";
 
+import { usePostStoryMutation } from "@/hooks/api/usePostStoryMutation";
+import useModal from "@/hooks/useModal";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -23,7 +26,32 @@ import {
 } from "@/components/Story/StoryUpload/StoryContent.style";
 
 const StoryContent = ({ medias }: { medias: FileProp[] }) => {
+	const { mutatePostStory } = usePostStoryMutation();
+
 	const [content, setContent] = useState("");
+	const [hashtagList] = useState<string[]>(["test"]);
+
+	const modal = useModal();
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		const formData = new FormData();
+
+		const createStoryRequest = {
+			content,
+			hashtagList,
+			mediaList: medias,
+		};
+
+		formData.append("createStoryRequest", JSON.stringify(createStoryRequest));
+
+		mutatePostStory(formData, {
+			onSuccess: () => {
+				modal.closeModal();
+			},
+		});
+	};
 
 	return (
 		<Flex css={layoutStyle}>
@@ -64,7 +92,7 @@ const StoryContent = ({ medias }: { medias: FileProp[] }) => {
 						</Text>
 					</Flex>
 
-					<Text size="xLarge" css={uploadButtonStyle}>
+					<Text size="xLarge" css={uploadButtonStyle} onClick={handleSubmit}>
 						업로드
 					</Text>
 				</Flex>
