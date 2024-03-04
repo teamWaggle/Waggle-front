@@ -9,15 +9,16 @@ export interface CommentType {
 
 export interface CommentResultType {
 	commentList: CommentListInfoType[];
-	totalQuestions: number;
-	first: boolean;
-	last: boolean;
+	commentCount: number;
+	isFirst: boolean;
+	isLast: boolean;
 }
 
 export interface CommentListInfoType {
-	id: number;
+	commentId: number;
 	content: string;
-	createdDate: string;
-	mentionedNickname?: string[];
+	createdDate: Date;
+	mentionedMemberList: string[];
 	member: MemberType;
+	isOwner: boolean;
 }

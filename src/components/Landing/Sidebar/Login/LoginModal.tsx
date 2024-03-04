@@ -74,8 +74,15 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 			return;
 		}
 
-		mutateLogIn({ email, password });
-		modalClose();
+		mutateLogIn(
+			{ email, password },
+			{
+				onSuccess: ({ result }) => {
+					console.log(result);
+					modalClose();
+				},
+			},
+		);
 	};
 
 	const handleFindEmailModal = () => {

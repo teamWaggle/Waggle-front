@@ -71,15 +71,15 @@ const SignUpProfile = () => {
 		const formData = new FormData();
 		const birthday = dateFormatToUTC(state.yearText, state.monthText, state.dayText);
 
-		const request = {
+		const memberProfileRequest = {
 			nickname,
 			name,
 			birthday,
 			userUrl,
-			profileImgUrl: fileURL,
+			memberProfileImg: fileURL,
 		};
 
-		formData.append("request", JSON.stringify(request));
+		formData.append("memberProfileRequest", JSON.stringify(memberProfileRequest));
 
 		mutateMemberInfo(formData);
 
