@@ -36,7 +36,7 @@ export interface MemberType {
 }
 
 export interface FindEmailResultType {
-	emails: string[];
+	emailList: string[];
 }
 
 export interface FindEmailResponseType {

@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { Flex, SocialLogin } from "@/components/common";
 import { Email, EmailAuthCode, Password } from "@/components/SignUp/Email/EmailForm";
@@ -8,6 +9,7 @@ import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 import { passwordFormData } from "@/constants/auth";
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
+import { useCheckEmailMutation } from "@/hooks/api/useCheckEmailMutation";
 import { useLogInMutation } from "@/hooks/api/useLogInMutation";
 import { useSignUpMutation } from "@/hooks/api/useSignUpMutation";
 import { useValidateForm } from "@/hooks/useValidateForm";
@@ -17,6 +19,7 @@ import { signUpButtonStyle } from "@/components/SignUp/Email/SignUpEmail.style";
 const SignUpEmail = () => {
 	const { mutateLogIn } = useLogInMutation();
 	const signUpMutation = useSignUpMutation();
+	const checkEmailMutation = useCheckEmailMutation();
 
 	const navigate = useNavigate();
 
@@ -69,12 +72,26 @@ const SignUpEmail = () => {
 			return;
 		}
 
-		signUpMutation.mutate(
-			{ email, password },
-			{ onSuccess: () => mutateLogIn({ email, password }) },
-		);
+		checkEmailMutation.mutate(email, {
+			onSuccess: () => {
+				signUpMutation.mutate(
+					{ email, password },
+					{
+						onSuccess: () => {
+							mutateLogIn({ email, password });
 
-		navigate(`/signup?${TAB_KEY}=${SIGN_UP_TAB_KEY.PROFILE}`);
+							navigate(`/signup?${TAB_KEY}=${SIGN_UP_TAB_KEY.PROFILE}`);
+						},
+						onError: () => {
+							toast.error("오류가 발생했습니다. 잠시 후 다시 시도해주세요");
+						},
+					},
+				);
+			},
+			onError: () => {
+				toast.error("중복된 이메일입니다");
+			},
+		});
 	};
 
 	return (

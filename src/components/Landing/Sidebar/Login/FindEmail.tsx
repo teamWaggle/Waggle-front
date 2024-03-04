@@ -48,7 +48,7 @@ const FindEmail = ({
 			{ name, birthday },
 			{
 				onSuccess: ({ result }: FindEmailResponseType) => {
-					setEmail(result.emails);
+					setEmail(result.emailList);
 					setMode("result");
 				},
 			},
