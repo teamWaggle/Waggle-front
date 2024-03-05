@@ -1,9 +1,9 @@
-interface actionType {
+export interface actionType {
 	type: string;
 	payload?: string;
 }
 
-interface findEmailStateType {
+export interface findEmailStateType {
 	year: boolean;
 	month: boolean;
 	day: boolean;

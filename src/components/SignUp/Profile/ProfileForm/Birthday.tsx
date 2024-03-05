@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect } from "react";
 
 import SelectArrowIcon from "@/assets/svg/ic-select-arrow.svg?react";
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
@@ -7,18 +7,20 @@ import { Flex, Box, Text } from "@/components/common";
 
 import { yearData, monthData, dayData } from "@/constants/auth";
 
-import { findEmailReducer, findEmailInitialState } from "@/utils/findEmailUtils";
+import type { actionType, findEmailStateType } from "@/utils/findEmailUtils";
 
 import { getSelectBoxStyle } from "@/components/SignUp/Profile/SignUpProfile.style";
 import { getFormTextStyle } from "@/components/SignUp/SignUp.shared.style";
 
 const Birthday = ({
 	setSelectBirthday,
+	state,
+	dispatch,
 }: {
 	setSelectBirthday: React.Dispatch<React.SetStateAction<boolean>>;
+	state: findEmailStateType;
+	dispatch: React.Dispatch<actionType>;
 }) => {
-	const [state, dispatch] = useReducer(findEmailReducer, findEmailInitialState);
-
 	const handleOptionText = (e: React.MouseEvent<HTMLLIElement>) => {
 		const innerText = e.currentTarget.innerText;
 

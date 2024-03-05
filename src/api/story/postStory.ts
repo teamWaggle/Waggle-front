@@ -1,3 +1,5 @@
+import type { AxiosResponse } from "axios";
+
 import { authorizedAxiosInstance } from "@/api/axiosInstance";
 
 import { END_POINTS } from "@/constants/api";
@@ -13,5 +15,9 @@ export const postStory = async (formData: FormData) => {
 		headers: { "Content-Type": "multipart/form-data" },
 	};
 
-	return authorizedAxiosInstance.post<StoryFormType>(END_POINTS.UPLOAD_STORY, formData, config);
+	return await authorizedAxiosInstance.post<FormData, AxiosResponse<StoryFormType>>(
+		END_POINTS.UPLOAD_STORY,
+		formData,
+		config,
+	);
 };

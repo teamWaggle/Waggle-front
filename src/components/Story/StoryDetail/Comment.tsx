@@ -19,8 +19,8 @@ import {
 	handleReplyTextStyle,
 } from "@/components/Story/StoryDetail/StoryDetail.style";
 
-const Comment = ({ id, member, content, createdDate }: CommentListInfoType) => {
-	const { replyData } = useReplyQuery(0, id);
+const Comment = ({ commentId, member, content, createdDate }: CommentListInfoType) => {
+	const { replyData } = useReplyQuery(0, commentId);
 
 	const [replyOpen, setReplyOpen] = useState(false);
 	const [date, setDate] = useState("");

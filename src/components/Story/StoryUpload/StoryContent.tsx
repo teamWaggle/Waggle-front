@@ -28,6 +28,11 @@ import {
 const StoryContent = ({ medias }: { medias: FileProp[] }) => {
 	const { mutatePostStory } = usePostStoryMutation();
 
+	// console.log(medias[0].url);
+	// const file = new File([medias[0].url], `filetest.png`);
+
+	// console.log(file);
+
 	const [content, setContent] = useState("");
 	const [hashtagList] = useState<string[]>(["test"]);
 
@@ -41,10 +46,12 @@ const StoryContent = ({ medias }: { medias: FileProp[] }) => {
 		const createStoryRequest = {
 			content,
 			hashtagList,
-			mediaList: medias,
+			files: medias[0].url,
 		};
 
 		formData.append("createStoryRequest", JSON.stringify(createStoryRequest));
+
+		// formData.append("files", [medias[0].url]);
 
 		mutatePostStory(formData, {
 			onSuccess: () => {

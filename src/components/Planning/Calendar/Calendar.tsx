@@ -5,7 +5,6 @@ import { useRecoilValue } from "recoil";
 import { Box } from "@/components/common";
 import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
 import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
-import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 import {
 	addMonths,
 	subMonths,
@@ -18,6 +17,8 @@ import {
 	isSameDay,
 	isWithinInterval,
 } from "date-fns";
+
+import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 
 import { generateCalendarPositionColumn } from "@/utils/generateCalendarPositionColumn";
 import { generateCalendarPositionRow } from "@/utils/generateCalendarPositionRow";

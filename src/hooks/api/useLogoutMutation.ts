@@ -5,9 +5,9 @@ import { useSetRecoilState } from "recoil";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { isLoggedInState } from "@/recoil/atoms/auth";
-
 import { deleteLogout } from "@/api/auth/deleteLogout";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 export const useLogoutMutation = () => {
 	const navigate = useNavigate();

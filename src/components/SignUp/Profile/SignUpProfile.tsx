@@ -1,5 +1,5 @@
 import { useState, useReducer, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Text } from "@/components/common";
 import {
@@ -11,7 +11,7 @@ import {
 	Birthday,
 } from "@/components/SignUp/Profile/ProfileForm";
 
-import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
+// import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
 import { useValidateForm } from "@/hooks/useValidateForm";
@@ -26,9 +26,13 @@ import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 const SignUpProfile = () => {
 	const { mutateMemberInfo } = useMemberInfoFirstMutation();
 
-	const [state] = useReducer(findEmailReducer, findEmailInitialState);
+	const [state, dispatch] = useReducer(findEmailReducer, findEmailInitialState);
 
-	const navigate = useNavigate();
+	// console.log(state.yearText);
+	// console.log(state.monthText);
+	// console.log(state.dayText);
+
+	// const navigate = useNavigate();
 
 	const nicknameRef = useRef<HTMLInputElement>(null);
 	const userUrlRef = useRef<HTMLInputElement>(null);
@@ -81,9 +85,23 @@ const SignUpProfile = () => {
 
 		formData.append("memberProfileRequest", JSON.stringify(memberProfileRequest));
 
-		mutateMemberInfo(formData);
+		for (const key of formData.keys()) {
+			console.log(key);
+		}
 
-		navigate(`/signup?${TAB_KEY}=${SIGN_UP_TAB_KEY.PET}`);
+		for (const value of formData.values()) {
+			console.log(value);
+		}
+
+		mutateMemberInfo(formData, {
+			onSuccess: (code) => {
+				// navigate(`/signup?${TAB_KEY}=${SIGN_UP_TAB_KEY.PET}`);
+				console.log(code);
+			},
+			onError: (code) => {
+				console.log(code);
+			},
+		});
 	};
 
 	return (
@@ -132,7 +150,7 @@ const SignUpProfile = () => {
 					<Name name={name} changeName={setName} nameRef={nameRef} />
 
 					{/* 생년월일 영역 */}
-					<Birthday setSelectBirthday={setSelectBirthday} />
+					<Birthday setSelectBirthday={setSelectBirthday} state={state} dispatch={dispatch} />
 				</Flex>
 			</Box>
 
