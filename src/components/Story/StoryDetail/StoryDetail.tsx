@@ -30,6 +30,8 @@ interface idType {
 const StoryDetail = ({ id }: idType) => {
 	const { storyData } = useStoryQuery(id);
 
+	console.log(storyData);
+
 	const { commentData } = useCommentQuery(0, id);
 
 	const [createdDate, setCreatedDate] = useState("");

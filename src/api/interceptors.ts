@@ -51,23 +51,23 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 		return authorizedAxiosInstance(originalRequest);
 	}
 
-	if (
-		status === HTTP_STATUS_CODE.BAD_REQUEST &&
-		(data.code === ERROR_CODE.INVALID_REFRESH_TOKEN ||
-			data.code === ERROR_CODE.MISMATCH_REFRESH_TOKEN ||
-			data.code === ERROR_CODE.INVALID_TOKEN ||
-			data.code === ERROR_CODE.UNAUTHORIZED_MEMBER ||
-			data.code === ERROR_CODE.TOKEN_HAS_EXPIRED ||
-			data.code === ERROR_CODE.REDIRECT_NOT_MATCHING ||
-			data.code === ERROR_CODE.ROLE_CANNOT_EXECUTE_URI ||
-			data.code === ERROR_CODE.MUST_AUTHORIZED_URI ||
-			data.code === ERROR_CODE.REFRESH_NOT_EXIST_IN_COOKIE ||
-			data.code === ERROR_CODE.MISMATCH_EMAIL_AND_PASSWORD)
-	) {
-		localStorage.removeItem(ACCESS_TOKEN_KEY);
+	// if (
+	// 	status === HTTP_STATUS_CODE.BAD_REQUEST &&
+	// 	(data.code === ERROR_CODE.INVALID_REFRESH_TOKEN ||
+	// 		data.code === ERROR_CODE.MISMATCH_REFRESH_TOKEN ||
+	// 		data.code === ERROR_CODE.INVALID_TOKEN ||
+	// 		data.code === ERROR_CODE.UNAUTHORIZED_MEMBER ||
+	// 		data.code === ERROR_CODE.TOKEN_HAS_EXPIRED ||
+	// 		data.code === ERROR_CODE.REDIRECT_NOT_MATCHING ||
+	// 		data.code === ERROR_CODE.ROLE_CANNOT_EXECUTE_URI ||
+	// 		data.code === ERROR_CODE.MUST_AUTHORIZED_URI ||
+	// 		data.code === ERROR_CODE.REFRESH_NOT_EXIST_IN_COOKIE ||
+	// 		data.code === ERROR_CODE.MISMATCH_EMAIL_AND_PASSWORD)
+	// ) {
+	// 	localStorage.removeItem(ACCESS_TOKEN_KEY);
 
-		throw new HTTPError(status, data.message, data.code);
-	}
+	// 	throw new HTTPError(status, data.message, data.code);
+	// }
 
 	throw error;
 };
