@@ -29,6 +29,8 @@ const StoryImgSlider = ({
 	const [sliderIndex, setSliderIndex] = useState(0);
 	const totalIndex = isUpload ? medias && medias.length : mediaUrl && mediaUrl.length - 1;
 
+	console.log(mediaUrl && mediaUrl[0]);
+
 	const wrapRef = useRef<HTMLDivElement>(null);
 
 	const handleLeftArrowClick = () => {

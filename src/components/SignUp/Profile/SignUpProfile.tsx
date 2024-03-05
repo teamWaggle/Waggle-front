@@ -48,6 +48,8 @@ const SignUpProfile = () => {
 	const [userUrlCheckComplete, setUserUrlCheckComplete] = useState(false);
 	const [selectBirthday, setSelectBirthday] = useState(false);
 
+	console.log(fileURL);
+
 	const validateForm = () => {
 		if (
 			useValidateForm(nickname, nicknameRef, "닉네임을 입력해주세요") === false ||

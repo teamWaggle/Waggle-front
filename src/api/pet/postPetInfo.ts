@@ -3,7 +3,7 @@ import { authorizedAxiosInstance } from "@/api/axiosInstance";
 import { END_POINTS } from "@/constants/api";
 
 export interface FormDataType {
-	request: PetFormType;
+	createPetRequest: PetFormType;
 }
 
 export interface PetFormType {
@@ -12,7 +12,6 @@ export interface PetFormType {
 	gender: string;
 	age: string;
 	profileImgUrl: string;
-	uploadProfile: boolean;
 }
 
 export const postPetInfo = async (formData: FormData) => {
