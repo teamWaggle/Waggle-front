@@ -39,10 +39,27 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 
 	const { data, status } = error.response;
 
-	if (status === HTTP_STATUS_CODE.BAD_REQUEST && data.code === ERROR_CODE.TOKEN_HAS_EXPIRED) {
-		const { result } = await postRefreshToken();
+	console.log(data.code);
+	if (
+		status === HTTP_STATUS_CODE.BAD_REQUEST &&
+		(data.code === ERROR_CODE.INVALID_REFRESH_TOKEN ||
+			data.code === ERROR_CODE.MISMATCH_REFRESH_TOKEN ||
+			data.code === ERROR_CODE.INVALID_TOKEN ||
+			data.code === ERROR_CODE.UNAUTHORIZED_MEMBER ||
+			data.code === ERROR_CODE.TOKEN_HAS_EXPIRED ||
+			data.code === ERROR_CODE.REDIRECT_NOT_MATCHING ||
+			data.code === ERROR_CODE.ROLE_CANNOT_EXECUTE_URI ||
+			data.code === ERROR_CODE.MUST_AUTHORIZED_URI ||
+			data.code === ERROR_CODE.REFRESH_NOT_EXIST_IN_COOKIE ||
+			data.code === ERROR_CODE.MISMATCH_EMAIL_AND_PASSWORD)
+	) {
+		localStorage.removeItem(ACCESS_TOKEN_KEY);
 
-		console.log("토큰 재발급");
+		throw new HTTPError(status, data.message, data.code);
+	}
+
+	if (data.code === ERROR_CODE.TOKEN_HAS_EXPIRED) {
+		const { result } = await postRefreshToken();
 
 		originalRequest.headers.Authorization = `Bearer ${result.accessToken}`;
 
@@ -50,24 +67,6 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 
 		return authorizedAxiosInstance(originalRequest);
 	}
-
-	// if (
-	// 	status === HTTP_STATUS_CODE.BAD_REQUEST &&
-	// 	(data.code === ERROR_CODE.INVALID_REFRESH_TOKEN ||
-	// 		data.code === ERROR_CODE.MISMATCH_REFRESH_TOKEN ||
-	// 		data.code === ERROR_CODE.INVALID_TOKEN ||
-	// 		data.code === ERROR_CODE.UNAUTHORIZED_MEMBER ||
-	// 		data.code === ERROR_CODE.TOKEN_HAS_EXPIRED ||
-	// 		data.code === ERROR_CODE.REDIRECT_NOT_MATCHING ||
-	// 		data.code === ERROR_CODE.ROLE_CANNOT_EXECUTE_URI ||
-	// 		data.code === ERROR_CODE.MUST_AUTHORIZED_URI ||
-	// 		data.code === ERROR_CODE.REFRESH_NOT_EXIST_IN_COOKIE ||
-	// 		data.code === ERROR_CODE.MISMATCH_EMAIL_AND_PASSWORD)
-	// ) {
-	// 	localStorage.removeItem(ACCESS_TOKEN_KEY);
-
-	// 	throw new HTTPError(status, data.message, data.code);
-	// }
 
 	throw error;
 };

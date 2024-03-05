@@ -28,9 +28,13 @@ import {
 const StoryContent = ({ medias }: { medias: FileProp[] }) => {
 	const { mutatePostStory } = usePostStoryMutation();
 
-	console.log(medias[0].url);
-
-	const file = new File([medias[0].url], `filetest.png`);
+	const file = new File(
+		[
+			"https://waggle-bucket.s3.ap-northeast-2.amazonaws.com/eadaab3f-b404-48a1-92bd-2380b615e441.png",
+		],
+		`filetest.png`,
+		{ type: "image/png" },
+	);
 
 	const [content, setContent] = useState("");
 	const [hashtagList] = useState<string[]>(["test"]);

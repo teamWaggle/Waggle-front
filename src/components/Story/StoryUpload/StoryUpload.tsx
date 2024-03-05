@@ -142,18 +142,20 @@ const StoryUpload = () => {
 			<Text size="xLarge" css={getDefaultTextStyle(Theme.color.white, 600)}>
 				사진과 동영상을 여기다 끌어다 놓으세요
 			</Text>
-			<label htmlFor="media" css={labelStyle}>
-				<Text size="large" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>
-					컴퓨터에서 선택
-				</Text>
-			</label>
-			<input
-				type="file"
-				multiple
-				id="media"
-				onChange={handleChangeImg}
-				accept="image/jpeg, image/png, image/heic, image/heif"
-			/>
+			<form encType="multipart/form-data" method="POST">
+				<label htmlFor="media" css={labelStyle}>
+					<Text size="large" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>
+						컴퓨터에서 선택
+					</Text>
+				</label>
+				<input
+					type="file"
+					multiple={true}
+					id="media"
+					onChange={handleChangeImg}
+					accept="image/jpeg, image/png, image/heic, image/heif"
+				/>
+			</form>
 		</Flex>
 	);
 };
