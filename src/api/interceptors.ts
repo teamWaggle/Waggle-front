@@ -39,9 +39,10 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 
 	const { data, status } = error.response;
 
-	// 토큰 만료 에러 코드 추가 예정
-	if (status === HTTP_STATUS_CODE.BAD_REQUEST) {
+	if (status === HTTP_STATUS_CODE.BAD_REQUEST && data.code === ERROR_CODE.TOKEN_HAS_EXPIRED) {
 		const { result } = await postRefreshToken();
+
+		console.log("토큰 재발급");
 
 		originalRequest.headers.Authorization = `Bearer ${result.accessToken}`;
 
@@ -50,14 +51,13 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 		return authorizedAxiosInstance(originalRequest);
 	}
 
-	// 토큰 만료 에러 코드 추가 예정
 	if (
 		status === HTTP_STATUS_CODE.BAD_REQUEST &&
 		(data.code === ERROR_CODE.INVALID_REFRESH_TOKEN ||
 			data.code === ERROR_CODE.MISMATCH_REFRESH_TOKEN ||
 			data.code === ERROR_CODE.INVALID_TOKEN ||
 			data.code === ERROR_CODE.UNAUTHORIZED_MEMBER ||
-			data.code === ERROR_CODE.TOKEN_NO_AUTHORITY ||
+			data.code === ERROR_CODE.TOKEN_HAS_EXPIRED ||
 			data.code === ERROR_CODE.REDIRECT_NOT_MATCHING ||
 			data.code === ERROR_CODE.ROLE_CANNOT_EXECUTE_URI ||
 			data.code === ERROR_CODE.MUST_AUTHORIZED_URI ||
@@ -68,6 +68,8 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 
 		throw new HTTPError(status, data.message, data.code);
 	}
+
+	throw error;
 };
 
 export const handleAPIError = (error: AxiosError<ErrorResponseData>) => {

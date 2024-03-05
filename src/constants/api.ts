@@ -8,6 +8,7 @@ export const END_POINTS = {
 	EMAIL_AUTH_VERIFY: "/api/members/email/verify",
 	PASSWORD_AUTH_VERIFY: "/api/members/email/verify/password",
 	MEMBER_INFO_FIRST: "/api/members/info",
+	GET_MEMBER_INFO: (memberId: number) => `/api/members/${memberId}`,
 	CHANGE_PASSWORD: (memberId: number) => `/api/members/${memberId}/password`,
 	FIND_EMAIL: (name: string, birthday: string) =>
 		`/api/members/email/find?name=${name}&birthday=${birthday}`,
@@ -42,7 +43,7 @@ export const ERROR_CODE = {
 	MISMATCH_REFRESH_TOKEN: 4051,
 	INVALID_TOKEN: 4052,
 	UNAUTHORIZED_MEMBER: 4053,
-	TOKEN_NO_AUTHORITY: 4054,
+	TOKEN_HAS_EXPIRED: 4054,
 	REDIRECT_NOT_MATCHING: 4055,
 	ROLE_CANNOT_EXECUTE_URI: 4056,
 	MUST_AUTHORIZED_URI: 4057,

@@ -18,7 +18,7 @@ export interface CommentListInfoType {
 	commentId: number;
 	content: string;
 	createdDate: Date;
-	mentionedMemberList: string[];
+	mentionedMemberList?: string[];
 	member: MemberType;
 	isOwner: boolean;
 }

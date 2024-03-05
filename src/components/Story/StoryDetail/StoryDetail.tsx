@@ -99,11 +99,12 @@ const StoryDetail = ({ id }: idType) => {
 							{commentData &&
 								commentData.result.commentList.map((comment) => (
 									<Comment
-										key={comment.id}
-										id={comment.id}
+										key={comment.commentId}
+										commentId={comment.commentId}
 										content={comment.content}
 										createdDate={comment.createdDate}
 										member={comment.member}
+										isOwner={comment.isOwner}
 									/>
 								))}
 						</Box>

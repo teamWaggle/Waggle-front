@@ -11,7 +11,7 @@ export interface SignUpFormType {
 	name: string;
 	birthday: string;
 	userUrl: string;
-	profileImgUrl: string;
+	memberProfileImg: string;
 }
 
 export const putMemberInfoFirst = async (formData: FormData) => {

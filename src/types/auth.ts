@@ -9,6 +9,7 @@ export interface ResultType {
 	accessToken: string;
 	grantType: string;
 	refreshToken: string;
+	member: MemberType;
 }
 
 export interface UserType {
@@ -37,6 +38,22 @@ export interface MemberType {
 
 export interface FindEmailResultType {
 	emailList: string[];
+}
+
+export interface MemberInfoResponseType {
+	isSuccess: boolean;
+	code: number;
+	message: string;
+	result: MemberInfoResultType;
+}
+
+export interface MemberInfoResultType {
+	memberId: number;
+	userUrl: string;
+	nickname: string;
+	name: string;
+	birthday: Date;
+	profileImgUrl: string;
 }
 
 export interface FindEmailResponseType {

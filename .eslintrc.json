@@ -81,6 +81,11 @@
                 "position": "before"
               },
               {
+                "pattern": "@/recoil/**/*",
+                "group": "type",
+                "position": "before"
+              },
+              {
                 "pattern": "@/styles/**/*",
                 "group": "type",
                 "position": "before"
