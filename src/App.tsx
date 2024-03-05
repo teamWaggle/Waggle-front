@@ -13,18 +13,23 @@ import {
 	PlanningPage,
 } from "@/pages";
 
-import { isLoggedInState } from "@/recoil/atoms/auth";
+import { isLoggedInState, memberIdState } from "@/recoil/atoms/auth";
 
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
 	const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+	const setMemberId = useSetRecoilState(memberIdState);
 
 	useLayoutEffect(() => {
 		if (localStorage.getItem("ACCESS_TOKEN")) {
 			setIsLoggedIn(true);
 		}
-	}, [setIsLoggedIn]);
+
+		if (localStorage.getItem("MEMBER_ID")) {
+			setMemberId(Number(localStorage.getItem("MEMBER_ID")));
+		}
+	}, [setIsLoggedIn, setMemberId]);
 
 	const RoutesProps = [
 		{ path: "/", element: <LandingPage /> },

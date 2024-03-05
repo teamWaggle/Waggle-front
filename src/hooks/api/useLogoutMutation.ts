@@ -20,6 +20,7 @@ export const useLogoutMutation = () => {
 		mutationFn: deleteLogout,
 		onSuccess: () => {
 			localStorage.removeItem("ACCESS_TOKEN");
+			localStorage.removeItem("MEMBER_ID");
 			queryClient.clear();
 
 			setIsLoggedIn(false);
