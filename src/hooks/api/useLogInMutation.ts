@@ -18,7 +18,11 @@ export const useLogInMutation = () => {
 	const logInMutation = useMutation({
 		mutationFn: postLogIn,
 		onSuccess: ({ result }: TokenType) => {
-			localStorage.setItem("ACCESS_TOKEN", result.accessToken);
+			// localStorage.setItem("ACCESS_TOKEN", result.accessToken);
+			localStorage.setItem(
+				"ACCESS_TOKEN",
+				"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNmQ5OWUzNy04MWE1LTQzOGItYjBjMS1jYzY1MmRiYmU5MTYiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzA5NjUzOTk5fQ.FukEjTXVdNqa4CexXjW9BMNE8XgfnLQ6lBCAC0qfT6s",
+			);
 
 			authorizedAxiosInstance.defaults.headers.Authorization = `Bearer ${result.accessToken}`;
 			setMemberId(result.member.memberId);

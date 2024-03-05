@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 import DefaultProfileImg from "@/assets/png/profile.png";
@@ -19,12 +20,14 @@ import {
 } from "@/components/SignUp/SignUp.shared.style";
 
 const Profile = ({
-	fileURL,
+	// fileURL,
 	changeFile,
 }: {
-	fileURL: string;
-	changeFile: React.Dispatch<React.SetStateAction<string>>;
+	fileURL: File | undefined;
+	changeFile: React.Dispatch<React.SetStateAction<File | undefined>>;
 }) => {
+	const [, setDefaultImg] = useState<string | ArrayBuffer | null>("");
+
 	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const target = e.currentTarget;
 		const files = (target.files as FileList)[0];
@@ -47,13 +50,24 @@ const Profile = ({
 			return;
 		}
 
-		const newFileURL = URL.createObjectURL(files);
-		changeFile(newFileURL);
+		const reader = new FileReader();
+
+		reader.readAsDataURL(files);
+
+		reader.onloadend = () => {
+			// console.log(reader.result);
+			setDefaultImg(reader.result);
+			changeFile(files);
+		};
+
+		// const newFileURL = URL.createObjectURL(files);
+		// changeFile(newFileURL);
 	};
 
 	return (
 		<Flex styles={{ align: "center", gap: "60px" }}>
-			<img src={fileURL ? fileURL : DefaultProfileImg} alt="profileImg" css={imgStyle} />
+			{/* <img src={defaultImg ? defaultImg : DefaultProfileImg} alt="profileImg" css={imgStyle} /> */}
+			<img src={DefaultProfileImg} alt="profileImg" css={imgStyle} />
 			<Flex styles={{ direction: "column", gap: "14px" }}>
 				<Text css={getFormTextStyle(false)}>프로필 이미지</Text>
 				<input type="file" id="profileImg" onChange={handleChangeImg} css={inputNoneDisplayStyle} />

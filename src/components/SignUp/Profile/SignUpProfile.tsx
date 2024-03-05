@@ -42,13 +42,11 @@ const SignUpProfile = () => {
 	const [nickname, setNickname] = useState("");
 	const [userUrl, setUserUrl] = useState("");
 	const [name, setName] = useState("");
-	const [fileURL, setFileURL] = useState<string>("");
+	const [fileURL, setFileURL] = useState<File>();
 
 	const [nicknameCheckComplete, setNicknameCheckComplete] = useState(false);
 	const [userUrlCheckComplete, setUserUrlCheckComplete] = useState(false);
 	const [selectBirthday, setSelectBirthday] = useState(false);
-
-	console.log(fileURL);
 
 	const validateForm = () => {
 		if (
@@ -77,15 +75,22 @@ const SignUpProfile = () => {
 		const formData = new FormData();
 		const birthday = dateFormatToUTC(state.yearText, state.monthText, state.dayText);
 
+		if (!fileURL) {
+			return;
+		}
+
+		// const test = new File([fileURL], `filetest.png`);
+
 		const memberProfileRequest = {
 			nickname,
 			name,
 			birthday,
 			userUrl,
-			memberProfileImg: fileURL,
 		};
 
 		formData.append("memberProfileRequest", JSON.stringify(memberProfileRequest));
+
+		formData.append("memberProfileImg", fileURL);
 
 		for (const key of formData.keys()) {
 			console.log(key);

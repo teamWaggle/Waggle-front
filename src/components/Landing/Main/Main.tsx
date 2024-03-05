@@ -1,6 +1,7 @@
 import { Flex, SearchInput } from "@/components/common";
 import { Sidebar, SortButton } from "@/components/Landing";
 import { Story } from "@/components/Story";
+import Test from "@/components/Story/StoryUpload/test";
 
 import { mainStyle } from "@/components/Landing/Main/Main.style";
 
@@ -14,6 +15,7 @@ const Main = () => {
 						<SearchInput onChange={() => {}} width="644px" />
 					</Flex>
 					<Story />
+					<Test />
 				</Flex>
 				<Sidebar />
 			</Flex>
