@@ -39,7 +39,6 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 
 	const { data, status } = error.response;
 
-	console.log(data.code);
 	if (
 		status === HTTP_STATUS_CODE.BAD_REQUEST &&
 		(data.code === ERROR_CODE.INVALID_REFRESH_TOKEN ||
@@ -54,6 +53,7 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 			data.code === ERROR_CODE.MISMATCH_EMAIL_AND_PASSWORD)
 	) {
 		localStorage.removeItem(ACCESS_TOKEN_KEY);
+		localStorage.removeItem("MEMBER_ID");
 
 		throw new HTTPError(status, data.message, data.code);
 	}
@@ -64,6 +64,7 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
 		originalRequest.headers.Authorization = `Bearer ${result.accessToken}`;
 
 		localStorage.setItem(ACCESS_TOKEN_KEY, result.accessToken);
+		localStorage.setItem("MEMBER_ID", String(result.member.memberId));
 
 		return authorizedAxiosInstance(originalRequest);
 	}

@@ -7,25 +7,23 @@ import { useMutation } from "@tanstack/react-query";
 import { postLogIn } from "@/api/auth/postLogin";
 import { authorizedAxiosInstance } from "@/api/axiosInstance";
 
-import { isLoggedInState, memberIdState } from "@/recoil/atoms/auth";
+import { ACCESS_TOKEN_KEY } from "@/constants/api";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import type { TokenType } from "@/types/auth";
 
 export const useLogInMutation = () => {
 	const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-	const setMemberId = useSetRecoilState(memberIdState);
 
 	const logInMutation = useMutation({
 		mutationFn: postLogIn,
 		onSuccess: ({ result }: TokenType) => {
-			// localStorage.setItem("ACCESS_TOKEN", result.accessToken);
-			localStorage.setItem(
-				"ACCESS_TOKEN",
-				"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkNmQ5OWUzNy04MWE1LTQzOGItYjBjMS1jYzY1MmRiYmU5MTYiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNzA5NjUzOTk5fQ.FukEjTXVdNqa4CexXjW9BMNE8XgfnLQ6lBCAC0qfT6s",
-			);
+			localStorage.setItem(ACCESS_TOKEN_KEY, result.accessToken);
+			localStorage.setItem("MEMBER_ID", String(result.member.memberId));
 
 			authorizedAxiosInstance.defaults.headers.Authorization = `Bearer ${result.accessToken}`;
-			setMemberId(result.member.memberId);
+
 			setIsLoggedIn(true);
 		},
 		onError: () => {
