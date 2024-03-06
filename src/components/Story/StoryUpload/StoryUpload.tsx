@@ -87,7 +87,7 @@ const StoryUpload = () => {
 		// setFileUpload(true);
 	};
 
-	const { isImgLoading, imgUrls, handleImgUpload } = useImgUpload({ initialImgName: [] });
+	const { isLoading, imgUrls, fileList, handleImgUpload } = useImgUpload({ initialImgName: [] });
 
 	// const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 	// 	if (!e.target.files) return;
@@ -122,18 +122,16 @@ const StoryUpload = () => {
 	// 	}
 
 	useEffect(() => {
-		if (!isImgLoading) {
+		if (!isLoading) {
 			modal.closeModal();
 
 			modal.openModal({
 				key: `UploadCutModal`,
-
-				component: () => <UploadCut medias={file} imgUrls={imgUrls} />,
-
+				component: () => <UploadCut medias={file} imgUrls={imgUrls} fileList={fileList} />,
 				notCloseIcon: true,
 			});
 		}
-	}, [isImgLoading]);
+	}, [isLoading]);
 
 	return (
 		<Flex
@@ -147,20 +145,18 @@ const StoryUpload = () => {
 			<Text size="xLarge" css={getDefaultTextStyle(Theme.color.white, 600)}>
 				사진과 동영상을 여기다 끌어다 놓으세요
 			</Text>
-			<form encType="multipart/form-data" method="POST">
-				<label htmlFor="media" css={labelStyle}>
-					<Text size="large" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>
-						컴퓨터에서 선택
-					</Text>
-				</label>
-				<input
-					type="file"
-					multiple={true}
-					id="media"
-					onChange={handleImgUpload}
-					accept="image/jpeg, image/png, image/heic, image/heif"
-				/>
-			</form>
+			<label htmlFor="media" css={labelStyle}>
+				<Text size="large" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>
+					컴퓨터에서 선택
+				</Text>
+			</label>
+			<input
+				type="file"
+				multiple={true}
+				id="media"
+				onChange={handleImgUpload}
+				accept="image/jpeg, image/png, image/heic, image/heif"
+			/>
 		</Flex>
 	);
 };

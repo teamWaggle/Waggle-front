@@ -5,20 +5,24 @@ import type { FileProp, SizeType } from "@/types/upload";
 import { layoutStyle } from "@/components/Story/StoryUpload/CutImgUnit.style";
 
 const CutImgUnit = ({
+	imgUrls,
 	currentFile,
 	sizeMode,
 	currentWidth,
 	imgRef,
 }: {
+	imgUrls: string;
 	currentFile: FileProp;
 	sizeMode: SizeType;
 	currentWidth: number;
 	imgRef: React.RefObject<HTMLDivElement>;
 }) => {
+	console.log(imgUrls);
+
 	return (
 		<div
 			css={layoutStyle(
-				currentFile.url,
+				imgUrls,
 				getSizeBoxWidth(sizeMode, currentWidth),
 				getSizeBoxHeight(sizeMode, currentWidth),
 			)}
