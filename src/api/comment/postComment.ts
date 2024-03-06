@@ -4,21 +4,12 @@ import { authorizedAxiosInstance } from "@/api/axiosInstance";
 
 import { END_POINTS } from "@/constants/api";
 
+import type { PostCommentType } from "@/types/comment";
 import type { CommonResponseType } from "@/types/common";
 
-interface CommentRequestType {
-	content: string;
-	mentionedMemberList: string[];
-	boardId: number;
-}
-
-export const postComment = async ({
-	content,
-	mentionedMemberList,
-	boardId,
-}: CommentRequestType) => {
+export const postComment = async ({ content, mentionedMemberList, boardId }: PostCommentType) => {
 	const { data } = await authorizedAxiosInstance.post<
-		CommentRequestType,
+		PostCommentType,
 		AxiosResponse<CommonResponseType>
 	>(END_POINTS.POST_COMMENT(boardId), {
 		content,
