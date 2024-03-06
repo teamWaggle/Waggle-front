@@ -20,15 +20,17 @@ export const buttonBoxStyle = css({
 	width: "100%",
 });
 
-export const buttonStyle = (isDelete?: boolean) => {
-	return css({
-		all: "unset",
-		fontSize: "14px",
-		color: isDelete ? Theme.color.btn_danger : Theme.color.text,
-		width: "100%",
-		height: "48px",
-		borderTop: `1px solid ${Theme.color.border}`,
-		textAlign: "center",
-		cursor: "pointer",
-	});
-};
+export const buttonStyle = css({
+	all: "unset",
+	fontSize: "14px",
+	color: Theme.color.text,
+	width: "100%",
+	height: "48px",
+	borderTop: `1px solid ${Theme.color.border}`,
+	textAlign: "center",
+	cursor: "pointer",
+
+	"&.deleteButton": {
+		color: Theme.color.btn_danger,
+	},
+});

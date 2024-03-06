@@ -28,7 +28,7 @@ const Comment = ({ commentId, member, content, createdDate }: CommentListInfoTyp
 	const handleDeleteComment = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal commentId={commentId} />,
+			component: () => <DeleteWarningModal targetId={commentId} />,
 			isUpper: true,
 			notCloseIcon: true,
 		});

@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
+import DeleteWarningModal from "@/components/Story/StoryDetail/DeleteWarningModal/DeleteWarningModal";
 import Profile from "@/components/Story/StoryDetail/Profile/Profile";
+
+import useModal from "@/hooks/useModal";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
@@ -12,8 +15,19 @@ import {
 	replyDateTextStyle,
 } from "@/components/Story/StoryDetail/Comment/Comment.style";
 
-const ReplyItem = ({ content, member, createdDate }: ReplyListInfoType) => {
+const ReplyItem = ({ replyId, content, member, createdDate }: ReplyListInfoType) => {
 	const [date, setDate] = useState("");
+
+	const modal = useModal();
+
+	const handleDeleteReply = () => {
+		modal.openModal({
+			key: `DeleteWarningModal`,
+			component: () => <DeleteWarningModal targetId={replyId} isReply />,
+			isUpper: true,
+			notCloseIcon: true,
+		});
+	};
 
 	useEffect(() => {
 		if (createdDate) {
@@ -31,7 +45,11 @@ const ReplyItem = ({ content, member, createdDate }: ReplyListInfoType) => {
 			}}
 		>
 			{/* 프로필 영역 */}
-			<Profile img={member.profileImgUrl} nickname={member.nickname} />
+			<Profile
+				img={member.profileImgUrl}
+				nickname={member.nickname}
+				deleteClick={handleDeleteReply}
+			/>
 
 			<Box styles={{ maxWidth: "215px", paddingLeft: "43px" }}>
 				<Text size="small" css={getCommentTextStyle}>
