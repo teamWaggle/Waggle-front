@@ -7,11 +7,10 @@ import { getStoryList } from "@/api/story/getStoryList";
 import type { StoryListType } from "@/types/story";
 
 export const useStoryListQuery = (currentPage: number) => {
-	const queryFn: { storyList: () => Promise<StoryListType> } = {
-		storyList: () => getStoryList(currentPage),
-	};
+	const { data: storyListData } = useQuery<StoryListType, AxiosError>({
+		queryKey: ["storyList"],
+		queryFn: () => getStoryList(currentPage),
+	});
 
-	const { data } = useQuery<StoryListType, AxiosError>(["storyList"], queryFn.storyList);
-
-	return { storyList: data };
+	return { storyListData };
 };

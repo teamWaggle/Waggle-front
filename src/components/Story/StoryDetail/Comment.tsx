@@ -34,7 +34,7 @@ const Comment = ({ commentId, member, content, createdDate }: CommentListInfoTyp
 	}, [createdDate]);
 
 	return (
-		<Flex styles={{ direction: "column", padding: "0 30px 0 18px", marginTop: "20px" }}>
+		<Flex styles={{ direction: "column", padding: "0 30px 0 18px" }}>
 			<Profile img={member.profileImgUrl} nickname={member.nickname} />
 
 			<Box css={commentBoxStyle}>
