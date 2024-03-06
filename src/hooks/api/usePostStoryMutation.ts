@@ -15,5 +15,5 @@ export const usePostStoryMutation = () => {
 		},
 	});
 
-	return { mutatePostStory: postStoryMutation.mutate };
+	return postStoryMutation;
 };

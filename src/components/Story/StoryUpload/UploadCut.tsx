@@ -40,7 +40,9 @@ import {
 	arrowBoxStyle,
 } from "@/components/Story/StoryUpload/UploadCut.style";
 
-const UploadCut = ({ medias }: { medias: FileProp[] }) => {
+const UploadCut = ({ medias, imgUrls }: { medias: FileProp[]; imgUrls: string[] }) => {
+	console.log(imgUrls);
+
 	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 	const [isCutOpen, setIsCutOpen] = useState(false);
