@@ -7,11 +7,10 @@ import { getSiren } from "@/api/siren/getSiren";
 import type { SirenType } from "@/types/siren";
 
 export const useSirenQuery = (boardId: number) => {
-	const queryFn: { siren: () => Promise<SirenType> } = {
-		siren: () => getSiren(boardId),
-	};
+	const { data: sirenData } = useQuery<SirenType, AxiosError>({
+		queryKey: ["siren"],
+		queryFn: () => getSiren(boardId),
+	});
 
-	const { data } = useQuery<SirenType, AxiosError>(["siren"], queryFn.siren);
-
-	return { siren: data };
+	return { sirenData };
 };

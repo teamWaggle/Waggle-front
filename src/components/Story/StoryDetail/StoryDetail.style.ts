@@ -22,6 +22,10 @@ export const commentLayoutStyle = css({
 	height: "450px",
 	msOverflowStyle: "none",
 	scrollbarWidth: "none",
+	display: "flex",
+	flexDirection: "column",
+	gap: "20px",
+	padding: "20px 0",
 
 	"&::-webkit-scrollbar": {
 		display: "none",
@@ -54,10 +58,14 @@ export const getReplyInputStyle = (width: string) => {
 		boxSizing: "border-box",
 		borderBottom: `1px solid ${Theme.color.brand_primary}`,
 		padding: "8px 30px 8px 0",
-		color: Theme.color.disabled_text,
+		color: Theme.color.black,
 		fontSize: "12px",
 		fontWeight: 500,
 		width: width,
+
+		"&::placeholder": {
+			color: Theme.color.disabled_text,
+		},
 	});
 };
 

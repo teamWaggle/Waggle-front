@@ -20,6 +20,7 @@ export const END_POINTS = {
 	UPLOAD_STORY: "/api/stories",
 	COMMENT: (currentPage: number, boardId: number) =>
 		`/api/comments/page/${boardId}?curretPage=${currentPage}`,
+	POST_COMMENT: (boardId: number) => `/api/comments/${boardId}`,
 	SIREN: (boardId: number) => `/api/helps/${boardId}`,
 	SIREN_LIST: (curretPage: number) => `/api/helps?currentPage=${curretPage}`,
 	REPLY: (currentPage: number, commentId: number) =>

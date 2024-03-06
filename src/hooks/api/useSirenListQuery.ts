@@ -7,11 +7,10 @@ import { getSirenList } from "@/api/siren/getSirenList";
 import type { SirenListType } from "@/types/siren";
 
 export const useSirenListQuery = (currentPage: number) => {
-	const queryFn: { sirenList: () => Promise<SirenListType> } = {
-		sirenList: () => getSirenList(currentPage),
-	};
+	const { data: sirenListData } = useQuery<SirenListType, AxiosError>({
+		queryKey: ["sirenList"],
+		queryFn: () => getSirenList(currentPage),
+	});
 
-	const { data } = useQuery<SirenListType, AxiosError>(["sirenList"], queryFn.sirenList);
-
-	return { sirenList: data };
+	return { sirenListData };
 };

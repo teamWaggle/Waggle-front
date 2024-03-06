@@ -8,6 +8,7 @@ import Profile from "@/components/Story/StoryDetail/Profile";
 import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
+import { usePostCommentMutation } from "@/hooks/api/usePostCommentMutation";
 import { useStoryQuery } from "@/hooks/api/useStoryQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -30,11 +31,24 @@ interface idType {
 const StoryDetail = ({ id }: idType) => {
 	const { storyData } = useStoryQuery(id);
 
-	console.log(storyData);
-
 	const { commentData } = useCommentQuery(0, id);
 
+	const postCommentMutation = usePostCommentMutation();
+
 	const [createdDate, setCreatedDate] = useState("");
+	const [content, setContent] = useState("");
+	const [mentionedMemberList] = useState<string[]>(["test"]);
+
+	const handleCommentAddClick = () => {
+		postCommentMutation.mutate(
+			{ content, mentionedMemberList, boardId },
+			{
+				onSuccess: () => {
+					setContent("");
+				},
+			},
+		);
+	};
 
 	useEffect(() => {
 		if (storyData) {
@@ -47,6 +61,12 @@ const StoryDetail = ({ id }: idType) => {
 	if (!storyData) {
 		return <div>로딩중...</div>;
 	}
+
+	if (!commentData) {
+		return <div>로딩중...</div>;
+	}
+
+	const boardId = storyData.result.boardId;
 
 	return (
 		<>
@@ -98,17 +118,16 @@ const StoryDetail = ({ id }: idType) => {
 
 						{/* 코멘트 영역 */}
 						<Box css={commentLayoutStyle}>
-							{commentData &&
-								commentData.result.commentList.map((comment) => (
-									<Comment
-										key={comment.commentId}
-										commentId={comment.commentId}
-										content={comment.content}
-										createdDate={comment.createdDate}
-										member={comment.member}
-										isOwner={comment.isOwner}
-									/>
-								))}
+							{commentData.result.commentList.map((comment) => (
+								<Comment
+									key={comment.commentId}
+									commentId={comment.commentId}
+									content={comment.content}
+									createdDate={comment.createdDate}
+									member={comment.member}
+									isOwner={comment.isOwner}
+								/>
+							))}
 						</Box>
 
 						<Divider length="309px" />
@@ -123,8 +142,14 @@ const StoryDetail = ({ id }: idType) => {
 							</Flex>
 
 							<Box styles={{ position: "relative" }}>
-								<input type="text" css={getReplyInputStyle("260px")} placeholder="댓글 작성" />
-								<button type="submit" css={replyButtonStyle}>
+								<input
+									type="text"
+									css={getReplyInputStyle("260px")}
+									placeholder="댓글 작성"
+									value={content}
+									onChange={(e) => setContent(e.target.value)}
+								/>
+								<button type="submit" css={replyButtonStyle} onClick={handleCommentAddClick}>
 									등록
 								</button>
 							</Box>
