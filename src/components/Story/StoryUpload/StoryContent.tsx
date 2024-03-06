@@ -4,7 +4,7 @@ import SampleImg from "@/assets/png/post-sample.png";
 import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Flex, Text } from "@/components/common";
-import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider";
+import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider";
 
 import { usePostStoryMutation } from "@/hooks/api/usePostStoryMutation";
 import useModal from "@/hooks/useModal";

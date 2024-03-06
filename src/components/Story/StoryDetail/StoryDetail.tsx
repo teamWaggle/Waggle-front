@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
 import { Flex, Box, Divider, Text } from "@/components/common";
-import Comment from "@/components/Story/StoryDetail/Comment";
-import Profile from "@/components/Story/StoryDetail/Profile";
-import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider";
+import Comment from "@/components/Story/StoryDetail/Comment/Comment";
+import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
+import Profile from "@/components/Story/StoryDetail/Profile/Profile";
+import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 import { usePostCommentMutation } from "@/hooks/api/usePostCommentMutation";
@@ -18,10 +19,9 @@ import { convertToUTC } from "@/utils/convertToUTC";
 
 import {
 	layoutStyle,
+	sliderBoxStyle,
 	contentBoxStyle,
 	commentLayoutStyle,
-	getReplyInputStyle,
-	replyButtonStyle,
 } from "@/components/Story/StoryDetail/StoryDetail.style";
 
 const StoryDetail = ({ id }: { id: number }) => {
@@ -69,26 +69,13 @@ const StoryDetail = ({ id }: { id: number }) => {
 			{storyData && (
 				<Flex css={layoutStyle}>
 					{/* 미디어 영역 */}
-					<Flex
-						styles={{
-							width: "741px",
-							height: "100%",
-							borderRight: "1px solid #d2d2d2",
-						}}
-					>
+					<Flex css={sliderBoxStyle}>
 						<StoryImgSlider mediaUrl={storyData.result.mediaList} />
 					</Flex>
 
 					{/* 본문 영역 */}
 					<Flex styles={{ direction: "column" }}>
-						<Flex
-							styles={{
-								direction: "column",
-								padding: "52px 30px 12px 18px",
-								gap: "12px",
-								width: "100%",
-							}}
-						>
+						<Flex css={contentBoxStyle}>
 							{/* 프로필 영역 */}
 							<Profile
 								img={storyData.result.member.profileImgUrl}
@@ -96,11 +83,12 @@ const StoryDetail = ({ id }: { id: number }) => {
 							/>
 
 							{/* 콘텐츠 본문 영역 */}
-							<Box css={contentBoxStyle}>
+							<Box styles={{ maxWidth: "270px" }}>
 								<Text css={getDefaultTextStyle(Theme.color.input_text, 500)}>
 									{storyData.result.content}
 								</Text>
 							</Box>
+
 							{/* 게시 날짜 영역 */}
 							<Flex styles={{ justify: "flex-end", width: "100%" }}>
 								<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
@@ -132,23 +120,19 @@ const StoryDetail = ({ id }: { id: number }) => {
 						<Flex styles={{ direction: "column", gap: "10px", padding: "15px 24px" }}>
 							<Flex styles={{ align: "center", gap: "2px" }}>
 								<HeartEmptyIcon />
+
 								<Text size="small" css={getDefaultTextStyle(Theme.color.disabled_text, 600)}>
 									{storyData.result.recommendationInfo.recommendCount}
 								</Text>
 							</Flex>
 
-							<Box styles={{ position: "relative" }}>
-								<input
-									type="text"
-									css={getReplyInputStyle("260px")}
-									placeholder="댓글 작성"
-									value={content}
-									onChange={(e) => setContent(e.target.value)}
-								/>
-								<button type="submit" css={replyButtonStyle} onClick={handleAddComment}>
-									등록
-								</button>
-							</Box>
+							<CommentInput
+								width="260px"
+								placeholder="댓글 작성"
+								handleAddButton={handleAddComment}
+								content={content}
+								setContent={setContent}
+							/>
 						</Flex>
 					</Flex>
 				</Flex>

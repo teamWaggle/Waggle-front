@@ -9,7 +9,7 @@ import {
 	layoutStyle,
 	buttonBoxStyle,
 	buttonStyle,
-} from "@/components/Story/StoryDetail/DeleteWarningModal.style";
+} from "@/components/Story/StoryDetail/DeleteWarningModal/DeleteWarningModal.style";
 
 const DeleteWarningModal = ({ commentId }: { commentId: number }) => {
 	const deleteCommentMutation = useDeleteCommentMutation();

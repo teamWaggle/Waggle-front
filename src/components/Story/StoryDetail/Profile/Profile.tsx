@@ -11,7 +11,7 @@ import {
 	profileStyle,
 	moreButtonStyle,
 	menuStyle,
-} from "@/components/Story/StoryDetail/Profile.style";
+} from "@/components/Story/StoryDetail/Profile/Profile.style";
 
 interface ProfileType {
 	img: string | undefined;
