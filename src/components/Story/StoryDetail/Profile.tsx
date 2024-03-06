@@ -16,9 +16,11 @@ import {
 interface ProfileType {
 	img: string | undefined;
 	nickname: string | undefined;
+	editClick?: () => void;
+	deleteClick?: () => void;
 }
 
-const Profile = ({ img, nickname }: ProfileType) => {
+const Profile = ({ img, nickname, editClick, deleteClick }: ProfileType) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	return (
@@ -37,8 +39,8 @@ const Profile = ({ img, nickname }: ProfileType) => {
 				<MoreButtonIcon />
 				{menuOpen && (
 					<ul css={menuStyle}>
-						<li>수정하기</li>
-						<li>삭제하기</li>
+						<li onClick={editClick}>수정하기</li>
+						<li onClick={deleteClick}>삭제하기</li>
 					</ul>
 				)}
 			</Flex>

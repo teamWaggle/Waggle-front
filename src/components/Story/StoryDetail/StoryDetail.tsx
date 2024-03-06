@@ -24,11 +24,7 @@ import {
 	replyButtonStyle,
 } from "@/components/Story/StoryDetail/StoryDetail.style";
 
-interface idType {
-	id: number;
-}
-
-const StoryDetail = ({ id }: idType) => {
+const StoryDetail = ({ id }: { id: number }) => {
 	const { storyData } = useStoryQuery(id);
 
 	const { commentData } = useCommentQuery(0, id);
@@ -39,7 +35,7 @@ const StoryDetail = ({ id }: idType) => {
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
 
-	const handleCommentAddClick = () => {
+	const handleAddComment = () => {
 		postCommentMutation.mutate(
 			{ content, mentionedMemberList, boardId },
 			{
@@ -149,7 +145,7 @@ const StoryDetail = ({ id }: idType) => {
 									value={content}
 									onChange={(e) => setContent(e.target.value)}
 								/>
-								<button type="submit" css={replyButtonStyle} onClick={handleCommentAddClick}>
+								<button type="submit" css={replyButtonStyle} onClick={handleAddComment}>
 									등록
 								</button>
 							</Box>

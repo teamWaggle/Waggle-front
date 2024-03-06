@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
+import DeleteWarningModal from "@/components/Story/StoryDetail/DeleteWarningModal";
 import Profile from "@/components/Story/StoryDetail/Profile";
 import Reply from "@/components/Story/StoryDetail/Reply";
 
 import { useReplyQuery } from "@/hooks/api/useReplyQuery";
+import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -25,6 +27,17 @@ const Comment = ({ commentId, member, content, createdDate }: CommentListInfoTyp
 	const [replyOpen, setReplyOpen] = useState(false);
 	const [date, setDate] = useState("");
 
+	const modal = useModal();
+
+	const handleDeleteComment = () => {
+		modal.openModal({
+			key: `DeleteWarningModal`,
+			component: () => <DeleteWarningModal commentId={commentId} />,
+			isUpper: true,
+			notCloseIcon: true,
+		});
+	};
+
 	useEffect(() => {
 		if (createdDate) {
 			const date = new Date(createdDate);
@@ -35,7 +48,11 @@ const Comment = ({ commentId, member, content, createdDate }: CommentListInfoTyp
 
 	return (
 		<Flex styles={{ direction: "column", padding: "0 30px 0 18px" }}>
-			<Profile img={member.profileImgUrl} nickname={member.nickname} />
+			<Profile
+				img={member.profileImgUrl}
+				nickname={member.nickname}
+				deleteClick={handleDeleteComment}
+			/>
 
 			<Box css={commentBoxStyle}>
 				<Text size="small" css={getCommentTextStyle(false)}>

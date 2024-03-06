@@ -22,3 +22,16 @@ export interface CommentListInfoType {
 	member: MemberType;
 	isOwner: boolean;
 }
+
+export interface PutCommentType extends CommentRequestType {
+	commentId: number;
+}
+
+export interface PostCommentType extends CommentRequestType {
+	boardId: number;
+}
+
+export interface CommentRequestType {
+	content: string;
+	mentionedMemberList: string[];
+}
