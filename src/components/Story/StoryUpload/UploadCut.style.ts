@@ -43,6 +43,11 @@ export const imgBoxStyle = css({
 	justifyContent: "center",
 	position: "relative",
 	borderRadius: "0 0 42px 42px",
+
+	"& > img": {
+		maxWidth: "100%",
+		maxHeight: "100%",
+	},
 });
 
 export const galleryBoxStyle = css({
@@ -171,6 +176,7 @@ export const arrowBoxStyle = (isShow: boolean) => {
 		cursor: "pointer",
 		display: isShow ? "none" : "flex",
 		top: "50%",
+		backgroundColor: Theme.color.disabled_text,
 
 		"&.leftArrow": {
 			left: "20px",

@@ -5,7 +5,7 @@ import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
 
 import { Flex } from "@/components/common";
 
-import type { FileProp } from "@/types/upload";
+// import type { FileProp } from "@/types/upload";
 
 import {
 	layoutStyle,
@@ -19,17 +19,15 @@ import {
 
 const StoryImgSlider = ({
 	mediaUrl,
-	medias,
+	imgUrls,
 	isUpload,
 }: {
 	mediaUrl?: string[];
-	medias?: FileProp[];
+	imgUrls?: string[];
 	isUpload?: boolean;
 }) => {
 	const [sliderIndex, setSliderIndex] = useState(0);
-	const totalIndex = isUpload ? medias && medias.length : mediaUrl && mediaUrl.length - 1;
-
-	console.log(mediaUrl && mediaUrl[0]);
+	const totalIndex = isUpload ? imgUrls && imgUrls.length - 1 : mediaUrl && mediaUrl.length - 1;
 
 	const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -82,9 +80,9 @@ const StoryImgSlider = ({
 				{totalIndex && (
 					<div css={sliderBoxStyle(`${(totalIndex + 1) * 100}%`)}>
 						{isUpload
-							? medias &&
-							  medias.map((media) => (
-									<img key={media.url} src={media.url} alt="img" css={imgStyle(isUpload)} />
+							? imgUrls &&
+							  imgUrls.map((media) => (
+									<img key={media} src={media} alt="img" css={imgStyle(isUpload)} />
 							  ))
 							: mediaUrl &&
 							  mediaUrl.map((media) => (

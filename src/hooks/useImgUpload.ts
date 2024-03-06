@@ -1,18 +1,20 @@
 import { useState, useCallback } from "react";
 
-import { usePostStoryMutation } from "@/hooks/api/usePostStoryMutation";
+// import { usePostStoryMutation } from "@/hooks/api/usePostStoryMutation";
 
 const convertToImgUrls = (imageNames: string[]) => {
 	return [...imageNames]?.map((imageName) => `${import.meta.env.VITE_IMG_URL}${imageName}`);
 };
 
 export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) => {
-	const postStoryMutation = usePostStoryMutation();
-	const isImgLoading = postStoryMutation.isLoading;
+	// const postStoryMutation = usePostStoryMutation();
+	// const isImgLoading = postStoryMutation.isLoading;
+	const [isLoading, setIsLoading] = useState(true);
 
 	const initialImgUrl = convertToImgUrls([...initialImgName]);
 
 	const [imgUrls, setImageUrls] = useState(initialImgUrl);
+	const [fileList, setFileList] = useState<File[]>([]);
 
 	const compressImgs = useCallback(async (originalImageFiles: FileList): Promise<File[]> => {
 		const imageFiles: File[] = [];
@@ -38,6 +40,8 @@ export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) =
 		const compressImages = await compressImgs(imgFiles);
 		const imgFormData = new FormData();
 
+		setFileList(compressImages);
+
 		compressImages.forEach((file) => {
 			imgFormData.append("files", file);
 		});
@@ -52,16 +56,16 @@ export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) =
 		return imgFormData;
 	}, []);
 
-	const postUpload = useCallback((images: FormData) => {
-		postStoryMutation.mutate(images, {
-			onSuccess: () => {
-				console.log("upload Success");
-			},
-			onError: () => {
-				console.log("upload fail");
-			},
-		});
-	}, []);
+	// const postUpload = useCallback((images: FormData) => {
+	// 	postStoryMutation.mutate(images, {
+	// 		onSuccess: () => {
+	// 			console.log("upload Success");
+	// 		},
+	// 		onError: () => {
+	// 			console.log("upload fail");
+	// 		},
+	// 	});
+	// }, []);
 
 	const handleImgUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
 		const originalImgFiles = e.target.files;
@@ -74,12 +78,15 @@ export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) =
 			return [...prevImgUrls, ...newImageUrls];
 		});
 
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const imageFormData = await convertToImageFormData(originalImgFiles);
 
-		postUpload(imageFormData);
+		// postUpload(imageFormData);
 
 		e.target.value = "";
+
+		setIsLoading(false);
 	}, []);
 
-	return { isImgLoading, imgUrls, handleImgUpload };
+	return { isLoading, fileList, imgUrls, handleImgUpload };
 };

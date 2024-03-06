@@ -8,7 +8,7 @@ import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
 import CutIcon from "@/assets/svg/upload/ic-cut.svg?react";
 
 import { Flex, Text } from "@/components/common";
-import CutImgUnit from "@/components/Story/StoryUpload/CutImgUnit";
+// import CutImgUnit from "@/components/Story/StoryUpload/CutImgUnit";
 import GallerySlider from "@/components/Story/StoryUpload/GallerySlider";
 import StoryContent from "@/components/Story/StoryUpload/StoryContent";
 import UploadWarningModal from "@/components/Story/StoryUpload/UploadWarningModal";
@@ -40,22 +40,28 @@ import {
 	arrowBoxStyle,
 } from "@/components/Story/StoryUpload/UploadCut.style";
 
-const UploadCut = ({ medias, imgUrls }: { medias: FileProp[]; imgUrls: string[] }) => {
-	console.log(imgUrls);
-
+const UploadCut = ({
+	medias,
+	imgUrls,
+	fileList,
+}: {
+	medias: FileProp[];
+	imgUrls: string[];
+	fileList: File[];
+}) => {
 	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 	const [isCutOpen, setIsCutOpen] = useState(false);
-	const [file, setFile] = useState<FileProp[]>(medias);
+	const [file] = useState<FileProp[]>(medias);
 	const [sizeMode, setSizeMode] = useState<SizeType>("original");
 
 	const galleryRef = useRef<HTMLDivElement>(null);
 	const cutRef = useRef<HTMLDivElement>(null);
-	const imgRef = useRef<HTMLDivElement>(null);
+	// const imgRef = useRef<HTMLDivElement>(null);
 
 	const modal = useModal();
 
-	const currentWidth = 730;
+	// const currentWidth = 730;
 
 	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
 	useClickOutSide(cutRef, () => setIsCutOpen(false));
@@ -74,7 +80,7 @@ const UploadCut = ({ medias, imgUrls }: { medias: FileProp[]; imgUrls: string[] 
 
 		modal.openModal({
 			key: `StoryContentModal`,
-			component: () => <StoryContent medias={file} />,
+			component: () => <StoryContent medias={file} imgUrls={imgUrls} fileList={fileList} />,
 		});
 	};
 
@@ -85,40 +91,40 @@ const UploadCut = ({ medias, imgUrls }: { medias: FileProp[]; imgUrls: string[] 
 	};
 
 	const handleRightArrowClick = () => {
-		if (mediaCurrentIndex === file.length - 1) return;
+		if (mediaCurrentIndex === imgUrls.length - 1) return;
 
 		setMediaCurrentIndex((prev) => prev + 1);
 	};
 
-	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const files = e.currentTarget.files;
-		const imgUrlList: FileProp[] = [];
+	// const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// 	const files = e.currentTarget.files;
+	// 	const imgUrlList: FileProp[] = [];
 
-		if (!files) {
-			return;
-		}
+	// 	if (!files) {
+	// 		return;
+	// 	}
 
-		for (let i = 0; i < files.length; i++) {
-			const img = new Image();
-			img.src = URL.createObjectURL(files[i]);
-			img.onload = () => {
-				imgUrlList.push({
-					url: img.src,
-					width: img.width,
-					height: img.height,
-					size: img.width / img.height,
-					translateX: 0,
-					translateY: 0,
-					scale: 0,
-					grabbedPosition: { x: 0, y: 0 },
-				});
+	// 	for (let i = 0; i < files.length; i++) {
+	// 		const img = new Image();
+	// 		img.src = URL.createObjectURL(files[i]);
+	// 		img.onload = () => {
+	// 			imgUrlList.push({
+	// 				url: img.src,
+	// 				width: img.width,
+	// 				height: img.height,
+	// 				size: img.width / img.height,
+	// 				translateX: 0,
+	// 				translateY: 0,
+	// 				scale: 0,
+	// 				grabbedPosition: { x: 0, y: 0 },
+	// 			});
 
-				if (img.complete) {
-					setFile((prev) => [...prev, ...imgUrlList]);
-				}
-			};
-		}
-	};
+	// 			if (img.complete) {
+	// 				setFile((prev) => [...prev, ...imgUrlList]);
+	// 			}
+	// 		};
+	// 	}
+	// };
 
 	return (
 		<Flex css={layoutStyle}>
@@ -133,12 +139,14 @@ const UploadCut = ({ medias, imgUrls }: { medias: FileProp[]; imgUrls: string[] 
 			</Flex>
 
 			<Flex css={imgBoxStyle}>
+				<img src={imgUrls[mediaCurrentIndex]} />
 				<div css={galleryIconBoxStyle} ref={galleryRef}>
 					<GalleryIcon onClick={() => setIsGalleryOpen((prev) => !prev)} />
 
 					{isGalleryOpen && (
 						<Flex css={galleryBoxStyle}>
 							<GallerySlider
+								imgUrls={imgUrls}
 								medias={file}
 								mediaCurrentIndex={mediaCurrentIndex}
 								setMediaCurrentIndex={setMediaCurrentIndex}
@@ -151,7 +159,7 @@ const UploadCut = ({ medias, imgUrls }: { medias: FileProp[]; imgUrls: string[] 
 								type="file"
 								multiple
 								id="media"
-								onChange={handleChangeImg}
+								onChange={() => {}}
 								accept="image/jpeg, image/png, image/heic, image/heif"
 							/>
 						</Flex>
@@ -188,25 +196,25 @@ const UploadCut = ({ medias, imgUrls }: { medias: FileProp[]; imgUrls: string[] 
 					<LeftArrowIcon width={40} height={40} />
 				</Flex>
 				<Flex
-					css={arrowBoxStyle(mediaCurrentIndex === file.length - 1)}
+					css={arrowBoxStyle(mediaCurrentIndex === imgUrls.length - 1)}
 					onClick={handleRightArrowClick}
 					className="rightArrow"
 				>
 					<RightArrowIcon width={40} height={40} />
 				</Flex>
 				<Flex css={imgDotBoxStyle}>
-					{file.length > 1 &&
-						[...Array(file.length)].map((_, index) => (
+					{imgUrls.length > 1 &&
+						[...Array(imgUrls.length)].map((_, index) => (
 							<div key={index} css={imgDotStyle(mediaCurrentIndex === index)} />
 						))}
 				</Flex>
-
+				{/* 
 				<CutImgUnit
 					currentFile={file[mediaCurrentIndex]}
 					sizeMode={sizeMode}
 					currentWidth={currentWidth}
 					imgRef={imgRef}
-				/>
+				/> */}
 			</Flex>
 		</Flex>
 	);

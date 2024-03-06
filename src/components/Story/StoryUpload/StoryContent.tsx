@@ -25,16 +25,16 @@ import {
 	uploadButtonStyle,
 } from "@/components/Story/StoryUpload/StoryContent.style";
 
-const StoryContent = ({ medias }: { medias: FileProp[] }) => {
+const StoryContent = ({
+	// medias,
+	imgUrls,
+	fileList,
+}: {
+	medias: FileProp[];
+	imgUrls: string[];
+	fileList: File[];
+}) => {
 	const postStoryMutate = usePostStoryMutation();
-
-	const file = new File(
-		[
-			"https://waggle-bucket.s3.ap-northeast-2.amazonaws.com/eadaab3f-b404-48a1-92bd-2380b615e441.png",
-		],
-		`filetest.png`,
-		{ type: "image/png" },
-	);
 
 	const [content, setContent] = useState("");
 	const [hashtagList] = useState<string[]>(["test"]);
@@ -53,9 +53,9 @@ const StoryContent = ({ medias }: { medias: FileProp[] }) => {
 
 		formData.append("createStoryRequest", JSON.stringify(createStoryRequest));
 
-		formData.append("files", file);
-
-		// formData.append("files", [medias[0].url]);
+		fileList.forEach((file) => {
+			formData.append("files", file);
+		});
 
 		postStoryMutate.mutate(formData, {
 			onSuccess: () => {
@@ -75,7 +75,7 @@ const StoryContent = ({ medias }: { medias: FileProp[] }) => {
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				<Flex css={imgBoxStyle}>
-					<StoryImgSlider medias={medias} isUpload />
+					<StoryImgSlider imgUrls={imgUrls} isUpload />
 				</Flex>
 
 				<Flex css={contentBoxStyle}>
