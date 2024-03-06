@@ -9,16 +9,32 @@ export interface ReplyType {
 
 export interface ReplyResultType {
 	replyList: ReplyListInfoType[];
-	totalReplies: number;
-	first: boolean;
-	last: boolean;
+	replyCount: number;
+	isFirst: boolean;
+	isLast: boolean;
 }
 
-export interface ReplyListInfoType {
-	id: number;
+interface CommentIdType {
+	commentId: number;
+}
+
+export interface ReplyListInfoType extends CommentIdType {
+	replyId: number;
 	content: string;
 	createdDate: string;
+	mentionedMemberList?: string[];
 	member: MemberType;
-	mentionMembers?: string[];
-	onClose?: () => void;
+}
+
+export interface PutReplyType extends ReplyRequestType {
+	replyId: number;
+}
+
+export interface PostReplyType extends ReplyRequestType {
+	commentId: number;
+}
+
+export interface ReplyRequestType {
+	content: string;
+	mentionedMemberList: string[];
 }

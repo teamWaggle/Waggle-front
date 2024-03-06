@@ -24,6 +24,8 @@ export interface BoxStylingProps {
 	color?: string;
 	position?: "static" | "absolute" | "relative" | "fixed" | "inherit";
 	boxShadow?: string;
+	maxWidth?: string;
+	maxHeight?: string;
 }
 
 export const getBoxStyling = ({
@@ -50,6 +52,8 @@ export const getBoxStyling = ({
 	color = "",
 	position = "static",
 	boxShadow = "",
+	maxWidth = "",
+	maxHeight = "",
 }: BoxStylingProps) => {
 	return css({
 		width,
@@ -75,5 +79,7 @@ export const getBoxStyling = ({
 		color,
 		position,
 		boxShadow,
+		maxWidth,
+		maxHeight,
 	});
 };

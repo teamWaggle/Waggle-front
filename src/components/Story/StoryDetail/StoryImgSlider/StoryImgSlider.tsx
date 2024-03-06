@@ -15,7 +15,7 @@ import {
 	arrowBoxStyle,
 	imgDotBoxStyle,
 	imgDotStyle,
-} from "@/components/Story/StoryDetail/StoryImgSlider.style";
+} from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider.style";
 
 const StoryImgSlider = ({
 	mediaUrl,

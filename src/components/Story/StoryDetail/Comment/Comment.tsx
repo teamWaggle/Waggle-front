@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
-import DeleteWarningModal from "@/components/Story/StoryDetail/DeleteWarningModal";
-import Profile from "@/components/Story/StoryDetail/Profile";
-import Reply from "@/components/Story/StoryDetail/Reply";
+import Reply from "@/components/Story/StoryDetail/Comment/Reply/Reply";
+import DeleteWarningModal from "@/components/Story/StoryDetail/DeleteWarningModal/DeleteWarningModal";
+import Profile from "@/components/Story/StoryDetail/Profile/Profile";
 
-import { useReplyQuery } from "@/hooks/api/useReplyQuery";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -17,13 +16,10 @@ import type { CommentListInfoType } from "@/types/comment";
 
 import {
 	getCommentTextStyle,
-	commentBoxStyle,
-	handleReplyTextStyle,
-} from "@/components/Story/StoryDetail/StoryDetail.style";
+	handleCommentTextStyle,
+} from "@/components/Story/StoryDetail/Comment/Comment.style";
 
 const Comment = ({ commentId, member, content, createdDate }: CommentListInfoType) => {
-	const { replyData } = useReplyQuery(0, commentId);
-
 	const [replyOpen, setReplyOpen] = useState(false);
 	const [date, setDate] = useState("");
 
@@ -54,8 +50,8 @@ const Comment = ({ commentId, member, content, createdDate }: CommentListInfoTyp
 				deleteClick={handleDeleteComment}
 			/>
 
-			<Box css={commentBoxStyle}>
-				<Text size="small" css={getCommentTextStyle(false)}>
+			<Box styles={{ maxWidth: "215px", paddingLeft: "43px" }}>
+				<Text size="small" css={getCommentTextStyle}>
 					{content}
 				</Text>
 			</Box>
@@ -66,24 +62,14 @@ const Comment = ({ commentId, member, content, createdDate }: CommentListInfoTyp
 				</Text>
 				<Text
 					size="xSmall"
-					css={handleReplyTextStyle}
+					css={handleCommentTextStyle}
 					onClick={() => setReplyOpen((prev) => !prev)}
 				>
 					답글
 				</Text>
 			</Flex>
-			{replyOpen &&
-				replyData &&
-				replyData.result.replyList.map((reply) => (
-					<Reply
-						key={reply.id}
-						onClose={() => setReplyOpen(false)}
-						id={reply.id}
-						content={reply.content}
-						member={reply.member}
-						createdDate={reply.createdDate}
-					/>
-				))}
+
+			{replyOpen && <Reply commentId={commentId} setReplyOpen={setReplyOpen} />}
 		</Flex>
 	);
 };
