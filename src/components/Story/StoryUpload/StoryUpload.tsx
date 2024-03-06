@@ -33,6 +33,10 @@ const StoryUpload = () => {
 
 	const modal = useModal();
 
+	const { isLoading, imgUrls, fileList, handleImgUpload, dropImgUpload } = useImgUpload({
+		initialImgName: [],
+	});
+
 	const handleDragIn = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -53,41 +57,6 @@ const StoryUpload = () => {
 			setIsDragOver(true);
 		}
 	};
-
-	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		e.stopPropagation();
-		setIsDragOver(false);
-
-		if (!e.dataTransfer) {
-			return;
-		}
-
-		const dropFiles = e.dataTransfer.files;
-		const imgUrlList: FileProp[] = [];
-
-		for (let i = 0; i < dropFiles.length; i++) {
-			const img = new Image();
-			img.src = URL.createObjectURL(dropFiles[i]);
-			img.onload = () => {
-				imgUrlList.push({
-					url: img.src,
-					width: img.width,
-					height: img.height,
-					size: img.width / img.height,
-					translateX: 0,
-					translateY: 0,
-					scale: 0,
-					grabbedPosition: { x: 0, y: 0 },
-				});
-			};
-		}
-
-		// setFile(imgUrlList);
-		// setFileUpload(true);
-	};
-
-	const { isLoading, imgUrls, fileList, handleImgUpload } = useImgUpload({ initialImgName: [] });
 
 	// const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
 	// 	if (!e.target.files) return;
@@ -136,7 +105,7 @@ const StoryUpload = () => {
 	return (
 		<Flex
 			css={layoutStyle(isDragOver)}
-			onDrop={handleDrop}
+			onDrop={dropImgUpload}
 			onDragEnter={handleDragIn}
 			onDragLeave={handleDragOut}
 			onDragOver={handleDragOver}
@@ -155,7 +124,7 @@ const StoryUpload = () => {
 				multiple={true}
 				id="media"
 				onChange={handleImgUpload}
-				accept="image/jpeg, image/png, image/heic, image/heif"
+				accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
 			/>
 		</Flex>
 	);

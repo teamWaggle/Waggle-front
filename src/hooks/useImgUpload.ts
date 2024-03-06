@@ -88,5 +88,30 @@ export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) =
 		setIsLoading(false);
 	}, []);
 
-	return { isLoading, fileList, imgUrls, handleImgUpload };
+	const dropImgUpload = useCallback(async (e: React.DragEvent<HTMLDivElement>) => {
+		e.preventDefault();
+		e.stopPropagation();
+		// setIsDragOver(false);
+
+		if (!e.dataTransfer) {
+			return;
+		}
+
+		const dropImgFiles = e.dataTransfer.files;
+
+		if (!dropImgFiles) return;
+
+		setImageUrls((prevImgUrls) => {
+			const newImageUrls = [...dropImgFiles].map((file) => URL.createObjectURL(file));
+
+			return [...prevImgUrls, ...newImageUrls];
+		});
+
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const imageFormData = await convertToImageFormData(dropImgFiles);
+
+		setIsLoading(false);
+	}, []);
+
+	return { isLoading, fileList, imgUrls, handleImgUpload, dropImgUpload };
 };
