@@ -30,6 +30,8 @@ interface idType {
 const StoryDetail = ({ id }: idType) => {
 	const { storyData } = useStoryQuery(id);
 
+	console.log(storyData);
+
 	const { commentData } = useCommentQuery(0, id);
 
 	const [createdDate, setCreatedDate] = useState("");
@@ -121,7 +123,7 @@ const StoryDetail = ({ id }: idType) => {
 							</Flex>
 
 							<Box styles={{ position: "relative" }}>
-								<input type="text" css={getReplyInputStyle("260px")} placeholder="답글 작성" />
+								<input type="text" css={getReplyInputStyle("260px")} placeholder="댓글 작성" />
 								<button type="submit" css={replyButtonStyle}>
 									등록
 								</button>
