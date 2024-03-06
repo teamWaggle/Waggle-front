@@ -160,7 +160,7 @@ const UploadCut = ({
 								multiple
 								id="media"
 								onChange={() => {}}
-								accept="image/jpeg, image/png, image/heic, image/heif"
+								accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
 							/>
 						</Flex>
 					)}
