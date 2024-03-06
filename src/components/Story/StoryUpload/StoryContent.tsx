@@ -26,7 +26,7 @@ import {
 } from "@/components/Story/StoryUpload/StoryContent.style";
 
 const StoryContent = ({ medias }: { medias: FileProp[] }) => {
-	const { mutatePostStory } = usePostStoryMutation();
+	const postStoryMutate = usePostStoryMutation();
 
 	const file = new File(
 		[
@@ -55,17 +55,9 @@ const StoryContent = ({ medias }: { medias: FileProp[] }) => {
 
 		formData.append("files", file);
 
-		for (const key of formData.keys()) {
-			console.log(key);
-		}
-
-		for (const value of formData.values()) {
-			console.log(value);
-		}
-
 		// formData.append("files", [medias[0].url]);
 
-		mutatePostStory(formData, {
+		postStoryMutate.mutate(formData, {
 			onSuccess: () => {
 				modal.closeModal();
 			},

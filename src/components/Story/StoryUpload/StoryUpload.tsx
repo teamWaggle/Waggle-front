@@ -5,6 +5,7 @@ import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
 import { Flex, Text } from "@/components/common";
 import UploadCut from "@/components/Story/StoryUpload/UploadCut";
 
+import { useImgUpload } from "@/hooks/useImgUpload";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -15,7 +16,7 @@ import type { FileProp } from "@/types/upload";
 import { layoutStyle, labelStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 
 const StoryUpload = () => {
-	const [file, setFile] = useState<FileProp[]>([
+	const [file] = useState<FileProp[]>([
 		{
 			width: 0,
 			height: 0,
@@ -28,7 +29,6 @@ const StoryUpload = () => {
 		},
 	]);
 
-	const [fileUpload, setFileUpload] = useState(false);
 	const [isDragOver, setIsDragOver] = useState(false);
 
 	const modal = useModal();
@@ -83,52 +83,57 @@ const StoryUpload = () => {
 			};
 		}
 
-		setFile(imgUrlList);
-		setFileUpload(true);
+		// setFile(imgUrlList);
+		// setFileUpload(true);
 	};
 
-	const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const files = e.currentTarget.files;
-		const imgUrlList: FileProp[] = [];
+	const { isImgLoading, imgUrls, handleImgUpload } = useImgUpload({ initialImgName: [] });
 
-		if (!files) {
-			return;
-		}
+	// const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+	// 	if (!e.target.files) return;
 
-		for (let i = 0; i < files.length; i++) {
-			const img = new Image();
-			img.src = URL.createObjectURL(files[i]);
-			img.onload = () => {
-				imgUrlList.push({
-					url: img.src,
-					width: img.width,
-					height: img.height,
-					size: img.width / img.height,
-					translateX: 0,
-					translateY: 0,
-					scale: 0,
-					grabbedPosition: { x: 0, y: 0 },
-				});
+	// 	const files = e.target.files;
+	// 	const imgUrlList: FileProp[] = [];
 
-				if (img.complete) {
-					setFile(imgUrlList);
-					setFileUpload(true);
-				}
-			};
-		}
-	};
+	// 	if (!files) {
+	// 		return;
+	// 	}
+
+	// 	for (let i = 0; i < files.length; i++) {
+	// 		const img = new Image();
+	// 		img.src = URL.createObjectURL(files[i]);
+	// 		img.onload = () => {
+	// 			imgUrlList.push({
+	// 				url: img.src,
+	// 				width: img.width,
+	// 				height: img.height,
+	// 				size: img.width / img.height,
+	// 				translateX: 0,
+	// 				translateY: 0,
+	// 				scale: 0,
+	// 				grabbedPosition: { x: 0, y: 0 },
+	// 			});
+
+	// 			if (img.complete) {
+	// 				setFile(imgUrlList);
+	// 				setFileUpload(true);
+	// 			}
+	// 		};
+	// 	}
 
 	useEffect(() => {
-		if (fileUpload) {
+		if (!isImgLoading) {
 			modal.closeModal();
 
 			modal.openModal({
 				key: `UploadCutModal`,
-				component: () => <UploadCut medias={file} />,
+
+				component: () => <UploadCut medias={file} imgUrls={imgUrls} />,
+
 				notCloseIcon: true,
 			});
 		}
-	}, [fileUpload]);
+	}, [isImgLoading]);
 
 	return (
 		<Flex
@@ -152,7 +157,7 @@ const StoryUpload = () => {
 					type="file"
 					multiple={true}
 					id="media"
-					onChange={handleChangeImg}
+					onChange={handleImgUpload}
 					accept="image/jpeg, image/png, image/heic, image/heif"
 				/>
 			</form>
