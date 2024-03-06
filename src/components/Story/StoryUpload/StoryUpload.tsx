@@ -8,12 +8,9 @@ import UploadCut from "@/components/Story/StoryUpload/UploadCut";
 import { useImgUpload } from "@/hooks/useImgUpload";
 import useModal from "@/hooks/useModal";
 
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
-
 import type { FileProp } from "@/types/upload";
 
-import { layoutStyle, labelStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
+import { layoutStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 
 const StoryUpload = () => {
 	const [file] = useState<FileProp[]>([
@@ -111,13 +108,9 @@ const StoryUpload = () => {
 			onDragOver={handleDragOver}
 		>
 			<UploadMediaIcon />
-			<Text size="xLarge" css={getDefaultTextStyle(Theme.color.white, 600)}>
-				사진과 동영상을 여기다 끌어다 놓으세요
-			</Text>
-			<label htmlFor="media" css={labelStyle}>
-				<Text size="large" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>
-					컴퓨터에서 선택
-				</Text>
+			<Text size="xLarge">사진과 동영상을 여기다 끌어다 놓으세요</Text>
+			<label htmlFor="media">
+				<Text size="large">컴퓨터에서 선택</Text>
 			</label>
 			<input
 				type="file"

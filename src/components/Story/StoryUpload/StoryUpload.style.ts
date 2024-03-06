@@ -6,7 +6,7 @@ export const layoutStyle = (isDragOver: boolean) => {
 	return css({
 		width: "740px",
 		height: "740px",
-		backgroundColor: isDragOver ? Theme.color.divider_gray : Theme.color.brand_primary,
+		backgroundColor: isDragOver ? "#ffeaca" : Theme.color.brand_primary,
 		borderRadius: "42px",
 		border: `5px solid ${Theme.color.white}`,
 		boxShadow: Theme.boxShadow.shadow1,
@@ -15,20 +15,30 @@ export const layoutStyle = (isDragOver: boolean) => {
 		flexDirection: "column",
 		gap: "20px",
 
+		"& > p": {
+			fontWeight: 600,
+			color: isDragOver ? Theme.color.brand_primary : Theme.color.white,
+		},
+
 		"& > input": {
 			display: "none",
 		},
 
 		"& > svg > path": {
-			fill: isDragOver ? "red" : "",
+			fill: isDragOver ? Theme.color.brand_primary : "",
+		},
+
+		"& > label": {
+			all: "unset",
+			borderRadius: "6px",
+			backgroundColor: isDragOver ? Theme.color.brand_primary : Theme.color.white,
+			padding: "8px",
+			cursor: "pointer",
+
+			"& > p": {
+				fontWeight: 600,
+				color: isDragOver ? Theme.color.white : Theme.color.brand_primary,
+			},
 		},
 	});
 };
-
-export const labelStyle = css({
-	all: "unset",
-	borderRadius: "6px",
-	backgroundColor: Theme.color.white,
-	padding: "8px",
-	cursor: "pointer",
-});
