@@ -76,6 +76,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 	}
 
 	const boardId = storyData.result.boardId;
+	const ownerId = storyData.result.member.memberId;
 
 	return (
 		<>
@@ -94,6 +95,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 								img={storyData.result.member.profileImgUrl}
 								nickname={storyData.result.member.nickname}
 								deleteClick={handleDeleteStory}
+								ownerId={ownerId}
 							/>
 
 							{/* 콘텐츠 본문 영역 */}
@@ -123,7 +125,6 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 									content={comment.content}
 									createdDate={comment.createdDate}
 									member={comment.member}
-									isOwner={comment.isOwner}
 								/>
 							))}
 						</Box>

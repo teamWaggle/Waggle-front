@@ -16,12 +16,14 @@ import {
 interface ProfileType {
 	img: string | undefined;
 	nickname: string | undefined;
+	ownerId: number;
 	editClick?: () => void;
 	deleteClick?: () => void;
 }
 
-const Profile = ({ img, nickname, editClick, deleteClick }: ProfileType) => {
+const Profile = ({ img, nickname, ownerId, editClick, deleteClick }: ProfileType) => {
 	const [menuOpen, setMenuOpen] = useState(false);
+	const memberId = Number(localStorage.getItem("MEMBER_ID"));
 
 	return (
 		<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
@@ -31,19 +33,21 @@ const Profile = ({ img, nickname, editClick, deleteClick }: ProfileType) => {
 					{nickname}
 				</Text>
 			</Flex>
-			<Flex
-				styles={{ justify: "flex-end" }}
-				css={moreButtonStyle}
-				onClick={() => setMenuOpen((prev) => !prev)}
-			>
-				<MoreButtonIcon />
-				{menuOpen && (
-					<ul css={menuStyle}>
-						<li onClick={editClick}>수정하기</li>
-						<li onClick={deleteClick}>삭제하기</li>
-					</ul>
-				)}
-			</Flex>
+			{memberId === ownerId && (
+				<Flex
+					styles={{ justify: "flex-end" }}
+					css={moreButtonStyle}
+					onClick={() => setMenuOpen((prev) => !prev)}
+				>
+					<MoreButtonIcon />
+					{menuOpen && (
+						<ul css={menuStyle}>
+							<li onClick={editClick}>수정하기</li>
+							<li onClick={deleteClick}>삭제하기</li>
+						</ul>
+					)}
+				</Flex>
+			)}
 		</Flex>
 	);
 };

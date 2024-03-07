@@ -11,7 +11,6 @@ export interface StoryResultType {
 	boardId: number;
 	content: string;
 	createdDate: string | Date;
-	isOwner: boolean;
 	hashtagList: string[];
 	mediaList: string[];
 	member: MemberType;

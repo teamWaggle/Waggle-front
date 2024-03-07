@@ -11,6 +11,13 @@ export const layoutStyle = css({
 	justifyContent: "center",
 	alignItems: "center",
 	gap: "14px",
+
+	"& > img": {
+		width: "60px",
+		height: "60px",
+		borderRadius: "50%",
+		objectFit: "cover",
+	},
 });
 
 export const nicknameStyle = css({

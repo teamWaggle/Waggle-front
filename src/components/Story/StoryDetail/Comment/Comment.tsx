@@ -23,6 +23,8 @@ const Comment = ({ commentId, member, content, createdDate }: CommentListInfoTyp
 	const [replyOpen, setReplyOpen] = useState(false);
 	const [date, setDate] = useState("");
 
+	console.log(member);
+
 	const modal = useModal();
 
 	const handleDeleteComment = () => {
@@ -48,6 +50,7 @@ const Comment = ({ commentId, member, content, createdDate }: CommentListInfoTyp
 				img={member.profileImgUrl}
 				nickname={member.nickname}
 				deleteClick={handleDeleteComment}
+				ownerId={member.memberId}
 			/>
 
 			<Box styles={{ maxWidth: "215px", paddingLeft: "43px" }}>
