@@ -23,7 +23,7 @@ const ReplyItem = ({ replyId, content, member, createdDate }: ReplyListInfoType)
 	const handleDeleteReply = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={replyId} isReply />,
+			component: () => <DeleteWarningModal targetId={replyId} target="reply" />,
 			isUpper: true,
 			notCloseIcon: true,
 		});

@@ -15,7 +15,7 @@ const StoryCard = ({ boardId, thumbnail }: StoryListInfoType) => {
 	const storyDetailOpen = () => {
 		modal.openModal({
 			key: `StoryDetail${boardId}`,
-			component: () => <StoryDetail id={boardId} />,
+			component: () => <StoryDetail storyId={boardId} />,
 		});
 	};
 
