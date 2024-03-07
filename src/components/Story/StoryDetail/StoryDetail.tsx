@@ -115,7 +115,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 				<Flex css={layoutStyle}>
 					{/* 미디어 영역 */}
 					<Flex css={sliderBoxStyle}>
-						<StoryImgSlider mediaUrl={storyData.result.mediaList} />
+						<StoryImgSlider imgUrls={storyData.result.mediaList} />
 					</Flex>
 
 					{/* 본문 영역 */}

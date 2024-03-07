@@ -17,17 +17,9 @@ import {
 	imgDotStyle,
 } from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider.style";
 
-const StoryImgSlider = ({
-	mediaUrl,
-	imgUrls,
-	isUpload,
-}: {
-	mediaUrl?: string[];
-	imgUrls?: string[];
-	isUpload?: boolean;
-}) => {
+const StoryImgSlider = ({ imgUrls, isUpload }: { imgUrls: string[]; isUpload?: boolean }) => {
 	const [sliderIndex, setSliderIndex] = useState(0);
-	const totalIndex = isUpload ? imgUrls && imgUrls.length - 1 : mediaUrl && mediaUrl.length - 1;
+	const totalIndex = imgUrls.length;
 
 	const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -74,44 +66,46 @@ const StoryImgSlider = ({
 		}, 150);
 	};
 
+	if (!totalIndex) {
+		return <div>로딩중...</div>;
+	}
+
 	return (
 		<Flex css={layoutStyle}>
 			<div css={imgBoxStyle} ref={wrapRef} onScroll={detectScroll}>
-				{totalIndex && (
+				{
 					<div css={sliderBoxStyle(`${(totalIndex + 1) * 100}%`)}>
-						{isUpload
-							? imgUrls &&
-							  imgUrls.map((media) => (
-									<img key={media} src={media} alt="img" css={imgStyle(isUpload)} />
-							  ))
-							: mediaUrl &&
-							  mediaUrl.map((media) => (
-									<img key={media} src={media} alt="img" css={imgStyle(isUpload)} />
-							  ))}
+						{imgUrls.map((media) => (
+							<img key={media} src={media} alt="img" css={imgStyle(isUpload)} />
+						))}
 					</div>
-				)}
+				}
 			</div>
-			<Flex
-				css={arrowBoxStyle(sliderIndex === 0)}
-				onClick={handleLeftArrowClick}
-				className="leftArrow"
-			>
-				<LeftArrowIcon />
-			</Flex>
-			<Flex
-				css={arrowBoxStyle(sliderIndex === totalIndex)}
-				onClick={handleRightArrowClick}
-				className="rightArrow"
-			>
-				<RightArrowIcon />
-			</Flex>
-			<Flex css={imgDotBoxStyle}>
-				{totalIndex &&
-					totalIndex > 1 &&
-					[...Array(totalIndex + 1)].map((_, index) => (
-						<div key={index} css={imgDotStyle(sliderIndex === index)} />
-					))}
-			</Flex>
+
+			{totalIndex > 1 && (
+				<>
+					<Flex
+						css={arrowBoxStyle(sliderIndex === 0)}
+						onClick={handleLeftArrowClick}
+						className="leftArrow"
+					>
+						<LeftArrowIcon />
+					</Flex>
+					<Flex
+						css={arrowBoxStyle(sliderIndex === totalIndex)}
+						onClick={handleRightArrowClick}
+						className="rightArrow"
+					>
+						<RightArrowIcon />
+					</Flex>
+					<Flex css={imgDotBoxStyle}>
+						{totalIndex > 1 &&
+							[...Array(totalIndex + 1)].map((_, index) => (
+								<div key={index} css={imgDotStyle(sliderIndex === index)} />
+							))}
+					</Flex>
+				</>
+			)}
 		</Flex>
 	);
 };
