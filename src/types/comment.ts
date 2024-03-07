@@ -20,7 +20,6 @@ export interface CommentListInfoType {
 	createdDate: Date;
 	mentionedMemberList?: string[];
 	member: MemberType;
-	isOwner: boolean;
 }
 
 export interface PutCommentType extends CommentRequestType {

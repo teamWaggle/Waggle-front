@@ -1,9 +1,9 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useRecoilState } from "recoil";
 
+import ProfileImg from "@/assets/png/profile.png";
 import LogoutIcon from "@/assets/svg/ic-logout.svg?react";
-import ProfileImg from "@/assets/svg/profile-default.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
@@ -30,19 +30,24 @@ const Profile = () => {
 
 	const [memberId] = useRecoilState(memberIdState);
 
-	useLayoutEffect(() => {
+	const [nickName, setNickName] = useState("");
+	const [profileImgUrl, setProfileImgUrl] = useState("");
+
+	useEffect(() => {
 		getMemberInfoMutation.mutate(memberId, {
 			onSuccess: ({ result }: MemberInfoResponseType) => {
+				setNickName(result.nickname);
+				setProfileImgUrl(result.profileImgUrl);
 				console.log(result);
 			},
 		});
-	}, [memberId]);
+	}, []);
 
 	return (
 		<Flex css={layoutStyle}>
-			<ProfileImg width={60} height={60} />
+			<img src={profileImgUrl ? profileImgUrl : ProfileImg} alt="profileImg" />
 			<Flex styles={{ direction: "column" }}>
-				<Text css={nicknameStyle}>김와글님adfsfasdfasfsaddfasdfas</Text>
+				<Text css={nicknameStyle}>{nickName}</Text>
 				<Text size="xSmall" css={getDefaultTextStyle(Theme.color.text, 500)}>
 					프로필 편집하기
 				</Text>

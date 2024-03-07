@@ -49,6 +49,7 @@ const ReplyItem = ({ replyId, content, member, createdDate }: ReplyListInfoType)
 				img={member.profileImgUrl}
 				nickname={member.nickname}
 				deleteClick={handleDeleteReply}
+				ownerId={member.memberId}
 			/>
 
 			<Box styles={{ maxWidth: "215px", paddingLeft: "43px" }}>
