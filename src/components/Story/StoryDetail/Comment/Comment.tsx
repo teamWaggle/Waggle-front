@@ -19,11 +19,15 @@ import {
 	handleCommentTextStyle,
 } from "@/components/Story/StoryDetail/Comment/Comment.style";
 
-const Comment = ({ commentId, member, content, createdDate }: CommentListInfoType) => {
+const Comment = ({
+	commentId,
+	member,
+	content,
+	createdDate,
+	handleEditComment,
+}: CommentListInfoType) => {
 	const [replyOpen, setReplyOpen] = useState(false);
 	const [date, setDate] = useState("");
-
-	console.log(member);
 
 	const modal = useModal();
 
@@ -50,6 +54,7 @@ const Comment = ({ commentId, member, content, createdDate }: CommentListInfoTyp
 				img={member.profileImgUrl}
 				nickname={member.nickname}
 				deleteClick={handleDeleteComment}
+				editClick={handleEditComment}
 				ownerId={member.memberId}
 			/>
 

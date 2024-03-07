@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
@@ -10,6 +10,7 @@ import Profile from "@/components/Story/StoryDetail/Profile/Profile";
 import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
+// import { useEditCommentMutation } from "@/hooks/api/useEditCommentMutation";
 import { usePostCommentMutation } from "@/hooks/api/usePostCommentMutation";
 import { useStoryQuery } from "@/hooks/api/useStoryQuery";
 import useModal from "@/hooks/useModal";
@@ -32,10 +33,13 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 	const { commentData } = useCommentQuery(0, storyId);
 
 	const postCommentMutation = usePostCommentMutation();
+	// const editCommentMutation = useEditCommentMutation();
 
 	const [createdDate, setCreatedDate] = useState("");
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
+
+	const commentInputRef = useRef<HTMLInputElement>(null);
 
 	const modal = useModal();
 
@@ -48,6 +52,13 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 				},
 			},
 		);
+	};
+
+	const handleEditComment = () => {
+		if (!commentInputRef.current) return;
+
+		commentInputRef.current.focus();
+		setContent("asf");
 	};
 
 	const handleDeleteStory = () => {
@@ -125,6 +136,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 									content={comment.content}
 									createdDate={comment.createdDate}
 									member={comment.member}
+									handleEditComment={handleEditComment}
 								/>
 							))}
 						</Box>
@@ -147,6 +159,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 								handleAddButton={handleAddComment}
 								content={content}
 								setContent={setContent}
+								commentInputRef={commentInputRef}
 							/>
 						</Flex>
 					</Flex>

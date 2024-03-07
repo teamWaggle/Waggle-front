@@ -20,6 +20,7 @@ export interface CommentListInfoType {
 	createdDate: Date;
 	mentionedMemberList?: string[];
 	member: MemberType;
+	handleEditComment?: () => void;
 }
 
 export interface PutCommentType extends CommentRequestType {
