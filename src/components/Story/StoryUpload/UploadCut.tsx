@@ -139,7 +139,7 @@ const UploadCut = ({
 					isGalleryOpen={isGalleryOpen}
 					setIsGalleryOpen={setIsGalleryOpen}
 					galleryRef={galleryRef}
-					imgUrls={imgUrls}
+					prevImgUrls={imgUrls}
 					mediaCurrentIndex={mediaCurrentIndex}
 					setMediaCurrentIndex={setMediaCurrentIndex}
 				/>

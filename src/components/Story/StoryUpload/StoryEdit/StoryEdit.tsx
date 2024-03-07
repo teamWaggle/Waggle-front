@@ -47,6 +47,9 @@ const StoryEdit = ({
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 
+	const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
+	const [updateFileList, setUpdateFileList] = useState<File[]>([]);
+
 	const galleryRef = useRef<HTMLDivElement>(null);
 
 	const modal = useModal();
@@ -56,15 +59,19 @@ const StoryEdit = ({
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
-		const updateStoryFormData = new FormData();
-		const updateMediaFormData = new FormData();
+		const formData = new FormData();
 
 		const mediaList: MediaListType[] = [];
+		const deleteMediaList: string[] = [];
 
-		const allowUpload = false;
+		const allowUpload = true;
 
 		imgUrls.forEach((imageUrl) => {
 			mediaList.push({ imageUrl, allowUpload });
+		});
+
+		imgUrls.forEach((imageUrl) => {
+			deleteMediaList.push(imageUrl);
 		});
 
 		const updateStoryRequest = {
@@ -72,23 +79,28 @@ const StoryEdit = ({
 			hashtagList,
 		};
 
-		// const updateMediaRequest = {
-		// 	storyId,
-		// 	mediaList,
-		// 	deleteMediaList,
-		// };
+		const updateMediaRequest = {
+			storyId,
+			mediaList,
+			deleteMediaList,
+		};
 
-		updateStoryFormData.append("updateStoryRequest", JSON.stringify(updateStoryRequest));
+		formData.append("updateStoryRequest", JSON.stringify(updateStoryRequest));
 
-		// fileList.forEach((file) => {
-		// 	formData.append("files", file);
-		// });
+		formData.append("updateMediaRequest", JSON.stringify(updateMediaRequest));
+
+		updateFileList.forEach((file) => {
+			formData.append("files", file);
+		});
+
+		for (const value of formData) {
+			console.log(value);
+		}
 
 		putStoryMutate.mutate(
 			{
 				storyId,
-				updateStoryRequest: updateStoryFormData,
-				updateMediaRequest: updateMediaFormData,
+				formData,
 			},
 			{ onSuccess: () => modal.closeModal() },
 		);
@@ -105,14 +117,16 @@ const StoryEdit = ({
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				<Flex css={imgBoxStyle}>
-					<StoryImgSlider imgUrls={imgUrls} isUpload />
+					<StoryImgSlider imgUrls={editMediaList} isUpload />
 					<Gallery
 						isGalleryOpen={isGalleryOpen}
 						setIsGalleryOpen={setIsGalleryOpen}
 						galleryRef={galleryRef}
-						imgUrls={imgUrls}
+						prevImgUrls={editMediaList}
 						mediaCurrentIndex={mediaCurrentIndex}
 						setMediaCurrentIndex={setMediaCurrentIndex}
+						setEditMediaList={setEditMediaList}
+						setUpdateFileList={setUpdateFileList}
 					/>
 				</Flex>
 

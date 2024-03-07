@@ -1,8 +1,12 @@
+import { useEffect } from "react";
+
 import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
 import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex } from "@/components/common";
 import GallerySlider from "@/components/Story/StoryUpload/Gallery/GallerySlider/GallerySlider";
+
+import { useImgUpload } from "@/hooks/useImgUpload";
 
 import {
 	galleryIconBoxStyle,
@@ -14,19 +18,34 @@ interface GalleryProps {
 	isGalleryOpen: boolean;
 	setIsGalleryOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	galleryRef: React.RefObject<HTMLDivElement>;
-	imgUrls: string[];
+	prevImgUrls: string[];
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+	setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	setUpdateFileList: React.Dispatch<React.SetStateAction<File[]>>;
 }
 
 const Gallery = ({
 	isGalleryOpen,
 	setIsGalleryOpen,
 	galleryRef,
-	imgUrls,
+	prevImgUrls,
 	mediaCurrentIndex,
 	setMediaCurrentIndex,
+	setEditMediaList,
+	setUpdateFileList,
 }: GalleryProps) => {
+	const { isLoading, imgUrls, handleUpdateImgUpload, updateFileList } = useImgUpload({
+		initialImgName: [],
+	});
+
+	useEffect(() => {
+		if (!isLoading) {
+			setEditMediaList(imgUrls);
+			setUpdateFileList(updateFileList);
+		}
+	}, [isLoading]);
+
 	return (
 		<div css={galleryIconBoxStyle} ref={galleryRef}>
 			<GalleryIcon onClick={() => setIsGalleryOpen((prev) => !prev)} />
@@ -34,7 +53,7 @@ const Gallery = ({
 			{isGalleryOpen && (
 				<Flex css={galleryBoxStyle}>
 					<GallerySlider
-						imgUrls={imgUrls}
+						prevImgUrls={imgUrls.length === 0 ? prevImgUrls : imgUrls}
 						// medias={file}
 						mediaCurrentIndex={mediaCurrentIndex}
 						setMediaCurrentIndex={setMediaCurrentIndex}
@@ -47,7 +66,7 @@ const Gallery = ({
 						type="file"
 						multiple
 						id="media"
-						onChange={() => {}}
+						onChange={(e) => handleUpdateImgUpload(e, prevImgUrls)}
 						accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
 					/>
 				</Flex>
