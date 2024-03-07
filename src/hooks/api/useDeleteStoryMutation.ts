@@ -2,16 +2,14 @@ import { toast } from "react-toastify";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { postStory } from "@/api/story/postStory";
+import { deleteStory } from "@/api/story/deleteStory";
 
-export const usePostStoryMutation = () => {
+export const useDeleteStoryMutation = () => {
 	const queryClient = useQueryClient();
 
-	const postStoryMutation = useMutation({
-		mutationFn: postStory,
+	const deleteStoryMutation = useMutation({
+		mutationFn: deleteStory,
 		onSuccess: () => {
-			console.log("story upload success");
-
 			queryClient.invalidateQueries({ queryKey: ["storyList"] });
 		},
 		onError: () => {
@@ -19,5 +17,5 @@ export const usePostStoryMutation = () => {
 		},
 	});
 
-	return postStoryMutation;
+	return deleteStoryMutation;
 };

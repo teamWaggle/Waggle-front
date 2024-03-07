@@ -5,12 +5,14 @@ import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 import { Flex, Box, Divider, Text } from "@/components/common";
 import Comment from "@/components/Story/StoryDetail/Comment/Comment";
 import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
+import DeleteWarningModal from "@/components/Story/StoryDetail/DeleteWarningModal/DeleteWarningModal";
 import Profile from "@/components/Story/StoryDetail/Profile/Profile";
 import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 import { usePostCommentMutation } from "@/hooks/api/usePostCommentMutation";
 import { useStoryQuery } from "@/hooks/api/useStoryQuery";
+import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -24,16 +26,18 @@ import {
 	commentLayoutStyle,
 } from "@/components/Story/StoryDetail/StoryDetail.style";
 
-const StoryDetail = ({ id }: { id: number }) => {
-	const { storyData } = useStoryQuery(id);
+const StoryDetail = ({ storyId }: { storyId: number }) => {
+	const { storyData } = useStoryQuery(storyId);
 
-	const { commentData } = useCommentQuery(0, id);
+	const { commentData } = useCommentQuery(0, storyId);
 
 	const postCommentMutation = usePostCommentMutation();
 
 	const [createdDate, setCreatedDate] = useState("");
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
+
+	const modal = useModal();
 
 	const handleAddComment = () => {
 		postCommentMutation.mutate(
@@ -44,6 +48,15 @@ const StoryDetail = ({ id }: { id: number }) => {
 				},
 			},
 		);
+	};
+
+	const handleDeleteStory = () => {
+		modal.openModal({
+			key: `DeleteWarningModal`,
+			component: () => <DeleteWarningModal targetId={storyId} target="story" />,
+			isUpper: true,
+			notCloseIcon: true,
+		});
 	};
 
 	useEffect(() => {
@@ -80,6 +93,7 @@ const StoryDetail = ({ id }: { id: number }) => {
 							<Profile
 								img={storyData.result.member.profileImgUrl}
 								nickname={storyData.result.member.nickname}
+								deleteClick={handleDeleteStory}
 							/>
 
 							{/* 콘텐츠 본문 영역 */}
