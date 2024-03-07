@@ -11,6 +11,7 @@ interface CommentInputProps {
 	handleAddButton: () => void;
 	content: string;
 	setContent: React.Dispatch<React.SetStateAction<string>>;
+	commentInputRef: React.RefObject<HTMLInputElement>;
 }
 
 const CommentInput = ({
@@ -19,6 +20,7 @@ const CommentInput = ({
 	handleAddButton,
 	content,
 	setContent,
+	commentInputRef,
 }: CommentInputProps) => {
 	return (
 		<Box styles={{ position: "relative" }}>
@@ -28,6 +30,7 @@ const CommentInput = ({
 				placeholder={placeholder}
 				value={content}
 				onChange={(e) => setContent(e.target.value)}
+				ref={commentInputRef}
 			/>
 			<button type="submit" css={replyButtonStyle} onClick={handleAddButton}>
 				등록
