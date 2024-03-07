@@ -4,8 +4,8 @@ import SampleImg from "@/assets/png/post-sample.png";
 import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Flex, Text } from "@/components/common";
-import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider";
 import Gallery from "@/components/Story/StoryUpload/Gallery/Gallery";
+import StoryEditSlider from "@/components/Story/StoryUpload/StoryEdit/StoryEditSlider";
 
 import { usePutStoryMutation } from "@/hooks/api/usePutStoryMutation";
 import useClickOutSide from "@/hooks/useClickOutSide";
@@ -46,6 +46,8 @@ const StoryEdit = ({
 
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
+
+	console.log(mediaCurrentIndex);
 
 	const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
 	const [updateFileList, setUpdateFileList] = useState<File[]>([]);
@@ -117,7 +119,11 @@ const StoryEdit = ({
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				<Flex css={imgBoxStyle}>
-					<StoryImgSlider imgUrls={editMediaList} isUpload />
+					<StoryEditSlider
+						imgUrls={editMediaList}
+						mediaCurrentIndex={mediaCurrentIndex}
+						setMediaCurrentIndex={setMediaCurrentIndex}
+					/>
 					<Gallery
 						isGalleryOpen={isGalleryOpen}
 						setIsGalleryOpen={setIsGalleryOpen}

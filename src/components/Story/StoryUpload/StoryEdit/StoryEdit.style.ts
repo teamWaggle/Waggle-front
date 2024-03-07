@@ -30,6 +30,8 @@ export const headerStyle = css({
 export const imgBoxStyle = css({
 	width: "740px",
 	height: "100%",
+	alignItems: "center",
+	justifyContent: "center",
 	borderRight: `1px solid #d2d2d2`,
 	position: "relative",
 });
