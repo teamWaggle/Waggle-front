@@ -12,8 +12,6 @@ import useModal from "@/hooks/useModal";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import type { FileProp } from "@/types/upload";
-
 import {
 	layoutStyle,
 	headerStyle,
@@ -25,15 +23,7 @@ import {
 	uploadButtonStyle,
 } from "@/components/Story/StoryUpload/StoryContent.style";
 
-const StoryContent = ({
-	// medias,
-	imgUrls,
-	fileList,
-}: {
-	medias: FileProp[];
-	imgUrls: string[];
-	fileList: File[];
-}) => {
+const StoryContent = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File[] }) => {
 	const postStoryMutate = usePostStoryMutation();
 
 	const [content, setContent] = useState("");
@@ -75,7 +65,7 @@ const StoryContent = ({
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				<Flex css={imgBoxStyle}>
-					<StoryImgSlider imgUrls={imgUrls} isUpload />
+					<StoryImgSlider imgUrls={imgUrls} />
 				</Flex>
 
 				<Flex css={contentBoxStyle}>

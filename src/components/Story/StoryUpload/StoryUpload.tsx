@@ -8,31 +8,14 @@ import UploadCut from "@/components/Story/StoryUpload/UploadCut";
 import { useImgUpload } from "@/hooks/useImgUpload";
 import useModal from "@/hooks/useModal";
 
-import type { FileProp } from "@/types/upload";
-
 import { layoutStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 
 const StoryUpload = () => {
-	const [file] = useState<FileProp[]>([
-		{
-			width: 0,
-			height: 0,
-			url: "",
-			size: 0,
-			translateX: 0,
-			translateY: 0,
-			scale: 0,
-			grabbedPosition: { x: 0, y: 0 },
-		},
-	]);
-
 	const [isDragOver, setIsDragOver] = useState(false);
 
 	const modal = useModal();
 
-	const { isLoading, imgUrls, fileList, handleImgUpload, dropImgUpload } = useImgUpload({
-		initialImgName: [],
-	});
+	const { isLoading, imgUrls, fileList, handleImgUpload, dropImgUpload } = useImgUpload();
 
 	const handleDragIn = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault();
@@ -55,45 +38,13 @@ const StoryUpload = () => {
 		}
 	};
 
-	// const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	if (!e.target.files) return;
-
-	// 	const files = e.target.files;
-	// 	const imgUrlList: FileProp[] = [];
-
-	// 	if (!files) {
-	// 		return;
-	// 	}
-
-	// 	for (let i = 0; i < files.length; i++) {
-	// 		const img = new Image();
-	// 		img.src = URL.createObjectURL(files[i]);
-	// 		img.onload = () => {
-	// 			imgUrlList.push({
-	// 				url: img.src,
-	// 				width: img.width,
-	// 				height: img.height,
-	// 				size: img.width / img.height,
-	// 				translateX: 0,
-	// 				translateY: 0,
-	// 				scale: 0,
-	// 				grabbedPosition: { x: 0, y: 0 },
-	// 			});
-
-	// 			if (img.complete) {
-	// 				setFile(imgUrlList);
-	// 				setFileUpload(true);
-	// 			}
-	// 		};
-	// 	}
-
 	useEffect(() => {
 		if (!isLoading) {
 			modal.closeModal();
 
 			modal.openModal({
 				key: `UploadCutModal`,
-				component: () => <UploadCut medias={file} imgUrls={imgUrls} fileList={fileList} />,
+				component: () => <UploadCut imgUrls={imgUrls} fileList={fileList} />,
 				notCloseIcon: true,
 			});
 		}
@@ -116,7 +67,7 @@ const StoryUpload = () => {
 				type="file"
 				multiple={true}
 				id="media"
-				onChange={handleImgUpload}
+				onChange={(e) => handleImgUpload(e, [])}
 				accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
 			/>
 		</Flex>
