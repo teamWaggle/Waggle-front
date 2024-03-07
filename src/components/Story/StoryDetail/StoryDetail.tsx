@@ -8,6 +8,7 @@ import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
 import DeleteWarningModal from "@/components/Story/StoryDetail/DeleteWarningModal/DeleteWarningModal";
 import Profile from "@/components/Story/StoryDetail/Profile/Profile";
 import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider";
+import StoryEdit from "@/components/Story/StoryUpload/StoryEdit/StoryEdit";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
 // import { useEditCommentMutation } from "@/hooks/api/useEditCommentMutation";
@@ -29,6 +30,8 @@ import {
 
 const StoryDetail = ({ storyId }: { storyId: number }) => {
 	const { storyData } = useStoryQuery(storyId);
+
+	console.log(storyData);
 
 	const { commentData } = useCommentQuery(0, storyId);
 
@@ -70,6 +73,23 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 		});
 	};
 
+	const handleEditStory = () => {
+		if (!storyData) return;
+
+		modal.closeModal();
+
+		modal.openModal({
+			key: `StoryEditModal`,
+			component: () => (
+				<StoryEdit
+					imgUrls={storyData.result.mediaList}
+					prevContent={storyData.result.content}
+					storyId={storyData.result.boardId}
+				/>
+			),
+		});
+	};
+
 	useEffect(() => {
 		if (storyData) {
 			const date = new Date(storyData.result.createdDate);
@@ -105,6 +125,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 							<Profile
 								img={storyData.result.member.profileImgUrl}
 								nickname={storyData.result.member.nickname}
+								editClick={handleEditStory}
 								deleteClick={handleDeleteStory}
 								ownerId={ownerId}
 							/>

@@ -1,15 +1,13 @@
 import { useState, useRef, Fragment } from "react";
 
-import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
 import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 import LeftArrowIcon from "@/assets/svg/ic-left-arrow-slider.svg?react";
-import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
 import CutIcon from "@/assets/svg/upload/ic-cut.svg?react";
 
-import { Flex, Text } from "@/components/common";
 // import CutImgUnit from "@/components/Story/StoryUpload/CutImgUnit";
-import GallerySlider from "@/components/Story/StoryUpload/GallerySlider";
+import { Flex, Text } from "@/components/common";
+import Gallery from "@/components/Story/StoryUpload/Gallery/Gallery";
 import StoryContent from "@/components/Story/StoryUpload/StoryContent";
 import UploadWarningModal from "@/components/Story/StoryUpload/UploadWarningModal";
 
@@ -32,9 +30,6 @@ import {
 	cutBoxStyle,
 	cutItemBoxStyle,
 	dividerStyle,
-	galleryIconBoxStyle,
-	galleryBoxStyle,
-	galleryPlusIconBoxStyle,
 	imgDotBoxStyle,
 	imgDotStyle,
 	arrowBoxStyle,
@@ -140,31 +135,14 @@ const UploadCut = ({
 
 			<Flex css={imgBoxStyle}>
 				<img src={imgUrls[mediaCurrentIndex]} />
-				<div css={galleryIconBoxStyle} ref={galleryRef}>
-					<GalleryIcon onClick={() => setIsGalleryOpen((prev) => !prev)} />
-
-					{isGalleryOpen && (
-						<Flex css={galleryBoxStyle}>
-							<GallerySlider
-								imgUrls={imgUrls}
-								medias={file}
-								mediaCurrentIndex={mediaCurrentIndex}
-								setMediaCurrentIndex={setMediaCurrentIndex}
-							/>
-
-							<label css={galleryPlusIconBoxStyle} htmlFor="media">
-								<PlusIcon />
-							</label>
-							<input
-								type="file"
-								multiple
-								id="media"
-								onChange={() => {}}
-								accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
-							/>
-						</Flex>
-					)}
-				</div>
+				<Gallery
+					isGalleryOpen={isGalleryOpen}
+					setIsGalleryOpen={setIsGalleryOpen}
+					galleryRef={galleryRef}
+					imgUrls={imgUrls}
+					mediaCurrentIndex={mediaCurrentIndex}
+					setMediaCurrentIndex={setMediaCurrentIndex}
+				/>
 
 				<div css={cutIconBoxStyle} ref={cutRef}>
 					<CutIcon onClick={() => setIsCutOpen((prev) => !prev)} />
