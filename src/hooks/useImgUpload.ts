@@ -1,20 +1,18 @@
 import { useState, useCallback } from "react";
 
-// import { usePostStoryMutation } from "@/hooks/api/usePostStoryMutation";
-
 const convertToImgUrls = (imageNames: string[]) => {
 	return [...imageNames]?.map((imageName) => `${import.meta.env.VITE_IMG_URL}${imageName}`);
 };
 
 export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) => {
-	// const postStoryMutation = usePostStoryMutation();
-	// const isImgLoading = postStoryMutation.isLoading;
 	const [isLoading, setIsLoading] = useState(true);
 
 	const initialImgUrl = convertToImgUrls([...initialImgName]);
 
 	const [imgUrls, setImageUrls] = useState(initialImgUrl);
 	const [fileList, setFileList] = useState<File[]>([]);
+
+	const [updateFileList, setUpdateFileList] = useState<File[]>([]);
 
 	const compressImgs = useCallback(async (originalImageFiles: FileList): Promise<File[]> => {
 		const imageFiles: File[] = [];
@@ -36,36 +34,41 @@ export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) =
 		return imageFiles;
 	}, []);
 
-	const convertToImageFormData = useCallback(async (imgFiles: FileList) => {
+	const convertToImageFormData = useCallback(async (imgFiles: FileList, isUpdate?: boolean) => {
 		const compressImages = await compressImgs(imgFiles);
 		const imgFormData = new FormData();
 
-		setFileList(compressImages);
+		isUpdate ? setUpdateFileList(compressImages) : setFileList(compressImages);
+
+		// setFileList(compressImages);
 
 		compressImages.forEach((file) => {
 			imgFormData.append("files", file);
 		});
 
-		const createStoryRequest = {
-			content: "abc",
-			hashtagList: ["abc"],
-		};
-
-		imgFormData.append("createStoryRequest", JSON.stringify(createStoryRequest));
-
 		return imgFormData;
 	}, []);
 
-	// const postUpload = useCallback((images: FormData) => {
-	// 	postStoryMutation.mutate(images, {
-	// 		onSuccess: () => {
-	// 			console.log("upload Success");
-	// 		},
-	// 		onError: () => {
-	// 			console.log("upload fail");
-	// 		},
-	// 	});
-	// }, []);
+	const handleUpdateImgUpload = useCallback(
+		async (e: React.ChangeEvent<HTMLInputElement>, updateImgUrls: string[]) => {
+			const addImgFiles = e.target.files;
+
+			console.log(updateImgUrls);
+
+			if (!addImgFiles) return;
+
+			setImageUrls((prevImgUrls) => {
+				const newImageUrls = [...addImgFiles].map((file) => URL.createObjectURL(file));
+
+				return [...prevImgUrls, ...updateImgUrls, ...newImageUrls];
+			});
+
+			await convertToImageFormData(addImgFiles, true);
+
+			setIsLoading(false);
+		},
+		[],
+	);
 
 	const handleImgUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
 		const originalImgFiles = e.target.files;
@@ -78,12 +81,7 @@ export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) =
 			return [...prevImgUrls, ...newImageUrls];
 		});
 
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const imageFormData = await convertToImageFormData(originalImgFiles);
-
-		// postUpload(imageFormData);
-
-		e.target.value = "";
+		await convertToImageFormData(originalImgFiles);
 
 		setIsLoading(false);
 	}, []);
@@ -91,7 +89,6 @@ export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) =
 	const dropImgUpload = useCallback(async (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault();
 		e.stopPropagation();
-		// setIsDragOver(false);
 
 		if (!e.dataTransfer) {
 			return;
@@ -107,11 +104,18 @@ export const useImgUpload = ({ initialImgName }: { initialImgName: string[] }) =
 			return [...prevImgUrls, ...newImageUrls];
 		});
 
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const imageFormData = await convertToImageFormData(dropImgFiles);
+		await convertToImageFormData(dropImgFiles);
 
 		setIsLoading(false);
 	}, []);
 
-	return { isLoading, fileList, imgUrls, handleImgUpload, dropImgUpload };
+	return {
+		isLoading,
+		fileList,
+		imgUrls,
+		handleImgUpload,
+		dropImgUpload,
+		handleUpdateImgUpload,
+		updateFileList,
+	};
 };
