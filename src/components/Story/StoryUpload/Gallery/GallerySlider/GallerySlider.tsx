@@ -4,7 +4,7 @@ import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
 import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
 
-import type { FileProp } from "@/types/upload";
+// import type { FileProp } from "@/types/upload";
 
 import {
 	layoutStyle,
@@ -14,7 +14,7 @@ import {
 	imgStyle,
 	arrowBoxStyle,
 	closeIconBoxStyle,
-} from "@/components/Story/StoryUpload/GallerySlider.style";
+} from "@/components/Story/StoryUpload/Gallery/GallerySlider/GallerySlider.style";
 
 const GallerySlider = ({
 	imgUrls,
@@ -23,7 +23,7 @@ const GallerySlider = ({
 	setMediaCurrentIndex,
 }: {
 	imgUrls: string[];
-	medias: FileProp[];
+	// medias: FileProp[];
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 }) => {
