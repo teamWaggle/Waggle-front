@@ -1,9 +1,6 @@
 import React, { useState, useRef } from "react";
 
-import LeftArrowIcon from "@/assets/svg/ic-left-arrow-slider.svg?react";
-import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
-
-import { Flex } from "@/components/common";
+import { Flex, SliderArrow } from "@/components/common";
 
 // import type { FileProp } from "@/types/upload";
 
@@ -11,13 +8,9 @@ import {
 	layoutStyle,
 	imgBoxStyle,
 	sliderBoxStyle,
-	imgStyle,
-	arrowBoxStyle,
-	imgDotBoxStyle,
-	imgDotStyle,
 } from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider.style";
 
-const StoryImgSlider = ({ imgUrls, isUpload }: { imgUrls: string[]; isUpload?: boolean }) => {
+const StoryImgSlider = ({ imgUrls }: { imgUrls: string[] }) => {
 	const [sliderIndex, setSliderIndex] = useState(0);
 	const totalIndex = imgUrls.length;
 
@@ -76,35 +69,19 @@ const StoryImgSlider = ({ imgUrls, isUpload }: { imgUrls: string[]; isUpload?: b
 				{
 					<div css={sliderBoxStyle(`${(totalIndex + 1) * 100}%`)}>
 						{imgUrls.map((media) => (
-							<img key={media} src={media} alt="img" css={imgStyle(isUpload)} />
+							<img key={media} src={media} alt="mediaImg" />
 						))}
 					</div>
 				}
 			</div>
 
 			{totalIndex > 1 && (
-				<>
-					<Flex
-						css={arrowBoxStyle(sliderIndex === 0)}
-						onClick={handleLeftArrowClick}
-						className="leftArrow"
-					>
-						<LeftArrowIcon />
-					</Flex>
-					<Flex
-						css={arrowBoxStyle(sliderIndex === totalIndex)}
-						onClick={handleRightArrowClick}
-						className="rightArrow"
-					>
-						<RightArrowIcon />
-					</Flex>
-					<Flex css={imgDotBoxStyle}>
-						{totalIndex > 1 &&
-							[...Array(totalIndex + 1)].map((_, index) => (
-								<div key={index} css={imgDotStyle(sliderIndex === index)} />
-							))}
-					</Flex>
-				</>
+				<SliderArrow
+					sliderIndex={sliderIndex}
+					totalIndex={totalIndex}
+					handleLeftArrow={handleLeftArrowClick}
+					handleRightArrow={handleRightArrowClick}
+				/>
 			)}
 		</Flex>
 	);
