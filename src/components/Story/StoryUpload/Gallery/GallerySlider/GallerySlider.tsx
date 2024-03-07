@@ -21,11 +21,15 @@ const GallerySlider = ({
 	// medias,
 	mediaCurrentIndex,
 	setMediaCurrentIndex,
+	editMediaList,
+	setEditMediaList,
 }: {
 	prevImgUrls: string[];
 	// medias: FileProp[];
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+	editMediaList: string[];
+	setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 }) => {
 	const [isShowLeftArrow, setIsShowLeftArrow] = useState<boolean | null>(false);
 	const [isShowRightArrow, setIsShowRightArrow] = useState<boolean | null>(true);
@@ -63,7 +67,7 @@ const GallerySlider = ({
 		});
 	}, []);
 
-	const galleryScrollHandler = useCallback(() => {
+	const handleGalleryScroll = useCallback(() => {
 		if (!wrapRef.current) return;
 
 		if (wrapRef.current.scrollLeft === 0) {
@@ -81,15 +85,28 @@ const GallerySlider = ({
 		}
 	}, []);
 
+	const handleGalleryClose = useCallback(() => {
+		const newMediaList = [];
+
+		for (let i = 0; i < editMediaList.length; i++) {
+			if (i !== mediaCurrentIndex) {
+				newMediaList.push(editMediaList[i]);
+			}
+		}
+
+		setEditMediaList(newMediaList);
+	}, []);
+
 	return (
 		<div css={layoutStyle}>
-			<div css={sliderBoxStyle(prevImgUrls.length)} ref={wrapRef} onScroll={galleryScrollHandler}>
+			<div css={sliderBoxStyle(prevImgUrls.length)} ref={wrapRef} onScroll={handleGalleryScroll}>
 				<div css={sliderStyle}>
 					{prevImgUrls.map((img, index) => (
 						<div key={`${img}${index}`} css={imgBoxStyle}>
 							<img src={img} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
+
 							{mediaCurrentIndex === index && (
-								<div css={closeIconBoxStyle}>
+								<div css={closeIconBoxStyle} onClick={handleGalleryClose}>
 									<CloseIcon fill="#fff" />
 								</div>
 							)}

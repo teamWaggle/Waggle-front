@@ -19,7 +19,7 @@ import useModal from "@/hooks/useModal";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import type { FileProp, SizeType } from "@/types/upload";
+import type { SizeType } from "@/types/upload";
 
 import {
 	layoutStyle,
@@ -35,28 +35,16 @@ import {
 	arrowBoxStyle,
 } from "@/components/Story/StoryUpload/UploadCut.style";
 
-const UploadCut = ({
-	medias,
-	imgUrls,
-	fileList,
-}: {
-	medias: FileProp[];
-	imgUrls: string[];
-	fileList: File[];
-}) => {
+const UploadCut = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File[] }) => {
 	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 	const [isCutOpen, setIsCutOpen] = useState(false);
-	const [file] = useState<FileProp[]>(medias);
 	const [sizeMode, setSizeMode] = useState<SizeType>("original");
 
 	const galleryRef = useRef<HTMLDivElement>(null);
 	const cutRef = useRef<HTMLDivElement>(null);
-	// const imgRef = useRef<HTMLDivElement>(null);
 
 	const modal = useModal();
-
-	// const currentWidth = 730;
 
 	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
 	useClickOutSide(cutRef, () => setIsCutOpen(false));
@@ -75,7 +63,7 @@ const UploadCut = ({
 
 		modal.openModal({
 			key: `StoryContentModal`,
-			component: () => <StoryContent medias={file} imgUrls={imgUrls} fileList={fileList} />,
+			component: () => <StoryContent imgUrls={imgUrls} fileList={fileList} />,
 		});
 	};
 
@@ -90,36 +78,6 @@ const UploadCut = ({
 
 		setMediaCurrentIndex((prev) => prev + 1);
 	};
-
-	// const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	const files = e.currentTarget.files;
-	// 	const imgUrlList: FileProp[] = [];
-
-	// 	if (!files) {
-	// 		return;
-	// 	}
-
-	// 	for (let i = 0; i < files.length; i++) {
-	// 		const img = new Image();
-	// 		img.src = URL.createObjectURL(files[i]);
-	// 		img.onload = () => {
-	// 			imgUrlList.push({
-	// 				url: img.src,
-	// 				width: img.width,
-	// 				height: img.height,
-	// 				size: img.width / img.height,
-	// 				translateX: 0,
-	// 				translateY: 0,
-	// 				scale: 0,
-	// 				grabbedPosition: { x: 0, y: 0 },
-	// 			});
-
-	// 			if (img.complete) {
-	// 				setFile((prev) => [...prev, ...imgUrlList]);
-	// 			}
-	// 		};
-	// 	}
-	// };
 
 	return (
 		<Flex css={layoutStyle}>

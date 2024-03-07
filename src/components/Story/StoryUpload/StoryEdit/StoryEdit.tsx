@@ -47,8 +47,6 @@ const StoryEdit = ({
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 
-	console.log(mediaCurrentIndex);
-
 	const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
 	const [updateFileList, setUpdateFileList] = useState<File[]>([]);
 
@@ -95,10 +93,6 @@ const StoryEdit = ({
 			formData.append("files", file);
 		});
 
-		for (const value of formData) {
-			console.log(value);
-		}
-
 		putStoryMutate.mutate(
 			{
 				storyId,
@@ -118,23 +112,26 @@ const StoryEdit = ({
 			</Flex>
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
-				<Flex css={imgBoxStyle}>
-					<StoryEditSlider
-						imgUrls={editMediaList}
-						mediaCurrentIndex={mediaCurrentIndex}
-						setMediaCurrentIndex={setMediaCurrentIndex}
-					/>
-					<Gallery
-						isGalleryOpen={isGalleryOpen}
-						setIsGalleryOpen={setIsGalleryOpen}
-						galleryRef={galleryRef}
-						prevImgUrls={editMediaList}
-						mediaCurrentIndex={mediaCurrentIndex}
-						setMediaCurrentIndex={setMediaCurrentIndex}
-						setEditMediaList={setEditMediaList}
-						setUpdateFileList={setUpdateFileList}
-					/>
-				</Flex>
+				{editMediaList !== null && (
+					<Flex css={imgBoxStyle}>
+						<StoryEditSlider
+							imgUrls={editMediaList}
+							mediaCurrentIndex={mediaCurrentIndex}
+							setMediaCurrentIndex={setMediaCurrentIndex}
+						/>
+						<Gallery
+							isGalleryOpen={isGalleryOpen}
+							setIsGalleryOpen={setIsGalleryOpen}
+							galleryRef={galleryRef}
+							prevImgUrls={editMediaList}
+							mediaCurrentIndex={mediaCurrentIndex}
+							setMediaCurrentIndex={setMediaCurrentIndex}
+							editMediaList={editMediaList}
+							setEditMediaList={setEditMediaList}
+							setUpdateFileList={setUpdateFileList}
+						/>
+					</Flex>
+				)}
 
 				<Flex css={contentBoxStyle}>
 					<Flex styles={{ direction: "column", gap: "12px", width: "100%" }}>
