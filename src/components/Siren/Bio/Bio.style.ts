@@ -4,15 +4,15 @@ import { Theme } from "@/styles/Theme";
 
 export const boxStyle = css({
 	maxWidth: "1536px",
-	margin: "0 auto",
+	margin: "82px auto 0",
 	padding: "0 196px",
 });
 
 export const titleStyle = css({
 	color: Theme.color.text,
-	fontFamily: "Pretendard",
 	fontWeight: 700,
-	letterSpacing: "-0.62px",
+	flexDirection: "column",
+	gap: "10px",
 });
 
 export const buttonStyle = css({
@@ -22,4 +22,5 @@ export const buttonStyle = css({
 	fontWeight: 600,
 	color: Theme.color.white,
 	borderRadius: "4px",
+	cursor: "pointer",
 });

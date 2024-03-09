@@ -7,18 +7,19 @@ import { buttonStyle, boxStyle, titleStyle } from "@/components/Siren/Bio/Bio.st
 const Bio = () => {
 	return (
 		<Box tag="section" css={boxStyle}>
-			<Flex styles={{ gap: "50px", marginTop: "82px" }}>
-				<Flex styles={{ direction: "column", gap: "50px" }}>
-					<Flex styles={{ direction: "column", gap: "10px" }} css={titleStyle}>
-						<Heading>Waggle에서</Heading>
-						<Heading>위급한 상황을 알리고</Heading>
-						<Heading>견주들에게 도움을</Heading>
-						<Heading>요청해보세요!</Heading>
+			<Flex styles={{ gap: "50px" }}>
+				<Flex styles={{ direction: "column", gap: "28px" }}>
+					<Flex css={titleStyle}>
+						<Heading>위급한 일이 생겼나요?</Heading>
+						<Heading>Waggle 견주들과</Heading>
+						<Heading>함께 문제를 해결해요</Heading>
 					</Flex>
-					<Flex tag="button" styles={{ justify: "center", align: "center" }} css={buttonStyle}>
+
+					<button css={buttonStyle}>
 						<Text size="xLarge">글 작성하기</Text>
-					</Flex>
+					</button>
 				</Flex>
+
 				<Flex styles={{ gap: "12px" }}>
 					{/* <SirenCard />
 					<SirenCard />
