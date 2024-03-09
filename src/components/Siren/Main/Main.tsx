@@ -6,7 +6,9 @@ import { useSirenListQuery } from "@/hooks/api/useSirenListQuery";
 import { sectionStyle } from "@/components/Siren/Main/Main.style";
 
 const Main = () => {
-	const { sirenList } = useSirenListQuery(0);
+	const { sirenListData } = useSirenListQuery(0);
+
+	console.log(sirenListData);
 
 	return (
 		<section css={sectionStyle}>
@@ -17,16 +19,16 @@ const Main = () => {
 					gap: "8px",
 				}}
 			>
-				{sirenList &&
-					sirenList.result.helpList.map((sirenInfo) => (
+				{sirenListData &&
+					sirenListData.result.sirenList.map((sirenInfo) => (
 						<SirenCard
-							key={sirenInfo.id}
-							id={sirenInfo.id}
+							key={sirenInfo.boardId}
+							boardId={sirenInfo.boardId}
 							thumbnail={sirenInfo.thumbnail}
 							title={sirenInfo.title}
 							lostLocate={sirenInfo.lostLocate}
-							recommendCount={sirenInfo.recommendCount}
 							lostDate={sirenInfo.lostDate}
+							recommendationInfo={sirenInfo.recommendationInfo}
 						/>
 					))}
 			</Flex>

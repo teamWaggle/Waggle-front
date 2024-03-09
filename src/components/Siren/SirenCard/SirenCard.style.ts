@@ -17,13 +17,8 @@ export const imgStyle = css({
 
 export const infoStyle = css({
 	borderRadius: "0 0 20px 20px",
-	padding: "16px",
+	padding: "10px 16px",
 	width: "100%",
-});
-
-export const titleStyle = css({
-	color: Theme.color.brand_primary,
-	fontWeight: 700,
 });
 
 export const subStyle = css({

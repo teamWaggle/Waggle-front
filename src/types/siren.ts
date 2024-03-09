@@ -1,3 +1,6 @@
+import type { MemberType } from "@/types/auth";
+import type { RecommendationInfoType } from "@/types/story";
+
 export interface SirenType {
 	isSuccess: boolean;
 	code: number;
@@ -31,21 +34,22 @@ export interface SirenListType {
 }
 
 export interface SirenListResultType {
-	helpList: SirenListInfoType[];
-	totalHelps: number;
-	first: boolean;
-	last: boolean;
+	sirenList: SirenListInfoType[];
+	sirenCount: number;
+	isFirst: boolean;
+	isLast: boolean;
 }
 
 export interface SirenListInfoType {
-	id: number;
+	boardId: number;
 	title: string;
 	thumbnail: string;
 	lostDate: string;
+	createdDate?: string;
 	lostLocate: string;
-	recommendIt?: boolean;
-	recommendCount: number;
 	category?: string;
-	username?: string;
-	profileImg?: string;
+	member?: MemberType;
+	isOwner?: boolean;
+	status?: string;
+	recommendationInfo: RecommendationInfoType;
 }
