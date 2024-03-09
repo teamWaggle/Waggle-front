@@ -23,7 +23,7 @@ export const END_POINTS = {
 	COMMENT: (commentId: number) => `/api/comments/${commentId}`,
 	POST_COMMENT: (boardId: number) => `/api/comments/${boardId}`,
 	SIREN: (boardId: number) => `/api/helps/${boardId}`,
-	SIREN_LIST: (curretPage: number) => `/api/helps?currentPage=${curretPage}`,
+	SIREN_LIST: (curretPage: number) => `/api/sirens?currentPage=${curretPage}`,
 	REPLIES: (currentPage: number, commentId: number) =>
 		`/api/replies/${commentId}?currentPage=${currentPage}`,
 	POST_REPLY: (commentId: number) => `/api/replies/${commentId}`,
