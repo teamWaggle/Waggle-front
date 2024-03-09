@@ -122,33 +122,17 @@ export const useImgUpload = () => {
 	const [imgUrls, setImageUrls] = useState<string[]>([]);
 	const [fileList, setFileList] = useState<File[]>([]);
 
-	const convertImgFile = useCallback(async (originalImages: FileList): Promise<File[]> => {
-		const imageFiles: File[] = [];
-
-		try {
-			await Promise.all(
-				[...originalImages].map(async (file) => {
-					const fileName = file.name;
-					const fileType = file.type;
-					const convertedFile = new File([file], fileName, { type: fileType });
-
-					imageFiles.push(convertedFile);
-				}),
-			);
-		} catch (e) {
-			imageFiles.push(...originalImages);
-		}
-
-		return imageFiles;
-	}, []);
-
 	const convertToImageFormData = useCallback(async (imageFiles: FileList) => {
-		const imgFileList = await convertImgFile(imageFiles);
+		const imgFiles: File[] = [];
 		const imgFormData = new FormData();
 
-		setFileList(imgFileList);
+		Array.from(imageFiles).forEach((file) => {
+			imgFiles.push(file);
+		});
 
-		imgFileList.forEach((file) => {
+		setFileList(imgFiles);
+
+		imgFiles.forEach((file) => {
 			imgFormData.append("files", file);
 		});
 
@@ -162,6 +146,7 @@ export const useImgUpload = () => {
 	) => {
 		const files = e.target.files;
 
+		console.log(files);
 		if (!files) return;
 
 		setImageUrls(() => {

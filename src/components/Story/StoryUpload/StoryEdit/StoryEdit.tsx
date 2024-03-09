@@ -50,6 +50,18 @@ const StoryEdit = ({
 	const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
 	const [updateFileList, setUpdateFileList] = useState<File[]>([]);
 
+	const [deletedMediaList, setDeletedMediaList] = useState<string[]>([]);
+
+	console.log(editMediaList);
+
+	console.log(imgUrls);
+
+	console.log(updateFileList);
+
+	console.log(updateFileList.length);
+
+	console.log(deletedMediaList);
+
 	const galleryRef = useRef<HTMLDivElement>(null);
 
 	const modal = useModal();
@@ -62,17 +74,37 @@ const StoryEdit = ({
 		const formData = new FormData();
 
 		const mediaList: MediaListType[] = [];
-		const deleteMediaList: string[] = [];
+		// const deleteMediaList: string[] = [];
 
-		const allowUpload = true;
+		const allowUpload = false;
+
+		const test = "";
 
 		imgUrls.forEach((imageUrl) => {
 			mediaList.push({ imageUrl, allowUpload });
 		});
 
-		imgUrls.forEach((imageUrl) => {
-			deleteMediaList.push(imageUrl);
-		});
+		console.log(deletedMediaList);
+
+		for (let i = 0; i < mediaList.length; i++) {
+			for (let j = 0; j < deletedMediaList.length; j++) {
+				if (mediaList[i].imageUrl === deletedMediaList[j]) {
+					mediaList[i].allowUpload = true;
+				}
+			}
+		}
+
+		console.log(mediaList);
+
+		if (updateFileList.length !== 0) {
+			updateFileList.forEach(() => {
+				mediaList.push({ imageUrl: test, allowUpload: true });
+			});
+		}
+
+		// imgUrls.forEach((imageUrl) => {
+		// 	deleteMediaList.push(imageUrl);
+		// });
 
 		const updateStoryRequest = {
 			content,
@@ -82,7 +114,7 @@ const StoryEdit = ({
 		const updateMediaRequest = {
 			storyId,
 			mediaList,
-			deleteMediaList,
+			deleteMediaList: deletedMediaList,
 		};
 
 		formData.append("updateStoryRequest", JSON.stringify(updateStoryRequest));
@@ -93,6 +125,9 @@ const StoryEdit = ({
 			formData.append("files", file);
 		});
 
+		for (const value of formData) {
+			console.log(value);
+		}
 		putStoryMutate.mutate(
 			{
 				storyId,
@@ -129,6 +164,7 @@ const StoryEdit = ({
 							editMediaList={editMediaList}
 							setEditMediaList={setEditMediaList}
 							setUpdateFileList={setUpdateFileList}
+							setDeletedMediaList={setDeletedMediaList}
 						/>
 					</Flex>
 				)}
