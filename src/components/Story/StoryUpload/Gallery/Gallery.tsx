@@ -24,6 +24,7 @@ interface GalleryProps {
 	editMediaList: string[];
 	setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 	setUpdateFileList: React.Dispatch<React.SetStateAction<File[]>>;
+	setDeletedMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const Gallery = ({
@@ -36,6 +37,7 @@ const Gallery = ({
 	editMediaList,
 	setEditMediaList,
 	setUpdateFileList,
+	setDeletedMediaList,
 }: GalleryProps) => {
 	const { isLoading, imgUrls, handleImgUpload, fileList } = useImgUpload();
 
@@ -58,6 +60,7 @@ const Gallery = ({
 						setMediaCurrentIndex={setMediaCurrentIndex}
 						editMediaList={editMediaList}
 						setEditMediaList={setEditMediaList}
+						setDeletedMediaList={setDeletedMediaList}
 					/>
 
 					<label css={galleryPlusIconBoxStyle} htmlFor="media">
