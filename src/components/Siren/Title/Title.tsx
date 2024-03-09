@@ -1,18 +1,9 @@
 import { useState } from "react";
 
-import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
-
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Box, Text, SearchInput } from "@/components/common";
 import SortButton from "@/components/Landing/SortButton/SortButton";
 
-import {
-	sectionStyle,
-	tagStyle,
-	tagDisabledStyle,
-	searchStyle,
-	inputStyle,
-	buttonStyle,
-} from "@/components/Siren/Title/Title.style";
+import { sectionStyle, tagStyle } from "@/components/Siren/Title/Title.style";
 
 const tagItems = [
 	{
@@ -30,6 +21,7 @@ const tagItems = [
 ];
 
 const Title = () => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [tagName, setTagName] = useState("임시보호");
 
 	return (
@@ -40,25 +32,17 @@ const Title = () => {
 						<SortButton defaultText="인기순" />
 						<SortButton defaultText="해결" />
 					</Flex>
+
 					<Flex styles={{ gap: "14px" }}>
 						{tagItems.map((data) => (
-							<Flex
-								styles={{ justify: "center", align: "center" }}
-								css={data.title === tagName ? tagStyle : tagDisabledStyle}
-								key={data.title}
-								onClick={() => setTagName(data.title)}
-							>
+							<Flex css={tagStyle("red")} key={data.title} onClick={() => setTagName(data.title)}>
 								<Text>{data.title}</Text>
 							</Flex>
 						))}
 					</Flex>
 				</Flex>
-				<Flex styles={{ align: "center" }} css={searchStyle}>
-					<input css={inputStyle} />
-					<Flex tag="button" styles={{ align: "center", justify: "center" }} css={buttonStyle}>
-						<SearchButtonIcon />
-					</Flex>
-				</Flex>
+
+				<SearchInput onChange={() => {}} width="508px" />
 			</Flex>
 		</Box>
 	);
