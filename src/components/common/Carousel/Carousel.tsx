@@ -21,6 +21,7 @@ import {
 export interface CarouselProps extends PropsWithChildren {
 	width: number;
 	height: number;
+	borderRadius: string;
 	length: number;
 	showArrows?: boolean;
 	showDots?: boolean;
@@ -37,6 +38,7 @@ export const CarouselContext = createContext<{
 const Carousel = ({
 	width,
 	height,
+	borderRadius,
 	length,
 	showArrows = true,
 	showDots = true,
@@ -76,7 +78,7 @@ const Carousel = ({
 
 	return (
 		<CarouselContext.Provider value={context}>
-			<div css={carouselStyle(width, height)} ref={carouselBoxRef}>
+			<div css={carouselStyle(width, height, borderRadius)} ref={carouselBoxRef}>
 				{showArrows && length !== 1 && (
 					<div css={buttonBoxStyle}>
 						<button type="button" css={leftButtonStyle} onClick={handleClickLeft}>
@@ -92,7 +94,7 @@ const Carousel = ({
 					<Dots mediaLength={length} selectMediaNumber={mediaIndex} moveImage={handleMoveImage} />
 				)}
 
-				<Box css={carouselBoxStyle(width, height)}>{children}</Box>
+				<Box css={carouselBoxStyle}>{children}</Box>
 			</div>
 		</CarouselContext.Provider>
 	);
