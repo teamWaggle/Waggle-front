@@ -13,7 +13,7 @@ export const layoutStyle = css({
 });
 
 export const sliderBoxStyle = css({
-	width: "741px",
+	width: "740px",
 	height: "100%",
 	borderRight: "1px solid #d2d2d2",
 });
