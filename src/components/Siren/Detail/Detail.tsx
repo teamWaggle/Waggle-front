@@ -10,32 +10,30 @@ import { layoutStyle } from "@/components/Siren/Detail/Detail.style";
 const Detail = () => {
 	const param = useParams();
 
-	const { siren } = useSirenQuery(Number(param.id));
-	const sirenData = siren && siren.result;
+	const { sirenData } = useSirenQuery(Number(param.id));
 
 	return (
 		<Box tag="main">
-			{siren && (
+			{sirenData && (
 				<Flex styles={{ direction: "column" }} css={layoutStyle}>
 					<Title
-						profileImg={sirenData.profileImg}
-						category={sirenData.category}
-						title={sirenData.title}
-						username={sirenData.username}
-						lostDate={sirenData.lostDate}
+						member={sirenData.result.member}
+						category={sirenData.result.category}
+						title={sirenData.result.title}
+						lostDate={sirenData.result.lostDate}
 					/>
 					<Divider />
 					<Content
-						lostLocate={sirenData.lostLocate}
-						petKind={sirenData.petKind}
-						petGender={sirenData.petGender}
-						lostDate={sirenData.lostDate}
-						petAge={sirenData.petAge}
-						contact={sirenData.contact}
-						medias={sirenData.medias}
-						content={sirenData.content}
-						recommendIt={sirenData.recommendIt}
-						recommendCount={sirenData.recommendCount}
+						lostLocate={sirenData.result.lostLocate}
+						petBreed={sirenData.result.petBreed}
+						petGender={sirenData.result.petGender}
+						lostDate={sirenData.result.lostDate}
+						petAge={sirenData.result.petAge}
+						contact={sirenData.result.contact}
+						mediaList={sirenData.result.mediaList}
+						content={sirenData.result.content}
+						// recommendIt={sirenData.result.recommendIt}
+						// recommendCount={sirenData.result.recommendCount}
 					/>
 				</Flex>
 			)}

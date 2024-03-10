@@ -19,17 +19,3 @@ export const imgStyle = css({
 	borderRadius: "20px",
 	objectFit: "cover",
 });
-
-export const contentTextStyle = css({
-	color: Theme.color.text,
-	fontWeight: 500,
-});
-
-export const getHeadingStyling = (recommendIt: boolean | undefined) => {
-	return css({
-		fontFamily: "Montserrat",
-		fontWeight: 500,
-
-		color: recommendIt ? Theme.color.brand_primary : Theme.color.border,
-	});
-};

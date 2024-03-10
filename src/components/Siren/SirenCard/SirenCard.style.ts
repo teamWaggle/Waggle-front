@@ -8,6 +8,7 @@ export const cardStyle = css({
 	borderRadius: "20px",
 	flexDirection: "column",
 	position: "relative",
+	cursor: "pointer",
 
 	"& > img": {
 		width: "279px",

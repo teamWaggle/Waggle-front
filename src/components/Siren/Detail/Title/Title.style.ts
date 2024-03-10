@@ -2,27 +2,32 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const tagStyle = css({
-	padding: "4px 10px",
-	borderRadius: "17px",
-	color: Theme.color.text,
-	fontWeight: 500,
-	backgroundColor: Theme.color.btn_02,
-});
-
-export const headingStyle = css({
-	color: Theme.color.text,
-	fontWeight: 700,
-});
+export const tagStyle = (color: string) => {
+	return css({
+		justifyContent: "center",
+		alignItems: "center",
+		padding: "4px 10px",
+		borderRadius: "18px",
+		backgroundColor: color,
+		color: Theme.color.text,
+		cursor: "pointer",
+		fontWeight: 500,
+	});
+};
 
 export const profileStyle = css({
-	width: "40px",
-	height: "40px",
-	borderRadius: "50%",
-	objectFit: "cover",
-});
-
-export const textStyle = css({
+	alignItems: "center",
 	color: Theme.color.disabled_text,
 	fontWeight: 500,
+
+	"& > img": {
+		width: "40px",
+		height: "40px",
+		borderRadius: "50%",
+		objectFit: "cover",
+	},
+
+	span: {
+		marginLeft: "14px",
+	},
 });
