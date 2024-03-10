@@ -44,12 +44,12 @@ export interface SirenListInfoType {
 	boardId: number;
 	title: string;
 	thumbnail: string;
-	lostDate: string;
-	createdDate?: string;
+	lostDate?: string;
+	createdDate: string;
 	lostLocate: string;
-	category?: string;
+	category: string;
 	member?: MemberType;
 	isOwner?: boolean;
-	status?: string;
+	status: string;
 	recommendationInfo: RecommendationInfoType;
 }

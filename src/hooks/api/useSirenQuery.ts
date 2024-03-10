@@ -6,10 +6,10 @@ import { getSiren } from "@/api/siren/getSiren";
 
 import type { SirenType } from "@/types/siren";
 
-export const useSirenQuery = (boardId: number) => {
+export const useSirenQuery = (sirenId: number) => {
 	const { data: sirenData } = useQuery<SirenType, AxiosError>({
 		queryKey: ["siren"],
-		queryFn: () => getSiren(boardId),
+		queryFn: () => getSiren(sirenId),
 	});
 
 	return { sirenData };

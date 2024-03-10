@@ -27,8 +27,10 @@ const Main = () => {
 							thumbnail={sirenInfo.thumbnail}
 							title={sirenInfo.title}
 							lostLocate={sirenInfo.lostLocate}
-							lostDate={sirenInfo.lostDate}
 							recommendationInfo={sirenInfo.recommendationInfo}
+							category={sirenInfo.category}
+							status={sirenInfo.status}
+							createdDate={sirenInfo.createdDate}
 						/>
 					))}
 			</Flex>
