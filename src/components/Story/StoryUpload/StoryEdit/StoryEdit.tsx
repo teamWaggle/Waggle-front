@@ -3,9 +3,8 @@ import { useState, useRef } from "react";
 import SampleImg from "@/assets/png/post-sample.png";
 import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
-import { Flex, Text } from "@/components/common";
+import { Flex, Text, Carousel } from "@/components/common";
 import Gallery from "@/components/Story/StoryUpload/Gallery/Gallery";
-import StoryEditSlider from "@/components/Story/StoryUpload/StoryEdit/StoryEditSlider";
 
 import { usePutStoryMutation } from "@/hooks/api/usePutStoryMutation";
 import useClickOutSide from "@/hooks/useClickOutSide";
@@ -149,11 +148,20 @@ const StoryEdit = ({
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				{editMediaList !== null && (
 					<Flex css={imgBoxStyle}>
-						<StoryEditSlider
-							imgUrls={editMediaList}
-							mediaCurrentIndex={mediaCurrentIndex}
-							setMediaCurrentIndex={setMediaCurrentIndex}
-						/>
+						<Carousel
+							width={740}
+							height={726}
+							borderRadius="0 0 0 36px"
+							showArrows={editMediaList.length > 1}
+							showDots={editMediaList.length > 1}
+							length={editMediaList.length}
+						>
+							{editMediaList.map((imgUrl, index) => (
+								<Carousel.Item index={index} key={imgUrl}>
+									<img src={imgUrl} alt="img" />
+								</Carousel.Item>
+							))}
+						</Carousel>
 						<Gallery
 							isGalleryOpen={isGalleryOpen}
 							setIsGalleryOpen={setIsGalleryOpen}
