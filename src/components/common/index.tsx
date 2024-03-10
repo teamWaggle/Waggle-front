@@ -1,4 +1,5 @@
 import Box from "@/components/common/Box/Box";
+import Carousel from "@/components/common/Carousel/Carousel";
 import Divider from "@/components/common/Divider/Divider";
 import Dropdown from "@/components/common/Dropdown/Dropdown";
 import DropdownButton from "@/components/common/Dropdown/DropdownButton";
@@ -16,6 +17,7 @@ import Text from "@/components/common/Text/Text";
 
 export {
 	Box,
+	Carousel,
 	Divider,
 	Flex,
 	Heading,

@@ -13,13 +13,6 @@ export const subTextStyle = css({
 	marginBottom: "4px",
 });
 
-export const imgStyle = css({
-	width: "536px",
-	height: "466px",
-	borderRadius: "20px",
-	objectFit: "cover",
-});
-
 export const contentBoxStyle = css({
 	width: "536px",
 	height: "466px",

@@ -3,7 +3,7 @@ import MaleIcon from "@/assets/svg/ic-male.svg?react";
 // import RecommendOffIcon from "@/assets/svg/ic-recommend-off.svg?react";
 // import RecommendOnIcon from "@/assets/svg/ic-recommend-off.svg?react";
 
-import { Flex, Box, Text, Divider } from "@/components/common";
+import { Flex, Box, Text, Divider, Carousel } from "@/components/common";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -13,7 +13,6 @@ import type { SirenContentType } from "@/types/siren";
 import {
 	textStyle,
 	subTextStyle,
-	imgStyle,
 	contentBoxStyle,
 } from "@/components/Siren/Detail/Content/Content.style";
 
@@ -78,7 +77,19 @@ const Content = ({
 			</Flex>
 
 			<Flex styles={{ align: "center", gap: "64px" }}>
-				<img css={imgStyle} src={mediaList[0]} alt="contentImg" />
+				<Carousel
+					width={536}
+					height={466}
+					showArrows={mediaList.length > 1}
+					showDots={mediaList.length > 1}
+					length={mediaList.length}
+				>
+					{mediaList.map((imgUrl, index) => (
+						<Carousel.Item index={index} key={imgUrl}>
+							<img src={imgUrl} alt="img" />
+						</Carousel.Item>
+					))}
+				</Carousel>
 
 				<Box css={contentBoxStyle}>
 					<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 500)}>
