@@ -1,32 +1,27 @@
 import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
-import RecommendOffIcon from "@/assets/svg/recommendOff.svg?react";
-import RecommendOnIcon from "@/assets/svg/recommendOn.svg?react";
+// import RecommendOffIcon from "@/assets/svg/ic-recommend-off.svg?react";
+// import RecommendOnIcon from "@/assets/svg/ic-recommend-off.svg?react";
 
-import { Flex, Box, Text, Heading, Divider } from "@/components/common";
+import { Flex, Box, Text, Divider } from "@/components/common";
 
-import type { SirenResultType } from "@/types/siren";
+import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
+import { Theme } from "@/styles/Theme";
 
-import {
-	textStyle,
-	subTextStyle,
-	imgStyle,
-	contentTextStyle,
-	getHeadingStyling,
-} from "@/components/Siren/Detail/Content/Content.style";
+import type { SirenContentType } from "@/types/siren";
+
+import { textStyle, subTextStyle, imgStyle } from "@/components/Siren/Detail/Content/Content.style";
 
 const Content = ({
 	lostLocate,
-	petKind,
+	petBreed,
 	petGender,
 	lostDate,
 	petAge,
 	contact,
-	medias,
+	mediaList,
 	content,
-	recommendIt,
-	recommendCount,
-}: SirenResultType) => {
+}: SirenContentType) => {
 	const data = [
 		{
 			title: "강아지 실종 장소",
@@ -34,7 +29,7 @@ const Content = ({
 		},
 		{
 			title: "강아지 견종",
-			data: petKind,
+			data: petBreed,
 		},
 		{
 			title: "강아지 성별",
@@ -49,7 +44,7 @@ const Content = ({
 			data: petAge,
 		},
 		{
-			title: "강아지 연락처",
+			title: "연락처",
 			data: contact,
 		},
 	];
@@ -79,7 +74,7 @@ const Content = ({
 
 			<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
 				<Box styles={{ width: "536px", height: "466px" }}>
-					<img css={imgStyle} src={medias && medias[0]} alt="contentImg" />
+					<img css={imgStyle} src={mediaList[0]} alt="contentImg" />
 				</Box>
 				<Box
 					styles={{
@@ -90,19 +85,25 @@ const Content = ({
 						padding: "34px 22px",
 					}}
 				>
-					<Text size="xLarge" css={contentTextStyle}>
+					<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 500)}>
 						{content}
 					</Text>
 				</Box>
 			</Flex>
 
 			<Flex styles={{ align: "center", justify: "center", width: "100%" }}>
-				<Flex styles={{ align: "center", gap: "22px" }}>
+				{/* <Flex styles={{ align: "center", gap: "22px" }}>
 					{recommendIt ? <RecommendOnIcon /> : <RecommendOffIcon />}
-					<Heading size="xxLarge" css={getHeadingStyling(recommendIt)}>
+					<Heading
+						size="xxLarge"
+						css={getDefaultTextStyle(
+							recommendIt ? Theme.color.brand_primary : Theme.color.border,
+							500,
+						)}
+					>
 						{recommendCount}
 					</Heading>
-				</Flex>
+				</Flex> */}
 			</Flex>
 		</Flex>
 	);

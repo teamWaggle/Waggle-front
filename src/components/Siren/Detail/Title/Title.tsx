@@ -1,26 +1,30 @@
 import { Flex, Heading, Text } from "@/components/common";
 
-import type { SirenResultType } from "@/types/siren";
+import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
+import { Theme } from "@/styles/Theme";
 
-import {
-	tagStyle,
-	headingStyle,
-	profileStyle,
-	textStyle,
-} from "@/components/Siren/Detail/Title/Title.style";
+import { generateTagStyle, generateTagName } from "@/utils/generateTag";
 
-const Title = ({ profileImg, category, title, username, lostDate }: SirenResultType) => {
+import type { SirenTitleType } from "@/types/siren";
+
+import { tagStyle, profileStyle } from "@/components/Siren/Detail/Title/Title.style";
+
+const Title = ({ category, title, member, lostDate }: SirenTitleType) => {
 	return (
 		<Flex styles={{ direction: "column", gap: "12px", marginBottom: "18px" }}>
-			<Flex styles={{ justify: "center", align: "center" }} css={tagStyle}>
-				<Text>{category}</Text>
+			<Flex css={tagStyle(generateTagStyle(category))}>
+				<Text>{generateTagName(category)}</Text>
 			</Flex>
-			<Heading css={headingStyle}>{title}</Heading>
-			<Flex styles={{ align: "center", gap: "14px" }}>
-				<img src={profileImg} alt={profileImg} css={profileStyle} />
-				<Text css={textStyle}>{username}</Text>
-				<Text css={textStyle}>조회 129</Text>
-				<Text css={textStyle}>{lostDate}</Text>
+
+			<Heading css={getDefaultTextStyle(Theme.color.text, 700)}>{title}</Heading>
+
+			<Flex css={profileStyle}>
+				<img src={member.profileImgUrl} alt="profileImg" />
+				<Text>
+					<span>{member.nickname}</span>
+					<span>조회 129</span>
+					<span>{lostDate}</span>
+				</Text>
 			</Flex>
 		</Flex>
 	);
