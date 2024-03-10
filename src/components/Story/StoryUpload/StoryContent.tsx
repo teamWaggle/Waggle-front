@@ -3,8 +3,7 @@ import { useState } from "react";
 import SampleImg from "@/assets/png/post-sample.png";
 import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
-import { Flex, Text } from "@/components/common";
-import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider";
+import { Flex, Text, Carousel } from "@/components/common";
 
 import { usePostStoryMutation } from "@/hooks/api/usePostStoryMutation";
 import useModal from "@/hooks/useModal";
@@ -65,7 +64,20 @@ const StoryContent = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				<Flex css={imgBoxStyle}>
-					<StoryImgSlider imgUrls={imgUrls} />
+					<Carousel
+						width={740}
+						height={726}
+						borderRadius="0 0 0 36px"
+						showArrows={imgUrls.length > 1}
+						showDots={imgUrls.length > 1}
+						length={imgUrls.length}
+					>
+						{imgUrls.map((imgUrl, index) => (
+							<Carousel.Item index={index} key={imgUrl}>
+								<img src={imgUrl} alt="img" />
+							</Carousel.Item>
+						))}
+					</Carousel>
 				</Flex>
 
 				<Flex css={contentBoxStyle}>

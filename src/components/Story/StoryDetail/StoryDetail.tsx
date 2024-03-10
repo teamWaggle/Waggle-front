@@ -2,12 +2,11 @@ import { useState, useEffect, useRef } from "react";
 
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
-import { Flex, Box, Divider, Text } from "@/components/common";
+import { Flex, Box, Divider, Text, Carousel } from "@/components/common";
 import Comment from "@/components/Story/StoryDetail/Comment/Comment";
 import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
 import DeleteWarningModal from "@/components/Story/StoryDetail/DeleteWarningModal/DeleteWarningModal";
 import Profile from "@/components/Story/StoryDetail/Profile/Profile";
-import StoryImgSlider from "@/components/Story/StoryDetail/StoryImgSlider/StoryImgSlider";
 import StoryEdit from "@/components/Story/StoryUpload/StoryEdit/StoryEdit";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
@@ -115,7 +114,20 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 				<Flex css={layoutStyle}>
 					{/* 미디어 영역 */}
 					<Flex css={sliderBoxStyle}>
-						<StoryImgSlider imgUrls={storyData.result.mediaList} />
+						<Carousel
+							width={740}
+							height={726}
+							borderRadius="36px 0 0 36px"
+							showArrows={storyData.result.mediaList.length > 1}
+							showDots={storyData.result.mediaList.length > 1}
+							length={storyData.result.mediaList.length}
+						>
+							{storyData.result.mediaList.map((imgUrl, index) => (
+								<Carousel.Item index={index} key={imgUrl}>
+									<img src={imgUrl} alt="img" />
+								</Carousel.Item>
+							))}
+						</Carousel>
 					</Flex>
 
 					{/* 본문 영역 */}

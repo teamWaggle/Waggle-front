@@ -1,13 +1,13 @@
 import { css } from "@emotion/react";
 
-export const carouselStyle = (width: number, height: number) =>
+export const carouselStyle = (width: number, height: number, borderRadius: string) =>
 	css({
 		position: "relative",
 		width,
 		height,
 		minWidth: width,
 		minHeight: height,
-		borderRadius: "8px",
+		borderRadius,
 		overflow: "hidden",
 
 		"& *": {
@@ -15,13 +15,10 @@ export const carouselStyle = (width: number, height: number) =>
 		},
 	});
 
-export const carouselBoxStyle = (width: number, height: number) =>
-	css({
-		display: "flex",
-		width,
-		height,
-		overflow: "hidden",
-	});
+export const carouselBoxStyle = css({
+	display: "flex",
+	overflow: "hidden",
+});
 
 export const carouselItemStyle = (width: number, height: number) =>
 	css({

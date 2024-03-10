@@ -80,6 +80,7 @@ const Content = ({
 				<Carousel
 					width={536}
 					height={466}
+					borderRadius="20px"
 					showArrows={mediaList.length > 1}
 					showDots={mediaList.length > 1}
 					length={mediaList.length}
