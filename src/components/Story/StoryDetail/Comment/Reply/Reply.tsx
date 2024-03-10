@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { Flex, Box, Text, Divider } from "@/components/common";
 import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
@@ -22,6 +22,8 @@ const Reply = ({
 
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
+
+	const commentInputRef = useRef<HTMLInputElement>(null);
 
 	const handleAddReply = () => {
 		postReplyMutation.mutate(
@@ -67,6 +69,7 @@ const Reply = ({
 						handleAddButton={handleAddReply}
 						content={content}
 						setContent={setContent}
+						commentInputRef={commentInputRef}
 					/>
 				</Flex>
 			) : (
@@ -77,6 +80,7 @@ const Reply = ({
 						handleAddButton={handleAddReply}
 						content={content}
 						setContent={setContent}
+						commentInputRef={commentInputRef}
 					/>
 				</Box>
 			)}
