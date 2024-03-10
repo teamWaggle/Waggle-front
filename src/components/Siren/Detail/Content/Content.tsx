@@ -10,7 +10,12 @@ import { Theme } from "@/styles/Theme";
 
 import type { SirenContentType } from "@/types/siren";
 
-import { textStyle, subTextStyle, imgStyle } from "@/components/Siren/Detail/Content/Content.style";
+import {
+	textStyle,
+	subTextStyle,
+	imgStyle,
+	contentBoxStyle,
+} from "@/components/Siren/Detail/Content/Content.style";
 
 const Content = ({
 	lostLocate,
@@ -22,7 +27,7 @@ const Content = ({
 	mediaList,
 	content,
 }: SirenContentType) => {
-	const data = [
+	const sirenContentTitleData = [
 		{
 			title: "강아지 실종 장소",
 			data: lostLocate,
@@ -52,39 +57,30 @@ const Content = ({
 	return (
 		<Flex styles={{ direction: "column", margin: "60px 0", gap: "60px" }}>
 			<Flex styles={{ align: "center", wrap: "wrap", gap: "58px 72px" }}>
-				{data.map((data) => (
-					<Flex styles={{ direction: "column", width: "333px" }} key={data.title}>
+				{sirenContentTitleData.map((contentData) => (
+					<Box styles={{ width: "333px" }} key={contentData.title}>
 						<Text size="xLarge" css={textStyle}>
-							{data.title}
+							{contentData.title}
 						</Text>
 
-						{data.title === "강아지 성별" ? (
-							<>{data.data === "Male" ? <MaleIcon /> : <FeMaleIcon />}</>
+						{contentData.title === "강아지 성별" ? (
+							<>{contentData.data === "Male" ? <MaleIcon /> : <FeMaleIcon />}</>
 						) : (
 							<>
 								<Text size="large" css={subTextStyle}>
-									{data.data}
+									{contentData.data}
 								</Text>
 								<Divider />
 							</>
 						)}
-					</Flex>
+					</Box>
 				))}
 			</Flex>
 
-			<Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
-				<Box styles={{ width: "536px", height: "466px" }}>
-					<img css={imgStyle} src={mediaList[0]} alt="contentImg" />
-				</Box>
-				<Box
-					styles={{
-						width: "536px",
-						height: "466px",
-						borderRadius: "17px",
-						border: "1px solid #d2d2d2",
-						padding: "34px 22px",
-					}}
-				>
+			<Flex styles={{ align: "center", gap: "64px" }}>
+				<img css={imgStyle} src={mediaList[0]} alt="contentImg" />
+
+				<Box css={contentBoxStyle}>
 					<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 500)}>
 						{content}
 					</Text>

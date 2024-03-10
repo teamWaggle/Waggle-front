@@ -14,8 +14,16 @@ export const subTextStyle = css({
 });
 
 export const imgStyle = css({
-	width: "100%",
-	height: "100%",
+	width: "536px",
+	height: "466px",
 	borderRadius: "20px",
 	objectFit: "cover",
+});
+
+export const contentBoxStyle = css({
+	width: "536px",
+	height: "466px",
+	borderRadius: "17px",
+	border: `1px solid ${Theme.color.border}`,
+	padding: "34px 22px",
 });
