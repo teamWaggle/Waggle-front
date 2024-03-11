@@ -2,34 +2,46 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const boxStyle = css({
+export const commentBoxStyle = css({
 	maxWidth: "1536px",
 	padding: "0 196px",
 	margin: "60px auto 0",
+	flexDirection: "column",
+	gap: "60px",
 });
 
-export const imgStyle = css({
-	width: "50px",
-	height: "50px",
-	borderRadius: "50%",
-});
+export const commentTextareaStyle = (width: number, height: number) =>
+	css({
+		border: `1px solid ${Theme.color.border}`,
+		borderRadius: "4px",
+		width,
+		height,
+		padding: "20px 74px 20px 20px",
+		fontSize: "16px",
+		fontWeight: 500,
+		outline: "none",
+		overflowWrap: "break-word",
+		wordBreak: "break-all",
+		whiteSpace: "pre-wrap",
+		resize: "none",
+		fontFamily: "Pretendard",
+	});
 
-export const nameStyle = css({
-	color: Theme.color.text,
-	fontWeight: 500,
-});
+export const commentCardBoxStyle = css({
+	position: "relative",
+	width: "100%",
+	gap: "14px",
 
-export const dateStyle = css({
-	color: Theme.color.readonly_text,
-	fontWeight: 500,
-});
-
-export const textStyle = css({
-	color: Theme.color.text,
-	fontWeight: 500,
+	"& > img": {
+		width: "50px",
+		height: "50px",
+		borderRadius: "50%",
+	},
 });
 
 export const replyBoxStyle = css({
+	alignItems: "center",
+	gap: "16px",
 	position: "absolute",
 	top: 0,
 	right: 0,
@@ -38,23 +50,9 @@ export const replyBoxStyle = css({
 	cursor: "pointer",
 });
 
-export const replyTextareaStyle = css({
-	all: "unset",
-	boxSizing: "border-box",
-	border: `1px solid ${Theme.color.border}`,
-	borderRadius: "4px",
-	width: "1078px",
-	maxWidth: "1078px",
-	height: "130px",
-	padding: "14px 74px 14px 14px",
-	overflowWrap: "break-word",
-	wordBreak: "break-all",
-	whiteSpace: "pre-wrap",
-	resize: "none",
-});
-
 export const submitButtonStyle = css({
-	all: "unset",
+	border: "none",
+	outline: "none",
 	position: "absolute",
 	bottom: "14px",
 	right: "14px",
@@ -62,19 +60,6 @@ export const submitButtonStyle = css({
 	borderRadius: "4px",
 	backgroundColor: Theme.color.brand_primary,
 	color: Theme.color.white,
-	fontWeight: "600",
-});
-
-export const commentTextareaStyle = css({
-	all: "unset",
-	boxSizing: "border-box",
-	border: `1px solid ${Theme.color.border}`,
-	borderRadius: "4px",
-	width: "1144px",
-	height: "194px",
-	padding: "14px 74px 14px 14px",
-	overflowWrap: "break-word",
-	wordBreak: "break-all",
-	whiteSpace: "pre-wrap",
-	resize: "none",
+	fontWeight: 600,
+	cursor: "pointer",
 });

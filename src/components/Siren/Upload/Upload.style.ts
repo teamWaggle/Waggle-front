@@ -46,6 +46,7 @@ export const contentTextareaStyle = css({
 	wordBreak: "break-all",
 	whiteSpace: "pre-wrap",
 	resize: "none",
+	fontFamily: "Pretendard",
 
 	"&::placeholder": {
 		color: Theme.color.disabled_text,
