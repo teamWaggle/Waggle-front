@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Text, Box } from "@/components/common";
 
 import { usePostReplyMutation } from "@/hooks/api/usePostReplyMutation";
@@ -9,11 +7,26 @@ import {
 	submitButtonStyle,
 } from "@/components/Siren/Detail/Comment/Comment.style";
 
-const ReplyInput = ({ commentId }: { commentId: number }) => {
-	const postReplyMutation = usePostReplyMutation();
+interface ReplyInputProps {
+	commentId: number;
+	content: string;
+	setContent: React.Dispatch<React.SetStateAction<string>>;
+	mentionedMemberList: string[];
+	replyButtonText: string;
+	handleEditReply: () => void;
+	replyRef: React.RefObject<HTMLTextAreaElement>;
+}
 
-	const [content, setContent] = useState("");
-	const [mentionedMemberList] = useState<string[]>(["test"]);
+const ReplyInput = ({
+	commentId,
+	content,
+	setContent,
+	mentionedMemberList,
+	replyButtonText,
+	handleEditReply,
+	replyRef,
+}: ReplyInputProps) => {
+	const postReplyMutation = usePostReplyMutation();
 
 	const handleAddReply = () => {
 		postReplyMutation.mutate(
@@ -37,10 +50,14 @@ const ReplyInput = ({ commentId }: { commentId: number }) => {
 				css={commentTextareaStyle(1078, 130)}
 				value={content}
 				onChange={(e) => setContent(e.target.value)}
+				ref={replyRef}
 			/>
 
-			<button css={submitButtonStyle} onClick={handleAddReply}>
-				<Text>등록</Text>
+			<button
+				css={submitButtonStyle}
+				onClick={() => (replyButtonText === "등록" ? handleAddReply() : handleEditReply())}
+			>
+				<Text>{replyButtonText}</Text>
 			</button>
 		</Box>
 	);

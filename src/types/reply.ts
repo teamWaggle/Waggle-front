@@ -14,16 +14,16 @@ export interface ReplyResultType {
 	isLast: boolean;
 }
 
-interface CommentIdType {
-	commentId: number;
-}
-
-export interface ReplyListInfoType extends CommentIdType {
+export interface ReplyListInfoType extends EditCommentProps {
 	replyId: number;
 	content: string;
 	createdDate: string;
 	mentionedMemberList?: string[];
 	member: MemberType;
+}
+
+interface EditCommentProps {
+	handleReplyEditClick: (content: string, commentId: number) => void;
 }
 
 export interface PutReplyType extends ReplyRequestType {
