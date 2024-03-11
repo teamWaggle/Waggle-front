@@ -1,58 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import SampleImg from "@/assets/png/post-sample.png";
 import OptionIcon from "@/assets/svg/option.svg?react";
 
-import { Flex, Text, Box } from "@/components/common";
+import { Flex, Text } from "@/components/common";
+import ReplyInput from "@/components/Siren/Detail/Comment/Reply/ReplyInput";
+
+import { useReplyQuery } from "@/hooks/api/useReplyQuery";
+
+import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
+import { Theme } from "@/styles/Theme";
+
+import { convertToUTC } from "@/utils/convertToUTC";
+
+import type { CommentListInfoType } from "@/types/comment";
 
 import {
-	imgStyle,
-	nameStyle,
-	dateStyle,
-	textStyle,
+	commentCardBoxStyle,
 	replyBoxStyle,
-	replyTextareaStyle,
-	submitButtonStyle,
 } from "@/components/Siren/Detail/Comment/Comment.style";
 
-const CommentCard = () => {
+const CommentCard = ({ commentId, content, createdDate, member }: CommentListInfoType) => {
+	const { replyData } = useReplyQuery(0, commentId);
+
+	console.log(replyData);
+
 	const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
+	const [date, setDate] = useState("");
+
+	useEffect(() => {
+		if (createdDate) {
+			const date = new Date(createdDate);
+
+			setDate(convertToUTC(date).date);
+		}
+	}, [createdDate]);
 
 	return (
-		<Flex styles={{ position: "relative", width: "100%" }}>
-			<img src={SampleImg} alt="sampleImg" css={imgStyle} />
-			<Flex styles={{ direction: "column", marginLeft: "14px", gap: "22px" }}>
+		<Flex css={commentCardBoxStyle}>
+			<img src={member.profileImgUrl} alt="profileImg" />
+
+			<Flex styles={{ direction: "column", gap: "22px" }}>
 				<Flex styles={{ direction: "column" }}>
 					<Flex styles={{ gap: "14px", align: "center" }}>
-						<Text css={nameStyle}>멍댕멍댕</Text>
-						<Text size="small" css={dateStyle}>
-							23.12.27 21:21
+						<Text css={getDefaultTextStyle(Theme.color.text, 500)}>{member.nickname}</Text>
+						<Text size="small" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
+							{date}
 						</Text>
 					</Flex>
-					<Text size="large" css={textStyle}>
-						더 많은 사람들이 이런 유용한 정보를 알게 되기를 바랍니다. 감사합니다!
+
+					<Text size="large" css={getDefaultTextStyle(Theme.color.text, 500)}>
+						{content}
 					</Text>
 				</Flex>
 
-				{isReplyBoxOpen && (
-					<Box styles={{ position: "relative" }}>
-						<textarea css={replyTextareaStyle} />
-						<Flex
-							tag="button"
-							styles={{ justify: "center", align: "center" }}
-							css={submitButtonStyle}
-						>
-							<Text>등록</Text>
-						</Flex>
-					</Box>
-				)}
+				{isReplyBoxOpen && <ReplyInput commentId={commentId} />}
 			</Flex>
 
-			<Flex
-				styles={{ align: "center", gap: "16px" }}
-				css={replyBoxStyle}
-				onClick={() => setIsReplyBoxOpen(!isReplyBoxOpen)}
-			>
+			<Flex css={replyBoxStyle} onClick={() => setIsReplyBoxOpen(!isReplyBoxOpen)}>
 				<Text>{isReplyBoxOpen ? "답글접기" : "답글"}</Text>
 				<OptionIcon />
 			</Flex>

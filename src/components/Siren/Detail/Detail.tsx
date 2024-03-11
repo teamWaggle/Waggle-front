@@ -12,10 +12,12 @@ const Detail = () => {
 
 	const { sirenData } = useSirenQuery(Number(param.id));
 
+	console.log(sirenData);
+
 	return (
 		<Box tag="main">
 			{sirenData && (
-				<Flex styles={{ direction: "column" }} css={layoutStyle}>
+				<Flex css={layoutStyle}>
 					<Title
 						member={sirenData.result.member}
 						category={sirenData.result.category}
@@ -39,8 +41,7 @@ const Detail = () => {
 			)}
 
 			<Divider />
-
-			<Comment />
+			{sirenData && <Comment boardId={sirenData?.result.boardId} />}
 		</Box>
 	);
 };
