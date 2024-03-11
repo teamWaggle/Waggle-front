@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
 import CommentCard from "@/components/Siren/Detail/Comment/CommentCard";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
+import { useEditCommentMutation } from "@/hooks/api/useEditCommentMutation";
 import { usePostCommentMutation } from "@/hooks/api/usePostCommentMutation";
 
 import {
@@ -13,15 +14,19 @@ import {
 } from "@/components/Siren/Detail/Comment/Comment.style";
 
 const Comment = ({ boardId }: { boardId: number }) => {
-	const postCommentMutation = usePostCommentMutation();
 	const { commentData } = useCommentQuery(0, boardId);
 
-	console.log(commentData);
+	const postCommentMutation = usePostCommentMutation();
+	const editCommentMutation = useEditCommentMutation();
 
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
+	const [commentButtonText, setCommentButtonText] = useState("등록");
+	const [commentId, setCommentId] = useState(0);
 
-	const handleAddComment = () => {
+	const commentRef = useRef<HTMLTextAreaElement>(null);
+
+	const handleAddComment = useCallback(() => {
 		postCommentMutation.mutate(
 			{ content, mentionedMemberList, boardId },
 			{
@@ -30,7 +35,32 @@ const Comment = ({ boardId }: { boardId: number }) => {
 				},
 			},
 		);
-	};
+	}, [postCommentMutation]);
+
+	const handleEditComment = useCallback(() => {
+		editCommentMutation.mutate(
+			{
+				content,
+				mentionedMemberList,
+				commentId,
+			},
+			{
+				onSuccess: () => {
+					setContent("");
+					setCommentId(0);
+				},
+			},
+		);
+	}, [editCommentMutation]);
+
+	const handleEditClick = useCallback((content: string, commentId: number) => {
+		if (!commentRef.current) return;
+
+		commentRef.current.focus();
+		setContent(content);
+		setCommentId(commentId);
+		setCommentButtonText("수정");
+	}, []);
 
 	return (
 		<Flex css={commentBoxStyle}>
@@ -43,6 +73,7 @@ const Comment = ({ boardId }: { boardId: number }) => {
 							content={data.content}
 							createdDate={data.createdDate}
 							member={data.member}
+							handleEditClick={handleEditClick}
 						/>
 					))}
 				</Flex>
@@ -54,10 +85,14 @@ const Comment = ({ boardId }: { boardId: number }) => {
 					css={commentTextareaStyle(1144, 194)}
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
+					ref={commentRef}
 				/>
 
-				<button css={submitButtonStyle} onClick={handleAddComment}>
-					<Text>등록</Text>
+				<button
+					css={submitButtonStyle}
+					onClick={() => (commentButtonText === "등록" ? handleAddComment() : handleEditComment())}
+				>
+					<Text>{commentButtonText}</Text>
 				</button>
 			</Box>
 		</Flex>

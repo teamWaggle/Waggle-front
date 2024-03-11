@@ -14,13 +14,16 @@ export interface CommentResultType {
 	isLast: boolean;
 }
 
-export interface CommentListInfoType {
+export interface CommentListInfoType extends EditCommentProps {
 	commentId: number;
 	content: string;
 	createdDate: Date;
 	mentionedMemberList?: string[];
 	member: MemberType;
-	handleEditComment?: () => void;
+}
+
+interface EditCommentProps {
+	handleEditClick: (content: string, commentId: number) => void;
 }
 
 export interface PutCommentType extends CommentRequestType {
