@@ -2,15 +2,27 @@ import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
+import { useDragAndDrop } from "@/hooks/useDragAndDrop";
+
 import { uploadMediaBoxStyle } from "@/components/Siren/Upload/UploadMedia/UploadMedia.style";
 
-const UploadMedia = ({
-	handleImgUpload,
-}: {
+interface UploadMediaProps {
 	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>, updateImgUrls: string[]) => void;
-}) => {
+	dropImgUpload: (e: React.DragEvent<HTMLDivElement>) => void;
+}
+
+const UploadMedia = ({ handleImgUpload, dropImgUpload }: UploadMediaProps) => {
+	const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
+		useDragAndDrop(dropImgUpload);
+
 	return (
-		<Flex css={uploadMediaBoxStyle(false)}>
+		<Flex
+			css={uploadMediaBoxStyle(isDragOver)}
+			onDrop={handleDrop}
+			onDragEnter={handleDragIn}
+			onDragLeave={handleDragOut}
+			onDragOver={handleDragOver}
+		>
 			<UploadMediaIcon />
 			<Text size="xLarge">사진과 동영상을 여기다 끌어다 놓으세요</Text>
 			<label htmlFor="media">

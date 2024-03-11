@@ -32,7 +32,7 @@ const Upload = () => {
 	const [contact, setContact] = useState("");
 	const [content, setContent] = useState("");
 
-	const { isLoading, imgUrls, handleImgUpload } = useImgUpload();
+	const { isLoading, imgUrls, handleImgUpload, dropImgUpload } = useImgUpload();
 
 	return (
 		<Box tag="section" css={layoutStyle}>
@@ -102,7 +102,7 @@ const Upload = () => {
 						))}
 					</Carousel>
 				) : (
-					<UploadMedia handleImgUpload={handleImgUpload} />
+					<UploadMedia handleImgUpload={handleImgUpload} dropImgUpload={dropImgUpload} />
 				)}
 
 				<textarea
