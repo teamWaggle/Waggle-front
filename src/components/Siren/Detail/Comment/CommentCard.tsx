@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { flushSync } from "react-dom";
 
 import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Text } from "@/components/common";
+import Reply from "@/components/Siren/Detail/Comment/Reply/Reply";
 import ReplyInput from "@/components/Siren/Detail/Comment/Reply/ReplyInput";
 
 import { useDeleteCommentMutation } from "@/hooks/api/useDeleteCommentMutation";
+import { useEditReplyMutation } from "@/hooks/api/useEditReplyMutation";
 import { useReplyQuery } from "@/hooks/api/useReplyQuery";
 import useClickOutSide from "@/hooks/useClickOutSide";
 
@@ -33,14 +36,19 @@ const CommentCard = ({
 	const { replyData } = useReplyQuery(0, commentId);
 
 	const deleteCommentMutation = useDeleteCommentMutation();
-
-	console.log(replyData);
+	const editReplyMutation = useEditReplyMutation();
 
 	const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [date, setDate] = useState("");
 
+	const [replyContent, setReplyContent] = useState("");
+	const [mentionedMemberList] = useState<string[]>(["test"]);
+	const [replyButtonText, setReplyButtonText] = useState("등록");
+	const [replyId, setReplyId] = useState(0);
+
 	const menuRef = useRef<HTMLUListElement>(null);
+	const replyRef = useRef<HTMLTextAreaElement>(null);
 
 	const memberId = Number(localStorage.getItem("MEMBER_ID"));
 
@@ -49,6 +57,36 @@ const CommentCard = ({
 	const handleDeleteComment = useCallback(() => {
 		deleteCommentMutation.mutate(commentId);
 	}, [deleteCommentMutation]);
+
+	const handleEditReply = useCallback(() => {
+		editReplyMutation.mutate(
+			{
+				content: replyContent,
+				mentionedMemberList,
+				replyId,
+			},
+			{
+				onSuccess: () => {
+					setReplyContent("");
+					setReplyId(0);
+					setIsReplyBoxOpen(false);
+				},
+			},
+		);
+	}, [editReplyMutation]);
+
+	const handleReplyEditClick = useCallback((content: string, replyId: number) => {
+		flushSync(() => {
+			setIsReplyBoxOpen(true);
+		});
+
+		if (!replyRef.current) return;
+
+		replyRef.current.focus();
+		setReplyContent(content);
+		setReplyId(replyId);
+		setReplyButtonText("수정");
+	}, []);
 
 	useEffect(() => {
 		if (createdDate) {
@@ -62,7 +100,7 @@ const CommentCard = ({
 		<Flex css={commentCardBoxStyle}>
 			<img src={member.profileImgUrl} alt="profileImg" />
 
-			<Flex styles={{ direction: "column", gap: "22px" }}>
+			<Flex styles={{ direction: "column", gap: "22px", width: "calc(100% - 64px)" }}>
 				<Flex styles={{ direction: "column" }}>
 					<Flex styles={{ gap: "14px", align: "center" }}>
 						<Text css={getDefaultTextStyle(Theme.color.text, 500)}>{member.nickname}</Text>
@@ -76,7 +114,29 @@ const CommentCard = ({
 					</Text>
 				</Flex>
 
-				{isReplyBoxOpen && <ReplyInput commentId={commentId} />}
+				{replyData &&
+					replyData.result.replyList.map((data) => (
+						<Reply
+							key={data.replyId}
+							replyId={data.replyId}
+							content={data.content}
+							createdDate={data.createdDate}
+							member={data.member}
+							handleReplyEditClick={handleReplyEditClick}
+						/>
+					))}
+
+				{isReplyBoxOpen && (
+					<ReplyInput
+						commentId={commentId}
+						content={replyContent}
+						setContent={setReplyContent}
+						mentionedMemberList={mentionedMemberList}
+						replyButtonText={replyButtonText}
+						handleEditReply={handleEditReply}
+						replyRef={replyRef}
+					/>
+				)}
 			</Flex>
 
 			<Flex css={replyBoxStyle}>

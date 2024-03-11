@@ -59,7 +59,7 @@ const Reply = ({
 								content={reply.content}
 								member={reply.member}
 								createdDate={reply.createdDate}
-								commentId={commentId}
+								handleReplyEditClick={() => {}}
 							/>
 						))}
 
