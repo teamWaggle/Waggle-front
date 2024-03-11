@@ -23,3 +23,15 @@ export const generateTagName = (category: string): string => {
 
 	return tagName;
 };
+
+export const generateTagCategory = (tagName: string): string => {
+	let category = "";
+
+	SIREN_TAG_CATEGORY.map((data) => {
+		if (tagName === data.tagName) {
+			category = data.category;
+		}
+	});
+
+	return category;
+};
