@@ -5,7 +5,7 @@ import { Theme } from "@/styles/Theme";
 export const layoutStyle = css({
 	maxWidth: "1536px",
 	margin: "0 auto",
-	padding: "0 196px",
+	padding: "0 196px 132px",
 	marginTop: "70px",
 });
 
@@ -32,3 +32,35 @@ export const tagStyle = (color: string) => {
 		fontWeight: 500,
 	});
 };
+
+export const contentTextareaStyle = css({
+	width: "536px",
+	height: "466px",
+	borderRadius: "20px",
+	border: `1px solid ${Theme.color.border}`,
+	outline: "none",
+	padding: "34px",
+	fontWeight: 500,
+	fontSize: "20px",
+	overflowWrap: "break-word",
+	wordBreak: "break-all",
+	whiteSpace: "pre-wrap",
+	resize: "none",
+
+	"&::placeholder": {
+		color: Theme.color.disabled_text,
+	},
+});
+
+export const uploadButtonStyle = css({
+	all: "unset",
+	display: "flex",
+	backgroundColor: Theme.color.brand_primary,
+	padding: "6px 12px",
+	fontWeight: 600,
+	color: Theme.color.white,
+	borderRadius: "4px",
+	cursor: "pointer",
+	float: "right",
+	marginTop: "50px",
+});

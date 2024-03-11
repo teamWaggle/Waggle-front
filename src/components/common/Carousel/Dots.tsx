@@ -36,6 +36,7 @@ const dotBoxStyle = css({
 	gap: "10px",
 	left: "50%",
 	bottom: "26px",
+	transform: "translateX(-50%)",
 	cursor: "pointer",
 });
 
