@@ -108,6 +108,7 @@ const Upload = () => {
 			</Box>
 
 			<UploadInfo
+				category={category}
 				lostLocate={lostLocate}
 				lostDate={lostDate}
 				petAge={petAge}
