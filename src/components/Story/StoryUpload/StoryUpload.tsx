@@ -1,42 +1,23 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
 
 import { Flex, Text } from "@/components/common";
 import UploadCut from "@/components/Story/StoryUpload/UploadCut";
 
+import { useDragAndDrop } from "@/hooks/useDragAndDrop";
 import { useImgUpload } from "@/hooks/useImgUpload";
 import useModal from "@/hooks/useModal";
 
 import { layoutStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 
 const StoryUpload = () => {
-	const [isDragOver, setIsDragOver] = useState(false);
-
 	const modal = useModal();
 
 	const { isLoading, imgUrls, fileList, handleImgUpload, dropImgUpload } = useImgUpload();
 
-	const handleDragIn = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		e.stopPropagation();
-	};
-
-	const handleDragOut = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		e.stopPropagation();
-
-		setIsDragOver(false);
-	};
-
-	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		e.stopPropagation();
-
-		if (e.dataTransfer!.files) {
-			setIsDragOver(true);
-		}
-	};
+	const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
+		useDragAndDrop(dropImgUpload);
 
 	useEffect(() => {
 		if (!isLoading) {
@@ -53,7 +34,7 @@ const StoryUpload = () => {
 	return (
 		<Flex
 			css={layoutStyle(isDragOver)}
-			onDrop={dropImgUpload}
+			onDrop={handleDrop}
 			onDragEnter={handleDragIn}
 			onDragLeave={handleDragOut}
 			onDragOver={handleDragOver}
