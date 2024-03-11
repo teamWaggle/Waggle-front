@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider, Heading, Text, Carousel } from "@/components/common";
 import UploadInfo from "@/components/Siren/Upload/UploadInfo/UploadInfo";
@@ -6,12 +7,13 @@ import UploadMedia from "@/components/Siren/Upload/UploadMedia/UploadMedia";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
+import { usePostSirenMutation } from "@/hooks/api/usePostSirenMutation";
 import { useImgUpload } from "@/hooks/useImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { generateTagStyle } from "@/utils/generateTag";
+import { generateTagStyle, generateTagCategory } from "@/utils/generateTag";
 
 import {
 	layoutStyle,
@@ -22,6 +24,8 @@ import {
 } from "@/components/Siren/Upload/Upload.style";
 
 const Upload = () => {
+	const postSirenMutate = usePostSirenMutation();
+
 	const [title, setTitle] = useState("");
 	const [category, setCategory] = useState("임시보호");
 	const [lostLocate, setLostLocate] = useState("");
@@ -32,7 +36,40 @@ const Upload = () => {
 	const [contact, setContact] = useState("");
 	const [content, setContent] = useState("");
 
-	const { isLoading, imgUrls, handleImgUpload, dropImgUpload } = useImgUpload();
+	const navigate = useNavigate();
+
+	const { isLoading, imgUrls, handleImgUpload, dropImgUpload, fileList } = useImgUpload();
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		const formData = new FormData();
+
+		const createSirenRequest = {
+			title,
+			petBreed,
+			petAge,
+			petGender,
+			contact,
+			lostLocate,
+			lostDate: "2024-03-10T19:11:54.622Z",
+			content,
+			category: generateTagCategory(category),
+			status: "UNRESOLVED",
+		};
+
+		formData.append("createSirenRequest", JSON.stringify(createSirenRequest));
+
+		fileList.forEach((file) => {
+			formData.append("files", file);
+		});
+
+		postSirenMutate.mutate(formData, {
+			onSuccess: () => {
+				navigate("/siren");
+			},
+		});
+	};
 
 	return (
 		<Box tag="section" css={layoutStyle}>
@@ -113,7 +150,7 @@ const Upload = () => {
 				/>
 			</Flex>
 
-			<button css={uploadButtonStyle}>
+			<button css={uploadButtonStyle} onClick={handleSubmit}>
 				<Text size="xLarge">글 작성하기</Text>
 			</button>
 		</Box>
