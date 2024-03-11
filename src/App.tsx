@@ -11,6 +11,7 @@ import {
 	QuestionPage,
 	SignUpPage,
 	PlanningPage,
+	SirenCreatePage,
 } from "@/pages";
 
 import { isLoggedInState, memberIdState } from "@/recoil/atoms/auth";
@@ -38,6 +39,7 @@ const App = () => {
 		{ path: "/siren/view/:id", element: <SirenDetailPage /> },
 		{ path: "/signup", element: <SignUpPage /> },
 		{ path: "/planning", element: <PlanningPage /> },
+		{ path: "/siren-new", element: <SirenCreatePage /> },
 	];
 
 	return (

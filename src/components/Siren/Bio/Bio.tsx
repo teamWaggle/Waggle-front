@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { Flex, Box, Heading, Text } from "@/components/common";
 
 import { buttonStyle, boxStyle, titleStyle } from "@/components/Siren/Bio/Bio.style";
@@ -5,6 +7,8 @@ import { buttonStyle, boxStyle, titleStyle } from "@/components/Siren/Bio/Bio.st
 // import SirenCard from "../SirenCard/SirenCard";
 
 const Bio = () => {
+	const navigate = useNavigate();
+
 	return (
 		<Box tag="section" css={boxStyle}>
 			<Flex styles={{ gap: "50px" }}>
@@ -15,7 +19,7 @@ const Bio = () => {
 						<Heading>함께 문제를 해결해요</Heading>
 					</Flex>
 
-					<button css={buttonStyle}>
+					<button css={buttonStyle} onClick={() => navigate("/siren-new")}>
 						<Text size="xLarge">글 작성하기</Text>
 					</button>
 				</Flex>
