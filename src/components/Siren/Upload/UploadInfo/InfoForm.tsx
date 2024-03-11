@@ -9,11 +9,12 @@ import { textStyle, inputStyle } from "@/components/Siren/Upload/UploadInfo/Info
 
 interface InfoFormProps {
 	title: string;
+	placeholder?: string;
 	value: string;
 	changeValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const InfoForm = ({ title, value, changeValue }: InfoFormProps) => {
+const InfoForm = ({ title, placeholder, value, changeValue }: InfoFormProps) => {
 	return (
 		<Box styles={{ width: "333px" }}>
 			<Text size="xLarge" css={textStyle}>
@@ -23,7 +24,7 @@ const InfoForm = ({ title, value, changeValue }: InfoFormProps) => {
 			{title !== "성별" ? (
 				<input
 					type="text"
-					placeholder="강아지 보호중인 장소"
+					placeholder={placeholder}
 					css={inputStyle}
 					value={value}
 					onChange={(e) => changeValue(e.target.value)}
