@@ -24,7 +24,7 @@ const Comment = ({
 	member,
 	content,
 	createdDate,
-	handleEditComment,
+	handleEditClick,
 }: CommentListInfoType) => {
 	const [replyOpen, setReplyOpen] = useState(false);
 	const [date, setDate] = useState("");
@@ -54,7 +54,7 @@ const Comment = ({
 				img={member.profileImgUrl}
 				nickname={member.nickname}
 				deleteClick={handleDeleteComment}
-				editClick={handleEditComment}
+				editClick={() => handleEditClick("", 0)}
 				ownerId={member.memberId}
 			/>
 
