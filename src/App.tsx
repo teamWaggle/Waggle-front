@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 
 import { useSetRecoilState } from "recoil";
 
+import ScrollTop from "@/components/common/ScrollTop/ScrollTop";
 import Header from "@/components/Header/Header";
 
 import { isLoggedInState, memberIdState } from "@/recoil/atoms/auth";
@@ -26,6 +27,7 @@ const App = () => {
 
 	return (
 		<>
+			<ScrollTop />
 			<Header />
 			<Outlet />
 			<ToastContainer position="top-center" style={{ width: "auto" }} autoClose={1000} />
