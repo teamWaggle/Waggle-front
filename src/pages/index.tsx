@@ -1,4 +1,4 @@
-import LandingPage from "./LandingPage";
+import LandingPage from "./LandingPage/LandingPage";
 import PlanningPage from "./PlanningPage";
 import QuestionPage from "./QuestionPage";
 import SignUpPage from "./SignUpPage";
