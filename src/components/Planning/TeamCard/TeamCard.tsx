@@ -1,4 +1,4 @@
-import ProfileTeamCardIcon from "@/assets/svg/profile-teamCard.svg?react";
+import ProfileTeamCardIcon from "@/assets/svg/profile-teamcard.svg?react";
 
 import { Box, Flex, Text } from "@/components/common";
 

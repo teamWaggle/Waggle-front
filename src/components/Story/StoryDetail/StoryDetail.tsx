@@ -169,7 +169,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 									content={comment.content}
 									createdDate={comment.createdDate}
 									member={comment.member}
-									handleEditComment={handleEditComment}
+									handleEditClick={handleEditComment}
 								/>
 							))}
 						</Box>
