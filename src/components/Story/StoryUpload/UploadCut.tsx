@@ -41,10 +41,12 @@ const UploadCut = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File[] 
 	const [isCutOpen, setIsCutOpen] = useState(false);
 	const [sizeMode, setSizeMode] = useState<SizeType>("original");
 
-	const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
-	const [, setUpdateFileList] = useState<File[]>([]);
+	const [, setUpdateMediaList] = useState<string[]>([]);
 
-	const [, setDeletedMediaList] = useState<string[]>([]);
+	// const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
+	// const [, setUpdateFileList] = useState<File[]>([]);
+
+	// const [, setDeletedMediaList] = useState<string[]>([]);
 
 	const galleryRef = useRef<HTMLDivElement>(null);
 	const cutRef = useRef<HTMLDivElement>(null);
@@ -103,12 +105,13 @@ const UploadCut = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File[] 
 					setIsGalleryOpen={setIsGalleryOpen}
 					galleryRef={galleryRef}
 					prevImgUrls={imgUrls}
-					mediaCurrentIndex={mediaCurrentIndex}
-					setMediaCurrentIndex={setMediaCurrentIndex}
-					editMediaList={editMediaList}
-					setEditMediaList={setEditMediaList}
-					setUpdateFileList={setUpdateFileList}
-					setDeletedMediaList={setDeletedMediaList}
+					setUpdateMediaList={setUpdateMediaList}
+					// mediaCurrentIndex={mediaCurrentIndex}
+					// setMediaCurrentIndex={setMediaCurrentIndex}
+					// editMediaList={editMediaList}
+					// setEditMediaList={setEditMediaList}
+					// setUpdateFileList={setUpdateFileList}
+					// setDeletedMediaList={setDeletedMediaList}
 				/>
 
 				<div css={cutIconBoxStyle} ref={cutRef}>

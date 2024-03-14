@@ -19,32 +19,31 @@ interface GalleryProps {
 	setIsGalleryOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	galleryRef: React.RefObject<HTMLDivElement>;
 	prevImgUrls: string[];
-	mediaCurrentIndex: number;
-	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-	editMediaList: string[];
-	setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
-	setUpdateFileList: React.Dispatch<React.SetStateAction<File[]>>;
-	setDeletedMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	// mediaCurrentIndex: number;
+	// setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+	// editMediaList: string[];
+	// setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	// setDeletedMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	setUpdateMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 }
+// mediaCurrentIndex,
+// setMediaCurrentIndex,
+// editMediaList,
+// setEditMediaList,
+// setDeletedMediaList,
 
 const Gallery = ({
 	isGalleryOpen,
 	setIsGalleryOpen,
 	galleryRef,
+	setUpdateMediaList,
 	prevImgUrls,
-	mediaCurrentIndex,
-	setMediaCurrentIndex,
-	editMediaList,
-	setEditMediaList,
-	setUpdateFileList,
-	setDeletedMediaList,
 }: GalleryProps) => {
-	const { isLoading, imgUrls, handleImgUpload, fileList } = useImgUpload();
+	const { isLoading, imgUrls, updateMediaList, handleImgUpdate } = useImgUpload();
 
 	useEffect(() => {
 		if (!isLoading) {
-			setEditMediaList(imgUrls);
-			setUpdateFileList(fileList);
+			setUpdateMediaList((prev) => [...prev, ...updateMediaList]);
 		}
 	}, [isLoading]);
 
@@ -56,11 +55,11 @@ const Gallery = ({
 				<Flex css={galleryBoxStyle}>
 					<GallerySlider
 						prevImgUrls={imgUrls.length === 0 ? prevImgUrls : imgUrls}
-						mediaCurrentIndex={mediaCurrentIndex}
-						setMediaCurrentIndex={setMediaCurrentIndex}
-						editMediaList={editMediaList}
-						setEditMediaList={setEditMediaList}
-						setDeletedMediaList={setDeletedMediaList}
+						// mediaCurrentIndex={mediaCurrentIndex}
+						// setMediaCurrentIndex={setMediaCurrentIndex}
+						// editMediaList={editMediaList}
+						// setEditMediaList={setEditMediaList}
+						// setDeletedMediaList={setDeletedMediaList}
 					/>
 
 					<label css={galleryPlusIconBoxStyle} htmlFor="media">
@@ -70,7 +69,7 @@ const Gallery = ({
 						type="file"
 						multiple
 						id="media"
-						onChange={(e) => handleImgUpload(e, prevImgUrls, true)}
+						onChange={(e) => handleImgUpdate(e, prevImgUrls, true)}
 						accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
 					/>
 				</Flex>

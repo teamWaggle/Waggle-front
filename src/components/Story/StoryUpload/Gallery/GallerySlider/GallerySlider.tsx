@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+// import { flushSync } from "react-dom";
 
-import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
+// import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
 import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
 
@@ -11,23 +12,23 @@ import {
 	imgBoxStyle,
 	imgStyle,
 	arrowBoxStyle,
-	closeIconBoxStyle,
+	// closeIconBoxStyle,
 } from "@/components/Story/StoryUpload/Gallery/GallerySlider/GallerySlider.style";
+// mediaCurrentIndex,
+// setMediaCurrentIndex,
+// editMediaList,
+// setEditMediaList,
+// setDeletedMediaList,
 
 const GallerySlider = ({
 	prevImgUrls,
-	mediaCurrentIndex,
-	setMediaCurrentIndex,
-	editMediaList,
-	setEditMediaList,
-	setDeletedMediaList,
 }: {
 	prevImgUrls: string[];
-	mediaCurrentIndex: number;
-	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-	editMediaList: string[];
-	setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
-	setDeletedMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	// mediaCurrentIndex: number;
+	// setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+	// editMediaList: string[];
+	// setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	// setDeletedMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 }) => {
 	const [isShowLeftArrow, setIsShowLeftArrow] = useState<boolean | null>(false);
 	const [isShowRightArrow, setIsShowRightArrow] = useState<boolean | null>(true);
@@ -83,23 +84,22 @@ const GallerySlider = ({
 		}
 	}, []);
 
-	const handleGalleryClose = useCallback(() => {
-		const newMediaList = [];
-
-		const deleteMediaList: string[] = [];
-
-		deleteMediaList.push(editMediaList[mediaCurrentIndex]);
-
-		setDeletedMediaList((prev) => [...prev, ...deleteMediaList]);
-
-		for (let i = 0; i < editMediaList.length; i++) {
-			if (i !== mediaCurrentIndex) {
-				newMediaList.push(editMediaList[i]);
-			}
-		}
-		setMediaCurrentIndex(0);
-		setEditMediaList(newMediaList);
-	}, []);
+	// const handleGalleryClose = useCallback(() => {
+	// 	const deleteMediaList: string[] = [];
+	// 	deleteMediaList.push(editMediaList[mediaCurrentIndex]);
+	// 	console.log(deleteMediaList);
+	// 	setDeletedMediaList((prev) => [...prev, ...deleteMediaList]);
+	// 	flushSync(() => {
+	// 		const newMediaList = [];
+	// 		for (let i = 0; i < editMediaList.length; i++) {
+	// 			if (i !== mediaCurrentIndex) {
+	// 				newMediaList.push(editMediaList[i]);
+	// 				setEditMediaList(newMediaList);
+	// 			}
+	// 		}
+	// 		// setMediaCurrentIndex((prev) => (prev !== 0 ? prev - 1 : prev));
+	// 	});
+	// }, []);
 
 	return (
 		<div css={layoutStyle}>
@@ -107,13 +107,14 @@ const GallerySlider = ({
 				<div css={sliderStyle}>
 					{prevImgUrls.map((img, index) => (
 						<div key={`${img}${index}`} css={imgBoxStyle}>
-							<img src={img} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
+							{/* <img src={img} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
 
 							{mediaCurrentIndex === index && (
 								<div css={closeIconBoxStyle} onClick={handleGalleryClose}>
 									<CloseIcon fill="#fff" />
 								</div>
-							)}
+							)} */}
+							<img src={img} css={imgStyle} />
 						</div>
 					))}
 				</div>

@@ -11,13 +11,13 @@ interface EditStoryRequestType {
 	formData: FormData;
 }
 
-export const putStory = async ({ storyId, formData }: EditStoryRequestType) => {
+export const putStoryNew = async ({ storyId, formData }: EditStoryRequestType) => {
 	const config = {
 		headers: { "Content-Type": "multipart/form-data" },
 	};
 
 	return await authorizedAxiosInstance.put<EditStoryRequestType, AxiosResponse<CommonResponseType>>(
-		END_POINTS.STORYV2(storyId),
+		END_POINTS.STORY(storyId),
 		formData,
 		config,
 	);

@@ -24,11 +24,6 @@ import {
 	uploadButtonStyle,
 } from "@/components/Story/StoryUpload/StoryEdit/StoryEdit.style";
 
-interface MediaListType {
-	imageUrl: string;
-	allowUpload: boolean;
-}
-
 const StoryEdit = ({
 	imgUrls,
 	prevContent,
@@ -44,22 +39,13 @@ const StoryEdit = ({
 	const [hashtagList] = useState<string[]>(["test"]);
 
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
+	// const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 
-	const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
-	const [updateFileList, setUpdateFileList] = useState<File[]>([]);
+	const [updateMediaList, setUpdateMediaList] = useState<string[]>(imgUrls);
 
-	const [deletedMediaList, setDeletedMediaList] = useState<string[]>([]);
+	// const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
 
-	console.log(editMediaList);
-
-	console.log(imgUrls);
-
-	console.log(updateFileList);
-
-	console.log(updateFileList.length);
-
-	console.log(deletedMediaList);
+	// const [, setDeletedMediaList] = useState<string[]>([]);
 
 	const galleryRef = useRef<HTMLDivElement>(null);
 
@@ -72,61 +58,19 @@ const StoryEdit = ({
 
 		const formData = new FormData();
 
-		const mediaList: MediaListType[] = [];
-		// const deleteMediaList: string[] = [];
-
-		const allowUpload = false;
-
-		const test = "";
-
-		imgUrls.forEach((imageUrl) => {
-			mediaList.push({ imageUrl, allowUpload });
-		});
-
-		console.log(deletedMediaList);
-
-		for (let i = 0; i < mediaList.length; i++) {
-			for (let j = 0; j < deletedMediaList.length; j++) {
-				if (mediaList[i].imageUrl === deletedMediaList[j]) {
-					mediaList[i].allowUpload = true;
-				}
-			}
-		}
-
-		console.log(mediaList);
-
-		if (updateFileList.length !== 0) {
-			updateFileList.forEach(() => {
-				mediaList.push({ imageUrl: test, allowUpload: true });
-			});
-		}
-
-		// imgUrls.forEach((imageUrl) => {
-		// 	deleteMediaList.push(imageUrl);
-		// });
-
 		const updateStoryRequest = {
 			content,
 			hashtagList,
 		};
 
 		const updateMediaRequest = {
-			storyId,
-			mediaList,
-			deleteMediaList: deletedMediaList,
+			mediaList: updateMediaList,
 		};
 
 		formData.append("updateStoryRequest", JSON.stringify(updateStoryRequest));
 
 		formData.append("updateMediaRequest", JSON.stringify(updateMediaRequest));
 
-		updateFileList.forEach((file) => {
-			formData.append("files", file);
-		});
-
-		for (const value of formData) {
-			console.log(value);
-		}
 		putStoryMutate.mutate(
 			{
 				storyId,
@@ -146,33 +90,34 @@ const StoryEdit = ({
 			</Flex>
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
-				{editMediaList !== null && (
+				{imgUrls !== null && (
 					<Flex css={imgBoxStyle}>
 						<Carousel
 							width={740}
 							height={726}
 							borderRadius="0 0 0 36px"
-							showArrows={editMediaList.length > 1}
-							showDots={editMediaList.length > 1}
-							length={editMediaList.length}
+							showArrows={imgUrls.length > 1}
+							showDots={imgUrls.length > 1}
+							length={imgUrls.length}
 						>
-							{editMediaList.map((imgUrl, index) => (
+							{imgUrls.map((imgUrl, index) => (
 								<Carousel.Item index={index} key={imgUrl}>
 									<img src={imgUrl} alt="img" />
 								</Carousel.Item>
 							))}
 						</Carousel>
+
 						<Gallery
 							isGalleryOpen={isGalleryOpen}
 							setIsGalleryOpen={setIsGalleryOpen}
 							galleryRef={galleryRef}
-							prevImgUrls={editMediaList}
-							mediaCurrentIndex={mediaCurrentIndex}
-							setMediaCurrentIndex={setMediaCurrentIndex}
-							editMediaList={editMediaList}
-							setEditMediaList={setEditMediaList}
-							setUpdateFileList={setUpdateFileList}
-							setDeletedMediaList={setDeletedMediaList}
+							prevImgUrls={imgUrls}
+							// mediaCurrentIndex={mediaCurrentIndex}
+							// setMediaCurrentIndex={setMediaCurrentIndex}
+							// editMediaList={editMediaList}
+							// setEditMediaList={setEditMediaList}
+							// setDeletedMediaList={setDeletedMediaList}
+							setUpdateMediaList={setUpdateMediaList}
 						/>
 					</Flex>
 				)}
