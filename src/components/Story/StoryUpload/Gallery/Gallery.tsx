@@ -48,7 +48,6 @@ const Gallery = ({
 			{isGalleryOpen && (
 				<Flex css={galleryBoxStyle}>
 					<GallerySlider
-						prevImgUrls={updatedMediaList}
 						mediaCurrentIndex={mediaCurrentIndex}
 						setMediaCurrentIndex={setMediaCurrentIndex}
 						updatedMediaList={updatedMediaList}
