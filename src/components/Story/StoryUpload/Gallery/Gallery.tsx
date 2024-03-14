@@ -19,15 +19,13 @@ interface GalleryProps {
 	setIsGalleryOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	galleryRef: React.RefObject<HTMLDivElement>;
 	prevImgUrls: string[];
-	// mediaCurrentIndex: number;
-	// setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+	mediaCurrentIndex: number;
+	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 	// editMediaList: string[];
 	// setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 	// setDeletedMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 	setUpdateMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 }
-// mediaCurrentIndex,
-// setMediaCurrentIndex,
 // editMediaList,
 // setEditMediaList,
 // setDeletedMediaList,
@@ -38,6 +36,8 @@ const Gallery = ({
 	galleryRef,
 	setUpdateMediaList,
 	prevImgUrls,
+	mediaCurrentIndex,
+	setMediaCurrentIndex,
 }: GalleryProps) => {
 	const { isLoading, imgUrls, updateMediaList, handleImgUpdate } = useImgUpload();
 
@@ -55,8 +55,8 @@ const Gallery = ({
 				<Flex css={galleryBoxStyle}>
 					<GallerySlider
 						prevImgUrls={imgUrls.length === 0 ? prevImgUrls : imgUrls}
-						// mediaCurrentIndex={mediaCurrentIndex}
-						// setMediaCurrentIndex={setMediaCurrentIndex}
+						mediaCurrentIndex={mediaCurrentIndex}
+						setMediaCurrentIndex={setMediaCurrentIndex}
 						// editMediaList={editMediaList}
 						// setEditMediaList={setEditMediaList}
 						// setDeletedMediaList={setDeletedMediaList}

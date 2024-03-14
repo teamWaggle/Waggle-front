@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 // import { flushSync } from "react-dom";
 
-// import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
+import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
 import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
 
@@ -12,20 +12,20 @@ import {
 	imgBoxStyle,
 	imgStyle,
 	arrowBoxStyle,
-	// closeIconBoxStyle,
+	closeIconBoxStyle,
 } from "@/components/Story/StoryUpload/Gallery/GallerySlider/GallerySlider.style";
-// mediaCurrentIndex,
-// setMediaCurrentIndex,
 // editMediaList,
 // setEditMediaList,
 // setDeletedMediaList,
 
 const GallerySlider = ({
 	prevImgUrls,
+	mediaCurrentIndex,
+	setMediaCurrentIndex,
 }: {
 	prevImgUrls: string[];
-	// mediaCurrentIndex: number;
-	// setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+	mediaCurrentIndex: number;
+	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 	// editMediaList: string[];
 	// setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 	// setDeletedMediaList: React.Dispatch<React.SetStateAction<string[]>>;
@@ -107,14 +107,13 @@ const GallerySlider = ({
 				<div css={sliderStyle}>
 					{prevImgUrls.map((img, index) => (
 						<div key={`${img}${index}`} css={imgBoxStyle}>
-							{/* <img src={img} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
+							<img src={img} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
 
 							{mediaCurrentIndex === index && (
-								<div css={closeIconBoxStyle} onClick={handleGalleryClose}>
+								<div css={closeIconBoxStyle}>
 									<CloseIcon fill="#fff" />
 								</div>
-							)} */}
-							<img src={img} css={imgStyle} />
+							)}
 						</div>
 					))}
 				</div>
