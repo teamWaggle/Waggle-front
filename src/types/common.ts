@@ -4,6 +4,12 @@ export interface sortButtonType {
 	defaultText: string;
 }
 
+export interface CommonResponseBaseType {
+	isSuccess: boolean;
+	code: number;
+	message: string;
+}
+
 export interface CommonResponseType {
 	isSuccess: boolean;
 	code: number;

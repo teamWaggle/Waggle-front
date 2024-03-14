@@ -16,6 +16,7 @@ export const END_POINTS = {
 	CHECK_USERURL: (userUrl: string) => `/api/members/check-user-url?userUrl=${userUrl}`,
 	CHECK_EMAIL: (email: string) => `/api/members/check-email?email=${email}`,
 	STORY: (storyId: number) => `/api/stories/${storyId}`,
+	STORYV2: (storyId: number) => `/api/stories/${storyId}/v2`,
 	STORY_LIST: (currentPage: number) => `/api/stories?currentPage=${currentPage}`,
 	UPLOAD_STORY: "/api/stories",
 	COMMENTS: (currentPage: number, boardId: number) =>
@@ -30,6 +31,7 @@ export const END_POINTS = {
 	POST_REPLY: (commentId: number) => `/api/replies/${commentId}`,
 	REPLY: (replyId: number) => `/api/replies/${replyId}`,
 	PET: "/api/pets",
+	MEDIA: "/api/media/list",
 };
 
 export const HTTP_STATUS_CODE = {
