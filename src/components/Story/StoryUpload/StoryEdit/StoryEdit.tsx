@@ -48,10 +48,6 @@ const StoryEdit = ({
 
 	const [updateMediaList, setUpdateMediaList] = useState<string[]>(imgUrls);
 
-	// const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
-
-	// const [, setDeletedMediaList] = useState<string[]>([]);
-
 	const galleryRef = useRef<HTMLDivElement>(null);
 
 	const modal = useModal();
@@ -107,20 +103,17 @@ const StoryEdit = ({
 			</Flex>
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
-				{imgUrls !== null && (
+				{updateMediaList !== null && (
 					<Flex css={imgBoxStyle}>
-						<img src={imgUrls[mediaCurrentIndex]} alt="mediaImg" />
+						<img src={updateMediaList[mediaCurrentIndex]} alt="mediaImg" />
 
 						<Gallery
 							isGalleryOpen={isGalleryOpen}
 							setIsGalleryOpen={setIsGalleryOpen}
 							galleryRef={galleryRef}
-							prevImgUrls={imgUrls}
 							mediaCurrentIndex={mediaCurrentIndex}
 							setMediaCurrentIndex={setMediaCurrentIndex}
-							// editMediaList={editMediaList}
-							// setEditMediaList={setEditMediaList}
-							// setDeletedMediaList={setDeletedMediaList}
+							updatedMediaList={updateMediaList}
 							setUpdateMediaList={setUpdateMediaList}
 						/>
 
@@ -132,15 +125,15 @@ const StoryEdit = ({
 							<LeftArrowIcon width={40} height={40} />
 						</Flex>
 						<Flex
-							css={arrowBoxStyle(mediaCurrentIndex === imgUrls.length - 1)}
+							css={arrowBoxStyle(mediaCurrentIndex === updateMediaList.length - 1)}
 							onClick={handleRightArrowClick}
 							className="rightArrow"
 						>
 							<RightArrowIcon width={40} height={40} />
 						</Flex>
 						<Flex css={imgDotBoxStyle}>
-							{imgUrls.length > 1 &&
-								[...Array(imgUrls.length)].map((_, index) => (
+							{updateMediaList.length > 1 &&
+								[...Array(updateMediaList.length)].map((_, index) => (
 									<div key={index} css={imgDotStyle(mediaCurrentIndex === index)} />
 								))}
 						</Flex>

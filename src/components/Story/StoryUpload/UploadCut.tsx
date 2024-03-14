@@ -41,7 +41,7 @@ const UploadCut = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File[] 
 	const [isCutOpen, setIsCutOpen] = useState(false);
 	const [sizeMode, setSizeMode] = useState<SizeType>("original");
 
-	const [, setUpdateMediaList] = useState<string[]>([]);
+	const [updateMediaList, setUpdateMediaList] = useState<string[]>([]);
 
 	// const [editMediaList, setEditMediaList] = useState<string[]>(imgUrls);
 	// const [, setUpdateFileList] = useState<File[]>([]);
@@ -104,14 +104,10 @@ const UploadCut = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File[] 
 					isGalleryOpen={isGalleryOpen}
 					setIsGalleryOpen={setIsGalleryOpen}
 					galleryRef={galleryRef}
-					prevImgUrls={imgUrls}
+					updatedMediaList={updateMediaList}
 					setUpdateMediaList={setUpdateMediaList}
 					mediaCurrentIndex={mediaCurrentIndex}
 					setMediaCurrentIndex={setMediaCurrentIndex}
-					// editMediaList={editMediaList}
-					// setEditMediaList={setEditMediaList}
-					// setUpdateFileList={setUpdateFileList}
-					// setDeletedMediaList={setDeletedMediaList}
 				/>
 
 				<div css={cutIconBoxStyle} ref={cutRef}>
