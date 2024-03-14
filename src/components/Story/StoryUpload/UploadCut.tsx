@@ -1,8 +1,8 @@
 import { useState, useRef, Fragment } from "react";
 
 import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
-import LeftArrowIcon from "@/assets/svg/ic-left-arrow-slider.svg?react";
-import RightArrowIcon from "@/assets/svg/ic-right-arrow-slider.svg?react";
+import LeftArrowIcon from "@/assets/svg/ic-left-arrow.svg?react";
+import RightArrowIcon from "@/assets/svg/ic-right-arrow.svg?react";
 import CutIcon from "@/assets/svg/upload/ic-cut.svg?react";
 
 // import CutImgUnit from "@/components/Story/StoryUpload/CutImgUnit";
@@ -99,15 +99,15 @@ const UploadCut = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File[] 
 			</Flex>
 
 			<Flex css={imgBoxStyle}>
-				<img src={imgUrls[mediaCurrentIndex]} />
+				<img src={imgUrls[mediaCurrentIndex]} alt="mediaImg" />
 				<Gallery
 					isGalleryOpen={isGalleryOpen}
 					setIsGalleryOpen={setIsGalleryOpen}
 					galleryRef={galleryRef}
 					prevImgUrls={imgUrls}
 					setUpdateMediaList={setUpdateMediaList}
-					// mediaCurrentIndex={mediaCurrentIndex}
-					// setMediaCurrentIndex={setMediaCurrentIndex}
+					mediaCurrentIndex={mediaCurrentIndex}
+					setMediaCurrentIndex={setMediaCurrentIndex}
 					// editMediaList={editMediaList}
 					// setEditMediaList={setEditMediaList}
 					// setUpdateFileList={setUpdateFileList}
