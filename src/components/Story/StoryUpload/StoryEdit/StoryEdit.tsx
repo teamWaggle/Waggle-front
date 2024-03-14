@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
 
 import SampleImg from "@/assets/png/post-sample.png";
-import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
+import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
+import LeftArrowIcon from "@/assets/svg/ic-left-arrow.svg?react";
+import RightArrowIcon from "@/assets/svg/ic-right-arrow.svg?react";
 
-import { Flex, Text, Carousel } from "@/components/common";
+import { Flex, Text } from "@/components/common";
 import Gallery from "@/components/Story/StoryUpload/Gallery/Gallery";
 
 import { usePutStoryMutation } from "@/hooks/api/usePutStoryMutation";
@@ -22,6 +24,9 @@ import {
 	textareaStyle,
 	lengthTextStyle,
 	uploadButtonStyle,
+	imgDotBoxStyle,
+	imgDotStyle,
+	arrowBoxStyle,
 } from "@/components/Story/StoryUpload/StoryEdit/StoryEdit.style";
 
 const StoryEdit = ({
@@ -53,6 +58,18 @@ const StoryEdit = ({
 
 	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
 
+	const handleLeftArrowClick = () => {
+		if (mediaCurrentIndex === 0) return;
+
+		setMediaCurrentIndex((prev) => prev - 1);
+	};
+
+	const handleRightArrowClick = () => {
+		if (mediaCurrentIndex === imgUrls.length - 1) return;
+
+		setMediaCurrentIndex((prev) => prev + 1);
+	};
+
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
@@ -83,29 +100,16 @@ const StoryEdit = ({
 	return (
 		<Flex css={layoutStyle}>
 			<Flex css={headerStyle}>
-				<LeftArrow />
+				<PrevArrowIcon />
 				<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 600)}>
-					글 쓰기
+					수정하기
 				</Text>
 			</Flex>
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				{imgUrls !== null && (
 					<Flex css={imgBoxStyle}>
-						<Carousel
-							width={740}
-							height={726}
-							borderRadius="0 0 0 36px"
-							showArrows={imgUrls.length > 1}
-							showDots={imgUrls.length > 1}
-							length={imgUrls.length}
-						>
-							{imgUrls.map((imgUrl, index) => (
-								<Carousel.Item index={index} key={imgUrl}>
-									<img src={imgUrl} alt="img" />
-								</Carousel.Item>
-							))}
-						</Carousel>
+						<img src={imgUrls[mediaCurrentIndex]} alt="mediaImg" />
 
 						<Gallery
 							isGalleryOpen={isGalleryOpen}
@@ -119,6 +123,27 @@ const StoryEdit = ({
 							// setDeletedMediaList={setDeletedMediaList}
 							setUpdateMediaList={setUpdateMediaList}
 						/>
+
+						<Flex
+							css={arrowBoxStyle(mediaCurrentIndex === 0)}
+							onClick={handleLeftArrowClick}
+							className="leftArrow"
+						>
+							<LeftArrowIcon width={40} height={40} />
+						</Flex>
+						<Flex
+							css={arrowBoxStyle(mediaCurrentIndex === imgUrls.length - 1)}
+							onClick={handleRightArrowClick}
+							className="rightArrow"
+						>
+							<RightArrowIcon width={40} height={40} />
+						</Flex>
+						<Flex css={imgDotBoxStyle}>
+							{imgUrls.length > 1 &&
+								[...Array(imgUrls.length)].map((_, index) => (
+									<div key={index} css={imgDotStyle(mediaCurrentIndex === index)} />
+								))}
+						</Flex>
 					</Flex>
 				)}
 

@@ -34,6 +34,13 @@ export const imgBoxStyle = css({
 	justifyContent: "center",
 	borderRight: `1px solid #d2d2d2`,
 	position: "relative",
+
+	"& > img": {
+		width: "100%",
+		height: "100%",
+		objectFit: "cover",
+		borderRadius: "0 0 0 42px",
+	},
 });
 
 export const contentBoxStyle = css({
@@ -82,3 +89,43 @@ export const uploadButtonStyle = css({
 	color: Theme.color.brand_primary,
 	cursor: "pointer",
 });
+
+export const imgDotBoxStyle = css({
+	position: "absolute",
+	width: "100%",
+	gap: "9px",
+	justifyContent: "center",
+	bottom: "20px",
+});
+
+export const imgDotStyle = (currentIndex: boolean) => {
+	return css({
+		backgroundColor: currentIndex ? Theme.color.brand_primary : Theme.color.border,
+		width: "12px",
+		height: "12px",
+		borderRadius: "50%",
+	});
+};
+
+export const arrowBoxStyle = (isShow: boolean) => {
+	return css({
+		width: "40px",
+		height: "40px",
+		borderRadius: "50%",
+		alignItems: "center",
+		justifyContent: "center",
+		position: "absolute",
+		cursor: "pointer",
+		display: isShow ? "none" : "flex",
+		top: "50%",
+		backgroundColor: Theme.color.disabled_text,
+
+		"&.leftArrow": {
+			left: "20px",
+		},
+
+		"&.rightArrow": {
+			right: "20px",
+		},
+	});
+};
