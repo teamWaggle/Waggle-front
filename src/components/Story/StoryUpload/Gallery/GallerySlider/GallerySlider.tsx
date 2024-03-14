@@ -1,5 +1,4 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-// import { flushSync } from "react-dom";
 
 import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
 import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
@@ -14,21 +13,19 @@ import {
 	arrowBoxStyle,
 	closeIconBoxStyle,
 } from "@/components/Story/StoryUpload/Gallery/GallerySlider/GallerySlider.style";
-// editMediaList,
-// setEditMediaList,
-// setDeletedMediaList,
 
 const GallerySlider = ({
 	prevImgUrls,
 	mediaCurrentIndex,
 	setMediaCurrentIndex,
+	updatedMediaList,
+	setUpdateMediaList,
 }: {
 	prevImgUrls: string[];
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-	// editMediaList: string[];
-	// setEditMediaList: React.Dispatch<React.SetStateAction<string[]>>;
-	// setDeletedMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	updatedMediaList: string[];
+	setUpdateMediaList: React.Dispatch<React.SetStateAction<string[]>>;
 }) => {
 	const [isShowLeftArrow, setIsShowLeftArrow] = useState<boolean | null>(false);
 	const [isShowRightArrow, setIsShowRightArrow] = useState<boolean | null>(true);
@@ -84,22 +81,11 @@ const GallerySlider = ({
 		}
 	}, []);
 
-	// const handleGalleryClose = useCallback(() => {
-	// 	const deleteMediaList: string[] = [];
-	// 	deleteMediaList.push(editMediaList[mediaCurrentIndex]);
-	// 	console.log(deleteMediaList);
-	// 	setDeletedMediaList((prev) => [...prev, ...deleteMediaList]);
-	// 	flushSync(() => {
-	// 		const newMediaList = [];
-	// 		for (let i = 0; i < editMediaList.length; i++) {
-	// 			if (i !== mediaCurrentIndex) {
-	// 				newMediaList.push(editMediaList[i]);
-	// 				setEditMediaList(newMediaList);
-	// 			}
-	// 		}
-	// 		// setMediaCurrentIndex((prev) => (prev !== 0 ? prev - 1 : prev));
-	// 	});
-	// }, []);
+	const handleGalleryClose = useCallback(() => {
+		setUpdateMediaList(
+			updatedMediaList.filter((index) => index !== updatedMediaList[mediaCurrentIndex]),
+		);
+	}, [mediaCurrentIndex]);
 
 	return (
 		<div css={layoutStyle}>
@@ -110,7 +96,7 @@ const GallerySlider = ({
 							<img src={img} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
 
 							{mediaCurrentIndex === index && (
-								<div css={closeIconBoxStyle}>
+								<div css={closeIconBoxStyle} onClick={handleGalleryClose}>
 									<CloseIcon fill="#fff" />
 								</div>
 							)}
