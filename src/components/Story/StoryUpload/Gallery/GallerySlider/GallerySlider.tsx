@@ -15,13 +15,11 @@ import {
 } from "@/components/Story/StoryUpload/Gallery/GallerySlider/GallerySlider.style";
 
 const GallerySlider = ({
-	prevImgUrls,
 	mediaCurrentIndex,
 	setMediaCurrentIndex,
 	updatedMediaList,
 	setUpdateMediaList,
 }: {
-	prevImgUrls: string[];
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 	updatedMediaList: string[];
@@ -89,9 +87,13 @@ const GallerySlider = ({
 
 	return (
 		<div css={layoutStyle}>
-			<div css={sliderBoxStyle(prevImgUrls.length)} ref={wrapRef} onScroll={handleGalleryScroll}>
+			<div
+				css={sliderBoxStyle(updatedMediaList.length)}
+				ref={wrapRef}
+				onScroll={handleGalleryScroll}
+			>
 				<div css={sliderStyle}>
-					{prevImgUrls.map((img, index) => (
+					{updatedMediaList.map((img, index) => (
 						<div key={`${img}${index}`} css={imgBoxStyle}>
 							<img src={img} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
 
