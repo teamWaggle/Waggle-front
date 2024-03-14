@@ -39,7 +39,7 @@ const StoryEdit = ({
 	const [hashtagList] = useState<string[]>(["test"]);
 
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-	// const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
+	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
 
 	const [updateMediaList, setUpdateMediaList] = useState<string[]>(imgUrls);
 
@@ -112,8 +112,8 @@ const StoryEdit = ({
 							setIsGalleryOpen={setIsGalleryOpen}
 							galleryRef={galleryRef}
 							prevImgUrls={imgUrls}
-							// mediaCurrentIndex={mediaCurrentIndex}
-							// setMediaCurrentIndex={setMediaCurrentIndex}
+							mediaCurrentIndex={mediaCurrentIndex}
+							setMediaCurrentIndex={setMediaCurrentIndex}
 							// editMediaList={editMediaList}
 							// setEditMediaList={setEditMediaList}
 							// setDeletedMediaList={setDeletedMediaList}
