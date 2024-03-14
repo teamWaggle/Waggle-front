@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
+import { flushSync } from "react-dom";
 
 import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
 import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
@@ -80,10 +81,14 @@ const GallerySlider = ({
 	}, []);
 
 	const handleGalleryClose = useCallback(() => {
-		setUpdateMediaList(
-			updatedMediaList.filter((index) => index !== updatedMediaList[mediaCurrentIndex]),
-		);
-	}, [mediaCurrentIndex]);
+		flushSync(() => {
+			setUpdateMediaList(
+				updatedMediaList.filter((index) => index !== updatedMediaList[mediaCurrentIndex]),
+			);
+
+			setMediaCurrentIndex((prev) => (prev !== 0 ? prev - 1 : prev));
+		});
+	}, [mediaCurrentIndex, updatedMediaList]);
 
 	return (
 		<div css={layoutStyle}>
