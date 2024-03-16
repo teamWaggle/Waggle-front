@@ -6,9 +6,7 @@ import type { ModalType } from "@/types/modal";
 
 export const scheduleModalSelector = selector<ModalType[]>({
 	key: "scheduleModalSelector",
-	get: ({ get }) => {
-		return get(scheduleModalState);
-	},
+	get: ({ get }) => get(scheduleModalState),
 	set: ({ set }, newValue) => {
 		set(scheduleModalState, newValue);
 	},
