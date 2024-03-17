@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
 import { Title, Content, Comment } from "@/components/Siren/Detail";
@@ -12,6 +12,14 @@ const Detail = () => {
 
 	const { sirenData } = useSirenQuery(Number(param.id));
 
+	const navigate = useNavigate();
+
+	const handleEditSiren = () => {
+		if (!sirenData) return;
+
+		navigate("/siren/view/207?mode=edit");
+	};
+
 	console.log(sirenData);
 
 	return (
@@ -24,6 +32,7 @@ const Detail = () => {
 						title={sirenData.result.title}
 						lostDate={sirenData.result.lostDate}
 						viewCount={sirenData.result.viewCount}
+						handleEditSiren={handleEditSiren}
 					/>
 					<Divider />
 					<Content
@@ -35,7 +44,8 @@ const Detail = () => {
 						contact={sirenData.result.contact}
 						mediaList={sirenData.result.mediaList}
 						content={sirenData.result.content}
-						recommendationInfo={sirenData.result.recommendationInfo}
+						isRecommend={sirenData.result.isRecommend}
+						recommendCount={sirenData.result.recommendCount}
 					/>
 				</Flex>
 			)}

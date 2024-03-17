@@ -17,7 +17,14 @@ import { menuStyle } from "@/components/Siren/Detail/Comment/Comment.style";
 import { moreButtonStyle } from "@/components/Siren/Detail/Comment/Reply/Reply.style";
 import { titleBoxStyle, tagStyle, profileStyle } from "@/components/Siren/Detail/Title/Title.style";
 
-const Title = ({ category, title, member, lostDate, viewCount }: SirenTitleType) => {
+const Title = ({
+	category,
+	title,
+	member,
+	lostDate,
+	viewCount,
+	handleEditSiren,
+}: SirenTitleType) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const menuRef = useRef<HTMLUListElement>(null);
@@ -49,7 +56,7 @@ const Title = ({ category, title, member, lostDate, viewCount }: SirenTitleType)
 
 					{menuOpen && (
 						<ul css={menuStyle} ref={menuRef}>
-							<li>수정하기</li>
+							<li onClick={handleEditSiren}>수정하기</li>
 							<li>삭제하기</li>
 						</ul>
 					)}

@@ -11,7 +11,9 @@ export interface SirenResultType extends SirenTitleType, SirenContentType {
 	status: string;
 }
 
-export interface SirenContentType {
+export interface SirenEditType {
+	title: string;
+	category: string;
 	lostDate: string;
 	lostLocate: string;
 	content: string;
@@ -20,7 +22,17 @@ export interface SirenContentType {
 	petGender: string;
 	mediaList: string[];
 	contact: string;
-	recommendationInfo: RecommendationInfoType;
+}
+
+export interface SirenContentType extends RecommendationInfoType {
+	lostDate: string;
+	lostLocate: string;
+	content: string;
+	petBreed: string;
+	petAge: string;
+	petGender: string;
+	mediaList: string[];
+	contact: string;
 }
 
 export interface SirenTitleType {
@@ -29,6 +41,7 @@ export interface SirenTitleType {
 	member: MemberType;
 	lostDate: string;
 	viewCount: number;
+	handleEditSiren?: () => void;
 }
 
 export interface SirenListType extends CommonResponseBaseType {
