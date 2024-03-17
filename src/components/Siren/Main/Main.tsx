@@ -8,6 +8,8 @@ import { sectionStyle } from "@/components/Siren/Main/Main.style";
 const Main = () => {
 	const { sirenListData } = useSirenListQuery(0);
 
+	console.log(sirenListData);
+
 	return (
 		<section css={sectionStyle}>
 			<Flex

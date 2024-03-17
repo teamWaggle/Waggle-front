@@ -59,8 +59,9 @@ export const bottomBoxStyle = css({
 	width: "100%",
 });
 
-export const textStyle = css({
-	color: Theme.color.brand_primary,
-	fontWeight: 600,
-	marginTop: "6px",
-});
+export const textStyle = (isRecommend: boolean) =>
+	css({
+		color: isRecommend ? Theme.color.brand_primary : Theme.color.border,
+		fontWeight: 600,
+		marginTop: "6px",
+	});

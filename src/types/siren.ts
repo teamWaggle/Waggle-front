@@ -10,7 +10,6 @@ export interface SirenType {
 
 export interface SirenResultType extends SirenTitleType, SirenContentType {
 	boardId: number;
-	isOwner?: boolean;
 	status: string;
 }
 
@@ -23,6 +22,7 @@ export interface SirenContentType {
 	petGender: string;
 	mediaList: string[];
 	contact: string;
+	recommendationInfo: RecommendationInfoType;
 }
 
 export interface SirenTitleType {
@@ -50,12 +50,9 @@ export interface SirenListInfoType {
 	boardId: number;
 	title: string;
 	thumbnail: string;
-	lostDate?: string;
 	createdDate: string;
 	lostLocate: string;
 	category: string;
-	member?: MemberType;
-	isOwner?: boolean;
 	status: string;
 	recommendationInfo: RecommendationInfoType;
 }

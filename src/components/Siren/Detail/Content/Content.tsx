@@ -1,9 +1,9 @@
 import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
-// import RecommendOffIcon from "@/assets/svg/ic-recommend-off.svg?react";
-// import RecommendOnIcon from "@/assets/svg/ic-recommend-off.svg?react";
+import RecommendOffIcon from "@/assets/svg/ic-recommend-off.svg?react";
+import RecommendOnIcon from "@/assets/svg/ic-recommend-on.svg?react";
 
-import { Flex, Box, Text, Divider, Carousel } from "@/components/common";
+import { Flex, Box, Text, Heading, Divider, Carousel } from "@/components/common";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -25,6 +25,7 @@ const Content = ({
 	contact,
 	mediaList,
 	content,
+	recommendationInfo,
 }: SirenContentType) => {
 	const sirenContentTitleData = [
 		{
@@ -100,18 +101,19 @@ const Content = ({
 			</Flex>
 
 			<Flex styles={{ align: "center", justify: "center", width: "100%" }}>
-				{/* <Flex styles={{ align: "center", gap: "22px" }}>
-					{recommendIt ? <RecommendOnIcon /> : <RecommendOffIcon />}
+				<Flex styles={{ align: "center", gap: "22px" }}>
+					{recommendationInfo.isRecommend ? <RecommendOnIcon /> : <RecommendOffIcon />}
+
 					<Heading
 						size="xxLarge"
 						css={getDefaultTextStyle(
-							recommendIt ? Theme.color.brand_primary : Theme.color.border,
+							recommendationInfo.isRecommend ? Theme.color.brand_primary : Theme.color.border,
 							500,
 						)}
 					>
-						{recommendCount}
+						{recommendationInfo.recommendCount}
 					</Heading>
-				</Flex> */}
+				</Flex>
 			</Flex>
 		</Flex>
 	);
