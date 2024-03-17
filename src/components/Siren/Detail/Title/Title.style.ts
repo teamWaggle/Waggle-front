@@ -2,6 +2,14 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
+export const titleBoxStyle = css({
+	flexDirection: "column",
+	gap: "12px",
+	marginBottom: "18px",
+	position: "relative",
+	width: "100%",
+});
+
 export const tagStyle = (color: string) => {
 	return css({
 		justifyContent: "center",
