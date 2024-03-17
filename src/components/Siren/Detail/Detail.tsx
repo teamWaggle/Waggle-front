@@ -23,6 +23,7 @@ const Detail = () => {
 						category={sirenData.result.category}
 						title={sirenData.result.title}
 						lostDate={sirenData.result.lostDate}
+						viewCount={sirenData.result.viewCount}
 					/>
 					<Divider />
 					<Content

@@ -9,7 +9,7 @@ import type { SirenTitleType } from "@/types/siren";
 
 import { tagStyle, profileStyle } from "@/components/Siren/Detail/Title/Title.style";
 
-const Title = ({ category, title, member, lostDate }: SirenTitleType) => {
+const Title = ({ category, title, member, lostDate, viewCount }: SirenTitleType) => {
 	return (
 		<Flex styles={{ direction: "column", gap: "12px", marginBottom: "18px" }}>
 			<Flex css={tagStyle(generateTagStyle(category))}>
@@ -22,7 +22,7 @@ const Title = ({ category, title, member, lostDate }: SirenTitleType) => {
 				<img src={member.profileImgUrl} alt="profileImg" />
 				<Text>
 					<span>{member.nickname}</span>
-					<span>조회 129</span>
+					<span>조회 {viewCount}</span>
 					<span>{lostDate}</span>
 				</Text>
 			</Flex>

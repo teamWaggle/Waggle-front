@@ -1,10 +1,8 @@
+import type { CommonResponseBaseType } from "./common";
 import type { MemberType } from "@/types/auth";
 import type { RecommendationInfoType } from "@/types/story";
 
-export interface SirenType {
-	isSuccess: boolean;
-	code: number;
-	message: string;
+export interface SirenType extends CommonResponseBaseType {
 	result: SirenResultType;
 }
 
@@ -30,12 +28,10 @@ export interface SirenTitleType {
 	title: string;
 	member: MemberType;
 	lostDate: string;
+	viewCount: number;
 }
 
-export interface SirenListType {
-	isSuccess: boolean;
-	code: number;
-	message: number;
+export interface SirenListType extends CommonResponseBaseType {
 	result: SirenListResultType;
 }
 
