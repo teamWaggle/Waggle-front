@@ -52,10 +52,9 @@ const Upload = () => {
 			petGender,
 			contact,
 			lostLocate,
-			lostDate: "2024-03-10T19:11:54.622Z",
+			lostDate,
 			content,
 			category: generateTagCategory(category),
-			status: "UNRESOLVED",
 		};
 
 		formData.append("createSirenRequest", JSON.stringify(createSirenRequest));

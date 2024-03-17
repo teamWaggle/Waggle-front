@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+import SirenOffIcon from "@/assets/svg/ic-siren-off.svg?react";
 import SirenOnIcon from "@/assets/svg/ic-siren-on.svg?react";
 
 import { Flex, Heading, Text } from "@/components/common";
@@ -42,7 +43,6 @@ const SirenCard = ({
 
 				<Flex
 					css={tagStyle(status === "RESOLVED" ? Theme.color.btn_success : Theme.color.btn_danger)}
-					className="status"
 				>
 					<Text>{status === "RESOLVED" ? "해결" : "미해결"}</Text>
 				</Flex>
@@ -58,8 +58,9 @@ const SirenCard = ({
 
 				<Flex css={bottomBoxStyle}>
 					<Flex styles={{ gap: "2px" }}>
-						<SirenOnIcon />
-						<Text size="xSmall" css={textStyle}>
+						{recommendationInfo.isRecommend ? <SirenOnIcon /> : <SirenOffIcon />}
+
+						<Text size="xSmall" css={textStyle(recommendationInfo.isRecommend)}>
 							{recommendationInfo.recommendCount}
 						</Text>
 					</Flex>
