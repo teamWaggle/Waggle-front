@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
-
 import ProfileTeamCardIcon from "@/assets/svg/profile-teamCard.svg?react";
 
 import { Box, Flex, Text } from "@/components/common";
+
+import { useHandleLinkWithDetectKeys } from "@/hooks/useHandleLinkWithDetectKeys";
 
 import type { TeamCardType } from "@/types/planning";
 
@@ -18,14 +18,9 @@ import {
 
 const TeamCard = ({ data }: { data: TeamCardType }) => {
 	const { name, coverImageUrl, description, teamSize, maxTeamSize, colorScheme } = data;
-	const navigate = useNavigate();
-	const handleOnClick = () => {
-		console.log(data.name);
-		navigate(`/team/${data.name}`);
-	};
-
+	const handleOnclick = useHandleLinkWithDetectKeys();
 	return (
-		<Box tag="article" css={boxStyle} onClick={handleOnClick}>
+		<Box tag="a" css={boxStyle} onClick={(e) => handleOnclick(e, `/team/${name}`)}>
 			<img src={coverImageUrl} alt={name} css={imgStyle} />
 			<Box css={textBoxStyle}>
 				<Flex styles={{ align: "center", gap: "4px", marginBottom: "4px" }}>
