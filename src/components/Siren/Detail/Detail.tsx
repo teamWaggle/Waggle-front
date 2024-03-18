@@ -42,8 +42,7 @@ const Detail = () => {
 						contact={sirenData.result.contact}
 						mediaList={sirenData.result.mediaList}
 						content={sirenData.result.content}
-						isRecommend={sirenData.result.isRecommend}
-						recommendCount={sirenData.result.recommendCount}
+						recommendationInfo={sirenData.result.recommendationInfo}
 					/>
 				</Flex>
 			)}

@@ -25,8 +25,7 @@ const Content = ({
 	contact,
 	mediaList,
 	content,
-	isRecommend,
-	recommendCount,
+	recommendationInfo,
 }: SirenContentType) => {
 	const sirenContentTitleData = [
 		{
@@ -103,16 +102,16 @@ const Content = ({
 
 			<Flex styles={{ align: "center", justify: "center", width: "100%" }}>
 				<Flex styles={{ align: "center", gap: "22px" }}>
-					{isRecommend ? <RecommendOnIcon /> : <RecommendOffIcon />}
+					{recommendationInfo.isRecommend ? <RecommendOnIcon /> : <RecommendOffIcon />}
 
 					<Heading
 						size="xxLarge"
 						css={getDefaultTextStyle(
-							isRecommend ? Theme.color.brand_primary : Theme.color.border,
+							recommendationInfo.isRecommend ? Theme.color.brand_primary : Theme.color.border,
 							500,
 						)}
 					>
-						{recommendCount}
+						{recommendationInfo.recommendCount}
 					</Heading>
 				</Flex>
 			</Flex>

@@ -12,6 +12,7 @@ export interface SirenResultType extends SirenTitleType, SirenContentType {
 }
 
 export interface SirenEditType {
+	boardId: number;
 	title: string;
 	category: string;
 	lostDate: string;
@@ -24,7 +25,7 @@ export interface SirenEditType {
 	contact: string;
 }
 
-export interface SirenContentType extends RecommendationInfoType {
+export interface SirenContentType {
 	lostDate: string;
 	lostLocate: string;
 	content: string;
@@ -33,6 +34,7 @@ export interface SirenContentType extends RecommendationInfoType {
 	petGender: string;
 	mediaList: string[];
 	contact: string;
+	recommendationInfo: RecommendationInfoType;
 }
 
 export interface SirenTitleType {
