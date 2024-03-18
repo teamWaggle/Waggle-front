@@ -12,6 +12,7 @@ export interface SirenResultType extends SirenTitleType, SirenContentType {
 }
 
 export interface SirenContentType {
+	boardId: number;
 	lostDate: string;
 	lostLocate: string;
 	content: string;

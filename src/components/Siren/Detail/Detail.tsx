@@ -12,6 +12,8 @@ const Detail = () => {
 
 	const { sirenData } = useSirenQuery(Number(param.id));
 
+	// console.log(sirenData?.result.recommendationInfo.isRecommend);
+
 	console.log(sirenData);
 
 	return (
@@ -27,6 +29,7 @@ const Detail = () => {
 					/>
 					<Divider />
 					<Content
+						boardId={sirenData.result.boardId}
 						lostLocate={sirenData.result.lostLocate}
 						petBreed={sirenData.result.petBreed}
 						petGender={sirenData.result.petGender}

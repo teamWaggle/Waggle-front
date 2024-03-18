@@ -12,5 +12,7 @@ export const useSirenQuery = (sirenId: number) => {
 		queryFn: () => getSiren(sirenId),
 	});
 
+	console.log(sirenData);
+
 	return { sirenData };
 };

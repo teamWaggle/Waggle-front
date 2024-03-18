@@ -5,6 +5,8 @@ import RecommendOnIcon from "@/assets/svg/ic-recommend-on.svg?react";
 
 import { Flex, Box, Text, Heading, Divider, Carousel } from "@/components/common";
 
+import { usePostRecommendMutation } from "@/hooks/api/recommend/usePostRecommendMutation";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -17,6 +19,7 @@ import {
 } from "@/components/Siren/Detail/Content/Content.style";
 
 const Content = ({
+	boardId,
 	lostLocate,
 	petBreed,
 	petGender,
@@ -27,6 +30,12 @@ const Content = ({
 	content,
 	recommendationInfo,
 }: SirenContentType) => {
+	const postRecommendMutate = usePostRecommendMutation();
+
+	// const [isRecommend, setIsRecommend] = useState(recommendationInfo.isRecommend);
+
+	console.log(recommendationInfo.isRecommend);
+
 	const sirenContentTitleData = [
 		{
 			title: "강아지 실종 장소",
@@ -53,6 +62,14 @@ const Content = ({
 			data: contact,
 		},
 	];
+
+	const handleRecommend = () => {
+		postRecommendMutate.mutate(boardId, {
+			// onSuccess: () => {
+			// 	setIsRecommend((prev) => !prev);
+			// },
+		});
+	};
 
 	return (
 		<Flex styles={{ direction: "column", margin: "60px 0", gap: "60px" }}>
@@ -100,7 +117,10 @@ const Content = ({
 				</Box>
 			</Flex>
 
-			<Flex styles={{ align: "center", justify: "center", width: "100%" }}>
+			<Flex
+				styles={{ align: "center", justify: "center", width: "100%" }}
+				onClick={handleRecommend}
+			>
 				<Flex styles={{ align: "center", gap: "22px" }}>
 					{recommendationInfo.isRecommend ? <RecommendOnIcon /> : <RecommendOffIcon />}
 

@@ -30,6 +30,8 @@ import {
 const StoryDetail = ({ storyId }: { storyId: number }) => {
 	const { storyData } = useStoryQuery(storyId);
 
+	console.log(storyData);
+
 	const { commentData } = useCommentQuery(0, storyId);
 
 	const postCommentMutation = usePostCommentMutation();

@@ -10,7 +10,8 @@ export const usePostRecommendMutation = () => {
 	const postRecommendMutation = useMutation({
 		mutationFn: postRecommend,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["story", "storyList", "siren", "sirenList"] });
+			queryClient.invalidateQueries({ queryKey: ["siren"] });
+			queryClient.invalidateQueries({ queryKey: ["sirenList"] });
 		},
 		onError: () => {
 			toast.error("오류가 발생했습니다. 잠시 후 다시 시도해주세요");
