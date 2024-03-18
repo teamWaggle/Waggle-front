@@ -1,5 +1,5 @@
-import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
-import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
+import LeftArrowIcon from "@/assets/svg/sm-left-arrow.svg?react";
+import RightArrowIcon from "@/assets/svg/sm-right-arrow.svg?react";
 
 import { Flex } from "@/components/common";
 import MemberCard from "@/components/Team/TeamInfo/MemberSlider/MemberCard";

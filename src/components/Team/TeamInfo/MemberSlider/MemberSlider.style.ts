@@ -1,7 +1,5 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
-
 export const MemberSliderBoxStyle = (currentIndex: number) =>
 	css({
 		width: "760px",
@@ -13,20 +11,14 @@ export const MemberSliderBoxStyle = (currentIndex: number) =>
 
 export const rightArrowIconStyle = css({
 	position: "absolute",
-	right: "-2%",
+	right: "-3%",
 	top: "10%",
-
-	"& > path": {
-		fill: Theme.color.readonly_text,
-	},
 	cursor: "pointer",
 });
 export const leftArrowIconStyle = css({
 	position: "absolute",
-	left: "-3%",
+	left: "-4%",
 	top: "10%",
-	"& > path": {
-		fill: Theme.color.readonly_text,
-	},
+
 	cursor: "pointer",
 });
