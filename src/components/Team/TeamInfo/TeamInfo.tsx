@@ -1,6 +1,8 @@
 import GroupIcon from "@/assets/svg/group.svg?react";
 
 import { Box, Flex, Heading, Text, MainContainer } from "@/components/common";
+import MemberSlider from "@/components/Team/TeamInfo/MemberSlider/MemberSlider";
+import ParticipationSlider from "@/components/Team/TeamInfo/ParticipationSlider/ParticipationSlider";
 
 import {
 	teamImgStyle,
@@ -23,13 +25,47 @@ const TeamInfo = () => {
 					<Flex styles={{ align: "center" }}>
 						<GroupIcon />
 						<Text size="large">{"3/7"}</Text>
+						<MemberSlider
+							members={[
+								"안녕초코야안녕",
+								"dfefwedf",
+								"dfefwedf",
+								"dfefwedf",
+								"dfefwedf",
+								"dfefwedf",
+								"dfefwedf",
+								"12",
+								"3",
+								"4",
+								"5",
+								"6",
+								"7",
+								"8",
+								"9",
+							]}
+						/>
 					</Flex>
-					<Flex styles={{ align: "center" }}>
+					<Flex styles={{ align: "center", marginTop: "10px" }}>
 						<Text css={teamInfoNewApplyStyle}>새로운 가입 신청</Text>
+						<ParticipationSlider
+							participatingMembers={[
+								"안녕하세요아아아",
+								"adfafwwe",
+								"1",
+								"2",
+								"3",
+								"4",
+								"5",
+								"6",
+								"7",
+								"8",
+							]}
+						/>
 					</Flex>
 				</Box>
 			</Flex>
 		</MainContainer>
 	);
 };
+
 export default TeamInfo;
