@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import LeftArrowIcon from "@/assets/svg/ic-left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/ic-right-arrow.svg?react";
@@ -9,12 +10,13 @@ import Gallery from "@/components/Story/StoryUpload/Gallery/Gallery";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
+import { usePutSirenMutation } from "@/hooks/api/usePutSirenMutation";
 import useClickOutSide from "@/hooks/useClickOutSide";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { generateTagName, generateTagStyle } from "@/utils/generateTag";
+import { generateTagName, generateTagStyle, generateTagCategory } from "@/utils/generateTag";
 
 import type { SirenEditType } from "@/types/siren";
 
@@ -31,6 +33,7 @@ import {
 } from "@/components/Siren/SirenEdit/SirenEdit.style";
 
 const SirenEdit = ({
+	boardId,
 	title,
 	category,
 	lostLocate,
@@ -42,6 +45,8 @@ const SirenEdit = ({
 	content,
 	mediaList,
 }: SirenEditType) => {
+	const putSirenMutate = usePutSirenMutation();
+
 	const [newTitle, setNewTitle] = useState(title);
 	const [newCategory, setNewCategory] = useState(generateTagName(category));
 	const [newLostLocate, setNewLostLocate] = useState(lostLocate);
@@ -57,6 +62,8 @@ const SirenEdit = ({
 
 	const [updateMediaList, setUpdateMediaList] = useState<string[]>(mediaList);
 
+	const navigate = useNavigate();
+
 	const galleryRef = useRef<HTMLDivElement>(null);
 
 	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
@@ -71,6 +78,44 @@ const SirenEdit = ({
 		if (mediaCurrentIndex === mediaList.length - 1) return;
 
 		setMediaCurrentIndex((prev) => prev + 1);
+	};
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		const formData = new FormData();
+
+		const updateSirenRequest = {
+			title: newTitle,
+			petBreed: newPetBreed,
+			petAge: newPetAge,
+			petGender: newPetGender,
+			contact: newContact,
+			lostLocate: newLostLocate,
+			lostDate: newLostDate,
+			content: newContent,
+			category: generateTagCategory(newCategory),
+		};
+
+		const updateMediaRequest = {
+			mediaList: updateMediaList,
+		};
+
+		formData.append("updateSirenRequest", JSON.stringify(updateSirenRequest));
+
+		formData.append("updateMediaRequest", JSON.stringify(updateMediaRequest));
+
+		putSirenMutate.mutate(
+			{
+				sirenId: boardId,
+				formData,
+			},
+			{
+				onSuccess: () => {
+					navigate(`/siren/view/${boardId}`);
+				},
+			},
+		);
 	};
 
 	return (
@@ -169,7 +214,7 @@ const SirenEdit = ({
 				/>
 			</Flex>
 
-			<button css={uploadButtonStyle}>
+			<button css={uploadButtonStyle} onClick={handleSubmit}>
 				<Text size="xLarge">글 수정하기</Text>
 			</button>
 		</Box>

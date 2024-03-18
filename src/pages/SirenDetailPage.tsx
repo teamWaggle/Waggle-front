@@ -10,12 +10,15 @@ const SirenDetailPage = () => {
 
 	const { sirenData } = useSirenQuery(Number(param.id));
 
+	console.log(sirenData);
+
 	const [searchParams] = useSearchParams();
 
 	return (
 		<>
 			{sirenData && searchParams.get("mode") === "edit" ? (
 				<SirenEdit
+					boardId={sirenData.result.boardId}
 					title={sirenData.result.title}
 					category={sirenData.result.category}
 					lostLocate={sirenData.result.lostLocate}
