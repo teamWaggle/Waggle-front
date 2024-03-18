@@ -17,10 +17,8 @@ const Detail = () => {
 	const handleEditSiren = () => {
 		if (!sirenData) return;
 
-		navigate("/siren/view/207?mode=edit");
+		navigate(`/siren/view/${param.id}?mode=edit`);
 	};
-
-	console.log(sirenData);
 
 	return (
 		<Box tag="main">
