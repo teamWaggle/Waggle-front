@@ -32,6 +32,7 @@ export const END_POINTS = {
 	REPLY: (replyId: number) => `/api/replies/${replyId}`,
 	PET: "/api/pets",
 	MEDIA: "/api/media/list",
+	SIRENV2: (sirenId: number) => `/api/sirens/${sirenId}`,
 };
 
 export const HTTP_STATUS_CODE = {
