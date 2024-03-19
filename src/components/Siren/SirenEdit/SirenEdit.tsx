@@ -1,17 +1,12 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import LeftArrowIcon from "@/assets/svg/ic-left-arrow.svg?react";
-import RightArrowIcon from "@/assets/svg/ic-right-arrow.svg?react";
-
-import { Flex, Box, Divider, Heading, Text } from "@/components/common";
+import { Flex, Box, Divider, Heading, Text, GalleryCarousel } from "@/components/common";
 import UploadInfo from "@/components/Siren/Upload/UploadInfo/UploadInfo";
-import Gallery from "@/components/Story/StoryUpload/Gallery/Gallery";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
 import { usePutSirenMutation } from "@/hooks/api/usePutSirenMutation";
-import useClickOutSide from "@/hooks/useClickOutSide";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -24,10 +19,6 @@ import {
 	layoutStyle,
 	inputStyle,
 	tagStyle,
-	imgBoxStyle,
-	imgDotBoxStyle,
-	imgDotStyle,
-	arrowBoxStyle,
 	contentTextareaStyle,
 	uploadButtonStyle,
 } from "@/components/Siren/SirenEdit/SirenEdit.style";
@@ -57,28 +48,9 @@ const SirenEdit = ({
 	const [newContact, setNewContact] = useState(contact);
 	const [newContent, setNewContent] = useState(content);
 
-	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
-
 	const [updateMediaList, setUpdateMediaList] = useState<string[]>(mediaList);
 
 	const navigate = useNavigate();
-
-	const galleryRef = useRef<HTMLDivElement>(null);
-
-	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
-
-	const handleLeftArrowClick = () => {
-		if (mediaCurrentIndex === 0) return;
-
-		setMediaCurrentIndex((prev) => prev - 1);
-	};
-
-	const handleRightArrowClick = () => {
-		if (mediaCurrentIndex === mediaList.length - 1) return;
-
-		setMediaCurrentIndex((prev) => prev + 1);
-	};
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -171,40 +143,22 @@ const SirenEdit = ({
 			/>
 
 			<Flex styles={{ gap: "64px", marginTop: "60px" }}>
-				<Flex css={imgBoxStyle}>
-					<img src={mediaList[mediaCurrentIndex]} alt="mediaImg" />
-
-					<Gallery
-						isGalleryOpen={isGalleryOpen}
-						setIsGalleryOpen={setIsGalleryOpen}
-						galleryRef={galleryRef}
-						mediaCurrentIndex={mediaCurrentIndex}
-						setMediaCurrentIndex={setMediaCurrentIndex}
-						updatedMediaList={updateMediaList}
-						setUpdateMediaList={setUpdateMediaList}
-					/>
-
-					<Flex
-						css={arrowBoxStyle(mediaCurrentIndex === 0)}
-						onClick={handleLeftArrowClick}
-						className="leftArrow"
-					>
-						<LeftArrowIcon width={40} height={40} />
-					</Flex>
-					<Flex
-						css={arrowBoxStyle(mediaCurrentIndex === updateMediaList.length - 1)}
-						onClick={handleRightArrowClick}
-						className="rightArrow"
-					>
-						<RightArrowIcon width={40} height={40} />
-					</Flex>
-					<Flex css={imgDotBoxStyle}>
-						{updateMediaList.length > 1 &&
-							[...Array(updateMediaList.length)].map((_, index) => (
-								<div key={index} css={imgDotStyle(mediaCurrentIndex === index)} />
-							))}
-					</Flex>
-				</Flex>
+				<GalleryCarousel
+					width={536}
+					height={466}
+					borderRadius="20px"
+					length={updateMediaList.length}
+					showArrows={updateMediaList.length > 1}
+					showDots={updateMediaList.length > 1}
+					updateMediaList={updateMediaList}
+					setUpdateMediaList={setUpdateMediaList}
+				>
+					{updateMediaList.map((media, index) => (
+						<GalleryCarousel.Item index={index} key={media}>
+							<img src={media} alt="mediaImg" />
+						</GalleryCarousel.Item>
+					))}
+				</GalleryCarousel>
 
 				<textarea
 					placeholder="글을 입력해주세요"

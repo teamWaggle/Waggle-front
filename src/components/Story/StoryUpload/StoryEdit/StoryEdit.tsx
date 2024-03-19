@@ -1,15 +1,11 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import SampleImg from "@/assets/png/post-sample.png";
 import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
-import LeftArrowIcon from "@/assets/svg/ic-left-arrow.svg?react";
-import RightArrowIcon from "@/assets/svg/ic-right-arrow.svg?react";
 
-import { Flex, Text } from "@/components/common";
-import Gallery from "@/components/Story/StoryUpload/Gallery/Gallery";
+import { Flex, Text, GalleryCarousel } from "@/components/common";
 
 import { usePutStoryMutation } from "@/hooks/api/usePutStoryMutation";
-import useClickOutSide from "@/hooks/useClickOutSide";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -18,15 +14,11 @@ import { Theme } from "@/styles/Theme";
 import {
 	layoutStyle,
 	headerStyle,
-	imgBoxStyle,
 	contentBoxStyle,
 	profileImgStyle,
 	textareaStyle,
 	lengthTextStyle,
 	uploadButtonStyle,
-	imgDotBoxStyle,
-	imgDotStyle,
-	arrowBoxStyle,
 } from "@/components/Story/StoryUpload/StoryEdit/StoryEdit.style";
 
 const StoryEdit = ({
@@ -43,28 +35,9 @@ const StoryEdit = ({
 	const [content, setContent] = useState(prevContent);
 	const [hashtagList] = useState<string[]>(["test"]);
 
-	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-	const [mediaCurrentIndex, setMediaCurrentIndex] = useState(0);
-
 	const [updateMediaList, setUpdateMediaList] = useState<string[]>(imgUrls);
 
-	const galleryRef = useRef<HTMLDivElement>(null);
-
 	const modal = useModal();
-
-	useClickOutSide(galleryRef, () => setIsGalleryOpen(false));
-
-	const handleLeftArrowClick = () => {
-		if (mediaCurrentIndex === 0) return;
-
-		setMediaCurrentIndex((prev) => prev - 1);
-	};
-
-	const handleRightArrowClick = () => {
-		if (mediaCurrentIndex === imgUrls.length - 1) return;
-
-		setMediaCurrentIndex((prev) => prev + 1);
-	};
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -104,40 +77,22 @@ const StoryEdit = ({
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				{updateMediaList !== null && (
-					<Flex css={imgBoxStyle}>
-						<img src={updateMediaList[mediaCurrentIndex]} alt="mediaImg" />
-
-						<Gallery
-							isGalleryOpen={isGalleryOpen}
-							setIsGalleryOpen={setIsGalleryOpen}
-							galleryRef={galleryRef}
-							mediaCurrentIndex={mediaCurrentIndex}
-							setMediaCurrentIndex={setMediaCurrentIndex}
-							updatedMediaList={updateMediaList}
-							setUpdateMediaList={setUpdateMediaList}
-						/>
-
-						<Flex
-							css={arrowBoxStyle(mediaCurrentIndex === 0)}
-							onClick={handleLeftArrowClick}
-							className="leftArrow"
-						>
-							<LeftArrowIcon width={40} height={40} />
-						</Flex>
-						<Flex
-							css={arrowBoxStyle(mediaCurrentIndex === updateMediaList.length - 1)}
-							onClick={handleRightArrowClick}
-							className="rightArrow"
-						>
-							<RightArrowIcon width={40} height={40} />
-						</Flex>
-						<Flex css={imgDotBoxStyle}>
-							{updateMediaList.length > 1 &&
-								[...Array(updateMediaList.length)].map((_, index) => (
-									<div key={index} css={imgDotStyle(mediaCurrentIndex === index)} />
-								))}
-						</Flex>
-					</Flex>
+					<GalleryCarousel
+						width={740}
+						height={726}
+						borderRadius="0 0 0 42px"
+						length={updateMediaList.length}
+						showArrows={updateMediaList.length > 1}
+						showDots={updateMediaList.length > 1}
+						updateMediaList={updateMediaList}
+						setUpdateMediaList={setUpdateMediaList}
+					>
+						{updateMediaList.map((media, index) => (
+							<GalleryCarousel.Item index={index} key={media}>
+								<img src={media} alt="mediaImg" />
+							</GalleryCarousel.Item>
+						))}
+					</GalleryCarousel>
 				)}
 
 				<Flex css={contentBoxStyle}>

@@ -4,7 +4,7 @@ import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
 import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex } from "@/components/common";
-import GallerySlider from "@/components/Story/StoryUpload/Gallery/GallerySlider/GallerySlider";
+import GallerySlider from "@/components/common/GalleryCarousel/Gallery/GallerySlider/GallerySlider";
 
 import { useImgUpload } from "@/hooks/useImgUpload";
 
@@ -12,26 +12,28 @@ import {
 	galleryIconBoxStyle,
 	galleryBoxStyle,
 	galleryPlusIconBoxStyle,
-} from "@/components/Story/StoryUpload/Gallery/Gallery.style";
+} from "@/components/common/GalleryCarousel/Gallery/Gallery.style";
 
 interface GalleryProps {
 	isGalleryOpen: boolean;
-	setIsGalleryOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	handleGalleryOpen: () => void;
 	galleryRef: React.RefObject<HTMLDivElement>;
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 	updatedMediaList: string[];
 	setUpdateMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	handleMoveImage: (imgIndex: number) => void;
 }
 
 const Gallery = ({
 	isGalleryOpen,
-	setIsGalleryOpen,
+	handleGalleryOpen,
 	galleryRef,
 	setUpdateMediaList,
 	mediaCurrentIndex,
 	updatedMediaList,
 	setMediaCurrentIndex,
+	handleMoveImage,
 }: GalleryProps) => {
 	const { isLoading, updateMediaList, handleImgUpdate } = useImgUpload();
 
@@ -43,7 +45,7 @@ const Gallery = ({
 
 	return (
 		<div css={galleryIconBoxStyle} ref={galleryRef}>
-			<GalleryIcon onClick={() => setIsGalleryOpen((prev) => !prev)} />
+			<GalleryIcon onClick={handleGalleryOpen} />
 
 			{isGalleryOpen && (
 				<Flex css={galleryBoxStyle}>
@@ -52,6 +54,7 @@ const Gallery = ({
 						setMediaCurrentIndex={setMediaCurrentIndex}
 						updatedMediaList={updatedMediaList}
 						setUpdateMediaList={setUpdateMediaList}
+						handleMoveImage={handleMoveImage}
 					/>
 
 					<label css={galleryPlusIconBoxStyle} htmlFor="media">

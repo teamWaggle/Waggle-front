@@ -13,18 +13,20 @@ import {
 	imgStyle,
 	arrowBoxStyle,
 	closeIconBoxStyle,
-} from "@/components/Story/StoryUpload/Gallery/GallerySlider/GallerySlider.style";
+} from "@/components/common/GalleryCarousel/Gallery/GallerySlider/GallerySlider.style";
 
 const GallerySlider = ({
 	mediaCurrentIndex,
 	setMediaCurrentIndex,
 	updatedMediaList,
 	setUpdateMediaList,
+	handleMoveImage,
 }: {
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 	updatedMediaList: string[];
 	setUpdateMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	handleMoveImage: (imgIndex: number) => void;
 }) => {
 	const [isShowLeftArrow, setIsShowLeftArrow] = useState<boolean | null>(false);
 	const [isShowRightArrow, setIsShowRightArrow] = useState<boolean | null>(true);
@@ -100,7 +102,7 @@ const GallerySlider = ({
 				<div css={sliderStyle}>
 					{updatedMediaList.map((img, index) => (
 						<div key={`${img}${index}`} css={imgBoxStyle}>
-							<img src={img} css={imgStyle} onClick={() => setMediaCurrentIndex(index)} />
+							<img src={img} css={imgStyle} onClick={() => handleMoveImage(index)} />
 
 							{mediaCurrentIndex === index && (
 								<div css={closeIconBoxStyle} onClick={handleGalleryClose}>
