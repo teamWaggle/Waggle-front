@@ -17,13 +17,11 @@ import {
 
 const GallerySlider = ({
 	mediaCurrentIndex,
-	setMediaCurrentIndex,
 	updatedMediaList,
 	setUpdateMediaList,
 	handleMoveImage,
 }: {
 	mediaCurrentIndex: number;
-	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 	updatedMediaList?: string[];
 	setUpdateMediaList?: React.Dispatch<React.SetStateAction<string[]>>;
 	handleMoveImage: (imgIndex: number) => void;
@@ -82,17 +80,20 @@ const GallerySlider = ({
 		}
 	}, []);
 
-	const handleGalleryClose = useCallback(() => {
-		if (!updatedMediaList || !setUpdateMediaList) return;
+	const handleGalleryClose = useCallback(
+		(mediaIndex: number) => {
+			if (!updatedMediaList || !setUpdateMediaList) return;
 
-		flushSync(() => {
-			setUpdateMediaList(
-				updatedMediaList.filter((index) => index !== updatedMediaList[mediaCurrentIndex]),
-			);
+			flushSync(() => {
+				setUpdateMediaList(
+					updatedMediaList.filter((index) => index !== updatedMediaList[mediaCurrentIndex]),
+				);
 
-			setMediaCurrentIndex((prev) => (prev !== 0 ? prev - 1 : prev));
-		});
-	}, [mediaCurrentIndex, updatedMediaList]);
+				handleMoveImage(mediaIndex !== 0 ? mediaIndex - 1 : mediaIndex);
+			});
+		},
+		[mediaCurrentIndex, updatedMediaList],
+	);
 
 	return (
 		<div css={layoutStyle}>
@@ -109,7 +110,10 @@ const GallerySlider = ({
 									<img src={img} css={imgStyle} onClick={() => handleMoveImage(index)} />
 
 									{mediaCurrentIndex === index && (
-										<div css={closeIconBoxStyle} onClick={handleGalleryClose}>
+										<div
+											css={closeIconBoxStyle}
+											onClick={() => handleGalleryClose(mediaCurrentIndex)}
+										>
 											<CloseIcon fill="#fff" />
 										</div>
 									)}

@@ -84,7 +84,6 @@ const Carousel = ({
 	);
 
 	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
-	const [, setMediaCurrentIndex] = useState(0);
 
 	const galleryRef = useRef<HTMLDivElement>(null);
 
@@ -103,7 +102,6 @@ const Carousel = ({
 						handleGalleryOpen={handleGalleryOpen}
 						galleryRef={galleryRef}
 						mediaCurrentIndex={mediaIndex}
-						setMediaCurrentIndex={setMediaCurrentIndex}
 						updatedMediaList={updateMediaList}
 						setUpdateMediaList={setUpdateMediaList}
 						handleMoveImage={handleMoveImage}

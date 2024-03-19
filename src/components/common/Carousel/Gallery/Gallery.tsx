@@ -19,7 +19,6 @@ interface GalleryProps {
 	handleGalleryOpen: () => void;
 	galleryRef: React.RefObject<HTMLDivElement>;
 	mediaCurrentIndex: number;
-	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 	updatedMediaList?: string[];
 	setUpdateMediaList?: React.Dispatch<React.SetStateAction<string[]>>;
 	handleMoveImage: (imgIndex: number) => void;
@@ -32,7 +31,6 @@ const Gallery = ({
 	setUpdateMediaList,
 	mediaCurrentIndex,
 	updatedMediaList,
-	setMediaCurrentIndex,
 	handleMoveImage,
 }: GalleryProps) => {
 	const { isLoading, updateMediaList, handleImgUpdate } = useImgUpload();
@@ -51,7 +49,6 @@ const Gallery = ({
 				<Flex css={galleryBoxStyle}>
 					<GallerySlider
 						mediaCurrentIndex={mediaCurrentIndex}
-						setMediaCurrentIndex={setMediaCurrentIndex}
 						updatedMediaList={updatedMediaList}
 						setUpdateMediaList={setUpdateMediaList}
 						handleMoveImage={handleMoveImage}
