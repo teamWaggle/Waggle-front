@@ -6,7 +6,6 @@ import DropdownButton from "@/components/common/Dropdown/DropdownButton";
 import DropdownItem from "@/components/common/Dropdown/DropdownItem";
 import DropdownList from "@/components/common/Dropdown/DropdownList";
 import Flex from "@/components/common/Flex/Flex";
-import GalleryCarousel from "@/components/common/GalleryCarousel/GalleryCarousel";
 import Heading from "@/components/common/Heading/Heading";
 import Logo from "@/components/common/Logo";
 import Modal from "@/components/common/Modal/Modal";
@@ -30,5 +29,4 @@ export {
 	DropdownButton,
 	DropdownItem,
 	DropdownList,
-	GalleryCarousel,
 };

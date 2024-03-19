@@ -32,7 +32,7 @@ export const useImgUpload = () => {
 
 	const handleImgUpdate = async (
 		e: React.ChangeEvent<HTMLInputElement>,
-		updateImgUrls: string[],
+		updateImgUrls?: string[],
 		isUpdate?: boolean,
 	) => {
 		const files = e.target.files;
@@ -44,7 +44,7 @@ export const useImgUpload = () => {
 		setImageUrls(() => {
 			const imgUrls = [...files].map((file) => URL.createObjectURL(file));
 
-			if (isUpdate) {
+			if (isUpdate && updateImgUrls) {
 				return [...updateImgUrls, ...imgUrls];
 			} else {
 				return [...imgUrls];

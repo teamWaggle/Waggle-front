@@ -3,7 +3,7 @@ import { useState } from "react";
 import SampleImg from "@/assets/png/post-sample.png";
 import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
-import { Flex, Text, GalleryCarousel } from "@/components/common";
+import { Flex, Text, Carousel } from "@/components/common";
 
 import { usePutStoryMutation } from "@/hooks/api/usePutStoryMutation";
 import useModal from "@/hooks/useModal";
@@ -77,7 +77,7 @@ const StoryEdit = ({
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
 				{updateMediaList !== null && (
-					<GalleryCarousel
+					<Carousel
 						width={740}
 						height={726}
 						borderRadius="0 0 0 42px"
@@ -86,13 +86,14 @@ const StoryEdit = ({
 						showDots={updateMediaList.length > 1}
 						updateMediaList={updateMediaList}
 						setUpdateMediaList={setUpdateMediaList}
+						hasGallery
 					>
 						{updateMediaList.map((media, index) => (
-							<GalleryCarousel.Item index={index} key={media}>
+							<Carousel.Item index={index} key={media}>
 								<img src={media} alt="mediaImg" />
-							</GalleryCarousel.Item>
+							</Carousel.Item>
 						))}
-					</GalleryCarousel>
+					</Carousel>
 				)}
 
 				<Flex css={contentBoxStyle}>

@@ -13,7 +13,7 @@ import {
 	imgStyle,
 	arrowBoxStyle,
 	closeIconBoxStyle,
-} from "@/components/common/GalleryCarousel/Gallery/GallerySlider/GallerySlider.style";
+} from "@/components/common/Carousel/Gallery/GallerySlider/GallerySlider.style";
 
 const GallerySlider = ({
 	mediaCurrentIndex,
@@ -24,8 +24,8 @@ const GallerySlider = ({
 }: {
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-	updatedMediaList: string[];
-	setUpdateMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	updatedMediaList?: string[];
+	setUpdateMediaList?: React.Dispatch<React.SetStateAction<string[]>>;
 	handleMoveImage: (imgIndex: number) => void;
 }) => {
 	const [isShowLeftArrow, setIsShowLeftArrow] = useState<boolean | null>(false);
@@ -83,6 +83,8 @@ const GallerySlider = ({
 	}, []);
 
 	const handleGalleryClose = useCallback(() => {
+		if (!updatedMediaList || !setUpdateMediaList) return;
+
 		flushSync(() => {
 			setUpdateMediaList(
 				updatedMediaList.filter((index) => index !== updatedMediaList[mediaCurrentIndex]),
@@ -94,25 +96,28 @@ const GallerySlider = ({
 
 	return (
 		<div css={layoutStyle}>
-			<div
-				css={sliderBoxStyle(updatedMediaList.length)}
-				ref={wrapRef}
-				onScroll={handleGalleryScroll}
-			>
-				<div css={sliderStyle}>
-					{updatedMediaList.map((img, index) => (
-						<div key={`${img}${index}`} css={imgBoxStyle}>
-							<img src={img} css={imgStyle} onClick={() => handleMoveImage(index)} />
+			{updatedMediaList && (
+				<div
+					css={sliderBoxStyle(updatedMediaList.length)}
+					ref={wrapRef}
+					onScroll={handleGalleryScroll}
+				>
+					<div css={sliderStyle}>
+						{updatedMediaList &&
+							updatedMediaList.map((img, index) => (
+								<div key={`${img}${index}`} css={imgBoxStyle}>
+									<img src={img} css={imgStyle} onClick={() => handleMoveImage(index)} />
 
-							{mediaCurrentIndex === index && (
-								<div css={closeIconBoxStyle} onClick={handleGalleryClose}>
-									<CloseIcon fill="#fff" />
+									{mediaCurrentIndex === index && (
+										<div css={closeIconBoxStyle} onClick={handleGalleryClose}>
+											<CloseIcon fill="#fff" />
+										</div>
+									)}
 								</div>
-							)}
-						</div>
-					))}
+							))}
+					</div>
 				</div>
-			</div>
+			)}
 
 			{isShowLeftArrow !== null && isShowLeftArrow && (
 				<button css={arrowBoxStyle} className="leftArrow" onClick={handleLeftArrowClick}>

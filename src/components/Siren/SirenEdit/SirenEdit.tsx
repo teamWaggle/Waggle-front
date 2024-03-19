@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Box, Divider, Heading, Text, GalleryCarousel } from "@/components/common";
+import { Flex, Box, Divider, Heading, Text, Carousel } from "@/components/common";
 import UploadInfo from "@/components/Siren/Upload/UploadInfo/UploadInfo";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
@@ -143,7 +143,7 @@ const SirenEdit = ({
 			/>
 
 			<Flex styles={{ gap: "64px", marginTop: "60px" }}>
-				<GalleryCarousel
+				<Carousel
 					width={536}
 					height={466}
 					borderRadius="20px"
@@ -152,13 +152,14 @@ const SirenEdit = ({
 					showDots={updateMediaList.length > 1}
 					updateMediaList={updateMediaList}
 					setUpdateMediaList={setUpdateMediaList}
+					hasGallery
 				>
 					{updateMediaList.map((media, index) => (
-						<GalleryCarousel.Item index={index} key={media}>
+						<Carousel.Item index={index} key={media}>
 							<img src={media} alt="mediaImg" />
-						</GalleryCarousel.Item>
+						</Carousel.Item>
 					))}
-				</GalleryCarousel>
+				</Carousel>
 
 				<textarea
 					placeholder="글을 입력해주세요"
