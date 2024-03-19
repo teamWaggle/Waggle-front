@@ -7,7 +7,7 @@ import CutIcon from "@/assets/svg/upload/ic-cut.svg?react";
 
 // import CutImgUnit from "@/components/Story/StoryUpload/CutImgUnit";
 import { Flex, Text } from "@/components/common";
-import Gallery from "@/components/common/GalleryCarousel/Gallery/Gallery";
+import Gallery from "@/components/common/Carousel/Gallery/Gallery";
 import StoryContent from "@/components/Story/StoryUpload/StoryContent";
 import UploadWarningModal from "@/components/Story/StoryUpload/UploadWarningModal";
 

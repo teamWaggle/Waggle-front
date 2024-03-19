@@ -4,7 +4,7 @@ import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
 import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex } from "@/components/common";
-import GallerySlider from "@/components/common/GalleryCarousel/Gallery/GallerySlider/GallerySlider";
+import GallerySlider from "@/components/common/Carousel/Gallery/GallerySlider/GallerySlider";
 
 import { useImgUpload } from "@/hooks/useImgUpload";
 
@@ -12,7 +12,7 @@ import {
 	galleryIconBoxStyle,
 	galleryBoxStyle,
 	galleryPlusIconBoxStyle,
-} from "@/components/common/GalleryCarousel/Gallery/Gallery.style";
+} from "@/components/common/Carousel/Gallery/Gallery.style";
 
 interface GalleryProps {
 	isGalleryOpen: boolean;
@@ -20,8 +20,8 @@ interface GalleryProps {
 	galleryRef: React.RefObject<HTMLDivElement>;
 	mediaCurrentIndex: number;
 	setMediaCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-	updatedMediaList: string[];
-	setUpdateMediaList: React.Dispatch<React.SetStateAction<string[]>>;
+	updatedMediaList?: string[];
+	setUpdateMediaList?: React.Dispatch<React.SetStateAction<string[]>>;
 	handleMoveImage: (imgIndex: number) => void;
 }
 
@@ -38,7 +38,7 @@ const Gallery = ({
 	const { isLoading, updateMediaList, handleImgUpdate } = useImgUpload();
 
 	useEffect(() => {
-		if (!isLoading) {
+		if (!isLoading && setUpdateMediaList) {
 			setUpdateMediaList((prev) => [...prev, ...updateMediaList]);
 		}
 	}, [isLoading]);
