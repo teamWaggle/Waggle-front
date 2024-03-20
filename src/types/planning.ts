@@ -33,7 +33,7 @@ export interface SchedulePositionType {
 	index: number;
 }
 
-export interface CalendarCardType {
+export interface ScheduleCalendarCardType {
 	index: number;
 	day: Date;
 	schedules: Array<ScheduleType>;
