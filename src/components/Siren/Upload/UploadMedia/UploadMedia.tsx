@@ -7,7 +7,7 @@ import { useDragAndDrop } from "@/hooks/useDragAndDrop";
 import { uploadMediaBoxStyle } from "@/components/Siren/Upload/UploadMedia/UploadMedia.style";
 
 interface UploadMediaProps {
-	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>, updateImgUrls: string[]) => void;
+	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	dropImgUpload: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
@@ -32,7 +32,7 @@ const UploadMedia = ({ handleImgUpload, dropImgUpload }: UploadMediaProps) => {
 				type="file"
 				multiple={true}
 				id="media"
-				onChange={(e) => handleImgUpload(e, [])}
+				onChange={handleImgUpload}
 				accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
 			/>
 		</Flex>
