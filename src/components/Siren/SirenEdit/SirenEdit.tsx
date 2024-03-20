@@ -67,15 +67,10 @@ const SirenEdit = ({
 			lostDate: newLostDate,
 			content: newContent,
 			category: generateTagCategory(newCategory),
-		};
-
-		const updateMediaRequest = {
 			mediaList: updateMediaList,
 		};
 
 		formData.append("updateSirenRequest", JSON.stringify(updateSirenRequest));
-
-		formData.append("updateMediaRequest", JSON.stringify(updateMediaRequest));
 
 		putSirenMutate.mutate(
 			{

@@ -38,7 +38,7 @@ const Upload = () => {
 
 	const navigate = useNavigate();
 
-	const { isLoading, imgUrls, handleImgUpload, dropImgUpload, fileList } = useImgUpload();
+	const { isLoading, imgUrls, handleImgUpload, dropImgUpload, uploadMediaList } = useImgUpload();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -55,13 +55,10 @@ const Upload = () => {
 			lostDate,
 			content,
 			category: generateTagCategory(category),
+			mediaList: uploadMediaList,
 		};
 
 		formData.append("createSirenRequest", JSON.stringify(createSirenRequest));
-
-		fileList.forEach((file) => {
-			formData.append("files", file);
-		});
 
 		postSirenMutate.mutate(formData, {
 			onSuccess: () => {
