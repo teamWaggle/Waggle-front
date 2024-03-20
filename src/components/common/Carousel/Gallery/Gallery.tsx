@@ -33,11 +33,11 @@ const Gallery = ({
 	updatedMediaList,
 	handleMoveImage,
 }: GalleryProps) => {
-	const { isLoading, updateMediaList, handleImgUpdate } = useImgUpload();
+	const { isLoading, uploadMediaList, handleImgUpload } = useImgUpload();
 
 	useEffect(() => {
 		if (!isLoading && setUpdateMediaList) {
-			setUpdateMediaList((prev) => [...prev, ...updateMediaList]);
+			setUpdateMediaList((prev) => [...prev, ...uploadMediaList]);
 		}
 	}, [isLoading]);
 
@@ -61,7 +61,7 @@ const Gallery = ({
 						type="file"
 						multiple
 						id="media"
-						onChange={(e) => handleImgUpdate(e, updatedMediaList, true)}
+						onChange={(e) => handleImgUpload(e, updatedMediaList, true)}
 						accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
 					/>
 				</Flex>
