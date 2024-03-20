@@ -79,8 +79,9 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 			key: `StoryEditModal`,
 			component: () => (
 				<StoryEdit
-					imgUrls={storyData.result.mediaList}
-					prevContent={storyData.result.content}
+					mediaList={storyData.result.mediaList}
+					content={storyData.result.content}
+					hashtagList={storyData.result.hashtagList}
 					storyId={storyData.result.boardId}
 				/>
 			),

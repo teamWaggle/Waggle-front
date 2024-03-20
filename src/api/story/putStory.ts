@@ -17,7 +17,7 @@ export const putStory = async ({ storyId, formData }: EditStoryRequestType) => {
 	};
 
 	return await authorizedAxiosInstance.put<EditStoryRequestType, AxiosResponse<CommonResponseType>>(
-		END_POINTS.STORYV2(storyId),
+		END_POINTS.STORY(storyId),
 		formData,
 		config,
 	);

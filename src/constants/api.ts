@@ -16,7 +16,6 @@ export const END_POINTS = {
 	CHECK_USERURL: (userUrl: string) => `/api/members/check-user-url?userUrl=${userUrl}`,
 	CHECK_EMAIL: (email: string) => `/api/members/check-email?email=${email}`,
 	STORY: (storyId: number) => `/api/stories/${storyId}`,
-	STORYV2: (storyId: number) => `/api/stories/${storyId}/v2`,
 	STORY_LIST: (currentPage: number) => `/api/stories?currentPage=${currentPage}`,
 	POST_STORY: "/api/stories",
 	COMMENTS: (currentPage: number, boardId: number) =>
