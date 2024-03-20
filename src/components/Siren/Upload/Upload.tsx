@@ -38,7 +38,7 @@ const Upload = () => {
 
 	const navigate = useNavigate();
 
-	const { isLoading, imgUrls, handleImgUpload, dropImgUpload, uploadMediaList } = useImgUpload();
+	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useImgUpload();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -125,11 +125,11 @@ const Upload = () => {
 						width={536}
 						height={466}
 						borderRadius="20px"
-						showArrows={imgUrls.length > 1}
-						showDots={imgUrls.length > 1}
-						length={imgUrls.length}
+						showArrows={uploadMediaList.length > 1}
+						showDots={uploadMediaList.length > 1}
+						length={uploadMediaList.length}
 					>
-						{imgUrls.map((imgUrl, index) => (
+						{uploadMediaList.map((imgUrl, index) => (
 							<Carousel.Item index={index} key={imgUrl}>
 								<img src={imgUrl} alt="mediaImg" />
 							</Carousel.Item>

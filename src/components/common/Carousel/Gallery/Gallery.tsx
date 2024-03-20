@@ -61,7 +61,7 @@ const Gallery = ({
 						type="file"
 						multiple
 						id="media"
-						onChange={(e) => handleImgUpload(e, updatedMediaList, true)}
+						onChange={(e) => handleImgUpload(e)}
 						accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
 					/>
 				</Flex>
