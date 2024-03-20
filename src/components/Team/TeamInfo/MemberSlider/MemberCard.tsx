@@ -1,4 +1,4 @@
-import KebabMenu from "@/assets/svg/kebabMenu.svg?react";
+import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
 
 import { Flex } from "@/components/common";
 
@@ -15,7 +15,7 @@ const MemberCard = ({ member }: { member: string }) => {
 		>
 			<img css={memberCardImgStyle} src="https://source.unsplash.com/random/32x32" alt="" />
 			{member}
-			<KebabMenu />
+			<KebabMenuIcon />
 		</Flex>
 	);
 };

@@ -15,6 +15,7 @@ import MentionChecker from "@/components/common/Design/Text/MentionChecker/Menti
 import Text from "@/components/common/Design/Text/Text";
 import Logo from "@/components/common/Logo";
 import SearchInput from "@/components/common/SearchInput/SearchInput";
+import Slider from "@/components/common/Slider/Slider";
 import SocialLogin from "@/components/common/SocialLogin";
 
 export {
@@ -36,4 +37,5 @@ export {
 	MainContainer,
 	DatePicker,
 	DatePickerModal,
+	Slider,
 };

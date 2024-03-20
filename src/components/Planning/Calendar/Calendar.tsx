@@ -20,8 +20,7 @@ import useCalendar from "@/hooks/useCalendar";
 
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 
-import { generateCalendarPositionColumn } from "@/utils/generateCalendarPositionColumn";
-import { generateCalendarPositionRow } from "@/utils/generateCalendarPositionRow";
+import generateCalendarPosition from "@/utils/generateCalendarPosition";
 
 import type { ScheduleType } from "@/types/planning";
 
@@ -110,6 +109,7 @@ const Calendar = () => {
 		const startDate = subDays(startOfWeek(monthStart), -1);
 		const days = Array.from({ length: 42 }, (_, index) => addDays(startDate, index));
 		return days.map((day, index) => {
+			const { row, column } = generateCalendarPosition(index);
 			const daySchedules = schedules.filter(
 				(schedule) =>
 					isSameDay(schedule.startTime, day) ||
@@ -117,8 +117,8 @@ const Calendar = () => {
 					isWithinInterval(day, { start: schedule.startTime, end: schedule.endTime }),
 			);
 			const position = {
-				row: generateCalendarPositionRow(index),
-				column: generateCalendarPositionColumn(index),
+				row,
+				column,
 				index,
 			};
 			const daySchedulesWithPosition = daySchedules.map((schedule) => {

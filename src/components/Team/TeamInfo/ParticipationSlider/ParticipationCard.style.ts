@@ -22,3 +22,27 @@ export const participationCardImgStyle = css({
 export const participationCardTextStyle = css({
 	marginRight: "16px",
 });
+
+export const approveButtonStyle = css({
+	width: "40px",
+	justifyContent: "center",
+	alignItems: "center",
+	height: "32px",
+	borderRadius: "4px",
+	backgroundColor: Theme.color.btn_danger,
+	color: Theme.color.white,
+	border: "none",
+	cursor: "pointer",
+});
+
+export const rejectButtonStyle = css({
+	width: "40px",
+	justifyContent: "center",
+	alignItems: "center",
+	height: "32px",
+	borderRadius: "4px",
+	backgroundColor: Theme.color.disabled_text,
+	color: Theme.color.white,
+	border: "none",
+	cursor: "pointer",
+});
