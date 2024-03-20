@@ -22,11 +22,13 @@ import {
 	uploadButtonStyle,
 } from "@/components/Story/StoryUpload/StoryContent.style";
 
-const StoryContent = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File[] }) => {
+const StoryContent = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
 	const postStoryMutate = usePostStoryMutation();
 
 	const [content, setContent] = useState("");
 	const [hashtagList] = useState<string[]>(["test"]);
+
+	const [updateMediaList, setUpdateMediaList] = useState<string[]>(uploadMediaList);
 
 	const modal = useModal();
 
@@ -38,13 +40,10 @@ const StoryContent = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File
 		const createStoryRequest = {
 			content,
 			hashtagList,
+			mediaList: updateMediaList,
 		};
 
 		formData.append("createStoryRequest", JSON.stringify(createStoryRequest));
-
-		fileList.forEach((file) => {
-			formData.append("files", file);
-		});
 
 		postStoryMutate.mutate(formData, {
 			onSuccess: () => {
@@ -68,11 +67,14 @@ const StoryContent = ({ imgUrls, fileList }: { imgUrls: string[]; fileList: File
 						width={740}
 						height={726}
 						borderRadius="0 0 0 36px"
-						showArrows={imgUrls.length > 1}
-						showDots={imgUrls.length > 1}
-						length={imgUrls.length}
+						length={updateMediaList.length}
+						showArrows={updateMediaList.length > 1}
+						showDots={updateMediaList.length > 1}
+						updateMediaList={updateMediaList}
+						setUpdateMediaList={setUpdateMediaList}
+						hasGallery
 					>
-						{imgUrls.map((imgUrl, index) => (
+						{updateMediaList.map((imgUrl, index) => (
 							<Carousel.Item index={index} key={imgUrl}>
 								<img src={imgUrl} alt="img" />
 							</Carousel.Item>

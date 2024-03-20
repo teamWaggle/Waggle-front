@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
 
 import { Flex, Text } from "@/components/common";
-import UploadCut from "@/components/Story/StoryUpload/UploadCut";
+import StoryContent from "@/components/Story/StoryUpload/StoryContent";
 
 import { useDragAndDrop } from "@/hooks/useDragAndDrop";
 import { useImgUpload } from "@/hooks/useImgUpload";
@@ -14,7 +14,7 @@ import { layoutStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 const StoryUpload = () => {
 	const modal = useModal();
 
-	const { isLoading, imgUrls, fileList, handleImgUpload, dropImgUpload } = useImgUpload();
+	const { isLoading, uploadMediaList, handleImgUpload, dropImgUpload } = useImgUpload();
 
 	const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
 		useDragAndDrop(dropImgUpload);
@@ -24,9 +24,8 @@ const StoryUpload = () => {
 			modal.closeModal();
 
 			modal.openModal({
-				key: `UploadCutModal`,
-				component: () => <UploadCut imgUrls={imgUrls} fileList={fileList} />,
-				notCloseIcon: true,
+				key: `StoryContentModal`,
+				component: () => <StoryContent uploadMediaList={uploadMediaList} />,
 			});
 		}
 	}, [isLoading]);
@@ -48,7 +47,7 @@ const StoryUpload = () => {
 				type="file"
 				multiple={true}
 				id="media"
-				onChange={(e) => handleImgUpload(e, [])}
+				onChange={handleImgUpload}
 				accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
 			/>
 		</Flex>
