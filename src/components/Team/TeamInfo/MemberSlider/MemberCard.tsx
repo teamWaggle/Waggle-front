@@ -1,4 +1,4 @@
-import KebabMenu from "@/assets/svg/KebabMenu.svg?react";
+import KebabMenu from "@/assets/svg/kebabMenu.svg?react";
 
 import { Flex } from "@/components/common";
 
