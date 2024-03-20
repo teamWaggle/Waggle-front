@@ -1,11 +1,15 @@
-import { TeamInfo } from "@/components/Team";
+import { MainContainer } from "@/components/common";
+import { TeamInfo, TeamSchedule } from "@/components/Team";
 import CalendarSection from "@/components/Team/CalendarSection/CalendarSection";
 
 const TeamPage = () => {
 	return (
 		<>
 			<CalendarSection />
-			<TeamInfo />
+			<MainContainer>
+				<TeamInfo />
+				<TeamSchedule />
+			</MainContainer>
 		</>
 	);
 };
