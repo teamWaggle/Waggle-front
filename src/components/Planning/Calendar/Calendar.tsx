@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import { useRecoilValue } from "recoil";
 
@@ -6,8 +6,6 @@ import { Box } from "@/components/common";
 import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
 import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
 import {
-	addMonths,
-	subMonths,
 	startOfMonth,
 	startOfWeek,
 	addDays,
@@ -17,6 +15,8 @@ import {
 	isSameDay,
 	isWithinInterval,
 } from "date-fns";
+
+import useCalendar from "@/hooks/useCalendar";
 
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 
@@ -102,21 +102,13 @@ const schedules: ScheduleType[] = [
 	},
 ];
 const Calendar = () => {
-	const [currentMonth, setCurrentMonth] = useState(new Date());
+	const { currentMonth, handlePrevMonth, handleNextMonth } = useCalendar();
 	const scheduleModals = useRecoilValue(scheduleModalSelector);
-	const monthStart = startOfMonth(currentMonth);
-	const startDate = subDays(startOfWeek(monthStart), -1);
-	const days = Array.from({ length: 42 }, (_, index) => addDays(startDate, index));
-
-	const handlePrevMonth = () => {
-		setCurrentMonth(subMonths(currentMonth, 1));
-	};
-
-	const handleNextMonth = () => {
-		setCurrentMonth(addMonths(currentMonth, 1));
-	};
 
 	const CalendarCards = useMemo(() => {
+		const monthStart = startOfMonth(currentMonth);
+		const startDate = subDays(startOfWeek(monthStart), -1);
+		const days = Array.from({ length: 42 }, (_, index) => addDays(startDate, index));
 		return days.map((day, index) => {
 			const daySchedules = schedules.filter(
 				(schedule) =>

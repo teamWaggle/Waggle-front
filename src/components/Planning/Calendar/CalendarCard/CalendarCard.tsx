@@ -10,7 +10,7 @@ import { MAX_CALENDAR_CONTENT } from "@/constants/calendar";
 
 import useModal from "@/hooks/useModal";
 
-import type { CalendarCardType, ScheduleType } from "@/types/planning";
+import type { ScheduleCalendarCardType, ScheduleType } from "@/types/planning";
 
 import {
 	dateTextStyle,
@@ -27,7 +27,7 @@ const CalendarCard = ({
 	isSameMonth,
 	schedules,
 	position,
-}: PropsWithChildren<CalendarCardType>) => {
+}: PropsWithChildren<ScheduleCalendarCardType>) => {
 	const { index } = position;
 	const { openScheduleModal } = useModal();
 	const schedulesSlice = schedules.slice(0, MAX_CALENDAR_CONTENT);

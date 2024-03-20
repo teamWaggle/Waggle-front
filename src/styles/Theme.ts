@@ -26,6 +26,7 @@ const color = {
 	team8: "#3F3F3F",
 	gray100: "#f3f3f3",
 	gray200: "#e8e8e8",
+	saturday: "#0075FF",
 };
 
 const text = {
