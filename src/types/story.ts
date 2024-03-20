@@ -1,4 +1,5 @@
 import type { MemberType } from "@/types/auth";
+import type { CommonResponseBaseType } from "@/types/common";
 
 export interface StoryType {
 	isSuccess: boolean;
@@ -22,18 +23,13 @@ export interface RecommendationInfoType {
 	recommendCount: number;
 }
 
-export interface StoryListType {
-	isSuccess: boolean;
-	code: number;
-	message: string;
+export interface StoryListType extends CommonResponseBaseType {
 	result: StoryListResultType;
 }
 
 export interface StoryListResultType {
 	storyList: StoryListInfoType[];
-	storyCount: number;
-	isFirst: boolean;
-	isLast: boolean;
+	nextPageParam: number;
 }
 
 export interface StoryListInfoType {
