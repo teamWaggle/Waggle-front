@@ -18,7 +18,7 @@ export const END_POINTS = {
 	STORY: (storyId: number) => `/api/stories/${storyId}`,
 	STORYV2: (storyId: number) => `/api/stories/${storyId}/v2`,
 	STORY_LIST: (currentPage: number) => `/api/stories?currentPage=${currentPage}`,
-	UPLOAD_STORY: "/api/stories",
+	POST_STORY: "/api/stories",
 	COMMENTS: (currentPage: number, boardId: number) =>
 		`/api/comments/page/${boardId}?curretPage=${currentPage}`,
 	COMMENT: (commentId: number) => `/api/comments/${commentId}`,
