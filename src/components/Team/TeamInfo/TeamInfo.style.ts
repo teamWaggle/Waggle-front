@@ -29,3 +29,21 @@ export const teamInfoSubTitleStyle = css({
 export const teamInfoNewApplyStyle = css({
 	color: Theme.color.btn_danger,
 });
+
+export const memberSliderBoxStyle = (currentIndex: number) =>
+	css({
+		width: "760px",
+		height: "fit-content",
+		gap: "10px",
+		transition: "transform 0.5s ease",
+		transform: `translateX(-${currentIndex * 190}px)`,
+	});
+
+export const participationSliderBoxStyle = (currentIndex: number) =>
+	css({
+		width: "780px",
+		height: "fit-content",
+		gap: "10px",
+		transition: "transform 0.5s ease",
+		transform: `translateX(-${currentIndex * 264}px)`,
+	});

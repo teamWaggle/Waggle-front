@@ -10,6 +10,4 @@ export const moreTextStyle = css({
 export const moreBoxStyle = css({
 	position: "relative",
 	color: Theme.color.text,
-	fontSize: Theme.text.xSmall.fontSize,
-	lineHeight: Theme.text.xSmall.lineHeight,
 });

@@ -1,14 +1,12 @@
 import { Flex, Text } from "@/components/common";
 
 import {
+	approveButtonStyle,
 	participationCardImgStyle,
 	participationCardNameStyle,
 	participationCardTextStyle,
-} from "@/components/Team/TeamInfo/ParticipationSlider/ParticipationCard.style";
-import {
-	approveButtonStyle,
 	rejectButtonStyle,
-} from "@/components/Team/TeamInfo/ParticipationSlider/participationSlider.style";
+} from "@/components/Team/TeamInfo/ParticipationSlider/ParticipationCard.style";
 
 const ParticipationCard = ({ participatingMember }: { participatingMember: string }) => {
 	return (

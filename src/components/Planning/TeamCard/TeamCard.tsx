@@ -32,8 +32,8 @@ const TeamCard = ({ data }: { data: TeamCardType }) => {
 				<Text size="small" css={subtitleTextStyle}>
 					{description}
 				</Text>
-				<Flex styles={{ align: "center" }}>
-					<ProfileTeamCardIcon /> &nbsp;
+				<Flex styles={{ align: "center", gap: "6px" }}>
+					<ProfileTeamCardIcon />
 					<Text css={groupCountTextStyle} size="small">
 						{teamSize}/{maxTeamSize}
 					</Text>
