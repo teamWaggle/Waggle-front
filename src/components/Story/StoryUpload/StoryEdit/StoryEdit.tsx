@@ -22,20 +22,22 @@ import {
 } from "@/components/Story/StoryUpload/StoryEdit/StoryEdit.style";
 
 const StoryEdit = ({
-	imgUrls,
-	prevContent,
+	mediaList,
+	content,
+	hashtagList,
 	storyId,
 }: {
-	imgUrls: string[];
-	prevContent: string;
+	mediaList: string[];
+	content: string;
+	hashtagList: string[];
 	storyId: number;
 }) => {
 	const putStoryMutate = usePutStoryMutation();
 
-	const [content, setContent] = useState(prevContent);
-	const [hashtagList] = useState<string[]>(["test"]);
+	const [newContent, setNewContent] = useState(content);
+	const [newHashtagList] = useState<string[]>(hashtagList);
 
-	const [updateMediaList, setUpdateMediaList] = useState<string[]>(imgUrls);
+	const [updateMediaList, setUpdateMediaList] = useState<string[]>(mediaList);
 
 	const modal = useModal();
 
@@ -45,17 +47,12 @@ const StoryEdit = ({
 		const formData = new FormData();
 
 		const updateStoryRequest = {
-			content,
-			hashtagList,
-		};
-
-		const updateMediaRequest = {
+			content: newContent,
+			hashtagList: newHashtagList,
 			mediaList: updateMediaList,
 		};
 
 		formData.append("updateStoryRequest", JSON.stringify(updateStoryRequest));
-
-		formData.append("updateMediaRequest", JSON.stringify(updateMediaRequest));
 
 		putStoryMutate.mutate(
 			{
@@ -111,8 +108,8 @@ const StoryEdit = ({
 							css={textareaStyle}
 							placeholder="사진에 대한 설명을 입력해주세요"
 							maxLength={500}
-							value={content}
-							onChange={(e) => setContent(e.target.value)}
+							value={newContent}
+							onChange={(e) => setNewContent(e.target.value)}
 						/>
 
 						{/* 글자수 */}
