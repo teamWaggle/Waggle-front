@@ -9,117 +9,88 @@ export const useImgUpload = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const [imgUrls, setImageUrls] = useState<string[]>([]);
-	const [fileList, setFileList] = useState<File[]>([]);
+	const [fileList] = useState<File[]>([]);
 
 	const [uploadMediaList, setUploadMediaList] = useState<string[]>([]);
 
-	const convertToMediaUrl = useCallback(async (imgFormData: FormData) => {
-		const mediaFormData = new FormData();
+	const convertToMediaUrl = useCallback(
+		async (imageFiles: FileList) => {
+			const imgFiles: File[] = [];
+			const imgFormData = new FormData();
 
-		imgFormData.forEach((file) => {
-			mediaFormData.append("uploadImgFileList", file);
-		});
+			Array.from(imageFiles).forEach((file) => {
+				imgFiles.push(file);
+			});
 
-		postMediaMutate.mutate(mediaFormData, {
-			onSuccess: ({ result }) => {
-				flushSync(() => {
-					result.mediaList.forEach((media) =>
-						setUploadMediaList((prev) => [...prev, media.imgUrl]),
-					);
+			imgFiles.forEach((file) => {
+				imgFormData.append("uploadImgFileList", file);
+			});
 
-					setIsLoading(false);
-				});
-			},
-		});
-	}, []);
+			postMediaMutate.mutate(imgFormData, {
+				onSuccess: ({ result }) => {
+					flushSync(() => {
+						result.mediaList.forEach((media) =>
+							setUploadMediaList((prev) => [...prev, media.imgUrl]),
+						);
 
-	const convertToImageFormData = useCallback(async (imageFiles: FileList) => {
-		const imgFiles: File[] = [];
-		const imgFormData = new FormData();
+						setIsLoading(false);
+					});
+				},
+			});
 
-		Array.from(imageFiles).forEach((file) => {
-			imgFiles.push(file);
-		});
+			// setFileList(imgFiles);
+		},
+		[imgUrls],
+	);
 
-		setFileList(imgFiles);
+	const handleImgUpload = useCallback(
+		async (
+			e: React.ChangeEvent<HTMLInputElement>,
+			updateImgUrls?: string[],
+			isUpdate?: boolean,
+		) => {
+			const files = e.target.files;
 
-		imgFiles.forEach((file) => {
-			imgFormData.append("files", file);
-		});
+			if (!files) return;
 
-		return imgFormData;
-	}, []);
+			setImageUrls(() => {
+				const imgUrls = [...files].map((file) => URL.createObjectURL(file));
 
-	// const handleImgUpdate = async (
-	// 	e: React.ChangeEvent<HTMLInputElement>,
-	// 	updateImgUrls?: string[],
-	// 	isUpdate?: boolean,
-	// ) => {
-	// 	const files = e.target.files;
+				if (isUpdate && updateImgUrls) {
+					return [...updateImgUrls, ...imgUrls];
+				} else {
+					return [...imgUrls];
+				}
+			});
 
-	// 	if (!files) return;
+			await convertToMediaUrl(files);
+		},
+		[postMediaMutate, imgUrls, convertToMediaUrl],
+	);
 
-	// 	setImageUrls(() => {
-	// 		const imgUrls = [...files].map((file) => URL.createObjectURL(file));
+	const dropImgUpload = useCallback(
+		async (e: React.DragEvent<HTMLDivElement>) => {
+			e.preventDefault();
+			e.stopPropagation();
 
-	// 		if (isUpdate && updateImgUrls) {
-	// 			return [...updateImgUrls, ...imgUrls];
-	// 		} else {
-	// 			return [...imgUrls];
-	// 		}
-	// 	});
-
-	// 	const uploadFileList = await convertToImageFormData(files);
-
-	// 	convertToMediaUrl(uploadFileList);
-	// };
-
-	const handleImgUpload = async (
-		e: React.ChangeEvent<HTMLInputElement>,
-		updateImgUrls?: string[],
-		isUpdate?: boolean,
-	) => {
-		const files = e.target.files;
-
-		if (!files) return;
-
-		setImageUrls(() => {
-			const imgUrls = [...files].map((file) => URL.createObjectURL(file));
-
-			if (isUpdate && updateImgUrls) {
-				return [...updateImgUrls, ...imgUrls];
-			} else {
-				return [...imgUrls];
+			if (!e.dataTransfer) {
+				return;
 			}
-		});
 
-		const uploadFileList = await convertToImageFormData(files);
+			const dropImgFiles = e.dataTransfer.files;
 
-		convertToMediaUrl(uploadFileList);
-	};
+			if (!dropImgFiles) return;
 
-	const dropImgUpload = useCallback(async (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		e.stopPropagation();
+			setImageUrls(() => {
+				const imgUrls = [...dropImgFiles].map((file) => URL.createObjectURL(file));
 
-		if (!e.dataTransfer) {
-			return;
-		}
+				return [...imgUrls];
+			});
 
-		const dropImgFiles = e.dataTransfer.files;
-
-		if (!dropImgFiles) return;
-
-		setImageUrls(() => {
-			const imgUrls = [...dropImgFiles].map((file) => URL.createObjectURL(file));
-
-			return [...imgUrls];
-		});
-
-		await convertToImageFormData(dropImgFiles);
-
-		setIsLoading(false);
-	}, []);
+			await convertToMediaUrl(dropImgFiles);
+		},
+		[postMediaMutate, imgUrls, convertToMediaUrl],
+	);
 
 	return {
 		isLoading,
