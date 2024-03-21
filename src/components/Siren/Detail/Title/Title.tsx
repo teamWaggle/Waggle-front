@@ -24,6 +24,7 @@ const Title = ({
 	lostDate,
 	viewCount,
 	handleEditSiren,
+	handleDeleteSiren,
 }: SirenTitleType) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -57,7 +58,7 @@ const Title = ({
 					{menuOpen && (
 						<ul css={menuStyle} ref={menuRef}>
 							<li onClick={handleEditSiren}>수정하기</li>
-							<li>삭제하기</li>
+							<li onClick={handleDeleteSiren}>삭제하기</li>
 						</ul>
 					)}
 				</Flex>

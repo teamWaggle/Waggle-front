@@ -44,6 +44,7 @@ export interface SirenTitleType {
 	lostDate: string;
 	viewCount: number;
 	handleEditSiren?: () => void;
+	handleDeleteSiren?: () => void;
 }
 
 export interface SirenListType extends CommonResponseBaseType {
