@@ -15,7 +15,13 @@ import {
 	replyDateTextStyle,
 } from "@/components/Story/StoryDetail/Comment/Comment.style";
 
-const ReplyItem = ({ replyId, content, member, createdDate }: ReplyListInfoType) => {
+const ReplyItem = ({
+	replyId,
+	content,
+	member,
+	createdDate,
+	handleReplyEditClick,
+}: ReplyListInfoType) => {
 	const [date, setDate] = useState("");
 
 	const modal = useModal();
@@ -48,6 +54,7 @@ const ReplyItem = ({ replyId, content, member, createdDate }: ReplyListInfoType)
 			<Profile
 				img={member.profileImgUrl}
 				nickname={member.nickname}
+				editClick={() => handleReplyEditClick(content, replyId)}
 				deleteClick={handleDeleteReply}
 				ownerId={member.memberId}
 			/>
