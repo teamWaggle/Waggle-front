@@ -4,6 +4,7 @@ import { Flex, Heading, Text } from "@/components/common";
 
 import { useDeleteCommentMutation } from "@/hooks/api/useDeleteCommentMutation";
 import { useDeleteRelpyMutation } from "@/hooks/api/useDeleteReplyMutation";
+import { useDeleteSirenMutation } from "@/hooks/api/useDeleteSirenMutation";
 import { useDeleteStoryMutation } from "@/hooks/api/useDeleteStoryMutation";
 import useModal from "@/hooks/useModal";
 
@@ -17,13 +18,16 @@ const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: st
 	const deleteCommentMutation = useDeleteCommentMutation();
 	const deleteReplyMutation = useDeleteRelpyMutation();
 	const deleteStoryMutation = useDeleteStoryMutation();
+	const deleteSirenMutation = useDeleteSirenMutation();
 
 	const mutation =
 		target === "comment"
 			? deleteCommentMutation
 			: target === "reply"
 			  ? deleteReplyMutation
-			  : deleteStoryMutation;
+			  : target === "story"
+			    ? deleteStoryMutation
+			    : deleteSirenMutation;
 
 	const modal = useModal();
 
@@ -33,6 +37,8 @@ const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: st
 				modal.selectCloseModal(`DeleteWarningModal`);
 
 				target === "story" && modal.closeModal();
+
+				target === "siren" && (window.location.href = "/siren");
 			},
 		});
 	}, []);
