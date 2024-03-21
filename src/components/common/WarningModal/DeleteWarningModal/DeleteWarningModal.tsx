@@ -11,7 +11,7 @@ import {
 	layoutStyle,
 	buttonBoxStyle,
 	buttonStyle,
-} from "@/components/Story/StoryDetail/DeleteWarningModal/DeleteWarningModal.style";
+} from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal.style";
 
 const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: string }) => {
 	const deleteCommentMutation = useDeleteCommentMutation();
