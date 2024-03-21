@@ -9,7 +9,7 @@ import {
 	layoutStyle,
 	buttonBoxStyle,
 	buttonStyle,
-} from "@/components/Story/StoryUpload/UploadWarningModal.style";
+} from "@/components/common/UploadWarningModal/UploadWarningModal.style";
 
 const UploadWarningModal = () => {
 	const modal = useModal();
