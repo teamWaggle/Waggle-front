@@ -1,9 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
+import { flushSync } from "react-dom";
 
 import { Flex, Box, Text, Divider } from "@/components/common";
 import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
 import ReplyItem from "@/components/Story/StoryDetail/Comment/Reply/ReplyItem";
 
+import { useEditReplyMutation } from "@/hooks/api/useEditReplyMutation";
 import { usePostReplyMutation } from "@/hooks/api/usePostReplyMutation";
 import { useReplyQuery } from "@/hooks/api/useReplyQuery";
 
@@ -19,9 +21,12 @@ const Reply = ({
 	const { replyData } = useReplyQuery(0, commentId);
 
 	const postReplyMutation = usePostReplyMutation();
+	const editReplyMutation = useEditReplyMutation();
 
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
+	const [replyButtonText, setReplyButtonText] = useState("등록");
+	const [replyId, setReplyId] = useState(0);
 
 	const commentInputRef = useRef<HTMLInputElement>(null);
 
@@ -39,6 +44,35 @@ const Reply = ({
 			},
 		);
 	};
+
+	const handleEditReply = () => {
+		editReplyMutation.mutate(
+			{
+				content,
+				mentionedMemberList,
+				replyId,
+			},
+			{
+				onSuccess: () => {
+					setContent("");
+					setReplyId(0);
+				},
+			},
+		);
+	};
+
+	const handleReplyEditClick = useCallback((content: string, replyId: number) => {
+		flushSync(() => {
+			setReplyOpen(true);
+		});
+
+		if (!commentInputRef.current) return;
+
+		commentInputRef.current.focus();
+		setContent(content);
+		setReplyId(replyId);
+		setReplyButtonText("수정");
+	}, []);
 
 	return (
 		<>
@@ -59,17 +93,18 @@ const Reply = ({
 								content={reply.content}
 								member={reply.member}
 								createdDate={reply.createdDate}
-								handleReplyEditClick={() => {}}
+								handleReplyEditClick={handleReplyEditClick}
 							/>
 						))}
 
 					<CommentInput
 						width="215px"
 						placeholder="답글 작성"
-						handleAddButton={handleAddReply}
+						handleButtonClick={replyButtonText === "등록" ? handleAddReply : handleEditReply}
 						content={content}
 						setContent={setContent}
 						commentInputRef={commentInputRef}
+						commentButtonText={replyButtonText}
 					/>
 				</Flex>
 			) : (
@@ -77,10 +112,11 @@ const Reply = ({
 					<CommentInput
 						width="215px"
 						placeholder="답글 작성"
-						handleAddButton={handleAddReply}
+						handleButtonClick={handleAddReply}
 						content={content}
 						setContent={setContent}
 						commentInputRef={commentInputRef}
+						commentButtonText={replyButtonText}
 					/>
 				</Box>
 			)}
