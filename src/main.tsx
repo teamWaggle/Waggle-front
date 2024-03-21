@@ -8,7 +8,7 @@ import { RecoilRoot } from "recoil";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import ModalRoot from "@/components/common/Modal/ModalRoot";
+import ModalRoot from "@/components/common/Design/Modal/ModalRoot";
 import AppRouter from "@/router/AppRouter";
 
 import { GlobalStyle } from "@/styles/GlobalStyle";

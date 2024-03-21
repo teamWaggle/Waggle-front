@@ -4,7 +4,7 @@ import {
 	mentionCheckerStyle,
 	mentionBoxStyle,
 	mentionCheckerDefaultStyle,
-} from "@/components/common/Text/MentionChecker/MentionChecker.style";
+} from "@/components/common/Design/Text/MentionChecker/MentionChecker.style";
 
 const MentionChecker = ({ content }: { content: string }) => {
 	// 문자열을 @ 기준으로 분리

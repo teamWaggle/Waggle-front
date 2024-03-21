@@ -1,8 +1,8 @@
-import Flex from "@/components/common/Flex/Flex";
+import Flex from "@/components/common/Design/Flex/Flex";
 
 import type { DropDownItemType } from "@/types/common";
 
-import { dropdownItemStyle } from "@/components/common/Dropdown/Dropdown.style";
+import { dropdownItemStyle } from "@/components/common/Design/Dropdown/Dropdown.style";
 
 const DropdownItem = ({ children, icon, ...props }: DropDownItemType) => {
 	return (

@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { skeletonStyle } from "@/components/common/Skeleton/Skeleton.style";
+import { skeletonStyle } from "@/components/common/Design/Skeleton/Skeleton.style";
 
 export interface SkeletonProps extends ComponentPropsWithoutRef<"div"> {
 	width?: string;

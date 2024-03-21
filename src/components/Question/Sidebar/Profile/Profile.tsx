@@ -1,6 +1,6 @@
 import DefaultProfileIcon from "@/assets/svg/profile-default.svg?react";
 
-import Flex from "@/components/common/Flex/Flex";
+import Flex from "@/components/common/Design/Flex/Flex";
 
 import { Theme } from "@/styles/Theme";
 

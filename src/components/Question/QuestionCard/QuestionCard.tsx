@@ -1,6 +1,6 @@
 import LikeIcon from "@/assets/svg/question-like.svg?react";
 
-import Flex from "@/components/common/Flex/Flex";
+import Flex from "@/components/common/Design/Flex/Flex";
 
 import {
 	cardStyle,

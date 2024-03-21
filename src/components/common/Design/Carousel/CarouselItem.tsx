@@ -1,9 +1,9 @@
 import { useContext, useEffect, useRef } from "react";
 import type { PropsWithChildren } from "react";
 
-import { CarouselContext } from "@/components/common/Carousel/Carousel";
+import { CarouselContext } from "@/components/common/Design/Carousel/Carousel";
 
-import { carouselItemStyle } from "@/components/common/Carousel/Carousel.style";
+import { carouselItemStyle } from "@/components/common/Design/Carousel/Carousel.style";
 
 export interface CarouselItemProps extends PropsWithChildren {
 	index: number;

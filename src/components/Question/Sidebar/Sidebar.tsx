@@ -1,4 +1,4 @@
-import Flex from "@/components/common/Flex/Flex";
+import Flex from "@/components/common/Design/Flex/Flex";
 import NotificationCard from "@/components/common/Notification/NotificationCard/NotificationCard";
 import { Profile } from "@/components/Question";
 

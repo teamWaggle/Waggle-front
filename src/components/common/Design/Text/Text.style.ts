@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-import type { TextProps } from "@/components/common/Text/Text";
+import type { TextProps } from "@/components/common/Design/Text/Text";
 
 export const getSizeStyling = (size: Required<TextProps>["size"]) => {
 	const style = {

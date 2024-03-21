@@ -1,18 +1,18 @@
-import Box from "@/components/common/Box/Box";
-import Carousel from "@/components/common/Carousel/Carousel";
-import Divider from "@/components/common/Divider/Divider";
-import Dropdown from "@/components/common/Dropdown/Dropdown";
-import DropdownButton from "@/components/common/Dropdown/DropdownButton";
-import DropdownItem from "@/components/common/Dropdown/DropdownItem";
-import DropdownList from "@/components/common/Dropdown/DropdownList";
-import Flex from "@/components/common/Flex/Flex";
-import Heading from "@/components/common/Heading/Heading";
+import Box from "@/components/common/Design/Box/Box";
+import Carousel from "@/components/common/Design/Carousel/Carousel";
+import Divider from "@/components/common/Design/Divider/Divider";
+import Dropdown from "@/components/common/Design/Dropdown/Dropdown";
+import DropdownButton from "@/components/common/Design/Dropdown/DropdownButton";
+import DropdownItem from "@/components/common/Design/Dropdown/DropdownItem";
+import DropdownList from "@/components/common/Design/Dropdown/DropdownList";
+import Flex from "@/components/common/Design/Flex/Flex";
+import Heading from "@/components/common/Design/Heading/Heading";
+import Modal from "@/components/common/Design/Modal/Modal";
+import MentionChecker from "@/components/common/Design/Text/MentionChecker/MentionChecker";
+import Text from "@/components/common/Design/Text/Text";
 import Logo from "@/components/common/Logo";
-import Modal from "@/components/common/Modal/Modal";
 import SearchInput from "@/components/common/SearchInput/SearchInput";
 import SocialLogin from "@/components/common/SocialLogin";
-import MentionChecker from "@/components/common/Text/MentionChecker/MentionChecker";
-import Text from "@/components/common/Text/Text";
 export {
 	Box,
 	Carousel,

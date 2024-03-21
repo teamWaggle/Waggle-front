@@ -1,4 +1,4 @@
-import Flex from "@/components/common/Flex/Flex";
+import Flex from "@/components/common/Design/Flex/Flex";
 import { SirenCard } from "@/components/Siren";
 
 import { useSirenListQuery } from "@/hooks/api/useSirenListQuery";

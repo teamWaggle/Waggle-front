@@ -1,6 +1,6 @@
 import ProfileImg from "@/assets/png/post-sample.png";
 
-import Flex from "@/components/common/Flex/Flex";
+import Flex from "@/components/common/Design/Flex/Flex";
 
 import { Theme } from "@/styles/Theme";
 
