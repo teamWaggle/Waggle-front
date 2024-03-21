@@ -54,7 +54,7 @@ const Comment = ({
 				img={member.profileImgUrl}
 				nickname={member.nickname}
 				deleteClick={handleDeleteComment}
-				editClick={() => handleEditClick("", 0)}
+				editClick={() => handleEditClick(content, commentId)}
 				ownerId={member.memberId}
 			/>
 

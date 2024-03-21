@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
@@ -10,7 +10,7 @@ import Profile from "@/components/Story/StoryDetail/Profile/Profile";
 import StoryEdit from "@/components/Story/StoryUpload/StoryEdit/StoryEdit";
 
 import { useCommentQuery } from "@/hooks/api/useCommentQuery";
-// import { useEditCommentMutation } from "@/hooks/api/useEditCommentMutation";
+import { useEditCommentMutation } from "@/hooks/api/useEditCommentMutation";
 import { usePostCommentMutation } from "@/hooks/api/usePostCommentMutation";
 import { useStoryQuery } from "@/hooks/api/useStoryQuery";
 import useModal from "@/hooks/useModal";
@@ -29,15 +29,16 @@ import {
 
 const StoryDetail = ({ storyId }: { storyId: number }) => {
 	const { storyData } = useStoryQuery(storyId);
-
 	const { commentData } = useCommentQuery(0, storyId);
 
 	const postCommentMutation = usePostCommentMutation();
-	// const editCommentMutation = useEditCommentMutation();
+	const editCommentMutation = useEditCommentMutation();
 
 	const [createdDate, setCreatedDate] = useState("");
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
+	const [commentButtonText, setCommentButtonText] = useState("등록");
+	const [commentId, setCommentId] = useState(0);
 
 	const commentInputRef = useRef<HTMLInputElement>(null);
 
@@ -55,11 +56,29 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 	};
 
 	const handleEditComment = () => {
+		editCommentMutation.mutate(
+			{
+				content,
+				mentionedMemberList,
+				commentId,
+			},
+			{
+				onSuccess: () => {
+					setContent("");
+					setCommentId(0);
+				},
+			},
+		);
+	};
+
+	const handleEditClick = useCallback((content: string, commentId: number) => {
 		if (!commentInputRef.current) return;
 
 		commentInputRef.current.focus();
-		setContent("asf");
-	};
+		setContent(content);
+		setCommentId(commentId);
+		setCommentButtonText("수정");
+	}, []);
 
 	const handleDeleteStory = () => {
 		modal.openModal({
@@ -168,7 +187,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 									content={comment.content}
 									createdDate={comment.createdDate}
 									member={comment.member}
-									handleEditClick={handleEditComment}
+									handleEditClick={handleEditClick}
 								/>
 							))}
 						</Box>
@@ -188,10 +207,13 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 							<CommentInput
 								width="260px"
 								placeholder="댓글 작성"
-								handleAddButton={handleAddComment}
+								handleButtonClick={
+									commentButtonText === "등록" ? handleAddComment : handleEditComment
+								}
 								content={content}
 								setContent={setContent}
 								commentInputRef={commentInputRef}
+								commentButtonText={commentButtonText}
 							/>
 						</Flex>
 					</Flex>

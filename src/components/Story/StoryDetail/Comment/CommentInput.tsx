@@ -8,19 +8,21 @@ import {
 interface CommentInputProps {
 	width: string;
 	placeholder: string;
-	handleAddButton: () => void;
+	handleButtonClick: () => void;
 	content: string;
 	setContent: React.Dispatch<React.SetStateAction<string>>;
 	commentInputRef: React.RefObject<HTMLInputElement>;
+	commentButtonText: string;
 }
 
 const CommentInput = ({
 	width,
 	placeholder,
-	handleAddButton,
+	handleButtonClick,
 	content,
 	setContent,
 	commentInputRef,
+	commentButtonText,
 }: CommentInputProps) => {
 	return (
 		<Box styles={{ position: "relative" }}>
@@ -32,8 +34,9 @@ const CommentInput = ({
 				onChange={(e) => setContent(e.target.value)}
 				ref={commentInputRef}
 			/>
-			<button type="submit" css={replyButtonStyle} onClick={handleAddButton}>
-				등록
+
+			<button type="submit" css={replyButtonStyle} onClick={handleButtonClick}>
+				{commentButtonText}
 			</button>
 		</Box>
 	);
