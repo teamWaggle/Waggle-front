@@ -4,7 +4,7 @@ import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
 import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex } from "@/components/common";
-import GallerySlider from "@/components/common/Carousel/Gallery/GallerySlider/GallerySlider";
+import GallerySlider from "@/components/common/Design/Carousel/Gallery/GallerySlider/GallerySlider";
 
 import { useImgUpload } from "@/hooks/useImgUpload";
 
@@ -12,7 +12,7 @@ import {
 	galleryIconBoxStyle,
 	galleryBoxStyle,
 	galleryPlusIconBoxStyle,
-} from "@/components/common/Carousel/Gallery/Gallery.style";
+} from "@/components/common/Design/Carousel/Gallery/Gallery.style";
 
 interface GalleryProps {
 	isGalleryOpen: boolean;

@@ -12,7 +12,7 @@ import {
 	backdropStyle,
 	dialogStyle,
 	closeButtonStyling,
-} from "@/components/common/Modal/Modal.style";
+} from "@/components/common/Design/Modal/Modal.style";
 
 const Modal = ({ component, close, notCloseIcon, isWhiteIcon, isUpper }: ModalType) => {
 	const modals = useRecoilValue(modalState);

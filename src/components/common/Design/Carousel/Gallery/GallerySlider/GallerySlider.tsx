@@ -13,7 +13,7 @@ import {
 	imgStyle,
 	arrowBoxStyle,
 	closeIconBoxStyle,
-} from "@/components/common/Carousel/Gallery/GallerySlider/GallerySlider.style";
+} from "@/components/common/Design/Carousel/Gallery/GallerySlider/GallerySlider.style";
 
 const GallerySlider = ({
 	mediaCurrentIndex,

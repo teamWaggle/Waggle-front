@@ -1,8 +1,8 @@
 import type { ComponentPropsWithoutRef, ElementType } from "react";
 
-import { getBoxStyling } from "@/components/common/Box/Box.styles";
+import { getBoxStyling } from "@/components/common/Design/Box/Box.styles";
 
-import type { BoxStylingProps } from "@/components/common/Box/Box.styles";
+import type { BoxStylingProps } from "@/components/common/Design/Box/Box.styles";
 
 export interface BoxProps extends ComponentPropsWithoutRef<"div"> {
 	/**

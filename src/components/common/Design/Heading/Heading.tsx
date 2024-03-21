@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import type { Size } from "@/types/size";
 
-import { getSizeStyling } from "@/components/common/Heading/Heading.style";
+import { getSizeStyling } from "@/components/common/Design/Heading/Heading.style";
 
 export interface HeadingProps extends ComponentPropsWithoutRef<"h4"> {
 	size?: Size;

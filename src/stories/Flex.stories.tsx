@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Box from "@/components/common/Box/Box";
-import Flex from "@/components/common/Flex/Flex";
+import Box from "@/components/common/Design/Box/Box";
+import Flex from "@/components/common/Design/Flex/Flex";
 
 import { Theme } from "@/styles/Theme";
 
