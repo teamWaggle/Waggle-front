@@ -68,3 +68,11 @@ export interface SirenListInfoType {
 	status: string;
 	recommendationInfo: RecommendationInfoType;
 }
+
+export interface SirenRepresentativeType extends CommonResponseBaseType {
+	result: SirenRepresentativeResultType;
+}
+
+export interface SirenRepresentativeResultType {
+	sirenList: SirenListInfoType[];
+}

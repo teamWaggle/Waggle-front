@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
+import SirenCard from "@/components/Siren/SirenCard/SirenCard";
+
+import { useSirenRepresentativeQuery } from "@/hooks/api/siren/useSirenRepresentativeQuery";
 
 import { buttonStyle, boxStyle, titleStyle } from "@/components/Siren/Bio/Bio.style";
 
-// import SirenCard from "../SirenCard/SirenCard";
-
 const Bio = () => {
+	const { sirenRepresentativeListData } = useSirenRepresentativeQuery();
+
 	const navigate = useNavigate();
 
 	return (
@@ -25,9 +28,20 @@ const Bio = () => {
 				</Flex>
 
 				<Flex styles={{ gap: "12px" }}>
-					{/* <SirenCard />
-					<SirenCard />
-					<SirenCard /> */}
+					{sirenRepresentativeListData &&
+						sirenRepresentativeListData.result.sirenList.map((sirenInfo) => (
+							<SirenCard
+								key={sirenInfo.boardId}
+								boardId={sirenInfo.boardId}
+								thumbnail={sirenInfo.thumbnail}
+								title={sirenInfo.title}
+								lostLocate={sirenInfo.lostLocate}
+								recommendationInfo={sirenInfo.recommendationInfo}
+								category={sirenInfo.category}
+								status={sirenInfo.status}
+								createdDate={sirenInfo.createdDate}
+							/>
+						))}
 				</Flex>
 			</Flex>
 		</Box>
