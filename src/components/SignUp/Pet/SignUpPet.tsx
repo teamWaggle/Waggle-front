@@ -11,7 +11,7 @@ import {
 	PetProfile,
 } from "@/components/SignUp/Pet/PetForm";
 
-import { usePetInfoMutation } from "@/hooks/api/usePetInfoMutation";
+import { usePetInfoMutation } from "@/hooks/api/pet/usePetInfoMutation";
 import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";

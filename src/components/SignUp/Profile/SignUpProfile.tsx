@@ -13,7 +13,7 @@ import {
 
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
-import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
+import { useMemberInfoFirstMutation } from "@/hooks/api/member/useMemberInfoFirstMutation";
 import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 import { useValidateForm } from "@/hooks/useValidateForm";
 

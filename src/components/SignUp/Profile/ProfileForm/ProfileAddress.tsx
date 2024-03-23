@@ -4,7 +4,7 @@ import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 
 import { Flex, Box, Text } from "@/components/common";
 
-import { useCheckUserUrlMutation } from "@/hooks/api/useCheckUserUrlMutation";
+import { useCheckUserUrlMutation } from "@/hooks/api/auth/useCheckUserUrlMutation";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

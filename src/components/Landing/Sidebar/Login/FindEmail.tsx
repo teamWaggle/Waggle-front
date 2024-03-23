@@ -6,7 +6,7 @@ import { Flex, Box, Text } from "@/components/common";
 
 import { yearData, monthData, dayData } from "@/constants/auth";
 
-import { useFindEmailMutation } from "@/hooks/api/useFindEmailMutation";
+import { useFindEmailMutation } from "@/hooks/api/auth/useFindEmailMutation";
 
 import { dateFormatToUTC } from "@/utils/dateFormatToUTC";
 import { findEmailReducer, findEmailInitialState } from "@/utils/findEmailUtils";

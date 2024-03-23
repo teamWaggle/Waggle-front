@@ -7,9 +7,9 @@ import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 
 import { findPasswordFormData } from "@/constants/auth";
 
-import { useEmailAuthSendMutation } from "@/hooks/api/useEmailAuthSendMutation";
-import { usePasswordAuthVerifyMutation } from "@/hooks/api/usePasswordAuthVerifyMutation";
-import { useChangePasswordMutation } from "@/hooks/api/usePasswordChangeMutation";
+import { useEmailAuthSendMutation } from "@/hooks/api/auth/useEmailAuthSendMutation";
+import { usePasswordAuthVerifyMutation } from "@/hooks/api/auth/usePasswordAuthVerifyMutation";
+import { useChangePasswordMutation } from "@/hooks/api/auth/usePasswordChangeMutation";
 import useModal from "@/hooks/useModal";
 import { useValidateForm } from "@/hooks/useValidateForm";
 

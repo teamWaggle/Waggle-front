@@ -1,7 +1,7 @@
 import Flex from "@/components/common/Design/Flex/Flex";
 import { SirenCard } from "@/components/Siren";
 
-import { useSirenListQuery } from "@/hooks/api/useSirenListQuery";
+import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";
 
 import { sectionStyle } from "@/components/Siren/Main/Main.style";
 

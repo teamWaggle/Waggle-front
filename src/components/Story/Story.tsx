@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Flex } from "@/components/common";
 import { StoryTitle, StoryCard } from "@/components/Story";
 
-import { useStoryListQuery } from "@/hooks/api/useStoryListQuery";
+import { useStoryListQuery } from "@/hooks/api/story/useStoryListQuery";
 import useObserver from "@/hooks/useObserver";
 
 const Story = () => {

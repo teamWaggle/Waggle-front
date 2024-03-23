@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 import { useMutation } from "@tanstack/react-query";
 
-import { putMemberInfoFirst } from "@/api/auth/putMemberInfoFirst";
+import { putMemberInfoFirst } from "@/api/member/putMemberInfoFirst";
 
 export const useMemberInfoFirstMutation = () => {
 	const memberInfoMutation = useMutation({

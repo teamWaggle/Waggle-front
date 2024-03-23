@@ -4,7 +4,7 @@ import { Flex, Box, Divider } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
 import { Title, Content, Comment } from "@/components/Siren/Detail";
 
-import { useSirenQuery } from "@/hooks/api/useSirenQuery";
+import { useSirenQuery } from "@/hooks/api/siren/useSirenQuery";
 import useModal from "@/hooks/useModal";
 
 import { layoutStyle } from "@/components/Siren/Detail/Detail.style";

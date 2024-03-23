@@ -4,7 +4,7 @@ import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
-import { useDeleteRelpyMutation } from "@/hooks/api/useDeleteReplyMutation";
+import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import useClickOutSide from "@/hooks/useClickOutSide";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";

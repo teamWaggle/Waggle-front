@@ -7,8 +7,8 @@ import LogoutIcon from "@/assets/svg/ic-logout.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
-import { useGetMemberInfoMutation } from "@/hooks/api/useGetMemberInfoMutation";
-import { useLogoutMutation } from "@/hooks/api/useLogoutMutation";
+import { useLogoutMutation } from "@/hooks/api/auth/useLogoutMutation";
+import { useGetMemberInfoMutation } from "@/hooks/api/member/useGetMemberInfoMutation";
 
 import { memberIdState } from "@/recoil/atoms/auth";
 

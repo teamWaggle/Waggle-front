@@ -3,9 +3,9 @@ import { useState, useRef, useCallback } from "react";
 import { Flex, Box, Text } from "@/components/common";
 import CommentCard from "@/components/Siren/Detail/Comment/CommentCard";
 
-import { useCommentQuery } from "@/hooks/api/useCommentQuery";
-import { useEditCommentMutation } from "@/hooks/api/useEditCommentMutation";
-import { usePostCommentMutation } from "@/hooks/api/usePostCommentMutation";
+import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
+import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
+import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
 
 import {
 	commentBoxStyle,

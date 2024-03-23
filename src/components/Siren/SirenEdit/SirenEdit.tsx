@@ -6,7 +6,7 @@ import UploadInfo from "@/components/Siren/Upload/UploadInfo/UploadInfo";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
-import { usePutSirenMutation } from "@/hooks/api/usePutSirenMutation";
+import { usePutSirenMutation } from "@/hooks/api/siren/usePutSirenMutation";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
