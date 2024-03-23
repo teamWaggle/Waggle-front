@@ -12,7 +12,7 @@ import {
 } from "@/components/SignUp/Pet/PetForm";
 
 import { usePetInfoMutation } from "@/hooks/api/usePetInfoMutation";
-import { useImgUpload } from "@/hooks/useImgUpload";
+import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -23,7 +23,7 @@ import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 const SignUpPet = () => {
 	const petInfoMutation = usePetInfoMutation();
 
-	const { handleImgUpload, uploadMediaList } = useImgUpload();
+	const { handleImgUpload, uploadMediaList } = useMultipleImgUpload();
 
 	const navigate = useNavigate();
 

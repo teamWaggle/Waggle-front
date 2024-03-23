@@ -14,7 +14,7 @@ import {
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
-import { useImgUpload } from "@/hooks/useImgUpload";
+import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 import { useValidateForm } from "@/hooks/useValidateForm";
 
 import { Theme } from "@/styles/Theme";
@@ -29,7 +29,7 @@ const SignUpProfile = () => {
 
 	const [state, dispatch] = useReducer(findEmailReducer, findEmailInitialState);
 
-	const { handleImgUpload, uploadMediaList } = useImgUpload();
+	const { handleImgUpload, uploadMediaList } = useMultipleImgUpload();
 
 	const navigate = useNavigate();
 

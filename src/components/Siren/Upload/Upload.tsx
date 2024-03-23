@@ -8,7 +8,7 @@ import UploadMedia from "@/components/Siren/Upload/UploadMedia/UploadMedia";
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
 import { usePostSirenMutation } from "@/hooks/api/usePostSirenMutation";
-import { useImgUpload } from "@/hooks/useImgUpload";
+import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -38,7 +38,7 @@ const Upload = () => {
 
 	const navigate = useNavigate();
 
-	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useImgUpload();
+	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useMultipleImgUpload();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
