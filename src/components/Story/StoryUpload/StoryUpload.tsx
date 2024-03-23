@@ -6,15 +6,15 @@ import { Flex, Text } from "@/components/common";
 import StoryContent from "@/components/Story/StoryUpload/StoryContent";
 
 import { useDragAndDrop } from "@/hooks/useDragAndDrop";
-import { useImgUpload } from "@/hooks/useImgUpload";
 import useModal from "@/hooks/useModal";
+import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
 import { layoutStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 
 const StoryUpload = () => {
 	const modal = useModal();
 
-	const { isLoading, uploadMediaList, handleImgUpload, dropImgUpload } = useImgUpload();
+	const { isLoading, uploadMediaList, handleImgUpload, dropImgUpload } = useMultipleImgUpload();
 
 	const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
 		useDragAndDrop(dropImgUpload);

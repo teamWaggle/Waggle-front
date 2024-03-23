@@ -6,7 +6,7 @@ import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
 import { usePostMediaMutation } from "@/hooks/api/usePostMediaMutation";
 
-export const useImgUpload = () => {
+export const useMultipleImgUpload = () => {
 	const postMediaMutate = usePostMediaMutation();
 
 	const [isLoading, setIsLoading] = useState(true);

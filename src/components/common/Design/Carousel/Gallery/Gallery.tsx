@@ -6,7 +6,7 @@ import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 import { Flex } from "@/components/common";
 import GallerySlider from "@/components/common/Design/Carousel/Gallery/GallerySlider/GallerySlider";
 
-import { useImgUpload } from "@/hooks/useImgUpload";
+import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
 import {
 	galleryIconBoxStyle,
@@ -33,7 +33,7 @@ const Gallery = ({
 	updatedMediaList,
 	handleMoveImage,
 }: GalleryProps) => {
-	const { isLoading, uploadMediaList, handleImgUpload } = useImgUpload();
+	const { isLoading, uploadMediaList, handleImgUpload } = useMultipleImgUpload();
 
 	useEffect(() => {
 		if (!isLoading && setUpdateMediaList) {
