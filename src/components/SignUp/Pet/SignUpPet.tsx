@@ -12,7 +12,7 @@ import {
 } from "@/components/SignUp/Pet/PetForm";
 
 import { usePetInfoMutation } from "@/hooks/api/usePetInfoMutation";
-import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
+import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -23,7 +23,7 @@ import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 const SignUpPet = () => {
 	const petInfoMutation = usePetInfoMutation();
 
-	const { handleImgUpload, uploadMediaList } = useMultipleImgUpload();
+	const { handleImgUpload, uploadMedia } = useSingleImgUpload();
 
 	const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ const SignUpPet = () => {
 			breed,
 			gender,
 			age,
-			petProfileImg: uploadMediaList[0],
+			petProfileImg: uploadMedia,
 		};
 
 		formData.append("createPetRequest", JSON.stringify(createPetRequest));
@@ -75,7 +75,7 @@ const SignUpPet = () => {
 
 				<Flex css={formLayoutStyle}>
 					{/* 프로필 영역 */}
-					<PetProfile handleImgUpload={handleImgUpload} uploadMediaList={uploadMediaList} />
+					<PetProfile handleImgUpload={handleImgUpload} uploadMedia={uploadMedia} />
 
 					{/* 강아지 이름 영역 */}
 					<PetName name={name} changeName={setName} />

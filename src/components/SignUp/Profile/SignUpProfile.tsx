@@ -14,7 +14,7 @@ import {
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
-import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
+import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 import { useValidateForm } from "@/hooks/useValidateForm";
 
 import { Theme } from "@/styles/Theme";
@@ -29,7 +29,7 @@ const SignUpProfile = () => {
 
 	const [state, dispatch] = useReducer(findEmailReducer, findEmailInitialState);
 
-	const { handleImgUpload, uploadMediaList } = useMultipleImgUpload();
+	const { handleImgUpload, uploadMedia } = useSingleImgUpload();
 
 	const navigate = useNavigate();
 
@@ -78,7 +78,7 @@ const SignUpProfile = () => {
 			name,
 			birthday,
 			userUrl,
-			memberProfileImg: uploadMediaList[0],
+			memberProfileImg: uploadMedia,
 		};
 
 		formData.append("memberProfileRequest", JSON.stringify(memberProfileRequest));
@@ -109,7 +109,7 @@ const SignUpProfile = () => {
 			>
 				<Flex styles={{ direction: "column", gap: "36px" }}>
 					{/* 프로필 영역 */}
-					<Profile handleImgUpload={handleImgUpload} uploadMediaList={uploadMediaList} />
+					<Profile handleImgUpload={handleImgUpload} uploadMedia={uploadMedia} />
 
 					{/* 닉네임 영역 */}
 					<Nickname

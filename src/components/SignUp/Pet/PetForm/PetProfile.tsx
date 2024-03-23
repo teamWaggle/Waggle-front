@@ -14,26 +14,29 @@ import {
 
 const PetProfile = ({
 	handleImgUpload,
-	uploadMediaList,
+	uploadMedia,
 }: {
 	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	uploadMediaList: string[];
+	uploadMedia: string;
 }) => {
 	return (
 		<Flex styles={{ align: "center", gap: "60px" }}>
 			<img
-				src={uploadMediaList.length !== 0 ? uploadMediaList[0] : DefaultProfileImg}
+				src={uploadMedia.length !== 0 ? uploadMedia : DefaultProfileImg}
 				alt="petProfileImg"
 				css={imgStyle}
 			/>
+
 			<Flex styles={{ direction: "column", gap: "14px" }}>
 				<Text css={getFormTextStyle(false)}>프로필 이미지</Text>
-				<input type="file" id="profileImg" onChange={handleImgUpload} css={inputNoneDisplayStyle} />
+
 				<label htmlFor="profileImg" css={commonButtonStyle}>
 					<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 						컴퓨터에서 파일 선택
 					</Text>
 				</label>
+				<input type="file" id="profileImg" onChange={handleImgUpload} css={inputNoneDisplayStyle} />
+
 				<Text size="small" css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 					확장자: png, jpg, jpeg / 용량: 1MB 이하
 				</Text>
