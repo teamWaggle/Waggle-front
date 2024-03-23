@@ -1,5 +1,8 @@
 import { useState, useCallback } from "react";
 import { flushSync } from "react-dom";
+import { toast } from "react-toastify";
+
+import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
 import { usePostMediaMutation } from "@/hooks/api/usePostMediaMutation";
 
@@ -43,6 +46,13 @@ export const useImgUpload = () => {
 			const files = e.target.files;
 
 			if (!files) return;
+
+			for (let i = 0; i < files.length; i++) {
+				if (files[i].size > FILE_SIZE_MAX_LIMIT) {
+					toast.error("업로드 가능한 최대 용량은 1MB입니다. ");
+					return;
+				}
+			}
 
 			await convertToMediaUrl(files);
 		},
