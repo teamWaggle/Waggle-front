@@ -12,6 +12,7 @@ import {
 } from "@/components/SignUp/Pet/PetForm";
 
 import { usePetInfoMutation } from "@/hooks/api/usePetInfoMutation";
+import { useImgUpload } from "@/hooks/useImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -22,6 +23,8 @@ import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 const SignUpPet = () => {
 	const petInfoMutation = usePetInfoMutation();
 
+	const { handleImgUpload, uploadMediaList } = useImgUpload();
+
 	const navigate = useNavigate();
 
 	const [name, setName] = useState("");
@@ -29,8 +32,6 @@ const SignUpPet = () => {
 	const [gender, setGender] = useState("FEMALE");
 	const [breed, setBreed] = useState("");
 	const [introduction, setIntroduction] = useState("");
-
-	const [fileURL, setFileURL] = useState<string>("");
 
 	const validateForm = () => {
 		if (!name && !age && !breed && !introduction) {
@@ -43,16 +44,16 @@ const SignUpPet = () => {
 	const handleSaveClick = () => {
 		const formData = new FormData();
 
-		const request = {
+		const createPetRequest = {
 			name,
+			description: introduction,
 			breed,
 			gender,
 			age,
-			profileImgUrl: fileURL,
-			uploadProfile: true,
+			petProfileImg: uploadMediaList[0],
 		};
 
-		formData.append("request", JSON.stringify(request));
+		formData.append("createPetRequest", JSON.stringify(createPetRequest));
 
 		if (validateForm()) {
 			petInfoMutation.mutate(formData, { onSuccess: () => navigate("/") });
@@ -74,7 +75,7 @@ const SignUpPet = () => {
 
 				<Flex css={formLayoutStyle}>
 					{/* 프로필 영역 */}
-					<PetProfile fileURL={fileURL} changeFile={setFileURL} />
+					<PetProfile handleImgUpload={handleImgUpload} uploadMediaList={uploadMediaList} />
 
 					{/* 강아지 이름 영역 */}
 					<PetName name={name} changeName={setName} />
