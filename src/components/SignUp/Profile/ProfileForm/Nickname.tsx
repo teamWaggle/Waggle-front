@@ -48,6 +48,9 @@ const Nickname = ({
 			<Flex styles={{ gap: "4px", align: "center" }}>
 				<Text css={getFormTextStyle(true)}>닉네임</Text>
 				<RequiredIcon />
+				<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
+					8자 제한, 띄어쓰기 불가, 특수문자 불가
+				</Text>
 			</Flex>
 			<input
 				css={getInputStyle("444px")}

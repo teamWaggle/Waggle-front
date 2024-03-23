@@ -53,7 +53,7 @@ const ProfileAddress = ({
 
 				<input
 					css={addressInputStyle}
-					placeholder="나만의 프로필 주소를 만들어보세요"
+					placeholder="가입 후 변경이 불가능해요"
 					value={userUrl}
 					onChange={(e) => changeUserUrl(e.target.value)}
 					ref={userUrlRef}
