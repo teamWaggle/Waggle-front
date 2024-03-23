@@ -8,7 +8,7 @@ import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
 import FindEmailModal from "@/components/Landing/Sidebar/Login/FindEmailModal";
 import FindPasswordModal from "@/components/Landing/Sidebar/Login/FindPasswordModal";
 
-import { useLogInMutation } from "@/hooks/api/useLogInMutation";
+import { useLogInMutation } from "@/hooks/api/auth/useLogInMutation";
 import useModal from "@/hooks/useModal";
 
 import type { modalCloseType } from "@/types/modal";

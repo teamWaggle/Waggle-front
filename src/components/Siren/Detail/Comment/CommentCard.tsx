@@ -7,9 +7,9 @@ import { Flex, Text } from "@/components/common";
 import Reply from "@/components/Siren/Detail/Comment/Reply/Reply";
 import ReplyInput from "@/components/Siren/Detail/Comment/Reply/ReplyInput";
 
-import { useDeleteCommentMutation } from "@/hooks/api/useDeleteCommentMutation";
-import { useEditReplyMutation } from "@/hooks/api/useEditReplyMutation";
-import { useReplyQuery } from "@/hooks/api/useReplyQuery";
+import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
+import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
+import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
 import useClickOutSide from "@/hooks/useClickOutSide";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";

@@ -5,7 +5,7 @@ import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Flex, Text, Carousel } from "@/components/common";
 
-import { usePutStoryMutation } from "@/hooks/api/usePutStoryMutation";
+import { usePutStoryMutation } from "@/hooks/api/story/usePutStoryMutation";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";

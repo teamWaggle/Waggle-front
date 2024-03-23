@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
-import { usePostMediaMutation } from "@/hooks/api/usePostMediaMutation";
+import { usePostMediaMutation } from "@/hooks/api/media/usePostMediaMutation";
 
 export const useMultipleImgUpload = () => {
 	const postMediaMutate = usePostMediaMutation();

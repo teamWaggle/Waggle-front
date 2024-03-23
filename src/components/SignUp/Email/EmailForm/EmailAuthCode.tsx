@@ -1,6 +1,6 @@
 import { Flex, Box, Text } from "@/components/common";
 
-import { useEmailAuthVerifyMutation } from "@/hooks/api/useEmailAuthVerifyMutation";
+import { useEmailAuthVerifyMutation } from "@/hooks/api/auth/useEmailAuthVerifyMutation";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

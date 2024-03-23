@@ -5,7 +5,7 @@ import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Flex, Text, Carousel } from "@/components/common";
 
-import { usePostStoryMutation } from "@/hooks/api/usePostStoryMutation";
+import { usePostStoryMutation } from "@/hooks/api/story/usePostStoryMutation";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";

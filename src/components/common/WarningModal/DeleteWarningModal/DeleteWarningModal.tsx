@@ -2,10 +2,10 @@ import { useCallback } from "react";
 
 import { Flex, Heading, Text } from "@/components/common";
 
-import { useDeleteCommentMutation } from "@/hooks/api/useDeleteCommentMutation";
-import { useDeleteRelpyMutation } from "@/hooks/api/useDeleteReplyMutation";
-import { useDeleteSirenMutation } from "@/hooks/api/useDeleteSirenMutation";
-import { useDeleteStoryMutation } from "@/hooks/api/useDeleteStoryMutation";
+import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
+import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
+import { useDeleteSirenMutation } from "@/hooks/api/siren/useDeleteSirenMutation";
+import { useDeleteStoryMutation } from "@/hooks/api/story/useDeleteStoryMutation";
 import useModal from "@/hooks/useModal";
 
 import {

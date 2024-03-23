@@ -5,9 +5,9 @@ import { Flex, Box, Text, Divider } from "@/components/common";
 import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
 import ReplyItem from "@/components/Story/StoryDetail/Comment/Reply/ReplyItem";
 
-import { useEditReplyMutation } from "@/hooks/api/useEditReplyMutation";
-import { usePostReplyMutation } from "@/hooks/api/usePostReplyMutation";
-import { useReplyQuery } from "@/hooks/api/useReplyQuery";
+import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
+import { usePostReplyMutation } from "@/hooks/api/reply/usePostReplyMutation";
+import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
 
 import { handleCommentTextStyle } from "@/components/Story/StoryDetail/Comment/Comment.style";
 

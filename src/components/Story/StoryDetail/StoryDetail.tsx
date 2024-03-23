@@ -9,10 +9,10 @@ import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
 import Profile from "@/components/Story/StoryDetail/Profile/Profile";
 import StoryEdit from "@/components/Story/StoryUpload/StoryEdit/StoryEdit";
 
-import { useCommentQuery } from "@/hooks/api/useCommentQuery";
-import { useEditCommentMutation } from "@/hooks/api/useEditCommentMutation";
-import { usePostCommentMutation } from "@/hooks/api/usePostCommentMutation";
-import { useStoryQuery } from "@/hooks/api/useStoryQuery";
+import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
+import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
+import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
+import { useStoryQuery } from "@/hooks/api/story/useStoryQuery";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";

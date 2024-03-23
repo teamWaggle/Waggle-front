@@ -1,6 +1,6 @@
 import { Text, Box } from "@/components/common";
 
-import { usePostReplyMutation } from "@/hooks/api/usePostReplyMutation";
+import { usePostReplyMutation } from "@/hooks/api/reply/usePostReplyMutation";
 
 import {
 	commentTextareaStyle,

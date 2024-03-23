@@ -9,9 +9,9 @@ import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 import { passwordFormData } from "@/constants/auth";
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
-import { useCheckEmailMutation } from "@/hooks/api/useCheckEmailMutation";
-import { useLogInMutation } from "@/hooks/api/useLogInMutation";
-import { useSignUpMutation } from "@/hooks/api/useSignUpMutation";
+import { useCheckEmailMutation } from "@/hooks/api/auth/useCheckEmailMutation";
+import { useLogInMutation } from "@/hooks/api/auth/useLogInMutation";
+import { useSignUpMutation } from "@/hooks/api/auth/useSignUpMutation";
 import { useValidateForm } from "@/hooks/useValidateForm";
 
 import { signUpButtonStyle } from "@/components/SignUp/Email/SignUpEmail.style";

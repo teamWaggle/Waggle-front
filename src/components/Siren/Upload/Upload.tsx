@@ -7,7 +7,7 @@ import UploadMedia from "@/components/Siren/Upload/UploadMedia/UploadMedia";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
-import { usePostSirenMutation } from "@/hooks/api/usePostSirenMutation";
+import { usePostSirenMutation } from "@/hooks/api/siren/usePostSirenMutation";
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";

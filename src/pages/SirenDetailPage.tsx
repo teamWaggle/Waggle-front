@@ -3,7 +3,7 @@ import { useSearchParams, useParams } from "react-router-dom";
 import { Detail } from "@/components/Siren/Detail";
 import SirenEdit from "@/components/Siren/SirenEdit/SirenEdit";
 
-import { useSirenQuery } from "@/hooks/api/useSirenQuery";
+import { useSirenQuery } from "@/hooks/api/siren/useSirenQuery";
 
 const SirenDetailPage = () => {
 	const param = useParams();

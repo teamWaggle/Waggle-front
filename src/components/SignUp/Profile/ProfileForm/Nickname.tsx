@@ -4,7 +4,7 @@ import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 
 import { Flex, Box, Text } from "@/components/common";
 
-import { useCheckNicknameMutation } from "@/hooks/api/useCheckNicknameMutation";
+import { useCheckNicknameMutation } from "@/hooks/api/auth/useCheckNicknameMutation";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
