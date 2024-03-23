@@ -14,15 +14,15 @@ import {
 
 const Profile = ({
 	handleImgUpload,
-	uploadMediaList,
+	uploadMedia,
 }: {
 	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	uploadMediaList: string[];
+	uploadMedia: string;
 }) => {
 	return (
 		<Flex styles={{ align: "center", gap: "60px" }}>
 			<img
-				src={uploadMediaList.length !== 0 ? uploadMediaList[0] : DefaultProfileImg}
+				src={uploadMedia.length !== 0 ? uploadMedia : DefaultProfileImg}
 				alt="profileImg"
 				css={imgStyle}
 			/>
