@@ -1,5 +1,5 @@
 import { useState, useReducer, useRef } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Text } from "@/components/common";
 import {
@@ -11,9 +11,10 @@ import {
 	Birthday,
 } from "@/components/SignUp/Profile/ProfileForm";
 
-// import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
+import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useMemberInfoFirstMutation } from "@/hooks/api/useMemberInfoFirstMutation";
+import { useImgUpload } from "@/hooks/useImgUpload";
 import { useValidateForm } from "@/hooks/useValidateForm";
 
 import { Theme } from "@/styles/Theme";
@@ -28,11 +29,9 @@ const SignUpProfile = () => {
 
 	const [state, dispatch] = useReducer(findEmailReducer, findEmailInitialState);
 
-	// console.log(state.yearText);
-	// console.log(state.monthText);
-	// console.log(state.dayText);
+	const { handleImgUpload, uploadMediaList } = useImgUpload();
 
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const nicknameRef = useRef<HTMLInputElement>(null);
 	const userUrlRef = useRef<HTMLInputElement>(null);
@@ -42,7 +41,6 @@ const SignUpProfile = () => {
 	const [nickname, setNickname] = useState("");
 	const [userUrl, setUserUrl] = useState("");
 	const [name, setName] = useState("");
-	const [fileURL, setFileURL] = useState<File>();
 
 	const [nicknameCheckComplete, setNicknameCheckComplete] = useState(false);
 	const [userUrlCheckComplete, setUserUrlCheckComplete] = useState(false);
@@ -75,38 +73,19 @@ const SignUpProfile = () => {
 		const formData = new FormData();
 		const birthday = dateFormatToUTC(state.yearText, state.monthText, state.dayText);
 
-		if (!fileURL) {
-			return;
-		}
-
-		// const test = new File([fileURL], `filetest.png`);
-
 		const memberProfileRequest = {
 			nickname,
 			name,
 			birthday,
 			userUrl,
+			memberProfileImg: uploadMediaList[0],
 		};
 
 		formData.append("memberProfileRequest", JSON.stringify(memberProfileRequest));
 
-		formData.append("memberProfileImg", fileURL);
-
-		for (const key of formData.keys()) {
-			console.log(key);
-		}
-
-		for (const value of formData.values()) {
-			console.log(value);
-		}
-
 		mutateMemberInfo(formData, {
-			onSuccess: (code) => {
-				// navigate(`/signup?${TAB_KEY}=${SIGN_UP_TAB_KEY.PET}`);
-				console.log(code);
-			},
-			onError: (code) => {
-				console.log(code);
+			onSuccess: () => {
+				navigate(`/signup?${TAB_KEY}=${SIGN_UP_TAB_KEY.PET}`);
 			},
 		});
 	};
@@ -130,7 +109,7 @@ const SignUpProfile = () => {
 			>
 				<Flex styles={{ direction: "column", gap: "36px" }}>
 					{/* 프로필 영역 */}
-					<Profile fileURL={fileURL} changeFile={setFileURL} />
+					<Profile handleImgUpload={handleImgUpload} uploadMediaList={uploadMediaList} />
 
 					{/* 닉네임 영역 */}
 					<Nickname
