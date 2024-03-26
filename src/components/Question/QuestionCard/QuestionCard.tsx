@@ -48,17 +48,10 @@ const QuestionCard = ({
 				</Text>
 			</Box>
 			{recommendationInfo && (
-				<Flex css={iconStyle}>
+				<Flex css={iconStyle(recommendationInfo.isRecommend)}>
 					{recommendationInfo.isRecommend ? <LikeIcon /> : <DisLikeIcon />}
 
-					<Text
-						css={getDefaultTextStyle(
-							recommendationInfo.isRecommend ? Theme.color.brand_primary : Theme.color.btn_success,
-							500,
-						)}
-					>
-						{recommendationInfo.recommendCount}
-					</Text>
+					<Text>{recommendationInfo.recommendCount}</Text>
 				</Flex>
 			)}
 		</Flex>

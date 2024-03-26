@@ -42,12 +42,18 @@ export const contentBoxStyle = css({
 	fontWeight: 500,
 });
 
-export const iconStyle = css({
-	position: "absolute",
-	top: "18px",
-	right: "24px",
-	flexDirection: "column",
-	justifyContent: "center",
-	alignItems: "center",
-	gap: "8px",
-});
+export const iconStyle = (isRecommend: boolean) =>
+	css({
+		position: "absolute",
+		top: "18px",
+		right: "24px",
+		flexDirection: "column",
+		justifyContent: "center",
+		alignItems: "center",
+		gap: "8px",
+
+		"& > p": {
+			fontWeight: 500,
+			color: isRecommend ? Theme.color.brand_primary : Theme.color.btn_success,
+		},
+	});
