@@ -8,7 +8,7 @@ export const cardStyle = css({
 	borderRadius: "10px",
 	padding: "18px 24px",
 	position: "relative",
-	width: "867px",
+	width: "754px",
 	height: "160px",
 	flexDirection: "column",
 	gap: "14px",
