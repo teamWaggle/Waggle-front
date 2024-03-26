@@ -1,51 +1,33 @@
 import DefaultProfileIcon from "@/assets/svg/profile-default.svg?react";
 
-import Flex from "@/components/common/Design/Flex/Flex";
+import { Flex, Heading, Text } from "@/components/common";
 
-import { Theme } from "@/styles/Theme";
-
-import {
-	layoutStyle,
-	textStyle,
-	titleStyle,
-} from "@/components/Question/Sidebar/Profile/Profile.style";
+import { layoutStyle, listBoxStyle } from "@/components/Question/Sidebar/Profile/Profile.style";
 
 const Profile = () => {
 	return (
-		<Flex
-			styles={{
-				direction: "column",
-				justify: "center",
-				align: "center",
-				gap: "18px",
-				padding: "40px",
-				borderRadius: "20px",
-				border: `2px solid ${Theme.color.brand_primary}`,
-				width: "100%",
-			}}
-			css={layoutStyle}
-		>
+		<Flex css={layoutStyle}>
 			<DefaultProfileIcon />
-			<h2 css={titleStyle}>멍멍이가 좋멍</h2>
+			<Heading size="small">멍멍이가 좋멍</Heading>
 			<Flex
 				styles={{
 					direction: "column",
-					gap: "14px",
+					gap: "10px",
 					justify: "center",
 					width: "100%",
 				}}
 			>
-				<Flex styles={{ justify: "space-between", width: "100%" }} css={textStyle}>
-					<h3>미해결 질문</h3>
-					<h3>0개 {">"}</h3>
+				<Flex css={listBoxStyle}>
+					<Text>미해결 질문</Text>
+					<Text>0개</Text>
 				</Flex>
-				<Flex styles={{ justify: "space-between", width: "100%" }} css={textStyle}>
-					<h3>지금까지 한 질문</h3>
-					<h3>0개 {">"}</h3>
+				<Flex css={listBoxStyle}>
+					<Text>지금까지 한 질문</Text>
+					<Text>0개</Text>
 				</Flex>
-				<Flex styles={{ justify: "space-between", width: "100%" }} css={textStyle}>
-					<h3>내가 한 답변</h3>
-					<h3>0개 {">"}</h3>
+				<Flex css={listBoxStyle}>
+					<Text>내가 한 답변</Text>
+					<Text>0개</Text>
 				</Flex>
 			</Flex>
 		</Flex>

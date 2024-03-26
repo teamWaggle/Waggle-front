@@ -4,18 +4,24 @@ import { Theme } from "@/styles/Theme";
 
 export const layoutStyle = css({
 	boxShadow: "box-shadow: 0px 2px 7px 0px rgba(0, 40, 37, 0.10)",
-	fontFamily: "Pretendard",
-	lineHeight: "normal",
+	flexDirection: "column",
+	justifyContent: "center",
+	alignItems: "center",
+	padding: "30px 36px",
+	borderRadius: "14px",
+	border: `1px solid ${Theme.color.brand_primary}`,
+	width: "100%",
+	gap: "20px",
+
+	"& > h5": {
+		fontWeight: 700,
+		color: Theme.color.text,
+	},
 });
 
-export const titleStyle = css({
-	color: Theme.color.text,
-	fontSize: "29px",
-	fontWeight: 700,
-});
-
-export const textStyle = css({
+export const listBoxStyle = css({
 	color: Theme.color.readonly_text,
-	fontSize: "15px",
 	fontWeight: 500,
+	justifyContent: "space-between",
+	width: "100%",
 });
