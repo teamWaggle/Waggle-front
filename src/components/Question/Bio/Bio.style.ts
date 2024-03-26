@@ -10,20 +10,25 @@ export const sectionStyle = css({
 export const boxStyle = css({
 	maxWidth: "1536px",
 	margin: "0 auto",
-	padding: "50px 146px",
+	padding: "50px 196px",
+	gap: "70px",
+	alignItems: "center",
 });
 
-export const titleStyle = css({
-	color: "#fdfdfd",
-	fontFamily: "Pretendard",
-	fontSize: "30px",
+export const titleBoxStyle = css({
+	color: Theme.color.white,
 	fontWeight: 700,
-	lineHeight: "normal",
-	letterSpacing: "-0.62px",
+	flexDirection: "column",
+	gap: "10px",
 });
 
 export const buttonStyle = css({
-	all: "unset",
+	border: "none",
+	outline: "none",
+	cursor: "pointer",
+	color: Theme.color.brand_primary,
+	borderRadius: "4px",
 	backgroundColor: Theme.color.white,
-	padding: "8px",
+	padding: "6px 8px",
+	fontWeight: 600,
 });
