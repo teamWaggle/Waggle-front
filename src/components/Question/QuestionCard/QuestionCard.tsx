@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
 import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
 
@@ -17,15 +19,17 @@ import {
 } from "@/components/Question/QuestionCard/QuestionCard.style";
 
 const QuestionCard = ({
-	// boardId,
+	boardId,
 	title,
 	// createdDate,
 	hashtagList,
 	status,
 	recommendationInfo,
 }: QuestionListInfoType) => {
+	const navigate = useNavigate();
+
 	return (
-		<Flex css={cardStyle}>
+		<Flex css={cardStyle} onClick={() => navigate(`/question/view/${boardId}`)}>
 			<Flex styles={{ gap: "16px", align: "center" }}>
 				<Flex css={resolveStyle(status === "RESOLVED")}>
 					{status === "RESOLVED" ? "해결" : "미해결"}

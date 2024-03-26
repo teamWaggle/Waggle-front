@@ -12,6 +12,7 @@ export const cardStyle = css({
 	height: "160px",
 	flexDirection: "column",
 	gap: "14px",
+	cursor: "pointer",
 });
 
 export const resolveStyle = (isResolve: boolean) =>
