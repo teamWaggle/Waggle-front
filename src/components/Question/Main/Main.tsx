@@ -9,7 +9,9 @@ import { mainStyle } from "@/components/Question/Main/Main.style";
 const Main = () => {
 	const { questionListData } = useQuestionListQuery(0);
 
-	console.log(questionListData);
+	if (!questionListData) {
+		return <div>로딩중..</div>;
+	}
 
 	return (
 		<Box css={mainStyle}>
@@ -21,10 +23,17 @@ const Main = () => {
 					</Flex>
 
 					<Flex styles={{ direction: "column", gap: "24px", marginTop: "60px" }}>
-						{questionListData &&
-							questionListData.result.questionList.map((questionInfo) => (
-								<QuestionCard key={questionInfo.boardId} />
-							))}
+						{questionListData.result.questionList.map((questionInfo) => (
+							<QuestionCard
+								key={questionInfo.boardId}
+								boardId={questionInfo.boardId}
+								title={questionInfo.title}
+								createdDate={questionInfo.createdDate}
+								hashtagList={questionInfo.hashtagList}
+								status={questionInfo.status}
+								recommendationInfo={questionInfo.recommendationInfo}
+							/>
+						))}
 					</Flex>
 				</section>
 				<Sidebar />
