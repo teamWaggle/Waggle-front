@@ -12,7 +12,6 @@ export const boxStyle = css({
 	margin: "0 auto",
 	padding: "50px 196px",
 	gap: "70px",
-	alignItems: "center",
 });
 
 export const titleBoxStyle = css({
@@ -20,6 +19,7 @@ export const titleBoxStyle = css({
 	fontWeight: 700,
 	flexDirection: "column",
 	gap: "10px",
+	width: "198px",
 });
 
 export const buttonStyle = css({

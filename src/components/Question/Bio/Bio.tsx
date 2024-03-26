@@ -12,12 +12,12 @@ const Bio = () => {
 	return (
 		<Box tag="section" css={sectionStyle}>
 			<Flex css={boxStyle}>
-				<Flex styles={{ direction: "column", gap: "52px" }}>
+				<Flex styles={{ direction: "column", gap: "52px", marginTop: "54px" }}>
 					<Flex css={titleBoxStyle}>
-						<Heading>물어보고 싶은</Heading>
-						<Heading>강아지 관련 궁금증이</Heading>
-						<Heading>있나요? Q&A에서</Heading>
-						<Heading>답을 찾아보세요!</Heading>
+						<Heading size="small">물어보고 싶은</Heading>
+						<Heading size="small">강아지 관련 궁금증이</Heading>
+						<Heading size="small">있나요? Q&A에서</Heading>
+						<Heading size="small">답을 찾아보세요!</Heading>
 					</Flex>
 
 					<button css={buttonStyle}>
