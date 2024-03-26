@@ -14,15 +14,16 @@ export const cardStyle = css({
 	gap: "14px",
 });
 
-export const resolveStyle = css({
-	backgroundColor: Theme.color.btn_success,
-	color: Theme.color.text,
-	padding: "6px 10px",
-	borderRadius: "18px",
-	alignItems: "center",
-	justifyContent: "center",
-	fontWeight: 500,
-});
+export const resolveStyle = (isResolve: boolean) =>
+	css({
+		backgroundColor: isResolve ? Theme.color.btn_success : Theme.color.btn_danger,
+		color: Theme.color.text,
+		padding: "6px 10px",
+		borderRadius: "18px",
+		alignItems: "center",
+		justifyContent: "center",
+		fontWeight: 500,
+	});
 
 export const kewordBoxStyle = css({
 	gap: "18px",
