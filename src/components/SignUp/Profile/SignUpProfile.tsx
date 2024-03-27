@@ -25,7 +25,7 @@ import { findEmailReducer, findEmailInitialState } from "@/utils/findEmailUtils"
 import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 
 const SignUpProfile = () => {
-	const { mutateMemberInfo } = useMemberInfoFirstMutation();
+	const { mutate: mutateMemberInfo } = useMemberInfoFirstMutation();
 
 	const [state, dispatch] = useReducer(findEmailReducer, findEmailInitialState);
 

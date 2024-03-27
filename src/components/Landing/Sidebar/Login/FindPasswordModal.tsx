@@ -25,9 +25,9 @@ import {
 } from "./FindEmailModal.style";
 
 const FindPasswordModal = ({ modalClose }: modalCloseType) => {
-	const { mutateEmailAuthSend } = useEmailAuthSendMutation();
-	const passwordAuthVerifyMutation = usePasswordAuthVerifyMutation();
-	const { mutateChangePassword } = useChangePasswordMutation();
+	const { mutate: mutateEmailAuthSend } = useEmailAuthSendMutation();
+	const { mutate: passwordAuthVerifyMutation } = usePasswordAuthVerifyMutation();
+	const { mutate: mutateChangePassword } = useChangePasswordMutation();
 
 	const passwordRef = useRef<HTMLInputElement>(null);
 	const passwordCheckRef = useRef<HTMLInputElement>(null);
@@ -78,7 +78,7 @@ const FindPasswordModal = ({ modalClose }: modalCloseType) => {
 	};
 
 	const handlePasswordAuthVerify = () => {
-		passwordAuthVerifyMutation.mutate(
+		passwordAuthVerifyMutation(
 			{ email, authCode: passwordAuthCode },
 			{
 				onSuccess: ({ result }: CommonResponseType) => {

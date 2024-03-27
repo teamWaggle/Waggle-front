@@ -28,14 +28,14 @@ const ProfileAddress = ({
 	userUrlCheckComplete: boolean;
 	changeUserUrlCheckComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-	const checkUserUrlMutation = useCheckUserUrlMutation();
+	const { mutate: checkUserUrlMutation } = useCheckUserUrlMutation();
 
 	const [isUserUrlCheck, setIsUserUrlCheck] = useState(false);
 
 	const handleUserUrlCheck = () => {
 		setIsUserUrlCheck(true);
 
-		checkUserUrlMutation.mutate(userUrl, {
+		checkUserUrlMutation(userUrl, {
 			onSuccess: () => {
 				changeUserUrlCheckComplete(true);
 			},

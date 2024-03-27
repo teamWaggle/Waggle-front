@@ -21,7 +21,7 @@ import { formLayoutStyle, buttonLayoutStyle } from "@/components/SignUp/Pet/Sign
 import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 
 const SignUpPet = () => {
-	const petInfoMutation = usePetInfoMutation();
+	const { mutate: petInfoMutation } = usePetInfoMutation();
 
 	const { handleImgUpload, uploadMedia } = useSingleImgUpload();
 
@@ -56,7 +56,7 @@ const SignUpPet = () => {
 		formData.append("createPetRequest", JSON.stringify(createPetRequest));
 
 		if (validateForm()) {
-			petInfoMutation.mutate(formData, { onSuccess: () => navigate("/") });
+			petInfoMutation(formData, { onSuccess: () => navigate("/") });
 		}
 	};
 

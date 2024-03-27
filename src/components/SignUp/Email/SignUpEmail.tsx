@@ -17,7 +17,7 @@ import { useValidateForm } from "@/hooks/useValidateForm";
 import { signUpButtonStyle } from "@/components/SignUp/Email/SignUpEmail.style";
 
 const SignUpEmail = () => {
-	const { mutateLogIn } = useLogInMutation();
+	const { mutate: mutateLogIn } = useLogInMutation();
 	const signUpMutation = useSignUpMutation();
 	const checkEmailMutation = useCheckEmailMutation();
 

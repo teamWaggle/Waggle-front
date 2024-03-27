@@ -15,5 +15,5 @@ export const useMemberInfoFirstMutation = () => {
 		},
 	});
 
-	return { mutateMemberInfo: memberInfoMutation.mutate };
+	return memberInfoMutation;
 };

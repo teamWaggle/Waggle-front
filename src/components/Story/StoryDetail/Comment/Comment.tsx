@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
@@ -27,7 +27,6 @@ const Comment = ({
 	handleEditClick,
 }: CommentListInfoType) => {
 	const [replyOpen, setReplyOpen] = useState(false);
-	const [date, setDate] = useState("");
 
 	const modal = useModal();
 
@@ -39,14 +38,6 @@ const Comment = ({
 			notCloseIcon: true,
 		});
 	};
-
-	useEffect(() => {
-		if (createdDate) {
-			const date = new Date(createdDate);
-
-			setDate(convertToUTC(date).date);
-		}
-	}, [createdDate]);
 
 	return (
 		<Flex styles={{ direction: "column", padding: "0 30px 0 18px" }}>
@@ -66,7 +57,7 @@ const Comment = ({
 
 			<Flex styles={{ align: "center", gap: "12px", paddingLeft: "43px" }}>
 				<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
-					{date}
+					{convertToUTC(new Date(createdDate)).date}
 				</Text>
 				<Text
 					size="xSmall"

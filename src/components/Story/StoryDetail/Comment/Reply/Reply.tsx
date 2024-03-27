@@ -20,8 +20,8 @@ const Reply = ({
 }) => {
 	const { replyData } = useReplyQuery(0, commentId);
 
-	const postReplyMutation = usePostReplyMutation();
-	const editReplyMutation = useEditReplyMutation();
+	const { mutate: postReplyMutation } = usePostReplyMutation();
+	const { mutate: editReplyMutation } = useEditReplyMutation();
 
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
@@ -31,7 +31,7 @@ const Reply = ({
 	const commentInputRef = useRef<HTMLInputElement>(null);
 
 	const handleAddReply = () => {
-		postReplyMutation.mutate(
+		postReplyMutation(
 			{
 				content,
 				mentionedMemberList,
@@ -46,7 +46,7 @@ const Reply = ({
 	};
 
 	const handleEditReply = () => {
-		editReplyMutation.mutate(
+		editReplyMutation(
 			{
 				content,
 				mentionedMemberList,
