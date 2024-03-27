@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
@@ -31,10 +31,9 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 	const { storyData } = useStoryQuery(storyId);
 	const { commentData } = useCommentQuery(0, storyId);
 
-	const postCommentMutation = usePostCommentMutation();
-	const editCommentMutation = useEditCommentMutation();
+	const { mutate: postCommentMutation } = usePostCommentMutation();
+	const { mutate: editCommentMutation } = useEditCommentMutation();
 
-	const [createdDate, setCreatedDate] = useState("");
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
 	const [commentButtonText, setCommentButtonText] = useState("등록");
@@ -45,7 +44,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 	const modal = useModal();
 
 	const handleAddComment = () => {
-		postCommentMutation.mutate(
+		postCommentMutation(
 			{ content, mentionedMemberList, boardId },
 			{
 				onSuccess: () => {
@@ -56,7 +55,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 	};
 
 	const handleEditComment = () => {
-		editCommentMutation.mutate(
+		editCommentMutation(
 			{
 				content,
 				mentionedMemberList,
@@ -106,14 +105,6 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 			),
 		});
 	};
-
-	useEffect(() => {
-		if (storyData) {
-			const date = new Date(storyData.result.createdDate);
-
-			setCreatedDate(convertToUTC(date).date);
-		}
-	}, [storyData]);
 
 	if (!storyData) {
 		return <div>로딩중...</div>;
@@ -170,7 +161,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 							{/* 게시 날짜 영역 */}
 							<Flex styles={{ justify: "flex-end", width: "100%" }}>
 								<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
-									{createdDate}
+									{convertToUTC(new Date(storyData.result.createdDate)).date}
 								</Text>
 							</Flex>
 						</Flex>

@@ -27,7 +27,7 @@ const FindEmail = ({
 	setMode: React.Dispatch<React.SetStateAction<string>>;
 	setEmail: React.Dispatch<React.SetStateAction<string[]>>;
 }) => {
-	const findEmailMutation = useFindEmailMutation();
+	const { mutate: findEmailMutation } = useFindEmailMutation();
 
 	const [name, setName] = useState("");
 
@@ -44,7 +44,7 @@ const FindEmail = ({
 	const handleAuthClick = () => {
 		const birthday = dateFormatToUTC(state.yearText, state.monthText, state.dayText);
 
-		findEmailMutation.mutate(
+		findEmailMutation(
 			{ name, birthday },
 			{
 				onSuccess: ({ result }: FindEmailResponseType) => {

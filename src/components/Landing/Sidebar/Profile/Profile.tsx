@@ -25,8 +25,8 @@ import {
 } from "@/components/Landing/Sidebar/Profile/Profile.style";
 
 const Profile = () => {
-	const { mutateLogOut } = useLogoutMutation();
-	const getMemberInfoMutation = useGetMemberInfoMutation();
+	const { mutate: mutateLogOut } = useLogoutMutation();
+	const { mutate: getMemberInfoMutation } = useGetMemberInfoMutation();
 
 	const [memberId] = useRecoilState(memberIdState);
 
@@ -34,7 +34,7 @@ const Profile = () => {
 	const [profileImgUrl, setProfileImgUrl] = useState("");
 
 	useEffect(() => {
-		getMemberInfoMutation.mutate(memberId, {
+		getMemberInfoMutation(memberId, {
 			onSuccess: ({ result }: MemberInfoResponseType) => {
 				setNickName(result.nickname);
 				setProfileImgUrl(result.profileImgUrl);

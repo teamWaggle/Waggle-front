@@ -23,7 +23,7 @@ import {
 } from "@/components/Story/StoryUpload/StoryContent.style";
 
 const StoryContent = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
-	const postStoryMutate = usePostStoryMutation();
+	const { mutate: postStoryMutate } = usePostStoryMutation();
 
 	const [content, setContent] = useState("");
 	const [hashtagList] = useState<string[]>(["test"]);
@@ -45,7 +45,7 @@ const StoryContent = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
 
 		formData.append("createStoryRequest", JSON.stringify(createStoryRequest));
 
-		postStoryMutate.mutate(formData, {
+		postStoryMutate(formData, {
 			onSuccess: () => {
 				modal.closeModal();
 			},

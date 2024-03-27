@@ -15,5 +15,5 @@ export const useEmailAuthSendMutation = () => {
 		},
 	});
 
-	return { mutateEmailAuthSend: emailAuthSendMutation.mutate };
+	return emailAuthSendMutation;
 };

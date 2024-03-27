@@ -15,5 +15,5 @@ export const useChangePasswordMutation = () => {
 		},
 	});
 
-	return { mutateChangePassword: changepasswordMutation.mutate };
+	return changepasswordMutation;
 };

@@ -22,7 +22,7 @@ import {
 } from "@/components/Landing/Sidebar/Login/LoginModal.style";
 
 const LoginModal = ({ modalClose }: modalCloseType) => {
-	const { mutateLogIn } = useLogInMutation();
+	const { mutate: mutateLogIn } = useLogInMutation();
 
 	const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -46,22 +46,6 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 
 		return true;
 	};
-
-	// const handleShowPassword = () => {
-	// 	const password = passwordRef.current;
-
-	// 	if (password === null) {
-	// 		return;
-	// 	}
-
-	// 	setPasswordShow(!passwordShow);
-
-	// 	if (!passwordShow) {
-	// 		password.type = "text";
-	// 	} else {
-	// 		password.type = "password";
-	// 	}
-	// };
 
 	const handleShowPassword = () => {
 		setPasswordType(passwordType === "password" ? "text" : "password");
@@ -102,13 +86,7 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 	};
 
 	return (
-		<Flex
-			styles={{
-				direction: "column",
-				align: "center",
-			}}
-			css={layoutStyle}
-		>
+		<Flex css={layoutStyle}>
 			<Logo width={138} height={30} />
 			<Box styles={{ margin: "36px 0 24px" }}>
 				<form onSubmit={handleSubmit}>

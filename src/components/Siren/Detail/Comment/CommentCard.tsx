@@ -36,7 +36,7 @@ const CommentCard = ({
 }: CommentListInfoType) => {
 	const { replyData } = useReplyQuery(0, commentId);
 
-	const editReplyMutation = useEditReplyMutation();
+	const { mutate: editReplyMutation } = useEditReplyMutation();
 
 	const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -65,7 +65,7 @@ const CommentCard = ({
 	}, []);
 
 	const handleEditReply = useCallback(() => {
-		editReplyMutation.mutate(
+		editReplyMutation(
 			{
 				content: replyContent,
 				mentionedMemberList,

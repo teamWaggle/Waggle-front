@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 
 import OptionIcon from "@/assets/svg/option.svg?react";
 
@@ -28,7 +28,6 @@ const Reply = ({
 	member,
 	handleReplyEditClick,
 }: ReplyListInfoType) => {
-	const [date, setDate] = useState("");
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const menuRef = useRef<HTMLUListElement>(null);
@@ -47,14 +46,6 @@ const Reply = ({
 		});
 	}, []);
 
-	useEffect(() => {
-		if (createdDate) {
-			const date = new Date(createdDate);
-
-			setDate(convertToUTC(date).date);
-		}
-	}, [createdDate]);
-
 	return (
 		<Flex css={replyCardBoxStyle}>
 			<img src={member.profileImgUrl} alt="memberProfileImg" />
@@ -66,7 +57,7 @@ const Reply = ({
 							{member.nickname}
 						</Text>
 						<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
-							{date}
+							{convertToUTC(new Date(createdDate)).date}
 						</Text>
 					</Flex>
 

@@ -33,5 +33,5 @@ export const useLogInMutation = () => {
 		},
 	});
 
-	return { mutateLogIn: logInMutation.mutate };
+	return logInMutation;
 };

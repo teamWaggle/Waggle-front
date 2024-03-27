@@ -7,7 +7,7 @@ import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 import { usePostMediaMutation } from "@/hooks/api/media/usePostMediaMutation";
 
 export const useMultipleImgUpload = () => {
-	const postMediaMutate = usePostMediaMutation();
+	const { mutate: postMediaMutate } = usePostMediaMutation();
 
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -26,7 +26,7 @@ export const useMultipleImgUpload = () => {
 				imgFormData.append("uploadImgFileList", file);
 			});
 
-			postMediaMutate.mutate(imgFormData, {
+			postMediaMutate(imgFormData, {
 				onSuccess: ({ result }) => {
 					flushSync(() => {
 						result.mediaList.forEach((media) =>

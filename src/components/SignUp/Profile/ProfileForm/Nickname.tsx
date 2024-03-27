@@ -29,14 +29,14 @@ const Nickname = ({
 	nicknameCheckComplete: boolean;
 	changeNicknameCheckComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-	const checkNicknameMutation = useCheckNicknameMutation();
+	const { mutate: checkNicknameMutation } = useCheckNicknameMutation();
 
 	const [isNicknameCheck, setIsNicknameCheck] = useState(false);
 
 	const handleNicknameCheck = () => {
 		setIsNicknameCheck(true);
 
-		checkNicknameMutation.mutate(nickname, {
+		checkNicknameMutation(nickname, {
 			onSuccess: () => {
 				changeNicknameCheckComplete(true);
 			},

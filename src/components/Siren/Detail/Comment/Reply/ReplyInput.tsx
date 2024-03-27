@@ -26,10 +26,10 @@ const ReplyInput = ({
 	handleEditReply,
 	replyRef,
 }: ReplyInputProps) => {
-	const postReplyMutation = usePostReplyMutation();
+	const { mutate: postReplyMutation } = usePostReplyMutation();
 
 	const handleAddReply = () => {
-		postReplyMutation.mutate(
+		postReplyMutation(
 			{
 				content,
 				mentionedMemberList,
