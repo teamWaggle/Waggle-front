@@ -27,7 +27,6 @@ const Content = ({
 	content,
 	recommendationInfo,
 }: SirenContentType) => {
-	console.log(mediaList);
 	const sirenContentTitleData = [
 		{
 			title: "강아지 실종 장소",

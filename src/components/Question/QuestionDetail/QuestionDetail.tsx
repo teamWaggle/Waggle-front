@@ -1,4 +1,5 @@
 import { Flex, Box, Divider } from "@/components/common";
+import QuestionContent from "@/components/Question/QuestionDetail/QuestionContent";
 import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
 
 import type { QuestionResultType } from "@/types/question";
@@ -8,12 +9,12 @@ import { layoutStyle } from "@/components/Question/QuestionDetail/QuestionDetail
 const QuestionDetail = ({
 	// boardId,
 	title,
-	// content,
+	content,
 	createdDate,
 	hashtagList,
-	// mediaList,
+	mediaList,
 	member,
-	// recommendationInfo,
+	recommendationInfo,
 	status,
 	viewCount,
 }: QuestionResultType) => {
@@ -27,6 +28,14 @@ const QuestionDetail = ({
 					member={member}
 					viewCount={viewCount}
 					createdDate={createdDate}
+				/>
+
+				<Divider length="100%" />
+
+				<QuestionContent
+					content={content}
+					mediaList={mediaList}
+					recommendationInfo={recommendationInfo}
 				/>
 			</Flex>
 			<Divider />
