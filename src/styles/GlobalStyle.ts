@@ -26,11 +26,11 @@ export const GlobalStyle = css`
 
 	@font-face {
 		font-family: "Pretendard";
-		src: url("./fonts/Pretendard.ttf");
+		src: url("/fonts/Pretendard.ttf");
 	}
 
 	@font-face {
 		font-family: "Montserrat";
-		src: url("./fonts/Montserrat.ttf");
+		src: url("/fonts/Montserrat.ttf");
 	}
 `;
