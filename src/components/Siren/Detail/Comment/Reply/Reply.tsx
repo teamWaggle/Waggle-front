@@ -3,9 +3,10 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Text } from "@/components/common";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
 
-import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import useClickOutSide from "@/hooks/useClickOutSide";
+import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -27,20 +28,24 @@ const Reply = ({
 	member,
 	handleReplyEditClick,
 }: ReplyListInfoType) => {
-	const deleteReplyMutation = useDeleteRelpyMutation();
-
 	const [date, setDate] = useState("");
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const menuRef = useRef<HTMLUListElement>(null);
+
+	const modal = useModal();
 
 	const memberId = Number(localStorage.getItem("MEMBER_ID"));
 
 	useClickOutSide(menuRef, () => setMenuOpen(false));
 
 	const handleDeleteReply = useCallback(() => {
-		deleteReplyMutation.mutate(replyId);
-	}, [deleteReplyMutation]);
+		modal.openModal({
+			key: `DeleteWarningModal`,
+			component: () => <DeleteWarningModal targetId={replyId} target="reply" />,
+			notCloseIcon: true,
+		});
+	}, []);
 
 	useEffect(() => {
 		if (createdDate) {
