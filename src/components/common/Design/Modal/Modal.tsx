@@ -14,7 +14,14 @@ import {
 	closeButtonStyling,
 } from "@/components/common/Design/Modal/Modal.style";
 
-const Modal = ({ component, close, notCloseIcon, isWhiteIcon, isUpper }: ModalType) => {
+const Modal = ({
+	component,
+	close,
+	notCloseIcon,
+	isWhiteIcon,
+	isUpper,
+	isOutsideClose = true,
+}: ModalType) => {
 	const modals = useRecoilValue(modalState);
 
 	const handleEscKeyPress = useCallback(
@@ -40,7 +47,7 @@ const Modal = ({ component, close, notCloseIcon, isWhiteIcon, isUpper }: ModalTy
 
 	return (
 		<>
-			<div css={backdropStyle(isUpper)} onClick={close} />
+			<div css={backdropStyle(isUpper)} onClick={isOutsideClose ? close : undefined} />
 			<dialog css={dialogStyle(isUpper)}>
 				{component && component()}
 				{!notCloseIcon && <CloseIcon css={closeButtonStyling(isWhiteIcon)} onClick={close} />}

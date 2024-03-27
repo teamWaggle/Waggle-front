@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import Box from "@/components/common/Box/Box";
+import Box from "@/components/common/Design/Box/Box";
 
 import { sectionStyle } from "@/components/common/Container/MainContainer/MainContainer.style";
 

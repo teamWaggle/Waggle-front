@@ -11,8 +11,3 @@ export const scheduleModalState = atom<ModalType[]>({
 	key: "scheduleModalState",
 	default: [],
 });
-
-export const tempModalState = atom<boolean>({
-	key: "tempModalState",
-	default: false,
-});

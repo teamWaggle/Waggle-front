@@ -12,7 +12,6 @@ export const backdropStyle = (isUpper?: boolean) => {
 		height: "100%",
 		backgroundColor: "rgba(9, 4, 4, 0.53)",
 		backdropFilter: isUpper ? "" : "blur(10px)",
-		cursor: "pointer",
 	});
 };
 

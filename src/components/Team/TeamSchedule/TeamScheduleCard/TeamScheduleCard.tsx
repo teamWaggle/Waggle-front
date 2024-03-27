@@ -24,10 +24,14 @@ const TeamScheduleCard = ({ startDate, isActivate }: { startDate: Date; isActiva
 			<Text>{format(startDate, "yyyy년 M월 d일 cccc ", { locale: ko })} ~</Text>
 			<Text>{format(startDate, "yyyy년 M월 d일 cccc ", { locale: ko })}</Text>
 			<Flex style={{ alignItems: "center", justifyContent: "space-between" }}>
-				<Flex style={{ alignItems: "center" }}>
-					겹치는 일정 <Text css={teamScheduleOverlapCount("team5")}>0</Text>
-				</Flex>
-				{isActivate && <Flex css={addScheduleButtonStyle("team1")}>내 일정에 추가</Flex>}
+				{isActivate && (
+					<>
+						<Flex style={{ alignItems: "center" }}>
+							겹치는 일정 <Text css={teamScheduleOverlapCount("team5")}>0</Text>
+						</Flex>
+						<Flex css={addScheduleButtonStyle("team1")}>내 일정에 추가</Flex>
+					</>
+				)}
 			</Flex>
 		</Box>
 	);

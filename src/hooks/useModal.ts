@@ -11,7 +11,7 @@ const useModal = () => {
 	const setScheduleModals = useSetRecoilState(scheduleModalState);
 
 	const openModal = useCallback(
-		({ key, component, notCloseIcon, isWhiteIcon, isUpper }: ModalType) => {
+		({ key, component, notCloseIcon, isWhiteIcon, isUpper, isOutsideClose }: ModalType) => {
 			const modalProps = {
 				key,
 				close: () => setModals([]),
@@ -19,6 +19,7 @@ const useModal = () => {
 				notCloseIcon,
 				isWhiteIcon,
 				isUpper,
+				isOutsideClose,
 			};
 
 			setModals((prev) => [...prev, modalProps]);

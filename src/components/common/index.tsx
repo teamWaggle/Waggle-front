@@ -1,6 +1,7 @@
 import MainContainer from "@/components/common/Container/MainContainer/MainContainer";
 import DatePicker from "@/components/common/DatePicker/DatePicker";
-import DatePickerModal from "@/components/common/DatePicker/DatePickerModal/DatePickerModal";
+import DatePickerCalendarModal from "@/components/common/DatePicker/DatePickerModal/Calendar/DatePickerCalendarModal";
+import DatePickerTimeModal from "@/components/common/DatePicker/DatePickerModal/Time/DatePickerTimeModal";
 import Box from "@/components/common/Design/Box/Box";
 import Carousel from "@/components/common/Design/Carousel/Carousel";
 import Divider from "@/components/common/Design/Divider/Divider";
@@ -36,6 +37,7 @@ export {
 	DropdownList,
 	MainContainer,
 	DatePicker,
-	DatePickerModal,
+	DatePickerCalendarModal,
+	DatePickerTimeModal,
 	Slider,
 };
