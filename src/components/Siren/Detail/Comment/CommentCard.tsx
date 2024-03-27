@@ -4,13 +4,14 @@ import { flushSync } from "react-dom";
 import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Text } from "@/components/common";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
 import Reply from "@/components/Siren/Detail/Comment/Reply/Reply";
 import ReplyInput from "@/components/Siren/Detail/Comment/Reply/ReplyInput";
 
-import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
 import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
 import useClickOutSide from "@/hooks/useClickOutSide";
+import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -35,7 +36,6 @@ const CommentCard = ({
 }: CommentListInfoType) => {
 	const { replyData } = useReplyQuery(0, commentId);
 
-	const deleteCommentMutation = useDeleteCommentMutation();
 	const editReplyMutation = useEditReplyMutation();
 
 	const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
@@ -50,13 +50,19 @@ const CommentCard = ({
 	const menuRef = useRef<HTMLUListElement>(null);
 	const replyRef = useRef<HTMLTextAreaElement>(null);
 
+	const modal = useModal();
+
 	const memberId = Number(localStorage.getItem("MEMBER_ID"));
 
 	useClickOutSide(menuRef, () => setMenuOpen(false));
 
 	const handleDeleteComment = useCallback(() => {
-		deleteCommentMutation.mutate(commentId);
-	}, [deleteCommentMutation]);
+		modal.openModal({
+			key: `DeleteWarningModal`,
+			component: () => <DeleteWarningModal targetId={commentId} target="comment" />,
+			notCloseIcon: true,
+		});
+	}, []);
 
 	const handleEditReply = useCallback(() => {
 		editReplyMutation.mutate(
@@ -69,7 +75,6 @@ const CommentCard = ({
 				onSuccess: () => {
 					setReplyContent("");
 					setReplyId(0);
-					setIsReplyBoxOpen(false);
 				},
 			},
 		);
