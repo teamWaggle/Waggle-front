@@ -17,7 +17,7 @@ const Email = ({
 	changeEmail: React.Dispatch<React.SetStateAction<string>>;
 	emailRef: React.RefObject<HTMLInputElement>;
 }) => {
-	const { mutateEmailAuthSend } = useEmailAuthSendMutation();
+	const { mutate: mutateEmailAuthSend } = useEmailAuthSendMutation();
 
 	return (
 		<Flex styles={{ direction: "column", gap: "8px" }}>

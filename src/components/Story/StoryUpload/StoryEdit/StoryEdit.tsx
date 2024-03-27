@@ -32,7 +32,7 @@ const StoryEdit = ({
 	hashtagList: string[];
 	storyId: number;
 }) => {
-	const putStoryMutate = usePutStoryMutation();
+	const { mutate: putStoryMutate } = usePutStoryMutation();
 
 	const [newContent, setNewContent] = useState(content);
 	const [newHashtagList] = useState<string[]>(hashtagList);
@@ -54,7 +54,7 @@ const StoryEdit = ({
 
 		formData.append("updateStoryRequest", JSON.stringify(updateStoryRequest));
 
-		putStoryMutate.mutate(
+		putStoryMutate(
 			{
 				storyId,
 				formData,

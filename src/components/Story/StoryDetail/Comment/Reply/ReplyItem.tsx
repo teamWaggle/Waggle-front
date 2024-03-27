@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import { Flex, Box, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
 import Profile from "@/components/Story/StoryDetail/Profile/Profile";
@@ -22,8 +20,6 @@ const ReplyItem = ({
 	createdDate,
 	handleReplyEditClick,
 }: ReplyListInfoType) => {
-	const [date, setDate] = useState("");
-
 	const modal = useModal();
 
 	const handleDeleteReply = () => {
@@ -34,14 +30,6 @@ const ReplyItem = ({
 			notCloseIcon: true,
 		});
 	};
-
-	useEffect(() => {
-		if (createdDate) {
-			const date = new Date(createdDate);
-
-			setDate(convertToUTC(date).date);
-		}
-	}, [createdDate]);
 
 	return (
 		<Flex
@@ -63,7 +51,7 @@ const ReplyItem = ({
 				<Text size="small" css={getCommentTextStyle}>
 					{content}
 				</Text>
-				<Text css={replyDateTextStyle}>{date}</Text>
+				<Text css={replyDateTextStyle}>{convertToUTC(new Date(createdDate)).date}</Text>
 			</Box>
 		</Flex>
 	);
