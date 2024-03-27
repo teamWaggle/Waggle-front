@@ -21,7 +21,7 @@ import {
 const QuestionCard = ({
 	boardId,
 	title,
-	// createdDate,
+	createdDate,
 	hashtagList,
 	status,
 	recommendationInfo,
@@ -37,10 +37,13 @@ const QuestionCard = ({
 				<Heading size="small" css={getDefaultTextStyle(Theme.color.black, 700)}>
 					{title}
 				</Heading>
+				<Text size="xSmall" css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
+					{createdDate}
+				</Text>
 			</Flex>
 
 			<Flex css={kewordBoxStyle}>
-				{hashtagList && hashtagList.map((tag) => <p key={tag}>#{tag}</p>)}
+				{hashtagList && hashtagList.map((tag) => <Text key={tag}>#{tag}</Text>)}
 			</Flex>
 
 			<Box css={contentBoxStyle}>

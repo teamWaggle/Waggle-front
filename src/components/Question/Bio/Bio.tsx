@@ -1,6 +1,8 @@
 import { Flex, Box, Heading, Text } from "@/components/common";
 import { QuestionCard } from "@/components/Question";
 
+import { useQuestionRepresentativeQuery } from "@/hooks/api/question/useQuestionRepresentativeQuery";
+
 import {
 	sectionStyle,
 	boxStyle,
@@ -9,6 +11,8 @@ import {
 } from "@/components/Question/Bio/Bio.style";
 
 const Bio = () => {
+	const { questionRepresentativeListData } = useQuestionRepresentativeQuery();
+
 	return (
 		<Box tag="section" css={sectionStyle}>
 			<Flex css={boxStyle}>
@@ -26,9 +30,18 @@ const Bio = () => {
 				</Flex>
 
 				<Flex styles={{ direction: "column", gap: "24px" }}>
-					<QuestionCard />
-					<QuestionCard />
-					<QuestionCard />
+					{questionRepresentativeListData &&
+						questionRepresentativeListData.result.questionList.map((questionInfo) => (
+							<QuestionCard
+								key={questionInfo.boardId}
+								boardId={questionInfo.boardId}
+								title={questionInfo.title}
+								createdDate={questionInfo.createdDate}
+								hashtagList={questionInfo.hashtagList}
+								status={questionInfo.status}
+								recommendationInfo={questionInfo.recommendationInfo}
+							/>
+						))}
 				</Flex>
 			</Flex>
 		</Box>

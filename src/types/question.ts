@@ -44,3 +44,11 @@ export interface QuestionListInfoType {
 	hashtagList: string[];
 	recommendationInfo: RecommendationInfoType;
 }
+
+export interface QuestionRepresentativeType extends CommonResponseBaseType {
+	result: QuestionRepresentativeResultType;
+}
+
+export interface QuestionRepresentativeResultType {
+	questionList: QuestionListInfoType[];
+}
