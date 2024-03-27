@@ -114,7 +114,8 @@ const CommentCard = ({
 					</Text>
 				</Flex>
 
-				{replyData &&
+				{isReplyBoxOpen &&
+					replyData &&
 					replyData.result.replyList.map((data) => (
 						<Reply
 							key={data.replyId}

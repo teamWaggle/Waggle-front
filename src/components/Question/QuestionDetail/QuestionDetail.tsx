@@ -1,13 +1,14 @@
 import { Flex, Box, Divider } from "@/components/common";
 import QuestionContent from "@/components/Question/QuestionDetail/QuestionContent";
 import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
+import { Comment } from "@/components/Siren/Detail";
 
 import type { QuestionResultType } from "@/types/question";
 
 import { layoutStyle } from "@/components/Question/QuestionDetail/QuestionDetail.style";
 
 const QuestionDetail = ({
-	// boardId,
+	boardId,
 	title,
 	content,
 	createdDate,
@@ -38,7 +39,10 @@ const QuestionDetail = ({
 					recommendationInfo={recommendationInfo}
 				/>
 			</Flex>
+
 			<Divider />
+
+			<Comment boardId={boardId} />
 		</Box>
 	);
 };
