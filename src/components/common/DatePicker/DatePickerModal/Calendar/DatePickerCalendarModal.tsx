@@ -3,34 +3,29 @@ import { useContext, useEffect, useMemo } from "react";
 import LeftArrow from "@/assets/svg/sm-left-arrow.svg?react";
 import RightArrow from "@/assets/svg/sm-right-arrow.svg?react";
 
-import Box from "@/components/common/Box/Box";
 import { DatePickerProvider } from "@/components/common/DatePicker/DatePicker";
-import DatePickerCalendarCard from "@/components/common/DatePicker/DatePickerModal/DatePickerCalendarCard/DatePickerCalendarCard";
-import Flex from "@/components/common/Flex/Flex";
-import Text from "@/components/common/Text/Text";
+import DatePickerCalendarCard from "@/components/common/DatePicker/DatePickerModal/Calendar/DatePickerCalendarCard/DatePickerCalendarCard";
+import ModalContainer from "@/components/common/DatePicker/DatePickerModal/ModalContainer";
+import Box from "@/components/common/Design/Box/Box";
+import Flex from "@/components/common/Design/Flex/Flex";
+import Text from "@/components/common/Design/Text/Text";
 import { startOfMonth, addDays, format, getDay, getDaysInMonth } from "date-fns";
 
 import {
 	datePickerCalendarBoxStyle,
 	datePickerCalendarTitleStyle,
-	datePickerModalBoxStyle,
 	datePickerModalTitleBoxStyle,
-} from "@/components/common/DatePicker/DatePickerModal/DatePickerModal.style";
+} from "@/components/common/DatePicker/DatePickerModal/Calendar/DatePickerCalendarModal.style";
+
 const weekday = ["일", "월", "화", "수", "목", "금", "토"];
 
-const DatePickerModal = () => {
+const DatePickerCalendarModal = () => {
 	useEffect(() => {
 		editCurrentMonth(selectedDate);
 	}, []);
 
-	const {
-		modalClose,
-		currentMonth,
-		selectedDate,
-		handlePrevMonth,
-		handleNextMonth,
-		editCurrentMonth,
-	} = useContext(DatePickerProvider);
+	const { currentMonth, selectedDate, handlePrevMonth, handleNextMonth, editCurrentMonth } =
+		useContext(DatePickerProvider);
 
 	const CalendarDateCards = useMemo(() => {
 		const monthStart = startOfMonth(currentMonth);
@@ -44,12 +39,12 @@ const DatePickerModal = () => {
 			return addDays(monthStart, i - firstDayOfMonth);
 		});
 		return calendarArray.map((day) => {
-			return <DatePickerCalendarCard modalClose={modalClose} day={day} />;
+			return <DatePickerCalendarCard day={day} />;
 		});
 	}, [currentMonth]);
 
 	return (
-		<Box css={datePickerModalBoxStyle}>
+		<ModalContainer style={{ padding: "12px", width: "286px" }}>
 			<Flex css={datePickerModalTitleBoxStyle}>
 				<Text css={datePickerCalendarTitleStyle} size="xSmall">
 					{format(currentMonth, "yyyy년 M월")}
@@ -69,8 +64,8 @@ const DatePickerModal = () => {
 				})}
 				{CalendarDateCards}
 			</Box>
-		</Box>
+		</ModalContainer>
 	);
 };
 
-export default DatePickerModal;
+export default DatePickerCalendarModal;

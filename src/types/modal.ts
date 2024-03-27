@@ -7,6 +7,7 @@ export interface ModalType {
 	isWhiteIcon?: boolean;
 	close?: () => void;
 	isUpper?: boolean;
+	isOutsideClose?: boolean;
 }
 
 export interface MoreModalStateType {

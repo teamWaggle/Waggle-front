@@ -2,19 +2,6 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const datePickerModalBoxStyle = css({
-	position: "absolute",
-	width: "286px",
-	height: "fit-content",
-	top: "110%",
-	left: 0,
-	zIndex: 10,
-	border: `1px solid ${Theme.color.border}`,
-	borderRadius: "4px",
-	backgroundColor: Theme.color.white,
-	padding: "12px",
-});
-
 export const datePickerModalTitleBoxStyle = css({
 	alignItems: "center",
 	justifyContent: "space-between",
