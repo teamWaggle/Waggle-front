@@ -6,11 +6,8 @@ export interface QuestionType extends CommonResponseBaseType {
 	result: QuestionResultType;
 }
 
-export interface QuestionResultType extends QuestionTitleType {
+export interface QuestionResultType extends QuestionTitleType, QuestionContentType {
 	boardId: number;
-	content: string;
-	mediaList: string[];
-	recommendationInfo: RecommendationInfoType;
 }
 
 export interface QuestionTitleType {
@@ -20,6 +17,12 @@ export interface QuestionTitleType {
 	member: MemberType;
 	viewCount: number;
 	createdDate: string;
+}
+
+export interface QuestionContentType {
+	content: string;
+	recommendationInfo: RecommendationInfoType;
+	mediaList: string[];
 }
 
 export interface QuestionListType extends CommonResponseBaseType {
