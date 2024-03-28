@@ -8,6 +8,8 @@ import { Flex, Box, Heading, Text } from "@/components/common";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import { convertToUTC } from "@/utils/convertToUTC";
+
 import type { QuestionListInfoType } from "@/types/question";
 
 import {
@@ -38,7 +40,7 @@ const QuestionCard = ({
 					{title}
 				</Heading>
 				<Text size="xSmall" css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
-					{createdDate}
+					{convertToUTC(new Date(createdDate)).date}
 				</Text>
 			</Flex>
 

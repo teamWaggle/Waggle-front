@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import { flushSync } from "react-dom";
 
 import OptionIcon from "@/assets/svg/option.svg?react";
@@ -40,7 +40,6 @@ const CommentCard = ({
 
 	const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
-	const [date, setDate] = useState("");
 
 	const [replyContent, setReplyContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
@@ -93,14 +92,6 @@ const CommentCard = ({
 		setReplyButtonText("수정");
 	}, []);
 
-	useEffect(() => {
-		if (createdDate) {
-			const date = new Date(createdDate);
-
-			setDate(convertToUTC(date).date);
-		}
-	}, [createdDate]);
-
 	return (
 		<Flex css={commentCardBoxStyle}>
 			<img src={member.profileImgUrl} alt="profileImg" />
@@ -110,7 +101,7 @@ const CommentCard = ({
 					<Flex styles={{ gap: "14px", align: "center" }}>
 						<Text css={getDefaultTextStyle(Theme.color.text, 500)}>{member.nickname}</Text>
 						<Text size="small" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
-							{date}
+							{convertToUTC(new Date(createdDate)).date}
 						</Text>
 					</Flex>
 
