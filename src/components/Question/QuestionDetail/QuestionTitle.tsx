@@ -1,11 +1,6 @@
-import { useState, useRef } from "react";
-
-import OptionIcon from "@/assets/svg/option.svg?react";
-
 import { Flex, Heading, Text } from "@/components/common";
 import PostProfile from "@/components/common/Post/PostProfile";
-
-import useClickOutSide from "@/hooks/useClickOutSide";
+import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -13,8 +8,6 @@ import { Theme } from "@/styles/Theme";
 import type { QuestionTitleType } from "@/types/question";
 
 import { titleBoxStyle, tagStyle, keywordBoxStyle } from "@/components/common/Post/PostTitle.style";
-import { menuStyle } from "@/components/Siren/Detail/Comment/Comment.style";
-import { moreButtonStyle } from "@/components/Siren/Detail/Comment/Reply/Reply.style";
 
 const QuestionTitle = ({
 	status,
@@ -26,13 +19,7 @@ const QuestionTitle = ({
 	handleEditQuestion,
 	handleDeleteQuestion,
 }: QuestionTitleType) => {
-	const [menuOpen, setMenuOpen] = useState(false);
-
-	const menuRef = useRef<HTMLUListElement>(null);
-
 	const memberId = Number(localStorage.getItem("MEMBER_ID"));
-
-	useClickOutSide(menuRef, () => setMenuOpen(false));
 
 	return (
 		<Flex css={titleBoxStyle}>
@@ -56,16 +43,10 @@ const QuestionTitle = ({
 			<PostProfile member={member} viewCount={viewCount} createdDate={createdDate} />
 
 			{member.memberId === memberId && (
-				<Flex css={moreButtonStyle}>
-					<OptionIcon onClick={() => setMenuOpen((prev) => !prev)} />
-
-					{menuOpen && (
-						<ul css={menuStyle} ref={menuRef}>
-							<li onClick={handleEditQuestion}>수정하기</li>
-							<li onClick={handleDeleteQuestion}>삭제하기</li>
-						</ul>
-					)}
-				</Flex>
+				<ProfileOptionMenu
+					handleEditMenu={handleEditQuestion}
+					handleDeleteMenu={handleDeleteQuestion}
+				/>
 			)}
 		</Flex>
 	);
