@@ -9,6 +9,8 @@ import useClickOutSide from "@/hooks/useClickOutSide";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import { convertToUTC } from "@/utils/convertToUTC";
+
 import type { QuestionTitleType } from "@/types/question";
 
 import {
@@ -58,7 +60,7 @@ const QuestionTitle = ({
 				<Text>
 					<span>{member.nickname}</span>
 					<span>조회 {viewCount}</span>
-					<span>{createdDate}</span>
+					<span>{convertToUTC(new Date(createdDate)).date}</span>
 				</Text>
 			</Flex>
 
