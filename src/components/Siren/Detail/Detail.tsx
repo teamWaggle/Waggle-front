@@ -30,7 +30,6 @@ const Detail = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
 			component: () => <DeleteWarningModal targetId={sirenId} target="siren" />,
-			isUpper: true,
 			notCloseIcon: true,
 		});
 	};

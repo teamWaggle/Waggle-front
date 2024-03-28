@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 
-import { Flex, Heading, Text } from "@/components/common";
+import { Flex, Box, Heading, Text } from "@/components/common";
 
 import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
+import { useDeleteQuestionMutation } from "@/hooks/api/question/useDeleteQuestionMutation";
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import { useDeleteSirenMutation } from "@/hooks/api/siren/useDeleteSirenMutation";
 import { useDeleteStoryMutation } from "@/hooks/api/story/useDeleteStoryMutation";
@@ -11,14 +12,14 @@ import useModal from "@/hooks/useModal";
 import {
 	layoutStyle,
 	buttonBoxStyle,
-	buttonStyle,
 } from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal.style";
 
 const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: string }) => {
-	const deleteCommentMutation = useDeleteCommentMutation();
-	const deleteReplyMutation = useDeleteRelpyMutation();
-	const deleteStoryMutation = useDeleteStoryMutation();
-	const deleteSirenMutation = useDeleteSirenMutation();
+	const { mutate: deleteCommentMutation } = useDeleteCommentMutation();
+	const { mutate: deleteReplyMutation } = useDeleteRelpyMutation();
+	const { mutate: deleteStoryMutation } = useDeleteStoryMutation();
+	const { mutate: deleteSirenMutation } = useDeleteSirenMutation();
+	const { mutate: deleteQuestionMutation } = useDeleteQuestionMutation();
 
 	const mutation =
 		target === "comment"
@@ -27,18 +28,22 @@ const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: st
 			  ? deleteReplyMutation
 			  : target === "story"
 			    ? deleteStoryMutation
-			    : deleteSirenMutation;
+			    : target === "siren"
+			      ? deleteSirenMutation
+			      : deleteQuestionMutation;
 
 	const modal = useModal();
 
 	const handleDeleteClick = useCallback(() => {
-		mutation.mutate(targetId, {
+		mutation(targetId, {
 			onSuccess: () => {
 				modal.selectCloseModal(`DeleteWarningModal`);
 
 				target === "story" && modal.closeModal();
 
 				target === "siren" && (window.location.href = "/siren");
+
+				target === "question" && (window.location.href = "/question");
 			},
 		});
 	}, []);
@@ -52,18 +57,18 @@ const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: st
 			<Heading size="xSmall" style={{ marginTop: "32px" }}>
 				{target === "comment" ? "댓글" : target === "reply" ? "답글" : "게시물"}을 삭제하시겠어요?
 			</Heading>
+
 			<Text size="small" style={{ margin: "6px 0 12px" }}>
 				삭제하시면 {target === "comment" ? "댓글" : target === "reply" ? "답글" : "게시물"} 내용은
 				되돌릴 수 없습니다.
 			</Text>
-			<div css={buttonBoxStyle}>
-				<button css={buttonStyle} onClick={handleDeleteClick} className="deleteButton">
+
+			<Box css={buttonBoxStyle}>
+				<button onClick={handleDeleteClick} className="deleteButton">
 					삭제
 				</button>
-				<button css={buttonStyle} onClick={handleCancelClick}>
-					취소
-				</button>
-			</div>
+				<button onClick={handleCancelClick}>취소</button>
+			</Box>
 		</Flex>
 	);
 };

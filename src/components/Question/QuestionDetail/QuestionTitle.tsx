@@ -29,7 +29,8 @@ const QuestionTitle = ({
 	member,
 	viewCount,
 	createdDate,
-	handleEditSiren,
+	handleEditQuestion,
+	handleDeleteQuestion,
 }: QuestionTitleType) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -71,8 +72,8 @@ const QuestionTitle = ({
 
 					{menuOpen && (
 						<ul css={menuStyle} ref={menuRef}>
-							<li onClick={handleEditSiren}>수정하기</li>
-							<li>삭제하기</li>
+							<li onClick={handleEditQuestion}>수정하기</li>
+							<li onClick={handleDeleteQuestion}>삭제하기</li>
 						</ul>
 					)}
 				</Flex>
