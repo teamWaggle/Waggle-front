@@ -1,57 +1,58 @@
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
 import QuestionContent from "@/components/Question/QuestionDetail/QuestionContent";
 import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
 import { Comment } from "@/components/Siren/Detail";
 
-import type { QuestionResultType } from "@/types/question";
+import { useQuestionQuery } from "@/hooks/api/question/useQuestionQuery";
 
 import { layoutStyle } from "@/components/Question/QuestionDetail/QuestionDetail.style";
 
-const QuestionDetail = ({
-	boardId,
-	title,
-	content,
-	createdDate,
-	hashtagList,
-	mediaList,
-	member,
-	recommendationInfo,
-	status,
-	viewCount,
-}: QuestionResultType) => {
+const QuestionDetail = () => {
+	const param = useParams();
+
+	const questionId = Number(param.id);
+
+	const { questionData } = useQuestionQuery(questionId);
+
 	const navigate = useNavigate();
 
 	const handleEditSiren = () => {
-		navigate(`/question/view/${boardId}?mode=edit`);
+		if (!questionData) return;
+
+		navigate(`/question/view/${questionId}?mode=edit`);
 	};
+
+	if (!questionData) {
+		return <div>로딩중...</div>;
+	}
 
 	return (
 		<Box tag="main">
 			<Flex css={layoutStyle}>
 				<QuestionTitle
-					status={status}
-					title={title}
-					hashtagList={hashtagList}
-					member={member}
-					viewCount={viewCount}
-					createdDate={createdDate}
+					status={questionData.result.status}
+					title={questionData.result.title}
+					hashtagList={questionData.result.hashtagList}
+					member={questionData.result.member}
+					viewCount={questionData.result.viewCount}
+					createdDate={questionData.result.createdDate}
 					handleEditSiren={handleEditSiren}
 				/>
 
 				<Divider length="100%" />
 
 				<QuestionContent
-					content={content}
-					mediaList={mediaList}
-					recommendationInfo={recommendationInfo}
+					content={questionData.result.content}
+					mediaList={questionData.result.mediaList}
+					recommendationInfo={questionData.result.recommendationInfo}
 				/>
 			</Flex>
 
 			<Divider />
 
-			<Comment boardId={boardId} />
+			<Comment boardId={questionData.result.boardId} />
 		</Box>
 	);
 };
