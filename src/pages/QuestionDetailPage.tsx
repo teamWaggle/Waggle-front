@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useSearchParams, useParams } from "react-router-dom";
 
 import QuestionDetail from "@/components/Question/QuestionDetail/QuestionDetail";
+import QuestionEdit from "@/components/Question/QuestionEdit/QuestionEdit";
 
 import { useQuestionQuery } from "@/hooks/api/question/useQuestionQuery";
 
@@ -9,22 +10,33 @@ const QuestionDetailPage = () => {
 
 	const { questionData } = useQuestionQuery(Number(param.id));
 
+	const [searchParams] = useSearchParams();
+
 	return (
 		<>
-			{questionData && (
-				<QuestionDetail
-					boardId={questionData.result.boardId}
-					title={questionData.result.title}
-					content={questionData.result.content}
-					createdDate={questionData.result.createdDate}
-					hashtagList={questionData.result.hashtagList}
-					mediaList={questionData.result.mediaList}
-					member={questionData.result.member}
-					recommendationInfo={questionData.result.recommendationInfo}
-					status={questionData.result.status}
-					viewCount={questionData.result.viewCount}
-				/>
-			)}
+			{questionData &&
+				(searchParams.get("mode") === "edit" ? (
+					<QuestionEdit
+						boardId={questionData.result.boardId}
+						title={questionData.result.title}
+						content={questionData.result.content}
+						hashtagList={questionData.result.hashtagList}
+						mediaList={questionData.result.mediaList}
+					/>
+				) : (
+					<QuestionDetail
+						boardId={questionData.result.boardId}
+						title={questionData.result.title}
+						content={questionData.result.content}
+						createdDate={questionData.result.createdDate}
+						hashtagList={questionData.result.hashtagList}
+						mediaList={questionData.result.mediaList}
+						member={questionData.result.member}
+						recommendationInfo={questionData.result.recommendationInfo}
+						status={questionData.result.status}
+						viewCount={questionData.result.viewCount}
+					/>
+				))}
 		</>
 	);
 };

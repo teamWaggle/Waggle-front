@@ -29,6 +29,7 @@ const QuestionTitle = ({
 	member,
 	viewCount,
 	createdDate,
+	handleEditSiren,
 }: QuestionTitleType) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -70,7 +71,7 @@ const QuestionTitle = ({
 
 					{menuOpen && (
 						<ul css={menuStyle} ref={menuRef}>
-							<li>수정하기</li>
+							<li onClick={handleEditSiren}>수정하기</li>
 							<li>삭제하기</li>
 						</ul>
 					)}

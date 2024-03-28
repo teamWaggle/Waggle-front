@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { Flex, Box, Divider } from "@/components/common";
 import QuestionContent from "@/components/Question/QuestionDetail/QuestionContent";
 import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
@@ -19,6 +21,12 @@ const QuestionDetail = ({
 	status,
 	viewCount,
 }: QuestionResultType) => {
+	const navigate = useNavigate();
+
+	const handleEditSiren = () => {
+		navigate(`/question/view/${boardId}?mode=edit`);
+	};
+
 	return (
 		<Box tag="main">
 			<Flex css={layoutStyle}>
@@ -29,6 +37,7 @@ const QuestionDetail = ({
 					member={member}
 					viewCount={viewCount}
 					createdDate={createdDate}
+					handleEditSiren={handleEditSiren}
 				/>
 
 				<Divider length="100%" />
