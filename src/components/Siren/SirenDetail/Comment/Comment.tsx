@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
-import CommentCard from "@/components/Siren/Detail/Comment/CommentCard";
+import CommentCard from "@/components/Siren/SirenDetail/Comment/CommentCard";
 
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
 import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
@@ -11,7 +11,7 @@ import {
 	commentBoxStyle,
 	commentTextareaStyle,
 	submitButtonStyle,
-} from "@/components/Siren/Detail/Comment/Comment.style";
+} from "@/components/Siren/SirenDetail/Comment/Comment.style";
 
 const Comment = ({ boardId }: { boardId: number }) => {
 	const { commentData } = useCommentQuery(0, boardId);

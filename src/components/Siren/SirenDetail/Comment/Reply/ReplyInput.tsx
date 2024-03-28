@@ -5,7 +5,7 @@ import { usePostReplyMutation } from "@/hooks/api/reply/usePostReplyMutation";
 import {
 	commentTextareaStyle,
 	submitButtonStyle,
-} from "@/components/Siren/Detail/Comment/Comment.style";
+} from "@/components/Siren/SirenDetail/Comment/Comment.style";
 
 interface ReplyInputProps {
 	commentId: number;
