@@ -10,8 +10,6 @@ const SirenDetailPage = () => {
 
 	const { sirenData } = useSirenQuery(Number(param.id));
 
-	console.log(sirenData);
-
 	const [searchParams] = useSearchParams();
 
 	return (

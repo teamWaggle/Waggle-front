@@ -23,19 +23,6 @@ export const inputStyle = css({
 	},
 });
 
-export const tagStyle = (color: string) => {
-	return css({
-		justifyContent: "center",
-		alignItems: "center",
-		padding: "4px 10px",
-		borderRadius: "18px",
-		backgroundColor: color,
-		color: Theme.color.text,
-		cursor: "pointer",
-		fontWeight: 500,
-	});
-};
-
 export const contentTextareaStyle = css({
 	width: "536px",
 	height: "466px",
