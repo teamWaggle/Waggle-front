@@ -24,7 +24,7 @@ import {
 } from "@/components/Siren/Upload/Upload.style";
 
 const Upload = () => {
-	const postSirenMutate = usePostSirenMutation();
+	const { mutate: postSirenMutate } = usePostSirenMutation();
 
 	const [title, setTitle] = useState("");
 	const [category, setCategory] = useState("임시보호");
@@ -60,7 +60,7 @@ const Upload = () => {
 
 		formData.append("createSirenRequest", JSON.stringify(createSirenRequest));
 
-		postSirenMutate.mutate(formData, {
+		postSirenMutate(formData, {
 			onSuccess: () => {
 				navigate("/siren");
 			},

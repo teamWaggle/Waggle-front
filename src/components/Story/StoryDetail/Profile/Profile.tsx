@@ -23,6 +23,7 @@ interface ProfileType {
 
 const Profile = ({ img, nickname, ownerId, editClick, deleteClick }: ProfileType) => {
 	const [menuOpen, setMenuOpen] = useState(false);
+
 	const memberId = Number(localStorage.getItem("MEMBER_ID"));
 
 	return (

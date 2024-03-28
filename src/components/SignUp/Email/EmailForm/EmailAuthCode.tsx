@@ -21,10 +21,10 @@ const EmailAuthCode = ({
 	emailAuthComplete: React.Dispatch<React.SetStateAction<boolean>>;
 	emailAuthCodeRef: React.RefObject<HTMLInputElement>;
 }) => {
-	const emailAuthVerifyMutation = useEmailAuthVerifyMutation();
+	const { mutate: emailAuthVerifyMutation } = useEmailAuthVerifyMutation();
 
 	const handleEmailAuthVerify = () => {
-		emailAuthVerifyMutation.mutate(
+		emailAuthVerifyMutation(
 			{ email, authCode: emailAuthCode },
 			{
 				onSuccess: () => emailAuthComplete(true),

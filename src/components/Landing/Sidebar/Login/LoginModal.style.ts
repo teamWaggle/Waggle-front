@@ -8,6 +8,8 @@ export const layoutStyle = css({
 	padding: "70px 40px 0",
 	width: "390px",
 	height: "490px",
+	flexDirection: "column",
+	alignItems: "center",
 });
 
 export const inputStyle = css({

@@ -36,7 +36,7 @@ const SirenEdit = ({
 	content,
 	mediaList,
 }: SirenEditType) => {
-	const putSirenMutate = usePutSirenMutation();
+	const { mutate: putSirenMutate } = usePutSirenMutation();
 
 	const [newTitle, setNewTitle] = useState(title);
 	const [newCategory, setNewCategory] = useState(generateTagName(category));
@@ -72,7 +72,7 @@ const SirenEdit = ({
 
 		formData.append("updateSirenRequest", JSON.stringify(updateSirenRequest));
 
-		putSirenMutate.mutate(
+		putSirenMutate(
 			{
 				sirenId: boardId,
 				formData,

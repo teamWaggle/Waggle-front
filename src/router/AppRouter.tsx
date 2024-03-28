@@ -5,6 +5,7 @@ import App from "@/App";
 import {
 	PlanningPage,
 	QuestionPage,
+	QuestionDetailPage,
 	SignUpPage,
 	SirenCreatePage,
 	SirenDetailPage,
@@ -36,6 +37,10 @@ const AppRouter = () => {
 				{
 					path: "/question",
 					element: <QuestionPage />,
+				},
+				{
+					path: "/question/view/:id",
+					element: <QuestionDetailPage />,
 				},
 				{
 					path: "/siren/view/:id",

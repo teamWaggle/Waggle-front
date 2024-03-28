@@ -16,8 +16,8 @@ import {
 const Comment = ({ boardId }: { boardId: number }) => {
 	const { commentData } = useCommentQuery(0, boardId);
 
-	const postCommentMutation = usePostCommentMutation();
-	const editCommentMutation = useEditCommentMutation();
+	const { mutate: postCommentMutation } = usePostCommentMutation();
+	const { mutate: editCommentMutation } = useEditCommentMutation();
 
 	const [content, setContent] = useState("");
 	const [mentionedMemberList] = useState<string[]>(["test"]);
@@ -27,7 +27,7 @@ const Comment = ({ boardId }: { boardId: number }) => {
 	const commentRef = useRef<HTMLTextAreaElement>(null);
 
 	const handleAddComment = useCallback(() => {
-		postCommentMutation.mutate(
+		postCommentMutation(
 			{ content, mentionedMemberList, boardId },
 			{
 				onSuccess: () => {
@@ -35,10 +35,10 @@ const Comment = ({ boardId }: { boardId: number }) => {
 				},
 			},
 		);
-	}, [postCommentMutation]);
+	}, []);
 
 	const handleEditComment = useCallback(() => {
-		editCommentMutation.mutate(
+		editCommentMutation(
 			{
 				content,
 				mentionedMemberList,
@@ -51,7 +51,7 @@ const Comment = ({ boardId }: { boardId: number }) => {
 				},
 			},
 		);
-	}, [editCommentMutation]);
+	}, []);
 
 	const handleEditClick = useCallback((content: string, commentId: number) => {
 		if (!commentRef.current) return;
