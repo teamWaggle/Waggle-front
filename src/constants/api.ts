@@ -32,6 +32,9 @@ export const END_POINTS = {
 	REPLY: (replyId: number) => `/api/replies/${replyId}`,
 	PET: "/api/pets",
 	MEDIA: "/api/media/list",
+	QUESTIONS: (currentPage: number) => `/api/questions?currentPage=${currentPage}`,
+	QUESTION: (questionId: number) => `/api/questions/${questionId}`,
+	QUESTION_REPRESENTATIVE: `/api/questions/representative`,
 };
 
 export const HTTP_STATUS_CODE = {

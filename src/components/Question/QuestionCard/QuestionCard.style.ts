@@ -11,18 +11,21 @@ export const cardStyle = css({
 	width: "754px",
 	height: "160px",
 	flexDirection: "column",
-	gap: "14px",
+	justifyContent: "center",
+	gap: "10px",
+	cursor: "pointer",
 });
 
-export const resolveStyle = css({
-	backgroundColor: Theme.color.btn_success,
-	color: Theme.color.text,
-	padding: "6px 10px",
-	borderRadius: "18px",
-	alignItems: "center",
-	justifyContent: "center",
-	fontWeight: 500,
-});
+export const resolveStyle = (isResolve: boolean) =>
+	css({
+		backgroundColor: isResolve ? Theme.color.btn_success : Theme.color.btn_danger,
+		color: Theme.color.text,
+		padding: "6px 10px",
+		borderRadius: "18px",
+		alignItems: "center",
+		justifyContent: "center",
+		fontWeight: 500,
+	});
 
 export const kewordBoxStyle = css({
 	gap: "18px",
@@ -41,12 +44,18 @@ export const contentBoxStyle = css({
 	fontWeight: 500,
 });
 
-export const iconStyle = css({
-	position: "absolute",
-	top: "18px",
-	right: "24px",
-	flexDirection: "column",
-	justifyContent: "center",
-	alignItems: "center",
-	gap: "8px",
-});
+export const iconStyle = (isRecommend: boolean) =>
+	css({
+		position: "absolute",
+		top: "18px",
+		right: "24px",
+		flexDirection: "column",
+		justifyContent: "center",
+		alignItems: "center",
+		gap: "8px",
+
+		"& > p": {
+			fontWeight: 500,
+			color: isRecommend ? Theme.color.brand_primary : Theme.color.btn_success,
+		},
+	});

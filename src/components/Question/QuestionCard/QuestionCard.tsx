@@ -1,9 +1,14 @@
-import LikeIcon from "@/assets/svg/question-like.svg?react";
+import { useNavigate } from "react-router-dom";
+
+import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
+import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
+import type { QuestionListInfoType } from "@/types/question";
 
 import {
 	cardStyle,
@@ -13,21 +18,32 @@ import {
 	iconStyle,
 } from "@/components/Question/QuestionCard/QuestionCard.style";
 
-const QuestionCard = () => {
+const QuestionCard = ({
+	boardId,
+	title,
+	createdDate,
+	hashtagList,
+	status,
+	recommendationInfo,
+}: QuestionListInfoType) => {
+	const navigate = useNavigate();
+
 	return (
-		<Flex css={cardStyle}>
+		<Flex css={cardStyle} onClick={() => navigate(`/question/view/${boardId}`)}>
 			<Flex styles={{ gap: "16px", align: "center" }}>
-				<Flex css={resolveStyle}>해결</Flex>
+				<Flex css={resolveStyle(status === "RESOLVED")}>
+					{status === "RESOLVED" ? "해결" : "미해결"}
+				</Flex>
 				<Heading size="small" css={getDefaultTextStyle(Theme.color.black, 700)}>
-					프리랜서의 성공 비결:시간 관리와 자기관리
+					{title}
 				</Heading>
+				<Text size="xSmall" css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
+					{createdDate}
+				</Text>
 			</Flex>
 
 			<Flex css={kewordBoxStyle}>
-				<p>#핵심키워드1</p>
-				<p>#핵심키워드1</p>
-				<p>#핵심키워드1</p>
-				<p>#핵심키워드1</p>
+				{hashtagList && hashtagList.map((tag) => <Text key={tag}>#{tag}</Text>)}
 			</Flex>
 
 			<Box css={contentBoxStyle}>
@@ -38,11 +54,13 @@ const QuestionCard = () => {
 					우는 벌레는 부끄러운 이름을 슬퍼하는 까닭입니다
 				</Text>
 			</Box>
+			{recommendationInfo && (
+				<Flex css={iconStyle(recommendationInfo.isRecommend)}>
+					{recommendationInfo.isRecommend ? <LikeIcon /> : <DisLikeIcon />}
 
-			<Flex css={iconStyle}>
-				<LikeIcon />
-				<Text css={getDefaultTextStyle(Theme.color.brand_primary, 500)}>45</Text>
-			</Flex>
+					<Text>{recommendationInfo.recommendCount}</Text>
+				</Flex>
+			)}
 		</Flex>
 	);
 };
