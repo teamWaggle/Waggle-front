@@ -24,18 +24,7 @@ const QuestionDetailPage = () => {
 						mediaList={questionData.result.mediaList}
 					/>
 				) : (
-					<QuestionDetail
-						boardId={questionData.result.boardId}
-						title={questionData.result.title}
-						content={questionData.result.content}
-						createdDate={questionData.result.createdDate}
-						hashtagList={questionData.result.hashtagList}
-						mediaList={questionData.result.mediaList}
-						member={questionData.result.member}
-						recommendationInfo={questionData.result.recommendationInfo}
-						status={questionData.result.status}
-						viewCount={questionData.result.viewCount}
-					/>
+					<QuestionDetail />
 				))}
 		</>
 	);

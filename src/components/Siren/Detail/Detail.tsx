@@ -64,7 +64,7 @@ const Detail = () => {
 			)}
 
 			<Divider />
-			{sirenData && <Comment boardId={sirenData?.result.boardId} />}
+			{sirenData && <Comment boardId={sirenData.result.boardId} />}
 		</Box>
 	);
 };

@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Heading, Text, Carousel } from "@/components/common";
+
+import { usePutQuestionMutation } from "@/hooks/api/question/usePutQuestionMutation";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -14,11 +17,43 @@ import {
 	uploadButtonStyle,
 } from "@/components/Question/QuestionUpload/QuestionUpload.style";
 
-const QuestionEdit = ({ title, content, mediaList }: QuestionEditType) => {
+const QuestionEdit = ({ boardId, title, content, mediaList, hashtagList }: QuestionEditType) => {
+	const { mutate: putQuestionMutate } = usePutQuestionMutation();
+
 	const [newTitle, setNewTitle] = useState(title);
 	const [newContent, setNewContent] = useState(content);
+	const [newHashtagList] = useState(hashtagList);
 
 	const [updateMediaList, setUpdateMediaList] = useState<string[]>(mediaList);
+
+	const navigate = useNavigate();
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		const formData = new FormData();
+
+		const updateQuestionRequest = {
+			title: newTitle,
+			content: newContent,
+			hashtagList: newHashtagList,
+			mediaList: updateMediaList,
+		};
+
+		formData.append("updateQuestionRequest", JSON.stringify(updateQuestionRequest));
+
+		putQuestionMutate(
+			{
+				questionId: boardId,
+				formData,
+			},
+			{
+				onSuccess: () => {
+					navigate(`/question/view/${boardId}`);
+				},
+			},
+		);
+	};
 
 	return (
 		<Box tag="section" css={layoutStyle}>
@@ -61,8 +96,8 @@ const QuestionEdit = ({ title, content, mediaList }: QuestionEditType) => {
 				/>
 			</Flex>
 
-			<button css={uploadButtonStyle}>
-				<Text size="xLarge">글 작성하기</Text>
+			<button css={uploadButtonStyle} onClick={handleSubmit}>
+				<Text size="xLarge">글 수정하기</Text>
 			</button>
 		</Box>
 	);
