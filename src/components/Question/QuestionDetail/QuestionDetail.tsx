@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
-import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
 import QuestionContent from "@/components/Question/QuestionDetail/QuestionContent";
 import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
 import { Comment } from "@/components/Siren/Detail";
@@ -9,6 +8,7 @@ import { Comment } from "@/components/Siren/Detail";
 import { useQuestionQuery } from "@/hooks/api/question/useQuestionQuery";
 import useModal from "@/hooks/useModal";
 
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
 import { layoutStyle } from "@/components/Question/QuestionDetail/QuestionDetail.style";
 
 const QuestionDetail = () => {

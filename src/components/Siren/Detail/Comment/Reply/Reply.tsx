@@ -3,7 +3,7 @@ import { useState, useRef, useCallback } from "react";
 import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Text } from "@/components/common";
-import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
 import useModal from "@/hooks/useModal";
