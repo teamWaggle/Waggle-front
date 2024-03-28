@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import { Flex, Box, Heading, Text } from "@/components/common";
 import { QuestionCard } from "@/components/Question";
 
@@ -13,6 +15,8 @@ import {
 const Bio = () => {
 	const { questionRepresentativeListData } = useQuestionRepresentativeQuery();
 
+	const navigate = useNavigate();
+
 	return (
 		<Box tag="section" css={sectionStyle}>
 			<Flex css={boxStyle}>
@@ -24,7 +28,7 @@ const Bio = () => {
 						<Heading size="small">답을 찾아보세요!</Heading>
 					</Flex>
 
-					<button css={buttonStyle}>
+					<button css={buttonStyle} onClick={() => navigate("/question-new")}>
 						<Text size="xLarge">글 작성하기</Text>
 					</button>
 				</Flex>

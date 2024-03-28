@@ -1,5 +1,6 @@
 import LandingPage from "./LandingPage/LandingPage";
 import PlanningPage from "./PlanningPage";
+import QuestionCreatePage from "./QuestionCreatePage";
 import QuestionDetailPage from "./QuestionDetailPage";
 import QuestionPage from "./QuestionPage";
 import SignUpPage from "./SignUpPage";
@@ -12,6 +13,7 @@ export {
 	LandingPage,
 	QuestionPage,
 	QuestionDetailPage,
+	QuestionCreatePage,
 	SirenDetailPage,
 	SirenPage,
 	SignUpPage,

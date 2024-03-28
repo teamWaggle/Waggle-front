@@ -6,6 +6,7 @@ import {
 	PlanningPage,
 	QuestionPage,
 	QuestionDetailPage,
+	QuestionCreatePage,
 	SignUpPage,
 	SirenCreatePage,
 	SirenDetailPage,
@@ -41,6 +42,10 @@ const AppRouter = () => {
 				{
 					path: "/question/view/:id",
 					element: <QuestionDetailPage />,
+				},
+				{
+					path: "/question-new",
+					element: <QuestionCreatePage />,
 				},
 				{
 					path: "/siren/view/:id",

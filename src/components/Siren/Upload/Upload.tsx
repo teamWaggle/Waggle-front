@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Box, Divider, Heading, Text, Carousel } from "@/components/common";
+import { Flex, Box, Heading, Text, Carousel } from "@/components/common";
 import UploadInfo from "@/components/Siren/Upload/UploadInfo/UploadInfo";
 import UploadMedia from "@/components/Siren/Upload/UploadMedia/UploadMedia";
 
@@ -80,8 +80,6 @@ const Upload = () => {
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
 			/>
-
-			<Divider length="100%" />
 
 			<Box styles={{ marginTop: "60px" }}>
 				<Text size="xLarge" css={getDefaultTextStyle(Theme.color.input_text, 500)}>
