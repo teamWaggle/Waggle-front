@@ -4,14 +4,14 @@ import { Flex, Text } from "@/components/common";
 
 import { useDragAndDrop } from "@/hooks/useDragAndDrop";
 
-import { uploadMediaBoxStyle } from "@/components/Siren/SirenUpload/UploadMedia/UploadMedia.style";
+import { uploadMediaBoxStyle } from "@/components/common/Post/PostUploadMedia/PostUploadMedia.style";
 
-interface UploadMediaProps {
+interface PostUploadMediaProps {
 	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	dropImgUpload: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
-const UploadMedia = ({ handleImgUpload, dropImgUpload }: UploadMediaProps) => {
+const PostUploadMedia = ({ handleImgUpload, dropImgUpload }: PostUploadMediaProps) => {
 	const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
 		useDragAndDrop(dropImgUpload);
 
@@ -39,4 +39,4 @@ const UploadMedia = ({ handleImgUpload, dropImgUpload }: UploadMediaProps) => {
 	);
 };
 
-export default UploadMedia;
+export default PostUploadMedia;

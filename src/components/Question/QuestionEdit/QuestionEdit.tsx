@@ -10,10 +10,10 @@ import { Theme } from "@/styles/Theme";
 
 import type { QuestionEditType } from "@/types/question";
 
+import { contentTextareaStyle } from "@/components/common/Post/PostUpload/PostUpload.style";
 import {
 	layoutStyle,
 	inputStyle,
-	contentTextareaStyle,
 	uploadButtonStyle,
 } from "@/components/Question/QuestionUpload/QuestionUpload.style";
 

@@ -1,9 +1,9 @@
-import Upload from "@/components/Siren/SirenUpload/Upload";
+import SirenUpload from "@/components/Siren/SirenUpload/SirenUpload";
 
 const SirenCreatePage = () => {
 	return (
 		<>
-			<Upload />
+			<SirenUpload />
 		</>
 	);
 };

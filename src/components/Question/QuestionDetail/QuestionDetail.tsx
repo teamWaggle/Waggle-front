@@ -18,6 +18,8 @@ const QuestionDetail = () => {
 
 	const { questionData } = useQuestionQuery(questionId);
 
+	console.log(questionData);
+
 	const navigate = useNavigate();
 
 	const modal = useModal();
@@ -39,6 +41,8 @@ const QuestionDetail = () => {
 	if (!questionData) {
 		return <div>로딩중...</div>;
 	}
+
+	console.log(questionData.result.mediaList);
 
 	return (
 		<Box tag="main">
