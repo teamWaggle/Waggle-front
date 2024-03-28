@@ -17,6 +17,15 @@ export interface QuestionTitleType {
 	member: MemberType;
 	viewCount: number;
 	createdDate: string;
+	handleEditSiren?: () => void;
+}
+
+export interface QuestionEditType {
+	boardId: number;
+	title: string;
+	content: string;
+	hashtagList: string[];
+	mediaList: string[];
 }
 
 export interface QuestionContentType {
