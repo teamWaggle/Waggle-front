@@ -1,6 +1,6 @@
 import { useSearchParams, useParams } from "react-router-dom";
 
-import SirenDetail from "@/components/Siren/Detail/SirenDetail";
+import SirenDetail from "@/components/Siren/SirenDetail/SirenDetail";
 import SirenEdit from "@/components/Siren/SirenEdit/SirenEdit";
 
 import { useSirenQuery } from "@/hooks/api/siren/useSirenQuery";

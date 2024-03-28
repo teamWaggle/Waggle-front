@@ -12,11 +12,3 @@ export const subTextStyle = css({
 	color: Theme.color.text,
 	marginBottom: "4px",
 });
-
-export const contentBoxStyle = css({
-	width: "536px",
-	height: "466px",
-	borderRadius: "20px",
-	border: `1px solid ${Theme.color.border}`,
-	padding: "34px 22px",
-});
