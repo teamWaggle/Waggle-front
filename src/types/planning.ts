@@ -40,3 +40,5 @@ export interface ScheduleCalendarCardType {
 	isSameMonth?: boolean;
 	position: SchedulePositionType;
 }
+
+export type DatePickerFormatType = "date" | "time";
