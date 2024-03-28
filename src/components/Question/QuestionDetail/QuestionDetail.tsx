@@ -4,7 +4,7 @@ import { Flex, Box, Divider } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import QuestionContent from "@/components/Question/QuestionDetail/QuestionContent";
 import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
-import { Comment } from "@/components/Siren/SirenDetail";
+import Comment from "@/components/Siren/SirenDetail/Comment/Comment";
 
 import { useQuestionQuery } from "@/hooks/api/question/useQuestionQuery";
 import useModal from "@/hooks/useModal";

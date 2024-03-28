@@ -5,9 +5,9 @@ import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
 import { useSirenRepresentativeQuery } from "@/hooks/api/siren/useSirenRepresentativeQuery";
 
-import { buttonStyle, boxStyle, titleStyle } from "@/components/Siren/Bio/Bio.style";
+import { buttonStyle, boxStyle, titleStyle } from "@/components/Siren/SirenBio/SirenBio.style";
 
-const Bio = () => {
+const SirenBio = () => {
 	const { sirenRepresentativeListData } = useSirenRepresentativeQuery();
 
 	const navigate = useNavigate();
@@ -48,4 +48,4 @@ const Bio = () => {
 	);
 };
 
-export default Bio;
+export default SirenBio;

@@ -2,9 +2,9 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
-import { Comment } from "@/components/Siren/SirenDetail";
+import Comment from "@/components/Siren/SirenDetail/Comment/Comment";
 import SirenContent from "@/components/Siren/SirenDetail/SirenContent/SirenContent";
-import SirenTitle from "@/components/Siren/SirenDetail/SirenTitle/SirenTitle";
+import SirenTitle from "@/components/Siren/SirenTitle";
 
 import { useSirenQuery } from "@/hooks/api/siren/useSirenQuery";
 import useModal from "@/hooks/useModal";

@@ -5,7 +5,7 @@ import MaleIcon from "@/assets/svg/ic-male.svg?react";
 
 import { Flex, Box, Text } from "@/components/common";
 
-import { textStyle, inputStyle } from "@/components/Siren/Upload/UploadInfo/InfoForm.style";
+import { textStyle, inputStyle } from "@/components/Siren/SirenUpload/UploadInfo/InfoForm.style";
 
 interface InfoFormProps {
 	title: string;

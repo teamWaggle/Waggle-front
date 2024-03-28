@@ -1,11 +1,13 @@
-import { Bio, Main, Title } from "@/components/Siren";
+import SirenBio from "@/components/Siren/SirenBio/SirenBio";
+import SirenMain from "@/components/Siren/SirenMain/SirenMain";
+import SirenSearchBar from "@/components/Siren/SirenSearchBar/SirenSearchBar";
 
 const SirenPage = () => {
 	return (
 		<>
-			<Bio />
-			<Title />
-			<Main />
+			<SirenBio />
+			<SirenSearchBar />
+			<SirenMain />
 		</>
 	);
 };
