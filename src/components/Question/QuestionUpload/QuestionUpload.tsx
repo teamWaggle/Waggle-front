@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Heading, Text, Carousel } from "@/components/common";
 import UploadMedia from "@/components/Siren/Upload/UploadMedia/UploadMedia";
 
+import { usePostQuestionMutation } from "@/hooks/api/question/usePostQuestionMutation";
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -16,10 +18,35 @@ import {
 } from "@/components/Question/QuestionUpload/QuestionUpload.style";
 
 const QuestionUpload = () => {
+	const { mutate: postQuestionMutate } = usePostQuestionMutation();
+
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
 
+	const navigate = useNavigate();
+
 	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useMultipleImgUpload();
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		const formData = new FormData();
+
+		const createQuestionRequest = {
+			title,
+			content,
+			hashtagList: ["test"],
+			mediaList: uploadMediaList,
+		};
+
+		formData.append("createQuestionRequest", JSON.stringify(createQuestionRequest));
+
+		postQuestionMutate(formData, {
+			onSuccess: () => {
+				navigate("/question");
+			},
+		});
+	};
 
 	return (
 		<Box tag="section" css={layoutStyle}>
@@ -63,7 +90,7 @@ const QuestionUpload = () => {
 				/>
 			</Flex>
 
-			<button css={uploadButtonStyle}>
+			<button css={uploadButtonStyle} onClick={handleSubmit}>
 				<Text size="xLarge">글 작성하기</Text>
 			</button>
 		</Box>
