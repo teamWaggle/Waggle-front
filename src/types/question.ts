@@ -17,7 +17,8 @@ export interface QuestionTitleType {
 	member: MemberType;
 	viewCount: number;
 	createdDate: string;
-	handleEditSiren?: () => void;
+	handleEditQuestion?: () => void;
+	handleDeleteQuestion?: () => void;
 }
 
 export interface QuestionEditType {

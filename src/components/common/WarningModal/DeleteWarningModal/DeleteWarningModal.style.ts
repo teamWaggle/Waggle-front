@@ -18,19 +18,19 @@ export const buttonBoxStyle = css({
 	justifyContent: "center",
 	alignItems: "center",
 	width: "100%",
-});
 
-export const buttonStyle = css({
-	all: "unset",
-	fontSize: "14px",
-	color: Theme.color.text,
-	width: "100%",
-	height: "48px",
-	borderTop: `1px solid ${Theme.color.border}`,
-	textAlign: "center",
-	cursor: "pointer",
+	"& > button": {
+		all: "unset",
+		fontSize: "14px",
+		color: Theme.color.text,
+		width: "100%",
+		height: "48px",
+		borderTop: `1px solid ${Theme.color.border}`,
+		textAlign: "center",
+		cursor: "pointer",
 
-	"&.deleteButton": {
-		color: Theme.color.btn_danger,
+		"&.deleteButton": {
+			color: Theme.color.btn_danger,
+		},
 	},
 });

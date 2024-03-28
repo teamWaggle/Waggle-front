@@ -1,11 +1,13 @@
 import { useParams, useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
 import QuestionContent from "@/components/Question/QuestionDetail/QuestionContent";
 import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
 import { Comment } from "@/components/Siren/Detail";
 
 import { useQuestionQuery } from "@/hooks/api/question/useQuestionQuery";
+import useModal from "@/hooks/useModal";
 
 import { layoutStyle } from "@/components/Question/QuestionDetail/QuestionDetail.style";
 
@@ -18,10 +20,20 @@ const QuestionDetail = () => {
 
 	const navigate = useNavigate();
 
-	const handleEditSiren = () => {
+	const modal = useModal();
+
+	const handleEditQuestion = () => {
 		if (!questionData) return;
 
 		navigate(`/question/view/${questionId}?mode=edit`);
+	};
+
+	const handleDeleteQuestion = () => {
+		modal.openModal({
+			key: `DeleteWarningModal`,
+			component: () => <DeleteWarningModal targetId={questionId} target="question" />,
+			notCloseIcon: true,
+		});
 	};
 
 	if (!questionData) {
@@ -38,7 +50,8 @@ const QuestionDetail = () => {
 					member={questionData.result.member}
 					viewCount={questionData.result.viewCount}
 					createdDate={questionData.result.createdDate}
-					handleEditSiren={handleEditSiren}
+					handleEditQuestion={handleEditQuestion}
+					handleDeleteQuestion={handleDeleteQuestion}
 				/>
 
 				<Divider length="100%" />
