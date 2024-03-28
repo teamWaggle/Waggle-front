@@ -1,10 +1,11 @@
-import { Bio, Main } from "@/components/Question";
+import QuestionBio from "@/components/Question/QuestionBio/QuestionBio";
+import QuestionMain from "@/components/Question/QuestionMain/QuestionMain";
 
 const QuestionPage = () => {
 	return (
 		<>
-			<Bio />
-			<Main />
+			<QuestionBio />
+			<QuestionMain />
 		</>
 	);
 };

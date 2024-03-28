@@ -1,8 +1,8 @@
 import Flex from "@/components/common/Design/Flex/Flex";
 import NotificationCard from "@/components/common/Notification/NotificationCard/NotificationCard";
-import { Profile } from "@/components/Question";
+import QuestionSidebarProfile from "@/components/Question/QuestionSidebar/QuestionSidebarProfile/QuestionSidebarProfile";
 
-const Sidebar = () => {
+const QuestionSidebar = () => {
 	return (
 		<Flex
 			styles={{
@@ -13,7 +13,7 @@ const Sidebar = () => {
 			}}
 			tag="aside"
 		>
-			<Profile />
+			<QuestionSidebarProfile />
 			<NotificationCard />
 			<NotificationCard />
 			<NotificationCard />
@@ -21,4 +21,4 @@ const Sidebar = () => {
 	);
 };
 
-export default Sidebar;
+export default QuestionSidebar;
