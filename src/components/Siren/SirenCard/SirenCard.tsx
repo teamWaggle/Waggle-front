@@ -8,6 +8,7 @@ import { Flex, Heading, Text } from "@/components/common";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import { convertToUTC } from "@/utils/convertToUTC";
 import { generateTagStyle, generateTagName } from "@/utils/generateTag";
 
 import type { SirenListInfoType } from "@/types/siren";
@@ -66,7 +67,7 @@ const SirenCard = ({
 					</Flex>
 
 					<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
-						{createdDate}
+						{convertToUTC(new Date(createdDate)).date}
 					</Text>
 				</Flex>
 			</Flex>

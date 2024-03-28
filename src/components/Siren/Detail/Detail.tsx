@@ -42,7 +42,7 @@ const Detail = () => {
 						member={sirenData.result.member}
 						category={sirenData.result.category}
 						title={sirenData.result.title}
-						lostDate={sirenData.result.lostDate}
+						createdDate={sirenData.result.createdDate}
 						viewCount={sirenData.result.viewCount}
 						handleEditSiren={handleEditSiren}
 						handleDeleteSiren={handleDeleteSiren}
