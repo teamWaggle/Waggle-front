@@ -16,7 +16,7 @@ export interface QuestionTitleType {
 	hashtagList: string[];
 	member: MemberType;
 	viewCount: number;
-	createdDate: string;
+	createdDate: Date;
 	handleEditQuestion?: () => void;
 	handleDeleteQuestion?: () => void;
 }

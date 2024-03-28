@@ -9,7 +9,7 @@ import { Comment } from "@/components/Siren/Detail";
 import { useQuestionQuery } from "@/hooks/api/question/useQuestionQuery";
 import useModal from "@/hooks/useModal";
 
-import { layoutStyle } from "@/components/Question/QuestionDetail/QuestionDetail.style";
+import { layoutStyle } from "@/components/common/Post/PostDetail.style";
 
 const QuestionDetail = () => {
 	const param = useParams();

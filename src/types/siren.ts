@@ -41,7 +41,7 @@ export interface SirenTitleType {
 	category: string;
 	title: string;
 	member: MemberType;
-	createdDate: string;
+	createdDate: Date;
 	viewCount: number;
 	handleEditSiren?: () => void;
 	handleDeleteSiren?: () => void;

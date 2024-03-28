@@ -3,22 +3,16 @@ import { useState, useRef } from "react";
 import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Heading, Text } from "@/components/common";
+import PostProfile from "@/components/common/Post/PostProfile";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { convertToUTC } from "@/utils/convertToUTC";
-
 import type { QuestionTitleType } from "@/types/question";
 
-import {
-	titleBoxStyle,
-	tagStyle,
-	keywordBoxStyle,
-	profileStyle,
-} from "@/components/Question/QuestionDetail/QuestionTitle.style";
+import { titleBoxStyle, tagStyle, keywordBoxStyle } from "@/components/common/Post/PostTitle.style";
 import { menuStyle } from "@/components/Siren/Detail/Comment/Comment.style";
 import { moreButtonStyle } from "@/components/Siren/Detail/Comment/Reply/Reply.style";
 
@@ -42,7 +36,9 @@ const QuestionTitle = ({
 
 	return (
 		<Flex css={titleBoxStyle}>
-			<Flex css={tagStyle(status === "RESOLVED")}>
+			<Flex
+				css={tagStyle(status === "RESOLVED" ? Theme.color.btn_success : Theme.color.btn_danger)}
+			>
 				<Text>{status === "RESOLVED" ? "해결" : "미해결"}</Text>
 			</Flex>
 
@@ -57,14 +53,7 @@ const QuestionTitle = ({
 					))}
 			</Flex>
 
-			<Flex css={profileStyle}>
-				<img src={member.profileImgUrl} alt="profileImg" />
-				<Text>
-					<span>{member.nickname}</span>
-					<span>조회 {viewCount}</span>
-					<span>{convertToUTC(new Date(createdDate)).date}</span>
-				</Text>
-			</Flex>
+			<PostProfile member={member} viewCount={viewCount} createdDate={createdDate} />
 
 			{member.memberId === memberId && (
 				<Flex css={moreButtonStyle}>

@@ -2,14 +2,15 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
-import { Title, Content, Comment } from "@/components/Siren/Detail";
+import { Content, Comment } from "@/components/Siren/Detail";
+import SirenTitle from "@/components/Siren/Detail/SirenTitle/SirenTitle";
 
 import { useSirenQuery } from "@/hooks/api/siren/useSirenQuery";
 import useModal from "@/hooks/useModal";
 
-import { layoutStyle } from "@/components/Siren/Detail/Detail.style";
+import { layoutStyle } from "@/components/common/Post/PostDetail.style";
 
-const Detail = () => {
+const SirenDetail = () => {
 	const param = useParams();
 
 	const sirenId = Number(param.id);
@@ -38,7 +39,7 @@ const Detail = () => {
 		<Box tag="main">
 			{sirenData && (
 				<Flex css={layoutStyle}>
-					<Title
+					<SirenTitle
 						member={sirenData.result.member}
 						category={sirenData.result.category}
 						title={sirenData.result.title}
@@ -68,4 +69,4 @@ const Detail = () => {
 	);
 };
 
-export default Detail;
+export default SirenDetail;
