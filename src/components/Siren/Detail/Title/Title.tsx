@@ -9,6 +9,7 @@ import useClickOutSide from "@/hooks/useClickOutSide";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import { convertToUTC } from "@/utils/convertToUTC";
 import { generateTagStyle, generateTagName } from "@/utils/generateTag";
 
 import type { SirenTitleType } from "@/types/siren";
@@ -21,7 +22,7 @@ const Title = ({
 	category,
 	title,
 	member,
-	lostDate,
+	createdDate,
 	viewCount,
 	handleEditSiren,
 	handleDeleteSiren,
@@ -47,7 +48,7 @@ const Title = ({
 				<Text>
 					<span>{member.nickname}</span>
 					<span>조회 {viewCount}</span>
-					<span>{lostDate}</span>
+					<span>{convertToUTC(new Date(createdDate)).date}</span>
 				</Text>
 			</Flex>
 

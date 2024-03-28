@@ -54,7 +54,7 @@ const QuestionDetail = () => {
 					handleDeleteQuestion={handleDeleteQuestion}
 				/>
 
-				<Divider length="100%" />
+				<Divider />
 
 				<QuestionContent
 					content={questionData.result.content}
