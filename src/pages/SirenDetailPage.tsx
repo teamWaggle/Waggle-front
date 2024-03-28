@@ -1,6 +1,6 @@
 import { useSearchParams, useParams } from "react-router-dom";
 
-import { Detail } from "@/components/Siren/Detail";
+import SirenDetail from "@/components/Siren/Detail/SirenDetail";
 import SirenEdit from "@/components/Siren/SirenEdit/SirenEdit";
 
 import { useSirenQuery } from "@/hooks/api/siren/useSirenQuery";
@@ -29,7 +29,7 @@ const SirenDetailPage = () => {
 					mediaList={sirenData.result.mediaList}
 				/>
 			) : (
-				<Detail />
+				<SirenDetail />
 			)}
 		</>
 	);

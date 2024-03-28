@@ -23,19 +23,8 @@ export const tagStyle = (color: string) => {
 	});
 };
 
-export const profileStyle = css({
-	alignItems: "center",
-	color: Theme.color.disabled_text,
-	fontWeight: 500,
-
-	"& > img": {
-		width: "40px",
-		height: "40px",
-		borderRadius: "50%",
-		objectFit: "cover",
-	},
-
-	span: {
-		marginLeft: "14px",
-	},
+export const keywordBoxStyle = css({
+	gap: "18px",
+	color: Theme.color.black,
+	fontWeight: 600,
 });

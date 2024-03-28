@@ -3,22 +3,22 @@ import { useState, useRef } from "react";
 import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Heading, Text } from "@/components/common";
+import PostProfile from "@/components/common/Post/PostProfile";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { convertToUTC } from "@/utils/convertToUTC";
 import { generateTagStyle, generateTagName } from "@/utils/generateTag";
 
 import type { SirenTitleType } from "@/types/siren";
 
+import { titleBoxStyle, tagStyle } from "@/components/common/Post/PostTitle.style";
 import { menuStyle } from "@/components/Siren/Detail/Comment/Comment.style";
 import { moreButtonStyle } from "@/components/Siren/Detail/Comment/Reply/Reply.style";
-import { titleBoxStyle, tagStyle, profileStyle } from "@/components/Siren/Detail/Title/Title.style";
 
-const Title = ({
+const SirenTitle = ({
 	category,
 	title,
 	member,
@@ -43,14 +43,7 @@ const Title = ({
 
 			<Heading css={getDefaultTextStyle(Theme.color.text, 700)}>{title}</Heading>
 
-			<Flex css={profileStyle}>
-				<img src={member.profileImgUrl} alt="profileImg" />
-				<Text>
-					<span>{member.nickname}</span>
-					<span>조회 {viewCount}</span>
-					<span>{convertToUTC(new Date(createdDate)).date}</span>
-				</Text>
-			</Flex>
+			<PostProfile member={member} viewCount={viewCount} createdDate={createdDate} />
 
 			{member.memberId === memberId && (
 				<Flex css={moreButtonStyle}>
@@ -68,4 +61,4 @@ const Title = ({
 	);
 };
 
-export default Title;
+export default SirenTitle;
