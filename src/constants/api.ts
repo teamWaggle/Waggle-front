@@ -35,6 +35,7 @@ export const END_POINTS = {
 	QUESTIONS: (currentPage: number) => `/api/questions?currentPage=${currentPage}`,
 	QUESTION: (questionId: number) => `/api/questions/${questionId}`,
 	QUESTION_REPRESENTATIVE: `/api/questions/representative`,
+	POST_QUESTION: "/api/questions",
 };
 
 export const HTTP_STATUS_CODE = {
