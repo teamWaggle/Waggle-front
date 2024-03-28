@@ -9,7 +9,7 @@ import type { QuestionRepresentativeType } from "@/types/question";
 export const useQuestionRepresentativeQuery = () => {
 	const { data: questionRepresentativeListData } = useQuery<QuestionRepresentativeType, AxiosError>(
 		{
-			queryKey: ["questionList"],
+			queryKey: ["questionRepresentativeList"],
 			queryFn: () => getRepresentativeQuestion(),
 		},
 	);

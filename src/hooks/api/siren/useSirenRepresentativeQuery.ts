@@ -8,7 +8,7 @@ import type { SirenRepresentativeType } from "@/types/siren";
 
 export const useSirenRepresentativeQuery = () => {
 	const { data: sirenRepresentativeListData } = useQuery<SirenRepresentativeType, AxiosError>({
-		queryKey: ["sirenList"],
+		queryKey: ["sirenRepresentativeList"],
 		queryFn: () => getRepresentativeSiren(),
 	});
 
