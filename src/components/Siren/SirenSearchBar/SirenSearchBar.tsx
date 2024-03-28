@@ -7,9 +7,9 @@ import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
 import { Theme } from "@/styles/Theme";
 
-import { sectionStyle, tagStyle } from "@/components/Siren/Title/Title.style";
+import { sectionStyle, tagStyle } from "@/components/Siren/SirenSearchBar/SirenSearchBar.style";
 
-const Title = () => {
+const SirenSearchBar = () => {
 	const [tagName, setTagName] = useState("강아지 찾아요");
 
 	return (
@@ -40,4 +40,4 @@ const Title = () => {
 	);
 };
 
-export default Title;
+export default SirenSearchBar;

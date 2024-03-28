@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider, Heading, Text, Carousel } from "@/components/common";
-import UploadInfo from "@/components/Siren/Upload/UploadInfo/UploadInfo";
+import UploadInfo from "@/components/Siren/SirenUpload/UploadInfo/UploadInfo";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 

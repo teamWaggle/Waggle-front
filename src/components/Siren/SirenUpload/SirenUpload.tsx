@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Heading, Text, Carousel } from "@/components/common";
-import UploadInfo from "@/components/Siren/Upload/UploadInfo/UploadInfo";
-import UploadMedia from "@/components/Siren/Upload/UploadMedia/UploadMedia";
+import UploadInfo from "@/components/Siren/SirenUpload/UploadInfo/UploadInfo";
+import UploadMedia from "@/components/Siren/SirenUpload/UploadMedia/UploadMedia";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
@@ -21,9 +21,9 @@ import {
 	tagStyle,
 	contentTextareaStyle,
 	uploadButtonStyle,
-} from "@/components/Siren/Upload/Upload.style";
+} from "@/components/Siren/SirenUpload/Upload.style";
 
-const Upload = () => {
+const SirenUpload = () => {
 	const { mutate: postSirenMutate } = usePostSirenMutation();
 
 	const [title, setTitle] = useState("");
@@ -152,4 +152,4 @@ const Upload = () => {
 	);
 };
 
-export default Upload;
+export default SirenUpload;

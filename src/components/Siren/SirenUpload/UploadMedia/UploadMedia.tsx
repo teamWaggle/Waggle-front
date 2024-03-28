@@ -4,7 +4,7 @@ import { Flex, Text } from "@/components/common";
 
 import { useDragAndDrop } from "@/hooks/useDragAndDrop";
 
-import { uploadMediaBoxStyle } from "@/components/Siren/Upload/UploadMedia/UploadMedia.style";
+import { uploadMediaBoxStyle } from "@/components/Siren/SirenUpload/UploadMedia/UploadMedia.style";
 
 interface UploadMediaProps {
 	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;

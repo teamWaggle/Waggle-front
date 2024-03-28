@@ -1,4 +1,4 @@
-import Upload from "@/components/Siren/Upload/Upload";
+import Upload from "@/components/Siren/SirenUpload/Upload";
 
 const SirenCreatePage = () => {
 	return (

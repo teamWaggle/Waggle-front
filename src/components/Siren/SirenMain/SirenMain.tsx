@@ -1,11 +1,11 @@
 import Flex from "@/components/common/Design/Flex/Flex";
-import { SirenCard } from "@/components/Siren";
+import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
 import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";
 
-import { sectionStyle } from "@/components/Siren/Main/Main.style";
+import { sectionStyle } from "@/components/Siren/SirenMain/SirenMain.style";
 
-const Main = () => {
+const SirenMain = () => {
 	const { sirenListData } = useSirenListQuery(0);
 
 	return (
@@ -36,4 +36,4 @@ const Main = () => {
 	);
 };
 
-export default Main;
+export default SirenMain;

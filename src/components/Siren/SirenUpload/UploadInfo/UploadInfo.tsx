@@ -1,5 +1,5 @@
 import { Flex } from "@/components/common";
-import InfoForm from "@/components/Siren/Upload/UploadInfo/InfoForm";
+import InfoForm from "@/components/Siren/SirenUpload/UploadInfo/InfoForm";
 
 interface UploadInfoProps {
 	category: string;

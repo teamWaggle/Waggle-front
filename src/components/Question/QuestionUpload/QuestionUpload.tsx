@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Heading, Text, Carousel } from "@/components/common";
-import UploadMedia from "@/components/Siren/Upload/UploadMedia/UploadMedia";
+import UploadMedia from "@/components/Siren/SirenUpload/UploadMedia/UploadMedia";
 
 import { usePostQuestionMutation } from "@/hooks/api/question/usePostQuestionMutation";
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
