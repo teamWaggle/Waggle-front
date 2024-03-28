@@ -2,9 +2,12 @@ import DefaultProfileIcon from "@/assets/svg/profile-default.svg?react";
 
 import { Flex, Heading, Text } from "@/components/common";
 
-import { layoutStyle, listBoxStyle } from "@/components/Question/Sidebar/Profile/Profile.style";
+import {
+	layoutStyle,
+	listBoxStyle,
+} from "@/components/Question/QuestionSidebar/QuestionSidebarProfile/QuestionSidebarProfile.style";
 
-const Profile = () => {
+const QuestionSidebarProfile = () => {
 	return (
 		<Flex css={layoutStyle}>
 			<DefaultProfileIcon />
@@ -34,4 +37,4 @@ const Profile = () => {
 	);
 };
 
-export default Profile;
+export default QuestionSidebarProfile;

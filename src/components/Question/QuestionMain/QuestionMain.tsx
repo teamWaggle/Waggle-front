@@ -1,12 +1,13 @@
 import { Flex, Box, SearchInput } from "@/components/common";
 import { SortButton } from "@/components/Landing";
-import { QuestionCard, Sidebar } from "@/components/Question";
+import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
+import QuestionSidebar from "@/components/Question/QuestionSidebar/QuestionSidebar";
 
 import { useQuestionListQuery } from "@/hooks/api/question/useQuestionListQuery";
 
-import { mainStyle } from "@/components/Question/Main/Main.style";
+import { mainStyle } from "@/components/Question/QuestionMain/QuestionMain.style";
 
-const Main = () => {
+const QuestionMain = () => {
 	const { questionListData } = useQuestionListQuery(0);
 
 	if (!questionListData) {
@@ -36,10 +37,11 @@ const Main = () => {
 						))}
 					</Flex>
 				</section>
-				<Sidebar />
+
+				<QuestionSidebar />
 			</Flex>
 		</Box>
 	);
 };
 
-export default Main;
+export default QuestionMain;

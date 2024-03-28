@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
-import { QuestionCard } from "@/components/Question";
+import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 
 import { useQuestionRepresentativeQuery } from "@/hooks/api/question/useQuestionRepresentativeQuery";
 
@@ -10,9 +10,9 @@ import {
 	boxStyle,
 	titleBoxStyle,
 	buttonStyle,
-} from "@/components/Question/Bio/Bio.style";
+} from "@/components/Question/QuestionBio/QuestionBio.style";
 
-const Bio = () => {
+const QuestionBio = () => {
 	const { questionRepresentativeListData } = useQuestionRepresentativeQuery();
 
 	const navigate = useNavigate();
@@ -52,4 +52,4 @@ const Bio = () => {
 	);
 };
 
-export default Bio;
+export default QuestionBio;
