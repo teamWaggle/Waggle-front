@@ -10,7 +10,10 @@ import { ko } from "date-fns/locale";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
 
-import { datePickerTriggerBoxStyle } from "@/components/common/DatePicker/DatePickerTrigger/DatePickerTrigger.style";
+import {
+	datePickerTriggerBoxStyle,
+	datePickerTriggerStyle,
+} from "@/components/common/DatePicker/DatePickerTrigger/DatePickerTrigger.style";
 
 const DatePickerTrigger = ({ children }: { children: React.ReactNode }) => {
 	const { selectedDate, modalClose, handleTriggerOnClick, formatType } =
@@ -33,7 +36,7 @@ const DatePickerTrigger = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div ref={triggerRef}>
 			<Flex css={datePickerTriggerBoxStyle}>
-				<Text onClick={handleTriggerOnClick}>
+				<Text css={datePickerTriggerStyle} onClick={handleTriggerOnClick}>
 					{format(new Date(selectedDate), handleFormat, { locale: ko })}
 					<ScheduleIcon style={{ marginLeft: "6px" }} />
 				</Text>

@@ -4,6 +4,8 @@ import DatePickerTrigger from "@/components/common/DatePicker/DatePickerTrigger/
 
 import useCalendar from "@/hooks/useCalendar";
 import useModalTrigger from "@/hooks/useModalTrigger";
+
+import type { DatePickerFormatType } from "@/types/planning";
 export const DatePickerProvider = createContext<{
 	modalClose: () => void;
 	selectedDate: Date;
@@ -14,7 +16,7 @@ export const DatePickerProvider = createContext<{
 	editSelectedDate: (date: Date) => void;
 	handleTriggerOnClick: () => void;
 	limitDate?: Date;
-	formatType: string | undefined;
+	formatType: DatePickerFormatType | undefined;
 }>({
 	modalClose: () => {},
 	selectedDate: new Date(),
@@ -25,7 +27,7 @@ export const DatePickerProvider = createContext<{
 	editSelectedDate: () => {},
 	handleTriggerOnClick: () => {},
 	limitDate: new Date(),
-	formatType: "",
+	formatType: undefined,
 });
 const DatePicker = ({
 	selectedDate,
@@ -38,7 +40,7 @@ const DatePicker = ({
 	editSelectedDate: (date: Date) => void;
 	children: React.ReactNode;
 	limitDate?: Date;
-	formatType?: string;
+	formatType?: DatePickerFormatType;
 }) => {
 	const { currentMonth, editCurrentMonth, handlePrevMonth, handleNextMonth } = useCalendar();
 	const { isTrigger, handleTriggerOnClick, modalClose } = useModalTrigger();
