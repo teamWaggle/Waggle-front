@@ -12,7 +12,7 @@ import useModal from "@/hooks/useModal";
 import {
 	layoutStyle,
 	buttonBoxStyle,
-} from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal.style";
+} from "@/components/common/WarningModal/DeleteWarningModal.style";
 
 const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: string }) => {
 	const { mutate: deleteCommentMutation } = useDeleteCommentMutation();

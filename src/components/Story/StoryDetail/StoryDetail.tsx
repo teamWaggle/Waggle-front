@@ -3,7 +3,7 @@ import { useState, useRef, useCallback } from "react";
 import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
 import { Flex, Box, Divider, Text, Carousel } from "@/components/common";
-import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import Comment from "@/components/Story/StoryDetail/Comment/Comment";
 import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
 import Profile from "@/components/Story/StoryDetail/Profile/Profile";

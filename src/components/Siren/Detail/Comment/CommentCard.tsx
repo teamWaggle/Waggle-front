@@ -4,7 +4,7 @@ import { flushSync } from "react-dom";
 import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Text } from "@/components/common";
-import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import Reply from "@/components/Siren/Detail/Comment/Reply/Reply";
 import ReplyInput from "@/components/Siren/Detail/Comment/Reply/ReplyInput";
 

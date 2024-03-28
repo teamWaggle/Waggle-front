@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
-import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal/DeleteWarningModal";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import Reply from "@/components/Story/StoryDetail/Comment/Reply/Reply";
 import Profile from "@/components/Story/StoryDetail/Profile/Profile";
 
