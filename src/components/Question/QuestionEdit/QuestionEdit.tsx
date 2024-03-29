@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Box, Heading, Text, Carousel } from "@/components/common";
+import { Box, Heading, Text } from "@/components/common";
+import PostEdit from "@/components/common/Post/PostEdit";
 
 import { usePutQuestionMutation } from "@/hooks/api/question/usePutQuestionMutation";
 
@@ -10,7 +11,6 @@ import { Theme } from "@/styles/Theme";
 
 import type { QuestionEditType } from "@/types/question";
 
-import { contentTextareaStyle } from "@/components/common/Post/PostUpload/PostUpload.style";
 import {
 	layoutStyle,
 	inputStyle,
@@ -69,32 +69,12 @@ const QuestionEdit = ({ boardId, title, content, mediaList, hashtagList }: Quest
 				onChange={(e) => setNewTitle(e.target.value)}
 			/>
 
-			<Flex styles={{ gap: "64px", marginTop: "60px" }}>
-				<Carousel
-					width={536}
-					height={466}
-					borderRadius="20px"
-					showArrows={updateMediaList.length > 1}
-					showDots={updateMediaList.length > 1}
-					length={updateMediaList.length}
-					updateMediaList={updateMediaList}
-					setUpdateMediaList={setUpdateMediaList}
-					hasGallery
-				>
-					{updateMediaList.map((imgUrl, index) => (
-						<Carousel.Item index={index} key={imgUrl}>
-							<img src={imgUrl} alt="mediaImg" />
-						</Carousel.Item>
-					))}
-				</Carousel>
-
-				<textarea
-					placeholder="글을 입력해주세요"
-					css={contentTextareaStyle}
-					value={newContent}
-					onChange={(e) => setNewContent(e.target.value)}
-				/>
-			</Flex>
+			<PostEdit
+				updateMediaList={updateMediaList}
+				setUpdateMediaList={setUpdateMediaList}
+				newContent={newContent}
+				setNewContent={setNewContent}
+			/>
 
 			<button css={uploadButtonStyle} onClick={handleSubmit}>
 				<Text size="xLarge">글 수정하기</Text>
