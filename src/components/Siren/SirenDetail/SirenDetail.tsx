@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
 import Comment from "@/components/common/Comment/Comment";
@@ -6,71 +6,76 @@ import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningMo
 import SirenContent from "@/components/Siren/SirenDetail/SirenContent/SirenContent";
 import SirenTitle from "@/components/Siren/SirenDetail/SirenTitle";
 
-import { useSirenQuery } from "@/hooks/api/siren/useSirenQuery";
+import { PATH } from "@/constants/path";
+
 import useModal from "@/hooks/useModal";
+
+import type { SirenResultType } from "@/types/siren";
 
 import { layoutStyle } from "@/components/common/Post/Post.style";
 
-const SirenDetail = () => {
-	const param = useParams();
-
-	const sirenId = Number(param.id);
-
-	const { sirenData } = useSirenQuery(sirenId);
-
+const SirenDetail = ({
+	boardId,
+	title,
+	category,
+	lostLocate,
+	lostDate,
+	petAge,
+	petBreed,
+	petGender,
+	contact,
+	content,
+	mediaList,
+	member,
+	viewCount,
+	createdDate,
+	recommendationInfo,
+	status,
+}: SirenResultType) => {
 	const navigate = useNavigate();
 
 	const modal = useModal();
 
-	const handleEditSiren = () => {
-		if (!sirenData) return;
-
-		navigate(`/siren/view/${sirenId}?mode=edit`);
-	};
-
 	const handleDeleteSiren = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={sirenId} target="siren" />,
+			component: () => <DeleteWarningModal targetId={boardId} target="siren" />,
 			notCloseIcon: true,
 		});
 	};
-
-	if (!sirenData) {
-		return <div>로딩중...</div>;
-	}
 
 	return (
 		<Box tag="main">
 			<Flex css={layoutStyle}>
 				<SirenTitle
-					member={sirenData.result.member}
-					category={sirenData.result.category}
-					title={sirenData.result.title}
-					createdDate={sirenData.result.createdDate}
-					viewCount={sirenData.result.viewCount}
-					handleEditSiren={handleEditSiren}
+					member={member}
+					category={category}
+					title={title}
+					status={status}
+					createdDate={createdDate}
+					viewCount={viewCount}
+					handleEditSiren={() => navigate(PATH.SIREN_EDIT(String(boardId)))}
 					handleDeleteSiren={handleDeleteSiren}
 				/>
 
 				<Divider />
 
 				<SirenContent
-					lostLocate={sirenData.result.lostLocate}
-					petBreed={sirenData.result.petBreed}
-					petGender={sirenData.result.petGender}
-					lostDate={sirenData.result.lostDate}
-					petAge={sirenData.result.petAge}
-					contact={sirenData.result.contact}
-					mediaList={sirenData.result.mediaList}
-					content={sirenData.result.content}
-					recommendationInfo={sirenData.result.recommendationInfo}
+					lostLocate={lostLocate}
+					petBreed={petBreed}
+					petGender={petGender}
+					lostDate={lostDate}
+					petAge={petAge}
+					contact={contact}
+					mediaList={mediaList}
+					content={content}
+					recommendationInfo={recommendationInfo}
 				/>
 			</Flex>
 
 			<Divider />
 
-			<Comment boardId={sirenData.result.boardId} />
+			<Comment boardId={boardId} />
 		</Box>
 	);
 };

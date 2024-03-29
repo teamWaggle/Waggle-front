@@ -5,6 +5,7 @@ import { Flex, Box, Divider, Heading, Text } from "@/components/common";
 import PostEdit from "@/components/common/Post/PostEdit";
 import UploadInfo from "@/components/Siren/SirenUpload/UploadInfo/UploadInfo";
 
+import { PATH } from "@/constants/path";
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
 import { usePutSirenMutation } from "@/hooks/api/siren/usePutSirenMutation";
@@ -79,7 +80,7 @@ const SirenEdit = ({
 			},
 			{
 				onSuccess: () => {
-					navigate(`/siren/view/${boardId}`);
+					navigate(PATH.SIREN_DETAIL(String(boardId)));
 				},
 			},
 		);

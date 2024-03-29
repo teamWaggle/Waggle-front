@@ -6,8 +6,6 @@ import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
 const PostContent = ({ mediaList, content }: { mediaList: string[]; content: string }) => {
-	console.log(mediaList);
-
 	if (!mediaList) {
 		return <div>로딩중..</div>;
 	}
