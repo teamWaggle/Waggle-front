@@ -5,6 +5,8 @@ import SirenOnIcon from "@/assets/svg/ic-siren-on.svg?react";
 
 import { Flex, Heading, Text } from "@/components/common";
 
+import { PATH } from "@/constants/path";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -36,7 +38,7 @@ const SirenCard = ({
 	const navigate = useNavigate();
 
 	return (
-		<Flex css={cardStyle} onClick={() => navigate(`/siren/view/${boardId}`)}>
+		<Flex css={cardStyle} onClick={() => navigate(PATH.SIREN_DETAIL(String(boardId)))}>
 			<Flex css={tagBoxStyle}>
 				<Flex css={tagStyle(generateTagStyle(category))}>
 					<Text>{generateTagName(category)}</Text>

@@ -9,17 +9,18 @@ import {
 	QuestionCreatePage,
 	SignUpPage,
 	SirenCreatePage,
-	SirenDetailPage,
 	TeamPage,
 } from "@/pages";
 import * as Lazy from "@/router/lazy";
+
+import { PATH } from "@/constants/path";
 
 import LandingPageSkeleton from "@/pages/LandingPage/LandingPageSkeleton";
 
 const AppRouter = () => {
 	const router = createBrowserRouter([
 		{
-			path: "/",
+			path: PATH.ROOT,
 			element: <App />,
 			children: [
 				{
@@ -31,11 +32,18 @@ const AppRouter = () => {
 					),
 				},
 				{
-					path: "/siren",
-
+					path: PATH.SIREN,
 					element: (
 						<Suspense fallback={<div>로딩중</div>}>
 							<Lazy.SirenPage />
+						</Suspense>
+					),
+				},
+				{
+					path: PATH.SIREN_DETAIL(":sirenId"),
+					element: (
+						<Suspense fallback={<div>로딩중</div>}>
+							<Lazy.SirenDetailPage />
 						</Suspense>
 					),
 				},
@@ -50,10 +58,6 @@ const AppRouter = () => {
 				{
 					path: "/question-new",
 					element: <QuestionCreatePage />,
-				},
-				{
-					path: "/siren/view/:id",
-					element: <SirenDetailPage />,
 				},
 				{
 					path: "/signup",

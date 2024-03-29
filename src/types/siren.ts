@@ -8,7 +8,6 @@ export interface SirenType extends CommonResponseBaseType {
 
 export interface SirenResultType extends SirenTitleType, SirenContentType {
 	boardId: number;
-	status: string;
 }
 
 export interface SirenEditType {
@@ -39,6 +38,7 @@ export interface SirenContentType {
 
 export interface SirenTitleType {
 	category: string;
+	status: string;
 	title: string;
 	member: MemberType;
 	createdDate: Date;
