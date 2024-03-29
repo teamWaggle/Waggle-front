@@ -9,7 +9,7 @@ import { generateTagStyle, generateTagName } from "@/utils/generateTag";
 
 import type { SirenTitleType } from "@/types/siren";
 
-import { titleBoxStyle, tagStyle } from "@/components/common/Post/PostTitle.style";
+import { titleBoxStyle, tagStyle } from "@/components/common/Post/Post.style";
 
 const SirenTitle = ({
 	category,

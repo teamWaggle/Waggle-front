@@ -7,7 +7,7 @@ import { Theme } from "@/styles/Theme";
 
 import type { QuestionTitleType } from "@/types/question";
 
-import { titleBoxStyle, tagStyle, keywordBoxStyle } from "@/components/common/Post/PostTitle.style";
+import { titleBoxStyle, tagStyle, keywordBoxStyle } from "@/components/common/Post/Post.style";
 
 const QuestionTitle = ({
 	status,
