@@ -2,10 +2,7 @@ import { Text, Box } from "@/components/common";
 
 import { usePostReplyMutation } from "@/hooks/api/reply/usePostReplyMutation";
 
-import {
-	commentTextareaStyle,
-	submitButtonStyle,
-} from "@/components/Siren/SirenDetail/Comment/Comment.style";
+import { commentTextareaStyle, submitButtonStyle } from "@/components/common/Comment/Comment.style";
 
 interface ReplyInputProps {
 	commentId: number;

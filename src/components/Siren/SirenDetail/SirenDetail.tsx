@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
+import Comment from "@/components/common/Comment/Comment";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
-import Comment from "@/components/Siren/SirenDetail/Comment/Comment";
 import SirenContent from "@/components/Siren/SirenDetail/SirenContent/SirenContent";
 import SirenTitle from "@/components/Siren/SirenDetail/SirenTitle";
 
