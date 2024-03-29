@@ -1,10 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
+import Comment from "@/components/common/Comment/Comment";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import QuestionContent from "@/components/Question/QuestionDetail/QuestionContent";
 import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
-import Comment from "@/components/Siren/SirenDetail/Comment/Comment";
 
 import { useQuestionQuery } from "@/hooks/api/question/useQuestionQuery";
 import useModal from "@/hooks/useModal";

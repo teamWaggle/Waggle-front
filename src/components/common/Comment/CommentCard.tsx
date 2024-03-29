@@ -4,9 +4,9 @@ import { flushSync } from "react-dom";
 import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Text } from "@/components/common";
+import Reply from "@/components/common/Comment/Reply/Reply";
+import ReplyInput from "@/components/common/Comment/Reply/ReplyInput";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
-import Reply from "@/components/Siren/SirenDetail/Comment/Reply/Reply";
-import ReplyInput from "@/components/Siren/SirenDetail/Comment/Reply/ReplyInput";
 
 import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
@@ -25,7 +25,7 @@ import {
 	replyBoxStyle,
 	moreButtonStyle,
 	menuStyle,
-} from "@/components/Siren/SirenDetail/Comment/Comment.style";
+} from "@/components/common/Comment/Comment.style";
 
 const CommentCard = ({
 	commentId,

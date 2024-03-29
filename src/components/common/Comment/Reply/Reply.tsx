@@ -15,11 +15,8 @@ import { convertToUTC } from "@/utils/convertToUTC";
 
 import type { ReplyListInfoType } from "@/types/reply";
 
-import { menuStyle } from "@/components/Siren/SirenDetail/Comment/Comment.style";
-import {
-	replyCardBoxStyle,
-	moreButtonStyle,
-} from "@/components/Siren/SirenDetail/Comment/Reply/Reply.style";
+import { menuStyle } from "@/components/common/Comment/Comment.style";
+import { replyCardBoxStyle, moreButtonStyle } from "@/components/common/Comment/Reply/Reply.style";
 
 const Reply = ({
 	replyId,
