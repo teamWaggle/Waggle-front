@@ -9,7 +9,7 @@ import SirenTitle from "@/components/Siren/SirenDetail/SirenTitle";
 import { useSirenQuery } from "@/hooks/api/siren/useSirenQuery";
 import useModal from "@/hooks/useModal";
 
-import { layoutStyle } from "@/components/common/Post/PostDetail.style";
+import { layoutStyle } from "@/components/common/Post/Post.style";
 
 const SirenDetail = () => {
 	const param = useParams();
