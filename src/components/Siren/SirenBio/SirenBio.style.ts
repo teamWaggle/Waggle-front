@@ -2,12 +2,6 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const boxStyle = css({
-	maxWidth: "1536px",
-	margin: "82px auto 0",
-	padding: "0 196px",
-});
-
 export const titleStyle = css({
 	color: Theme.color.text,
 	fontWeight: 700,

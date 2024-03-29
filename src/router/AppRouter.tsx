@@ -10,7 +10,6 @@ import {
 	SignUpPage,
 	SirenCreatePage,
 	SirenDetailPage,
-	SirenPage,
 	TeamPage,
 } from "@/pages";
 import * as Lazy from "@/router/lazy";
@@ -33,7 +32,12 @@ const AppRouter = () => {
 				},
 				{
 					path: "/siren",
-					element: <SirenPage />,
+
+					element: (
+						<Suspense fallback={<div>로딩중</div>}>
+							<Lazy.SirenPage />
+						</Suspense>
+					),
 				},
 				{
 					path: "/question",
