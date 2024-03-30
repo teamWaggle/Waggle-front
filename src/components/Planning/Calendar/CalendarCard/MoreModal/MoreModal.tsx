@@ -38,7 +38,7 @@ const MoreModal = ({ day, schedules, position }: MoreModalType) => {
 				{schedulesSlice.map((schedule, i) => (
 					<Box
 						key={i}
-						css={moreModalScheduleTextStyle(schedule.color)}
+						css={moreModalScheduleTextStyle(schedule.teamColor)}
 						onClick={() => handleScheduleOnclick(schedule)}
 					>
 						{schedule.title}
