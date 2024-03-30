@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
 import PostEdit from "@/components/common/Post/PostEdit";
-import UploadInfo from "@/components/Siren/SirenUpload/UploadInfo/UploadInfo";
+import UploadInfo from "@/components/Siren/SirenUpload/SirenUploadInput/SirenUploadInput";
 
 import { PATH } from "@/constants/path";
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";

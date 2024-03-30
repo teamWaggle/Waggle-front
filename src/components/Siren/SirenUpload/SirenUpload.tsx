@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
-import UploadInfo from "@/components/Siren/SirenUpload/UploadInfo/UploadInfo";
+import SirenUploadInput from "@/components/Siren/SirenUpload/SirenUploadInput/SirenUploadInput";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
 import { usePostSirenMutation } from "@/hooks/api/siren/usePostSirenMutation";
+import { useAddSirenForm } from "@/hooks/siren/useAddSirenForm";
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -24,15 +25,18 @@ import {
 
 const SirenUpload = () => {
 	const { mutate: postSirenMutate } = usePostSirenMutation();
+	const { createSirenRequest2, updateInputValue } = useAddSirenForm();
 
-	const [title, setTitle] = useState("");
+	console.log(createSirenRequest2);
+
+	const [title] = useState("");
 	const [category, setCategory] = useState("임시보호");
-	const [lostLocate, setLostLocate] = useState("");
-	const [lostDate, setLostDate] = useState("");
-	const [petAge, setPetAge] = useState("");
-	const [petBreed, setPetBreed] = useState("");
-	const [petGender, setPetGender] = useState("FEMALE");
-	const [contact, setContact] = useState("");
+	const [lostLocate] = useState("");
+	const [lostDate] = useState("");
+	const [petAge] = useState("");
+	const [petBreed] = useState("");
+	const [petGender] = useState("FEMALE");
+	const [contact] = useState("");
 	const [content, setContent] = useState("");
 
 	const navigate = useNavigate();
@@ -76,8 +80,8 @@ const SirenUpload = () => {
 				type="text"
 				placeholder="제목을 입력해주세요."
 				css={inputStyle}
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
+				value={createSirenRequest2.title}
+				onChange={(e) => updateInputValue("title", e.target.value)}
 			/>
 
 			<Box styles={{ marginTop: "60px" }}>
@@ -100,20 +104,10 @@ const SirenUpload = () => {
 				</Flex>
 			</Box>
 
-			<UploadInfo
+			<SirenUploadInput
+				value={createSirenRequest2}
+				updateInputValue={updateInputValue}
 				category={category}
-				lostLocate={lostLocate}
-				lostDate={lostDate}
-				petAge={petAge}
-				petBreed={petBreed}
-				petGender={petGender}
-				contact={contact}
-				setLostLocate={setLostLocate}
-				setLostDate={setLostDate}
-				setPetAge={setPetAge}
-				setPetBreed={setPetBreed}
-				setPetGender={setPetGender}
-				setContact={setContact}
 			/>
 
 			<PostUpload
