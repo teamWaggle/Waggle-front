@@ -2,10 +2,33 @@ import { useState } from "react";
 
 import { addMonths, subMonths } from "date-fns";
 
+import {
+	prefetchScheduleMonthly,
+	useGetMemberScheduleMonthly,
+} from "@/hooks/api/schedule/useGetMemberScheduleMonthly";
+
+import { getDate } from "@/utils/getDate";
+
 const useCalendar = () => {
-	const [currentMonth, setCurrentMonth] = useState(new Date());
+	const [currentDate, setCurrentDate] = useState(new Date());
 	const [selectedStartDate, setSelectedStartDate] = useState(new Date());
 	const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+
+	const { getCurrentYear, getCurrentMonth } = getDate();
+
+	const currentYear = getCurrentYear(currentDate);
+	const currentMonth = getCurrentMonth(currentDate);
+	const currentNextYear = getCurrentYear(addMonths(currentDate, 1));
+	const currentNextMonth = getCurrentMonth(addMonths(currentDate, 1));
+	const currentPrevYear = getCurrentYear(subMonths(currentDate, 1));
+	const currentPrevMonth = getCurrentMonth(subMonths(currentDate, 1));
+
+	const { data } = useGetMemberScheduleMonthly(currentYear, currentMonth);
+
+	prefetchScheduleMonthly(currentNextYear, currentNextMonth);
+	prefetchScheduleMonthly(currentPrevYear, currentPrevMonth);
+
+	const { scheduleList } = data?.result ?? { scheduleList: [] };
 
 	const editSelectedStartDate = (date: Date) => {
 		setSelectedStartDate(date);
@@ -15,24 +38,26 @@ const useCalendar = () => {
 		setSelectedEndDate(date);
 	};
 
-	const handlePrevMonth = () => {
-		setCurrentMonth(subMonths(currentMonth, 1));
+	const handlePrevDate = () => {
+		setCurrentDate(subMonths(currentDate, 1));
 	};
 
-	const handleNextMonth = () => {
-		setCurrentMonth(addMonths(currentMonth, 1));
+	const handleNextDate = () => {
+		setCurrentDate(addMonths(currentDate, 1));
 	};
 
-	const editCurrentMonth = (date: Date) => {
-		setCurrentMonth(date);
+	const editCurrentDate = (date: Date) => {
+		setCurrentDate(date);
 	};
+
 	return {
-		currentMonth,
-		editCurrentMonth,
+		scheduleList,
+		currentDate,
+		editCurrentDate,
 		selectedStartDate,
 		selectedEndDate,
-		handlePrevMonth,
-		handleNextMonth,
+		handlePrevDate,
+		handleNextDate,
 		editSelectedStartDate,
 		editSelectedEndDate,
 	};

@@ -41,7 +41,7 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
 		<section css={scheduleModalBoxStyle(position)} ref={scheduleModalRef}>
 			<Flex css={scheduleTitleBoxStyle}>
 				<Flex styles={{ align: "center", gap: "8px" }}>
-					<Box css={circleDivStyle(schedule.color)} />
+					<Box css={circleDivStyle(schedule.teamColor)} />
 					<Heading size="small" css={scheduleTitleStyle}>
 						{schedule.title}
 					</Heading>
@@ -53,10 +53,13 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
 					<ScheduleModalCloseIcon css={scheduleModalIcon} onClick={handleCloseModal} />
 				</Flex>
 			</Flex>
-			<Text css={scheduleModalTime}>{format(schedule.startTime, "yyyy년 M월dd일 aa h시")}</Text>
+			<Text css={scheduleModalTime}>
+				`${format(schedule.startTime, "yyyy년 M월dd일 aa h시")} ~ $
+				{format(schedule.endTime, "yyyy년 M월dd일 aa h시")}`
+			</Text>
 			<Flex styles={{ gap: "8px" }}>
 				<GroupIcon />
-				<Box css={scheduleModalTeamName(schedule.color)}>신나는 강아지 유치원</Box>
+				<Box css={scheduleModalTeamName(schedule.teamColor)}>신나는 강아지 유치원</Box>
 			</Flex>
 			<Flex css={scheduleCommentBoxStyle}>
 				<Comment />

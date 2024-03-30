@@ -18,13 +18,23 @@ export interface TeamCardType {
 	colorScheme: TeamColorType;
 }
 export interface ScheduleType {
-	scheduleId: number;
+	boardId: number;
 	teamId: number;
+	teamColor: TeamColorType;
 	title: string;
 	content: string;
 	startTime: Date;
 	endTime: Date;
-	color: TeamColorType;
+	createdDate: Date;
+	status: string;
+	member: memberType;
+}
+
+export interface memberType {
+	memberId: number;
+	userUrl: string;
+	nickname: string;
+	profileImgUrl: string;
 }
 
 export interface SchedulePositionType {
@@ -39,6 +49,13 @@ export interface ScheduleCalendarCardType {
 	schedules: Array<ScheduleType>;
 	isSameMonth?: boolean;
 	position: SchedulePositionType;
+}
+
+export interface ScheduleResultType {
+	scheduleList: Array<ScheduleType>;
+	scheduleCount: number;
+	isFirst: boolean;
+	isLast: boolean;
 }
 
 export type DatePickerFormatType = "date" | "time";

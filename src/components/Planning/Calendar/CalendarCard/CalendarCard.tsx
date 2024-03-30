@@ -46,8 +46,8 @@ const CalendarCard = ({
 			<Flex css={scheduleFlexBox}>
 				{schedulesSlice.map((schedule, i) => (
 					<Box
-						key={schedule.scheduleId + dayString}
-						css={scheduleTextStyle(schedulesSlice[i].color, isSameDay(schedule.endTime, day))}
+						key={schedule.boardId + dayString}
+						css={scheduleTextStyle(schedulesSlice[i].teamColor, isSameDay(schedule.endTime, day))}
 						onClick={() => handleScheduleOnclick(schedule)}
 					>
 						{isSameDay(schedule.startTime, day) ? schedule.title : ""}

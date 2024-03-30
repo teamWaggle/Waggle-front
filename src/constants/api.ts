@@ -36,6 +36,9 @@ export const END_POINTS = {
 	QUESTION: (questionId: number) => `/api/questions/${questionId}`,
 	QUESTION_REPRESENTATIVE: `/api/questions/representative`,
 	POST_QUESTION: "/api/questions",
+	MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
+	MEMBER_SCHEDULES_MONTHLY: (memberId: number, year: number, month: number) =>
+		`/api/schedules/members/${memberId}/monthly?year=${year}&month=${month}`,
 };
 
 export const HTTP_STATUS_CODE = {
