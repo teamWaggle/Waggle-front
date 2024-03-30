@@ -104,11 +104,7 @@ const SirenUpload = () => {
 				</Flex>
 			</Box>
 
-			<SirenUploadInput
-				value={createSirenRequest2}
-				updateInputValue={updateInputValue}
-				category={category}
-			/>
+			<SirenUploadInput value={createSirenRequest2} updateInputValue={updateInputValue} />
 
 			<PostUpload
 				content={content}
