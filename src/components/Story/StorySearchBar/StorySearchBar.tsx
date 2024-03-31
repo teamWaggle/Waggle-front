@@ -2,7 +2,7 @@ import LogIcon from "@/assets/svg/log.svg?react";
 
 import { Flex, Heading, Text, SearchInput } from "@/components/common";
 import SortButton from "@/components/common/SortButton/SortButton";
-import StoryUploadModal from "@/components/Story/StoryUploadModal/StoryUploadModal";
+import StoryUploadMediaModal from "@/components/Story/StoryUploadMediaModal/StoryUploadMediaModal";
 
 import useModal from "@/hooks/useModal";
 
@@ -18,7 +18,7 @@ const StorySearchBar = () => {
 	const storyUploadOpen = () => {
 		modal.openModal({
 			key: `StoryUpload`,
-			component: () => <StoryUploadModal />,
+			component: () => <StoryUploadMediaModal />,
 			isWhiteIcon: true,
 		});
 	};

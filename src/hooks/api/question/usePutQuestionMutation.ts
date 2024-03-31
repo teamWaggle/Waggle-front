@@ -13,7 +13,7 @@ export const usePutQuestionMutation = () => {
 			console.log("question edit success");
 
 			queryClient.invalidateQueries({
-				queryKey: ["question", "questionList"],
+				queryKey: ["question"],
 			});
 		},
 		onError: () => {

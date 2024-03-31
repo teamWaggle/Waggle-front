@@ -1,55 +1,114 @@
-import { useEffect } from "react";
+import SampleImg from "@/assets/png/post-sample.png";
+import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
-import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
+import { Flex, Text, Carousel } from "@/components/common";
 
-import { Flex, Text } from "@/components/common";
-import StoryContentModal from "@/components/Story/StoryContentModal/StoryContentModal";
+import { useAddStoryForm } from "@/hooks/story/useAddStoryForm";
 
-import { useDragAndDrop } from "@/hooks/useDragAndDrop";
-import useModal from "@/hooks/useModal";
-import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
+import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
+import { Theme } from "@/styles/Theme";
 
-import { uploadMediaBoxStyle } from "@/components/common/Post/PostUploadMedia/PostUploadMedia.style";
+import {
+	layoutStyle,
+	headerStyle,
+	contentBoxStyle,
+	profileImgStyle,
+	textareaStyle,
+	lengthTextStyle,
+	uploadButtonStyle,
+} from "@/components/Story/StoryUploadModal/StoryUploadModal.style";
 
-const StoryUploadModal = () => {
-	const modal = useModal();
+interface StoryEditModalParams {
+	mediaList?: string[];
+	content?: string;
+	hashtagList?: string[];
+	storyId?: number;
+	uploadMediaList?: string[];
+}
 
-	const { uploadMediaList, handleImgUpload, dropImgUpload } = useMultipleImgUpload({});
-
-	const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
-		useDragAndDrop(dropImgUpload);
-
-	useEffect(() => {
-		if (uploadMediaList.length !== 0) {
-			modal.closeModal();
-
-			modal.openModal({
-				key: `StoryContentModal`,
-				component: () => <StoryContentModal uploadMediaList={uploadMediaList} />,
-			});
-		}
-	}, [handleImgUpload, dropImgUpload]);
+const StoryUploadModal = ({
+	mediaList,
+	content,
+	hashtagList,
+	storyId,
+	uploadMediaList,
+}: StoryEditModalParams) => {
+	const { storyRequest, updateInputValue, handleSubmit } = useAddStoryForm(
+		uploadMediaList
+			? {
+					mediaList: uploadMediaList,
+			  }
+			: {
+					storyId: storyId,
+					initialData: {
+						content,
+						hashtagList,
+						mediaList,
+					},
+					mediaList,
+			  },
+	);
 
 	return (
-		<Flex
-			css={uploadMediaBoxStyle(isDragOver, 740, 740, "42px")}
-			onDrop={handleDrop}
-			onDragEnter={handleDragIn}
-			onDragLeave={handleDragOut}
-			onDragOver={handleDragOver}
-		>
-			<UploadMediaIcon />
-			<Text size="xLarge">사진과 동영상을 여기다 끌어다 놓으세요</Text>
-			<label htmlFor="media">
-				<Text size="large">컴퓨터에서 선택</Text>
-			</label>
-			<input
-				type="file"
-				multiple={true}
-				id="media"
-				onChange={handleImgUpload}
-				accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
-			/>
+		<Flex css={layoutStyle}>
+			<Flex css={headerStyle}>
+				<PrevArrowIcon />
+				<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 600)}>
+					수정하기
+				</Text>
+			</Flex>
+
+			<Flex styles={{ height: "calc(100% - 54px)" }}>
+				{storyRequest.mediaList && (
+					<Carousel
+						width={740}
+						height={726}
+						borderRadius="0 0 0 36px"
+						length={storyRequest.mediaList.length}
+						showArrows={storyRequest.mediaList.length > 1}
+						showDots={storyRequest.mediaList.length > 1}
+						updateMediaList={storyRequest.mediaList}
+						storyUpdateInputValue={updateInputValue}
+						hasGallery
+					>
+						{storyRequest.mediaList.map((imgUrl, index) => (
+							<Carousel.Item index={index} key={imgUrl}>
+								<img src={imgUrl} alt="img" />
+							</Carousel.Item>
+						))}
+					</Carousel>
+				)}
+
+				<Flex css={contentBoxStyle}>
+					<Flex styles={{ direction: "column", gap: "12px", width: "100%" }}>
+						{/* 프로필 */}
+						<Flex styles={{ align: "center", gap: "10px" }}>
+							<img src={SampleImg} alt="profileImg" css={profileImgStyle} />
+							<Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
+								강아지댕댕댕
+							</Text>
+						</Flex>
+
+						{/* 본문 입력 */}
+						<textarea
+							css={textareaStyle}
+							placeholder="사진에 대한 설명을 입력해주세요"
+							maxLength={500}
+							value={storyRequest.content}
+							onChange={(e) => updateInputValue("content", e.target.value)}
+						/>
+
+						{/* 글자수 */}
+						<Text size="small" css={lengthTextStyle}>
+							{storyRequest.content && storyRequest.content.length}/500
+						</Text>
+					</Flex>
+
+					<Text size="xLarge" css={uploadButtonStyle} onClick={handleSubmit}>
+						업로드
+					</Text>
+				</Flex>
+			</Flex>
 		</Flex>
 	);
 };
