@@ -1,5 +1,5 @@
 import { Flex, Box, SearchInput } from "@/components/common";
-import { SortButton } from "@/components/Landing";
+import SortButton from "@/components/common/SortButton/SortButton";
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 import QuestionSidebar from "@/components/Question/QuestionSidebar/QuestionSidebar";
 

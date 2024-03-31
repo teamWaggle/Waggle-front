@@ -1,6 +1,6 @@
 import type { AxiosError } from "axios";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 import { getStoryList } from "@/api/story/getStoryList";
 
@@ -12,7 +12,7 @@ export const useStoryListQuery = () => {
 		fetchNextPage,
 		hasNextPage,
 		isFetching,
-	} = useInfiniteQuery<StoryListType, AxiosError>({
+	} = useSuspenseInfiniteQuery<StoryListType, AxiosError>({
 		queryKey: ["storyList"],
 		queryFn: ({ pageParam: currentPage }) => getStoryList(currentPage),
 		initialPageParam: 0,

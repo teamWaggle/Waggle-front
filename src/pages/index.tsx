@@ -1,4 +1,3 @@
-import LandingPage from "./LandingPage/LandingPage";
 import PlanningPage from "./PlanningPage";
 import QuestionCreatePage from "./QuestionCreatePage";
 import QuestionDetailPage from "./QuestionDetailPage";
@@ -7,9 +6,10 @@ import SignUpPage from "./SignUpPage";
 import SirenCreatePage from "./SirenCreatePage";
 import SirenDetailPage from "./SirenDetailPage";
 import SirenPage from "./SirenPage";
+import StoryPage from "./StoryPage/StoryPage";
 import TeamPage from "./TeamPage";
 export {
-	LandingPage,
+	StoryPage,
 	QuestionPage,
 	QuestionDetailPage,
 	QuestionCreatePage,
