@@ -1,12 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 import { Box, Heading, Text } from "@/components/common";
 import PostEdit from "@/components/common/Post/PostEdit";
 
-import { PATH } from "@/constants/path";
-
-import { usePutQuestionMutation } from "@/hooks/api/question/usePutQuestionMutation";
+import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -20,42 +15,17 @@ import {
 } from "@/components/Question/QuestionUpload/QuestionUpload.style";
 
 const QuestionEdit = ({ boardId, title, content, mediaList, hashtagList }: QuestionEditType) => {
-	const { mutate: putQuestionMutate } = usePutQuestionMutation();
+	const { questionRequest, updateInputValue, handleSubmit } = useAddQuestionForm({
+		questionId: boardId,
+		initialData: {
+			title,
+			content,
+			mediaList,
+			hashtagList,
+		},
+	});
 
-	const [newTitle, setNewTitle] = useState(title);
-	const [newContent, setNewContent] = useState(content);
-	const [newHashtagList] = useState(hashtagList);
-
-	const [updateMediaList, setUpdateMediaList] = useState<string[]>(mediaList);
-
-	const navigate = useNavigate();
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-
-		const formData = new FormData();
-
-		const updateQuestionRequest = {
-			title: newTitle,
-			content: newContent,
-			hashtagList: newHashtagList,
-			mediaList: updateMediaList,
-		};
-
-		formData.append("updateQuestionRequest", JSON.stringify(updateQuestionRequest));
-
-		putQuestionMutate(
-			{
-				questionId: boardId,
-				formData,
-			},
-			{
-				onSuccess: () => {
-					navigate(PATH.QUESTION_DETAIL(String(boardId)));
-				},
-			},
-		);
-	};
+	console.log(questionRequest);
 
 	return (
 		<Box tag="section" css={layoutStyle}>
@@ -67,15 +37,14 @@ const QuestionEdit = ({ boardId, title, content, mediaList, hashtagList }: Quest
 				type="text"
 				placeholder="제목을 입력해주세요."
 				css={inputStyle}
-				value={newTitle}
-				onChange={(e) => setNewTitle(e.target.value)}
+				value={questionRequest.title}
+				onChange={(e) => updateInputValue("title", e.target.value)}
 			/>
 
 			<PostEdit
-				updateMediaList={updateMediaList}
-				setUpdateMediaList={setUpdateMediaList}
-				newContent={newContent}
-				setNewContent={setNewContent}
+				value={questionRequest.content}
+				questionUpdateInputValue={updateInputValue}
+				updateMediaList={questionRequest.mediaList}
 			/>
 
 			<button css={uploadButtonStyle} onClick={handleSubmit}>

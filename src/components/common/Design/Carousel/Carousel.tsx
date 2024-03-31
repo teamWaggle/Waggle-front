@@ -12,6 +12,7 @@ import Gallery from "@/components/common/Design/Carousel/Gallery/Gallery";
 import useCarousel from "@/hooks/useCarousel";
 import useClickOutSide from "@/hooks/useClickOutSide";
 
+import type { QuestionFormData } from "@/types/question";
 import type { SirenFormData } from "@/types/siren";
 
 import {
@@ -30,7 +31,17 @@ export interface CarouselProps extends PropsWithChildren {
 	showArrows?: boolean;
 	showDots?: boolean;
 	updateMediaList?: string[];
-	updateInputValue?: <Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void;
+	sirenUpdateInputValue?: <Key extends keyof SirenFormData>(
+		key: Key,
+		value: SirenFormData[Key],
+	) => void;
+	questionUpdateInputValue?: <Key extends keyof QuestionFormData>(
+		key: Key,
+		value: QuestionFormData[Key],
+	) => void;
+	// updateInputValue?:
+	// 	| (<Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void)
+	// 	| (<Key extends keyof QuestionFormData>(key: Key, value: QuestionFormData[Key]) => void);
 	hasGallery?: boolean;
 }
 
@@ -50,7 +61,8 @@ const Carousel = ({
 	showDots = true,
 	children,
 	updateMediaList,
-	updateInputValue,
+	sirenUpdateInputValue,
+	questionUpdateInputValue,
 	hasGallery,
 }: CarouselProps) => {
 	const {
@@ -105,7 +117,8 @@ const Carousel = ({
 						galleryRef={galleryRef}
 						mediaCurrentIndex={mediaIndex}
 						updatedMediaList={updateMediaList}
-						updateInputValue={updateInputValue}
+						sirenUpdateInputValue={sirenUpdateInputValue}
+						questionUpdateInputValue={questionUpdateInputValue}
 						handleMoveImage={handleMoveImage}
 					/>
 				)}
