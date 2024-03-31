@@ -31,9 +31,6 @@ interface GalleryProps {
 		key: Key,
 		value: QuestionFormData[Key],
 	) => void;
-	// updateInputValue?:
-	// 	| (<Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void)
-	// 	| (<Key extends keyof QuestionFormData>(key: Key, value: QuestionFormData[Key]) => void);
 	handleMoveImage: (imgIndex: number) => void;
 }
 
@@ -47,12 +44,9 @@ const Gallery = ({
 	questionUpdateInputValue,
 	handleMoveImage,
 }: GalleryProps) => {
-	const { isLoading, uploadMediaList, handleImgUpload } = useMultipleImgUpload({
+	const { isLoading, uploadMediaList, handleImgUpload, handleImgRemove } = useMultipleImgUpload({
 		updateMediaList: updatedMediaList,
 	});
-
-	console.log(updatedMediaList);
-	console.log(uploadMediaList);
 
 	useEffect(() => {
 		if (!isLoading) {
@@ -62,7 +56,7 @@ const Gallery = ({
 				questionUpdateInputValue("mediaList", uploadMediaList);
 			}
 		}
-	}, [isLoading]);
+	}, [isLoading, handleImgRemove]);
 
 	return (
 		<div css={galleryIconBoxStyle} ref={galleryRef}>
@@ -74,8 +68,7 @@ const Gallery = ({
 						mediaCurrentIndex={mediaCurrentIndex}
 						updatedMediaList={uploadMediaList}
 						handleMoveImage={handleMoveImage}
-						sirenUpdateInputValue={sirenUpdateInputValue}
-						questionUpdateInputValue={questionUpdateInputValue}
+						handleImgRemove={handleImgRemove}
 					/>
 
 					<label css={galleryPlusIconBoxStyle} htmlFor="media">
