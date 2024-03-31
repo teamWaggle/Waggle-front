@@ -47,3 +47,17 @@ export const participationSliderBoxStyle = (currentIndex: number) =>
 		transition: "transform 0.5s ease",
 		transform: `translateX(-${currentIndex * 264}px)`,
 	});
+
+export const rightArrowIconStyle = css({
+	position: "absolute",
+	right: "-3%",
+	top: "10%",
+	cursor: "pointer",
+});
+export const leftArrowIconStyle = css({
+	position: "absolute",
+	left: "-4%",
+	top: "10%",
+
+	cursor: "pointer",
+});

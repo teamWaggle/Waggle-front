@@ -1,38 +1,38 @@
 import type { SerializedStyles } from "@emotion/react";
 
-import LeftArrowIcon from "@/assets/svg/sm-left-arrow.svg?react";
-import RightArrowIcon from "@/assets/svg/sm-right-arrow.svg?react";
-
-import { Flex } from "@/components/common";
-
-import { TEAM_INFO } from "@/constants/team";
+import { Box, Flex } from "@/components/common";
 
 import useSlider from "@/hooks/useSlider";
 
-import { leftArrowIconStyle, rightArrowIconStyle } from "@/components/common/Slider/Slider.style";
-
 const Slider = ({
 	children,
-	length,
+	dataLength,
 	displayCount,
 	cardBoxstyle,
+	leftIcon,
+	rightIcon,
 }: {
 	children: React.ReactNode;
-	length: number;
+	dataLength: number;
 	displayCount: number;
 	cardBoxstyle: (currentIndex: number) => SerializedStyles;
+	leftIcon: React.ReactNode;
+	rightIcon: React.ReactNode;
 }) => {
-	const { currentIndex, handlePrevOnClick, handleNextOnClick } = useSlider(length, displayCount);
+	const { currentIndex, handlePrevOnClick, handleNextOnClick } = useSlider(
+		dataLength,
+		displayCount,
+	);
 	return (
-		<Flex style={{ marginLeft: "40px", position: "relative" }}>
-			{currentIndex !== 0 && <LeftArrowIcon onClick={handlePrevOnClick} css={leftArrowIconStyle} />}
+		<Box style={{ position: "relative" }}>
+			{currentIndex !== 0 && <Box onClick={handlePrevOnClick}>{leftIcon}</Box>}
 			<Flex style={{ overflow: "hidden" }}>
 				<Flex css={cardBoxstyle(currentIndex)}>{children}</Flex>
 			</Flex>
-			{currentIndex <= length - TEAM_INFO.MEMBERS_SLIDER_AMOUNT && (
-				<RightArrowIcon onClick={handleNextOnClick} css={rightArrowIconStyle} />
+			{currentIndex <= dataLength - displayCount && (
+				<Box onClick={handleNextOnClick}>{rightIcon}</Box>
 			)}
-		</Flex>
+		</Box>
 	);
 };
 export default Slider;

@@ -1,3 +1,4 @@
+import CreateTeamPage from "./CreateTeamPage";
 import LandingPage from "./LandingPage/LandingPage";
 import PlanningPage from "./PlanningPage";
 import QuestionCreatePage from "./QuestionCreatePage";
@@ -8,7 +9,6 @@ import SirenCreatePage from "./SirenCreatePage";
 import SirenDetailPage from "./SirenDetailPage";
 import SirenPage from "./SirenPage";
 import TeamPage from "./TeamPage";
-
 export {
 	LandingPage,
 	QuestionPage,
@@ -20,4 +20,5 @@ export {
 	PlanningPage,
 	SirenCreatePage,
 	TeamPage,
+	CreateTeamPage,
 };
