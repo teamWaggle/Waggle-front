@@ -2,13 +2,18 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const uploadMediaBoxStyle = (isDragOver: boolean) =>
+export const uploadMediaBoxStyle = (
+	isDragOver: boolean,
+	width: number,
+	height: number,
+	borderRadius: string,
+) =>
 	css({
-		width: "536px",
-		height: "466px",
+		width,
+		height,
 		backgroundColor: isDragOver ? "#ffeaca" : Theme.color.brand_primary,
-
-		borderRadius: "20px",
+		borderRadius,
+		border: width > 700 ? `5px solid ${Theme.color.white}` : "none",
 		justifyContent: "center",
 		alignItems: "center",
 		flexDirection: "column",

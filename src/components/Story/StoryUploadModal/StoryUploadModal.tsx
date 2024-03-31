@@ -9,18 +9,18 @@ import { useDragAndDrop } from "@/hooks/useDragAndDrop";
 import useModal from "@/hooks/useModal";
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
-import { layoutStyle } from "@/components/Story/StoryUploadModal/StoryUploadModal.style";
+import { uploadMediaBoxStyle } from "@/components/common/Post/PostUploadMedia/PostUploadMedia.style";
 
 const StoryUploadModal = () => {
 	const modal = useModal();
 
-	const { isLoading, uploadMediaList, handleImgUpload, dropImgUpload } = useMultipleImgUpload({});
+	const { uploadMediaList, handleImgUpload, dropImgUpload } = useMultipleImgUpload({});
 
 	const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
 		useDragAndDrop(dropImgUpload);
 
 	useEffect(() => {
-		if (!isLoading) {
+		if (uploadMediaList.length !== 0) {
 			modal.closeModal();
 
 			modal.openModal({
@@ -28,11 +28,11 @@ const StoryUploadModal = () => {
 				component: () => <StoryContentModal uploadMediaList={uploadMediaList} />,
 			});
 		}
-	}, [isLoading]);
+	}, [handleImgUpload, dropImgUpload]);
 
 	return (
 		<Flex
-			css={layoutStyle(isDragOver)}
+			css={uploadMediaBoxStyle(isDragOver, 740, 740, "42px")}
 			onDrop={handleDrop}
 			onDragEnter={handleDragIn}
 			onDragLeave={handleDragOut}
