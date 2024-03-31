@@ -4,66 +4,71 @@ import { css } from "@emotion/react";
 
 import OptionIcon from "@/assets/svg/option.svg?react";
 
-import { Flex } from "@/components/common";
-
 import useClickOutSide from "@/hooks/useClickOutSide";
 
 import { Theme } from "@/styles/Theme";
 
-interface ProfileOptionMenuPropsType {
+interface ProfileOptionMenuParams {
 	handleEditMenu?: () => void;
 	handleDeleteMenu?: () => void;
+	isLeft?: boolean;
 }
 
-const ProfileOptionMenu = ({ handleEditMenu, handleDeleteMenu }: ProfileOptionMenuPropsType) => {
+const ProfileOptionMenu = ({
+	handleEditMenu,
+	handleDeleteMenu,
+	isLeft,
+}: ProfileOptionMenuParams) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
-	const menuRef = useRef<HTMLUListElement>(null);
+	const menuRef = useRef<HTMLDivElement>(null);
 
 	useClickOutSide(menuRef, () => setMenuOpen(false));
 
 	return (
-		<Flex css={optionMenuBoxStyle}>
+		<div css={optionMenuBoxStyle(isLeft)} ref={menuRef}>
 			<OptionIcon onClick={() => setMenuOpen((prev) => !prev)} />
 
 			{menuOpen && (
-				<ul ref={menuRef}>
+				<ul>
 					<li onClick={handleEditMenu}>수정하기</li>
 					<li onClick={handleDeleteMenu}>삭제하기</li>
 				</ul>
 			)}
-		</Flex>
+		</div>
 	);
 };
 
 export default ProfileOptionMenu;
 
-const optionMenuBoxStyle = css({
-	cursor: "pointer",
-	position: "absolute",
-	right: 0,
-
-	"& > ul": {
+const optionMenuBoxStyle = (isLeft?: boolean) =>
+	css({
+		cursor: "pointer",
 		position: "absolute",
-		top: "-2px",
-		left: "12px",
-		width: "63px",
-		border: `1px solid ${Theme.color.border}`,
-		borderRadius: "2px",
+		right: 0,
 
-		"& > li": {
-			display: "flex",
-			alignItems: "center",
-			justifyContent: "center",
-			fontSize: "10px",
-			fontWeight: 600,
-			backgroundColor: Theme.color.white,
-			color: Theme.color.text,
-			height: "22px",
+		"& > ul": {
+			position: "absolute",
+			top: "-2px",
+			left: !isLeft ? "12px" : "auto",
+			right: isLeft ? "12px" : "auto",
+			width: "63px",
+			border: `1px solid ${Theme.color.border}`,
+			borderRadius: "2px",
 
-			"&:last-of-type": {
-				borderTop: `1px solid ${Theme.color.border}`,
+			"& > li": {
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				fontSize: "10px",
+				fontWeight: 600,
+				backgroundColor: Theme.color.white,
+				color: Theme.color.text,
+				height: "22px",
+
+				"&:last-of-type": {
+					borderTop: `1px solid ${Theme.color.border}`,
+				},
 			},
 		},
-	},
-});
+	});
