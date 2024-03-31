@@ -10,11 +10,10 @@ import type { DefaultApiResponseType } from "@/types/api";
 import type { ScheduleResultType } from "@/types/planning";
 
 export const useGetMemberScheduleMonthly = (year: number, month: number) => {
-	const useScheduleMonthlyQuery = useQuery<DefaultApiResponseType<ScheduleResultType>, AxiosError>({
+	return useQuery<DefaultApiResponseType<ScheduleResultType>, AxiosError>({
 		queryKey: [QUERY_KEYS.SCHEDULE_MONTHLY(year, month)],
 		queryFn: () => getMemberScheduleMonthly(year, month),
 	});
-	return useScheduleMonthlyQuery;
 };
 
 export const prefetchScheduleMonthly = (year: number, month: number) => {

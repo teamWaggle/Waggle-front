@@ -1,4 +1,6 @@
 import GroupIcon from "@/assets/svg/group.svg?react";
+import LeftArrowIcon from "@/assets/svg/sm-left-arrow.svg?react";
+import RightArrowIcon from "@/assets/svg/sm-right-arrow.svg?react";
 
 import { Box, Flex, Heading, Slider, Text } from "@/components/common";
 import MemberCard from "@/components/Team/TeamInfo/MemberSlider/MemberCard";
@@ -7,8 +9,10 @@ import ParticipationCard from "@/components/Team/TeamInfo/ParticipationSlider/Pa
 import { TEAM_INFO } from "@/constants/team";
 
 import {
+	leftArrowIconStyle,
 	memberSliderBoxStyle,
 	participationSliderBoxStyle,
+	rightArrowIconStyle,
 	teamImgStyle,
 	teamInfoBoxStyle,
 	teamInfoNewApplyStyle,
@@ -59,11 +63,15 @@ const TeamInfo = () => {
 				</Text>
 				<Flex styles={{ align: "center" }}>
 					<GroupIcon />
-					<Text size="large">{"3/7"}</Text>
+					<Text size="large" style={{ marginRight: "40px" }}>
+						{"3/7"}
+					</Text>
 					<Slider
+						leftIcon={<LeftArrowIcon css={leftArrowIconStyle} />}
+						rightIcon={<RightArrowIcon css={rightArrowIconStyle} />}
 						cardBoxstyle={memberSliderBoxStyle}
 						displayCount={TEAM_INFO.MEMBERS_SLIDER_AMOUNT}
-						length={memberLength}
+						dataLength={memberLength}
 					>
 						{members.map((member, index) => (
 							<MemberCard key={index} member={member} />
@@ -71,11 +79,15 @@ const TeamInfo = () => {
 					</Slider>
 				</Flex>
 				<Flex styles={{ align: "center", marginTop: "10px" }}>
-					<Text css={teamInfoNewApplyStyle}>새로운 가입 신청</Text>
+					<Text css={teamInfoNewApplyStyle} style={{ marginRight: "40px" }}>
+						새로운 가입 신청
+					</Text>
 					<Slider
+						leftIcon={<LeftArrowIcon css={leftArrowIconStyle} />}
+						rightIcon={<RightArrowIcon css={rightArrowIconStyle} />}
 						cardBoxstyle={participationSliderBoxStyle}
 						displayCount={TEAM_INFO.PARTICIPATION_SLIDER_AMOUNT}
-						length={participatingMemberLength}
+						dataLength={participatingMemberLength}
 					>
 						{participatingMembers.map((participatingMember, index) => (
 							<ParticipationCard key={index} participatingMember={participatingMember} />

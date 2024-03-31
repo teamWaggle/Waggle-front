@@ -15,7 +15,7 @@ export interface TeamCardType {
 	description: string;
 	teamSize: number;
 	maxTeamSize: number;
-	colorScheme: TeamColorType;
+	teamColor: TeamColorType;
 }
 export interface ScheduleType {
 	boardId: number;
@@ -51,11 +51,19 @@ export interface ScheduleCalendarCardType {
 	position: SchedulePositionType;
 }
 
-export interface ScheduleResultType {
-	scheduleList: Array<ScheduleType>;
-	scheduleCount: number;
+export interface DefaultResultType {
 	isFirst: boolean;
 	isLast: boolean;
+}
+
+export interface ScheduleResultType extends DefaultResultType {
+	scheduleList: Array<ScheduleType>;
+	scheduleCount: number;
+}
+
+export interface TeamResultType extends DefaultResultType {
+	teamList: Array<TeamCardType>;
+	teamCount: number;
 }
 
 export type DatePickerFormatType = "date" | "time";
