@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Flex, Text, SearchInput } from "@/components/common";
-import SortButton from "@/components/Landing/SortButton/SortButton";
+import SortButton from "@/components/common/SortButton/SortButton";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 

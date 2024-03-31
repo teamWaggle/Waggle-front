@@ -1,6 +1,6 @@
 import { lazy } from "react";
 
-export const LandingPage = lazy(() => import("@/pages/LandingPage/LandingPage"));
+export const StoryPage = lazy(() => import("@/pages/StoryPage/StoryPage"));
 
 export const SirenPage = lazy(() => import("@/pages/SirenPage"));
 

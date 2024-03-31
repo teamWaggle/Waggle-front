@@ -7,7 +7,7 @@ import * as Lazy from "@/router/lazy";
 
 import { PATH } from "@/constants/path";
 
-import LandingPageSkeleton from "@/pages/LandingPage/LandingPageSkeleton";
+import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
 
 const AppRouter = () => {
 	const router = createBrowserRouter([
@@ -18,8 +18,8 @@ const AppRouter = () => {
 				{
 					path: "",
 					element: (
-						<Suspense fallback={<LandingPageSkeleton />}>
-							<Lazy.LandingPage />
+						<Suspense fallback={<StoryPageSkeleton />}>
+							<Lazy.StoryPage />
 						</Suspense>
 					),
 				},
