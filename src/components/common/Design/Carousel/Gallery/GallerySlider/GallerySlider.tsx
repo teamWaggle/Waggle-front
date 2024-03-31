@@ -5,11 +5,6 @@ import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
 import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
 
-import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
-
-import type { QuestionFormData } from "@/types/question";
-import type { SirenFormData } from "@/types/siren";
-
 import {
 	layoutStyle,
 	sliderBoxStyle,
@@ -24,27 +19,15 @@ interface GallerySliderParams {
 	mediaCurrentIndex: number;
 	updatedMediaList?: string[];
 	handleMoveImage: (imgIndex: number) => void;
-	sirenUpdateInputValue?: <Key extends keyof SirenFormData>(
-		key: Key,
-		value: SirenFormData[Key],
-	) => void;
-	questionUpdateInputValue?: <Key extends keyof QuestionFormData>(
-		key: Key,
-		value: QuestionFormData[Key],
-	) => void;
+	handleImgRemove: (media: string) => void;
 }
 
 const GallerySlider = ({
 	mediaCurrentIndex,
 	updatedMediaList,
 	handleMoveImage,
-	sirenUpdateInputValue,
-	questionUpdateInputValue,
+	handleImgRemove,
 }: GallerySliderParams) => {
-	const { isLoading, uploadMediaList, handleImgRemove } = useMultipleImgUpload({
-		updateMediaList: updatedMediaList,
-	});
-
 	const [isShowLeftArrow, setIsShowLeftArrow] = useState<boolean | null>(false);
 	const [isShowRightArrow, setIsShowRightArrow] = useState<boolean | null>(true);
 
@@ -58,16 +41,6 @@ const GallerySlider = ({
 			setIsShowRightArrow(null);
 		}
 	}, []);
-
-	useEffect(() => {
-		if (!isLoading) {
-			if (sirenUpdateInputValue) {
-				sirenUpdateInputValue("mediaList", uploadMediaList);
-			} else if (questionUpdateInputValue) {
-				questionUpdateInputValue("mediaList", uploadMediaList);
-			}
-		}
-	}, [isLoading]);
 
 	const handleLeftArrowClick = useCallback(() => {
 		const wrap = wrapRef.current;

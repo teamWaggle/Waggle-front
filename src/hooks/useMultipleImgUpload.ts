@@ -49,7 +49,7 @@ export const useMultipleImgUpload = ({
 				},
 			});
 		},
-		[postMediaMutate],
+		[postMediaMutate, uploadMediaList],
 	);
 
 	const handleImgUpload = useCallback(
@@ -67,7 +67,7 @@ export const useMultipleImgUpload = ({
 
 			await convertToMediaUrl(files);
 		},
-		[postMediaMutate, convertToMediaUrl],
+		[postMediaMutate, convertToMediaUrl, uploadMediaList],
 	);
 
 	const dropImgUpload = useCallback(
@@ -88,17 +88,20 @@ export const useMultipleImgUpload = ({
 		[postMediaMutate, convertToMediaUrl],
 	);
 
-	const handleImgRemove = useCallback((selectMediaList: string) => {
-		flushSync(() => {
-			setUploadMediaList((prev) => {
-				const updatedMediaList = prev.filter((media) => media !== selectMediaList);
+	const handleImgRemove = useCallback(
+		(selectMediaList: string) => {
+			flushSync(() => {
+				setUploadMediaList((prev) => {
+					const updatedMediaList = prev.filter((media) => media !== selectMediaList);
 
-				return updatedMediaList;
+					return updatedMediaList;
+				});
+
+				setIsLoading(false);
 			});
-
-			setIsLoading(false);
-		});
-	}, []);
+		},
+		[uploadMediaList],
+	);
 
 	return {
 		isLoading,
