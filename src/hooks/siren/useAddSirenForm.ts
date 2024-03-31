@@ -1,18 +1,16 @@
 import { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
-export interface test {
-	title: string;
-	content: string;
-	lostLocate: string;
-	petBreed: string;
-	petGender: string;
-	lostDate: string;
-	petAge: string;
-	contact: string;
-}
+import { usePostSirenMutation } from "@/hooks/api/siren/usePostSirenMutation";
+
+import type { SirenFormData } from "@/types/siren";
 
 export const useAddSirenForm = () => {
-	const [createSirenRequest2, setCreateSirenRequest] = useState({
+	const { mutate: postSirenMutate } = usePostSirenMutation();
+
+	const navigate = useNavigate();
+
+	const [createSirenRequest, setCreateSirenRequest] = useState({
 		title: "",
 		content: "",
 		lostLocate: "",
@@ -21,17 +19,37 @@ export const useAddSirenForm = () => {
 		lostDate: "",
 		petAge: "",
 		contact: "",
+		category: "PROTECT",
+		mediaList: [],
 	});
-	const updateInputValue = useCallback(<Key extends keyof test>(key: Key, value: test[Key]) => {
-		setCreateSirenRequest((prevCreateSirenRequest) => {
-			const data = {
-				...prevCreateSirenRequest,
-				[key]: value,
-			};
 
-			return data;
+	const updateInputValue = useCallback(
+		<Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => {
+			setCreateSirenRequest((prevCreateSirenRequest) => {
+				const data = {
+					...prevCreateSirenRequest,
+					[key]: value,
+				};
+
+				return data;
+			});
+		},
+		[],
+	);
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		const formData = new FormData();
+
+		formData.append("createSirenRequest", JSON.stringify(createSirenRequest));
+
+		postSirenMutate(formData, {
+			onSuccess: () => {
+				navigate("/siren");
+			},
 		});
-	}, []);
+	};
 
-	return { createSirenRequest2, updateInputValue };
+	return { createSirenRequest, updateInputValue, handleSubmit };
 };

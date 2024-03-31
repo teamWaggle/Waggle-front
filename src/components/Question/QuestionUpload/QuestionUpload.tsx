@@ -20,11 +20,11 @@ const QuestionUpload = () => {
 	const { mutate: postQuestionMutate } = usePostQuestionMutation();
 
 	const [title, setTitle] = useState("");
-	const [content, setContent] = useState("");
+	const [content] = useState("");
 
 	const navigate = useNavigate();
 
-	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useMultipleImgUpload();
+	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useMultipleImgUpload({});
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -62,8 +62,8 @@ const QuestionUpload = () => {
 			/>
 
 			<PostUpload
-				content={content}
-				setContent={setContent}
+				value={content}
+				updateInputValue={() => {}}
 				isLoading={isLoading}
 				uploadMediaList={uploadMediaList}
 				handleImgUpload={handleImgUpload}

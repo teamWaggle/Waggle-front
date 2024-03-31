@@ -6,7 +6,11 @@ import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
 import { usePostMediaMutation } from "@/hooks/api/media/usePostMediaMutation";
 
-export const useMultipleImgUpload = () => {
+export const useMultipleImgUpload = ({
+	updateFormImage,
+}: {
+	updateFormImage?: CallableFunction;
+}) => {
 	const { mutate: postMediaMutate } = usePostMediaMutation();
 
 	const [isLoading, setIsLoading] = useState(true);
@@ -28,10 +32,13 @@ export const useMultipleImgUpload = () => {
 
 			postMediaMutate(imgFormData, {
 				onSuccess: ({ result }) => {
+					const mediaList: string[] = [];
+					result.mediaList.forEach((media) => mediaList.push(media.imgUrl));
+
+					updateFormImage?.(mediaList);
+
 					flushSync(() => {
-						result.mediaList.forEach((media) =>
-							setUploadMediaList((prev) => [...prev, media.imgUrl]),
-						);
+						setUploadMediaList((prev) => [...prev, ...mediaList]);
 
 						setIsLoading(false);
 					});

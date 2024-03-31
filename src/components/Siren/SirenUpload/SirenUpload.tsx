@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
@@ -7,7 +6,6 @@ import SirenUploadInput from "@/components/Siren/SirenUpload/SirenUploadInput/Si
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
-import { usePostSirenMutation } from "@/hooks/api/siren/usePostSirenMutation";
 import { useAddSirenForm } from "@/hooks/siren/useAddSirenForm";
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
@@ -24,51 +22,18 @@ import {
 } from "@/components/Siren/SirenUpload/SirenUpload.style";
 
 const SirenUpload = () => {
-	const { mutate: postSirenMutate } = usePostSirenMutation();
-	const { createSirenRequest2, updateInputValue } = useAddSirenForm();
+	const { createSirenRequest, updateInputValue, handleSubmit } = useAddSirenForm();
 
-	console.log(createSirenRequest2);
+	const handleMediaListChange = useCallback(
+		(mediaList: string[]) => {
+			updateInputValue("mediaList", mediaList);
+		},
+		[updateInputValue],
+	);
 
-	const [title] = useState("");
-	const [category, setCategory] = useState("임시보호");
-	const [lostLocate] = useState("");
-	const [lostDate] = useState("");
-	const [petAge] = useState("");
-	const [petBreed] = useState("");
-	const [petGender] = useState("FEMALE");
-	const [contact] = useState("");
-	const [content, setContent] = useState("");
-
-	const navigate = useNavigate();
-
-	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useMultipleImgUpload();
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-
-		const formData = new FormData();
-
-		const createSirenRequest = {
-			title,
-			petBreed,
-			petAge,
-			petGender,
-			contact,
-			lostLocate,
-			lostDate,
-			content,
-			category: generateTagCategory(category),
-			mediaList: uploadMediaList,
-		};
-
-		formData.append("createSirenRequest", JSON.stringify(createSirenRequest));
-
-		postSirenMutate(formData, {
-			onSuccess: () => {
-				navigate("/siren");
-			},
-		});
-	};
+	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useMultipleImgUpload({
+		updateFormImage: handleMediaListChange,
+	});
 
 	return (
 		<Box tag="section" css={layoutStyle}>
@@ -80,7 +45,7 @@ const SirenUpload = () => {
 				type="text"
 				placeholder="제목을 입력해주세요."
 				css={inputStyle}
-				value={createSirenRequest2.title}
+				value={createSirenRequest.title}
 				onChange={(e) => updateInputValue("title", e.target.value)}
 			/>
 
@@ -93,10 +58,12 @@ const SirenUpload = () => {
 					{SIREN_TAG_CATEGORY.map((data) => (
 						<Flex
 							css={tagStyle(
-								category === data.tagName ? generateTagStyle(data.category) : Theme.color.border,
+								createSirenRequest.category === data.category
+									? generateTagStyle(data.category)
+									: Theme.color.border,
 							)}
 							key={data.tagName}
-							onClick={() => setCategory(data.tagName)}
+							onClick={() => updateInputValue("category", generateTagCategory(data.tagName))}
 						>
 							<Text>{data.tagName}</Text>
 						</Flex>
@@ -104,11 +71,11 @@ const SirenUpload = () => {
 				</Flex>
 			</Box>
 
-			<SirenUploadInput value={createSirenRequest2} updateInputValue={updateInputValue} />
+			<SirenUploadInput value={createSirenRequest} updateInputValue={updateInputValue} />
 
 			<PostUpload
-				content={content}
-				setContent={setContent}
+				value={createSirenRequest.content}
+				updateInputValue={updateInputValue}
 				isLoading={isLoading}
 				uploadMediaList={uploadMediaList}
 				handleImgUpload={handleImgUpload}

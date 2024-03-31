@@ -33,7 +33,7 @@ const Gallery = ({
 	updatedMediaList,
 	handleMoveImage,
 }: GalleryProps) => {
-	const { isLoading, uploadMediaList, handleImgUpload } = useMultipleImgUpload();
+	const { isLoading, uploadMediaList, handleImgUpload } = useMultipleImgUpload({});
 
 	useEffect(() => {
 		if (!isLoading && setUpdateMediaList) {

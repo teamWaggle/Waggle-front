@@ -76,3 +76,16 @@ export interface SirenRepresentativeType extends CommonResponseBaseType {
 export interface SirenRepresentativeResultType {
 	sirenList: SirenListInfoType[];
 }
+
+export interface SirenFormData {
+	title: string;
+	content: string;
+	lostLocate: string;
+	petBreed: string;
+	petGender: string;
+	lostDate: string;
+	petAge: string;
+	contact: string;
+	category: string;
+	mediaList: string[];
+}
