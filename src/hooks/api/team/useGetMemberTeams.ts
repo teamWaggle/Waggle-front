@@ -14,7 +14,6 @@ export const useGetMemberTeams = () => {
 		queryKey: [QUERY_KEYS.MEMBER_TEAMS],
 		queryFn: getMemberTeams,
 	});
-	const { teamList } = data?.result ?? { teamList: [] };
-
-	return { teamList };
+	const { teamList } = data?.result || {};
+	return teamList;
 };

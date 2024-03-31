@@ -9,10 +9,10 @@ import type { DatePickerFormatType } from "@/types/planning";
 export const DatePickerProvider = createContext<{
 	modalClose: () => void;
 	selectedDate: Date;
-	currentMonth: Date;
-	handlePrevMonth: () => void;
-	handleNextMonth: () => void;
-	editCurrentMonth: (date: Date) => void;
+	currentDate: Date;
+	handlePrevDate: () => void;
+	handleNextDate: () => void;
+	editCurrentDate: (date: Date) => void;
 	editSelectedDate: (date: Date) => void;
 	handleTriggerOnClick: () => void;
 	limitDate?: Date;
@@ -20,10 +20,10 @@ export const DatePickerProvider = createContext<{
 }>({
 	modalClose: () => {},
 	selectedDate: new Date(),
-	currentMonth: new Date(),
-	handlePrevMonth: () => {},
-	handleNextMonth: () => {},
-	editCurrentMonth: () => {},
+	currentDate: new Date(),
+	handlePrevDate: () => {},
+	handleNextDate: () => {},
+	editCurrentDate: () => {},
 	editSelectedDate: () => {},
 	handleTriggerOnClick: () => {},
 	limitDate: new Date(),
@@ -42,17 +42,17 @@ const DatePicker = ({
 	limitDate?: Date;
 	formatType?: DatePickerFormatType;
 }) => {
-	const { currentMonth, editCurrentMonth, handlePrevMonth, handleNextMonth } = useCalendar();
+	const { currentDate, editCurrentDate, handlePrevDate, handleNextDate } = useCalendar();
 	const { isTrigger, handleTriggerOnClick, modalClose } = useModalTrigger();
 
 	return (
 		<DatePickerProvider.Provider
 			value={{
 				modalClose,
-				currentMonth,
-				editCurrentMonth,
-				handlePrevMonth,
-				handleNextMonth,
+				currentDate,
+				editCurrentDate,
+				handlePrevDate,
+				handleNextDate,
 				editSelectedDate,
 				selectedDate,
 				handleTriggerOnClick,
