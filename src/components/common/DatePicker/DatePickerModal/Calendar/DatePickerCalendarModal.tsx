@@ -20,16 +20,16 @@ import {
 const weekday = ["일", "월", "화", "수", "목", "금", "토"];
 
 const DatePickerCalendarModal = () => {
-	useEffect(() => {
-		editCurrentMonth(selectedDate);
-	}, []);
-
-	const { currentMonth, selectedDate, handlePrevMonth, handleNextMonth, editCurrentMonth } =
+	const { currentDate, selectedDate, handlePrevDate, handleNextDate, editCurrentDate } =
 		useContext(DatePickerProvider);
 
+	useEffect(() => {
+		editCurrentDate(selectedDate);
+	}, []);
+
 	const CalendarDateCards = useMemo(() => {
-		const monthStart = startOfMonth(currentMonth);
-		const daysInMonth = getDaysInMonth(currentMonth);
+		const monthStart = startOfMonth(currentDate);
+		const daysInMonth = getDaysInMonth(currentDate);
 		const firstDayOfMonth = getDay(monthStart);
 
 		const calendarArray = Array.from({ length: daysInMonth + firstDayOfMonth }, (_, i) => {
@@ -41,17 +41,17 @@ const DatePickerCalendarModal = () => {
 		return calendarArray.map((day) => {
 			return <DatePickerCalendarCard day={day} />;
 		});
-	}, [currentMonth]);
+	}, [currentDate]);
 
 	return (
 		<ModalContainer style={{ padding: "12px", width: "286px" }}>
 			<Flex css={datePickerModalTitleBoxStyle}>
 				<Text css={datePickerCalendarTitleStyle} size="xSmall">
-					{format(currentMonth, "yyyy년 M월")}
+					{format(currentDate, "yyyy년 M월")}
 				</Text>
 				<Box>
-					<LeftArrow onClick={handlePrevMonth} />
-					<RightArrow onClick={handleNextMonth} />
+					<LeftArrow onClick={handlePrevDate} />
+					<RightArrow onClick={handleNextDate} />
 				</Box>
 			</Flex>
 			<Box css={datePickerCalendarBoxStyle}>

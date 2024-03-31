@@ -1,7 +1,6 @@
-import QuestionIcon from "@/assets/svg/question-like.svg?react";
-
 import { Flex, Text } from "@/components/common";
 
+import QuestionIcon from "@/assets/svg/question-like.svg?react";
 import {
 	emptyMemberTeamStyle,
 	emptyMemberTeamTextStyle,
