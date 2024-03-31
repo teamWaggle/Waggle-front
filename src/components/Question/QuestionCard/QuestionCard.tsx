@@ -58,13 +58,12 @@ const QuestionCard = ({
 					우는 벌레는 부끄러운 이름을 슬퍼하는 까닭입니다
 				</Text>
 			</Box>
-			{recommendationInfo && (
-				<Flex css={iconStyle(recommendationInfo.isRecommend)}>
-					{recommendationInfo.isRecommend ? <LikeIcon /> : <DisLikeIcon />}
 
-					<Text>{recommendationInfo.recommendCount}</Text>
-				</Flex>
-			)}
+			<Flex css={iconStyle(recommendationInfo.isRecommend)}>
+				{recommendationInfo.isRecommend ? <LikeIcon /> : <DisLikeIcon />}
+
+				<Text>{recommendationInfo.recommendCount}</Text>
+			</Flex>
 		</Flex>
 	);
 };

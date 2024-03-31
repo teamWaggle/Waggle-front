@@ -25,8 +25,6 @@ const QuestionEdit = ({ boardId, title, content, mediaList, hashtagList }: Quest
 		},
 	});
 
-	console.log(questionRequest);
-
 	return (
 		<Box tag="section" css={layoutStyle}>
 			<Heading size="large" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>

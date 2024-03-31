@@ -5,11 +5,12 @@ import { Flex, Box, Text, Carousel } from "@/components/common";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-const PostContent = ({ mediaList, content }: { mediaList: string[]; content: string }) => {
-	if (!mediaList) {
-		return <div>로딩중..</div>;
-	}
+interface PostContentParams {
+	mediaList: string[];
+	content: string;
+}
 
+const PostContent = ({ mediaList, content }: PostContentParams) => {
 	return (
 		<Flex styles={{ align: "center", gap: "64px" }}>
 			<Carousel
