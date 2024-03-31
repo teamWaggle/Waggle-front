@@ -10,6 +10,7 @@ import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
 import type { QuestionFormData } from "@/types/question";
 import type { SirenFormData } from "@/types/siren";
+import type { StoryFormData } from "@/types/story";
 
 import {
 	galleryIconBoxStyle,
@@ -23,6 +24,10 @@ interface GalleryProps {
 	galleryRef: React.RefObject<HTMLDivElement>;
 	mediaCurrentIndex: number;
 	updatedMediaList?: string[];
+	storyUpdateInputValue?: <Key extends keyof StoryFormData>(
+		key: Key,
+		value: StoryFormData[Key],
+	) => void;
 	sirenUpdateInputValue?: <Key extends keyof SirenFormData>(
 		key: Key,
 		value: SirenFormData[Key],
@@ -40,6 +45,7 @@ const Gallery = ({
 	galleryRef,
 	mediaCurrentIndex,
 	updatedMediaList,
+	storyUpdateInputValue,
 	sirenUpdateInputValue,
 	questionUpdateInputValue,
 	handleMoveImage,
@@ -54,6 +60,8 @@ const Gallery = ({
 				sirenUpdateInputValue("mediaList", uploadMediaList);
 			} else if (questionUpdateInputValue) {
 				questionUpdateInputValue("mediaList", uploadMediaList);
+			} else if (storyUpdateInputValue) {
+				storyUpdateInputValue("mediaList", uploadMediaList);
 			}
 		}
 	}, [isLoading, handleImgRemove]);

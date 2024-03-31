@@ -36,3 +36,9 @@ export interface StoryListInfoType {
 	boardId: number;
 	thumbnail: string;
 }
+
+export interface StoryFormData {
+	content: string;
+	hashtagList: string[];
+	mediaList: string[];
+}

@@ -1,12 +1,9 @@
-import { useState } from "react";
-
 import SampleImg from "@/assets/png/post-sample.png";
 import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Flex, Text, Carousel } from "@/components/common";
 
-import { usePostStoryMutation } from "@/hooks/api/story/usePostStoryMutation";
-import useModal from "@/hooks/useModal";
+import { useAddStoryForm } from "@/hooks/story/useAddStoryForm";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -22,35 +19,14 @@ import {
 	uploadButtonStyle,
 } from "@/components/Story/StoryContentModal/StoryContentModal.style";
 
-const StoryContentModal = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
-	const { mutate: postStoryMutate } = usePostStoryMutation();
+interface StoryContentModalParams {
+	uploadMediaList: string[];
+}
 
-	const [content, setContent] = useState("");
-	const [hashtagList] = useState<string[]>(["test"]);
-
-	const [updateMediaList, setUpdateMediaList] = useState<string[]>(uploadMediaList);
-
-	const modal = useModal();
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-
-		const formData = new FormData();
-
-		const createStoryRequest = {
-			content,
-			hashtagList,
-			mediaList: updateMediaList,
-		};
-
-		formData.append("createStoryRequest", JSON.stringify(createStoryRequest));
-
-		postStoryMutate(formData, {
-			onSuccess: () => {
-				modal.closeModal();
-			},
-		});
-	};
+const StoryContentModal = ({ uploadMediaList }: StoryContentModalParams) => {
+	const { storyRequest, updateInputValue, handleSubmit } = useAddStoryForm({
+		mediaList: uploadMediaList,
+	});
 
 	return (
 		<Flex css={layoutStyle}>
@@ -67,14 +43,14 @@ const StoryContentModal = ({ uploadMediaList }: { uploadMediaList: string[] }) =
 						width={740}
 						height={726}
 						borderRadius="0 0 0 36px"
-						length={updateMediaList.length}
-						showArrows={updateMediaList.length > 1}
-						showDots={updateMediaList.length > 1}
-						updateMediaList={updateMediaList}
-						setUpdateMediaList={setUpdateMediaList}
+						length={storyRequest.mediaList.length}
+						showArrows={storyRequest.mediaList.length > 1}
+						showDots={storyRequest.mediaList.length > 1}
+						updateMediaList={storyRequest.mediaList}
+						storyUpdateInputValue={updateInputValue}
 						hasGallery
 					>
-						{updateMediaList.map((imgUrl, index) => (
+						{storyRequest.mediaList.map((imgUrl, index) => (
 							<Carousel.Item index={index} key={imgUrl}>
 								<img src={imgUrl} alt="img" />
 							</Carousel.Item>
@@ -97,13 +73,13 @@ const StoryContentModal = ({ uploadMediaList }: { uploadMediaList: string[] }) =
 							css={textareaStyle}
 							placeholder="사진에 대한 설명을 입력해주세요"
 							maxLength={500}
-							value={content}
-							onChange={(e) => setContent(e.target.value)}
+							value={storyRequest.content}
+							onChange={(e) => updateInputValue("content", e.target.value)}
 						/>
 
 						{/* 글자수 */}
 						<Text size="small" css={lengthTextStyle}>
-							{content.length}/500
+							{storyRequest.content.length}/500
 						</Text>
 					</Flex>
 
