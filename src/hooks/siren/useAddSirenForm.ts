@@ -1,27 +1,38 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { PATH } from "@/constants/path";
+
 import { usePostSirenMutation } from "@/hooks/api/siren/usePostSirenMutation";
+import { usePutSirenMutation } from "@/hooks/api/siren/usePutSirenMutation";
 
 import type { SirenFormData } from "@/types/siren";
 
-export const useAddSirenForm = () => {
+interface UseAddSirenFormParams {
+	sirenId?: number;
+	initialData?: SirenFormData;
+}
+
+export const useAddSirenForm = ({ sirenId, initialData }: UseAddSirenFormParams) => {
 	const { mutate: postSirenMutate } = usePostSirenMutation();
+	const { mutate: putSirenMutate } = usePutSirenMutation();
 
 	const navigate = useNavigate();
 
-	const [createSirenRequest, setCreateSirenRequest] = useState({
-		title: "",
-		content: "",
-		lostLocate: "",
-		petBreed: "",
-		petGender: "FEMALE",
-		lostDate: "",
-		petAge: "",
-		contact: "",
-		category: "PROTECT",
-		mediaList: [],
-	});
+	const [createSirenRequest, setCreateSirenRequest] = useState(
+		initialData ?? {
+			title: "",
+			content: "",
+			lostLocate: "",
+			petBreed: "",
+			petGender: "FEMALE",
+			lostDate: "",
+			petAge: "",
+			contact: "",
+			category: "PROTECT",
+			mediaList: [],
+		},
+	);
 
 	const updateInputValue = useCallback(
 		<Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => {
@@ -42,13 +53,29 @@ export const useAddSirenForm = () => {
 
 		const formData = new FormData();
 
-		formData.append("createSirenRequest", JSON.stringify(createSirenRequest));
+		if (!sirenId) {
+			formData.append("createSirenRequest", JSON.stringify(createSirenRequest));
 
-		postSirenMutate(formData, {
-			onSuccess: () => {
-				navigate("/siren");
-			},
-		});
+			postSirenMutate(formData, {
+				onSuccess: () => {
+					navigate("/siren");
+				},
+			});
+		} else {
+			formData.append("updateSirenRequest", JSON.stringify(createSirenRequest));
+
+			putSirenMutate(
+				{
+					sirenId,
+					formData,
+				},
+				{
+					onSuccess: () => {
+						navigate(PATH.SIREN_DETAIL(String(sirenId)));
+					},
+				},
+			);
+		}
 	};
 
 	return { createSirenRequest, updateInputValue, handleSubmit };

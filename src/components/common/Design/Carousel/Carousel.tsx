@@ -12,6 +12,8 @@ import Gallery from "@/components/common/Design/Carousel/Gallery/Gallery";
 import useCarousel from "@/hooks/useCarousel";
 import useClickOutSide from "@/hooks/useClickOutSide";
 
+import type { SirenFormData } from "@/types/siren";
+
 import {
 	carouselStyle,
 	buttonBoxStyle,
@@ -28,7 +30,7 @@ export interface CarouselProps extends PropsWithChildren {
 	showArrows?: boolean;
 	showDots?: boolean;
 	updateMediaList?: string[];
-	setUpdateMediaList?: React.Dispatch<React.SetStateAction<string[]>>;
+	updateInputValue?: <Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void;
 	hasGallery?: boolean;
 }
 
@@ -48,7 +50,7 @@ const Carousel = ({
 	showDots = true,
 	children,
 	updateMediaList,
-	setUpdateMediaList,
+	updateInputValue,
 	hasGallery,
 }: CarouselProps) => {
 	const {
@@ -103,7 +105,7 @@ const Carousel = ({
 						galleryRef={galleryRef}
 						mediaCurrentIndex={mediaIndex}
 						updatedMediaList={updateMediaList}
-						setUpdateMediaList={setUpdateMediaList}
+						updateInputValue={updateInputValue}
 						handleMoveImage={handleMoveImage}
 					/>
 				)}

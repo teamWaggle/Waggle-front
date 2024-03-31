@@ -6,16 +6,20 @@ import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
 import { usePostMediaMutation } from "@/hooks/api/media/usePostMediaMutation";
 
-export const useMultipleImgUpload = ({
-	updateFormImage,
-}: {
+interface UseMultipleImgUploadParams {
+	updateMediaList?: string[];
 	updateFormImage?: CallableFunction;
-}) => {
+}
+
+export const useMultipleImgUpload = ({
+	updateMediaList,
+	updateFormImage,
+}: UseMultipleImgUploadParams) => {
 	const { mutate: postMediaMutate } = usePostMediaMutation();
 
 	const [isLoading, setIsLoading] = useState(true);
 
-	const [uploadMediaList, setUploadMediaList] = useState<string[]>([]);
+	const [uploadMediaList, setUploadMediaList] = useState<string[]>(updateMediaList ?? []);
 
 	const convertToMediaUrl = useCallback(
 		async (imageFiles: FileList) => {
@@ -84,10 +88,23 @@ export const useMultipleImgUpload = ({
 		[postMediaMutate, convertToMediaUrl],
 	);
 
+	const handleImgRemove = useCallback((selectMediaList: string) => {
+		flushSync(() => {
+			setUploadMediaList((prev) => {
+				const updatedMediaList = prev.filter((media) => media !== selectMediaList);
+
+				return updatedMediaList;
+			});
+
+			setIsLoading(false);
+		});
+	}, []);
+
 	return {
 		isLoading,
 		handleImgUpload,
 		dropImgUpload,
 		uploadMediaList,
+		handleImgRemove,
 	};
 };
