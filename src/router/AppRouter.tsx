@@ -2,15 +2,7 @@ import { Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import App from "@/App";
-import {
-	PlanningPage,
-	QuestionPage,
-	QuestionDetailPage,
-	QuestionCreatePage,
-	SignUpPage,
-	SirenCreatePage,
-	TeamPage,
-} from "@/pages";
+import { PlanningPage, QuestionCreatePage, SignUpPage, SirenCreatePage, TeamPage } from "@/pages";
 import * as Lazy from "@/router/lazy";
 
 import { PATH } from "@/constants/path";
@@ -48,12 +40,20 @@ const AppRouter = () => {
 					),
 				},
 				{
-					path: "/question",
-					element: <QuestionPage />,
+					path: PATH.QUESTION,
+					element: (
+						<Suspense fallback={<div>로딩중</div>}>
+							<Lazy.QuestionPage />
+						</Suspense>
+					),
 				},
 				{
-					path: "/question/view/:id",
-					element: <QuestionDetailPage />,
+					path: PATH.QUESTION_DETAIL(":questionId"),
+					element: (
+						<Suspense fallback={<div>로딩중</div>}>
+							<Lazy.QuestionDetailPage />
+						</Suspense>
+					),
 				},
 				{
 					path: "/question-new",

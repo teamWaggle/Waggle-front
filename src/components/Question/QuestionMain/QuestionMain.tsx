@@ -10,10 +10,6 @@ import { mainStyle } from "@/components/Question/QuestionMain/QuestionMain.style
 const QuestionMain = () => {
 	const { questionListData } = useQuestionListQuery(0);
 
-	if (!questionListData) {
-		return <div>로딩중..</div>;
-	}
-
 	return (
 		<Box css={mainStyle}>
 			<Flex styles={{ gap: "65px" }}>

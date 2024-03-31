@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Flex, Box, Divider } from "@/components/common";
 import Comment from "@/components/common/Comment/Comment";
@@ -6,70 +6,64 @@ import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningMo
 import QuestionContent from "@/components/Question/QuestionDetail/QuestionContent";
 import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
 
-import { useQuestionQuery } from "@/hooks/api/question/useQuestionQuery";
+import { PATH } from "@/constants/path";
+
 import useModal from "@/hooks/useModal";
+
+import type { QuestionResultType } from "@/types/question";
 
 import { layoutStyle } from "@/components/common/Post/Post.style";
 
-const QuestionDetail = () => {
-	const param = useParams();
-
-	const questionId = Number(param.id);
-
-	const { questionData } = useQuestionQuery(questionId);
-
-	console.log(questionData);
-
+const QuestionDetail = ({
+	boardId,
+	title,
+	content,
+	hashtagList,
+	mediaList,
+	member,
+	viewCount,
+	createdDate,
+	recommendationInfo,
+	status,
+}: QuestionResultType) => {
 	const navigate = useNavigate();
 
 	const modal = useModal();
 
-	const handleEditQuestion = () => {
-		if (!questionData) return;
-
-		navigate(`/question/view/${questionId}?mode=edit`);
-	};
-
 	const handleDeleteQuestion = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={questionId} target="question" />,
+			component: () => <DeleteWarningModal targetId={boardId} target="question" />,
 			notCloseIcon: true,
 		});
 	};
-
-	if (!questionData) {
-		return <div>로딩중...</div>;
-	}
-
-	console.log(questionData.result.mediaList);
 
 	return (
 		<Box tag="main">
 			<Flex css={layoutStyle}>
 				<QuestionTitle
-					status={questionData.result.status}
-					title={questionData.result.title}
-					hashtagList={questionData.result.hashtagList}
-					member={questionData.result.member}
-					viewCount={questionData.result.viewCount}
-					createdDate={questionData.result.createdDate}
-					handleEditQuestion={handleEditQuestion}
+					status={status}
+					title={title}
+					hashtagList={hashtagList}
+					member={member}
+					viewCount={viewCount}
+					createdDate={createdDate}
+					handleEditQuestion={() => navigate(PATH.QUESTION_EDIT(String(boardId)))}
 					handleDeleteQuestion={handleDeleteQuestion}
 				/>
 
 				<Divider />
 
 				<QuestionContent
-					content={questionData.result.content}
-					mediaList={questionData.result.mediaList}
-					recommendationInfo={questionData.result.recommendationInfo}
+					content={content}
+					mediaList={mediaList}
+					recommendationInfo={recommendationInfo}
 				/>
 			</Flex>
 
 			<Divider />
 
-			<Comment boardId={questionData.result.boardId} />
+			<Comment boardId={boardId} />
 		</Box>
 	);
 };

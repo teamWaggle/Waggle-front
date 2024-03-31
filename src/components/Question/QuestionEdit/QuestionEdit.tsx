@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Box, Heading, Text } from "@/components/common";
 import PostEdit from "@/components/common/Post/PostEdit";
 
+import { PATH } from "@/constants/path";
+
 import { usePutQuestionMutation } from "@/hooks/api/question/usePutQuestionMutation";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -49,7 +51,7 @@ const QuestionEdit = ({ boardId, title, content, mediaList, hashtagList }: Quest
 			},
 			{
 				onSuccess: () => {
-					navigate(`/question/view/${boardId}`);
+					navigate(PATH.QUESTION_DETAIL(String(boardId)));
 				},
 			},
 		);
