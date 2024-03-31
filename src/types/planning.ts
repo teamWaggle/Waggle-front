@@ -1,3 +1,5 @@
+import type { MemberType } from "@/types/auth";
+
 export type TeamColorType =
 	| "team1"
 	| "team2"
@@ -27,14 +29,7 @@ export interface ScheduleType {
 	endTime: Date;
 	createdDate: Date;
 	status: string;
-	member: memberType;
-}
-
-export interface memberType {
-	memberId: number;
-	userUrl: string;
-	nickname: string;
-	profileImgUrl: string;
+	member: MemberType;
 }
 
 export interface SchedulePositionType {
