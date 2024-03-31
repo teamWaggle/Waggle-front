@@ -21,5 +21,6 @@ export const prefetchScheduleMonthly = (year: number, month: number) => {
 	return queryClient.prefetchQuery({
 		queryKey: [QUERY_KEYS.SCHEDULE_MONTHLY(year, month)],
 		queryFn: () => getMemberScheduleMonthly(year, month),
+		staleTime: 1000 * 30,
 	});
 };
