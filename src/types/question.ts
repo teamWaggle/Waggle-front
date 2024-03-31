@@ -62,3 +62,10 @@ export interface QuestionRepresentativeType extends CommonResponseBaseType {
 export interface QuestionRepresentativeResultType {
 	questionList: QuestionListInfoType[];
 }
+
+export interface QuestionFormData {
+	title: string;
+	content: string;
+	hashtagList: string[];
+	mediaList: string[];
+}

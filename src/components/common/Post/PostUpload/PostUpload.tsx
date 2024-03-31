@@ -1,13 +1,21 @@
 import { Flex, Carousel } from "@/components/common";
 import PostUploadMedia from "@/components/common/Post/PostUploadMedia/PostUploadMedia";
 
+import type { QuestionFormData } from "@/types/question";
 import type { SirenFormData } from "@/types/siren";
 
 import { contentTextareaStyle } from "@/components/common/Post/PostUpload/PostUpload.style";
 
 interface PostUploadPropsType {
 	value: string;
-	updateInputValue: <Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void;
+	sirenUpdateInputValue?: <Key extends keyof SirenFormData>(
+		key: Key,
+		value: SirenFormData[Key],
+	) => void;
+	questionUpdateInputValue?: <Key extends keyof QuestionFormData>(
+		key: Key,
+		value: QuestionFormData[Key],
+	) => void;
 	isLoading: boolean;
 	uploadMediaList: string[];
 	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -16,7 +24,8 @@ interface PostUploadPropsType {
 
 const PostUpload = ({
 	value,
-	updateInputValue,
+	sirenUpdateInputValue,
+	questionUpdateInputValue,
 	isLoading,
 	uploadMediaList,
 	handleImgUpload,
@@ -47,7 +56,11 @@ const PostUpload = ({
 				placeholder="글을 입력해주세요"
 				css={contentTextareaStyle}
 				value={value}
-				onChange={(e) => updateInputValue("content", e.target.value)}
+				onChange={(e) =>
+					sirenUpdateInputValue
+						? sirenUpdateInputValue("content", e.target.value)
+						: questionUpdateInputValue && questionUpdateInputValue("content", e.target.value)
+				}
 			/>
 		</Flex>
 	);

@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 import { Box, Heading, Text } from "@/components/common";
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
 
-import { usePostQuestionMutation } from "@/hooks/api/question/usePostQuestionMutation";
+import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -17,35 +16,18 @@ import {
 } from "@/components/Question/QuestionUpload/QuestionUpload.style";
 
 const QuestionUpload = () => {
-	const { mutate: postQuestionMutate } = usePostQuestionMutation();
+	const { questionRequest, updateInputValue, handleSubmit } = useAddQuestionForm({});
 
-	const [title, setTitle] = useState("");
-	const [content] = useState("");
+	const handleMediaListChange = useCallback(
+		(mediaList: string[]) => {
+			updateInputValue("mediaList", mediaList);
+		},
+		[updateInputValue],
+	);
 
-	const navigate = useNavigate();
-
-	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useMultipleImgUpload({});
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-
-		const formData = new FormData();
-
-		const createQuestionRequest = {
-			title,
-			content,
-			hashtagList: ["test"],
-			mediaList: uploadMediaList,
-		};
-
-		formData.append("createQuestionRequest", JSON.stringify(createQuestionRequest));
-
-		postQuestionMutate(formData, {
-			onSuccess: () => {
-				navigate("/question");
-			},
-		});
-	};
+	const { isLoading, handleImgUpload, dropImgUpload, uploadMediaList } = useMultipleImgUpload({
+		updateFormImage: handleMediaListChange,
+	});
 
 	return (
 		<Box tag="section" css={layoutStyle}>
@@ -57,13 +39,13 @@ const QuestionUpload = () => {
 				type="text"
 				placeholder="제목을 입력해주세요."
 				css={inputStyle}
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
+				value={questionRequest.title}
+				onChange={(e) => updateInputValue("title", e.target.value)}
 			/>
 
 			<PostUpload
-				value={content}
-				updateInputValue={() => {}}
+				value={questionRequest.content}
+				questionUpdateInputValue={updateInputValue}
 				isLoading={isLoading}
 				uploadMediaList={uploadMediaList}
 				handleImgUpload={handleImgUpload}
