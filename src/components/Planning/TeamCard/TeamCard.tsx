@@ -17,15 +17,15 @@ import {
 } from "@/components/Planning/TeamCard/TeamCard.style";
 
 const TeamCard = ({ data }: { data: TeamCardType }) => {
-	const { name, coverImageUrl, description, teamSize, maxTeamSize, colorScheme } = data;
+	const { name, coverImageUrl, description, teamSize, maxTeamSize, teamColor } = data;
 	const handleOnclick = useHandleLinkWithDetectKeys();
 	return (
 		<Box tag="a" css={boxStyle} onClick={(e) => handleOnclick(e, `/team/${name}`)}>
 			<img src={coverImageUrl} alt={name} css={imgStyle} />
 			<Box css={textBoxStyle}>
 				<Flex styles={{ align: "center", gap: "4px", marginBottom: "4px" }}>
-					<Box css={circleDivStyle(colorScheme)} />
-					<Text size="medium" css={textStyle(colorScheme)}>
+					<Box css={circleDivStyle(teamColor)} />
+					<Text size="medium" css={textStyle(teamColor)}>
 						{name}
 					</Text>
 				</Flex>
