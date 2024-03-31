@@ -9,7 +9,7 @@ import type { StoryFormData } from "@/types/story";
 interface UseAddStoryFormParams {
 	storyId?: number;
 	initialData?: StoryFormData;
-	mediaList: string[];
+	mediaList?: string[];
 }
 
 export const useAddStoryForm = ({ storyId, initialData, mediaList }: UseAddStoryFormParams) => {

@@ -6,8 +6,8 @@ import { Flex, Box, Divider, Text, Carousel } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import Comment from "@/components/Story/StoryComment/Comment/Comment";
 import CommentInput from "@/components/Story/StoryComment/Comment/CommentInput";
-import StoryEditModal from "@/components/Story/StoryEditModal/StoryEditModal";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
+import StoryUploadModal from "@/components/Story/StoryUploadModal/StoryUploadModal";
 
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
 import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
@@ -94,9 +94,9 @@ const StoryDetailModal = ({ storyId }: { storyId: number }) => {
 		modal.closeModal();
 
 		modal.openModal({
-			key: `StoryEditModal`,
+			key: `StoryUploadModal`,
 			component: () => (
-				<StoryEditModal
+				<StoryUploadModal
 					mediaList={storyData.result.mediaList}
 					content={storyData.result.content}
 					hashtagList={storyData.result.hashtagList}

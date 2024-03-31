@@ -38,7 +38,7 @@ export interface StoryListInfoType {
 }
 
 export interface StoryFormData {
-	content: string;
-	hashtagList: string[];
-	mediaList: string[];
+	content?: string;
+	hashtagList?: string[];
+	mediaList?: string[];
 }
