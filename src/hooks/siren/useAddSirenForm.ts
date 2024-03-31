@@ -19,7 +19,7 @@ export const useAddSirenForm = ({ sirenId, initialData }: UseAddSirenFormParams)
 
 	const navigate = useNavigate();
 
-	const [createSirenRequest, setCreateSirenRequest] = useState(
+	const [sirenRequest, setSirenRequest] = useState(
 		initialData ?? {
 			title: "",
 			content: "",
@@ -36,9 +36,9 @@ export const useAddSirenForm = ({ sirenId, initialData }: UseAddSirenFormParams)
 
 	const updateInputValue = useCallback(
 		<Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => {
-			setCreateSirenRequest((prevCreateSirenRequest) => {
+			setSirenRequest((prevSirenRequest) => {
 				const data = {
-					...prevCreateSirenRequest,
+					...prevSirenRequest,
 					[key]: value,
 				};
 
@@ -54,15 +54,15 @@ export const useAddSirenForm = ({ sirenId, initialData }: UseAddSirenFormParams)
 		const formData = new FormData();
 
 		if (!sirenId) {
-			formData.append("createSirenRequest", JSON.stringify(createSirenRequest));
+			formData.append("createSirenRequest", JSON.stringify(sirenRequest));
 
 			postSirenMutate(formData, {
 				onSuccess: () => {
-					navigate("/siren");
+					navigate(PATH.SIREN);
 				},
 			});
 		} else {
-			formData.append("updateSirenRequest", JSON.stringify(createSirenRequest));
+			formData.append("updateSirenRequest", JSON.stringify(sirenRequest));
 
 			putSirenMutate(
 				{
@@ -78,5 +78,5 @@ export const useAddSirenForm = ({ sirenId, initialData }: UseAddSirenFormParams)
 		}
 	};
 
-	return { createSirenRequest, updateInputValue, handleSubmit };
+	return { sirenRequest, updateInputValue, handleSubmit };
 };
