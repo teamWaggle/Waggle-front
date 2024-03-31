@@ -14,7 +14,7 @@ import { layoutStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
 const StoryUpload = () => {
 	const modal = useModal();
 
-	const { isLoading, uploadMediaList, handleImgUpload, dropImgUpload } = useMultipleImgUpload();
+	const { isLoading, uploadMediaList, handleImgUpload, dropImgUpload } = useMultipleImgUpload({});
 
 	const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
 		useDragAndDrop(dropImgUpload);

@@ -5,7 +5,7 @@ import MaleIcon from "@/assets/svg/ic-male.svg?react";
 
 import { Flex, Box, Text } from "@/components/common";
 
-import type { test } from "@/hooks/siren/useAddSirenForm";
+import type { SirenFormData } from "@/types/siren";
 
 import {
 	textStyle,
@@ -13,12 +13,12 @@ import {
 } from "@/components/Siren/SirenUpload/SirenUploadInput/SirenUploadInput.style";
 
 interface UploadInfoProps {
-	value: test;
-	updateInputValue: <Key extends keyof test>(key: Key, value: test[Key]) => void;
+	value: SirenFormData;
+	updateInputValue: <Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void;
 }
 
 interface SirenDataType {
-	valueKey: keyof test;
+	valueKey: keyof SirenFormData;
 	title: string;
 	placeholder?: string;
 	value: string;
