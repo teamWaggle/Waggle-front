@@ -4,10 +4,10 @@ import HeartEmptyIcon from "@/assets/svg/ic-heart-empty.svg?react";
 
 import { Flex, Box, Divider, Text, Carousel } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
-import Comment from "@/components/Story/StoryDetail/Comment/Comment";
-import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
-import Profile from "@/components/Story/StoryDetail/Profile/Profile";
-import StoryEdit from "@/components/Story/StoryUpload/StoryEdit/StoryEdit";
+import Comment from "@/components/Story/StoryComment/Comment/Comment";
+import CommentInput from "@/components/Story/StoryComment/Comment/CommentInput";
+import StoryEditModal from "@/components/Story/StoryEditModal/StoryEditModal";
+import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
 import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
@@ -25,9 +25,9 @@ import {
 	sliderBoxStyle,
 	contentBoxStyle,
 	commentLayoutStyle,
-} from "@/components/Story/StoryDetail/StoryDetail.style";
+} from "@/components/Story/StoryDetailModal/StoryDetailModal.style";
 
-const StoryDetail = ({ storyId }: { storyId: number }) => {
+const StoryDetailModal = ({ storyId }: { storyId: number }) => {
 	const { storyData } = useStoryQuery(storyId);
 	const { commentData } = useCommentQuery(0, storyId);
 
@@ -96,7 +96,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 		modal.openModal({
 			key: `StoryEditModal`,
 			component: () => (
-				<StoryEdit
+				<StoryEditModal
 					mediaList={storyData.result.mediaList}
 					content={storyData.result.content}
 					hashtagList={storyData.result.hashtagList}
@@ -143,7 +143,7 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 					<Flex styles={{ direction: "column" }}>
 						<Flex css={contentBoxStyle}>
 							{/* 프로필 영역 */}
-							<Profile
+							<StoryProfile
 								img={storyData.result.member.profileImgUrl}
 								nickname={storyData.result.member.nickname}
 								editClick={handleEditStory}
@@ -214,4 +214,4 @@ const StoryDetail = ({ storyId }: { storyId: number }) => {
 	);
 };
 
-export default StoryDetail;
+export default StoryDetailModal;

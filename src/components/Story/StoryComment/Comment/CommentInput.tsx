@@ -3,7 +3,7 @@ import { Box } from "@/components/common";
 import {
 	commentInputStyle,
 	replyButtonStyle,
-} from "@/components/Story/StoryDetail/Comment/Comment.style";
+} from "@/components/Story/StoryComment/Comment/Comment.style";
 
 interface CommentInputProps {
 	width: string;

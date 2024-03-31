@@ -2,14 +2,14 @@ import { useState, useRef, useCallback } from "react";
 import { flushSync } from "react-dom";
 
 import { Flex, Box, Text, Divider } from "@/components/common";
-import CommentInput from "@/components/Story/StoryDetail/Comment/CommentInput";
-import ReplyItem from "@/components/Story/StoryDetail/Comment/Reply/ReplyItem";
+import CommentInput from "@/components/Story/StoryComment/Comment/CommentInput";
+import ReplyItem from "@/components/Story/StoryComment/Comment/Reply/ReplyItem";
 
 import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
 import { usePostReplyMutation } from "@/hooks/api/reply/usePostReplyMutation";
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
 
-import { handleCommentTextStyle } from "@/components/Story/StoryDetail/Comment/Comment.style";
+import { handleCommentTextStyle } from "@/components/Story/StoryComment/Comment/Comment.style";
 
 const Reply = ({
 	commentId,

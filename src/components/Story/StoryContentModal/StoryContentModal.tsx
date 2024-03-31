@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import SampleImg from "@/assets/png/post-sample.png";
-import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
+import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Flex, Text, Carousel } from "@/components/common";
 
-import { usePutStoryMutation } from "@/hooks/api/story/usePutStoryMutation";
+import { usePostStoryMutation } from "@/hooks/api/story/usePostStoryMutation";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -14,30 +14,21 @@ import { Theme } from "@/styles/Theme";
 import {
 	layoutStyle,
 	headerStyle,
+	imgBoxStyle,
 	contentBoxStyle,
 	profileImgStyle,
 	textareaStyle,
 	lengthTextStyle,
 	uploadButtonStyle,
-} from "@/components/Story/StoryUpload/StoryEdit/StoryEdit.style";
+} from "@/components/Story/StoryContentModal/StoryContentModal.style";
 
-const StoryEdit = ({
-	mediaList,
-	content,
-	hashtagList,
-	storyId,
-}: {
-	mediaList: string[];
-	content: string;
-	hashtagList: string[];
-	storyId: number;
-}) => {
-	const { mutate: putStoryMutate } = usePutStoryMutation();
+const StoryContentModal = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
+	const { mutate: postStoryMutate } = usePostStoryMutation();
 
-	const [newContent, setNewContent] = useState(content);
-	const [newHashtagList] = useState<string[]>(hashtagList);
+	const [content, setContent] = useState("");
+	const [hashtagList] = useState<string[]>(["test"]);
 
-	const [updateMediaList, setUpdateMediaList] = useState<string[]>(mediaList);
+	const [updateMediaList, setUpdateMediaList] = useState<string[]>(uploadMediaList);
 
 	const modal = useModal();
 
@@ -46,38 +37,36 @@ const StoryEdit = ({
 
 		const formData = new FormData();
 
-		const updateStoryRequest = {
-			content: newContent,
-			hashtagList: newHashtagList,
+		const createStoryRequest = {
+			content,
+			hashtagList,
 			mediaList: updateMediaList,
 		};
 
-		formData.append("updateStoryRequest", JSON.stringify(updateStoryRequest));
+		formData.append("createStoryRequest", JSON.stringify(createStoryRequest));
 
-		putStoryMutate(
-			{
-				storyId,
-				formData,
+		postStoryMutate(formData, {
+			onSuccess: () => {
+				modal.closeModal();
 			},
-			{ onSuccess: () => modal.closeModal() },
-		);
+		});
 	};
 
 	return (
 		<Flex css={layoutStyle}>
 			<Flex css={headerStyle}>
-				<PrevArrowIcon />
+				<LeftArrow />
 				<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 600)}>
-					수정하기
+					글 쓰기
 				</Text>
 			</Flex>
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
-				{updateMediaList !== null && (
+				<Flex css={imgBoxStyle}>
 					<Carousel
 						width={740}
 						height={726}
-						borderRadius="0 0 0 42px"
+						borderRadius="0 0 0 36px"
 						length={updateMediaList.length}
 						showArrows={updateMediaList.length > 1}
 						showDots={updateMediaList.length > 1}
@@ -85,13 +74,13 @@ const StoryEdit = ({
 						setUpdateMediaList={setUpdateMediaList}
 						hasGallery
 					>
-						{updateMediaList.map((media, index) => (
-							<Carousel.Item index={index} key={media}>
-								<img src={media} alt="mediaImg" />
+						{updateMediaList.map((imgUrl, index) => (
+							<Carousel.Item index={index} key={imgUrl}>
+								<img src={imgUrl} alt="img" />
 							</Carousel.Item>
 						))}
 					</Carousel>
-				)}
+				</Flex>
 
 				<Flex css={contentBoxStyle}>
 					<Flex styles={{ direction: "column", gap: "12px", width: "100%" }}>
@@ -108,13 +97,13 @@ const StoryEdit = ({
 							css={textareaStyle}
 							placeholder="사진에 대한 설명을 입력해주세요"
 							maxLength={500}
-							value={newContent}
-							onChange={(e) => setNewContent(e.target.value)}
+							value={content}
+							onChange={(e) => setContent(e.target.value)}
 						/>
 
 						{/* 글자수 */}
 						<Text size="small" css={lengthTextStyle}>
-							{content && content.length}/500
+							{content.length}/500
 						</Text>
 					</Flex>
 
@@ -127,4 +116,4 @@ const StoryEdit = ({
 	);
 };
 
-export default StoryEdit;
+export default StoryContentModal;

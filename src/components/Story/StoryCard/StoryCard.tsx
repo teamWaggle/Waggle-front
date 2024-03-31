@@ -1,7 +1,7 @@
 import MediaIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex } from "@/components/common";
-import StoryDetail from "@/components/Story/StoryDetail/StoryDetail";
+import StoryDetailModal from "@/components/Story/StoryDetailModal/StoryDetailModal";
 
 import useModal from "@/hooks/useModal";
 
@@ -15,7 +15,7 @@ const StoryCard = ({ boardId, thumbnail }: StoryListInfoType) => {
 	const storyDetailOpen = () => {
 		modal.openModal({
 			key: `StoryDetail${boardId}`,
-			component: () => <StoryDetail storyId={boardId} />,
+			component: () => <StoryDetailModal storyId={boardId} />,
 		});
 	};
 
