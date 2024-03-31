@@ -33,7 +33,7 @@ const SirenEdit = ({
 	content,
 	mediaList,
 }: SirenEditType) => {
-	const { createSirenRequest, updateInputValue, handleSubmit } = useAddSirenForm({
+	const { sirenRequest, updateInputValue, handleSubmit } = useAddSirenForm({
 		sirenId: boardId,
 		initialData: {
 			title,
@@ -59,7 +59,7 @@ const SirenEdit = ({
 				type="text"
 				placeholder="제목을 입력해주세요."
 				css={inputStyle}
-				value={createSirenRequest.title}
+				value={sirenRequest.title}
 				onChange={(e) => updateInputValue("title", e.target.value)}
 			/>
 
@@ -74,7 +74,7 @@ const SirenEdit = ({
 					{SIREN_TAG_CATEGORY.map((data) => (
 						<Flex
 							css={tagStyle(
-								createSirenRequest.category === data.tagName
+								sirenRequest.category === data.tagName
 									? generateTagStyle(data.category)
 									: Theme.color.border,
 							)}
@@ -87,12 +87,12 @@ const SirenEdit = ({
 				</Flex>
 			</Box>
 
-			<SirenUploadInput value={createSirenRequest} updateInputValue={updateInputValue} />
+			<SirenUploadInput value={sirenRequest} updateInputValue={updateInputValue} />
 
 			<PostEdit
-				value={createSirenRequest.content}
+				value={sirenRequest.content}
 				sirenUpdateInputValue={updateInputValue}
-				updateMediaList={createSirenRequest.mediaList}
+				updateMediaList={sirenRequest.mediaList}
 			/>
 
 			<button css={uploadButtonStyle} onClick={handleSubmit}>

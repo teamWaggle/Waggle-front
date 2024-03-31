@@ -22,7 +22,7 @@ import {
 } from "@/components/Siren/SirenUpload/SirenUpload.style";
 
 const SirenUpload = () => {
-	const { createSirenRequest, updateInputValue, handleSubmit } = useAddSirenForm({});
+	const { sirenRequest, updateInputValue, handleSubmit } = useAddSirenForm({});
 
 	const handleMediaListChange = useCallback(
 		(mediaList: string[]) => {
@@ -45,7 +45,7 @@ const SirenUpload = () => {
 				type="text"
 				placeholder="제목을 입력해주세요."
 				css={inputStyle}
-				value={createSirenRequest.title}
+				value={sirenRequest.title}
 				onChange={(e) => updateInputValue("title", e.target.value)}
 			/>
 
@@ -58,7 +58,7 @@ const SirenUpload = () => {
 					{SIREN_TAG_CATEGORY.map((data) => (
 						<Flex
 							css={tagStyle(
-								createSirenRequest.category === data.category
+								sirenRequest.category === data.category
 									? generateTagStyle(data.category)
 									: Theme.color.border,
 							)}
@@ -71,10 +71,10 @@ const SirenUpload = () => {
 				</Flex>
 			</Box>
 
-			<SirenUploadInput value={createSirenRequest} updateInputValue={updateInputValue} />
+			<SirenUploadInput value={sirenRequest} updateInputValue={updateInputValue} />
 
 			<PostUpload
-				value={createSirenRequest.content}
+				value={sirenRequest.content}
 				sirenUpdateInputValue={updateInputValue}
 				isLoading={isLoading}
 				uploadMediaList={uploadMediaList}
