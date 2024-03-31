@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Flex, Box, Heading, Text } from "@/components/common";
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 
+import { PATH } from "@/constants/path";
+
 import { useQuestionRepresentativeQuery } from "@/hooks/api/question/useQuestionRepresentativeQuery";
 
 import {
@@ -28,7 +30,7 @@ const QuestionBio = () => {
 						<Heading size="small">답을 찾아보세요!</Heading>
 					</Flex>
 
-					<button css={buttonStyle} onClick={() => navigate("/question-new")}>
+					<button css={buttonStyle} onClick={() => navigate(PATH.QUESTION_CREATE)}>
 						<Text size="xLarge">글 작성하기</Text>
 					</button>
 				</Flex>

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Flex, Heading, Text } from "@/components/common";
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
+import { PATH } from "@/constants/path";
+
 import { useSirenRepresentativeQuery } from "@/hooks/api/siren/useSirenRepresentativeQuery";
 
 import { buttonStyle, titleStyle } from "@/components/Siren/SirenBio/SirenBio.style";
@@ -21,7 +23,7 @@ const SirenBio = () => {
 					<Heading>함께 문제를 해결해요</Heading>
 				</Flex>
 
-				<button css={buttonStyle} onClick={() => navigate("/siren-new")}>
+				<button css={buttonStyle} onClick={() => navigate(PATH.SIREN_CREATE)}>
 					<Text size="xLarge">글 작성하기</Text>
 				</button>
 			</Flex>

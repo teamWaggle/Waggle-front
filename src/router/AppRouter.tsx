@@ -40,6 +40,10 @@ const AppRouter = () => {
 					),
 				},
 				{
+					path: PATH.SIREN_CREATE,
+					element: <SirenCreatePage />,
+				},
+				{
 					path: PATH.QUESTION,
 					element: (
 						<Suspense fallback={<div>로딩중</div>}>
@@ -56,7 +60,7 @@ const AppRouter = () => {
 					),
 				},
 				{
-					path: "/question-new",
+					path: PATH.QUESTION_CREATE,
 					element: <QuestionCreatePage />,
 				},
 				{
@@ -67,10 +71,7 @@ const AppRouter = () => {
 					path: "/planning",
 					element: <PlanningPage />,
 				},
-				{
-					path: "/siren-new",
-					element: <SirenCreatePage />,
-				},
+
 				{ path: "/team/:teamName", element: <TeamPage /> },
 			],
 		},
