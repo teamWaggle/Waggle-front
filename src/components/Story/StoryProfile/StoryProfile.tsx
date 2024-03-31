@@ -11,7 +11,7 @@ import {
 	profileStyle,
 	moreButtonStyle,
 	menuStyle,
-} from "@/components/Story/StoryDetail/Profile/Profile.style";
+} from "@/components/Story/StoryProfile/StoryProfile.style";
 
 interface ProfileType {
 	img: string | undefined;
@@ -21,7 +21,7 @@ interface ProfileType {
 	deleteClick?: () => void;
 }
 
-const Profile = ({ img, nickname, ownerId, editClick, deleteClick }: ProfileType) => {
+const StoryProfile = ({ img, nickname, ownerId, editClick, deleteClick }: ProfileType) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const memberId = Number(localStorage.getItem("MEMBER_ID"));
@@ -53,4 +53,4 @@ const Profile = ({ img, nickname, ownerId, editClick, deleteClick }: ProfileType
 	);
 };
 
-export default Profile;
+export default StoryProfile;

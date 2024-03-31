@@ -1,6 +1,6 @@
 import { Flex, Box, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
-import Profile from "@/components/Story/StoryDetail/Profile/Profile";
+import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
 import useModal from "@/hooks/useModal";
 
@@ -11,7 +11,7 @@ import type { ReplyListInfoType } from "@/types/reply";
 import {
 	getCommentTextStyle,
 	replyDateTextStyle,
-} from "@/components/Story/StoryDetail/Comment/Comment.style";
+} from "@/components/Story/StoryComment/Comment/Comment.style";
 
 const ReplyItem = ({
 	replyId,
@@ -39,7 +39,7 @@ const ReplyItem = ({
 			}}
 		>
 			{/* 프로필 영역 */}
-			<Profile
+			<StoryProfile
 				img={member.profileImgUrl}
 				nickname={member.nickname}
 				editClick={() => handleReplyEditClick(content, replyId)}

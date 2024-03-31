@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import SampleImg from "@/assets/png/post-sample.png";
-import LeftArrow from "@/assets/svg/ic-left-arrow-primary.svg?react";
+import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Flex, Text, Carousel } from "@/components/common";
 
-import { usePostStoryMutation } from "@/hooks/api/story/usePostStoryMutation";
+import { usePutStoryMutation } from "@/hooks/api/story/usePutStoryMutation";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -14,21 +14,30 @@ import { Theme } from "@/styles/Theme";
 import {
 	layoutStyle,
 	headerStyle,
-	imgBoxStyle,
 	contentBoxStyle,
 	profileImgStyle,
 	textareaStyle,
 	lengthTextStyle,
 	uploadButtonStyle,
-} from "@/components/Story/StoryUpload/StoryContent.style";
+} from "@/components/Story/StoryEditModal/StoryEditModal.style";
 
-const StoryContent = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
-	const { mutate: postStoryMutate } = usePostStoryMutation();
+const StoryEditModal = ({
+	mediaList,
+	content,
+	hashtagList,
+	storyId,
+}: {
+	mediaList: string[];
+	content: string;
+	hashtagList: string[];
+	storyId: number;
+}) => {
+	const { mutate: putStoryMutate } = usePutStoryMutation();
 
-	const [content, setContent] = useState("");
-	const [hashtagList] = useState<string[]>(["test"]);
+	const [newContent, setNewContent] = useState(content);
+	const [newHashtagList] = useState<string[]>(hashtagList);
 
-	const [updateMediaList, setUpdateMediaList] = useState<string[]>(uploadMediaList);
+	const [updateMediaList, setUpdateMediaList] = useState<string[]>(mediaList);
 
 	const modal = useModal();
 
@@ -37,36 +46,38 @@ const StoryContent = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
 
 		const formData = new FormData();
 
-		const createStoryRequest = {
-			content,
-			hashtagList,
+		const updateStoryRequest = {
+			content: newContent,
+			hashtagList: newHashtagList,
 			mediaList: updateMediaList,
 		};
 
-		formData.append("createStoryRequest", JSON.stringify(createStoryRequest));
+		formData.append("updateStoryRequest", JSON.stringify(updateStoryRequest));
 
-		postStoryMutate(formData, {
-			onSuccess: () => {
-				modal.closeModal();
+		putStoryMutate(
+			{
+				storyId,
+				formData,
 			},
-		});
+			{ onSuccess: () => modal.closeModal() },
+		);
 	};
 
 	return (
 		<Flex css={layoutStyle}>
 			<Flex css={headerStyle}>
-				<LeftArrow />
+				<PrevArrowIcon />
 				<Text size="xLarge" css={getDefaultTextStyle(Theme.color.text, 600)}>
-					글 쓰기
+					수정하기
 				</Text>
 			</Flex>
 
 			<Flex styles={{ height: "calc(100% - 54px)" }}>
-				<Flex css={imgBoxStyle}>
+				{updateMediaList !== null && (
 					<Carousel
 						width={740}
 						height={726}
-						borderRadius="0 0 0 36px"
+						borderRadius="0 0 0 42px"
 						length={updateMediaList.length}
 						showArrows={updateMediaList.length > 1}
 						showDots={updateMediaList.length > 1}
@@ -74,13 +85,13 @@ const StoryContent = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
 						setUpdateMediaList={setUpdateMediaList}
 						hasGallery
 					>
-						{updateMediaList.map((imgUrl, index) => (
-							<Carousel.Item index={index} key={imgUrl}>
-								<img src={imgUrl} alt="img" />
+						{updateMediaList.map((media, index) => (
+							<Carousel.Item index={index} key={media}>
+								<img src={media} alt="mediaImg" />
 							</Carousel.Item>
 						))}
 					</Carousel>
-				</Flex>
+				)}
 
 				<Flex css={contentBoxStyle}>
 					<Flex styles={{ direction: "column", gap: "12px", width: "100%" }}>
@@ -97,13 +108,13 @@ const StoryContent = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
 							css={textareaStyle}
 							placeholder="사진에 대한 설명을 입력해주세요"
 							maxLength={500}
-							value={content}
-							onChange={(e) => setContent(e.target.value)}
+							value={newContent}
+							onChange={(e) => setNewContent(e.target.value)}
 						/>
 
 						{/* 글자수 */}
 						<Text size="small" css={lengthTextStyle}>
-							{content.length}/500
+							{content && content.length}/500
 						</Text>
 					</Flex>
 
@@ -116,4 +127,4 @@ const StoryContent = ({ uploadMediaList }: { uploadMediaList: string[] }) => {
 	);
 };
 
-export default StoryContent;
+export default StoryEditModal;

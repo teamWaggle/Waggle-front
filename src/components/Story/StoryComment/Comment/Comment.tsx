@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
-import Reply from "@/components/Story/StoryDetail/Comment/Reply/Reply";
-import Profile from "@/components/Story/StoryDetail/Profile/Profile";
+import Reply from "@/components/Story/StoryComment/Comment/Reply/Reply";
+import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
 import useModal from "@/hooks/useModal";
 
@@ -17,7 +17,7 @@ import type { CommentListInfoType } from "@/types/comment";
 import {
 	getCommentTextStyle,
 	handleCommentTextStyle,
-} from "@/components/Story/StoryDetail/Comment/Comment.style";
+} from "@/components/Story/StoryComment/Comment/Comment.style";
 
 const Comment = ({
 	commentId,
@@ -41,7 +41,7 @@ const Comment = ({
 
 	return (
 		<Flex styles={{ direction: "column", padding: "0 30px 0 18px" }}>
-			<Profile
+			<StoryProfile
 				img={member.profileImgUrl}
 				nickname={member.nickname}
 				deleteClick={handleDeleteComment}

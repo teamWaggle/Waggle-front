@@ -3,15 +3,15 @@ import { useEffect } from "react";
 import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
 
 import { Flex, Text } from "@/components/common";
-import StoryContent from "@/components/Story/StoryUpload/StoryContent";
+import StoryContentModal from "@/components/Story/StoryContentModal/StoryContentModal";
 
 import { useDragAndDrop } from "@/hooks/useDragAndDrop";
 import useModal from "@/hooks/useModal";
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
-import { layoutStyle } from "@/components/Story/StoryUpload/StoryUpload.style";
+import { layoutStyle } from "@/components/Story/StoryUploadModal/StoryUploadModal.style";
 
-const StoryUpload = () => {
+const StoryUploadModal = () => {
 	const modal = useModal();
 
 	const { isLoading, uploadMediaList, handleImgUpload, dropImgUpload } = useMultipleImgUpload({});
@@ -25,7 +25,7 @@ const StoryUpload = () => {
 
 			modal.openModal({
 				key: `StoryContentModal`,
-				component: () => <StoryContent uploadMediaList={uploadMediaList} />,
+				component: () => <StoryContentModal uploadMediaList={uploadMediaList} />,
 			});
 		}
 	}, [isLoading]);
@@ -54,4 +54,4 @@ const StoryUpload = () => {
 	);
 };
 
-export default StoryUpload;
+export default StoryUploadModal;
