@@ -14,6 +14,7 @@ import useClickOutSide from "@/hooks/useClickOutSide";
 
 import type { QuestionFormData } from "@/types/question";
 import type { SirenFormData } from "@/types/siren";
+import type { StoryFormData } from "@/types/story";
 
 import {
 	carouselStyle,
@@ -31,6 +32,10 @@ export interface CarouselProps extends PropsWithChildren {
 	showArrows?: boolean;
 	showDots?: boolean;
 	updateMediaList?: string[];
+	storyUpdateInputValue?: <Key extends keyof StoryFormData>(
+		key: Key,
+		value: StoryFormData[Key],
+	) => void;
 	sirenUpdateInputValue?: <Key extends keyof SirenFormData>(
 		key: Key,
 		value: SirenFormData[Key],
@@ -58,6 +63,7 @@ const Carousel = ({
 	showDots = true,
 	children,
 	updateMediaList,
+	storyUpdateInputValue,
 	sirenUpdateInputValue,
 	questionUpdateInputValue,
 	hasGallery,
@@ -114,6 +120,7 @@ const Carousel = ({
 						galleryRef={galleryRef}
 						mediaCurrentIndex={mediaIndex}
 						updatedMediaList={updateMediaList}
+						storyUpdateInputValue={storyUpdateInputValue}
 						sirenUpdateInputValue={sirenUpdateInputValue}
 						questionUpdateInputValue={questionUpdateInputValue}
 						handleMoveImage={handleMoveImage}
