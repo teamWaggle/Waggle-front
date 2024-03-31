@@ -12,7 +12,7 @@ export const usePutSirenMutation = () => {
 		onSuccess: () => {
 			console.log("siren edit success");
 
-			queryClient.invalidateQueries({ queryKey: ["siren", "sirenList"] });
+			queryClient.invalidateQueries({ queryKey: ["siren"] });
 		},
 		onError: () => {
 			toast.error("오류가 발생했습니다. 잠시 후 다시 시도해주세요");

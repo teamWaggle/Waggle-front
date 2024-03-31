@@ -5,6 +5,10 @@ import CloseIcon from "@/assets/svg/ic-gallery-close.svg?react";
 import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
 
+import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
+
+import type { SirenFormData } from "@/types/siren";
+
 import {
 	layoutStyle,
 	sliderBoxStyle,
@@ -18,14 +22,18 @@ import {
 const GallerySlider = ({
 	mediaCurrentIndex,
 	updatedMediaList,
-	setUpdateMediaList,
 	handleMoveImage,
+	updateInputValue,
 }: {
 	mediaCurrentIndex: number;
 	updatedMediaList?: string[];
-	setUpdateMediaList?: React.Dispatch<React.SetStateAction<string[]>>;
 	handleMoveImage: (imgIndex: number) => void;
+	updateInputValue?: <Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void;
 }) => {
+	const { isLoading, uploadMediaList, handleImgRemove } = useMultipleImgUpload({
+		updateMediaList: updatedMediaList,
+	});
+
 	const [isShowLeftArrow, setIsShowLeftArrow] = useState<boolean | null>(false);
 	const [isShowRightArrow, setIsShowRightArrow] = useState<boolean | null>(true);
 
@@ -39,6 +47,12 @@ const GallerySlider = ({
 			setIsShowRightArrow(null);
 		}
 	}, []);
+
+	useEffect(() => {
+		if (!isLoading && updateInputValue) {
+			updateInputValue("mediaList", uploadMediaList);
+		}
+	}, [isLoading]);
 
 	const handleLeftArrowClick = useCallback(() => {
 		const wrap = wrapRef.current;
@@ -81,38 +95,36 @@ const GallerySlider = ({
 	}, []);
 
 	const handleGalleryClose = useCallback(
-		(mediaIndex: number) => {
-			if (!updatedMediaList || !setUpdateMediaList) return;
+		(mediaIndex: number, media: string) => {
+			if (!uploadMediaList) return;
 
 			flushSync(() => {
-				setUpdateMediaList(
-					updatedMediaList.filter((index) => index !== updatedMediaList[mediaCurrentIndex]),
-				);
+				handleImgRemove(media);
 
 				handleMoveImage(mediaIndex !== 0 ? mediaIndex - 1 : mediaIndex);
 			});
 		},
-		[mediaCurrentIndex, updatedMediaList],
+		[mediaCurrentIndex, uploadMediaList],
 	);
 
 	return (
 		<div css={layoutStyle}>
-			{updatedMediaList && (
+			{uploadMediaList && (
 				<div
-					css={sliderBoxStyle(updatedMediaList.length)}
+					css={sliderBoxStyle(uploadMediaList.length)}
 					ref={wrapRef}
 					onScroll={handleGalleryScroll}
 				>
 					<div css={sliderStyle}>
-						{updatedMediaList &&
-							updatedMediaList.map((img, index) => (
+						{uploadMediaList &&
+							uploadMediaList.map((img, index) => (
 								<div key={`${img}${index}`} css={imgBoxStyle}>
 									<img src={img} css={imgStyle} onClick={() => handleMoveImage(index)} />
 
 									{mediaCurrentIndex === index && (
 										<div
 											css={closeIconBoxStyle}
-											onClick={() => handleGalleryClose(mediaCurrentIndex)}
+											onClick={() => handleGalleryClose(mediaCurrentIndex, img)}
 										>
 											<CloseIcon fill="#fff" />
 										</div>

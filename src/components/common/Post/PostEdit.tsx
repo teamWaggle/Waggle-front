@@ -1,20 +1,16 @@
 import { Flex, Carousel } from "@/components/common";
 
+import type { SirenFormData } from "@/types/siren";
+
 import { contentTextareaStyle } from "@/components/common/Post/PostUpload/PostUpload.style";
 
 interface PostEditPropsType {
+	value: string;
+	updateInputValue: <Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void;
 	updateMediaList: string[];
-	setUpdateMediaList: React.Dispatch<React.SetStateAction<string[]>>;
-	newContent: string;
-	setNewContent: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const PostEdit = ({
-	updateMediaList,
-	setUpdateMediaList,
-	newContent,
-	setNewContent,
-}: PostEditPropsType) => {
+const PostEdit = ({ value, updateInputValue, updateMediaList }: PostEditPropsType) => {
 	return (
 		<Flex styles={{ gap: "64px", marginTop: "60px" }}>
 			<Carousel
@@ -25,7 +21,7 @@ const PostEdit = ({
 				showDots={updateMediaList.length > 1}
 				length={updateMediaList.length}
 				updateMediaList={updateMediaList}
-				setUpdateMediaList={setUpdateMediaList}
+				updateInputValue={updateInputValue}
 				hasGallery
 			>
 				{updateMediaList.map((imgUrl, index) => (
@@ -38,8 +34,8 @@ const PostEdit = ({
 			<textarea
 				placeholder="글을 입력해주세요"
 				css={contentTextareaStyle}
-				value={newContent}
-				onChange={(e) => setNewContent(e.target.value)}
+				value={value}
+				onChange={(e) => updateInputValue("content", e.target.value)}
 			/>
 		</Flex>
 	);

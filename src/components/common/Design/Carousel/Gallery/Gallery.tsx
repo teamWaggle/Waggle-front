@@ -8,6 +8,8 @@ import GallerySlider from "@/components/common/Design/Carousel/Gallery/GallerySl
 
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
+import type { SirenFormData } from "@/types/siren";
+
 import {
 	galleryIconBoxStyle,
 	galleryBoxStyle,
@@ -20,7 +22,7 @@ interface GalleryProps {
 	galleryRef: React.RefObject<HTMLDivElement>;
 	mediaCurrentIndex: number;
 	updatedMediaList?: string[];
-	setUpdateMediaList?: React.Dispatch<React.SetStateAction<string[]>>;
+	updateInputValue?: <Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void;
 	handleMoveImage: (imgIndex: number) => void;
 }
 
@@ -28,16 +30,18 @@ const Gallery = ({
 	isGalleryOpen,
 	handleGalleryOpen,
 	galleryRef,
-	setUpdateMediaList,
 	mediaCurrentIndex,
 	updatedMediaList,
+	updateInputValue,
 	handleMoveImage,
 }: GalleryProps) => {
-	const { isLoading, uploadMediaList, handleImgUpload } = useMultipleImgUpload({});
+	const { isLoading, uploadMediaList, handleImgUpload } = useMultipleImgUpload({
+		updateMediaList: updatedMediaList,
+	});
 
 	useEffect(() => {
-		if (!isLoading && setUpdateMediaList) {
-			setUpdateMediaList((prev) => [...prev, ...uploadMediaList]);
+		if (!isLoading && updateInputValue) {
+			updateInputValue("mediaList", uploadMediaList);
 		}
 	}, [isLoading]);
 
@@ -49,9 +53,9 @@ const Gallery = ({
 				<Flex css={galleryBoxStyle}>
 					<GallerySlider
 						mediaCurrentIndex={mediaCurrentIndex}
-						updatedMediaList={updatedMediaList}
-						setUpdateMediaList={setUpdateMediaList}
+						updatedMediaList={uploadMediaList}
 						handleMoveImage={handleMoveImage}
+						updateInputValue={updateInputValue}
 					/>
 
 					<label css={galleryPlusIconBoxStyle} htmlFor="media">

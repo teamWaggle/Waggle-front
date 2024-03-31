@@ -22,7 +22,7 @@ import {
 } from "@/components/Siren/SirenUpload/SirenUpload.style";
 
 const SirenUpload = () => {
-	const { createSirenRequest, updateInputValue, handleSubmit } = useAddSirenForm();
+	const { createSirenRequest, updateInputValue, handleSubmit } = useAddSirenForm({});
 
 	const handleMediaListChange = useCallback(
 		(mediaList: string[]) => {
