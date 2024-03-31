@@ -5,6 +5,8 @@ import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
 
+import { PATH } from "@/constants/path";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -31,7 +33,7 @@ const QuestionCard = ({
 	const navigate = useNavigate();
 
 	return (
-		<Flex css={cardStyle} onClick={() => navigate(`/question/view/${boardId}`)}>
+		<Flex css={cardStyle} onClick={() => navigate(PATH.QUESTION_DETAIL(String(boardId)))}>
 			<Flex styles={{ gap: "16px", align: "center" }}>
 				<Flex css={resolveStyle(status === "RESOLVED")}>
 					{status === "RESOLVED" ? "해결" : "미해결"}
