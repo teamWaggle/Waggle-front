@@ -1,4 +1,3 @@
-import CreateTeamPage from "./CreateTeamPage";
 import LandingPage from "./LandingPage/LandingPage";
 import PlanningPage from "./PlanningPage";
 import QuestionCreatePage from "./QuestionCreatePage";
@@ -20,5 +19,4 @@ export {
 	PlanningPage,
 	SirenCreatePage,
 	TeamPage,
-	CreateTeamPage,
 };
