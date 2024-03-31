@@ -6,18 +6,18 @@ import { useDragAndDrop } from "@/hooks/useDragAndDrop";
 
 import { uploadMediaBoxStyle } from "@/components/common/Post/PostUploadMedia/PostUploadMedia.style";
 
-interface PostUploadMediaProps {
+interface PostUploadMediaParams {
 	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	dropImgUpload: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
-const PostUploadMedia = ({ handleImgUpload, dropImgUpload }: PostUploadMediaProps) => {
+const PostUploadMedia = ({ handleImgUpload, dropImgUpload }: PostUploadMediaParams) => {
 	const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
 		useDragAndDrop(dropImgUpload);
 
 	return (
 		<Flex
-			css={uploadMediaBoxStyle(isDragOver)}
+			css={uploadMediaBoxStyle(isDragOver, 536, 466, "20px")}
 			onDrop={handleDrop}
 			onDragEnter={handleDragIn}
 			onDragLeave={handleDragOut}
