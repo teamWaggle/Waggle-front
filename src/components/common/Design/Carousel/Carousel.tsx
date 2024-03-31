@@ -39,9 +39,6 @@ export interface CarouselProps extends PropsWithChildren {
 		key: Key,
 		value: QuestionFormData[Key],
 	) => void;
-	// updateInputValue?:
-	// 	| (<Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void)
-	// 	| (<Key extends keyof QuestionFormData>(key: Key, value: QuestionFormData[Key]) => void);
 	hasGallery?: boolean;
 }
 
