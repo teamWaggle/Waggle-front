@@ -7,6 +7,7 @@ import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
 
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
+import type { QuestionFormData } from "@/types/question";
 import type { SirenFormData } from "@/types/siren";
 
 import {
@@ -19,17 +20,27 @@ import {
 	closeIconBoxStyle,
 } from "@/components/common/Design/Carousel/Gallery/GallerySlider/GallerySlider.style";
 
+interface GallerySliderParams {
+	mediaCurrentIndex: number;
+	updatedMediaList?: string[];
+	handleMoveImage: (imgIndex: number) => void;
+	sirenUpdateInputValue?: <Key extends keyof SirenFormData>(
+		key: Key,
+		value: SirenFormData[Key],
+	) => void;
+	questionUpdateInputValue?: <Key extends keyof QuestionFormData>(
+		key: Key,
+		value: QuestionFormData[Key],
+	) => void;
+}
+
 const GallerySlider = ({
 	mediaCurrentIndex,
 	updatedMediaList,
 	handleMoveImage,
-	updateInputValue,
-}: {
-	mediaCurrentIndex: number;
-	updatedMediaList?: string[];
-	handleMoveImage: (imgIndex: number) => void;
-	updateInputValue?: <Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void;
-}) => {
+	sirenUpdateInputValue,
+	questionUpdateInputValue,
+}: GallerySliderParams) => {
 	const { isLoading, uploadMediaList, handleImgRemove } = useMultipleImgUpload({
 		updateMediaList: updatedMediaList,
 	});
@@ -49,8 +60,12 @@ const GallerySlider = ({
 	}, []);
 
 	useEffect(() => {
-		if (!isLoading && updateInputValue) {
-			updateInputValue("mediaList", uploadMediaList);
+		if (!isLoading) {
+			if (sirenUpdateInputValue) {
+				sirenUpdateInputValue("mediaList", uploadMediaList);
+			} else if (questionUpdateInputValue) {
+				questionUpdateInputValue("mediaList", uploadMediaList);
+			}
 		}
 	}, [isLoading]);
 
@@ -96,7 +111,7 @@ const GallerySlider = ({
 
 	const handleGalleryClose = useCallback(
 		(mediaIndex: number, media: string) => {
-			if (!uploadMediaList) return;
+			if (!updatedMediaList) return;
 
 			flushSync(() => {
 				handleImgRemove(media);
@@ -104,33 +119,32 @@ const GallerySlider = ({
 				handleMoveImage(mediaIndex !== 0 ? mediaIndex - 1 : mediaIndex);
 			});
 		},
-		[mediaCurrentIndex, uploadMediaList],
+		[mediaCurrentIndex, updatedMediaList],
 	);
 
 	return (
 		<div css={layoutStyle}>
-			{uploadMediaList && (
+			{updatedMediaList && (
 				<div
-					css={sliderBoxStyle(uploadMediaList.length)}
+					css={sliderBoxStyle(updatedMediaList.length)}
 					ref={wrapRef}
 					onScroll={handleGalleryScroll}
 				>
 					<div css={sliderStyle}>
-						{uploadMediaList &&
-							uploadMediaList.map((img, index) => (
-								<div key={`${img}${index}`} css={imgBoxStyle}>
-									<img src={img} css={imgStyle} onClick={() => handleMoveImage(index)} />
+						{updatedMediaList.map((img, index) => (
+							<div key={`${img}${index}`} css={imgBoxStyle}>
+								<img src={img} css={imgStyle} onClick={() => handleMoveImage(index)} />
 
-									{mediaCurrentIndex === index && (
-										<div
-											css={closeIconBoxStyle}
-											onClick={() => handleGalleryClose(mediaCurrentIndex, img)}
-										>
-											<CloseIcon fill="#fff" />
-										</div>
-									)}
-								</div>
-							))}
+								{mediaCurrentIndex === index && (
+									<div
+										css={closeIconBoxStyle}
+										onClick={() => handleGalleryClose(mediaCurrentIndex, img)}
+									>
+										<CloseIcon fill="#fff" />
+									</div>
+								)}
+							</div>
+						))}
 					</div>
 				</div>
 			)}

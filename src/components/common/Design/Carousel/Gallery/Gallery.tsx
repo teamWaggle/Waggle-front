@@ -8,6 +8,7 @@ import GallerySlider from "@/components/common/Design/Carousel/Gallery/GallerySl
 
 import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
 
+import type { QuestionFormData } from "@/types/question";
 import type { SirenFormData } from "@/types/siren";
 
 import {
@@ -22,7 +23,17 @@ interface GalleryProps {
 	galleryRef: React.RefObject<HTMLDivElement>;
 	mediaCurrentIndex: number;
 	updatedMediaList?: string[];
-	updateInputValue?: <Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void;
+	sirenUpdateInputValue?: <Key extends keyof SirenFormData>(
+		key: Key,
+		value: SirenFormData[Key],
+	) => void;
+	questionUpdateInputValue?: <Key extends keyof QuestionFormData>(
+		key: Key,
+		value: QuestionFormData[Key],
+	) => void;
+	// updateInputValue?:
+	// 	| (<Key extends keyof SirenFormData>(key: Key, value: SirenFormData[Key]) => void)
+	// 	| (<Key extends keyof QuestionFormData>(key: Key, value: QuestionFormData[Key]) => void);
 	handleMoveImage: (imgIndex: number) => void;
 }
 
@@ -32,16 +43,24 @@ const Gallery = ({
 	galleryRef,
 	mediaCurrentIndex,
 	updatedMediaList,
-	updateInputValue,
+	sirenUpdateInputValue,
+	questionUpdateInputValue,
 	handleMoveImage,
 }: GalleryProps) => {
 	const { isLoading, uploadMediaList, handleImgUpload } = useMultipleImgUpload({
 		updateMediaList: updatedMediaList,
 	});
 
+	console.log(updatedMediaList);
+	console.log(uploadMediaList);
+
 	useEffect(() => {
-		if (!isLoading && updateInputValue) {
-			updateInputValue("mediaList", uploadMediaList);
+		if (!isLoading) {
+			if (sirenUpdateInputValue) {
+				sirenUpdateInputValue("mediaList", uploadMediaList);
+			} else if (questionUpdateInputValue) {
+				questionUpdateInputValue("mediaList", uploadMediaList);
+			}
 		}
 	}, [isLoading]);
 
@@ -55,7 +74,8 @@ const Gallery = ({
 						mediaCurrentIndex={mediaCurrentIndex}
 						updatedMediaList={uploadMediaList}
 						handleMoveImage={handleMoveImage}
-						updateInputValue={updateInputValue}
+						sirenUpdateInputValue={sirenUpdateInputValue}
+						questionUpdateInputValue={questionUpdateInputValue}
 					/>
 
 					<label css={galleryPlusIconBoxStyle} htmlFor="media">

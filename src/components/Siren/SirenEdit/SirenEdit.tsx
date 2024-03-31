@@ -91,7 +91,7 @@ const SirenEdit = ({
 
 			<PostEdit
 				value={createSirenRequest.content}
-				updateInputValue={updateInputValue}
+				sirenUpdateInputValue={updateInputValue}
 				updateMediaList={createSirenRequest.mediaList}
 			/>
 
