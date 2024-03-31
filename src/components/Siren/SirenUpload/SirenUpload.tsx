@@ -75,7 +75,7 @@ const SirenUpload = () => {
 
 			<PostUpload
 				value={createSirenRequest.content}
-				updateInputValue={updateInputValue}
+				sirenUpdateInputValue={updateInputValue}
 				isLoading={isLoading}
 				uploadMediaList={uploadMediaList}
 				handleImgUpload={handleImgUpload}
