@@ -3,18 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Logo from "@/assets/svg/logo-white.svg?react";
 
 import { Flex, Text } from "@/components/common";
-import LoginModal from "@/components/Sidebar/Login/LoginModal";
+import LoginModal from "@/components/Login/LoginModal";
 
 import useModal from "@/hooks/useModal";
 
 import { Theme } from "@/styles/Theme";
 
-import {
-	titleStyle,
-	buttonStyle,
-	textStyle,
-	subTextStyle,
-} from "@/components/Sidebar/Login/Login.style";
+import { titleStyle, buttonStyle, textStyle, subTextStyle } from "@/components/Login/Login.style";
 
 const Login = () => {
 	const navigate = useNavigate();
