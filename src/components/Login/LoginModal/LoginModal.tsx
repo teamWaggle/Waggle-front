@@ -2,8 +2,8 @@ import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
 import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
-import FindEmailModal from "@/components/Login/FindEmailModal";
-import FindPasswordModal from "@/components/Login/FindPasswordModal";
+import FindEmailModal from "@/components/Login/FindEmailModal/FindEmailModal";
+import FindPasswordModal from "@/components/Login/FinedPasswordModal/FindPasswordModal";
 
 import { useLoginForm } from "@/hooks/auth/useLoginForm";
 import useModal from "@/hooks/useModal";
