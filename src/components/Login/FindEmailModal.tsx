@@ -1,16 +1,12 @@
 import { useState } from "react";
 
 import { Flex, Heading, Text, Logo } from "@/components/common";
-import FindEmail from "@/components/Sidebar/Login/FindEmail";
-import ResultEmail from "@/components/Sidebar/Login/ResultEmail";
+import FindEmail from "@/components/Login/FindEmail";
+import ResultEmail from "@/components/Login/ResultEmail";
 
 import type { modalCloseType } from "@/types/modal";
 
-import {
-	layoutStyle,
-	headingStyle,
-	textStyle,
-} from "@/components/Sidebar/Login/FindEmailModal.style";
+import { layoutStyle, headingStyle, textStyle } from "@/components/Login/FindEmailModal.style";
 
 const FindEmailModal = ({ modalClose }: modalCloseType) => {
 	const [mode, setMode] = useState("find");

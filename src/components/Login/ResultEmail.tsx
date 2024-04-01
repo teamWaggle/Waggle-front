@@ -1,12 +1,12 @@
 import { Box, Flex, Text } from "@/components/common";
-import LoginModal from "@/components/Sidebar/Login/LoginModal";
+import LoginModal from "@/components/Login/LoginModal";
 
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { buttonStyle, resultBoxStyle } from "@/components/Sidebar/Login/FindEmailModal.style";
+import { buttonStyle, resultBoxStyle } from "@/components/Login/FindEmailModal.style";
 
 const ResultEmail = ({ email, modalClose }: { email: string[]; modalClose: () => void }) => {
 	const modal = useModal();

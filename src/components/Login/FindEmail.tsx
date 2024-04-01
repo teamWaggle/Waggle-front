@@ -18,7 +18,7 @@ import {
 	inputStyle,
 	getSelectBoxStyle,
 	buttonStyle,
-} from "@/components/Sidebar/Login/FindEmailModal.style";
+} from "@/components/Login/FindEmailModal.style";
 
 const FindEmail = ({
 	setMode,

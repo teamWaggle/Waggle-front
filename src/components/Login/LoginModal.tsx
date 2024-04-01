@@ -5,8 +5,8 @@ import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
 import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
-import FindEmailModal from "@/components/Sidebar/Login/FindEmailModal";
-import FindPasswordModal from "@/components/Sidebar/Login/FindPasswordModal";
+import FindEmailModal from "@/components/Login/FindEmailModal";
+import FindPasswordModal from "@/components/Login/FindPasswordModal";
 
 import { useLogInMutation } from "@/hooks/api/auth/useLogInMutation";
 import useModal from "@/hooks/useModal";
@@ -19,7 +19,7 @@ import {
 	passwordIconStyle,
 	buttonStyle,
 	findTextStyle,
-} from "@/components/Sidebar/Login/LoginModal.style";
+} from "@/components/Login/LoginModal.style";
 
 const LoginModal = ({ modalClose }: modalCloseType) => {
 	const { mutate: mutateLogIn } = useLogInMutation();

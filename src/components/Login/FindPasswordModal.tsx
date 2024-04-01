@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 
 import { Flex, Heading, Text, Logo } from "@/components/common";
-import LoginModal from "@/components/Sidebar/Login/LoginModal";
+import LoginModal from "@/components/Login/LoginModal";
 import { Password } from "@/components/SignUp/Email/EmailForm";
 import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 
