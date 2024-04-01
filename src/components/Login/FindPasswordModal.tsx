@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 
 import { Flex, Heading, Text, Logo } from "@/components/common";
-import LoginModal from "@/components/Login/LoginModal";
+import LoginModal from "@/components/Login/LoginModal/LoginModal";
 import { Password } from "@/components/SignUp/Email/EmailForm";
 import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 
@@ -14,7 +14,6 @@ import useModal from "@/hooks/useModal";
 import { useValidateForm } from "@/hooks/useValidateForm";
 
 import type { CommonResponseType } from "@/types/common";
-import type { modalCloseType } from "@/types/modal";
 
 import {
 	layoutStyle,
@@ -24,7 +23,7 @@ import {
 	buttonStyle,
 } from "./FindEmailModal.style";
 
-const FindPasswordModal = ({ modalClose }: modalCloseType) => {
+const FindPasswordModal = () => {
 	const { mutate: mutateEmailAuthSend } = useEmailAuthSendMutation();
 	const { mutate: passwordAuthVerifyMutation } = usePasswordAuthVerifyMutation();
 	const { mutate: mutateChangePassword } = useChangePasswordMutation();
@@ -43,10 +42,6 @@ const FindPasswordModal = ({ modalClose }: modalCloseType) => {
 	const [passwordCheck, setPasswordCheck] = useState("");
 
 	const modal = useModal();
-
-	const handleCloseModal = () => {
-		modal.closeModal();
-	};
 
 	const validateForm = () => {
 		if (
@@ -107,11 +102,11 @@ const FindPasswordModal = ({ modalClose }: modalCloseType) => {
 	};
 
 	const handleLoginClick = () => {
-		modalClose();
+		modal.closeModal();
 
 		modal.openModal({
 			key: `LoginModal`,
-			component: () => <LoginModal modalClose={handleCloseModal} />,
+			component: () => <LoginModal />,
 		});
 	};
 

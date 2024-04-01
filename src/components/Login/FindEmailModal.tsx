@@ -4,11 +4,9 @@ import { Flex, Heading, Text, Logo } from "@/components/common";
 import FindEmail from "@/components/Login/FindEmail";
 import ResultEmail from "@/components/Login/ResultEmail";
 
-import type { modalCloseType } from "@/types/modal";
-
 import { layoutStyle, headingStyle, textStyle } from "@/components/Login/FindEmailModal.style";
 
-const FindEmailModal = ({ modalClose }: modalCloseType) => {
+const FindEmailModal = () => {
 	const [mode, setMode] = useState("find");
 	const [email, setEmail] = useState<string[]>([""]);
 
@@ -42,7 +40,7 @@ const FindEmailModal = ({ modalClose }: modalCloseType) => {
 			{mode === "find" ? (
 				<FindEmail setMode={setMode} setEmail={setEmail} />
 			) : (
-				<ResultEmail email={email} modalClose={modalClose} />
+				<ResultEmail email={email} />
 			)}
 		</Flex>
 	);

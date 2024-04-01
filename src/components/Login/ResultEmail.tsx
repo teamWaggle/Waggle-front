@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@/components/common";
-import LoginModal from "@/components/Login/LoginModal";
+import LoginModal from "@/components/Login/LoginModal/LoginModal";
 
 import useModal from "@/hooks/useModal";
 
@@ -8,19 +8,15 @@ import { Theme } from "@/styles/Theme";
 
 import { buttonStyle, resultBoxStyle } from "@/components/Login/FindEmailModal.style";
 
-const ResultEmail = ({ email, modalClose }: { email: string[]; modalClose: () => void }) => {
+const ResultEmail = ({ email }: { email: string[] }) => {
 	const modal = useModal();
 
-	const handleCloseModal = () => {
-		modal.closeModal();
-	};
-
 	const handleLoginClick = () => {
-		modalClose();
+		modal.closeModal();
 
 		modal.openModal({
 			key: `LoginModal`,
-			component: () => <LoginModal modalClose={handleCloseModal} />,
+			component: () => <LoginModal />,
 		});
 	};
 

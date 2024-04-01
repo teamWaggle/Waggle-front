@@ -24,7 +24,3 @@ export interface MoreModalType {
 	schedules: Array<ScheduleType>;
 	position: SchedulePositionType;
 }
-
-export interface modalCloseType {
-	modalClose: () => void;
-}
