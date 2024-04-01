@@ -1,5 +1,3 @@
-import { useState, useRef } from "react";
-
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
@@ -7,9 +5,8 @@ import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
 import FindEmailModal from "@/components/Login/FindEmailModal";
 import FindPasswordModal from "@/components/Login/FindPasswordModal";
 
-import { useLogInMutation } from "@/hooks/api/auth/useLogInMutation";
+import { useLoginForm } from "@/hooks/auth/useLoginForm";
 import useModal from "@/hooks/useModal";
-import { useValidateForm } from "@/hooks/useValidateForm";
 
 import {
 	layoutStyle,
@@ -20,51 +17,17 @@ import {
 } from "@/components/Login/LoginModal/LoginModal.style";
 
 const LoginModal = () => {
-	const { mutate: logInMutate } = useLogInMutation();
-
-	const emailRef = useRef<HTMLInputElement>(null);
-	const passwordRef = useRef<HTMLInputElement>(null);
-
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-
-	const [passwordType, setPasswordType] = useState("password");
+	const {
+		emailRef,
+		passwordRef,
+		loginRequest,
+		updateInputValue,
+		handleSubmit,
+		passwordInputType,
+		handleShowPassword,
+	} = useLoginForm();
 
 	const modal = useModal();
-
-	const validateForm = () => {
-		if (
-			useValidateForm(email, emailRef, "이메일을 입력해주세요.") === false ||
-			useValidateForm(password, passwordRef, "비밀번호를 입력해주세요.") === false
-		) {
-			return false;
-		}
-
-		return true;
-	};
-
-	const handleShowPassword = () => {
-		setPasswordType(passwordType === "password" ? "text" : "password");
-	};
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-
-		if (!validateForm()) {
-			return;
-		}
-
-		logInMutate(
-			{ email, password },
-			{
-				onSuccess: ({ result }) => {
-					console.log(result);
-
-					modal.closeModal();
-				},
-			},
-		);
-	};
 
 	const handleFindEmailModal = () => {
 		modal.openModal({
@@ -91,21 +54,21 @@ const LoginModal = () => {
 						css={inputStyle}
 						placeholder="이메일(아이디)"
 						type="text"
-						onChange={(e) => setEmail(e.target.value)}
-						value={email}
+						onChange={(e) => updateInputValue("email", e.target.value)}
+						value={loginRequest.email}
 						ref={emailRef}
 					/>
 					<Box styles={{ position: "relative", marginTop: "13px" }}>
 						<input
 							css={inputStyle}
 							placeholder="비밀번호"
-							type={passwordType}
-							onChange={(e) => setPassword(e.target.value)}
-							value={password}
+							type={passwordInputType}
+							onChange={(e) => updateInputValue("password", e.target.value)}
+							value={loginRequest.password}
 							ref={passwordRef}
 							maxLength={20}
 						/>
-						{passwordType === "text" ? (
+						{passwordInputType === "text" ? (
 							<PasswordShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
 						) : (
 							<PasswordNotShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
