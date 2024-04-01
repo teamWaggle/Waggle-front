@@ -36,3 +36,5 @@ export interface DropDownItemType extends HTMLAttributes<HTMLDivElement> {
 	icon?: ReactNode;
 	children: ReactNode;
 }
+
+export type Size = "xSmall" | "small" | "medium" | "large" | "xLarge" | "xxLarge";
