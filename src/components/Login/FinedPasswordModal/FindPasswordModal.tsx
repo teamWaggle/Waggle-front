@@ -21,7 +21,7 @@ import {
 	textStyle,
 	inputStyle,
 	buttonStyle,
-} from "./FindEmailModal.style";
+} from "../FindEmailModal/FindEmailModal.style";
 
 const FindPasswordModal = () => {
 	const { mutate: mutateEmailAuthSend } = useEmailAuthSendMutation();

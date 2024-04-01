@@ -6,7 +6,10 @@ import useModal from "@/hooks/useModal";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { buttonStyle, resultBoxStyle } from "@/components/Login/FindEmailModal.style";
+import {
+	buttonStyle,
+	resultBoxStyle,
+} from "@/components/Login/FindEmailModal/FindEmailModal.style";
 
 const ResultEmail = ({ email }: { email: string[] }) => {
 	const modal = useModal();
