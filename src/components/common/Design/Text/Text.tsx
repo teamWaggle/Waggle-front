@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import type { Size } from "@/types/size";
+import type { Size } from "@/types/common";
 
 import { getSizeStyling } from "@/components/common/Design/Text/Text.style";
 
