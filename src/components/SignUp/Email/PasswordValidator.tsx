@@ -13,7 +13,7 @@ import { getPasswordTextStyle } from "@/components/SignUp/Email/SignUpEmail.styl
 
 interface validatorType {
 	password: string;
-	validateComplete: React.Dispatch<React.SetStateAction<boolean>>;
+	validateComplete: (validate: boolean) => void;
 }
 
 const PasswordValidator = ({ password, validateComplete }: validatorType) => {

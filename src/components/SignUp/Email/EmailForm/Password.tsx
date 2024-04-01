@@ -5,22 +5,31 @@ import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
+import type { PasswordForm } from "@/hooks/auth/usePasswordForm";
+
 import { passwordIconStyle } from "@/components/Login/LoginModal/LoginModal.style";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
-const Password = ({
-	password,
-	changePassword,
-	passwordRef,
-	title,
-	isFind,
-}: {
+interface PasswordParams {
 	password: string;
-	changePassword: React.Dispatch<React.SetStateAction<string>>;
+	valueKey: keyof PasswordForm;
+	updatePasswordInputValue: <Key extends keyof PasswordForm>(
+		key: Key,
+		value: PasswordForm[Key],
+	) => void;
 	passwordRef: React.RefObject<HTMLInputElement>;
 	title: string;
 	isFind?: boolean;
-}) => {
+}
+
+const Password = ({
+	password,
+	valueKey,
+	updatePasswordInputValue,
+	passwordRef,
+	title,
+	isFind,
+}: PasswordParams) => {
 	const [passwordType, setPasswordType] = useState("password");
 
 	const handleShowPassword = () => {
@@ -36,7 +45,7 @@ const Password = ({
 					css={getInputStyle(isFind ? "330px" : "412px")}
 					placeholder="••••••••"
 					value={password}
-					onChange={(e) => changePassword(e.target.value)}
+					onChange={(e) => updatePasswordInputValue(valueKey, e.target.value)}
 					type={passwordType}
 					ref={passwordRef}
 					maxLength={20}
