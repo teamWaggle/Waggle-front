@@ -1,9 +1,6 @@
 import { Box } from "@/components/common";
 
-import {
-	commentInputStyle,
-	replyButtonStyle,
-} from "@/components/Story/StoryComment/Comment/Comment.style";
+import { commentInputStyle, replyButtonStyle } from "@/components/Story/StoryComment/Comment.style";
 
 interface CommentInputProps {
 	width: string;

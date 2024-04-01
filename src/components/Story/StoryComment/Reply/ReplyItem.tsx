@@ -11,7 +11,7 @@ import type { ReplyListInfoType } from "@/types/reply";
 import {
 	getCommentTextStyle,
 	replyDateTextStyle,
-} from "@/components/Story/StoryComment/Comment/Comment.style";
+} from "@/components/Story/StoryComment/Comment.style";
 
 const ReplyItem = ({
 	replyId,

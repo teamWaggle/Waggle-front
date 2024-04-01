@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Flex, Box, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
-import Reply from "@/components/Story/StoryComment/Comment/Reply/Reply";
+import Reply from "@/components/Story/StoryComment/Reply/Reply";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
 import useModal from "@/hooks/useModal";
@@ -17,7 +17,7 @@ import type { CommentListInfoType } from "@/types/comment";
 import {
 	getCommentTextStyle,
 	handleCommentTextStyle,
-} from "@/components/Story/StoryComment/Comment/Comment.style";
+} from "@/components/Story/StoryComment/Comment.style";
 
 const Comment = ({
 	commentId,
