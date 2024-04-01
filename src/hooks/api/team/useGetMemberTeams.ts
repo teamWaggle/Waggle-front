@@ -7,7 +7,7 @@ import { getMemberTeams } from "@/api/team/getMemberTeams";
 import { QUERY_KEYS } from "@/constants/queryKeys";
 
 import type { DefaultApiResponseType } from "@/types/api";
-import type { TeamResultType } from "@/types/planning";
+import type { TeamResultType } from "@/types/team";
 
 export const useGetMemberTeams = () => {
 	const { data } = useQuery<DefaultApiResponseType<TeamResultType>, AxiosError>({

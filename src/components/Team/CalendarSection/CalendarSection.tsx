@@ -5,7 +5,7 @@ import { sectionStyle } from "@/components/Team/CalendarSection/CalendarSection.
 
 const CalendarSection = () => {
 	return (
-		<Flex tag="section" css={sectionStyle("team1")}>
+		<Flex tag="section" css={sectionStyle("team_1")}>
 			<Calendar />
 		</Flex>
 	);
