@@ -1,24 +1,6 @@
 import type { MemberType } from "@/types/auth";
+import type { TeamColorType } from "@/types/team";
 
-export type TeamColorType =
-	| "team1"
-	| "team2"
-	| "team3"
-	| "team4"
-	| "team5"
-	| "team6"
-	| "team7"
-	| "team8";
-
-export interface TeamCardType {
-	teamId: number;
-	name: string;
-	coverImageUrl: string;
-	description: string;
-	teamSize: number;
-	maxTeamSize: number;
-	teamColor: TeamColorType;
-}
 export interface ScheduleType {
 	boardId: number;
 	teamId: number;
@@ -54,11 +36,6 @@ export interface DefaultResultType {
 export interface ScheduleResultType extends DefaultResultType {
 	scheduleList: Array<ScheduleType>;
 	scheduleCount: number;
-}
-
-export interface TeamResultType extends DefaultResultType {
-	teamList: Array<TeamCardType>;
-	teamCount: number;
 }
 
 export type DatePickerFormatType = "date" | "time";

@@ -33,7 +33,7 @@ const AddTeamScheduleModal = () => {
 	};
 	return (
 		<Flex css={addTeamScheduleModalBoxStyle}>
-			<Box css={addTeamScheduleModalTitleBoxStyle("team1")}>
+			<Box css={addTeamScheduleModalTitleBoxStyle("team_1")}>
 				<Flex style={{ alignItems: "center" }}>
 					<Box css={addTeamScheduleTitleCircleStyle} />
 					<Text size="xLarge">team name</Text>
@@ -91,7 +91,7 @@ const AddTeamScheduleModal = () => {
 				<Flex style={{ justifyContent: "end" }}>
 					<Flex
 						tag="button"
-						css={TeamScheduleModalAddButtonStyle("team1")}
+						css={TeamScheduleModalAddButtonStyle("team_1")}
 						onClick={handleAddSchedule}
 					>
 						<Text size="xSmall">일정 추가</Text>

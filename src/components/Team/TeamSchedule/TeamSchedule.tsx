@@ -60,7 +60,7 @@ const TeamSchedule = () => {
 						<Flex
 							onClick={handleAddSchedule}
 							tag="button"
-							css={teamScheduleAddButtonStyle("team1")}
+							css={teamScheduleAddButtonStyle("team_1")}
 						>
 							<Text size="xSmall">일정 추가</Text>
 							<AddIcon />

@@ -4,7 +4,7 @@ import { Box, Flex, Text } from "@/components/common";
 
 import { useHandleLinkWithDetectKeys } from "@/hooks/useHandleLinkWithDetectKeys";
 
-import type { TeamCardType } from "@/types/planning";
+import type { TeamCardType } from "@/types/team";
 
 import {
 	boxStyle,
@@ -17,11 +17,15 @@ import {
 } from "@/components/Planning/TeamCard/TeamCard.style";
 
 const TeamCard = ({ data }: { data: TeamCardType }) => {
-	const { name, coverImageUrl, description, teamSize, maxTeamSize, teamColor } = data;
+	const { name, coverImageUrl, description, teamSize, maxTeamSize, teamColor, teamId } = data;
 	const handleOnclick = useHandleLinkWithDetectKeys();
 	return (
-		<Box tag="a" css={boxStyle} onClick={(e) => handleOnclick(e, `/team/${name}`)}>
-			<img src={coverImageUrl} alt={name} css={imgStyle} />
+		<Box tag="a" css={boxStyle} onClick={(e) => handleOnclick(e, `/team/${teamId}`)}>
+			<img
+				src={coverImageUrl || "https://source.unsplash.com/random/300x300"}
+				alt={name}
+				css={imgStyle}
+			/>
 			<Box css={textBoxStyle}>
 				<Flex styles={{ align: "center", gap: "4px", marginBottom: "4px" }}>
 					<Box css={circleDivStyle(teamColor)} />
