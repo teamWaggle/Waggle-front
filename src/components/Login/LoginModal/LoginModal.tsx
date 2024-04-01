@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { toast } from "react-toastify";
 
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
@@ -10,8 +9,7 @@ import FindPasswordModal from "@/components/Login/FindPasswordModal";
 
 import { useLogInMutation } from "@/hooks/api/auth/useLogInMutation";
 import useModal from "@/hooks/useModal";
-
-import type { modalCloseType } from "@/types/modal";
+import { useValidateForm } from "@/hooks/useValidateForm";
 
 import {
 	layoutStyle,
@@ -19,11 +17,12 @@ import {
 	passwordIconStyle,
 	buttonStyle,
 	findTextStyle,
-} from "@/components/Login/LoginModal.style";
+} from "@/components/Login/LoginModal/LoginModal.style";
 
-const LoginModal = ({ modalClose }: modalCloseType) => {
-	const { mutate: mutateLogIn } = useLogInMutation();
+const LoginModal = () => {
+	const { mutate: logInMutate } = useLogInMutation();
 
+	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
 
 	const [email, setEmail] = useState("");
@@ -33,14 +32,11 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 
 	const modal = useModal();
 
-	const handleCloseModal = () => {
-		modal.closeModal();
-	};
-
 	const validateForm = () => {
-		if (!email.trim() || !password.trim()) {
-			toast.error("이메일과 비밀번호는 반드시 입력되어야 합니다.");
-
+		if (
+			useValidateForm(email, emailRef, "이메일을 입력해주세요.") === false ||
+			useValidateForm(password, passwordRef, "비밀번호를 입력해주세요.") === false
+		) {
 			return false;
 		}
 
@@ -58,12 +54,13 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 			return;
 		}
 
-		mutateLogIn(
+		logInMutate(
 			{ email, password },
 			{
 				onSuccess: ({ result }) => {
 					console.log(result);
-					modalClose();
+
+					modal.closeModal();
 				},
 			},
 		);
@@ -72,7 +69,7 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 	const handleFindEmailModal = () => {
 		modal.openModal({
 			key: `FindEmailModal`,
-			component: () => <FindEmailModal modalClose={handleCloseModal} />,
+			component: () => <FindEmailModal />,
 		});
 	};
 
@@ -81,7 +78,7 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 
 		modal.openModal({
 			key: `FindPasswordModal`,
-			component: () => <FindPasswordModal modalClose={handleCloseModal} />,
+			component: () => <FindPasswordModal />,
 		});
 	};
 
@@ -96,6 +93,7 @@ const LoginModal = ({ modalClose }: modalCloseType) => {
 						type="text"
 						onChange={(e) => setEmail(e.target.value)}
 						value={email}
+						ref={emailRef}
 					/>
 					<Box styles={{ position: "relative", marginTop: "13px" }}>
 						<input

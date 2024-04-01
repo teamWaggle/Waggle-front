@@ -2,24 +2,27 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const titleStyle = css({
-	color: Theme.color.text,
-	fontWeight: 600,
+export const loginBoxStyle = css({
+	flexDirection: "column",
+	alignItems: "center",
+	justifyContent: "center",
+	gap: "16px",
+	borderRadius: "14px",
+	border: `1px solid ${Theme.color.brand_primary}`,
+	padding: "30px 22px",
+	boxShadow: Theme.boxShadow.shadow2,
 });
 
 export const buttonStyle = css({
+	justifyContent: "center",
+	alignItems: "center",
+	gap: "14px",
 	padding: "12px 58px",
 	borderRadius: "6px",
 	backgroundColor: Theme.color.brand_primary,
 	cursor: "pointer",
 	border: "none",
 	outline: "none",
-});
-
-export const textStyle = css({
-	color: Theme.color.white,
-	fontWeight: 600,
-	fontFamily: "Pretendard",
 });
 
 export const subTextStyle = css({

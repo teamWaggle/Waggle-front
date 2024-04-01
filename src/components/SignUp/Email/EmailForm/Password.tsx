@@ -5,7 +5,7 @@ import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
-import { passwordIconStyle } from "@/components/Login/LoginModal.style";
+import { passwordIconStyle } from "@/components/Login/LoginModal/LoginModal.style";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
 const Password = ({
