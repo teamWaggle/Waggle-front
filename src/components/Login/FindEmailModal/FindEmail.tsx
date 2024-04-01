@@ -18,6 +18,7 @@ const FindEmail = () => {
 		updateNameValue,
 		handleSubmit,
 		name,
+		nameRef,
 	} = useFindEmailForm();
 
 	return (
@@ -29,6 +30,7 @@ const FindEmail = () => {
 						css={inputStyle}
 						placeholder="이름을 입력해주세요"
 						value={name.value}
+						ref={nameRef}
 						onChange={(e) => updateNameValue("value", e.target.value)}
 					/>
 				</Flex>

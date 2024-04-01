@@ -1,9 +1,11 @@
-import { useState, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
+import { toast } from "react-toastify";
 
 import ResultEmailModal from "@/components/Login/ResultEmailModal/ResultEmailModal";
 
 import { useFindEmailMutation } from "@/hooks/api/auth/useFindEmailMutation";
 import useModal from "@/hooks/useModal";
+import { useValidateForm } from "@/hooks/useValidateForm";
 
 import { dateFormatToUTC } from "@/utils/dateFormatToUTC";
 
@@ -24,6 +26,8 @@ export const useFindEmailForm = () => {
 
 	const modal = useModal();
 
+	const nameRef = useRef<HTMLInputElement>(null);
+
 	const [birthdayRequest, setBirthdayRequest] = useState({
 		year: "생년",
 		month: "월 선택",
@@ -38,6 +42,24 @@ export const useFindEmailForm = () => {
 
 	const [name, setName] = useState({ value: "" });
 	const [birthday, setBirthday] = useState("");
+
+	const validateForm = () => {
+		if (useValidateForm(name.value, nameRef, "이름을 입력해주세요") === false) {
+			return false;
+		}
+
+		if (
+			birthdayRequest.year === "생년" ||
+			birthdayRequest.month === "월 선택" ||
+			birthdayRequest.day === "일 선택"
+		) {
+			toast.error("생년월일을 입력해주세요");
+
+			return false;
+		}
+
+		return true;
+	};
 
 	const updateNameValue = useCallback(
 		<Key extends keyof FindEmailForm>(key: Key, value: FindEmailForm[Key]) => {
@@ -86,6 +108,10 @@ export const useFindEmailForm = () => {
 	);
 
 	const handleSubmit = () => {
+		if (!validateForm()) {
+			return;
+		}
+
 		findEmailMutation(
 			{ name: name.value, birthday },
 			{
@@ -102,6 +128,7 @@ export const useFindEmailForm = () => {
 
 	return {
 		name,
+		nameRef,
 		updateNameValue,
 		handleSubmit,
 		selectOpen,
