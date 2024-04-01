@@ -1,5 +1,3 @@
-import { useState, useRef } from "react";
-
 import { Flex, Heading, Text, Logo } from "@/components/common";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
 import { Password } from "@/components/SignUp/Email/EmailForm";
@@ -7,13 +5,9 @@ import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
 
 import { findPasswordFormData } from "@/constants/auth";
 
-import { useEmailAuthSendMutation } from "@/hooks/api/auth/useEmailAuthSendMutation";
-import { usePasswordAuthVerifyMutation } from "@/hooks/api/auth/usePasswordAuthVerifyMutation";
-import { useChangePasswordMutation } from "@/hooks/api/auth/usePasswordChangeMutation";
+import { useFindPasswordForm } from "@/hooks/auth/useFindPasswordForm";
+import { usePasswordForm } from "@/hooks/auth/usePasswordForm";
 import useModal from "@/hooks/useModal";
-import { useValidateForm } from "@/hooks/useValidateForm";
-
-import type { CommonResponseType } from "@/types/common";
 
 import {
 	layoutStyle,
@@ -21,85 +15,31 @@ import {
 	textStyle,
 	inputStyle,
 	buttonStyle,
-} from "../FindEmailModal/FindEmailModal.style";
+} from "@/components/Login/FindEmailModal/FindEmailModal.style";
 
 const FindPasswordModal = () => {
-	const { mutate: mutateEmailAuthSend } = useEmailAuthSendMutation();
-	const { mutate: passwordAuthVerifyMutation } = usePasswordAuthVerifyMutation();
-	const { mutate: mutateChangePassword } = useChangePasswordMutation();
+	const {
+		memberId,
+		mode,
+		emailRef,
+		emailAuthRef,
+		findPasswordRequest,
+		updateInputValue,
+		handleEmailSend,
+		handleEmailAuth,
+		handleChangeMode,
+	} = useFindPasswordForm();
 
-	const passwordRef = useRef<HTMLInputElement>(null);
-	const passwordCheckRef = useRef<HTMLInputElement>(null);
-
-	const [mode, setMode] = useState("sendCode");
-	const [email, setEmail] = useState("");
-
-	const [passwordAuthCode, setPasswordAuthCode] = useState("");
-	const [memberId, setMemberId] = useState(0);
-
-	const [validateComplete, setValidateComplete] = useState(false);
-	const [password, setPassword] = useState("");
-	const [passwordCheck, setPasswordCheck] = useState("");
+	const {
+		passwordRef,
+		passwordCheckRef,
+		passwordRequest,
+		updateInputValue: updatePasswordInputValue,
+		handleChangeValidateComplete,
+		handlePasswordChange,
+	} = usePasswordForm({ memberId, handleChangeMode });
 
 	const modal = useModal();
-
-	const validateForm = () => {
-		if (
-			useValidateForm(password, passwordRef, "비밀번호를 입력해주세요.") === false ||
-			useValidateForm(passwordCheck, passwordCheckRef, "비밀번호 확인을 입력해주세요.") === false ||
-			useValidateForm(
-				validateComplete,
-				passwordRef,
-				"비밀번호가 양식이 일치하지 않습니다. 다시 입력해주세요.",
-			) === false ||
-			useValidateForm(
-				password === passwordCheck,
-				passwordCheckRef,
-				"비밀번호가 일치하지 않습니다. 다시 입력해주세요.",
-			) === false
-		) {
-			return false;
-		}
-
-		return true;
-	};
-
-	const handleEmailSendClick = () => {
-		mutateEmailAuthSend(email, {
-			onSuccess: () => {
-				setMode("authCode");
-			},
-		});
-	};
-
-	const handlePasswordAuthVerify = () => {
-		passwordAuthVerifyMutation(
-			{ email, authCode: passwordAuthCode },
-			{
-				onSuccess: ({ result }: CommonResponseType) => {
-					setMode("changePassword");
-					setMemberId(result);
-				},
-			},
-		);
-	};
-
-	const handleChangePassword = (e: React.MouseEvent) => {
-		e.preventDefault();
-
-		if (!validateForm()) {
-			return;
-		}
-
-		mutateChangePassword(
-			{ memberId, password },
-			{
-				onSuccess: () => {
-					setMode("complete");
-				},
-			},
-		);
-	};
 
 	const handleLoginClick = () => {
 		modal.closeModal();
@@ -144,11 +84,12 @@ const FindPasswordModal = () => {
 					<input
 						css={inputStyle}
 						placeholder="waggle@gmail.com"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						value={findPasswordRequest.email}
+						onChange={(e) => updateInputValue("email", e.target.value)}
+						ref={emailRef}
 					/>
 
-					<button type="submit" css={buttonStyle} onClick={handleEmailSendClick}>
+					<button type="submit" css={buttonStyle} onClick={handleEmailSend}>
 						인증코드 전송하기
 					</button>
 				</>
@@ -159,12 +100,13 @@ const FindPasswordModal = () => {
 					<input
 						css={inputStyle}
 						placeholder="영어 대소문자, 숫자 포함 8자리"
-						value={passwordAuthCode}
-						onChange={(e) => setPasswordAuthCode(e.target.value)}
+						value={findPasswordRequest.authCode}
+						onChange={(e) => updateInputValue("authCode", e.target.value)}
 						maxLength={8}
+						ref={emailAuthRef}
 					/>
 
-					<button type="submit" css={buttonStyle} onClick={handlePasswordAuthVerify}>
+					<button type="submit" css={buttonStyle} onClick={handleEmailAuth}>
 						인증하기
 					</button>
 				</>
@@ -176,21 +118,29 @@ const FindPasswordModal = () => {
 						{findPasswordFormData.map((data) => (
 							<Flex key={data.id} styles={{ direction: "column", gap: "8px" }}>
 								<Password
-									password={data.id === "password" ? password : passwordCheck}
-									changePassword={data.id === "password" ? setPassword : setPasswordCheck}
+									password={
+										data.id === "password"
+											? passwordRequest.password
+											: passwordRequest.passwordCheck
+									}
+									valueKey={data.id === "password" ? "password" : "passwordCheck"}
+									updatePasswordInputValue={updatePasswordInputValue}
 									passwordRef={data.id === "password" ? passwordRef : passwordCheckRef}
 									title={data.text}
 									isFind
 								/>
 
 								{data.id === "password" && (
-									<PasswordValidator password={password} validateComplete={setValidateComplete} />
+									<PasswordValidator
+										password={passwordRequest.password}
+										validateComplete={handleChangeValidateComplete}
+									/>
 								)}
 							</Flex>
 						))}
 					</Flex>
 
-					<button type="submit" css={buttonStyle} onClick={handleChangePassword}>
+					<button type="submit" css={buttonStyle} onClick={handlePasswordChange}>
 						비밀번호 변경하기
 					</button>
 				</>
