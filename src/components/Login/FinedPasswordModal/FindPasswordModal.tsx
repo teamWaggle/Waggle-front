@@ -1,7 +1,7 @@
 import { Flex, Heading, Text, Logo } from "@/components/common";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
-import PasswordInput from "@/components/SignUp/Email/PasswordInput/PasswordInput";
-import PasswordValidator from "@/components/SignUp/Email/PasswordInput/PasswordValidator";
+import PasswordInput from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordInput";
+import PasswordValidator from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordValidator";
 
 import { findPasswordFormData } from "@/constants/auth";
 
