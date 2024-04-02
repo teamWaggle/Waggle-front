@@ -5,7 +5,7 @@ import { Theme } from "@/styles/Theme";
 export const layoutStyle = css({
 	padding: "80px 30px 0 0",
 	borderRight: `1px solid ${Theme.color.border}`,
-	height: "100vh",
+	height: "calc(100vh - 86px)",
 });
 
 export const profileInfoBoxStyle = css({
@@ -54,6 +54,7 @@ export const menuItemStyle = (isActive: boolean) =>
 	css({
 		gap: "20px",
 		alignItems: "center",
+		cursor: "pointer",
 
 		"& > div": {
 			width: "4px",

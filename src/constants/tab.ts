@@ -23,3 +23,10 @@ export const signUpTabData = [
 		text: "반려견 등록",
 	},
 ];
+
+export const MY_PAGE_TAB_KEY = {
+	PROFILE: "profile",
+	LOG: "log",
+	SIREN: "siren",
+	QUESTION: "question",
+};
