@@ -5,14 +5,14 @@ import { Flex, Text } from "@/components/common";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { imgStyle } from "@/components/SignUp/Pet/SignUpPet.style";
 import {
 	inputNoneDisplayStyle,
 	commonButtonStyle,
 	getFormTextStyle,
 } from "@/components/SignUp/SignUp.shared.style";
+import { imgStyle } from "@/components/SignUp/SignUpPet/SignUpPet.style";
 
-const PetProfile = ({
+const PetProfileInput = ({
 	handleImgUpload,
 	uploadMedia,
 }: {
@@ -45,4 +45,4 @@ const PetProfile = ({
 	);
 };
 
-export default PetProfile;
+export default PetProfileInput;

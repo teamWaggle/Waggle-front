@@ -1,14 +1,14 @@
 import { Flex, Text } from "@/components/common";
 
+import type { updatePetInputValueType } from "@/types/auth";
+
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
-const PetBreed = ({
-	breed,
-	changeBreed,
-}: {
+interface PetBreedInputParams extends updatePetInputValueType {
 	breed: string;
-	changeBreed: React.Dispatch<React.SetStateAction<string>>;
-}) => {
+}
+
+const PetBreedInput = ({ breed, updateInputValue }: PetBreedInputParams) => {
 	return (
 		<Flex styles={{ direction: "column", gap: "4px" }}>
 			<Text css={getFormTextStyle(true)}>강아지 종</Text>
@@ -16,10 +16,10 @@ const PetBreed = ({
 				css={getInputStyle("444px")}
 				placeholder="강아지종을 입력해주세요"
 				value={breed}
-				onChange={(e) => changeBreed(e.target.value)}
+				onChange={(e) => updateInputValue("breed", e.target.value)}
 			/>
 		</Flex>
 	);
 };
 
-export default PetBreed;
+export default PetBreedInput;
