@@ -4,8 +4,8 @@ import { useSearchParams } from "react-router-dom";
 import { css } from "@emotion/react";
 
 import { Flex } from "@/components/common";
-import SignUpEmail from "@/components/SignUp/Email/SignUpEmail";
 import SignUpPet from "@/components/SignUp/Pet/SignUpPet";
+import SignUpEmail from "@/components/SignUp/SignUpEmail/SignUpEmail";
 import SignUpProfile from "@/components/SignUp/SignUpProfile/SignUpProfile";
 import SignUpTab from "@/components/SignUp/SignUpTab/SignUpTab";
 

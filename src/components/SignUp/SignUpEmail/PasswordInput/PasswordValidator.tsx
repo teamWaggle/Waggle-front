@@ -9,7 +9,7 @@ import { passwordCheckData } from "@/constants/auth";
 
 import { validateAllClear } from "@/utils/validator";
 
-import { getPasswordTextStyle } from "@/components/SignUp/Email/SignUpEmail.style";
+import { getPasswordTextStyle } from "@/components/SignUp/SignUpEmail/SignUpEmail.style";
 
 interface validatorType {
 	password: string;

@@ -1,5 +1,5 @@
 import { Flex, SocialLogin } from "@/components/common";
-import PasswordValidator from "@/components/SignUp/Email/PasswordInput/PasswordValidator";
+import PasswordValidator from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordValidator";
 
 import EmailAuthCodeInput from "./EmailAuthCodeInput/EmailAuthCodeInput";
 import EmailInput from "./EmailInput/EmailInput";
@@ -10,7 +10,7 @@ import { passwordFormData } from "@/constants/auth";
 import { usePasswordForm } from "@/hooks/auth/usePasswordForm";
 import { useSignUpEmailForm } from "@/hooks/auth/useSignUpEmailForm";
 
-import { signUpButtonStyle } from "@/components/SignUp/Email/SignUpEmail.style";
+import { signUpButtonStyle } from "@/components/SignUp/SignUpEmail/SignUpEmail.style";
 
 const SignUpEmail = () => {
 	const {
