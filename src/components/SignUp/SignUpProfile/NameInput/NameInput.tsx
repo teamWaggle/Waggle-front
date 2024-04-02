@@ -4,15 +4,17 @@ import { Flex, Text } from "@/components/common";
 
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
-const Name = ({
-	name,
-	changeName,
-	nameRef,
-}: {
+interface FindEmailForm {
+	value: string;
+}
+
+interface NameInputParams {
 	name: string;
-	changeName: React.Dispatch<React.SetStateAction<string>>;
+	updateNameValue: <Key extends keyof FindEmailForm>(key: Key, value: FindEmailForm[Key]) => void;
 	nameRef: React.RefObject<HTMLInputElement>;
-}) => {
+}
+
+const NameInput = ({ name, updateNameValue, nameRef }: NameInputParams) => {
 	return (
 		<Flex styles={{ direction: "column", gap: "8px" }}>
 			<Flex styles={{ gap: "4px", align: "center" }}>
@@ -23,11 +25,11 @@ const Name = ({
 				css={getInputStyle("444px")}
 				placeholder="이름을 입력해주세요"
 				value={name}
-				onChange={(e) => changeName(e.target.value)}
+				onChange={(e) => updateNameValue("value", e.target.value)}
 				ref={nameRef}
 			/>
 		</Flex>
 	);
 };
 
-export default Name;
+export default NameInput;

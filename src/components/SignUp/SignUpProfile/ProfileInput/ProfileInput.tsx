@@ -5,20 +5,19 @@ import { Flex, Text } from "@/components/common";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { imgStyle } from "@/components/SignUp/Profile/SignUpProfile.style";
 import {
 	inputNoneDisplayStyle,
 	commonButtonStyle,
 	getFormTextStyle,
 } from "@/components/SignUp/SignUp.shared.style";
+import { imgStyle } from "@/components/SignUp/SignUpProfile/SignUpProfile.style";
 
-const Profile = ({
-	handleImgUpload,
-	uploadMedia,
-}: {
+interface ProfileInputParams {
 	handleImgUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	uploadMedia: string;
-}) => {
+}
+
+const ProfileInput = ({ handleImgUpload, uploadMedia }: ProfileInputParams) => {
 	return (
 		<Flex styles={{ align: "center", gap: "60px" }}>
 			<img
@@ -45,4 +44,4 @@ const Profile = ({
 	);
 };
 
-export default Profile;
+export default ProfileInput;

@@ -7,7 +7,7 @@ import { END_POINTS } from "@/constants/api";
 import type { CommonResponseType } from "@/types/common";
 
 interface ChangePasswordRequestType {
-	memberId: number;
+	memberId?: number;
 	password: string;
 }
 

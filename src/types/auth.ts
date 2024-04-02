@@ -53,3 +53,8 @@ export interface PasswordFormType {
 	password: string;
 	passwordCheck: string;
 }
+
+export interface SignUpProfileFormType {
+	nickname: string;
+	userUrl: string;
+}
