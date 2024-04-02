@@ -58,3 +58,18 @@ export interface SignUpProfileFormType {
 	nickname: string;
 	userUrl: string;
 }
+
+export interface SignUpPetFormType {
+	name: string;
+	age: string;
+	gender: string;
+	breed: string;
+	introduction: string;
+}
+
+export interface updatePetInputValueType {
+	updateInputValue: <Key extends keyof SignUpPetFormType>(
+		key: Key,
+		value: SignUpPetFormType[Key],
+	) => void;
+}

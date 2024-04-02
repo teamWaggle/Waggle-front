@@ -5,33 +5,33 @@ import MaleIcon from "@/assets/svg/ic-male.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
+import type { updatePetInputValueType } from "@/types/auth";
+
 import { getFormTextStyle } from "@/components/SignUp/SignUp.shared.style";
 
-const PetGender = ({
-	gender,
-	changeGender,
-}: {
+interface PetGenderInputParams extends updatePetInputValueType {
 	gender: string;
-	changeGender: React.Dispatch<React.SetStateAction<string>>;
-}) => {
+}
+
+const PetGenderInput = ({ gender, updateInputValue }: PetGenderInputParams) => {
 	return (
 		<Flex styles={{ direction: "column", gap: "4px" }}>
 			<Text css={getFormTextStyle(false)}>강아지 성별</Text>
 			<Flex styles={{ gap: "16px", height: "44px", align: "center" }}>
 				{gender === "FEMALE" ? (
-					<FeMaleIcon onClick={() => changeGender("FEMALE")} />
+					<FeMaleIcon onClick={() => updateInputValue("gender", "FEMALE")} />
 				) : (
-					<FeMaleDisabledIcon onClick={() => changeGender("FEMALE")} />
+					<FeMaleDisabledIcon onClick={() => updateInputValue("gender", "FEMALE")} />
 				)}
 
 				{gender === "MALE" ? (
-					<MaleIcon onClick={() => changeGender("MALE")} />
+					<MaleIcon onClick={() => updateInputValue("gender", "MALE")} />
 				) : (
-					<MaleDisabledIcon onClick={() => changeGender("MALE")} />
+					<MaleDisabledIcon onClick={() => updateInputValue("gender", "MALE")} />
 				)}
 			</Flex>
 		</Flex>
 	);
 };
 
-export default PetGender;
+export default PetGenderInput;

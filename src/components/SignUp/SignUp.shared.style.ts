@@ -60,7 +60,7 @@ export const getNextButtonStyle = (text: string) => {
 		all: "unset",
 		padding: "8px 14px",
 		borderRadius: "4px",
-		backgroundColor: text === "이전" ? Theme.color.disabled_text : Theme.color.brand_primary,
+		backgroundColor: text === "건너뛰기" ? Theme.color.disabled_text : Theme.color.brand_primary,
 		color: Theme.color.white,
 		fontWeight: 600,
 		cursor: "pointer",
