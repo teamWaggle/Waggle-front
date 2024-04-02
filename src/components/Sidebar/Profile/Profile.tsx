@@ -22,8 +22,9 @@ import {
 const Profile = () => {
 	const [memberId] = useRecoilState(memberIdState);
 
-	const { mutate: mutateLogOut } = useLogoutMutation();
 	const { memberData } = useMemberInfoQuery(memberId);
+
+	const { mutate: mutateLogOut } = useLogoutMutation();
 
 	return (
 		<Flex css={layoutStyle}>

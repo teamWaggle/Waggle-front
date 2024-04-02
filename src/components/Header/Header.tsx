@@ -7,20 +7,18 @@ import Logo from "@/assets/svg/logo.svg?react";
 
 import { Flex, Box, Text } from "@/components/common";
 
-import { PATH } from "@/constants/path";
+import LogInMenu from "./LogInMenu/LogInMenu";
 
-import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
+import { PATH } from "@/constants/path";
 
 import { memberIdState } from "@/recoil/atoms/auth";
 
 import { headerStyle, logoStyle, textStyle } from "@/components/Header/Header.style";
 
 const Header = () => {
-	const [memberId] = useRecoilState(memberIdState);
-
-	const { memberData } = useMemberInfoQuery(memberId);
-
 	const navigate = useNavigate();
+
+	const [memberId] = useRecoilState(memberIdState);
 
 	return (
 		<header css={headerStyle}>
@@ -48,15 +46,11 @@ const Header = () => {
 							PLANNING
 						</Text>
 
-						<Suspense fallback={<div>로딩중</div>}>
-							<Text
-								size="xLarge"
-								css={textStyle}
-								onClick={() => navigate(PATH.MY(memberData.result.userUrl))}
-							>
-								My waggle
-							</Text>
-						</Suspense>
+						{memberId !== 0 && (
+							<Suspense fallback={<div>로딩중</div>}>
+								<LogInMenu memberId={memberId} />
+							</Suspense>
+						)}
 					</Flex>
 				</Flex>
 			</Box>
