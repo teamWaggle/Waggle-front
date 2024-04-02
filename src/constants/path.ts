@@ -8,4 +8,5 @@ export const PATH = {
 	QUESTION_DETAIL: (questionId: string) => `/question/${questionId}`,
 	QUESTION_EDIT: (questionId: string) => `/question/${questionId}?mode=edit`,
 	QUESTION_CREATE: "/question-new",
+	MY: (userUrl: string) => `/${userUrl}`,
 } as const;

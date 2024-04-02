@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { useRecoilValue } from "recoil";
 
 import { Flex } from "@/components/common";
@@ -16,7 +18,7 @@ const Sidebar = () => {
 			}}
 			tag="aside"
 		>
-			{isLoggedIn ? <Profile /> : <Login />}
+			<Suspense fallback={<div>로딩중</div>}>{isLoggedIn ? <Profile /> : <Login />}</Suspense>
 			<Widget />
 		</Flex>
 	);

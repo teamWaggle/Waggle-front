@@ -1,35 +1,25 @@
+import { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { useRecoilState } from "recoil";
 
 import Logo from "@/assets/svg/logo.svg?react";
 
 import { Flex, Box, Text } from "@/components/common";
 
+import { PATH } from "@/constants/path";
+
+import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
+
+import { memberIdState } from "@/recoil/atoms/auth";
+
 import { headerStyle, logoStyle, textStyle } from "@/components/Header/Header.style";
 
-const navData = [
-	{
-		title: "SIREN",
-		link: "/siren",
-	},
-	{
-		title: "Q&A",
-		link: "/question",
-	},
-	{
-		title: "CONNECTION",
-		link: "/connection",
-	},
-	{
-		title: "PLANNING",
-		link: "/planning",
-	},
-	{
-		title: "My Waggle",
-		link: "/mypage",
-	},
-];
-
 const Header = () => {
+	const [memberId] = useRecoilState(memberIdState);
+
+	const { memberData } = useMemberInfoQuery(memberId);
+
 	const navigate = useNavigate();
 
 	return (
@@ -45,16 +35,28 @@ const Header = () => {
 				>
 					<Logo css={logoStyle} onClick={() => navigate("/")} />
 					<Flex styles={{ align: "center", gap: "100px" }}>
-						{navData.map((data) => (
+						<Text size="xLarge" css={textStyle} onClick={() => navigate(PATH.SIREN)}>
+							SIREN
+						</Text>
+						<Text size="xLarge" css={textStyle} onClick={() => navigate(PATH.QUESTION)}>
+							Q&A
+						</Text>
+						<Text size="xLarge" css={textStyle} onClick={() => navigate("/connection")}>
+							CONNECTION
+						</Text>
+						<Text size="xLarge" css={textStyle} onClick={() => navigate("/planning")}>
+							PLANNING
+						</Text>
+
+						<Suspense fallback={<div>로딩중</div>}>
 							<Text
-								key={data.title}
 								size="xLarge"
 								css={textStyle}
-								onClick={() => navigate(data.link)}
+								onClick={() => navigate(PATH.MY(memberData.result.userUrl))}
 							>
-								{data.title}
+								My waggle
 							</Text>
-						))}
+						</Suspense>
 					</Flex>
 				</Flex>
 			</Box>
