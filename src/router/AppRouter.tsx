@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import App from "@/App";
-import { PlanningPage, QuestionCreatePage, SignUpPage, SirenCreatePage, TeamPage } from "@/pages";
+import { QuestionCreatePage, SignUpPage, SirenCreatePage, TeamPage } from "@/pages";
 import * as Lazy from "@/router/lazy";
 
 import { PATH } from "@/constants/path";
@@ -69,7 +69,11 @@ const AppRouter = () => {
 				},
 				{
 					path: "/planning",
-					element: <PlanningPage />,
+					element: (
+						<Suspense fallback={<div></div>}>
+							<Lazy.PlanningPage />
+						</Suspense>
+					),
 				},
 				{ path: "/team/:teamName", element: <TeamPage /> },
 				{
@@ -80,6 +84,19 @@ const AppRouter = () => {
 						</Suspense>
 					),
 				},
+				{
+					path: "/planning/create-team",
+					element: (
+						<Suspense fallback={<div></div>}>
+							<Lazy.CreateTeamPage />
+						</Suspense>
+					),
+				},
+				{
+					path: "/siren-new",
+					element: <SirenCreatePage />,
+				},
+				{ path: "/team/:teamId", element: <TeamPage /> },
 			],
 		},
 	]);

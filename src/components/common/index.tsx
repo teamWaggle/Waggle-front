@@ -14,6 +14,8 @@ import Heading from "@/components/common/Design/Heading/Heading";
 import Modal from "@/components/common/Design/Modal/Modal";
 import MentionChecker from "@/components/common/Design/Text/MentionChecker/MentionChecker";
 import Text from "@/components/common/Design/Text/Text";
+import Form from "@/components/common/Form/Form";
+import InputNotice from "@/components/common/InputNotice/InputNotice";
 import Logo from "@/components/common/Logo";
 import SearchInput from "@/components/common/SearchInput/SearchInput";
 import Slider from "@/components/common/Slider/Slider";
@@ -40,4 +42,6 @@ export {
 	DatePickerCalendarModal,
 	DatePickerTimeModal,
 	Slider,
+	Form,
+	InputNotice,
 };
