@@ -5,6 +5,7 @@ import { Theme } from "@/styles/Theme";
 export const layoutStyle = css({
 	padding: "80px 30px 0 0",
 	borderRight: `1px solid ${Theme.color.border}`,
+	height: "100vh",
 });
 
 export const profileInfoBoxStyle = css({
