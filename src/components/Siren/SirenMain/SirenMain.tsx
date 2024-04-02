@@ -12,7 +12,7 @@ const SirenMain = () => {
 			styles={{
 				align: "center",
 				wrap: "wrap",
-				gap: "8px",
+				gap: "20px",
 				marginTop: "50px",
 			}}
 		>

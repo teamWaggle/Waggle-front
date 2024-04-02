@@ -67,6 +67,7 @@ export interface SirenListInfoType {
 	category: string;
 	status: string;
 	recommendationInfo: RecommendationInfoType;
+	isMyPage?: boolean;
 }
 
 export interface SirenRepresentativeType extends CommonResponseBaseType {

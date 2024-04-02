@@ -34,11 +34,12 @@ const SirenCard = ({
 	category,
 	status,
 	createdDate,
+	isMyPage,
 }: SirenListInfoType) => {
 	const navigate = useNavigate();
 
 	return (
-		<Flex css={cardStyle} onClick={() => navigate(PATH.SIREN_DETAIL(String(boardId)))}>
+		<Flex css={cardStyle(isMyPage)} onClick={() => navigate(PATH.SIREN_DETAIL(String(boardId)))}>
 			<Flex css={tagBoxStyle}>
 				<Flex css={tagStyle(generateTagStyle(category))}>
 					<Text>{generateTagName(category)}</Text>
@@ -68,7 +69,7 @@ const SirenCard = ({
 						</Text>
 					</Flex>
 
-					<Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
+					<Text size="xSmall" css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
 						{convertToUTC(new Date(createdDate)).date}
 					</Text>
 				</Flex>

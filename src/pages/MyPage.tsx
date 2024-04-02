@@ -7,6 +7,7 @@ import { Flex } from "@/components/common";
 import MyPageLog from "@/components/MyPage/MyPageLog/MyPageLog";
 import MyPageMain from "@/components/MyPage/MyPageMain/MyPageMain";
 import MyPageProfile from "@/components/MyPage/MyPageProfile/MyPageProfile";
+import MyPageSiren from "@/components/MyPage/MyPageSiren/MyPageSiren";
 
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
@@ -32,6 +33,8 @@ const MyPage = () => {
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain />}
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog />}
+
+			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN && <MyPageSiren />}
 		</Flex>
 	);
 };
