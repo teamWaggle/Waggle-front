@@ -1,7 +1,6 @@
-export interface TokenType {
-	code: number;
-	isSuccess: boolean;
-	message: string;
+import type { CommonResponseBaseType } from "@/types/common";
+
+export interface TokenType extends CommonResponseBaseType {
 	result: ResultType;
 }
 
@@ -22,13 +21,6 @@ export interface EmailAuthVerifyType {
 	authCode: string;
 }
 
-export interface SignUpResponseType {
-	isSuccess: boolean;
-	code: number;
-	message: string;
-	result: number;
-}
-
 export interface MemberType {
 	memberId: number;
 	nickname: string;
@@ -40,10 +32,7 @@ export interface FindEmailResultType {
 	emailList: string[];
 }
 
-export interface MemberInfoResponseType {
-	isSuccess: boolean;
-	code: number;
-	message: string;
+export interface MemberInfoResponseType extends CommonResponseBaseType {
 	result: MemberInfoResultType;
 }
 
@@ -56,9 +45,11 @@ export interface MemberInfoResultType {
 	profileImgUrl: string;
 }
 
-export interface FindEmailResponseType {
-	isSuccess: boolean;
-	code: number;
-	message: string;
+export interface FindEmailResponseType extends CommonResponseBaseType {
 	result: FindEmailResultType;
+}
+
+export interface PasswordFormType {
+	password: string;
+	passwordCheck: string;
 }

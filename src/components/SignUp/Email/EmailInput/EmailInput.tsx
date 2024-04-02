@@ -5,18 +5,21 @@ import { useEmailAuthSendMutation } from "@/hooks/api/auth/useEmailAuthSendMutat
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import type { EmailAuthVerifyType } from "@/types/auth";
+
 import { commonButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
-const Email = ({
-	email,
-	changeEmail,
-	emailRef,
-}: {
+interface EmailInputParams {
 	email: string;
-	changeEmail: React.Dispatch<React.SetStateAction<string>>;
+	updateInputValue: <Key extends keyof EmailAuthVerifyType>(
+		key: Key,
+		value: EmailAuthVerifyType[Key],
+	) => void;
 	emailRef: React.RefObject<HTMLInputElement>;
-}) => {
+}
+
+const EmailInput = ({ email, updateInputValue, emailRef }: EmailInputParams) => {
 	const { mutate: mutateEmailAuthSend } = useEmailAuthSendMutation();
 
 	return (
@@ -28,7 +31,7 @@ const Email = ({
 					css={getInputStyle("280px")}
 					placeholder="Waggle@email.com"
 					value={email}
-					onChange={(e) => changeEmail(e.target.value)}
+					onChange={(e) => updateInputValue("email", e.target.value)}
 					ref={emailRef}
 				/>
 
@@ -40,4 +43,4 @@ const Email = ({
 	);
 };
 
-export default Email;
+export default EmailInput;

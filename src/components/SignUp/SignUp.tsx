@@ -7,7 +7,7 @@ import { Flex } from "@/components/common";
 import SignUpEmail from "@/components/SignUp/Email/SignUpEmail";
 import SignUpPet from "@/components/SignUp/Pet/SignUpPet";
 import SignUpProfile from "@/components/SignUp/Profile/SignUpProfile";
-import SignUpTab from "@/components/SignUp/SignUpTab";
+import SignUpTab from "@/components/SignUp/SignUpTab/SignUpTab";
 
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
@@ -26,7 +26,7 @@ const SignUp = () => {
 	}, []);
 
 	return (
-		<Flex styles={{ direction: "column", align: "center" }} css={layoutStyle}>
+		<Flex css={layoutStyle}>
 			<SignUpTab />
 
 			{searchParams.get(TAB_KEY) === SIGN_UP_TAB_KEY.EMAIL && <SignUpEmail />}
@@ -44,4 +44,6 @@ const layoutStyle = css({
 	maxWidth: "1536px",
 	margin: "0 auto",
 	padding: "110px 196px",
+	flexDirection: "column",
+	alignItems: "center",
 });

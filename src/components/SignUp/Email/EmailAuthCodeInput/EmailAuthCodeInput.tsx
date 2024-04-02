@@ -5,32 +5,30 @@ import { useEmailAuthVerifyMutation } from "@/hooks/api/auth/useEmailAuthVerifyM
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import type { EmailAuthVerifyType } from "@/types/auth";
+
 import { commonButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
-const EmailAuthCode = ({
-	email,
-	emailAuthCode,
-	changeEmailAuthCode,
-	emailAuthComplete,
-	emailAuthCodeRef,
-}: {
+interface EmailAuthCodeInputParams {
 	email: string;
 	emailAuthCode: string;
-	changeEmailAuthCode: React.Dispatch<React.SetStateAction<string>>;
-	emailAuthComplete: React.Dispatch<React.SetStateAction<boolean>>;
+	updateInputValue: <Key extends keyof EmailAuthVerifyType>(
+		key: Key,
+		value: EmailAuthVerifyType[Key],
+	) => void;
+	handleChangeEmailAuthComplete: (complete: boolean) => void;
 	emailAuthCodeRef: React.RefObject<HTMLInputElement>;
-}) => {
-	const { mutate: emailAuthVerifyMutation } = useEmailAuthVerifyMutation();
+}
 
-	const handleEmailAuthVerify = () => {
-		emailAuthVerifyMutation(
-			{ email, authCode: emailAuthCode },
-			{
-				onSuccess: () => emailAuthComplete(true),
-			},
-		);
-	};
+const EmailAuthCodeInput = ({
+	email,
+	emailAuthCode,
+	updateInputValue,
+	handleChangeEmailAuthComplete,
+	emailAuthCodeRef,
+}: EmailAuthCodeInputParams) => {
+	const { mutate: emailAuthVerifyMutation } = useEmailAuthVerifyMutation();
 
 	return (
 		<Flex styles={{ direction: "column", gap: "8px" }}>
@@ -40,12 +38,23 @@ const EmailAuthCode = ({
 					css={getInputStyle("280px")}
 					placeholder="인증번호 8자리 입력"
 					value={emailAuthCode}
-					onChange={(e) => changeEmailAuthCode(e.target.value)}
+					onChange={(e) => updateInputValue("authCode", e.target.value)}
 					ref={emailAuthCodeRef}
 					maxLength={8}
 				/>
 
-				<Box tag="button" css={commonButtonStyle} onClick={handleEmailAuthVerify}>
+				<Box
+					tag="button"
+					css={commonButtonStyle}
+					onClick={() =>
+						emailAuthVerifyMutation(
+							{ email, authCode: emailAuthCode },
+							{
+								onSuccess: () => handleChangeEmailAuthComplete(true),
+							},
+						)
+					}
+				>
 					<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>인증번호 인증</Text>
 				</Box>
 			</Flex>
@@ -53,4 +62,4 @@ const EmailAuthCode = ({
 	);
 };
 
-export default EmailAuthCode;
+export default EmailAuthCodeInput;

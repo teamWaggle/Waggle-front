@@ -1,7 +1,7 @@
 import { Flex, Heading, Text, Logo } from "@/components/common";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
-import { Password } from "@/components/SignUp/Email/EmailForm";
-import PasswordValidator from "@/components/SignUp/Email/PasswordValidator";
+import PasswordInput from "@/components/SignUp/Email/PasswordInput/PasswordInput";
+import PasswordValidator from "@/components/SignUp/Email/PasswordInput/PasswordValidator";
 
 import { findPasswordFormData } from "@/constants/auth";
 
@@ -117,7 +117,7 @@ const FindPasswordModal = () => {
 					<Flex styles={{ direction: "column", gap: "20px" }}>
 						{findPasswordFormData.map((data) => (
 							<Flex key={data.id} styles={{ direction: "column", gap: "8px" }}>
-								<Password
+								<PasswordInput
 									password={
 										data.id === "password"
 											? passwordRequest.password

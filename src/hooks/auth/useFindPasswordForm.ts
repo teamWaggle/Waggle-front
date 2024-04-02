@@ -4,12 +4,8 @@ import { useEmailAuthSendMutation } from "@/hooks/api/auth/useEmailAuthSendMutat
 import { usePasswordAuthVerifyMutation } from "@/hooks/api/auth/usePasswordAuthVerifyMutation";
 import { useValidateForm } from "@/hooks/useValidateForm";
 
+import type { EmailAuthVerifyType } from "@/types/auth";
 import type { CommonResponseType } from "@/types/common";
-
-interface FindPasswordForm {
-	email: string;
-	authCode: string;
-}
 
 export const useFindPasswordForm = () => {
 	const { mutate: emailAuthSendMutate } = useEmailAuthSendMutation();
@@ -35,7 +31,7 @@ export const useFindPasswordForm = () => {
 	};
 
 	const updateInputValue = useCallback(
-		<Key extends keyof FindPasswordForm>(key: Key, value: FindPasswordForm[Key]) => {
+		<Key extends keyof EmailAuthVerifyType>(key: Key, value: EmailAuthVerifyType[Key]) => {
 			setFindPasswordRequest((prevFindPasswordRequest) => {
 				const data = {
 					...prevFindPasswordRequest,

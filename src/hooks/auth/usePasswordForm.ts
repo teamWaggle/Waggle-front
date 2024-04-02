@@ -3,14 +3,11 @@ import { useCallback, useState, useRef } from "react";
 import { useChangePasswordMutation } from "@/hooks/api/auth/usePasswordChangeMutation";
 import { useValidateForm } from "@/hooks/useValidateForm";
 
-interface usePasswordFormParams {
-	memberId: number;
-	handleChangeMode: (mode: string) => void;
-}
+import type { PasswordFormType } from "@/types/auth";
 
-export interface PasswordForm {
-	password: string;
-	passwordCheck: string;
+interface usePasswordFormParams {
+	memberId?: number;
+	handleChangeMode?: (mode: string) => void;
 }
 
 export const usePasswordForm = ({ memberId, handleChangeMode }: usePasswordFormParams) => {
@@ -56,7 +53,7 @@ export const usePasswordForm = ({ memberId, handleChangeMode }: usePasswordFormP
 	};
 
 	const updateInputValue = useCallback(
-		<Key extends keyof PasswordForm>(key: Key, value: PasswordForm[Key]) => {
+		<Key extends keyof PasswordFormType>(key: Key, value: PasswordFormType[Key]) => {
 			setPasswordRequest((prevPasswordRequest) => {
 				const data = {
 					...prevPasswordRequest,
@@ -80,7 +77,7 @@ export const usePasswordForm = ({ memberId, handleChangeMode }: usePasswordFormP
 			{ memberId, password: passwordRequest.password },
 			{
 				onSuccess: () => {
-					handleChangeMode("complete");
+					handleChangeMode && handleChangeMode("complete");
 				},
 			},
 		);
@@ -91,6 +88,7 @@ export const usePasswordForm = ({ memberId, handleChangeMode }: usePasswordFormP
 		passwordCheckRef,
 		passwordRequest,
 		updateInputValue,
+		validateComplete,
 		handleChangeValidateComplete,
 		handlePasswordChange,
 	};

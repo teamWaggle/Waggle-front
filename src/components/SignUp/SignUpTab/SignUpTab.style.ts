@@ -9,6 +9,11 @@ export const headingStyle = css({
 });
 
 export const boxStyle = css({
+	flexDirection: "column",
+	alignItems: "center",
+	gap: "6px",
+	position: "relative",
+
 	"&:after": {
 		position: "absolute",
 		top: "25px",
@@ -24,15 +29,16 @@ export const boxStyle = css({
 	},
 });
 
-export const getCircleBoxStyle = (disabled: boolean) => {
-	return css({
+export const getCircleBoxStyle = (disabled: boolean) =>
+	css({
+		justifyContent: "center",
+		alignItems: "center",
 		width: "25px",
 		height: "25px",
 		backgroundColor: disabled ? Theme.color.brand_primary : Theme.color.border,
 		color: Theme.color.white,
 		borderRadius: "50%",
 	});
-};
 
 export const circleNumberStyle = css({
 	textAlign: "center",
