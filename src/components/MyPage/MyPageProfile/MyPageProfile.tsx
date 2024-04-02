@@ -1,6 +1,10 @@
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+
 import SampleImg from "@/assets/png/post-sample.png";
 
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
+
+import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -14,6 +18,12 @@ import {
 } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
 
 const MyPageProfile = () => {
+	const [searchParams] = useSearchParams();
+
+	const navigate = useNavigate();
+
+	const parmas = useParams();
+
 	const follow = true;
 
 	return (
@@ -38,19 +48,38 @@ const MyPageProfile = () => {
 			<Divider />
 
 			<Flex tag="ul" css={menuBoxStyle}>
-				<Flex tag="li" css={menuItemStyle(true)}>
+				<Flex
+					tag="li"
+					css={menuItemStyle(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE)}
+					onClick={() => navigate(`/${parmas.userUrl}?${TAB_KEY}=${MY_PAGE_TAB_KEY.PROFILE}`)}
+				>
 					<Box />
 					<Text size="large">프로필</Text>
 				</Flex>
-				<Flex tag="li" css={menuItemStyle(false)}>
+
+				<Flex
+					tag="li"
+					css={menuItemStyle(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG)}
+					onClick={() => navigate(`/${parmas.userUrl}?${TAB_KEY}=${MY_PAGE_TAB_KEY.LOG}`)}
+				>
 					<Box />
 					<Text size="large">Waggle Log</Text>
 				</Flex>
-				<Flex tag="li" css={menuItemStyle(false)}>
+
+				<Flex
+					tag="li"
+					css={menuItemStyle(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN)}
+					onClick={() => navigate(`/${parmas.userUrl}?${TAB_KEY}=${MY_PAGE_TAB_KEY.SIREN}`)}
+				>
 					<Box />
 					<Text size="large">Siren</Text>
 				</Flex>
-				<Flex tag="li" css={menuItemStyle(false)}>
+
+				<Flex
+					tag="li"
+					css={menuItemStyle(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION)}
+					onClick={() => navigate(`/${parmas.userUrl}?${TAB_KEY}=${MY_PAGE_TAB_KEY.QUESTION}`)}
+				>
 					<Box />
 					<Text size="large">Q&A</Text>
 				</Flex>
