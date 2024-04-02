@@ -5,24 +5,24 @@ import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
-import type { PasswordForm } from "@/hooks/auth/usePasswordForm";
+import type { PasswordFormType } from "@/types/auth";
 
 import { passwordIconStyle } from "@/components/Login/LoginModal/LoginModal.style";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
 interface PasswordParams {
 	password: string;
-	valueKey: keyof PasswordForm;
-	updatePasswordInputValue: <Key extends keyof PasswordForm>(
+	valueKey: keyof PasswordFormType;
+	updatePasswordInputValue: <Key extends keyof PasswordFormType>(
 		key: Key,
-		value: PasswordForm[Key],
+		value: PasswordFormType[Key],
 	) => void;
 	passwordRef: React.RefObject<HTMLInputElement>;
 	title: string;
 	isFind?: boolean;
 }
 
-const Password = ({
+const PasswordInput = ({
 	password,
 	valueKey,
 	updatePasswordInputValue,
@@ -63,4 +63,4 @@ const Password = ({
 	);
 };
 
-export default Password;
+export default PasswordInput;

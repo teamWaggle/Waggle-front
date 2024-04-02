@@ -10,7 +10,7 @@ import {
 	getCircleBoxStyle,
 	circleNumberStyle,
 	getCircleTextStyle,
-} from "@/components/SignUp/SignUpTab.style";
+} from "@/components/SignUp/SignUpTab/SignUpTab.style";
 
 const SignUpTab = () => {
 	const navigate = useNavigate();
@@ -28,15 +28,11 @@ const SignUpTab = () => {
 			<Flex styles={{ align: "center", marginTop: "40px", gap: "160px" }}>
 				{signUpTabData.map((data) => (
 					<Flex
-						styles={{ direction: "column", gap: "6px", align: "center", position: "relative" }}
 						css={boxStyle}
 						key={data.text}
 						onClick={() => navigate(`/signup?${TAB_KEY}=${data.id}`)}
 					>
-						<Flex
-							styles={{ justify: "center", align: "center" }}
-							css={getCircleBoxStyle(searchParams.get(TAB_KEY) === data.id)}
-						>
+						<Flex css={getCircleBoxStyle(searchParams.get(TAB_KEY) === data.id)}>
 							<Text size="small" css={circleNumberStyle}>
 								{data.number}
 							</Text>
