@@ -1,16 +1,12 @@
 import SampleImg from "@/assets/png/post-sample.png";
-import MediaIcon from "@/assets/svg/ic-many-media.svg?react";
 
 import { Flex, Heading } from "@/components/common";
+import StoryCard from "@/components/Story/StoryCard/StoryCard";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import {
-	layoutStyle,
-	storyBoxStyle,
-	storyCardStyle,
-} from "@/components/MyPage/MyPageLog/MyPageLog.style";
+import { layoutStyle, storyBoxStyle } from "@/components/MyPage/MyPageLog/MyPageLog.style";
 
 const MyPageLog = () => {
 	return (
@@ -20,22 +16,10 @@ const MyPageLog = () => {
 			</Heading>
 
 			<Flex css={storyBoxStyle}>
-				<Flex css={storyCardStyle}>
-					<img src={SampleImg} alt="profileImg" />
-					<MediaIcon />
-				</Flex>
-				<Flex css={storyCardStyle}>
-					<img src={SampleImg} alt="profileImg" />
-					<MediaIcon />
-				</Flex>
-				<Flex css={storyCardStyle}>
-					<img src={SampleImg} alt="profileImg" />
-					<MediaIcon />
-				</Flex>
-				<Flex css={storyCardStyle}>
-					<img src={SampleImg} alt="profileImg" />
-					<MediaIcon />
-				</Flex>
+				<StoryCard boardId={369} thumbnail={SampleImg} />
+				<StoryCard boardId={369} thumbnail={SampleImg} />
+				<StoryCard boardId={369} thumbnail={SampleImg} />
+				<StoryCard boardId={369} thumbnail={SampleImg} />
 			</Flex>
 		</Flex>
 	);

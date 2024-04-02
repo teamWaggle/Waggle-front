@@ -2,21 +2,22 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const cardStyle = css({
-	backgroundColor: "#FEFEFE",
-	filter: "drop-shadow(0px 2px 12px rgba(0, 40, 37, 0.10))",
-	borderRadius: "20px",
-	flexDirection: "column",
-	position: "relative",
-	cursor: "pointer",
+export const cardStyle = (isMyPage?: boolean) =>
+	css({
+		backgroundColor: "#FEFEFE",
+		boxShadow: Theme.boxShadow.shadow3,
+		borderRadius: "20px",
+		flexDirection: "column",
+		position: "relative",
+		cursor: "pointer",
 
-	"& > img": {
-		width: "279px",
-		height: "224px",
-		objectFit: "cover",
-		borderRadius: "20px 20px 0 0",
-	},
-});
+		"& > img": {
+			width: isMyPage ? "255px" : "270px",
+			height: "224px",
+			objectFit: "cover",
+			borderRadius: "20px 20px 0 0",
+		},
+	});
 
 export const tagBoxStyle = css({
 	position: "absolute",
