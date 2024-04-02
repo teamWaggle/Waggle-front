@@ -9,3 +9,5 @@ export const SirenDetailPage = lazy(() => import("@/pages/SirenDetailPage"));
 export const QuestionPage = lazy(() => import("@/pages/QuestionPage"));
 
 export const QuestionDetailPage = lazy(() => import("@/pages/QuestionDetailPage"));
+
+export const MyPage = lazy(() => import("@/pages/MyPage"));

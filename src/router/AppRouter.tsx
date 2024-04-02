@@ -71,8 +71,15 @@ const AppRouter = () => {
 					path: "/planning",
 					element: <PlanningPage />,
 				},
-
 				{ path: "/team/:teamName", element: <TeamPage /> },
+				{
+					path: PATH.MY(":userUrl"),
+					element: (
+						<Suspense fallback={<div>로딩중</div>}>
+							<Lazy.MyPage />
+						</Suspense>
+					),
+				},
 			],
 		},
 	]);
