@@ -6,7 +6,7 @@ import { css } from "@emotion/react";
 import { Flex } from "@/components/common";
 import SignUpEmail from "@/components/SignUp/Email/SignUpEmail";
 import SignUpPet from "@/components/SignUp/Pet/SignUpPet";
-import SignUpProfile from "@/components/SignUp/Profile/SignUpProfile";
+import SignUpProfile from "@/components/SignUp/SignUpProfile/SignUpProfile";
 import SignUpTab from "@/components/SignUp/SignUpTab/SignUpTab";
 
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";

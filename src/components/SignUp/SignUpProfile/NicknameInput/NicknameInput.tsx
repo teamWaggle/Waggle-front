@@ -9,36 +9,42 @@ import { useCheckNicknameMutation } from "@/hooks/api/auth/useCheckNicknameMutat
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { getNicknameTextStyle } from "@/components/SignUp/Profile/SignUpProfile.style";
+import type { SignUpProfileFormType } from "@/types/auth";
+
 import {
 	commonButtonStyle,
 	getFormTextStyle,
 	getInputStyle,
 } from "@/components/SignUp/SignUp.shared.style";
+import { getNicknameTextStyle } from "@/components/SignUp/SignUpProfile/SignUpProfile.style";
 
-const Nickname = ({
-	nickname,
-	changeNickname,
-	nicknameRef,
-	nicknameCheckComplete,
-	changeNicknameCheckComplete,
-}: {
+interface NicknameInputParams {
 	nickname: string;
-	changeNickname: React.Dispatch<React.SetStateAction<string>>;
+	updateInputValue: <Key extends keyof SignUpProfileFormType>(
+		key: Key,
+		value: SignUpProfileFormType[Key],
+	) => void;
 	nicknameRef: React.RefObject<HTMLInputElement>;
 	nicknameCheckComplete: boolean;
-	changeNicknameCheckComplete: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+	handleNicknameCheckComplete: (complete: boolean) => void;
+}
+
+const NicknameInput = ({
+	nickname,
+	updateInputValue,
+	nicknameRef,
+	nicknameCheckComplete,
+	handleNicknameCheckComplete,
+}: NicknameInputParams) => {
 	const { mutate: checkNicknameMutation } = useCheckNicknameMutation();
 
 	const [isNicknameCheck, setIsNicknameCheck] = useState(false);
 
 	const handleNicknameCheck = () => {
-		setIsNicknameCheck(true);
-
 		checkNicknameMutation(nickname, {
 			onSuccess: () => {
-				changeNicknameCheckComplete(true);
+				setIsNicknameCheck(true);
+				handleNicknameCheckComplete(true);
 			},
 		});
 	};
@@ -56,7 +62,7 @@ const Nickname = ({
 				css={getInputStyle("444px")}
 				placeholder="닉네임을 입력해주세요! 언제든지 변경 가능해요"
 				value={nickname}
-				onChange={(e) => changeNickname(e.target.value)}
+				onChange={(e) => updateInputValue("nickname", e.target.value)}
 				ref={nicknameRef}
 			/>
 			<Flex styles={{ gap: "16px", align: "center" }}>
@@ -75,4 +81,4 @@ const Nickname = ({
 	);
 };
 
-export default Nickname;
+export default NicknameInput;

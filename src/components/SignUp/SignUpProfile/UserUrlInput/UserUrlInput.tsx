@@ -9,35 +9,41 @@ import { useCheckUserUrlMutation } from "@/hooks/api/auth/useCheckUserUrlMutatio
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import type { SignUpProfileFormType } from "@/types/auth";
+
+import { commonButtonStyle, getFormTextStyle } from "@/components/SignUp/SignUp.shared.style";
 import {
 	addressInputStyle,
 	getNicknameTextStyle,
-} from "@/components/SignUp/Profile/SignUpProfile.style";
-import { commonButtonStyle, getFormTextStyle } from "@/components/SignUp/SignUp.shared.style";
+} from "@/components/SignUp/SignUpProfile/SignUpProfile.style";
 
-const ProfileAddress = ({
-	userUrl,
-	changeUserUrl,
-	userUrlRef,
-	userUrlCheckComplete,
-	changeUserUrlCheckComplete,
-}: {
+interface UserUrlInputParams {
 	userUrl: string;
-	changeUserUrl: React.Dispatch<React.SetStateAction<string>>;
+	updateInputValue: <Key extends keyof SignUpProfileFormType>(
+		key: Key,
+		value: SignUpProfileFormType[Key],
+	) => void;
 	userUrlRef: React.RefObject<HTMLInputElement>;
 	userUrlCheckComplete: boolean;
-	changeUserUrlCheckComplete: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+	handleUserUrlCheckComplete: (complete: boolean) => void;
+}
+
+const UserUrlInput = ({
+	userUrl,
+	updateInputValue,
+	userUrlRef,
+	userUrlCheckComplete,
+	handleUserUrlCheckComplete,
+}: UserUrlInputParams) => {
 	const { mutate: checkUserUrlMutation } = useCheckUserUrlMutation();
 
 	const [isUserUrlCheck, setIsUserUrlCheck] = useState(false);
 
 	const handleUserUrlCheck = () => {
-		setIsUserUrlCheck(true);
-
 		checkUserUrlMutation(userUrl, {
 			onSuccess: () => {
-				changeUserUrlCheckComplete(true);
+				setIsUserUrlCheck(true);
+				handleUserUrlCheckComplete(true);
 			},
 		});
 	};
@@ -55,7 +61,7 @@ const ProfileAddress = ({
 					css={addressInputStyle}
 					placeholder="가입 후 변경이 불가능해요"
 					value={userUrl}
-					onChange={(e) => changeUserUrl(e.target.value)}
+					onChange={(e) => updateInputValue("userUrl", e.target.value)}
 					ref={userUrlRef}
 				/>
 			</Flex>
@@ -76,4 +82,4 @@ const ProfileAddress = ({
 	);
 };
 
-export default ProfileAddress;
+export default UserUrlInput;

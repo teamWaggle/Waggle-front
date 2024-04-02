@@ -135,5 +135,6 @@ export const useFindEmailForm = () => {
 		handleSelectOpen,
 		birthdayRequest,
 		updateBirthdayValue,
+		birthday,
 	};
 };
