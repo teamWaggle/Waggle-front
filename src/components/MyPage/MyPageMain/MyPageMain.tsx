@@ -2,7 +2,7 @@ import SampleImg from "@/assets/png/post-sample.png";
 // import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
 
-import { Flex, Divider, Heading, Text } from "@/components/common";
+import { Flex, Box, Divider, Heading, Text } from "@/components/common";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -17,7 +17,7 @@ import {
 
 const MyPageMain = () => {
 	return (
-		<div css={layoutStyle}>
+		<Box tag="main" css={layoutStyle}>
 			<Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
 				소개
 			</Heading>
@@ -46,7 +46,7 @@ const MyPageMain = () => {
 					</Flex>
 				</Flex>
 			</Flex>
-		</div>
+		</Box>
 	);
 };
 

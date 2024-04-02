@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { css } from "@emotion/react";
 
 import { Flex } from "@/components/common";
+import MyPageLog from "@/components/MyPage/MyPageLog/MyPageLog";
 import MyPageMain from "@/components/MyPage/MyPageMain/MyPageMain";
 import MyPageProfile from "@/components/MyPage/MyPageProfile/MyPageProfile";
 
@@ -29,6 +30,8 @@ const MyPage = () => {
 			<MyPageProfile />
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain />}
+
+			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog />}
 		</Flex>
 	);
 };
