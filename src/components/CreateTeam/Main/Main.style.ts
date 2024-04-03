@@ -32,13 +32,6 @@ export const imageBoxStyle = (isFile: boolean) =>
 		objectFit: "cover",
 	});
 
-export const imageInputBoxStyle = css({
-	display: "flex",
-	flexDirection: "column",
-	alignItems: "center",
-	gap: "4px",
-});
-
 export const textInputBoxStyle = css({
 	marginLeft: "40px",
 	maxWidth: "800px",
