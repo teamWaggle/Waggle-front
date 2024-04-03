@@ -2,13 +2,12 @@ import { useState } from "react";
 
 import { Flex, Text, SearchInput } from "@/components/common";
 import SortButton from "@/components/common/SortButton/SortButton";
-import Tag from "@/components/common/Tag/Tag";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
 import { Theme } from "@/styles/Theme";
 
-import { tagStyle } from "@/components/Siren/SirenSearchBar/SirenSearchBar.style";
+import { tagStyle } from "@/components/common/Tag/Tag.style";
 
 const SirenSearchBar = () => {
 	const [tagName, setTagName] = useState("강아지 찾아요");
@@ -22,7 +21,6 @@ const SirenSearchBar = () => {
 				</Flex>
 
 				<Flex styles={{ gap: "14px" }}>
-					<Tag tagText="FIND_PET" />
 					{SIREN_TAG_CATEGORY.map((tag) => (
 						<Flex
 							key={tag.tagName}
