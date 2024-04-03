@@ -1,11 +1,10 @@
 import type { FieldValues } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import * as yup from "yup";
-
 import LeftArrowIcon from "@/assets/svg/left-arrow-brand-primary.svg?react";
 
 import { Box, Flex, Form, Heading, Text } from "@/components/common";
+import * as yup from "yup";
 
 import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
 
@@ -29,10 +28,6 @@ const Main = () => {
 	const navigate = useNavigate();
 
 	const onSubmit = (data: FieldValues) => {
-		// const formData = new FormData();
-		// data.map((value: File | null | string, key: string) => {
-		// 	formData.append(key, value);
-		// });
 		console.log(data);
 	};
 	return (
