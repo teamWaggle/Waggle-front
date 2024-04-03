@@ -1,6 +1,5 @@
 import type { MemberType } from "@/types/auth";
 import type { CommonResponseBaseType } from "@/types/common";
-import type { RecommendationInfoType } from "@/types/story";
 
 export interface QuestionType extends CommonResponseBaseType {
 	result: QuestionResultType;
@@ -31,7 +30,7 @@ export interface QuestionEditType {
 
 export interface QuestionContentType {
 	content: string;
-	recommendationInfo: RecommendationInfoType;
+	recommendCount: number;
 	mediaList: string[];
 }
 
@@ -52,7 +51,7 @@ export interface QuestionListInfoType {
 	status: string;
 	createdDate: string;
 	hashtagList: string[];
-	recommendationInfo: RecommendationInfoType;
+	recommendCount: number;
 }
 
 export interface QuestionRepresentativeType extends CommonResponseBaseType {

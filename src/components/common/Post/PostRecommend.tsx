@@ -6,9 +6,13 @@ import { Flex, Heading } from "@/components/common";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import type { RecommendationInfoType } from "@/types/story";
-
-const PostRecommend = ({ isRecommend, recommendCount }: RecommendationInfoType) => {
+const PostRecommend = ({
+	isRecommend,
+	recommendCount,
+}: {
+	isRecommend: boolean;
+	recommendCount: number;
+}) => {
 	return (
 		<Flex styles={{ align: "center", justify: "center", width: "100%" }}>
 			<Flex styles={{ align: "center", gap: "22px" }}>

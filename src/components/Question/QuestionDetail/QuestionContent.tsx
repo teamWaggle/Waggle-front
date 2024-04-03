@@ -4,15 +4,12 @@ import PostRecommend from "@/components/common/Post/PostRecommend";
 
 import type { QuestionContentType } from "@/types/question";
 
-const QuestionContent = ({ content, mediaList, recommendationInfo }: QuestionContentType) => {
+const QuestionContent = ({ content, mediaList, recommendCount }: QuestionContentType) => {
 	return (
 		<Flex styles={{ direction: "column", margin: "60px 0", gap: "60px" }}>
 			<PostContent mediaList={mediaList} content={content} />
 
-			<PostRecommend
-				isRecommend={recommendationInfo.isRecommend}
-				recommendCount={recommendationInfo.recommendCount}
-			/>
+			<PostRecommend isRecommend recommendCount={recommendCount} />
 		</Flex>
 	);
 };

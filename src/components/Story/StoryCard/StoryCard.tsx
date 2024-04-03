@@ -26,7 +26,7 @@ const StoryCard = ({ boardId, thumbnail }: StoryListInfoType) => {
 					mediaList={storyData.result.mediaList}
 					member={storyData.result.member}
 					createdDate={storyData.result.createdDate}
-					recommendationInfo={storyData.result.recommendationInfo}
+					recommendCount={storyData.result.recommendCount}
 				/>
 			),
 		});

@@ -28,7 +28,7 @@ const QuestionMain = () => {
 								createdDate={questionInfo.createdDate}
 								hashtagList={questionInfo.hashtagList}
 								status={questionInfo.status}
-								recommendationInfo={questionInfo.recommendationInfo}
+								recommendCount={questionInfo.recommendCount}
 							/>
 						))}
 					</Flex>

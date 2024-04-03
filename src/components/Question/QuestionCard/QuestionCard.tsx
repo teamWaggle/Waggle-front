@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
+// import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
 import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
@@ -28,7 +28,7 @@ const QuestionCard = ({
 	createdDate,
 	hashtagList,
 	status,
-	recommendationInfo,
+	recommendCount,
 }: QuestionListInfoType) => {
 	const navigate = useNavigate();
 
@@ -59,10 +59,11 @@ const QuestionCard = ({
 				</Text>
 			</Box>
 
-			<Flex css={iconStyle(recommendationInfo.isRecommend)}>
-				{recommendationInfo.isRecommend ? <LikeIcon /> : <DisLikeIcon />}
+			<Flex css={iconStyle(true)}>
+				<LikeIcon />
+				{/* <DisLikeIcon /> */}
 
-				<Text>{recommendationInfo.recommendCount}</Text>
+				<Text>{recommendCount}</Text>
 			</Flex>
 		</Flex>
 	);

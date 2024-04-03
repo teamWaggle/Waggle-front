@@ -23,7 +23,7 @@ const QuestionDetail = ({
 	member,
 	viewCount,
 	createdDate,
-	recommendationInfo,
+	recommendCount,
 	status,
 }: QuestionResultType) => {
 	const navigate = useNavigate();
@@ -54,11 +54,7 @@ const QuestionDetail = ({
 
 				<Divider />
 
-				<QuestionContent
-					content={content}
-					mediaList={mediaList}
-					recommendationInfo={recommendationInfo}
-				/>
+				<QuestionContent content={content} mediaList={mediaList} recommendCount={recommendCount} />
 			</Flex>
 
 			<Divider />
