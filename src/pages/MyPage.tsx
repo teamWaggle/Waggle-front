@@ -3,6 +3,8 @@ import { useSearchParams } from "react-router-dom";
 
 import { css } from "@emotion/react";
 
+import { useRecoilState } from "recoil";
+
 import { Flex } from "@/components/common";
 import MyPageLog from "@/components/MyPage/MyPageLog/MyPageLog";
 import MyPageMain from "@/components/MyPage/MyPageMain/MyPageMain";
@@ -12,7 +14,19 @@ import MyPageSiren from "@/components/MyPage/MyPageSiren/MyPageSiren";
 
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
+import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
+
+import { memberIdState } from "@/recoil/atoms/auth";
+
 const MyPage = () => {
+	const [memberId] = useRecoilState(memberIdState);
+
+	const { memberData } = useMemberInfoQuery(memberId);
+
+	console.log(memberData);
+
+	console.log(memberId);
+
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
@@ -29,7 +43,10 @@ const MyPage = () => {
 
 	return (
 		<Flex css={layoutStyle}>
-			<MyPageProfile />
+			<MyPageProfile
+				profileImgUrl={memberData.result.profileImgUrl}
+				nickname={memberData.result.nickname}
+			/>
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain />}
 
