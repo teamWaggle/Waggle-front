@@ -4,6 +4,7 @@ import LeftArrowIcon from "@/assets/svg/left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow.svg?react";
 
 import { Divider, Flex, Heading } from "@/components/common";
+import MyPageCommentCard from "@/components/MyPage/MyPageCommentCard/MyPageCommentCard";
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
 import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";
@@ -124,6 +125,12 @@ const MyPageSiren = () => {
 			<Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
 				댓글
 			</Heading>
+
+			<Flex styles={{ direction: "column", gap: "10px", width: "100%" }}>
+				<MyPageCommentCard />
+				<MyPageCommentCard />
+				<MyPageCommentCard />
+			</Flex>
 		</Flex>
 	);
 };

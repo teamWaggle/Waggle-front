@@ -27,19 +27,6 @@ export const tagBoxStyle = css({
 	gap: "10px",
 });
 
-export const tagStyle = (color: string) => {
-	return css({
-		justifyContent: "center",
-		alignItems: "center",
-		padding: "4px 10px",
-		borderRadius: "18px",
-		backgroundColor: color,
-		color: Theme.color.text,
-		cursor: "pointer",
-		fontWeight: 500,
-	});
-};
-
 export const infoStyle = css({
 	borderRadius: "0 0 20px 20px",
 	padding: "10px 16px 6px",
