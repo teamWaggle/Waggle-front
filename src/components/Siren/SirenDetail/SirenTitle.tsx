@@ -1,15 +1,14 @@
-import { Flex, Heading, Text } from "@/components/common";
+import { Flex, Heading } from "@/components/common";
 import PostProfile from "@/components/common/Post/PostProfile";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
+import Tag from "@/components/common/Tag/Tag";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import { generateTagStyle, generateTagName } from "@/utils/generateTag";
-
 import type { SirenTitleType } from "@/types/siren";
 
-import { titleBoxStyle, tagStyle } from "@/components/common/Post/Post.style";
+import { titleBoxStyle } from "@/components/common/Post/Post.style";
 
 const SirenTitle = ({
 	category,
@@ -26,14 +25,8 @@ const SirenTitle = ({
 	return (
 		<Flex css={titleBoxStyle}>
 			<Flex styles={{ gap: "14px" }}>
-				<Flex css={tagStyle(generateTagStyle(category))}>
-					<Text>{generateTagName(category)}</Text>
-				</Flex>
-				<Flex
-					css={tagStyle(status === "RESOLVED" ? Theme.color.btn_success : Theme.color.btn_danger)}
-				>
-					<Text>{status === "RESOLVED" ? "해결" : "미해결"}</Text>
-				</Flex>
+				<Tag tagText={category} />
+				<Tag tagText={status} isResolveTag />
 			</Flex>
 
 			<Heading css={getDefaultTextStyle(Theme.color.text, 700)}>{title}</Heading>
