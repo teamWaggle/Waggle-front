@@ -21,12 +21,19 @@ const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
 		control,
 		name,
 	});
-	const { value } = imageField;
+	const { value, onChange } = imageField;
 
 	const imagePreview = useImagePreview(value);
 
 	const handleResetImage = () => {
-		imageField.onChange({ target: { value: null, name: "image" } });
+		onChange({ target: { value: null, name: "image" } });
+	};
+
+	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files;
+		if (file) {
+			onChange({ target: { value: file, name: "image" } });
+		}
 	};
 	return (
 		<Flex css={imageInputBoxStyle}>
@@ -36,12 +43,7 @@ const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
 				accept="image/*"
 				css={imageInputStyle}
 				id="image"
-				onChange={(e) => {
-					const file = e.target.files;
-					if (file) {
-						imageField.onChange({ target: { value: file, name: "image" } });
-					}
-				}}
+				onChange={handleOnChange}
 			/>
 			<label css={imageBoxStyle(!!imagePreview)} htmlFor="image">
 				{imagePreview && <img css={imageStyle} src={imagePreview} alt="team image" />}
