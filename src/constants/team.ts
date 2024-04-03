@@ -1,15 +1,8 @@
-import type { FieldValues, RegisterOptions } from "react-hook-form";
+import * as yup from "yup";
 
 import { REGEX } from "@/constants/regex";
 
 import type { TeamColorType } from "@/types/team";
-interface InputType {
-	MESSAGE: string;
-	VALIDATION: Pick<
-		RegisterOptions<FieldValues>,
-		"maxLength" | "minLength" | "validate" | "required" | "pattern"
-	>;
-}
 
 export const TEAM_INFO = {
 	MEMBERS_SLIDER_AMOUNT: 4,
@@ -34,38 +27,34 @@ export const TEAM_DEFAULT_VALUES = {
 	teamColor: "team_1",
 };
 
-export const TEAM_TITLE: InputType = {
-	MESSAGE: "한영 30자 제한, 특수문자 불가",
-	VALIDATION: {
-		required: {
-			value: true,
-			message: "팀 이름을 입력해주세요.",
-		},
-		maxLength: {
-			value: 30,
-			message: "30자 이내로 입력해주세요.",
-		},
-		pattern: {
-			value: REGEX.EXCEPT_SPECIAL,
-			message: "특수문자는 사용할 수 없습니다.",
-		},
+export const TEAM_TITLE = {
+	MAX_LEGHTH: 30,
+	VALIDATE_TEXT() {
+		return `한영 ${this.MAX_LEGHTH}자 제한, 특수문자 불가`;
+	},
+	PLACEHOLDER: "팀 이름을 입력해주세요",
+	NAME: "title",
+	RULES() {
+		return yup
+			.string()
+			.required("제목은 필수 입력 항목입니다.")
+			.max(this.MAX_LEGHTH, `제목은 ${this.MAX_LEGHTH}자 이하여야 합니다.`)
+			.matches(REGEX.EXCEPT_SPECIAL, "특수문자는 입력할 수 없습니다.");
 	},
 };
 
-export const TEAM_CONTENT: InputType = {
-	MESSAGE: "한영 30자 제한, 특수문자 불가",
-	VALIDATION: {
-		required: {
-			value: true,
-			message: "팀 소개를 입력해주세요.",
-		},
-		maxLength: {
-			value: 30,
-			message: "30자 이내로 입력해주세요.",
-		},
-		pattern: {
-			value: REGEX.EXCEPT_SPECIAL,
-			message: "특수문자는 사용할 수 없습니다.",
-		},
+export const TEAM_CONTENT = {
+	MAX_LEGHTH: 200,
+	VALIDATE_TEXT() {
+		return `한영 ${this.MAX_LEGHTH}자 제한, 특수문자 불가`;
+	},
+	PLACEHOLDER: "팀 소개를 입력해주세요",
+	NAME: "content",
+	RULES() {
+		return yup
+			.string()
+			.required("소개는 필수 입력 항목입니다.")
+			.max(this.MAX_LEGHTH, `소개는 ${this.MAX_LEGHTH}자 이하여야 합니다.`)
+			.matches(REGEX.EXCEPT_SPECIAL, "특수문자는 입력할 수 없습니다.");
 	},
 };

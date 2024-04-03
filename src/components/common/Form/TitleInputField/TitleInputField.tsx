@@ -1,4 +1,4 @@
-import type { FieldValues, RegisterOptions } from "react-hook-form";
+import type { FieldPath, FieldValues } from "react-hook-form";
 import { useFormState } from "react-hook-form";
 import { useController, useFormContext } from "react-hook-form";
 
@@ -10,21 +10,15 @@ const TitleInputField = ({
 	name,
 	validateText,
 	placeholder,
-	rules,
 }: {
-	name: keyof FieldValues;
+	name: FieldPath<FieldValues>;
 	validateText: string;
 	placeholder: string;
-	rules: Pick<
-		RegisterOptions<FieldValues>,
-		"maxLength" | "minLength" | "validate" | "required" | "pattern"
-	>;
 }) => {
 	const { control, trigger } = useFormContext();
 	const { field: textField } = useController({
 		control,
 		name,
-		rules,
 	});
 	const { errors } = useFormState({ control, name });
 	const isValid = !errors[name];

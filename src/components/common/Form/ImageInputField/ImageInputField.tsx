@@ -1,40 +1,35 @@
-import { useEffect, useState } from "react";
-import type { FieldValues } from "react-hook-form";
+import type { FieldPath, FieldValues } from "react-hook-form";
 import { useController, useFormContext } from "react-hook-form";
 
 import PhotoIcon from "@/assets/svg/ic-media-upload.svg?react";
 
 import { Flex } from "@/components/common";
 
+import useImagePreview from "@/hooks/useImagePreview";
+
 import {
 	imageBoxStyle,
+	imageInputBoxStyle,
 	imageInputStyle,
 	imageStyle,
 	resetImageButtonStyle,
 } from "@/components/common/Form/ImageInputField/ImageInputField.style";
 
-const ImageInputField = ({ name }: { name: keyof FieldValues }) => {
+const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
 	const { control } = useFormContext();
 	const { field: imageField } = useController({
 		control,
 		name,
 	});
 	const { value } = imageField;
-	const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-	useEffect(() => {
-		const newUrl = value ? URL.createObjectURL(value[0]) : null;
-		if (newUrl !== imagePreview) {
-			URL.revokeObjectURL(imagePreview || "");
-			setImagePreview(newUrl);
-		}
-	}, [value]);
+	const imagePreview = useImagePreview(value);
 
 	const handleResetImage = () => {
 		imageField.onChange({ target: { value: null, name: "image" } });
 	};
 	return (
-		<>
+		<Flex css={imageInputBoxStyle}>
 			<input
 				type="file"
 				multiple={false}
@@ -55,7 +50,7 @@ const ImageInputField = ({ name }: { name: keyof FieldValues }) => {
 			<Flex onClick={handleResetImage} css={resetImageButtonStyle}>
 				사진 초기화
 			</Flex>
-		</>
+		</Flex>
 	);
 };
 export default ImageInputField;

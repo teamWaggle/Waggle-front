@@ -2,16 +2,19 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
+export const imageInputBoxStyle = css({
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	gap: "4px",
+	width: "200px",
+	height: "200px",
+});
+
 export const imageInputStyle = css({
 	display: "none",
 });
 
-export const imageStyle = css({
-	width: "100%",
-	height: "100%",
-	objectFit: "cover",
-	borderRadius: "20px",
-});
 export const imageBoxStyle = (isFile: boolean) =>
 	css({
 		display: "flex",
@@ -24,6 +27,12 @@ export const imageBoxStyle = (isFile: boolean) =>
 		cursor: "pointer",
 		objectFit: "cover",
 	});
+export const imageStyle = css({
+	width: "100%",
+	height: "100%",
+	objectFit: "cover",
+	borderRadius: "20px",
+});
 export const resetImageButtonStyle = css({
 	color: Theme.color.white,
 	cursor: "pointer",

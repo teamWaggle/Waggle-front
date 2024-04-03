@@ -1,6 +1,8 @@
 import type { FieldValues } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
+import * as yup from "yup";
+
 import LeftArrowIcon from "@/assets/svg/left-arrow-brand-primary.svg?react";
 
 import { Box, Flex, Form, Heading, Text } from "@/components/common";
@@ -10,17 +12,27 @@ import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team"
 import {
 	colorTitleStyle,
 	headingStyle,
-	imageInputBoxStyle,
 	leftArrowIconStyle,
 	submitButtonStyle,
 	textInputBoxStyle,
 	titleBoxStyle,
 } from "@/components/CreateTeam/Main/Main.style";
 
+const schema = yup
+	.object({
+		title: TEAM_TITLE.RULES(),
+		content: TEAM_CONTENT.RULES(),
+	})
+	.required();
+
 const Main = () => {
 	const navigate = useNavigate();
 
 	const onSubmit = (data: FieldValues) => {
+		// const formData = new FormData();
+		// data.map((value: File | null | string, key: string) => {
+		// 	formData.append(key, value);
+		// });
 		console.log(data);
 	};
 	return (
@@ -31,23 +43,19 @@ const Main = () => {
 					PLANNING - 팀 만들기
 				</Heading>
 			</Flex>
-			<Form onSubmit={onSubmit} defaultValues={TEAM_DEFAULT_VALUES}>
+			<Form onSubmit={onSubmit} defaultValues={TEAM_DEFAULT_VALUES} schema={schema}>
 				<Box style={{ display: "inline-flex", width: "100%", marginTop: "40px" }}>
-					<Box css={imageInputBoxStyle}>
-						<Form.ImageInputField name="image" />
-					</Box>
+					<Form.ImageInputField name="image" />
 					<Flex css={textInputBoxStyle}>
 						<Form.TitleInputField
-							placeholder="팀 이름을 입력해주세요"
-							name="title"
-							validateText={TEAM_TITLE.MESSAGE}
-							rules={TEAM_TITLE.VALIDATION}
+							placeholder={TEAM_TITLE.PLACEHOLDER}
+							name={TEAM_TITLE.NAME}
+							validateText={TEAM_TITLE.VALIDATE_TEXT()}
 						/>
 						<Form.ContentInputField
-							placeholder="팀 소개를 입력해주세요"
-							name="content"
-							validateText={TEAM_CONTENT.MESSAGE}
-							rules={TEAM_CONTENT.VALIDATION}
+							placeholder={TEAM_CONTENT.PLACEHOLDER}
+							name={TEAM_CONTENT.NAME}
+							validateText={TEAM_CONTENT.VALIDATE_TEXT()}
 						/>
 					</Flex>
 				</Box>

@@ -1,4 +1,5 @@
 import type { InputHTMLAttributes } from "react";
+import type { UseFormRegisterReturn } from "react-hook-form";
 
 import type { TeamColorType } from "@/types/team";
 
@@ -9,12 +10,20 @@ import {
 
 interface ColorRadioButtonProps extends InputHTMLAttributes<HTMLInputElement> {
 	color: TeamColorType;
+	register: UseFormRegisterReturn<string>;
 }
 
-const ColorRadioButton = ({ color, ...props }: ColorRadioButtonProps) => {
+const ColorRadioButton = ({ color, register, ...props }: ColorRadioButtonProps) => {
 	return (
-		<label key={color} css={ColorRadioLabelStyle(color)} htmlFor={color}>
-			<input css={ColorRadioButtonStyle(color)} type="radio" value={color} id={color} {...props} />
+		<label css={ColorRadioLabelStyle(color)} htmlFor={color}>
+			<input
+				css={ColorRadioButtonStyle(color)}
+				type="radio"
+				value={color}
+				id={color}
+				{...register}
+				{...props}
+			/>
 		</label>
 	);
 };
