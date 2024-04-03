@@ -1,8 +1,12 @@
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
+import { useRecoilState } from "recoil";
+
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
 
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
+
+import { memberIdState } from "@/recoil/atoms/auth";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -18,9 +22,12 @@ import {
 interface MyPageProfileParams {
 	profileImgUrl: string;
 	nickname: string;
+	memberId: number;
 }
 
-const MyPageProfile = ({ profileImgUrl, nickname }: MyPageProfileParams) => {
+const MyPageProfile = ({ profileImgUrl, nickname, memberId }: MyPageProfileParams) => {
+	const [userId] = useRecoilState(memberIdState);
+
 	const [searchParams] = useSearchParams();
 
 	const navigate = useNavigate();
@@ -46,7 +53,11 @@ const MyPageProfile = ({ profileImgUrl, nickname }: MyPageProfileParams) => {
 				</Box>
 			</Flex>
 
-			<button css={followButtonStyle(follow)}>{follow ? "팔로우" : "팔로잉"}</button>
+			{memberId === userId ? (
+				<button css={followButtonStyle(true)}>프로필 수정</button>
+			) : (
+				<button css={followButtonStyle(follow)}>{follow ? "팔로우" : "팔로잉"}</button>
+			)}
 
 			<Divider />
 

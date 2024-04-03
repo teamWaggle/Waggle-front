@@ -23,10 +23,6 @@ const MyPage = () => {
 
 	const { memberData } = useMemberInfoQuery(memberId);
 
-	console.log(memberData);
-
-	console.log(memberId);
-
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
@@ -46,6 +42,7 @@ const MyPage = () => {
 			<MyPageProfile
 				profileImgUrl={memberData.result.profileImgUrl}
 				nickname={memberData.result.nickname}
+				memberId={memberData.result.memberId}
 			/>
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain />}
