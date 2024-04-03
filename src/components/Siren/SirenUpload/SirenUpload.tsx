@@ -14,10 +14,10 @@ import { Theme } from "@/styles/Theme";
 
 import { generateTagStyle, generateTagCategory } from "@/utils/generateTag";
 
+import { tagStyle } from "@/components/common/Tag/Tag.style";
 import {
 	layoutStyle,
 	inputStyle,
-	tagStyle,
 	uploadButtonStyle,
 } from "@/components/Siren/SirenUpload/SirenUpload.style";
 
