@@ -1,6 +1,5 @@
 import type { CommonResponseBaseType } from "./common";
 import type { MemberType } from "@/types/auth";
-import type { RecommendationInfoType } from "@/types/story";
 
 export interface SirenType extends CommonResponseBaseType {
 	result: SirenResultType;
@@ -33,7 +32,7 @@ export interface SirenContentType {
 	petGender: string;
 	mediaList: string[];
 	contact: string;
-	recommendationInfo: RecommendationInfoType;
+	recommendCount: number;
 }
 
 export interface SirenTitleType {
@@ -66,7 +65,7 @@ export interface SirenListInfoType {
 	lostLocate: string;
 	category: string;
 	status: string;
-	recommendationInfo: RecommendationInfoType;
+	recommendCount: number;
 	isMyPage?: boolean;
 }
 

@@ -15,11 +15,6 @@ export interface StoryResultType {
 	hashtagList: string[];
 	mediaList: string[];
 	member: MemberType;
-	recommendationInfo: RecommendationInfoType;
-}
-
-export interface RecommendationInfoType {
-	isRecommend: boolean;
 	recommendCount: number;
 }
 

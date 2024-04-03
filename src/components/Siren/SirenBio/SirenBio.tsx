@@ -36,7 +36,7 @@ const SirenBio = () => {
 						thumbnail={sirenInfo.thumbnail}
 						title={sirenInfo.title}
 						lostLocate={sirenInfo.lostLocate}
-						recommendationInfo={sirenInfo.recommendationInfo}
+						recommendCount={sirenInfo.recommendCount}
 						category={sirenInfo.category}
 						status={sirenInfo.status}
 						createdDate={sirenInfo.createdDate}

@@ -32,7 +32,7 @@ const QuestionDetailPage = () => {
 					member={questionData.result.member}
 					viewCount={questionData.result.viewCount}
 					createdDate={questionData.result.createdDate}
-					recommendationInfo={questionData.result.recommendationInfo}
+					recommendCount={questionData.result.recommendCount}
 					status={questionData.result.status}
 				/>
 			)}

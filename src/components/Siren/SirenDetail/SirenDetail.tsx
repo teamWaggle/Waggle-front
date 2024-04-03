@@ -29,7 +29,7 @@ const SirenDetail = ({
 	member,
 	viewCount,
 	createdDate,
-	recommendationInfo,
+	recommendCount,
 	status,
 }: SirenResultType) => {
 	const navigate = useNavigate();
@@ -69,7 +69,7 @@ const SirenDetail = ({
 					contact={contact}
 					mediaList={mediaList}
 					content={content}
-					recommendationInfo={recommendationInfo}
+					recommendCount={recommendCount}
 				/>
 			</Flex>
 

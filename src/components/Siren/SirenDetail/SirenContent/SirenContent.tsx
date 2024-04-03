@@ -21,7 +21,7 @@ const SirenContent = ({
 	contact,
 	mediaList,
 	content,
-	recommendationInfo,
+	recommendCount,
 }: SirenContentType) => {
 	const sirenContentTitleData = [
 		{
@@ -75,10 +75,7 @@ const SirenContent = ({
 
 			<PostContent mediaList={mediaList} content={content} />
 
-			<PostRecommend
-				isRecommend={recommendationInfo.isRecommend}
-				recommendCount={recommendationInfo.recommendCount}
-			/>
+			<PostRecommend isRecommend recommendCount={recommendCount} />
 		</Flex>
 	);
 };

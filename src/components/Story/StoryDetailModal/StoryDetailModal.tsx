@@ -16,7 +16,7 @@ const StoryDetailModal = ({
 	mediaList,
 	member,
 	createdDate,
-	recommendationInfo,
+	recommendCount,
 }: StoryResultType) => {
 	return (
 		<Flex css={layoutStyle}>
@@ -32,7 +32,7 @@ const StoryDetailModal = ({
 					hashtagList={hashtagList}
 				/>
 
-				<StoryComment boardId={boardId} recommendCount={recommendationInfo.recommendCount} />
+				<StoryComment boardId={boardId} recommendCount={recommendCount} />
 			</Flex>
 		</Flex>
 	);

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import SirenOffIcon from "@/assets/svg/ic-siren-off.svg?react";
+// import SirenOffIcon from "@/assets/svg/ic-siren-off.svg?react";
 import SirenOnIcon from "@/assets/svg/ic-siren-on.svg?react";
 
 import { Flex, Heading, Text } from "@/components/common";
@@ -30,7 +30,7 @@ const SirenCard = ({
 	thumbnail,
 	title,
 	lostLocate,
-	recommendationInfo,
+	recommendCount,
 	category,
 	status,
 	createdDate,
@@ -62,10 +62,11 @@ const SirenCard = ({
 
 				<Flex css={bottomBoxStyle}>
 					<Flex styles={{ gap: "2px" }}>
-						{recommendationInfo.isRecommend ? <SirenOnIcon /> : <SirenOffIcon />}
+						<SirenOnIcon />
+						{/* <SirenOffIcon /> */}
 
-						<Text size="xSmall" css={textStyle(recommendationInfo.isRecommend)}>
-							{recommendationInfo.recommendCount}
+						<Text size="xSmall" css={textStyle(true)}>
+							{recommendCount}
 						</Text>
 					</Flex>
 

@@ -44,7 +44,7 @@ const SirenDetailPage = () => {
 					member={sirenData.result.member}
 					createdDate={sirenData.result.createdDate}
 					viewCount={sirenData.result.viewCount}
-					recommendationInfo={sirenData.result.recommendationInfo}
+					recommendCount={sirenData.result.recommendCount}
 					status={sirenData.result.status}
 				/>
 			)}
