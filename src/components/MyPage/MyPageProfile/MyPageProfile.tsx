@@ -1,7 +1,5 @@
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
-import SampleImg from "@/assets/png/post-sample.png";
-
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
 
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
@@ -17,7 +15,12 @@ import {
 	menuItemStyle,
 } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
 
-const MyPageProfile = () => {
+interface MyPageProfileParams {
+	profileImgUrl: string;
+	nickname: string;
+}
+
+const MyPageProfile = ({ profileImgUrl, nickname }: MyPageProfileParams) => {
 	const [searchParams] = useSearchParams();
 
 	const navigate = useNavigate();
@@ -29,11 +32,11 @@ const MyPageProfile = () => {
 	return (
 		<Box css={layoutStyle}>
 			<Flex css={profileInfoBoxStyle}>
-				<img src={SampleImg} alt="profileImg" />
+				<img src={profileImgUrl} alt="profileImg" />
 
 				<Box>
 					<Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
-						멍멍이가 좋개
+						{nickname}
 					</Heading>
 
 					<Text size="small" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>

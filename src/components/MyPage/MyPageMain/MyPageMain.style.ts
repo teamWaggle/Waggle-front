@@ -7,12 +7,7 @@ export const layoutStyle = css({
 	gap: "30px",
 	marginTop: "80px",
 	paddingLeft: "30px",
-});
-
-export const introductionTextStyle = css({
-	color: Theme.color.readonly_text,
-	fontWeight: 500,
-	margin: "16px 0 30px",
+	width: "100%",
 });
 
 export const petCardBoxStyle = css({
