@@ -7,6 +7,7 @@ import { Flex } from "@/components/common";
 import MyPageLog from "@/components/MyPage/MyPageLog/MyPageLog";
 import MyPageMain from "@/components/MyPage/MyPageMain/MyPageMain";
 import MyPageProfile from "@/components/MyPage/MyPageProfile/MyPageProfile";
+import MyPageQuestion from "@/components/MyPage/MyPageQuestion/MyPageQuestion";
 import MyPageSiren from "@/components/MyPage/MyPageSiren/MyPageSiren";
 
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
@@ -24,7 +25,7 @@ const MyPage = () => {
 		) {
 			setSearchParams(`${TAB_KEY}=${MY_PAGE_TAB_KEY.PROFILE}`);
 		}
-	}, []);
+	}, [searchParams]);
 
 	return (
 		<Flex css={layoutStyle}>
@@ -35,6 +36,8 @@ const MyPage = () => {
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog />}
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN && <MyPageSiren />}
+
+			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION && <MyPageQuestion />}
 		</Flex>
 	);
 };
