@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Flex, Text, SearchInput } from "@/components/common";
 import SortButton from "@/components/common/SortButton/SortButton";
+import Tag from "@/components/common/Tag/Tag";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
@@ -21,6 +22,7 @@ const SirenSearchBar = () => {
 				</Flex>
 
 				<Flex styles={{ gap: "14px" }}>
+					<Tag tagText="FIND_PET" />
 					{SIREN_TAG_CATEGORY.map((tag) => (
 						<Flex
 							key={tag.tagName}
