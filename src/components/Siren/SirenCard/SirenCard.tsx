@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SirenOnIcon from "@/assets/svg/ic-siren-on.svg?react";
 
 import { Flex, Heading, Text } from "@/components/common";
+import Tag from "@/components/common/Tag/Tag";
 
 import { PATH } from "@/constants/path";
 
@@ -11,14 +12,12 @@ import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
-import { generateTagStyle, generateTagName } from "@/utils/generateTag";
 
 import type { SirenListInfoType } from "@/types/siren";
 
 import {
 	cardStyle,
 	tagBoxStyle,
-	tagStyle,
 	infoStyle,
 	subStyle,
 	textStyle,
@@ -41,15 +40,8 @@ const SirenCard = ({
 	return (
 		<Flex css={cardStyle(isMyPage)} onClick={() => navigate(PATH.SIREN_DETAIL(String(boardId)))}>
 			<Flex css={tagBoxStyle}>
-				<Flex css={tagStyle(generateTagStyle(category))}>
-					<Text>{generateTagName(category)}</Text>
-				</Flex>
-
-				<Flex
-					css={tagStyle(status === "RESOLVED" ? Theme.color.btn_success : Theme.color.btn_danger)}
-				>
-					<Text>{status === "RESOLVED" ? "해결" : "미해결"}</Text>
-				</Flex>
+				<Tag tagText={category} />
+				<Tag tagText={status} isResolveTag />
 			</Flex>
 
 			<img src={thumbnail} alt="thumbnail" />
