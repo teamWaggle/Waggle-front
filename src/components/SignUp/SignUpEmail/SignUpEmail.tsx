@@ -63,24 +63,6 @@ const SignUpEmail = () => {
 						passwordCheckRef={passwordCheckRef}
 						handleChangeValidateComplete={handleChangeValidateComplete}
 					/>
-					// <Flex key={data.id} styles={{ direction: "column", gap: "8px" }}>
-					// 	<PasswordInput
-					// 		password={
-					// 			data.id === "password" ? passwordRequest.password : passwordRequest.passwordCheck
-					// 		}
-					// 		valueKey={data.id === "password" ? "password" : "passwordCheck"}
-					// 		updatePasswordInputValue={updatePasswordInputValue}
-					// 		passwordRef={data.id === "password" ? passwordRef : passwordCheckRef}
-					// 		title={data.text}
-					// 	/>
-
-					// 	{data.id === "password" && (
-					// 		<PasswordValidator
-					// 			password={passwordRequest.password}
-					// 			validateComplete={handleChangeValidateComplete}
-					// 		/>
-					// 	)}
-					// </Flex>
 				))}
 			</Flex>
 

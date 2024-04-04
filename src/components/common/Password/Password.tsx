@@ -14,6 +14,7 @@ interface PasswordParams {
 	passwordRef: React.RefObject<HTMLInputElement>;
 	passwordCheckRef: React.RefObject<HTMLInputElement>;
 	handleChangeValidateComplete: (complete: boolean) => void;
+	isFind?: boolean;
 }
 
 const Password = ({
@@ -23,6 +24,7 @@ const Password = ({
 	passwordRef,
 	passwordCheckRef,
 	handleChangeValidateComplete,
+	isFind,
 }: PasswordParams) => {
 	return (
 		<Flex key={data.id} styles={{ direction: "column", gap: "8px" }}>
@@ -32,7 +34,7 @@ const Password = ({
 				updatePasswordInputValue={updatePasswordInputValue}
 				passwordRef={data.id === "password" ? passwordRef : passwordCheckRef}
 				title={data.text}
-				isFind
+				isFind={isFind}
 			/>
 
 			{data.id === "password" && (

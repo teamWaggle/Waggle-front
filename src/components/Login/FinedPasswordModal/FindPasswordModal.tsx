@@ -1,7 +1,6 @@
 import { Flex, Heading, Text, Logo } from "@/components/common";
+import Password from "@/components/common/Password/Password";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
-import PasswordInput from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordInput";
-import PasswordValidator from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordValidator";
 
 import { passwordFormData } from "@/constants/auth";
 
@@ -116,27 +115,15 @@ const FindPasswordModal = () => {
 				<>
 					<Flex styles={{ direction: "column", gap: "20px" }}>
 						{passwordFormData.map((data) => (
-							<Flex key={data.id} styles={{ direction: "column", gap: "8px" }}>
-								<PasswordInput
-									password={
-										data.id === "password"
-											? passwordRequest.password
-											: passwordRequest.passwordCheck
-									}
-									valueKey={data.id === "password" ? "password" : "passwordCheck"}
-									updatePasswordInputValue={updatePasswordInputValue}
-									passwordRef={data.id === "password" ? passwordRef : passwordCheckRef}
-									title={data.text}
-									isFind
-								/>
-
-								{data.id === "password" && (
-									<PasswordValidator
-										password={passwordRequest.password}
-										validateComplete={handleChangeValidateComplete}
-									/>
-								)}
-							</Flex>
+							<Password
+								data={data}
+								passwordRequest={passwordRequest}
+								updatePasswordInputValue={updatePasswordInputValue}
+								passwordRef={passwordRef}
+								passwordCheckRef={passwordCheckRef}
+								handleChangeValidateComplete={handleChangeValidateComplete}
+								isFind
+							/>
 						))}
 					</Flex>
 
