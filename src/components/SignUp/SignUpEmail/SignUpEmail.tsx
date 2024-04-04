@@ -1,9 +1,7 @@
 import { Flex, SocialLogin } from "@/components/common";
-import PasswordValidator from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordValidator";
-
-import EmailAuthCodeInput from "./EmailAuthCodeInput/EmailAuthCodeInput";
-import EmailInput from "./EmailInput/EmailInput";
-import PasswordInput from "./PasswordInput/PasswordInput";
+import Password from "@/components/common/Password/Password";
+import EmailAuthCodeInput from "@/components/SignUp/SignUpEmail/EmailAuthCodeInput/EmailAuthCodeInput";
+import EmailInput from "@/components/SignUp/SignUpEmail/EmailInput/EmailInput";
 
 import { passwordFormData } from "@/constants/auth";
 
@@ -57,24 +55,32 @@ const SignUpEmail = () => {
 
 				{/* 비밀번호 영역 */}
 				{passwordFormData.map((data) => (
-					<Flex key={data.id} styles={{ direction: "column", gap: "8px" }}>
-						<PasswordInput
-							password={
-								data.id === "password" ? passwordRequest.password : passwordRequest.passwordCheck
-							}
-							valueKey={data.id === "password" ? "password" : "passwordCheck"}
-							updatePasswordInputValue={updatePasswordInputValue}
-							passwordRef={data.id === "password" ? passwordRef : passwordCheckRef}
-							title={data.text}
-						/>
+					<Password
+						data={data}
+						passwordRequest={passwordRequest}
+						updatePasswordInputValue={updatePasswordInputValue}
+						passwordRef={passwordRef}
+						passwordCheckRef={passwordCheckRef}
+						handleChangeValidateComplete={handleChangeValidateComplete}
+					/>
+					// <Flex key={data.id} styles={{ direction: "column", gap: "8px" }}>
+					// 	<PasswordInput
+					// 		password={
+					// 			data.id === "password" ? passwordRequest.password : passwordRequest.passwordCheck
+					// 		}
+					// 		valueKey={data.id === "password" ? "password" : "passwordCheck"}
+					// 		updatePasswordInputValue={updatePasswordInputValue}
+					// 		passwordRef={data.id === "password" ? passwordRef : passwordCheckRef}
+					// 		title={data.text}
+					// 	/>
 
-						{data.id === "password" && (
-							<PasswordValidator
-								password={passwordRequest.password}
-								validateComplete={handleChangeValidateComplete}
-							/>
-						)}
-					</Flex>
+					// 	{data.id === "password" && (
+					// 		<PasswordValidator
+					// 			password={passwordRequest.password}
+					// 			validateComplete={handleChangeValidateComplete}
+					// 		/>
+					// 	)}
+					// </Flex>
 				))}
 			</Flex>
 

@@ -35,17 +35,6 @@ export const passwordFormData = [
 	},
 ];
 
-export const findPasswordFormData = [
-	{
-		id: "password",
-		text: "변경할 비밀번호",
-	},
-	{
-		id: "passwordCheck",
-		text: "변경할 비밀번호 확인",
-	},
-];
-
 export const yearData = [
 	{
 		selectText: 2014,
