@@ -19,7 +19,7 @@ const FindEmail = () => {
 		handleSubmit,
 		name,
 		nameRef,
-	} = useFindEmailForm();
+	} = useFindEmailForm({});
 
 	return (
 		<>
