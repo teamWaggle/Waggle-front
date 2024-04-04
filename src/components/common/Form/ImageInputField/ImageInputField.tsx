@@ -3,7 +3,7 @@ import { useController, useFormContext } from "react-hook-form";
 
 import PhotoIcon from "@/assets/svg/ic-media-upload.svg?react";
 
-import { Flex } from "@/components/common";
+import { Box, Flex } from "@/components/common";
 
 import useImagePreview from "@/hooks/useImagePreview";
 
@@ -32,11 +32,11 @@ const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files;
 		if (file) {
-			onChange({ target: { value: file, name: "image" } });
+			onChange({ target: { value: file[0], name: "image" } });
 		}
 	};
 	return (
-		<Flex css={imageInputBoxStyle}>
+		<Box css={imageInputBoxStyle}>
 			<input
 				type="file"
 				multiple={false}
@@ -52,7 +52,7 @@ const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
 			<Flex onClick={handleResetImage} css={resetImageButtonStyle}>
 				사진 초기화
 			</Flex>
-		</Flex>
+		</Box>
 	);
 };
 export default ImageInputField;

@@ -32,9 +32,15 @@ export const imageBoxStyle = (isFile: boolean) =>
 		objectFit: "cover",
 	});
 
+export const teamContentBox = css({
+	marginTop: "40px",
+	height: "225px",
+});
+
 export const textInputBoxStyle = css({
 	marginLeft: "40px",
 	maxWidth: "800px",
+	height: "100%",
 	width: "100%",
 	flexDirection: "column",
 });

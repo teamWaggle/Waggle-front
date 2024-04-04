@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-const useImagePreview = (value: FileList | null) => {
+const useImagePreview = (value: File | null) => {
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
 
 	useEffect(() => {
-		const newUrl = value ? URL.createObjectURL(value[0]) : null;
+		const newUrl = value ? URL.createObjectURL(value) : null;
 		if (newUrl !== imagePreview) {
 			URL.revokeObjectURL(imagePreview || "");
 			setImagePreview(newUrl);
