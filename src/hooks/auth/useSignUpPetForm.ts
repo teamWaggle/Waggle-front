@@ -1,20 +1,21 @@
 import { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { PATH } from "@/constants/path";
 
 import { usePetInfoMutation } from "@/hooks/api/pet/usePetInfoMutation";
+import useModal from "@/hooks/useModal";
 
 import type { SignUpPetFormType } from "@/types/auth";
 
 interface UseSignUpPetFormParams {
 	uploadMedia: string;
+	isMyPage?: boolean;
 }
 
-export const useSignUpPetForm = ({ uploadMedia }: UseSignUpPetFormParams) => {
+export const useSignUpPetForm = ({ uploadMedia, isMyPage }: UseSignUpPetFormParams) => {
 	const { mutate: petInfoMutate } = usePetInfoMutation();
 
-	const navigate = useNavigate();
+	const modal = useModal();
 
 	const [signUpPetRequest, setSignUpPetRequest] = useState({
 		name: "",
@@ -66,7 +67,15 @@ export const useSignUpPetForm = ({ uploadMedia }: UseSignUpPetFormParams) => {
 		formData.append("createPetRequest", JSON.stringify(createPetRequest));
 
 		if (validateForm()) {
-			petInfoMutate(formData, { onSuccess: () => navigate(PATH.ROOT) });
+			petInfoMutate(formData, {
+				onSuccess: () => {
+					if (isMyPage) {
+						modal.closeModal();
+					} else {
+						window.location.href = PATH.ROOT;
+					}
+				},
+			});
 		}
 	};
 

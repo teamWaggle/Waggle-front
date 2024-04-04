@@ -5,26 +5,18 @@ import { Theme } from "@/styles/Theme";
 export const layoutStyle = css({
 	flexDirection: "column",
 	gap: "30px",
-	marginTop: "80px",
-	paddingLeft: "30px",
-	width: "100%",
-});
-
-export const petCardBoxStyle = css({
-	marginTop: "30px",
-	flexDirection: "column",
-	gap: "20px",
+	borderRadius: "2px",
+	padding: "60px",
+	backgroundColor: Theme.color.white,
 });
 
 export const buttonStyle = css({
-	width: "100px",
-	height: "36px",
+	all: "unset",
+	padding: "8px 14px",
+	borderRadius: "4px",
 	backgroundColor: Theme.color.brand_primary,
-	textAlign: "center",
-	border: "none",
-	outline: "none",
 	color: Theme.color.white,
 	fontWeight: 600,
-	borderRadius: "4px",
 	cursor: "pointer",
+	alignSelf: "flex-end",
 });
