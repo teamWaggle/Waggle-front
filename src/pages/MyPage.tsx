@@ -49,7 +49,7 @@ const MyPage = () => {
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog memberId={memberId} />}
 
-			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN && <MyPageSiren />}
+			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN && <MyPageSiren memberId={memberId} />}
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION && <MyPageQuestion />}
 		</Flex>

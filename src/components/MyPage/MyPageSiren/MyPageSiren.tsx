@@ -7,10 +7,12 @@ import { Divider, Flex, Heading } from "@/components/common";
 import MyPageCommentCard from "@/components/MyPage/MyPageCommentCard/MyPageCommentCard";
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
-import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";
+import { useMemberSirenQuery } from "@/hooks/api/member/useMemberSirenQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
+import type { MemberIdType } from "@/types/common";
 
 import {
 	layoutStyle,
@@ -20,8 +22,8 @@ import {
 	arrowBoxStyle,
 } from "@/components/MyPage/MyPageSiren/MyPageSiren.style";
 
-const MyPageSiren = () => {
-	const { sirenListData } = useSirenListQuery(0);
+const MyPageSiren = ({ memberId }: MemberIdType) => {
+	const { memberSirenData } = useMemberSirenQuery(memberId, 0);
 
 	const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -85,12 +87,12 @@ const MyPageSiren = () => {
 
 			<div css={sliderLayoutStyle}>
 				<div
-					css={sliderBoxStyle(sirenListData.result.sirenList.length)}
+					css={sliderBoxStyle(memberSirenData.result.sirenList.length)}
 					ref={wrapRef}
 					onScroll={handleGalleryScroll}
 				>
 					<div css={sliderStyle}>
-						{sirenListData.result.sirenList.map((sirenInfo) => (
+						{memberSirenData.result.sirenList.map((sirenInfo) => (
 							<SirenCard
 								key={sirenInfo.boardId}
 								sirenInfo={sirenInfo}
