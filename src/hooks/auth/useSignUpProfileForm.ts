@@ -44,6 +44,11 @@ export const useSignUpProfileForm = ({
 	);
 
 	const handleNicknameCheckComplete = (complete: boolean) => {
+		if (prevReqeust?.nickname === signUpProfileRequest.nickname) {
+			setNicknameCheckComplete(true);
+
+			return;
+		}
 		setNicknameCheckComplete(complete);
 	};
 
@@ -70,7 +75,8 @@ export const useSignUpProfileForm = ({
 
 	const validateEditForm = () => {
 		if (
-			useValidateForm(nicknameCheckComplete, nicknameRef, "닉네임 중복 확인을 해주세요") === false
+			prevReqeust?.nickname !== signUpProfileRequest.nickname &&
+			!useValidateForm(nicknameCheckComplete, nicknameRef, "닉네임 중복 확인을 해주세요")
 		) {
 			return false;
 		}
@@ -98,7 +104,10 @@ export const useSignUpProfileForm = ({
 		const formData = new FormData();
 
 		const memberProfileRequest = {
-			nickname: signUpProfileRequest.nickname,
+			nickname:
+				prevReqeust?.nickname !== signUpProfileRequest.nickname
+					? signUpProfileRequest
+					: prevReqeust?.nickname,
 			name,
 			birthday,
 			userUrl: signUpProfileRequest.userUrl,
