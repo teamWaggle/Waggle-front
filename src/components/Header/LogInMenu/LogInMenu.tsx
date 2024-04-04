@@ -6,13 +6,11 @@ import { PATH } from "@/constants/path";
 
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 
+import type { MemberIdType } from "@/types/common";
+
 import { textStyle } from "@/components/Header/Header.style";
 
-interface LogInMenuParams {
-	memberId: number;
-}
-
-const LogInMenu = ({ memberId }: LogInMenuParams) => {
+const LogInMenu = ({ memberId }: MemberIdType) => {
 	const { memberData } = useMemberInfoQuery(memberId);
 
 	const navigate = useNavigate();
