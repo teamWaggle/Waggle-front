@@ -3,8 +3,8 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
-
-import ProfileEditModal from "./ProfileEditModal/ProfileEditModal";
+import PasswordEditModal from "@/components/MyPage/MyPageProfile/PasswordEditModal/PasswordEditModal";
+import ProfileEditModal from "@/components/MyPage/MyPageProfile/ProfileEditModal/ProfileEditModal";
 
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
@@ -40,7 +40,7 @@ const MyPageProfile = ({ profileImgUrl, nickname, memberId, name, birthday }: Me
 
 	const handleProfileEdit = () => {
 		modal.openModal({
-			key: "ProfileOpenModal",
+			key: "ProfileEditModal",
 			component: () => (
 				<ProfileEditModal
 					profileImgUrl={profileImgUrl}
@@ -50,6 +50,13 @@ const MyPageProfile = ({ profileImgUrl, nickname, memberId, name, birthday }: Me
 					memberId={memberId}
 				/>
 			),
+		});
+	};
+
+	const handlePasswordEdit = () => {
+		modal.openModal({
+			key: "PasswordEditModal",
+			component: () => <PasswordEditModal memberId={memberId} />,
 		});
 	};
 
@@ -75,7 +82,7 @@ const MyPageProfile = ({ profileImgUrl, nickname, memberId, name, birthday }: Me
 					<button css={followButtonStyle(true)} className="small" onClick={handleProfileEdit}>
 						프로필 수정
 					</button>
-					<button css={followButtonStyle(false)} className="small" onClick={handleProfileEdit}>
+					<button css={followButtonStyle(false)} className="small" onClick={handlePasswordEdit}>
 						비밀번호 변경
 					</button>
 				</Flex>

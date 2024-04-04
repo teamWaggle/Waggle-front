@@ -1,6 +1,7 @@
 import { useCallback, useState, useRef } from "react";
 
 import { useChangePasswordMutation } from "@/hooks/api/auth/usePasswordChangeMutation";
+import useModal from "@/hooks/useModal";
 import { useValidateForm } from "@/hooks/useValidateForm";
 
 import type { PasswordFormType } from "@/types/auth";
@@ -15,6 +16,8 @@ export const usePasswordForm = ({ memberId, handleChangeMode }: usePasswordFormP
 
 	const passwordRef = useRef<HTMLInputElement>(null);
 	const passwordCheckRef = useRef<HTMLInputElement>(null);
+
+	const modal = useModal();
 
 	const [validateComplete, setValidateComplete] = useState(false);
 	const [passwordRequest, setPasswordRequest] = useState({
@@ -78,6 +81,7 @@ export const usePasswordForm = ({ memberId, handleChangeMode }: usePasswordFormP
 			{
 				onSuccess: () => {
 					handleChangeMode && handleChangeMode("complete");
+					modal.closeModal();
 				},
 			},
 		);

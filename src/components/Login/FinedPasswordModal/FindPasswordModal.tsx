@@ -3,7 +3,7 @@ import LoginModal from "@/components/Login/LoginModal/LoginModal";
 import PasswordInput from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordInput";
 import PasswordValidator from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordValidator";
 
-import { findPasswordFormData } from "@/constants/auth";
+import { passwordFormData } from "@/constants/auth";
 
 import { useFindPasswordForm } from "@/hooks/auth/useFindPasswordForm";
 import { usePasswordForm } from "@/hooks/auth/usePasswordForm";
@@ -51,7 +51,7 @@ const FindPasswordModal = () => {
 	};
 
 	return (
-		<Flex styles={{ direction: "column", align: "center", gap: "60px" }} css={layoutStyle}>
+		<Flex css={layoutStyle}>
 			{mode === "complete" ? (
 				<Flex styles={{ direction: "column", align: "center", gap: "76px" }}>
 					<Logo width={138} height={30} />
@@ -66,7 +66,7 @@ const FindPasswordModal = () => {
 				<Flex styles={{ direction: "column", align: "center", gap: "14px" }}>
 					<Logo width={138} height={30} />
 					<Heading size="xSmall" css={headingStyle}>
-						비밀번호 찾기
+						비밀번호 변경
 					</Heading>
 					<Text css={textStyle}>
 						{mode === "sendCode" &&
@@ -115,7 +115,7 @@ const FindPasswordModal = () => {
 			{mode === "changePassword" && (
 				<>
 					<Flex styles={{ direction: "column", gap: "20px" }}>
-						{findPasswordFormData.map((data) => (
+						{passwordFormData.map((data) => (
 							<Flex key={data.id} styles={{ direction: "column", gap: "8px" }}>
 								<PasswordInput
 									password={
