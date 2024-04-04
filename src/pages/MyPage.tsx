@@ -43,6 +43,8 @@ const MyPage = () => {
 				profileImgUrl={memberData.result.profileImgUrl}
 				nickname={memberData.result.nickname}
 				memberId={memberData.result.memberId}
+				name={memberData.result.name}
+				birthday={memberData.result.birthday}
 			/>
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain memberId={memberId} />}

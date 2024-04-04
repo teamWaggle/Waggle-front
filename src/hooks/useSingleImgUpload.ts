@@ -6,12 +6,16 @@ import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
 import { usePostMediaMutation } from "@/hooks/api/media/usePostMediaMutation";
 
-export const useSingleImgUpload = () => {
+interface UseSingleImgUploadParams {
+	prevImg?: string;
+}
+
+export const useSingleImgUpload = ({ prevImg }: UseSingleImgUploadParams) => {
 	const { mutate: postMediaMutate } = usePostMediaMutation();
 
 	const [isLoading, setIsLoading] = useState(true);
 
-	const [uploadMedia, setUploadMedia] = useState<string>("");
+	const [uploadMedia, setUploadMedia] = useState<string>(prevImg ?? "");
 
 	const convertToMediaUrl = useCallback(
 		async (imageFile: File) => {

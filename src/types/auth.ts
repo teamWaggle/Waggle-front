@@ -41,7 +41,7 @@ export interface MemberInfoResultType {
 	userUrl: string;
 	nickname: string;
 	name: string;
-	birthday: Date;
+	birthday: string;
 	profileImgUrl: string;
 }
 
@@ -72,4 +72,12 @@ export interface updatePetInputValueType {
 		key: Key,
 		value: SignUpPetFormType[Key],
 	) => void;
+}
+
+export interface MemberInfoType {
+	profileImgUrl: string;
+	nickname: string;
+	memberId: number;
+	name: string;
+	birthday: string;
 }

@@ -21,18 +21,25 @@ export interface BirthdayForm {
 	day: string | boolean;
 }
 
-export const useFindEmailForm = () => {
+interface UseFindEmailFormParas {
+	prevName?: { value: string };
+	prevBirthday?: { year: string; month: string; day: string };
+}
+
+export const useFindEmailForm = ({ prevName, prevBirthday }: UseFindEmailFormParas) => {
 	const { mutate: findEmailMutation } = useFindEmailMutation();
 
 	const modal = useModal();
 
 	const nameRef = useRef<HTMLInputElement>(null);
 
-	const [birthdayRequest, setBirthdayRequest] = useState({
-		year: "생년",
-		month: "월 선택",
-		day: "일 선택",
-	});
+	const [birthdayRequest, setBirthdayRequest] = useState(
+		prevBirthday ?? {
+			year: "생년",
+			month: "월 선택",
+			day: "일 선택",
+		},
+	);
 
 	const [selectOpen, setSelectOpen] = useState({
 		year: false,
@@ -40,7 +47,7 @@ export const useFindEmailForm = () => {
 		day: false,
 	});
 
-	const [name, setName] = useState({ value: "" });
+	const [name, setName] = useState(prevName ?? { value: "" });
 	const [birthday, setBirthday] = useState("");
 
 	const validateForm = () => {
