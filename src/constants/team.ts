@@ -25,7 +25,7 @@ export const TEAM_DEFAULT_VALUES = {
 	description: "",
 	coverImageUrl: "",
 	teamColor: "team_1",
-	maxTeamSize: "7",
+	maxTeamSize: 7,
 };
 
 export const TEAM_TITLE = {
