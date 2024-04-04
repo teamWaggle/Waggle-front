@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { Flex, Box, Heading, Text } from "@/components/common";
 
 import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
+import { useDeletePetMutation } from "@/hooks/api/pet/useDeletePetMutation";
 import { useDeleteQuestionMutation } from "@/hooks/api/question/useDeleteQuestionMutation";
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import { useDeleteSirenMutation } from "@/hooks/api/siren/useDeleteSirenMutation";
@@ -20,6 +21,7 @@ const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: st
 	const { mutate: deleteStoryMutation } = useDeleteStoryMutation();
 	const { mutate: deleteSirenMutation } = useDeleteSirenMutation();
 	const { mutate: deleteQuestionMutation } = useDeleteQuestionMutation();
+	const { mutate: deletePetMutation } = useDeletePetMutation();
 
 	const mutation =
 		target === "comment"
@@ -30,7 +32,9 @@ const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: st
 			    ? deleteStoryMutation
 			    : target === "siren"
 			      ? deleteSirenMutation
-			      : deleteQuestionMutation;
+			      : target === "question"
+			        ? deleteQuestionMutation
+			        : deletePetMutation;
 
 	const modal = useModal();
 
@@ -55,12 +59,26 @@ const DeleteWarningModal = ({ targetId, target }: { targetId: number; target: st
 	return (
 		<Flex css={layoutStyle}>
 			<Heading size="xSmall" style={{ marginTop: "32px" }}>
-				{target === "comment" ? "댓글" : target === "reply" ? "답글" : "게시물"}을 삭제하시겠어요?
+				{target === "comment"
+					? "댓글"
+					: target === "reply"
+					  ? "답글"
+					  : target === "pet"
+					    ? "반려견 정보"
+					    : "게시물"}
+				을 삭제하시겠어요?
 			</Heading>
 
 			<Text size="small" style={{ margin: "6px 0 12px" }}>
-				삭제하시면 {target === "comment" ? "댓글" : target === "reply" ? "답글" : "게시물"} 내용은
-				되돌릴 수 없습니다.
+				삭제하시면{" "}
+				{target === "comment"
+					? "댓글"
+					: target === "reply"
+					  ? "답글"
+					  : target === "pet"
+					    ? "반려견 정보"
+					    : "게시물"}{" "}
+				내용은 되돌릴 수 없습니다.
 			</Text>
 
 			<Box css={buttonBoxStyle}>

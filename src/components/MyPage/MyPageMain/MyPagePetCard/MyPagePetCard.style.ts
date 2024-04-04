@@ -20,6 +20,8 @@ export const petInfoBoxStyle = css({
 	padding: "20px",
 	flexDirection: "column",
 	gap: "14px",
+	width: "calc(100% - 200px)",
+	position: "relative",
 
 	"& > p": {
 		color: Theme.color.readonly_text,
