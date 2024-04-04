@@ -1,14 +1,16 @@
 import type { FieldValues } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
+import * as yup from "yup";
+
 import LeftArrowIcon from "@/assets/svg/left-arrow-brand-primary.svg?react";
 
 import { Box, Flex, Form, Heading, Text } from "@/components/common";
-import * as yup from "yup";
+
+import { postMedia } from "@/api/media/postMedia";
 
 import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
 
-import { usePostMediaMutation } from "@/hooks/api/media/usePostMediaMutation";
 import { useCreateTeam } from "@/hooks/api/team/useCreateTeam";
 
 import {
@@ -22,32 +24,43 @@ import {
 } from "@/components/CreateTeam/Main/Main.style";
 const schema = yup
 	.object({
-		title: TEAM_TITLE.RULES(),
-		content: TEAM_CONTENT.RULES(),
+		name: TEAM_TITLE.RULES(),
+		description: TEAM_CONTENT.RULES(),
 	})
 	.required();
 
 const Main = () => {
 	const navigate = useNavigate();
-	const { mutate: postMediaMutate } = usePostMediaMutation();
+	// const { mutate: postMediaMutate } = usePostMediaMutation();
 	const { mutate: createTeamMutate } = useCreateTeam();
 	const onSubmit = async (data: FieldValues) => {
+		console.log("data", data);
 		// 리팩토링 필요
-		const formData = new FormData();
-		formData.append("title", data.title);
-		formData.append("content", data.content);
-		formData.append("teamColor", data.teamColor);
-		formData.append("maxTeamSize", "7");
-		const imageData = new FormData();
-		imageData.append("uploadImgFileList", data.image);
-		postMediaMutate(imageData, {
-			onSuccess: ({ result }) => {
-				formData.append("coverImageUrl", result.mediaList[0].imgUrl);
-				console.log(result.mediaList[0].imgUrl);
-				createTeamMutate(formData);
-				navigate(-1);
-			},
-		});
+		// const formData = new FormData();
+		const d = new URLSearchParams(data);
+		console.log("form data", d);
+		if (data.coverImageUrl) {
+			const imageData = new FormData();
+			imageData.set("uploadImgFileList", data.coverImageUrl);
+
+			console.log("imageData form", imageData.get("uploadImgFileList"));
+
+			const { result } = await postMedia(imageData);
+
+			console.log("url", result.mediaList[0].imgUrl);
+
+			d.set("coverImageUrl", result.mediaList[0].imgUrl);
+
+			const entries = d.entries();
+			for (const pair of entries) {
+				console.log(pair[0] + ", " + pair[1]);
+			}
+
+			createTeamMutate(d);
+		} else {
+			createTeamMutate(d);
+		}
+		navigate(-1);
 	};
 	return (
 		<>

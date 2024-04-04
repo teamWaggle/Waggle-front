@@ -1,6 +1,6 @@
 import type { AxiosResponse } from "axios";
 
-import { authorizedAxiosInstance } from "@/api/axiosInstance";
+import { axiosInstance } from "@/api/axiosInstance";
 
 import { END_POINTS } from "@/constants/api";
 
@@ -23,7 +23,7 @@ export const postMedia = async (formData: FormData) => {
 		headers: { "Content-Type": "multipart/form-data" },
 	};
 
-	const { data } = await authorizedAxiosInstance.post<FormData, AxiosResponse<MediaType>>(
+	const { data } = await axiosInstance.post<FormData, AxiosResponse<MediaType>>(
 		END_POINTS.MEDIA,
 		formData,
 		config,
