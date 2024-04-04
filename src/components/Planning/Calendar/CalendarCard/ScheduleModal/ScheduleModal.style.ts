@@ -2,7 +2,8 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-import type { SchedulePositionType, TeamColorType } from "@/types/planning";
+import type { SchedulePositionType } from "@/types/planning";
+import type { TeamColorType } from "@/types/team";
 
 export const scheduleModalBoxStyle = ({ row, column, index }: SchedulePositionType) =>
 	css({
