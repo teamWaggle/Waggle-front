@@ -4,12 +4,18 @@ import { useRecoilState } from "recoil";
 
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
 
+import ProfileEditModal from "./ProfileEditModal/ProfileEditModal";
+
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
+
+import useModal from "@/hooks/useModal";
 
 import { memberIdState } from "@/recoil/atoms/auth";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
+import type { MemberInfoType } from "@/types/auth";
 
 import {
 	layoutStyle,
@@ -19,13 +25,7 @@ import {
 	menuItemStyle,
 } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
 
-interface MyPageProfileParams {
-	profileImgUrl: string;
-	nickname: string;
-	memberId: number;
-}
-
-const MyPageProfile = ({ profileImgUrl, nickname, memberId }: MyPageProfileParams) => {
+const MyPageProfile = ({ profileImgUrl, nickname, memberId, name, birthday }: MemberInfoType) => {
 	const [userId] = useRecoilState(memberIdState);
 
 	const [searchParams] = useSearchParams();
@@ -34,7 +34,24 @@ const MyPageProfile = ({ profileImgUrl, nickname, memberId }: MyPageProfileParam
 
 	const parmas = useParams();
 
+	const modal = useModal();
+
 	const follow = true;
+
+	const handleProfileEdit = () => {
+		modal.openModal({
+			key: "ProfileOpenModal",
+			component: () => (
+				<ProfileEditModal
+					profileImgUrl={profileImgUrl}
+					nickname={nickname}
+					name={name}
+					birthday={birthday}
+					memberId={memberId}
+				/>
+			),
+		});
+	};
 
 	return (
 		<Box css={layoutStyle}>
@@ -54,7 +71,9 @@ const MyPageProfile = ({ profileImgUrl, nickname, memberId }: MyPageProfileParam
 			</Flex>
 
 			{memberId === userId ? (
-				<button css={followButtonStyle(true)}>프로필 수정</button>
+				<button css={followButtonStyle(true)} onClick={handleProfileEdit}>
+					프로필 수정
+				</button>
 			) : (
 				<button css={followButtonStyle(follow)}>{follow ? "팔로우" : "팔로잉"}</button>
 			)}

@@ -15,7 +15,7 @@ import { Theme } from "@/styles/Theme";
 import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 
 const SignUpProfile = () => {
-	const { handleImgUpload, uploadMedia } = useSingleImgUpload();
+	const { handleImgUpload, uploadMedia } = useSingleImgUpload({});
 
 	const {
 		selectOpen,
@@ -26,7 +26,7 @@ const SignUpProfile = () => {
 		name,
 		nameRef,
 		birthday,
-	} = useFindEmailForm();
+	} = useFindEmailForm({});
 
 	const {
 		nicknameCheckComplete,

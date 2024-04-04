@@ -22,7 +22,7 @@ import { formLayoutStyle, buttonLayoutStyle } from "@/components/SignUp/SignUpPe
 const SignUpPet = () => {
 	const navigate = useNavigate();
 
-	const { handleImgUpload, uploadMedia } = useSingleImgUpload();
+	const { handleImgUpload, uploadMedia } = useSingleImgUpload({});
 
 	const { signUpPetRequest, updateInputValue, handleSaveClick } = useSignUpPetForm({ uploadMedia });
 
