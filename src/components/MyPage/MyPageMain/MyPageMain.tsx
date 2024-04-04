@@ -6,13 +6,11 @@ import { usePetQuery } from "@/hooks/api/pet/usePetQuery";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import type { MemberIdType } from "@/types/common";
+
 import { layoutStyle, petCardBoxStyle } from "@/components/MyPage/MyPageMain/MyPageMain.style";
 
-interface MyPageMainParams {
-	memberId: number;
-}
-
-const MyPageMain = ({ memberId }: MyPageMainParams) => {
+const MyPageMain = ({ memberId }: MemberIdType) => {
 	const { petData } = usePetQuery(memberId);
 
 	return (

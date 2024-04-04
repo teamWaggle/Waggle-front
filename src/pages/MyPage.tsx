@@ -47,7 +47,7 @@ const MyPage = () => {
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain memberId={memberId} />}
 
-			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog />}
+			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog memberId={memberId} />}
 
 			{searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN && <MyPageSiren />}
 

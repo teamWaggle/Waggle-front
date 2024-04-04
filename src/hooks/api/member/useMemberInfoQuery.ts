@@ -14,11 +14,3 @@ export const useMemberInfoQuery = (memberId: number) => {
 
 	return { memberData };
 };
-
-// export const useGetMemberInfoMutation = () => {
-// 	const getMemberInfoMutation = useMutation({
-// 		mutationFn: getMemberInfo,
-// 	});
-
-// 	return getMemberInfoMutation;
-// };

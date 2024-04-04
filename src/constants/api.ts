@@ -30,13 +30,15 @@ export const END_POINTS = {
 		`/api/replies/${commentId}?currentPage=${currentPage}`,
 	POST_REPLY: (commentId: number) => `/api/replies/${commentId}`,
 	REPLY: (replyId: number) => `/api/replies/${replyId}`,
-	USER_PET: (memberId: number) => `/api/pets/${memberId}`,
+	MEMBER_PET: (memberId: number) => `/api/pets/${memberId}`,
 	POST_PET: "/api/pets",
 	MEDIA: "/api/media/list",
 	QUESTIONS: (currentPage: number) => `/api/questions?currentPage=${currentPage}`,
 	QUESTION: (questionId: number) => `/api/questions/${questionId}`,
 	QUESTION_REPRESENTATIVE: `/api/questions/representative`,
 	POST_QUESTION: "/api/questions",
+	MEMBER_STORY: (memberId: number, currentPage: unknown) =>
+		`/api/stories/member/${memberId}?currentPage=${currentPage}`,
 	MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
 	MEMBER_SCHEDULES_MONTHLY: (memberId: number, year: number, month: number) =>
 		`/api/schedules/members/${memberId}/monthly?year=${year}&month=${month}`,

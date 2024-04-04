@@ -1,5 +1,9 @@
 import type { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 
+export interface MemberIdType {
+	memberId: number;
+}
+
 export interface sortButtonType {
 	defaultText: string;
 }
