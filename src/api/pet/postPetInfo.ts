@@ -12,7 +12,7 @@ export const postPetInfo = async (formData: FormData) => {
 	};
 
 	return authorizedAxiosInstance.post<FormData, AxiosResponse<CommonResponseType>>(
-		END_POINTS.PET,
+		END_POINTS.POST_PET,
 		formData,
 		config,
 	);
