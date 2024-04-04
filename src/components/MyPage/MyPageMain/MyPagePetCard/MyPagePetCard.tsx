@@ -2,16 +2,28 @@ import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
 
 import { Flex, Heading, Text } from "@/components/common";
+import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
+
+import useModal from "@/hooks/useModal";
 
 import type { PetResultType } from "@/types/pet";
 
 import {
 	petCardStyle,
 	petInfoBoxStyle,
-} from "@/components/MyPage/MyPagePetCard/MyPagePetCard.style";
+} from "@/components/MyPage/MyPageMain/MyPagePetCard/MyPagePetCard.style";
 
-const MyPagePetCard = ({ profileImgUrl, gender, name, petId }: PetResultType) => {
-	console.log(petId);
+const MyPagePetCard = ({ profileImgUrl, gender, name, petId, isOwner }: PetResultType) => {
+	const modal = useModal();
+
+	const handleDeletePet = () => {
+		modal.openModal({
+			key: `DeleteWarningModal`,
+			component: () => <DeleteWarningModal targetId={petId} target="pet" />,
+			notCloseIcon: true,
+		});
+	};
 
 	return (
 		<Flex css={petCardStyle}>
@@ -22,6 +34,8 @@ const MyPagePetCard = ({ profileImgUrl, gender, name, petId }: PetResultType) =>
 					{gender === "MALE" ? <MaleIcon /> : <FeMaleIcon />}
 
 					<Heading size="xSmall">{name}</Heading>
+
+					{isOwner && <ProfileOptionMenu handleDeleteMenu={handleDeletePet} isPet />}
 				</Flex>
 				<Text>
 					<span>시고르자브종</span>

@@ -12,12 +12,14 @@ interface ProfileOptionMenuParams {
 	handleEditMenu?: () => void;
 	handleDeleteMenu?: () => void;
 	isLeft?: boolean;
+	isPet?: boolean;
 }
 
 const ProfileOptionMenu = ({
 	handleEditMenu,
 	handleDeleteMenu,
 	isLeft,
+	isPet,
 }: ProfileOptionMenuParams) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
@@ -26,7 +28,7 @@ const ProfileOptionMenu = ({
 	useClickOutSide(menuRef, () => setMenuOpen(false));
 
 	return (
-		<div css={optionMenuBoxStyle(isLeft)} ref={menuRef}>
+		<div css={optionMenuBoxStyle(isLeft, isPet)} ref={menuRef}>
 			<OptionIcon onClick={() => setMenuOpen((prev) => !prev)} />
 
 			{menuOpen && (
@@ -41,11 +43,11 @@ const ProfileOptionMenu = ({
 
 export default ProfileOptionMenu;
 
-const optionMenuBoxStyle = (isLeft?: boolean) =>
+const optionMenuBoxStyle = (isLeft?: boolean, isPet?: boolean) =>
 	css({
 		cursor: "pointer",
 		position: "absolute",
-		right: 0,
+		right: isPet ? "20px" : 0,
 
 		"& > ul": {
 			position: "absolute",

@@ -1,9 +1,13 @@
+import { useRecoilState } from "recoil";
+
 import { Flex, Box, Heading } from "@/components/common";
+import MyPagePetCard from "@/components/MyPage/MyPageMain/MyPagePetCard/MyPagePetCard";
 import PetAddModal from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal";
-import MyPagePetCard from "@/components/MyPage/MyPagePetCard/MyPagePetCard";
 
 import { usePetQuery } from "@/hooks/api/pet/usePetQuery";
 import useModal from "@/hooks/useModal";
+
+import { memberIdState } from "@/recoil/atoms/auth";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -17,6 +21,8 @@ import {
 } from "@/components/MyPage/MyPageMain/MyPageMain.style";
 
 const MyPageMain = ({ memberId }: MemberIdType) => {
+	const [userId] = useRecoilState(memberIdState);
+
 	const { petData } = usePetQuery(memberId);
 
 	const modal = useModal();
@@ -47,6 +53,7 @@ const MyPageMain = ({ memberId }: MemberIdType) => {
 						gender={petInfo.gender}
 						name={petInfo.name}
 						petId={petInfo.petId}
+						isOwner={memberId === userId}
 					/>
 				))}
 			</Flex>

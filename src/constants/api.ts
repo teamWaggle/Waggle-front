@@ -32,6 +32,7 @@ export const END_POINTS = {
 	REPLY: (replyId: number) => `/api/replies/${replyId}`,
 	MEMBER_PET: (memberId: number) => `/api/pets/${memberId}`,
 	POST_PET: "/api/pets",
+	PET: (petId: number) => `/api/pets/${petId}`,
 	MEDIA: "/api/media/list",
 	QUESTIONS: (currentPage: number) => `/api/questions?currentPage=${currentPage}`,
 	QUESTION: (questionId: number) => `/api/questions/${questionId}`,
