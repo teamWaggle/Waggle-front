@@ -9,17 +9,27 @@ import PetProfileInput from "@/components/SignUp/SignUpPet/PetProfileInput/PetPr
 import { useSignUpPetForm } from "@/hooks/auth/useSignUpPetForm";
 import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 
+import type { PetParams } from "@/types/pet";
+
 import {
 	layoutStyle,
 	buttonStyle,
 } from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal.style";
 
-const PetAddModal = () => {
-	const { handleImgUpload, uploadMedia } = useSingleImgUpload({});
+const PetAddModal = ({ profileImgUrl, gender, name, petId }: PetParams) => {
+	const { handleImgUpload, uploadMedia } = useSingleImgUpload({ prevImg: profileImgUrl });
 
 	const { signUpPetRequest, updateInputValue, handleSaveClick } = useSignUpPetForm({
 		uploadMedia,
 		isMyPage: true,
+		prevRequest: {
+			name,
+			gender,
+			age: "test",
+			breed: "test",
+			introduction: "test",
+		},
+		petId,
 	});
 
 	return (

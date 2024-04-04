@@ -5,7 +5,7 @@ import type { updatePetInputValueType } from "@/types/auth";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
 interface PetNameInputParams extends updatePetInputValueType {
-	name: string;
+	name?: string;
 }
 
 const PetNameInput = ({ name, updateInputValue }: PetNameInputParams) => {
