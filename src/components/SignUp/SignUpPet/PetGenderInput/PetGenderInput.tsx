@@ -10,7 +10,7 @@ import type { updatePetInputValueType } from "@/types/auth";
 import { getFormTextStyle } from "@/components/SignUp/SignUp.shared.style";
 
 interface PetGenderInputParams extends updatePetInputValueType {
-	gender: string;
+	gender?: string;
 }
 
 const PetGenderInput = ({ gender, updateInputValue }: PetGenderInputParams) => {

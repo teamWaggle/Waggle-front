@@ -3,6 +3,7 @@ import { useState, useCallback } from "react";
 import { PATH } from "@/constants/path";
 
 import { usePetInfoMutation } from "@/hooks/api/pet/usePetInfoMutation";
+import { usePutPetInfoMutation } from "@/hooks/api/pet/usePutPetInfoMutation";
 import useModal from "@/hooks/useModal";
 
 import type { SignUpPetFormType } from "@/types/auth";
@@ -10,20 +11,36 @@ import type { SignUpPetFormType } from "@/types/auth";
 interface UseSignUpPetFormParams {
 	uploadMedia: string;
 	isMyPage?: boolean;
+	prevRequest?: {
+		name?: string;
+		gender?: string;
+		age: string;
+		breed: string;
+		introduction: string;
+	};
+	petId?: number;
 }
 
-export const useSignUpPetForm = ({ uploadMedia, isMyPage }: UseSignUpPetFormParams) => {
+export const useSignUpPetForm = ({
+	uploadMedia,
+	isMyPage,
+	prevRequest,
+	petId,
+}: UseSignUpPetFormParams) => {
 	const { mutate: petInfoMutate } = usePetInfoMutation();
+	const { mutate: putPetInfoMutate } = usePutPetInfoMutation();
 
 	const modal = useModal();
 
-	const [signUpPetRequest, setSignUpPetRequest] = useState({
-		name: "",
-		age: "",
-		gender: "FEMALE",
-		breed: "",
-		introduction: "",
-	});
+	const [signUpPetRequest, setSignUpPetRequest] = useState(
+		prevRequest ?? {
+			name: "",
+			age: "",
+			gender: "FEMALE",
+			breed: "",
+			introduction: "",
+		},
+	);
 
 	const validateForm = () => {
 		if (
@@ -64,18 +81,30 @@ export const useSignUpPetForm = ({ uploadMedia, isMyPage }: UseSignUpPetFormPara
 			petProfileImg: uploadMedia,
 		};
 
-		formData.append("createPetRequest", JSON.stringify(createPetRequest));
-
 		if (validateForm()) {
-			petInfoMutate(formData, {
-				onSuccess: () => {
-					if (isMyPage) {
-						modal.closeModal();
-					} else {
-						window.location.href = PATH.ROOT;
-					}
-				},
-			});
+			if (!petId) {
+				formData.append("createPetRequest", JSON.stringify(createPetRequest));
+
+				petInfoMutate(formData, {
+					onSuccess: () => {
+						if (isMyPage) {
+							modal.closeModal();
+						} else {
+							window.location.href = PATH.ROOT;
+						}
+					},
+				});
+			} else {
+				formData.append("updatePetRequest", JSON.stringify(createPetRequest));
+				putPetInfoMutate(
+					{ petId, formData },
+					{
+						onSuccess: () => {
+							modal.closeModal();
+						},
+					},
+				);
+			}
 		}
 	};
 

@@ -4,6 +4,7 @@ import MaleIcon from "@/assets/svg/ic-male.svg?react";
 import { Flex, Heading, Text } from "@/components/common";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
+import PetAddModal from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal";
 
 import useModal from "@/hooks/useModal";
 
@@ -25,6 +26,15 @@ const MyPagePetCard = ({ profileImgUrl, gender, name, petId, isOwner }: PetResul
 		});
 	};
 
+	const handleEditPet = () => {
+		modal.openModal({
+			key: "PetAddModal",
+			component: () => (
+				<PetAddModal profileImgUrl={profileImgUrl} gender={gender} name={name} petId={petId} />
+			),
+		});
+	};
+
 	return (
 		<Flex css={petCardStyle}>
 			<img src={profileImgUrl} alt="petImg" />
@@ -35,7 +45,13 @@ const MyPagePetCard = ({ profileImgUrl, gender, name, petId, isOwner }: PetResul
 
 					<Heading size="xSmall">{name}</Heading>
 
-					{isOwner && <ProfileOptionMenu handleDeleteMenu={handleDeletePet} isPet />}
+					{isOwner && (
+						<ProfileOptionMenu
+							handleEditMenu={handleEditPet}
+							handleDeleteMenu={handleDeletePet}
+							isPet
+						/>
+					)}
 				</Flex>
 				<Text>
 					<span>시고르자브종</span>
