@@ -35,30 +35,18 @@ const Main = () => {
 	const { mutate: createTeamMutate } = useCreateTeam();
 	const onSubmit = async (data: FieldValues) => {
 		console.log("data", data);
+		const formdata = new FormData();
 		// 리팩토링 필요
-		// const formData = new FormData();
-		const d = new URLSearchParams(data);
-		console.log("form data", d);
 		if (data.coverImageUrl) {
 			const imageData = new FormData();
 			imageData.set("uploadImgFileList", data.coverImageUrl);
-
-			console.log("imageData form", imageData.get("uploadImgFileList"));
-
 			const { result } = await postMedia(imageData);
-
-			console.log("url", result.mediaList[0].imgUrl);
-
-			d.set("coverImageUrl", result.mediaList[0].imgUrl);
-
-			const entries = d.entries();
-			for (const pair of entries) {
-				console.log(pair[0] + ", " + pair[1]);
-			}
-
-			createTeamMutate(d);
+			data.coverImageUrl = result.mediaList[0].imgUrl;
+			formdata.append("createTeamRequest", JSON.stringify(data));
+			createTeamMutate(formdata);
 		} else {
-			createTeamMutate(d);
+			formdata.append("createTeamRequest", JSON.stringify(data));
+			createTeamMutate(formdata);
 		}
 		navigate(-1);
 	};
