@@ -76,7 +76,7 @@ export const handleAPIError = (error: AxiosError<ErrorResponseData>) => {
 	if (!error.response) {
 		throw error;
 	}
-
+	console.log(error);
 	const { data, status } = error.response;
 
 	if (status >= HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {

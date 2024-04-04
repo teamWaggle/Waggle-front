@@ -21,10 +21,11 @@ export const TEAM_COLOR: TeamColorType[] = [
 ];
 
 export const TEAM_DEFAULT_VALUES = {
-	title: "",
-	content: "",
-	image: null,
+	name: "",
+	description: "",
+	coverImageUrl: "",
 	teamColor: "team_1",
+	maxTeamSize: "7",
 };
 
 export const TEAM_TITLE = {
@@ -33,7 +34,7 @@ export const TEAM_TITLE = {
 		return `한영 ${this.MAX_LEGHTH}자 제한, 특수문자 불가`;
 	},
 	PLACEHOLDER: "팀 이름을 입력해주세요",
-	NAME: "title",
+	NAME: "name",
 	RULES() {
 		return yup
 			.string()
@@ -49,7 +50,7 @@ export const TEAM_CONTENT = {
 		return `한영 ${this.MAX_LEGHTH}자 제한, 특수문자 불가`;
 	},
 	PLACEHOLDER: "팀 소개를 입력해주세요",
-	NAME: "content",
+	NAME: "description",
 	RULES() {
 		return yup
 			.string()

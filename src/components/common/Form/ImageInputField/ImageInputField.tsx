@@ -26,7 +26,7 @@ const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
 	const imagePreview = useImagePreview(value);
 
 	const handleResetImage = () => {
-		onChange({ target: { value: null, name: "image" } });
+		onChange({ target: { value: "", name: "image" } });
 	};
 
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
