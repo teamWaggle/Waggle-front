@@ -71,9 +71,14 @@ const MyPageProfile = ({ profileImgUrl, nickname, memberId, name, birthday }: Me
 			</Flex>
 
 			{memberId === userId ? (
-				<button css={followButtonStyle(true)} onClick={handleProfileEdit}>
-					프로필 수정
-				</button>
+				<Flex styles={{ gap: "20px" }}>
+					<button css={followButtonStyle(true)} className="small" onClick={handleProfileEdit}>
+						프로필 수정
+					</button>
+					<button css={followButtonStyle(false)} className="small" onClick={handleProfileEdit}>
+						비밀번호 변경
+					</button>
+				</Flex>
 			) : (
 				<button css={followButtonStyle(follow)}>{follow ? "팔로우" : "팔로잉"}</button>
 			)}

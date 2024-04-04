@@ -48,7 +48,9 @@ export const useFindEmailForm = ({ prevName, prevBirthday }: UseFindEmailFormPar
 	});
 
 	const [name, setName] = useState(prevName ?? { value: "" });
-	const [birthday, setBirthday] = useState("");
+	const [birthday, setBirthday] = useState(
+		dateFormatToUTC(birthdayRequest.year, birthdayRequest.month, birthdayRequest.day),
+	);
 
 	const validateForm = () => {
 		if (useValidateForm(name.value, nameRef, "이름을 입력해주세요") === false) {

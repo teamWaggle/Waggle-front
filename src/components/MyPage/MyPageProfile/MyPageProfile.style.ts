@@ -30,7 +30,7 @@ export const profileInfoBoxStyle = css({
 	},
 });
 
-export const followButtonStyle = (isFollow: boolean) =>
+export const followButtonStyle = (isFollow?: boolean) =>
 	css({
 		width: "294px",
 		height: "39px",
@@ -42,6 +42,11 @@ export const followButtonStyle = (isFollow: boolean) =>
 		fontWeight: 600,
 		borderRadius: "4px",
 		margin: "24px 0",
+		cursor: "pointer",
+
+		"&.small": {
+			width: "130px",
+		},
 	});
 
 export const menuBoxStyle = css({
