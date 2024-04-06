@@ -52,5 +52,6 @@ export const useSingleImgUpload = () => {
 		isLoading,
 		handleImgUpload,
 		uploadMedia,
+		convertToMediaUrl,
 	};
 };

@@ -2,6 +2,7 @@ import { Flex, Text } from "@/components/common";
 
 import {
 	approveButtonStyle,
+	participationCardBoxStyle,
 	participationCardImgStyle,
 	participationCardNameStyle,
 	participationCardTextStyle,
@@ -10,7 +11,7 @@ import {
 
 const ParticipationCard = ({ participatingMember }: { participatingMember: string }) => {
 	return (
-		<Flex style={{ gap: "4px", marginRight: "6px" }}>
+		<Flex css={participationCardBoxStyle}>
 			<Flex css={participationCardNameStyle}>
 				<img
 					css={participationCardImgStyle}

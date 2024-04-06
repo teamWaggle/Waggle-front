@@ -1,9 +1,12 @@
 import type { FieldPath, FieldValues } from "react-hook-form";
 import { useController, useFormContext } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import PhotoIcon from "@/assets/svg/ic-media-upload.svg?react";
 
 import { Box, Flex } from "@/components/common";
+
+import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
 import useImagePreview from "@/hooks/useImagePreview";
 
@@ -31,6 +34,11 @@ const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
 
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files;
+		if (!file) return;
+		if (file[0].size > FILE_SIZE_MAX_LIMIT) {
+			toast.error("업로드 가능한 최대 용량은 1MB입니다.");
+			return;
+		}
 		if (file) {
 			onChange({ target: { value: file[0], name: "image" } });
 		}

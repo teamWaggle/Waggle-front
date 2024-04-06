@@ -18,9 +18,10 @@ export const sliderBoxStyle = (currentIndex: number) =>
 	css({
 		width: "100%",
 		height: "fit-content",
-		display: "inline-grid",
 		gap: "20px",
+		display: "grid",
 		transition: "transform 0.5s ease",
 		transform: `translateX(-${currentIndex * 290}px)`,
-		gridTemplateColumns: "repeat(7, 1fr)",
+		gridTemplateColumns: "repeat(auto-fill, 270px)",
+		gridAutoFlow: "column",
 	});

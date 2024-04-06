@@ -27,7 +27,7 @@ const Slider = ({
 		<Box style={{ position: "relative" }}>
 			{currentIndex !== 0 && <Box onClick={handlePrevOnClick}>{leftIcon}</Box>}
 			<Flex style={{ overflow: "hidden" }}>
-				<Flex css={cardBoxstyle(currentIndex)}>{children}</Flex>
+				<Box css={cardBoxstyle(currentIndex)}>{children}</Box>
 			</Flex>
 			{currentIndex <= dataLength - displayCount && (
 				<Box onClick={handleNextOnClick}>{rightIcon}</Box>

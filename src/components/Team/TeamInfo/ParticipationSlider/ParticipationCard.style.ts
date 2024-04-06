@@ -2,10 +2,14 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
+export const participationCardBoxStyle = css({
+	gap: "4px",
+	width: "100%",
+});
+
 export const participationCardNameStyle = css({
 	height: "32px",
-	width: "160px",
-	minWidth: "fit-content",
+	width: "150px",
 	borderRadius: "4px",
 	border: `1px solid ${Theme.color.btn_danger}`,
 	alignItems: "center",

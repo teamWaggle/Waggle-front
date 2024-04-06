@@ -5,7 +5,6 @@ import { Theme } from "@/styles/Theme";
 export const memberCardBoxStyle = css({
 	height: "32px",
 	width: "180px",
-	minWidth: "fit-content",
 	borderRadius: "4px",
 	border: `1px solid ${Theme.color.border}`,
 });

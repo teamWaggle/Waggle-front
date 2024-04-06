@@ -7,6 +7,8 @@ import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 
 import { PLANNING } from "@/constants/planning";
 
+// import { useReissueToken } from "@/hooks/api/auth/useReissueToken";
+import { useReissueToken } from "@/hooks/api/auth/useReissueToken";
 import { useGetMemberTeams } from "@/hooks/api/team/useGetMemberTeams";
 
 import {
@@ -16,7 +18,8 @@ import {
 } from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider.style";
 
 const MemberTeamSlider = () => {
-	const teamList = useGetMemberTeams();
+	const memberId = useReissueToken();
+	const teamList = useGetMemberTeams(memberId);
 
 	return (
 		<>
