@@ -1,17 +1,15 @@
 import type { FieldValues } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import * as yup from "yup";
-
 import LeftArrowIcon from "@/assets/svg/left-arrow-brand-primary.svg?react";
 
 import { Box, Flex, Form, Heading, Text } from "@/components/common";
-
-import { postMedia } from "@/api/media/postMedia";
+import * as yup from "yup";
 
 import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
 
 import { useCreateTeam } from "@/hooks/api/team/useCreateTeam";
+import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 
 import {
 	colorTitleStyle,
@@ -31,23 +29,17 @@ const schema = yup
 
 const Main = () => {
 	const navigate = useNavigate();
-	// const { mutate: postMediaMutate } = usePostMediaMutation();
 	const { mutate: createTeamMutate } = useCreateTeam();
+	const { convertToMediaUrl, uploadMedia } = useSingleImgUpload();
+
 	const onSubmit = async (data: FieldValues) => {
-		console.log("data", data);
-		const formdata = new FormData();
-		// 리팩토링 필요
+		const formData = new FormData();
 		if (data.coverImageUrl) {
-			const imageData = new FormData();
-			imageData.set("uploadImgFileList", data.coverImageUrl);
-			const { result } = await postMedia(imageData);
-			data.coverImageUrl = result.mediaList[0].imgUrl;
-			formdata.append("createTeamRequest", JSON.stringify(data));
-			createTeamMutate(formdata);
-		} else {
-			formdata.append("createTeamRequest", JSON.stringify(data));
-			createTeamMutate(formdata);
+			convertToMediaUrl(data.coverImageUrl);
+			data.coverImageUrl = uploadMedia;
 		}
+		formData.append("createTeamRequest", JSON.stringify(data));
+		createTeamMutate(formData);
 		navigate(-1);
 	};
 	return (

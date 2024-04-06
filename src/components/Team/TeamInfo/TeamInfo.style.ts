@@ -35,17 +35,23 @@ export const memberSliderBoxStyle = (currentIndex: number) =>
 		width: "760px",
 		height: "fit-content",
 		gap: "10px",
+		display: "grid",
 		transition: "transform 0.5s ease",
 		transform: `translateX(-${currentIndex * 190}px)`,
+		gridTemplateColumns: "repeat(auto-fit, 1fr)",
+		gridAutoFlow: "column",
 	});
 
 export const participationSliderBoxStyle = (currentIndex: number) =>
 	css({
-		width: "780px",
+		width: "740px",
 		height: "fit-content",
 		gap: "10px",
+		display: "grid",
 		transition: "transform 0.5s ease",
-		transform: `translateX(-${currentIndex * 264}px)`,
+		transform: `translateX(-${currentIndex * 247}px)`,
+		gridTemplateColumns: "repeat(auto-fit, 1fr)",
+		gridAutoFlow: "column",
 	});
 
 export const rightArrowIconStyle = css({

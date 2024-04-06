@@ -21,12 +21,12 @@ import {
 } from "@/components/Team/TeamInfo/TeamInfo.style";
 const members = [
 	"안녕초코야안녕",
-	"dfefwedf",
-	"dfefwedf",
-	"dfefwedf",
-	"dfefwedf",
-	"dfefwedf",
-	"dfefwedf",
+	"1",
+	"2",
+	"3",
+	"4",
+	"5",
+	"6",
 	"12",
 	"3",
 	"4",
@@ -37,18 +37,7 @@ const members = [
 	"9",
 ];
 
-const participatingMembers = [
-	"안녕하세요아아아",
-	"adfafwwe",
-	"1",
-	"2",
-	"3",
-	"4",
-	"5",
-	"6",
-	"7",
-	"8",
-];
+const participatingMembers = ["안녕하ㄴㅇㄹㅇㅈ", "ade", "1", "2", "3", "4", "5", "6", "7", "8"];
 
 const TeamInfo = () => {
 	const memberLength = members.length;
