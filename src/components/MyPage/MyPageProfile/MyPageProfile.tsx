@@ -3,6 +3,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import PasswordEditModal from "@/components/MyPage/MyPageProfile/PasswordEditModal/PasswordEditModal";
 import ProfileEditModal from "@/components/MyPage/MyPageProfile/ProfileEditModal/ProfileEditModal";
 
@@ -20,7 +21,6 @@ import type { MemberInfoType } from "@/types/auth";
 import {
 	layoutStyle,
 	profileInfoBoxStyle,
-	followButtonStyle,
 	menuBoxStyle,
 	menuItemStyle,
 } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
@@ -78,16 +78,27 @@ const MyPageProfile = ({ profileImgUrl, nickname, memberId, name, birthday }: Me
 			</Flex>
 
 			{memberId === userId ? (
-				<Flex styles={{ gap: "20px" }}>
-					<button css={followButtonStyle(true)} className="small" onClick={handleProfileEdit}>
+				<Flex styles={{ gap: "20px", margin: "24px 0" }}>
+					<Button style={{ width: "130px", height: "40px" }} onClick={handleProfileEdit}>
 						프로필 수정
-					</button>
-					<button css={followButtonStyle(false)} className="small" onClick={handlePasswordEdit}>
+					</Button>
+					<Button
+						style={{ width: "130px", height: "40px" }}
+						variant="disabled"
+						onClick={handlePasswordEdit}
+					>
 						비밀번호 변경
-					</button>
+					</Button>
 				</Flex>
 			) : (
-				<button css={followButtonStyle(follow)}>{follow ? "팔로우" : "팔로잉"}</button>
+				<Box styles={{ margin: "24px 0" }}>
+					<Button
+						style={{ width: "294px", height: "40px" }}
+						variant={follow ? "disabled" : "default"}
+					>
+						{follow ? "팔로우" : "팔로잉"}
+					</Button>
+				</Box>
 			)}
 
 			<Divider />

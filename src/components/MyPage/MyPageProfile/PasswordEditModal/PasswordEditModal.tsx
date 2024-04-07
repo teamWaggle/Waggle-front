@@ -1,4 +1,5 @@
 import { Flex, Heading, Text, Logo } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import Password from "@/components/common/Password/Password";
 
 import { passwordFormData } from "@/constants/auth";
@@ -11,7 +12,6 @@ import {
 	layoutStyle,
 	headingStyle,
 	textStyle,
-	buttonStyle,
 } from "@/components/Login/FindEmailModal/FindEmailModal.style";
 
 const PasswordEditModal = ({ memberId }: MemberIdType) => {
@@ -48,9 +48,9 @@ const PasswordEditModal = ({ memberId }: MemberIdType) => {
 				))}
 			</Flex>
 
-			<button type="submit" css={buttonStyle} onClick={handlePasswordChange}>
+			<Button size="large" onClick={handlePasswordChange}>
 				비밀번호 변경하기
-			</button>
+			</Button>
 		</Flex>
 	);
 };
