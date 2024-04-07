@@ -6,7 +6,7 @@ import { getMemberSchedules } from "@/api/schedule/getMemberSchedules";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
 
-import type { DefaultApiResponseType } from "@/types/api";
+import type { DefaultApiResponseType } from "@/types/common";
 import type { ScheduleResultType } from "@/types/planning";
 
 export const useGetMemberSchedules = () => {
