@@ -6,13 +6,14 @@ import { getMemberTeams } from "@/api/team/getMemberTeams";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
 
-import type { DefaultApiResponseType } from "@/types/api";
+import type { DefaultApiResponseType } from "@/types/common";
 import type { TeamResultType } from "@/types/team";
 
-export const useGetMemberTeams = (memberId: number) => {
+export const useGetMemberTeams = (memberId: number | null) => {
 	const { data } = useQuery<DefaultApiResponseType<TeamResultType>, AxiosError>({
 		queryKey: [QUERY_KEYS.MEMBER_TEAMS],
 		queryFn: () => getMemberTeams(memberId),
+		enabled: !!memberId,
 	});
 	const { teamList } = data?.result || {};
 	return teamList;
