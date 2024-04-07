@@ -24,10 +24,6 @@ export const buttonVariantStyle = (variant: Required<ButtonProps>["variant"]) =>
 			backgroundColor: Theme.color.white,
 			color: Theme.color.brand_primary,
 		}),
-		text: css({
-			backgroundColor: Theme.color.white,
-			color: Theme.color.brand_primary,
-		}),
 		danger: css({
 			backgroundColor: Theme.color.btn_danger,
 			color: Theme.color.white,

@@ -41,7 +41,7 @@ const EmailAuthCodeInput = ({
 				/>
 
 				<Button
-					variant="white"
+					variant="outline"
 					onClick={() =>
 						emailAuthVerifyMutation(
 							{ email, authCode: emailAuthCode },

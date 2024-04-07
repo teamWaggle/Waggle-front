@@ -1,11 +1,25 @@
 import { css } from "@emotion/react";
 
+import { Theme } from "@/styles/Theme";
+
 const containerStyle = css({
 	display: "flex",
-	alignItems: "center",
+	flexDirection: "column",
 	gap: "24px",
-	width: "200px",
-	height: "50px",
+	alignItems: "flex-start",
 });
 
-export { containerStyle };
+const informationStyle = css({
+	display: "flex",
+	flexDirection: "column",
+	gap: "12px",
+
+	"& > h6": {
+		color: Theme.color.disabled_text,
+		fontSize: "12px",
+		fontWeight: 400,
+		textTransform: "uppercase",
+	},
+});
+
+export { containerStyle, informationStyle };
