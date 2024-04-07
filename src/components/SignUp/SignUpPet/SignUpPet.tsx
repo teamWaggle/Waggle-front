@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { Flex, Heading } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import PetAgeInput from "@/components/SignUp/SignUpPet/PetAgeInput/PetAgeInput";
 import PetBreedInput from "@/components/SignUp/SignUpPet/PetBreedInput/PetBreedInput";
 import PetGenderInput from "@/components/SignUp/SignUpPet/PetGenderInput/PetGenderInput";
@@ -13,11 +14,11 @@ import { PATH } from "@/constants/path";
 import { useSignUpPetForm } from "@/hooks/auth/useSignUpPetForm";
 import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
-
-import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
-import { formLayoutStyle, buttonLayoutStyle } from "@/components/SignUp/SignUpPet/SignUpPet.style";
+import {
+	boxStyle,
+	formLayoutStyle,
+	buttonLayoutStyle,
+} from "@/components/SignUp/SignUpPet/SignUpPet.style";
 
 const SignUpPet = () => {
 	const navigate = useNavigate();
@@ -28,12 +29,8 @@ const SignUpPet = () => {
 
 	return (
 		<Flex styles={{ direction: "column", marginTop: "50px", gap: "30px" }}>
-			<Flex styles={{ direction: "column", gap: "40px", align: "center" }}>
-				<Heading
-					size="xSmall"
-					css={getDefaultTextStyle(Theme.color.text, 600)}
-					style={{ textAlign: "center" }}
-				>
+			<Flex css={boxStyle}>
+				<Heading size="xSmall">
 					나의 반려견을 등록해보세요!
 					<br />
 					My Waggle에서 언제든지 반려견을 등록하고 수정할 수 있어요
@@ -60,13 +57,11 @@ const SignUpPet = () => {
 			</Flex>
 
 			<Flex css={buttonLayoutStyle}>
-				<button css={getNextButtonStyle("건너뛰기")} onClick={() => navigate(PATH.ROOT)}>
+				<Button variant="gray" onClick={() => navigate(PATH.ROOT)}>
 					건너뛰기
-				</button>
+				</Button>
 
-				<button css={getNextButtonStyle("저장하기")} onClick={handleSaveClick}>
-					저장하기
-				</button>
+				<Button onClick={handleSaveClick}>저장하기</Button>
 			</Flex>
 		</Flex>
 	);

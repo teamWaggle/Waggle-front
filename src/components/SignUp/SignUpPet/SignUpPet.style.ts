@@ -2,6 +2,18 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
+export const boxStyle = css({
+	flexDirection: "column",
+	gap: "40px",
+	alignItems: "center",
+
+	"& > h6": {
+		color: Theme.color.text,
+		fontWeight: 600,
+		textAlign: "center",
+	},
+});
+
 export const imgStyle = css({
 	width: "148px",
 	height: "148px",

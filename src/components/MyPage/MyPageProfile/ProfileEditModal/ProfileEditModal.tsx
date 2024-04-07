@@ -1,5 +1,6 @@
-import { Flex, Box, Text } from "@/components/common";
+import { Flex } from "@/components/common";
 import Birthday from "@/components/common/BirthDay/Birthday";
+import Button from "@/components/common/Design/Button/Button";
 import NameInput from "@/components/SignUp/SignUpProfile/NameInput/NameInput";
 import NicknameInput from "@/components/SignUp/SignUpProfile/NicknameInput/NicknameInput";
 import ProfileInput from "@/components/SignUp/SignUpProfile/ProfileInput/ProfileInput";
@@ -11,7 +12,6 @@ import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 import type { MemberInfoType } from "@/types/auth";
 
 import { layoutStyle } from "@/components/MyPage/MyPageProfile/ProfileEditModal/ProfileEditModal.style";
-import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 
 const ProfileEditModal = ({
 	profileImgUrl,
@@ -84,9 +84,7 @@ const ProfileEditModal = ({
 					updateBirthdayValue={updateBirthdayValue}
 				/>
 
-				<Box tag="button" css={getNextButtonStyle("저장")} onClick={handleSubmit}>
-					<Text size="large">저장</Text>
-				</Box>
+				<Button onClick={handleSubmit}>저장</Button>
 			</Flex>
 		</Flex>
 	);
