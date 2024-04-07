@@ -6,7 +6,7 @@ import { getMemberScheduleMonthly } from "@/api/schedule/getMemberScheduleMonthl
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
 
-import type { DefaultApiResponseType } from "@/types/api";
+import type { DefaultApiResponseType } from "@/types/common";
 import type { ScheduleResultType } from "@/types/planning";
 
 export const useGetMemberScheduleMonthly = (year: number, month: number) => {

@@ -38,3 +38,10 @@ export interface DropDownItemType extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type Size = "xSmall" | "small" | "medium" | "large" | "xLarge" | "xxLarge";
+
+export interface DefaultApiResponseType<T> {
+	isSuccess: boolean;
+	code: number;
+	message: string;
+	result: T;
+}

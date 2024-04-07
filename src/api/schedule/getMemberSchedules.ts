@@ -2,7 +2,7 @@ import { axiosInstance } from "@/api/axiosInstance";
 
 import { END_POINTS } from "@/constants/api";
 
-import type { DefaultApiResponseType } from "@/types/api";
+import type { DefaultApiResponseType } from "@/types/common";
 import type { ScheduleResultType } from "@/types/planning";
 
 export const getMemberSchedules = async () => {
