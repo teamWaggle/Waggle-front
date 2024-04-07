@@ -2,7 +2,8 @@ import { useState } from "react";
 
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Text } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 
 import { useCheckNicknameMutation } from "@/hooks/api/auth/useCheckNicknameMutation";
 
@@ -11,11 +12,7 @@ import { Theme } from "@/styles/Theme";
 
 import type { SignUpProfileFormType } from "@/types/auth";
 
-import {
-	commonButtonStyle,
-	getFormTextStyle,
-	getInputStyle,
-} from "@/components/SignUp/SignUp.shared.style";
+import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 import { getNicknameTextStyle } from "@/components/SignUp/SignUpProfile/SignUpProfile.style";
 
 interface NicknameInputParams {
@@ -70,9 +67,9 @@ const NicknameInput = ({
 				ref={nicknameRef}
 			/>
 			<Flex styles={{ gap: "16px", align: "center" }}>
-				<Box tag="button" css={commonButtonStyle} onClick={handleNicknameCheck}>
-					<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>닉네임 중복 확인</Text>
-				</Box>
+				<Button variant="white" onClick={handleNicknameCheck}>
+					닉네임 중복 확인
+				</Button>
 
 				<Text css={getNicknameTextStyle(isNicknameCheck && nicknameCheckComplete)}>
 					{nicknameCheckComplete &&

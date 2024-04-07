@@ -1,13 +1,10 @@
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Text } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 
 import { useEmailAuthSendMutation } from "@/hooks/api/auth/useEmailAuthSendMutation";
 
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
-
 import type { EmailAuthVerifyType } from "@/types/auth";
 
-import { commonButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
 interface EmailInputParams {
@@ -35,9 +32,9 @@ const EmailInput = ({ email, updateInputValue, emailRef }: EmailInputParams) => 
 					ref={emailRef}
 				/>
 
-				<Box tag="button" css={commonButtonStyle} onClick={() => mutateEmailAuthSend(email)}>
-					<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>인증 코드 전송</Text>
-				</Box>
+				<Button variant="white" onClick={() => mutateEmailAuthSend(email)}>
+					인증 코드 전송
+				</Button>
 			</Flex>
 		</Flex>
 	);
