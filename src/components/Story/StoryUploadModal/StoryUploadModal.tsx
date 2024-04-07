@@ -2,6 +2,7 @@ import SampleImg from "@/assets/png/post-sample.png";
 import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Flex, Text, Carousel } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 
 import { useAddStoryForm } from "@/hooks/story/useAddStoryForm";
 
@@ -15,7 +16,6 @@ import {
 	profileImgStyle,
 	textareaStyle,
 	lengthTextStyle,
-	uploadButtonStyle,
 } from "@/components/Story/StoryUploadModal/StoryUploadModal.style";
 
 interface StoryEditModalParams {
@@ -100,13 +100,13 @@ const StoryUploadModal = ({
 
 						{/* 글자수 */}
 						<Text size="small" css={lengthTextStyle}>
-							{storyRequest.content && storyRequest.content.length}/500
+							{storyRequest.content ? storyRequest.content.length : 0}/500
 						</Text>
 					</Flex>
 
-					<Text size="xLarge" css={uploadButtonStyle} onClick={handleSubmit}>
+					<Button onClick={handleSubmit} style={{ alignSelf: "flex-end" }}>
 						업로드
-					</Text>
+					</Button>
 				</Flex>
 			</Flex>
 		</Flex>

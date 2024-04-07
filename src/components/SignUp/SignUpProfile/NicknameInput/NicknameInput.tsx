@@ -67,7 +67,7 @@ const NicknameInput = ({
 				ref={nicknameRef}
 			/>
 			<Flex styles={{ gap: "16px", align: "center" }}>
-				<Button variant="white" onClick={handleNicknameCheck}>
+				<Button variant="outline" onClick={handleNicknameCheck}>
 					닉네임 중복 확인
 				</Button>
 

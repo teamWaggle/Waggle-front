@@ -68,7 +68,7 @@ const UserUrlInput = ({
 			</Flex>
 
 			<Flex styles={{ align: "center", gap: "16px" }}>
-				<Button variant="white" onClick={handleUserUrlCheck}>
+				<Button variant="outline" onClick={handleUserUrlCheck}>
 					프로필 주소 중복 확인
 				</Button>
 

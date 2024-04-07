@@ -43,7 +43,7 @@ const ProfileInput = ({ handleImgUpload, uploadMedia }: ProfileInputParams) => {
 				/>
 
 				<label htmlFor="profileImg">
-					<Button variant="white" onClick={handleImageUploadButton}>
+					<Button variant="outline" onClick={handleImageUploadButton}>
 						컴퓨터에서 파일 선택
 					</Button>
 				</label>

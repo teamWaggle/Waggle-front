@@ -32,7 +32,7 @@ const EmailInput = ({ email, updateInputValue, emailRef }: EmailInputParams) => 
 					ref={emailRef}
 				/>
 
-				<Button variant="white" onClick={() => mutateEmailAuthSend(email)}>
+				<Button variant="outline" onClick={() => mutateEmailAuthSend(email)}>
 					인증 코드 전송
 				</Button>
 			</Flex>

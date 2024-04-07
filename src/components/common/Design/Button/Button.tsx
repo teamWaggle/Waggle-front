@@ -11,7 +11,7 @@ import {
 
 export interface ButtonProps extends ComponentPropsWithRef<"button"> {
 	size?: Extract<Size, "small" | "medium" | "large" | "xLarge">;
-	variant?: "default" | "gray" | "white";
+	variant?: "default" | "gray" | "white" | "outline" | "text";
 }
 
 const Button = (
