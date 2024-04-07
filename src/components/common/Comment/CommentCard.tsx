@@ -74,7 +74,7 @@ const CommentCard = ({
 		});
 	}, []);
 
-	const handleEditReply = useCallback(() => {
+	const handleEditReply = () => {
 		editReplyMutation(
 			{
 				content: replyContent,
@@ -85,10 +85,11 @@ const CommentCard = ({
 				onSuccess: () => {
 					setReplyContent("");
 					setReplyId(0);
+					setReplyButtonText("등록");
 				},
 			},
 		);
-	}, [editReplyMutation]);
+	};
 
 	const handleReplyEditClick = useCallback((content: string, replyId: number) => {
 		flushSync(() => {

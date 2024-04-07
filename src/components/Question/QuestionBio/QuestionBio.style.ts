@@ -21,14 +21,3 @@ export const titleBoxStyle = css({
 	gap: "10px",
 	width: "198px",
 });
-
-export const buttonStyle = css({
-	border: "none",
-	outline: "none",
-	cursor: "pointer",
-	color: Theme.color.brand_primary,
-	borderRadius: "4px",
-	backgroundColor: Theme.color.white,
-	padding: "6px 8px",
-	fontWeight: 600,
-});
