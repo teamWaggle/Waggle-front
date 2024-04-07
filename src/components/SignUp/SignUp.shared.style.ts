@@ -55,26 +55,6 @@ export const getTextareaStyle = (height: string) => {
 	});
 };
 
-export const getNextButtonStyle = (text: string) => {
-	return css({
-		all: "unset",
-		padding: "8px 14px",
-		borderRadius: "4px",
-		backgroundColor: text === "건너뛰기" ? Theme.color.disabled_text : Theme.color.brand_primary,
-		color: Theme.color.white,
-		fontWeight: 600,
-		cursor: "pointer",
-	});
-};
-
 export const inputNoneDisplayStyle = css({
 	display: "none",
-});
-
-export const commonButtonStyle = css({
-	all: "unset",
-	padding: "8px 14px",
-	borderRadius: "4px",
-	border: `1px solid ${Theme.color.border}`,
-	cursor: "pointer",
 });
