@@ -9,7 +9,7 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 import type { DefaultApiResponseType } from "@/types/common";
 import type { TeamResultType } from "@/types/team";
 
-export const useGetMemberTeams = (memberId: number | null) => {
+export const useGetMemberTeams = (memberId: number) => {
 	const { data } = useQuery<DefaultApiResponseType<TeamResultType>, AxiosError>({
 		queryKey: [QUERY_KEYS.MEMBER_TEAMS],
 		queryFn: () => getMemberTeams(memberId),

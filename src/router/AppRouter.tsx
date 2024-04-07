@@ -7,6 +7,7 @@ import * as Lazy from "@/router/lazy";
 
 import { PATH } from "@/constants/path";
 
+import Error404Page from "@/pages/Error404Page";
 import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
 
 const AppRouter = () => {
@@ -97,6 +98,7 @@ const AppRouter = () => {
 					element: <SirenCreatePage />,
 				},
 				{ path: "/team/:teamId", element: <TeamPage /> },
+				{ path: "*", element: <Error404Page /> },
 			],
 		},
 	]);
