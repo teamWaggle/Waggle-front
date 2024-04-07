@@ -2,6 +2,7 @@ import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
 
 import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import FindEmailModal from "@/components/Login/FindEmailModal/FindEmailModal";
 import FindPasswordModal from "@/components/Login/FinedPasswordModal/FindPasswordModal";
 
@@ -12,7 +13,6 @@ import {
 	layoutStyle,
 	inputStyle,
 	passwordIconStyle,
-	buttonStyle,
 	findTextStyle,
 } from "@/components/Login/LoginModal/LoginModal.style";
 
@@ -49,7 +49,7 @@ const LoginModal = () => {
 		<Flex css={layoutStyle}>
 			<Logo width={138} height={30} />
 			<Box styles={{ margin: "36px 0 24px" }}>
-				<form onSubmit={handleSubmit}>
+				<Flex tag="form" onSubmit={handleSubmit}>
 					<input
 						css={inputStyle}
 						placeholder="이메일(아이디)"
@@ -58,7 +58,7 @@ const LoginModal = () => {
 						value={loginRequest.email}
 						ref={emailRef}
 					/>
-					<Box styles={{ position: "relative", marginTop: "13px" }}>
+					<Box styles={{ position: "relative" }}>
 						<input
 							css={inputStyle}
 							placeholder="비밀번호"
@@ -74,10 +74,10 @@ const LoginModal = () => {
 							<PasswordNotShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
 						)}
 					</Box>
-					<button type="submit" css={buttonStyle}>
+					<Button type="submit" size="medium">
 						로그인
-					</button>
-				</form>
+					</Button>
+				</Flex>
 			</Box>
 
 			<Flex styles={{ gap: "24px" }}>

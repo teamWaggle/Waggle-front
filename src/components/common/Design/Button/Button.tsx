@@ -10,12 +10,12 @@ import {
 } from "@/components/common/Design/Button/Button.style";
 
 export interface ButtonProps extends ComponentPropsWithRef<"button"> {
-	size?: Extract<Size, "medium" | "large">;
+	size?: Extract<Size, "small" | "medium" | "large" | "xLarge">;
 	variant?: "default" | "gray" | "white";
 }
 
 const Button = (
-	{ size = "medium", variant = "default", children, ...attributes }: ButtonProps,
+	{ size = "small", variant = "default", children, ...attributes }: ButtonProps,
 	ref: ForwardedRef<HTMLButtonElement>,
 ) => {
 	return (

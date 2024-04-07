@@ -1,13 +1,10 @@
 import { Flex, Text } from "@/components/common";
 import Birthday from "@/components/common/BirthDay/Birthday";
+import Button from "@/components/common/Design/Button/Button";
 
 import { useFindEmailForm } from "@/hooks/auth/useFindEmailForm";
 
-import {
-	formTextStyle,
-	inputStyle,
-	buttonStyle,
-} from "@/components/Login/FindEmailModal/FindEmailModal.style";
+import { formTextStyle, inputStyle } from "@/components/Login/FindEmailModal/FindEmailModal.style";
 
 const FindEmail = () => {
 	const {
@@ -42,9 +39,9 @@ const FindEmail = () => {
 					updateBirthdayValue={updateBirthdayValue}
 				/>
 			</Flex>
-			<button css={buttonStyle} onClick={handleSubmit}>
+			<Button size="large" onClick={handleSubmit}>
 				인증하기
-			</button>
+			</Button>
 		</>
 	);
 };

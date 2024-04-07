@@ -1,4 +1,5 @@
 import { Box, Flex, Text } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
 
 import useModal from "@/hooks/useModal";
@@ -6,10 +7,7 @@ import useModal from "@/hooks/useModal";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import {
-	buttonStyle,
-	resultBoxStyle,
-} from "@/components/Login/FindEmailModal/FindEmailModal.style";
+import { resultBoxStyle } from "@/components/Login/FindEmailModal/FindEmailModal.style";
 
 const ResultEmail = ({ email }: { email: string[] }) => {
 	const modal = useModal();
@@ -28,9 +26,9 @@ const ResultEmail = ({ email }: { email: string[] }) => {
 			<Box css={resultBoxStyle}>
 				<Text css={getDefaultTextStyle(Theme.color.text, 600)}>{email}</Text>
 			</Box>
-			<button type="button" css={buttonStyle} onClick={handleLoginClick}>
+			<Button size="large" onClick={handleLoginClick}>
 				로그인
-			</button>
+			</Button>
 		</Flex>
 	);
 };

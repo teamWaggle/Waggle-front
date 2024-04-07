@@ -65,7 +65,7 @@ const SignUpEmail = () => {
 				))}
 			</Flex>
 
-			<Button size="large" onClick={handleSignUp}>
+			<Button size="xLarge" onClick={handleSignUp}>
 				가입하기
 			</Button>
 
