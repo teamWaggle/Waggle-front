@@ -66,11 +66,3 @@ export const lengthTextStyle = css({
 	fontWeight: 500,
 	alignSelf: "flex-end",
 });
-
-export const uploadButtonStyle = css({
-	alignSelf: "flex-end",
-	justifySelf: "flex-end",
-	fontWeight: 600,
-	color: Theme.color.brand_primary,
-	cursor: "pointer",
-});

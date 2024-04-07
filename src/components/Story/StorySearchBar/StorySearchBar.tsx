@@ -1,6 +1,7 @@
 import LogIcon from "@/assets/svg/log.svg?react";
 
-import { Flex, Heading, Text, SearchInput } from "@/components/common";
+import { Flex, Heading, SearchInput } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import SortButton from "@/components/common/SortButton/SortButton";
 import StoryUploadMediaModal from "@/components/Story/StoryUploadMediaModal/StoryUploadMediaModal";
 
@@ -8,7 +9,6 @@ import useModal from "@/hooks/useModal";
 
 import {
 	headingStyle,
-	buttonStyle,
 	sortButtonBoxStyle,
 } from "@/components/Story/StorySearchBar/StorySearchBar.style";
 
@@ -32,9 +32,7 @@ const StorySearchBar = () => {
 						<LogIcon />
 					</Heading>
 
-					<button type="button" css={buttonStyle} onClick={storyUploadOpen}>
-						<Text size="xLarge">글 작성하기</Text>
-					</button>
+					<Button onClick={storyUploadOpen}>글 작성하기</Button>
 				</Flex>
 
 				<SearchInput onChange={() => {}} width="252px" />

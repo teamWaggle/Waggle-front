@@ -13,20 +13,6 @@ export const headingStyle = css({
 	},
 });
 
-export const buttonStyle = css({
-	all: "unset",
-	padding: "6px 8px",
-	backgroundColor: Theme.color.brand_primary,
-	color: Theme.color.white,
-	borderRadius: "4px",
-	cursor: "pointer",
-
-	"& > p": {
-		lineHeight: "24px",
-		fontWeight: 600,
-	},
-});
-
 export const sortButtonBoxStyle = css({
 	alignSelf: "flex-end",
 	marginTop: "40px",

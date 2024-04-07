@@ -14,11 +14,19 @@ export const buttonVariantStyle = (variant: Required<ButtonProps>["variant"]) =>
 			backgroundColor: Theme.color.disabled_text,
 			color: Theme.color.white,
 		}),
-		white: css({
+		outline: css({
 			backgroundColor: Theme.color.white,
 			color: Theme.color.disabled_text,
 			border: `1px solid ${Theme.color.border}`,
 			height: "44px",
+		}),
+		white: css({
+			backgroundColor: Theme.color.white,
+			color: Theme.color.brand_primary,
+		}),
+		text: css({
+			backgroundColor: Theme.color.white,
+			color: Theme.color.brand_primary,
 		}),
 	};
 
@@ -28,27 +36,23 @@ export const buttonVariantStyle = (variant: Required<ButtonProps>["variant"]) =>
 export const buttonSizeStyle = (size: Required<ButtonProps>["size"]) => {
 	const style = {
 		small: css({
-			padding: "8px 14px",
+			padding: "8px 10px",
 			fontSize: Theme.text.medium.fontSize,
-			lineHeight: Theme.text.medium.lineHeight,
 		}),
 		medium: css({
 			height: "44px",
 			width: "310px",
 			fontSize: Theme.text.medium.fontSize,
-			lineHeight: Theme.text.medium.lineHeight,
 		}),
 		large: css({
 			width: "331px",
 			height: "44px",
 			fontSize: Theme.text.medium.fontSize,
-			lineHeight: Theme.text.medium.lineHeight,
 		}),
 		xLarge: css({
 			width: "412px",
 			height: "44px",
 			fontSize: Theme.text.medium.fontSize,
-			lineHeight: Theme.text.medium.lineHeight,
 		}),
 	};
 

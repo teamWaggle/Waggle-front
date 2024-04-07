@@ -35,7 +35,7 @@ const PetProfileInput = ({ handleImgUpload, uploadMedia }: PetProfileInputParams
 				<Text css={getFormTextStyle(false)}>프로필 이미지</Text>
 
 				<label htmlFor="profileImg">
-					<Button variant="white" onClick={handleImageUploadButton}>
+					<Button variant="outline" onClick={handleImageUploadButton}>
 						컴퓨터에서 파일 선택
 					</Button>
 				</label>
