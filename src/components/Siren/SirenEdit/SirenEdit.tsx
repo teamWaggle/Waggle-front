@@ -1,4 +1,5 @@
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import PostEdit from "@/components/common/Post/PostEdit";
 import SirenUploadInput from "@/components/Siren/SirenUpload/SirenUploadInput/SirenUploadInput";
 
@@ -14,11 +15,8 @@ import { generateTagStyle, generateTagCategory } from "@/utils/generateTag";
 import type { SirenEditType } from "@/types/siren";
 
 import { tagStyle } from "@/components/common/Tag/Tag.style";
-import {
-	layoutStyle,
-	inputStyle,
-	uploadButtonStyle,
-} from "@/components/Siren/SirenEdit/SirenEdit.style";
+import { layoutStyle, inputStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
+import { buttonBoxStyle } from "@/components/Siren/SirenUpload/SirenUpload.style";
 
 interface SirenEditParams {
 	sirenData: SirenEditType;
@@ -101,9 +99,9 @@ const SirenEdit = ({ sirenData }: SirenEditParams) => {
 				updateMediaList={sirenRequest.mediaList}
 			/>
 
-			<button css={uploadButtonStyle} onClick={handleSubmit}>
-				<Text size="xLarge">글 수정하기</Text>
-			</button>
+			<Box css={buttonBoxStyle}>
+				<Button onClick={handleSubmit}>글 수정하기</Button>
+			</Box>
 		</Box>
 	);
 };

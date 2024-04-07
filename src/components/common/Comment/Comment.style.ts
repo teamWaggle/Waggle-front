@@ -50,18 +50,10 @@ export const replyBoxStyle = css({
 	cursor: "pointer",
 });
 
-export const submitButtonStyle = css({
-	border: "none",
-	outline: "none",
+export const buttonBoxStyle = css({
 	position: "absolute",
 	bottom: "14px",
 	right: "14px",
-	padding: "6px 14px",
-	borderRadius: "4px",
-	backgroundColor: Theme.color.brand_primary,
-	color: Theme.color.white,
-	fontWeight: 600,
-	cursor: "pointer",
 });
 
 export const moreButtonStyle = css({

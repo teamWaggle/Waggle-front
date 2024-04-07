@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Heading, Text } from "@/components/common";
+import { Flex, Heading } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
 import { PATH } from "@/constants/path";
 
 import { useSirenRepresentativeQuery } from "@/hooks/api/siren/useSirenRepresentativeQuery";
 
-import { buttonStyle, titleStyle } from "@/components/Siren/SirenBio/SirenBio.style";
+import { titleStyle } from "@/components/Siren/SirenBio/SirenBio.style";
 
 const SirenBio = () => {
 	const { sirenRepresentativeListData } = useSirenRepresentativeQuery();
@@ -23,9 +24,7 @@ const SirenBio = () => {
 					<Heading>함께 문제를 해결해요</Heading>
 				</Flex>
 
-				<button css={buttonStyle} onClick={() => navigate(PATH.SIREN_CREATE)}>
-					<Text size="xLarge">글 작성하기</Text>
-				</button>
+				<Button onClick={() => navigate(PATH.SIREN_CREATE)}>글 작성하기</Button>
 			</Flex>
 
 			<Flex styles={{ gap: "12px" }}>
