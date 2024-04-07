@@ -5,8 +5,7 @@ import { END_POINTS } from "@/constants/api";
 import type { DefaultApiResponseType } from "@/types/api";
 import type { TeamResultType } from "@/types/team";
 
-export const getMemberTeams = async () => {
-	const memberId = Number(localStorage.getItem("MEMBER_ID"));
+export const getMemberTeams = async (memberId: number) => {
 	const { data } = await axiosInstance.get<DefaultApiResponseType<TeamResultType>>(
 		END_POINTS.MEMBER_TEAMS(memberId),
 	);
