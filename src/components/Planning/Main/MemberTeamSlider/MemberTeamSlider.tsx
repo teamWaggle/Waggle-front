@@ -7,7 +7,6 @@ import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 
 import { PLANNING } from "@/constants/planning";
 
-// import { useReissueToken } from "@/hooks/api/auth/useReissueToken";
 import { useReissueToken } from "@/hooks/api/auth/useReissueToken";
 import { useGetMemberTeams } from "@/hooks/api/team/useGetMemberTeams";
 
