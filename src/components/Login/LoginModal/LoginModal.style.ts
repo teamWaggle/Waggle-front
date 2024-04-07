@@ -10,6 +10,11 @@ export const layoutStyle = css({
 	height: "490px",
 	flexDirection: "column",
 	alignItems: "center",
+
+	form: {
+		flexDirection: "column",
+		gap: "13px",
+	},
 });
 
 export const inputStyle = css({
@@ -32,18 +37,6 @@ export const passwordIconStyle = css({
 	top: "13px",
 	right: "18px",
 	cursor: "pointer",
-});
-
-export const buttonStyle = css({
-	all: "unset",
-	width: "310px",
-	height: "44px",
-	borderRadius: "4px",
-	backgroundColor: Theme.color.brand_primary,
-	color: Theme.color.white,
-	textAlign: "center",
-	cursor: "pointer",
-	marginTop: "13px",
 });
 
 export const findTextStyle = css({

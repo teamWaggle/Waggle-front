@@ -27,12 +27,24 @@ export const buttonVariantStyle = (variant: Required<ButtonProps>["variant"]) =>
 
 export const buttonSizeStyle = (size: Required<ButtonProps>["size"]) => {
 	const style = {
-		medium: css({
+		small: css({
 			padding: "8px 14px",
 			fontSize: Theme.text.medium.fontSize,
 			lineHeight: Theme.text.medium.lineHeight,
 		}),
+		medium: css({
+			height: "44px",
+			width: "310px",
+			fontSize: Theme.text.medium.fontSize,
+			lineHeight: Theme.text.medium.lineHeight,
+		}),
 		large: css({
+			width: "331px",
+			height: "44px",
+			fontSize: Theme.text.medium.fontSize,
+			lineHeight: Theme.text.medium.lineHeight,
+		}),
+		xLarge: css({
 			width: "412px",
 			height: "44px",
 			fontSize: Theme.text.medium.fontSize,

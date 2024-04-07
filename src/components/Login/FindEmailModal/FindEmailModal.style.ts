@@ -45,17 +45,6 @@ export const inputStyle = css({
 	},
 });
 
-export const buttonStyle = css({
-	all: "unset",
-	width: "331px",
-	height: "44px",
-	borderRadius: "4px",
-	backgroundColor: Theme.color.brand_primary,
-	color: Theme.color.white,
-	textAlign: "center",
-	cursor: "pointer",
-});
-
 export const resultBoxStyle = css({
 	width: "331px",
 	borderRadius: "4px",

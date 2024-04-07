@@ -1,4 +1,5 @@
 import { Flex, Heading, Text, Logo } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import Password from "@/components/common/Password/Password";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
 
@@ -13,7 +14,6 @@ import {
 	headingStyle,
 	textStyle,
 	inputStyle,
-	buttonStyle,
 } from "@/components/Login/FindEmailModal/FindEmailModal.style";
 
 const FindPasswordModal = () => {
@@ -57,9 +57,9 @@ const FindPasswordModal = () => {
 					<Heading size="xSmall" css={headingStyle}>
 						비밀번호 변경이 완료되었습니다
 					</Heading>
-					<button type="button" css={buttonStyle} onClick={handleLoginClick}>
+					<Button size="large" onClick={handleLoginClick}>
 						로그인 하기
-					</button>
+					</Button>
 				</Flex>
 			) : (
 				<Flex styles={{ direction: "column", align: "center", gap: "14px" }}>
@@ -88,9 +88,9 @@ const FindPasswordModal = () => {
 						ref={emailRef}
 					/>
 
-					<button type="submit" css={buttonStyle} onClick={handleEmailSend}>
+					<Button size="large" onClick={handleEmailSend}>
 						인증코드 전송하기
-					</button>
+					</Button>
 				</>
 			)}
 
@@ -105,9 +105,9 @@ const FindPasswordModal = () => {
 						ref={emailAuthRef}
 					/>
 
-					<button type="submit" css={buttonStyle} onClick={handleEmailAuth}>
+					<Button size="large" onClick={handleEmailAuth}>
 						인증하기
-					</button>
+					</Button>
 				</>
 			)}
 
@@ -116,6 +116,7 @@ const FindPasswordModal = () => {
 					<Flex styles={{ direction: "column", gap: "20px" }}>
 						{passwordFormData.map((data) => (
 							<Password
+								key={data.text}
 								data={data}
 								passwordRequest={passwordRequest}
 								updatePasswordInputValue={updatePasswordInputValue}
@@ -127,9 +128,9 @@ const FindPasswordModal = () => {
 						))}
 					</Flex>
 
-					<button type="submit" css={buttonStyle} onClick={handlePasswordChange}>
+					<Button size="large" onClick={handlePasswordChange}>
 						비밀번호 변경하기
-					</button>
+					</Button>
 				</>
 			)}
 		</Flex>
