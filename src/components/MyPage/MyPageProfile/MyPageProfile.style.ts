@@ -30,25 +30,6 @@ export const profileInfoBoxStyle = css({
 	},
 });
 
-export const followButtonStyle = (isFollow?: boolean) =>
-	css({
-		width: "294px",
-		height: "39px",
-		backgroundColor: isFollow ? Theme.color.brand_primary : Theme.color.disabled_text,
-		textAlign: "center",
-		border: "none",
-		outline: "none",
-		color: Theme.color.white,
-		fontWeight: 600,
-		borderRadius: "4px",
-		margin: "24px 0",
-		cursor: "pointer",
-
-		"&.small": {
-			width: "130px",
-		},
-	});
-
 export const menuBoxStyle = css({
 	marginTop: "24px",
 	flexDirection: "column",

@@ -57,7 +57,7 @@ const SignUpPet = () => {
 			</Flex>
 
 			<Flex css={buttonLayoutStyle}>
-				<Button variant="gray" onClick={() => navigate(PATH.ROOT)}>
+				<Button variant="disabled" onClick={() => navigate(PATH.ROOT)}>
 					건너뛰기
 				</Button>
 
