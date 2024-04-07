@@ -7,7 +7,7 @@ import type { TeamResultType } from "@/types/team";
 
 export const getMemberTeams = async (memberId: number | null) => {
 	const { data } = await axiosInstance.get<DefaultApiResponseType<TeamResultType>>(
-		END_POINTS.MEMBER_TEAMS(memberId || null),
+		END_POINTS.MEMBER_TEAMS(memberId),
 	);
 	return data;
 };
