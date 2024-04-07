@@ -19,16 +19,3 @@ export const inputStyle = css({
 		color: Theme.color.disabled_text,
 	},
 });
-
-export const uploadButtonStyle = css({
-	all: "unset",
-	display: "flex",
-	backgroundColor: Theme.color.brand_primary,
-	padding: "6px 12px",
-	fontWeight: 600,
-	color: Theme.color.white,
-	borderRadius: "4px",
-	cursor: "pointer",
-	float: "right",
-	marginTop: "50px",
-});

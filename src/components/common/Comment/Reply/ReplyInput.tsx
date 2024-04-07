@@ -1,8 +1,9 @@
-import { Text, Box } from "@/components/common";
+import { Box } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 
 import { usePostReplyMutation } from "@/hooks/api/reply/usePostReplyMutation";
 
-import { commentTextareaStyle, submitButtonStyle } from "@/components/common/Comment/Comment.style";
+import { commentTextareaStyle, buttonBoxStyle } from "@/components/common/Comment/Comment.style";
 
 interface ReplyInputProps {
 	commentId: number;
@@ -50,12 +51,12 @@ const ReplyInput = ({
 				ref={replyRef}
 			/>
 
-			<button
-				css={submitButtonStyle}
+			<Box
+				css={buttonBoxStyle}
 				onClick={() => (replyButtonText === "등록" ? handleAddReply() : handleEditReply())}
 			>
-				<Text>{replyButtonText}</Text>
-			</button>
+				<Button>{replyButtonText}</Button>
+			</Box>
 		</Box>
 	);
 };

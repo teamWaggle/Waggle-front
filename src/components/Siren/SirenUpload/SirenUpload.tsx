@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
 import SirenUploadInput from "@/components/Siren/SirenUpload/SirenUploadInput/SirenUploadInput";
 
@@ -18,7 +19,7 @@ import { tagStyle } from "@/components/common/Tag/Tag.style";
 import {
 	layoutStyle,
 	inputStyle,
-	uploadButtonStyle,
+	buttonBoxStyle,
 } from "@/components/Siren/SirenUpload/SirenUpload.style";
 
 const SirenUpload = () => {
@@ -82,9 +83,9 @@ const SirenUpload = () => {
 				dropImgUpload={dropImgUpload}
 			/>
 
-			<button css={uploadButtonStyle} onClick={handleSubmit}>
-				<Text size="xLarge">글 작성하기</Text>
-			</button>
+			<Box css={buttonBoxStyle}>
+				<Button onClick={handleSubmit}>글 작성하기</Button>
+			</Box>
 		</Box>
 	);
 };

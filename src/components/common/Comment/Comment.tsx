@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback } from "react";
 
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Box } from "@/components/common";
 import CommentCard from "@/components/common/Comment/CommentCard";
+import Button from "@/components/common/Design/Button/Button";
 
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
 import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
@@ -10,7 +11,7 @@ import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutati
 import {
 	commentBoxStyle,
 	commentTextareaStyle,
-	submitButtonStyle,
+	buttonBoxStyle,
 } from "@/components/common/Comment/Comment.style";
 
 const Comment = ({ boardId }: { boardId: number }) => {
@@ -87,13 +88,12 @@ const Comment = ({ boardId }: { boardId: number }) => {
 					onChange={(e) => setContent(e.target.value)}
 					ref={commentRef}
 				/>
-
-				<button
-					css={submitButtonStyle}
+				<Box
+					css={buttonBoxStyle}
 					onClick={() => (commentButtonText === "등록" ? handleAddComment() : handleEditComment())}
 				>
-					<Text>{commentButtonText}</Text>
-				</button>
+					<Button>{commentButtonText}</Button>
+				</Box>
 			</Box>
 		</Flex>
 	);
