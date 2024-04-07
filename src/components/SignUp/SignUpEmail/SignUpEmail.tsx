@@ -1,4 +1,5 @@
 import { Flex, SocialLogin } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import Password from "@/components/common/Password/Password";
 import EmailAuthCodeInput from "@/components/SignUp/SignUpEmail/EmailAuthCodeInput/EmailAuthCodeInput";
 import EmailInput from "@/components/SignUp/SignUpEmail/EmailInput/EmailInput";
@@ -7,8 +8,6 @@ import { passwordFormData } from "@/constants/auth";
 
 import { usePasswordForm } from "@/hooks/auth/usePasswordForm";
 import { useSignUpEmailForm } from "@/hooks/auth/useSignUpEmailForm";
-
-import { signUpButtonStyle } from "@/components/SignUp/SignUpEmail/SignUpEmail.style";
 
 const SignUpEmail = () => {
 	const {
@@ -66,9 +65,9 @@ const SignUpEmail = () => {
 				))}
 			</Flex>
 
-			<button css={signUpButtonStyle} onClick={handleSignUp}>
+			<Button size="large" onClick={handleSignUp}>
 				가입하기
-			</button>
+			</Button>
 
 			<SocialLogin textSize="small" locate="sign" />
 		</Flex>

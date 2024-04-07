@@ -1,5 +1,6 @@
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Box } from "@/components/common";
 import Birthday from "@/components/common/BirthDay/Birthday";
+import Button from "@/components/common/Design/Button/Button";
 import NameInput from "@/components/SignUp/SignUpProfile/NameInput/NameInput";
 import NicknameDescription from "@/components/SignUp/SignUpProfile/NicknameInput/NicknameDescription";
 import NicknameInput from "@/components/SignUp/SignUpProfile/NicknameInput/NicknameInput";
@@ -11,8 +12,6 @@ import { useSignUpProfileForm } from "@/hooks/auth/useSignUpProfileForm";
 import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 
 import { Theme } from "@/styles/Theme";
-
-import { getNextButtonStyle } from "@/components/SignUp/SignUp.shared.style";
 
 const SignUpProfile = () => {
 	const { handleImgUpload, uploadMedia } = useSingleImgUpload({});
@@ -95,9 +94,7 @@ const SignUpProfile = () => {
 				</Flex>
 			</Box>
 
-			<Box tag="button" css={getNextButtonStyle("다음")} onClick={handleSubmit}>
-				<Text size="large">다음</Text>
-			</Box>
+			<Button onClick={handleSubmit}>다음</Button>
 		</Flex>
 	);
 };

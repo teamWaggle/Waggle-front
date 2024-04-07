@@ -13,17 +13,6 @@ export const buttonStyle = css({
 	cursor: "pointer",
 });
 
-export const signUpButtonStyle = css({
-	all: "unset",
-	width: "412px",
-	height: "44px",
-	borderRadius: "4px",
-	backgroundColor: Theme.color.brand_primary,
-	color: Theme.color.white,
-	textAlign: "center",
-	cursor: "pointer",
-});
-
 export const getPasswordTextStyle = (disabled: boolean) => {
 	return css({
 		color: disabled ? Theme.color.brand_primary : Theme.color.disabled_text,

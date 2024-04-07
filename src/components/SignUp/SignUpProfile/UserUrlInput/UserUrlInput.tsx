@@ -2,7 +2,8 @@ import { useState } from "react";
 
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Text } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 
 import { useCheckUserUrlMutation } from "@/hooks/api/auth/useCheckUserUrlMutation";
 
@@ -11,7 +12,7 @@ import { Theme } from "@/styles/Theme";
 
 import type { SignUpProfileFormType } from "@/types/auth";
 
-import { commonButtonStyle, getFormTextStyle } from "@/components/SignUp/SignUp.shared.style";
+import { getFormTextStyle } from "@/components/SignUp/SignUp.shared.style";
 import {
 	addressInputStyle,
 	getNicknameTextStyle,
@@ -67,11 +68,9 @@ const UserUrlInput = ({
 			</Flex>
 
 			<Flex styles={{ align: "center", gap: "16px" }}>
-				<Box tag="button" css={commonButtonStyle} onClick={handleUserUrlCheck}>
-					<Text css={getDefaultTextStyle(Theme.color.disabled_text, 500)}>
-						프로필 주소 중복 확인
-					</Text>
-				</Box>
+				<Button variant="white" onClick={handleUserUrlCheck}>
+					프로필 주소 중복 확인
+				</Button>
 
 				<Text css={getNicknameTextStyle(isUserUrlCheck && userUrlCheckComplete)}>
 					{isUserUrlCheck &&
