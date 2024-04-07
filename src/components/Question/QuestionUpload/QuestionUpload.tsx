@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 
-import { Box, Heading, Text } from "@/components/common";
+import { Box, Heading } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
 
 import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
@@ -12,8 +13,8 @@ import { Theme } from "@/styles/Theme";
 import {
 	layoutStyle,
 	inputStyle,
-	uploadButtonStyle,
-} from "@/components/Question/QuestionUpload/QuestionUpload.style";
+	buttonBoxStyle,
+} from "@/components/Siren/SirenUpload/SirenUpload.style";
 
 const QuestionUpload = () => {
 	const { questionRequest, updateInputValue, handleSubmit } = useAddQuestionForm({});
@@ -52,9 +53,9 @@ const QuestionUpload = () => {
 				dropImgUpload={dropImgUpload}
 			/>
 
-			<button css={uploadButtonStyle} onClick={handleSubmit}>
-				<Text size="xLarge">글 작성하기</Text>
-			</button>
+			<Box css={buttonBoxStyle}>
+				<Button onClick={handleSubmit}>글 작성하기</Button>
+			</Box>
 		</Box>
 	);
 };

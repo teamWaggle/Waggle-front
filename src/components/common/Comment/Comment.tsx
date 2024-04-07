@@ -27,7 +27,7 @@ const Comment = ({ boardId }: { boardId: number }) => {
 
 	const commentRef = useRef<HTMLTextAreaElement>(null);
 
-	const handleAddComment = useCallback(() => {
+	const handleAddComment = () => {
 		postCommentMutation(
 			{ content, mentionedMemberList, boardId },
 			{
@@ -36,9 +36,9 @@ const Comment = ({ boardId }: { boardId: number }) => {
 				},
 			},
 		);
-	}, []);
+	};
 
-	const handleEditComment = useCallback(() => {
+	const handleEditComment = () => {
 		editCommentMutation(
 			{
 				content,
@@ -49,10 +49,11 @@ const Comment = ({ boardId }: { boardId: number }) => {
 				onSuccess: () => {
 					setContent("");
 					setCommentId(0);
+					setCommentButtonText("등록");
 				},
 			},
 		);
-	}, []);
+	};
 
 	const handleEditClick = useCallback((content: string, commentId: number) => {
 		if (!commentRef.current) return;

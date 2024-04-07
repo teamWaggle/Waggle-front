@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Box, Heading, Text } from "@/components/common";
+import { Flex, Box, Heading } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 
 import { PATH } from "@/constants/path";
@@ -11,7 +12,6 @@ import {
 	sectionStyle,
 	boxStyle,
 	titleBoxStyle,
-	buttonStyle,
 } from "@/components/Question/QuestionBio/QuestionBio.style";
 
 const QuestionBio = () => {
@@ -30,9 +30,9 @@ const QuestionBio = () => {
 						<Heading size="small">답을 찾아보세요!</Heading>
 					</Flex>
 
-					<button css={buttonStyle} onClick={() => navigate(PATH.QUESTION_CREATE)}>
-						<Text size="xLarge">글 작성하기</Text>
-					</button>
+					<Button variant="white" onClick={() => navigate(PATH.QUESTION_CREATE)}>
+						글 작성하기
+					</Button>
 				</Flex>
 
 				<Flex styles={{ direction: "column", gap: "24px" }}>

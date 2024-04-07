@@ -1,4 +1,5 @@
-import { Box, Heading, Text } from "@/components/common";
+import { Box, Heading } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 import PostEdit from "@/components/common/Post/PostEdit";
 
 import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
@@ -11,8 +12,8 @@ import type { QuestionEditType } from "@/types/question";
 import {
 	layoutStyle,
 	inputStyle,
-	uploadButtonStyle,
-} from "@/components/Question/QuestionUpload/QuestionUpload.style";
+	buttonBoxStyle,
+} from "@/components/Siren/SirenUpload/SirenUpload.style";
 
 const QuestionEdit = ({ boardId, title, content, mediaList, hashtagList }: QuestionEditType) => {
 	const { questionRequest, updateInputValue, handleSubmit } = useAddQuestionForm({
@@ -45,9 +46,9 @@ const QuestionEdit = ({ boardId, title, content, mediaList, hashtagList }: Quest
 				updateMediaList={questionRequest.mediaList}
 			/>
 
-			<button css={uploadButtonStyle} onClick={handleSubmit}>
-				<Text size="xLarge">글 수정하기</Text>
-			</button>
+			<Box css={buttonBoxStyle}>
+				<Button onClick={handleSubmit}>글 수정하기</Button>
+			</Box>
 		</Box>
 	);
 };
