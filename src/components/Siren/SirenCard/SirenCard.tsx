@@ -1,12 +1,18 @@
 import { useNavigate } from "react-router-dom";
 
-// import SirenOffIcon from "@/assets/svg/ic-siren-off.svg?react";
-import SirenOnIcon from "@/assets/svg/ic-siren-on.svg?react";
+import { useRecoilValue } from "recoil";
+
+import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
+import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
 
 import { Flex, Heading, Text } from "@/components/common";
 import Tag from "@/components/common/Tag/Tag";
 
 import { PATH } from "@/constants/path";
+
+import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -33,6 +39,10 @@ const SirenCard = ({ sirenInfo, isMyPage }: SirenCardParams) => {
 	const { boardId, thumbnail, title, lostLocate, recommendCount, category, status, createdDate } =
 		sirenInfo;
 
+	const isLoggedIn = useRecoilValue(isLoggedInState);
+
+	const isRecommend = isLoggedIn ? useGetIsRecommend(boardId) : false;
+
 	const navigate = useNavigate();
 
 	return (
@@ -51,11 +61,10 @@ const SirenCard = ({ sirenInfo, isMyPage }: SirenCardParams) => {
 				<Text css={subStyle}>{lostLocate}</Text>
 
 				<Flex css={bottomBoxStyle}>
-					<Flex styles={{ gap: "2px" }}>
-						<SirenOnIcon />
-						{/* <SirenOffIcon /> */}
+					<Flex styles={{ gap: "6px" }}>
+						{isRecommend ? <LikeIcon width={18} /> : <DisLikeIcon width={18} />}
 
-						<Text size="xSmall" css={textStyle(true)}>
+						<Text size="xSmall" css={textStyle(isRecommend)}>
 							{recommendCount}
 						</Text>
 					</Flex>
