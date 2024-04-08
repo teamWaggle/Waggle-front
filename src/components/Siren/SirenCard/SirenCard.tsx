@@ -24,17 +24,15 @@ import {
 	bottomBoxStyle,
 } from "@/components/Siren/SirenCard/SirenCard.style";
 
-const SirenCard = ({
-	boardId,
-	thumbnail,
-	title,
-	lostLocate,
-	recommendCount,
-	category,
-	status,
-	createdDate,
-	isMyPage,
-}: SirenListInfoType) => {
+interface SirenCardParams {
+	sirenInfo: SirenListInfoType;
+	isMyPage: boolean;
+}
+
+const SirenCard = ({ sirenInfo, isMyPage }: SirenCardParams) => {
+	const { boardId, thumbnail, title, lostLocate, recommendCount, category, status, createdDate } =
+		sirenInfo;
+
 	const navigate = useNavigate();
 
 	return (
