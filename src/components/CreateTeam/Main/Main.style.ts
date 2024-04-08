@@ -67,3 +67,29 @@ export const submitButtonStyle = css({
 	color: Theme.color.white,
 	backgroundColor: Theme.color.brand_primary,
 });
+
+export const titleTextInputStyle = css({
+	width: "100%",
+	height: "40px",
+	padding: "12px",
+	marginTop: "20px",
+	color: Theme.color.input_text,
+	border: "none",
+	fontSize: "24px",
+	outline: "none",
+	borderBottom: `2px solid  ${Theme.color.gray200}`,
+	resize: "none",
+});
+
+export const contentTextareaStyle = css({
+	width: "100%",
+	height: "100%",
+	padding: "0 12px",
+	marginTop: "20px",
+	color: Theme.color.input_text,
+	fontSize: "16px",
+	outline: "none",
+	borderRadius: "6px",
+	border: `2px solid ${Theme.color.gray200}`,
+	resize: "none",
+});
