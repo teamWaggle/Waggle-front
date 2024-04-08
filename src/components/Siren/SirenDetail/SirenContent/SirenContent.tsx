@@ -14,6 +14,7 @@ import {
 
 const SirenContent = ({ sirenData }: SirenContentType) => {
 	const {
+		boardId,
 		lostLocate,
 		petBreed,
 		petGender,
@@ -77,7 +78,7 @@ const SirenContent = ({ sirenData }: SirenContentType) => {
 
 			<PostContent mediaList={mediaList} content={content} />
 
-			<PostRecommend isRecommend recommendCount={recommendCount} />
+			<PostRecommend boardId={boardId} isRecommend recommendCount={recommendCount} />
 		</Flex>
 	);
 };
