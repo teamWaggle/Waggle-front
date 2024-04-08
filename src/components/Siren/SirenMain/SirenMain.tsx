@@ -17,17 +17,7 @@ const SirenMain = () => {
 			}}
 		>
 			{sirenListData.result.sirenList.map((sirenInfo) => (
-				<SirenCard
-					key={sirenInfo.boardId}
-					boardId={sirenInfo.boardId}
-					thumbnail={sirenInfo.thumbnail}
-					title={sirenInfo.title}
-					lostLocate={sirenInfo.lostLocate}
-					recommendCount={sirenInfo.recommendCount}
-					category={sirenInfo.category}
-					status={sirenInfo.status}
-					createdDate={sirenInfo.createdDate}
-				/>
+				<SirenCard key={sirenInfo.boardId} sirenInfo={sirenInfo} />
 			))}
 		</Flex>
 	);

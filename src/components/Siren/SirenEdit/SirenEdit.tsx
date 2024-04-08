@@ -20,19 +20,25 @@ import {
 	uploadButtonStyle,
 } from "@/components/Siren/SirenEdit/SirenEdit.style";
 
-const SirenEdit = ({
-	boardId,
-	title,
-	category,
-	lostLocate,
-	lostDate,
-	petAge,
-	petBreed,
-	petGender,
-	contact,
-	content,
-	mediaList,
-}: SirenEditType) => {
+interface SirenEditParams {
+	sirenData: SirenEditType;
+}
+
+const SirenEdit = ({ sirenData }: SirenEditParams) => {
+	const {
+		boardId,
+		category,
+		title,
+		lostLocate,
+		lostDate,
+		petAge,
+		petBreed,
+		petGender,
+		contact,
+		content,
+		mediaList,
+	} = sirenData;
+
 	const { sirenRequest, updateInputValue, handleSubmit } = useAddSirenForm({
 		sirenId: boardId,
 		initialData: {
@@ -74,7 +80,7 @@ const SirenEdit = ({
 					{SIREN_TAG_CATEGORY.map((data) => (
 						<Flex
 							css={tagStyle(
-								sirenRequest.category === data.tagName
+								sirenRequest.category === data.category
 									? generateTagStyle(data.category)
 									: Theme.color.border,
 							)}

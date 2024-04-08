@@ -26,7 +26,7 @@ import {
 
 interface SirenCardParams {
 	sirenInfo: SirenListInfoType;
-	isMyPage: boolean;
+	isMyPage?: boolean;
 }
 
 const SirenCard = ({ sirenInfo, isMyPage }: SirenCardParams) => {

@@ -14,24 +14,13 @@ import type { SirenResultType } from "@/types/siren";
 
 import { layoutStyle } from "@/components/common/Post/Post.style";
 
-const SirenDetail = ({
-	boardId,
-	title,
-	category,
-	lostLocate,
-	lostDate,
-	petAge,
-	petBreed,
-	petGender,
-	contact,
-	content,
-	mediaList,
-	member,
-	viewCount,
-	createdDate,
-	recommendCount,
-	status,
-}: SirenResultType) => {
+interface SirenDetailParams {
+	sirenData: SirenResultType;
+}
+
+const SirenDetail = ({ sirenData }: SirenDetailParams) => {
+	const { boardId } = sirenData;
+
 	const navigate = useNavigate();
 
 	const modal = useModal();
@@ -48,29 +37,14 @@ const SirenDetail = ({
 		<Box tag="main">
 			<Flex css={layoutStyle}>
 				<SirenTitle
-					member={member}
-					category={category}
-					title={title}
-					status={status}
-					createdDate={createdDate}
-					viewCount={viewCount}
+					sirenData={sirenData}
 					handleEditSiren={() => navigate(PATH.SIREN_EDIT(String(boardId)))}
 					handleDeleteSiren={handleDeleteSiren}
 				/>
 
 				<Divider />
 
-				<SirenContent
-					lostLocate={lostLocate}
-					petBreed={petBreed}
-					petGender={petGender}
-					lostDate={lostDate}
-					petAge={petAge}
-					contact={contact}
-					mediaList={mediaList}
-					content={content}
-					recommendCount={recommendCount}
-				/>
+				<SirenContent sirenData={sirenData} />
 			</Flex>
 
 			<Divider />
