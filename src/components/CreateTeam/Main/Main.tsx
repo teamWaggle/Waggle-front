@@ -13,12 +13,14 @@ import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 
 import {
 	colorTitleStyle,
+	contentTextareaStyle,
 	headingStyle,
 	leftArrowIconStyle,
 	submitButtonStyle,
 	teamContentBox,
 	textInputBoxStyle,
 	titleBoxStyle,
+	titleTextInputStyle,
 } from "@/components/CreateTeam/Main/Main.style";
 const schema = yup
 	.object({
@@ -55,11 +57,13 @@ const Main = () => {
 					<Form.ImageInputField name="coverImageUrl" />
 					<Flex css={textInputBoxStyle}>
 						<Form.TitleInputField
+							inputStyle={titleTextInputStyle}
 							placeholder={TEAM_TITLE.PLACEHOLDER}
 							name={TEAM_TITLE.NAME}
 							validateText={TEAM_TITLE.VALIDATE_TEXT()}
 						/>
 						<Form.ContentInputField
+							inputStyle={contentTextareaStyle}
 							placeholder={TEAM_CONTENT.PLACEHOLDER}
 							name={TEAM_CONTENT.NAME}
 							validateText={TEAM_CONTENT.VALIDATE_TEXT()}
