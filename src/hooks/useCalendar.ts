@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { addMonths, subMonths } from "date-fns";
 
+import { useReissueToken } from "@/hooks/api/auth/useReissueToken";
 import {
 	prefetchScheduleMonthly,
 	useGetMemberScheduleMonthly,
@@ -23,10 +24,11 @@ const useCalendar = () => {
 	const currentPrevYear = getCurrentYear(subMonths(currentDate, 1));
 	const currentPrevMonth = getCurrentMonth(subMonths(currentDate, 1));
 
-	const { data } = useGetMemberScheduleMonthly(currentYear, currentMonth);
+	const memberId = useReissueToken();
+	const { data } = useGetMemberScheduleMonthly(memberId, currentYear, currentMonth);
 
-	prefetchScheduleMonthly(currentNextYear, currentNextMonth);
-	prefetchScheduleMonthly(currentPrevYear, currentPrevMonth);
+	prefetchScheduleMonthly(memberId, currentNextYear, currentNextMonth);
+	prefetchScheduleMonthly(memberId, currentPrevYear, currentPrevMonth);
 
 	const { scheduleList } = data?.result ?? { scheduleList: [] };
 
