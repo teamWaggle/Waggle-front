@@ -76,7 +76,6 @@ const AppRouter = () => {
 						</Suspense>
 					),
 				},
-				{ path: "/team/:teamName", element: <TeamPage /> },
 				{
 					path: PATH.MY(":userUrl"),
 					element: (
