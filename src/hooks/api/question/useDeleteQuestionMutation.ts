@@ -4,6 +4,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { deleteQuestion } from "@/api/question/deleteQuestion";
 
+import { QUERY_KEYS } from "@/constants/queryKeys";
+
 export const useDeleteQuestionMutation = () => {
 	const queryClient = useQueryClient();
 
@@ -11,7 +13,7 @@ export const useDeleteQuestionMutation = () => {
 		mutationFn: deleteQuestion,
 		onSuccess: () => {
 			queryClient.invalidateQueries({
-				queryKey: ["questionList"],
+				queryKey: [QUERY_KEYS.QUESTION_LIST],
 			});
 		},
 		onError: () => {

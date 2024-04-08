@@ -4,16 +4,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { putQuestion } from "@/api/question/putQuestion";
 
+import { QUERY_KEYS } from "@/constants/queryKeys";
+
 export const usePutQuestionMutation = () => {
 	const queryClient = useQueryClient();
 
 	const putQuestionMutation = useMutation({
 		mutationFn: putQuestion,
 		onSuccess: () => {
-			console.log("question edit success");
-
 			queryClient.invalidateQueries({
-				queryKey: ["question"],
+				queryKey: [QUERY_KEYS.QUESTION],
 			});
 		},
 		onError: () => {
