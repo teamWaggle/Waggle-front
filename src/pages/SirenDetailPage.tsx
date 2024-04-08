@@ -15,38 +15,9 @@ const SirenDetailPage = () => {
 	return (
 		<>
 			{searchParams.get("mode") === "edit" ? (
-				<SirenEdit
-					boardId={sirenData.result.boardId}
-					title={sirenData.result.title}
-					category={sirenData.result.category}
-					lostLocate={sirenData.result.lostLocate}
-					lostDate={sirenData.result.lostDate}
-					petAge={sirenData.result.petAge}
-					petBreed={sirenData.result.petBreed}
-					petGender={sirenData.result.petGender}
-					contact={sirenData.result.contact}
-					content={sirenData.result.content}
-					mediaList={sirenData.result.mediaList}
-				/>
+				<SirenEdit sirenData={sirenData.result} />
 			) : (
-				<SirenDetail
-					boardId={sirenData.result.boardId}
-					title={sirenData.result.title}
-					category={sirenData.result.category}
-					lostLocate={sirenData.result.lostLocate}
-					lostDate={sirenData.result.lostDate}
-					petAge={sirenData.result.petAge}
-					petBreed={sirenData.result.petBreed}
-					petGender={sirenData.result.petGender}
-					contact={sirenData.result.contact}
-					content={sirenData.result.content}
-					mediaList={sirenData.result.mediaList}
-					member={sirenData.result.member}
-					createdDate={sirenData.result.createdDate}
-					viewCount={sirenData.result.viewCount}
-					recommendCount={sirenData.result.recommendCount}
-					status={sirenData.result.status}
-				/>
+				<SirenDetail sirenData={sirenData.result} />
 			)}
 		</>
 	);

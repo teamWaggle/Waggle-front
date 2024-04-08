@@ -5,8 +5,23 @@ export interface SirenType extends CommonResponseBaseType {
 	result: SirenResultType;
 }
 
-export interface SirenResultType extends SirenTitleType, SirenContentType {
+export interface SirenResultType {
 	boardId: number;
+	category: string;
+	status: string;
+	title: string;
+	member: MemberType;
+	createdDate: Date;
+	viewCount: number;
+	lostDate: string;
+	lostLocate: string;
+	content: string;
+	petBreed: string;
+	petAge: string;
+	petGender: string;
+	mediaList: string[];
+	contact: string;
+	recommendCount: number;
 }
 
 export interface SirenEditType {
@@ -24,24 +39,11 @@ export interface SirenEditType {
 }
 
 export interface SirenContentType {
-	lostDate: string;
-	lostLocate: string;
-	content: string;
-	petBreed: string;
-	petAge: string;
-	petGender: string;
-	mediaList: string[];
-	contact: string;
-	recommendCount: number;
+	sirenData: SirenResultType;
 }
 
 export interface SirenTitleType {
-	category: string;
-	status: string;
-	title: string;
-	member: MemberType;
-	createdDate: Date;
-	viewCount: number;
+	sirenData: SirenResultType;
 	handleEditSiren?: () => void;
 	handleDeleteSiren?: () => void;
 }

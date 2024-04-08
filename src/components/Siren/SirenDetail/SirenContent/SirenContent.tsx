@@ -12,17 +12,19 @@ import {
 	subTextStyle,
 } from "@/components/Siren/SirenDetail/SirenContent/SirenContent.style";
 
-const SirenContent = ({
-	lostLocate,
-	petBreed,
-	petGender,
-	lostDate,
-	petAge,
-	contact,
-	mediaList,
-	content,
-	recommendCount,
-}: SirenContentType) => {
+const SirenContent = ({ sirenData }: SirenContentType) => {
+	const {
+		lostLocate,
+		petBreed,
+		petGender,
+		lostDate,
+		petAge,
+		contact,
+		mediaList,
+		content,
+		recommendCount,
+	} = sirenData;
+
 	const sirenContentTitleData = [
 		{
 			title: "강아지 실종 장소",

@@ -10,16 +10,9 @@ import type { SirenTitleType } from "@/types/siren";
 
 import { titleBoxStyle } from "@/components/common/Post/Post.style";
 
-const SirenTitle = ({
-	category,
-	title,
-	member,
-	status,
-	createdDate,
-	viewCount,
-	handleEditSiren,
-	handleDeleteSiren,
-}: SirenTitleType) => {
+const SirenTitle = ({ sirenData, handleEditSiren, handleDeleteSiren }: SirenTitleType) => {
+	const { category, title, member, status, createdDate, viewCount } = sirenData;
+
 	const memberId = Number(localStorage.getItem("MEMBER_ID"));
 
 	return (
