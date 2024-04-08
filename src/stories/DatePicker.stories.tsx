@@ -25,12 +25,13 @@ type Story = StoryObj<typeof meta>;
 export const Calendar: Story = {
 	render: (args) => {
 		return (
-			<DatePicker {...args} formatType="date">
+			<DatePicker {...args}>
 				<DatePickerCalendarModal />
 			</DatePicker>
 		);
 	},
 	args: {
+		name: "startDate",
 		selectedDate: new Date(),
 		editSelectedDate: (date: Date) => console.log(date),
 	},
@@ -39,12 +40,13 @@ export const Calendar: Story = {
 export const Time: Story = {
 	render: (args) => {
 		return (
-			<DatePicker {...args} formatType="time">
+			<DatePicker {...args}>
 				<DatePickerTimeModal />
 			</DatePicker>
 		);
 	},
 	args: {
+		name: "startTime",
 		selectedDate: new Date(),
 		editSelectedDate: (date: Date) => console.log(date),
 	},

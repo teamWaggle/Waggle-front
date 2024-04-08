@@ -4,24 +4,28 @@ import type { SerializedStyles } from "@emotion/react";
 
 import { InputNotice } from "@/components/common";
 
-import { useControlledTextForm } from "@/hooks/useControlledTextForm";
+import { useControlledForm } from "@/hooks/useControlledForm";
 
 const TitleInputField = ({
 	name,
 	validateText,
 	placeholder,
 	inputStyle,
+	isInitialNotice = true,
 }: {
 	name: FieldPath<FieldValues>;
 	validateText: string;
 	placeholder: string;
 	inputStyle: SerializedStyles;
+	isInitialNotice?: boolean;
 }) => {
-	const { handleOnChange, isValid, errorMessage } = useControlledTextForm(name);
+	const { handleTextOnChange, isValid, errorMessage } = useControlledForm(name);
+	const message = isInitialNotice ? validateText : "";
+
 	return (
 		<>
-			<input css={inputStyle} type="text" onChange={handleOnChange} placeholder={placeholder} />
-			<InputNotice isValid={isValid} message={errorMessage || validateText} />
+			<input css={inputStyle} type="text" onChange={handleTextOnChange} placeholder={placeholder} />
+			<InputNotice message={errorMessage || message} isValid={isValid} />
 		</>
 	);
 };

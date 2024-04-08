@@ -6,6 +6,7 @@ import { Theme } from "@/styles/Theme";
 
 export const datePickerCalendarCardStyle = (day: Date | "", isSelected: boolean) =>
 	css({
+		display: "flex",
 		justifyContent: "center",
 		padding: "8px",
 		cursor: day ? "pointer" : "cursor",

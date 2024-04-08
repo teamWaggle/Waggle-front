@@ -2,13 +2,14 @@ import { useContext, useMemo, useRef } from "react";
 
 import ScheduleIcon from "@/assets/svg/schedule-icon.svg?react";
 
-import { DatePickerProvider } from "@/components/common/DatePicker/DatePicker";
+import { DatePickerContext } from "@/components/common/DatePicker/DatePicker";
 import Flex from "@/components/common/Design/Flex/Flex";
 import Text from "@/components/common/Design/Text/Text";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 
 import useClickOutSide from "@/hooks/useClickOutSide";
+import { useControlledForm } from "@/hooks/useControlledForm";
 
 import {
 	datePickerTriggerBoxStyle,
@@ -16,28 +17,24 @@ import {
 } from "@/components/common/DatePicker/DatePickerTrigger/DatePickerTrigger.style";
 
 const DatePickerTrigger = ({ children }: { children: React.ReactNode }) => {
-	const { selectedDate, modalClose, handleTriggerOnClick, formatType } =
-		useContext(DatePickerProvider);
+	const { modalClose, handleTriggerOnClick, name } = useContext(DatePickerContext);
 	const triggerRef = useRef(null);
+	const { field } = useControlledForm(name);
+	const today = new Date().setHours(0, 0, 0, 0);
 
 	const handleFormat = useMemo((): string => {
-		switch (formatType) {
-			case "time":
-				return "a h:mm";
-			case "date":
-				return "yyyy년 M월 d일";
-			default:
-				return "yyyy년 M월 d일";
+		if (name.indexOf("Time") > 0) {
+			return "a h:mm";
 		}
-	}, [formatType]);
-
+		return "yyyy년 M월 d일";
+	}, []);
+	const dateToFormat = field.value ? new Date(field.value) : today;
 	useClickOutSide(triggerRef, modalClose);
-
 	return (
 		<div ref={triggerRef}>
 			<Flex css={datePickerTriggerBoxStyle}>
 				<Text css={datePickerTriggerStyle} onClick={handleTriggerOnClick}>
-					{format(new Date(selectedDate), handleFormat, { locale: ko })}
+					{format(dateToFormat, handleFormat, { locale: ko })}
 					<ScheduleIcon style={{ marginLeft: "6px" }} />
 				</Text>
 				{children}

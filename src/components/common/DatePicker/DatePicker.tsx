@@ -1,12 +1,12 @@
 import { createContext } from "react";
+import type { FieldPath, FieldValues } from "react-hook-form";
 
 import DatePickerTrigger from "@/components/common/DatePicker/DatePickerTrigger/DatePickerTrigger";
 
 import useCalendar from "@/hooks/useCalendar";
 import useModalTrigger from "@/hooks/useModalTrigger";
 
-import type { DatePickerFormatType } from "@/types/planning";
-export const DatePickerProvider = createContext<{
+export const DatePickerContext = createContext<{
 	modalClose: () => void;
 	selectedDate: Date;
 	currentDate: Date;
@@ -16,7 +16,7 @@ export const DatePickerProvider = createContext<{
 	editSelectedDate: (date: Date) => void;
 	handleTriggerOnClick: () => void;
 	limitDate?: Date;
-	formatType: DatePickerFormatType | undefined;
+	name: FieldPath<FieldValues>;
 }>({
 	modalClose: () => {},
 	selectedDate: new Date(),
@@ -27,27 +27,28 @@ export const DatePickerProvider = createContext<{
 	editSelectedDate: () => {},
 	handleTriggerOnClick: () => {},
 	limitDate: new Date(),
-	formatType: undefined,
+	name: "",
 });
 const DatePicker = ({
 	selectedDate,
 	editSelectedDate,
 	children,
 	limitDate,
-	formatType,
+	name,
 }: {
 	selectedDate: Date;
 	editSelectedDate: (date: Date) => void;
 	children: React.ReactNode;
 	limitDate?: Date;
-	formatType?: DatePickerFormatType;
+	name: FieldPath<FieldValues>;
 }) => {
 	const { currentDate, editCurrentDate, handlePrevDate, handleNextDate } = useCalendar();
 	const { isTrigger, handleTriggerOnClick, modalClose } = useModalTrigger();
 
 	return (
-		<DatePickerProvider.Provider
+		<DatePickerContext.Provider
 			value={{
+				name,
 				modalClose,
 				currentDate,
 				editCurrentDate,
@@ -57,11 +58,10 @@ const DatePicker = ({
 				selectedDate,
 				handleTriggerOnClick,
 				limitDate,
-				formatType,
 			}}
 		>
 			<DatePickerTrigger>{isTrigger && children}</DatePickerTrigger>
-		</DatePickerProvider.Provider>
+		</DatePickerContext.Provider>
 	);
 };
 export default DatePicker;

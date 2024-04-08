@@ -37,5 +37,3 @@ export interface ScheduleResultType extends DefaultResultType {
 	scheduleList: Array<ScheduleType>;
 	scheduleCount: number;
 }
-
-export type DatePickerFormatType = "date" | "time";
