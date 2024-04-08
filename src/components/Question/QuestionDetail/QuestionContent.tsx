@@ -9,7 +9,7 @@ const QuestionContent = ({ content, mediaList, recommendCount }: QuestionContent
 		<Flex styles={{ direction: "column", margin: "60px 0", gap: "60px" }}>
 			<PostContent mediaList={mediaList} content={content} />
 
-			<PostRecommend isRecommend recommendCount={recommendCount} />
+			<PostRecommend recommendCount={recommendCount} />
 		</Flex>
 	);
 };
