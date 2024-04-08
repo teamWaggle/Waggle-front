@@ -64,6 +64,7 @@ export const addTeamScheduleModalTextAreaStyle = css({
 
 export const TeamScheduleModalAddButtonStyle = (color: TeamColorType) =>
 	css({
+		display: "flex",
 		padding: "6px 12px",
 		gap: "8px",
 		alignItems: "center",

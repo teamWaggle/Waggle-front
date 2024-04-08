@@ -1,16 +1,13 @@
+import type { FieldValues } from "react-hook-form";
+
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
-import {
-	Box,
-	DatePicker,
-	DatePickerCalendarModal,
-	DatePickerTimeModal,
-	Flex,
-	Heading,
-	Text,
-} from "@/components/common";
+import { Box, Flex, Form, Heading, Text } from "@/components/common";
+import * as yup from "yup";
 
-import useCalendar from "@/hooks/useCalendar";
+import { TEAM_SCHEDULE_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
+import { TEAM_CONTENT } from "@/constants/team";
+
 import useModal from "@/hooks/useModal";
 
 import {
@@ -24,11 +21,22 @@ import {
 	addTeamScheduleTitleCircleStyle,
 } from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal.style";
 
+const schema = yup.object({
+	title: TEAM_TITLE.RULES(),
+	content: TEAM_CONTENT.RULES(),
+	startDate: yup
+		.date()
+		.min(new Date(new Date().setHours(0, 0, 0, 0)), "시작일은 오늘 혹은 이후여야 합니다."),
+	endDate: yup.date().min(yup.ref("startDate"), "종료일은 시작일이거나 이후여야 합니다."),
+	startTime: yup.date(),
+	endTime: yup.date().min(yup.ref("startTime"), "종료시간은 시작시간 이후여야 합니다."),
+});
+
 const AddTeamScheduleModal = () => {
 	const { closeModal } = useModal();
-	const { selectedStartDate, selectedEndDate, editSelectedStartDate, editSelectedEndDate } =
-		useCalendar();
-	const handleAddSchedule = () => {
+
+	const onSubmit = async (data: FieldValues) => {
+		console.log(data);
 		closeModal();
 	};
 	return (
@@ -41,63 +49,52 @@ const AddTeamScheduleModal = () => {
 				<Heading size="medium">일정 추가</Heading>
 			</Box>
 			<Box css={addTeamScheduleModalContentBoxStyle}>
-				<Box style={{ marginBottom: "16px" }}>
-					<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
-						일정 이름
-					</Heading>
-					<input
-						placeholder="일정의 이름을 입력해주세요"
-						type="text"
-						css={addTeamScheduleModalInputStyle}
-					/>
-				</Box>
-				<Box style={{ marginBottom: "16px" }}>
-					<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
-						날짜
-					</Heading>
-					<Flex style={{ alignItems: "center", marginTop: "8px" }}>
-						<DatePicker selectedDate={selectedStartDate} editSelectedDate={editSelectedStartDate}>
-							<DatePickerCalendarModal />
-						</DatePicker>
-						~
-						<DatePicker selectedDate={selectedEndDate} editSelectedDate={editSelectedEndDate}>
-							<DatePickerCalendarModal />
-						</DatePicker>
+				<Form onSubmit={onSubmit} defaultValues={TEAM_SCHEDULE_DEFAULT_VALUES} schema={schema}>
+					<Box style={{ marginBottom: "16px" }}>
+						<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
+							일정 이름
+						</Heading>
+						<Form.TitleInputField
+							name="title"
+							validateText="한영 30자 제한, 특수문자 불가"
+							placeholder="일정의 이름을 입력해주세요"
+							inputStyle={addTeamScheduleModalInputStyle}
+						/>
+					</Box>
+					<Box style={{ marginBottom: "16px" }}>
+						<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
+							날짜
+						</Heading>
+						<Flex style={{ flexDirection: "column", marginTop: "8px" }}>
+							<Form.DateRangeInputField />
+						</Flex>
+					</Box>
+					<Box style={{ marginBottom: "16px" }}>
+						<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
+							시간
+						</Heading>
+						<Flex style={{ flexDirection: "column", marginTop: "8px" }}>
+							<Form.TimeRangeInputField />
+						</Flex>
+					</Box>
+					<Box style={{ marginBottom: "16px" }}>
+						<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
+							일정 설명
+						</Heading>
+						<Form.ContentInputField
+							name="content"
+							validateText="한영 200자 제한, 특수문자 불가"
+							placeholder="일정의 설명을 입력해주세요"
+							inputStyle={addTeamScheduleModalTextAreaStyle}
+						/>
+					</Box>
+					<Flex style={{ justifyContent: "end" }}>
+						<button type="submit" css={TeamScheduleModalAddButtonStyle("team_1")}>
+							<Text size="xSmall">일정 추가</Text>
+							<AddIcon />
+						</button>
 					</Flex>
-				</Box>
-				<Box style={{ marginBottom: "16px" }}>
-					<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
-						시간
-					</Heading>
-					<Flex style={{ alignItems: "center", marginTop: "8px" }}>
-						<DatePicker formatType="time" selectedDate={new Date()} editSelectedDate={() => {}}>
-							<DatePickerTimeModal />
-						</DatePicker>
-						<Text>~</Text>
-						<DatePicker formatType="time" selectedDate={new Date()} editSelectedDate={() => {}}>
-							<DatePickerTimeModal />
-						</DatePicker>
-					</Flex>
-				</Box>
-				<Box style={{ marginBottom: "16px" }}>
-					<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
-						일정 설명
-					</Heading>
-					<textarea
-						placeholder="일정의 설명을 입력해주세요"
-						css={addTeamScheduleModalTextAreaStyle}
-					/>
-				</Box>
-				<Flex style={{ justifyContent: "end" }}>
-					<Flex
-						tag="button"
-						css={TeamScheduleModalAddButtonStyle("team_1")}
-						onClick={handleAddSchedule}
-					>
-						<Text size="xSmall">일정 추가</Text>
-						<AddIcon />
-					</Flex>
-				</Flex>
+				</Form>
 			</Box>
 		</Flex>
 	);

@@ -28,7 +28,6 @@ const participatingMembers = ["안녕하ㄴㅇㄹㅇㅈ", "ade", "1", "2", "3", 
 
 const TeamInfo = () => {
 	const params = useParams();
-	console.log(params);
 	const teamId = Number(params.teamId);
 	const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId) || {};
 	const participatingMemberLength = participatingMembers.length;

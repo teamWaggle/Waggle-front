@@ -58,3 +58,22 @@ export const TEAM_CONTENT = {
 			.matches(REGEX.EXCEPT_SPECIAL, "특수문자는 입력할 수 없습니다.");
 	},
 };
+
+export const TEAM_SCHEDULE_DEFAULT_VALUES = {
+	title: "",
+	content: "",
+	startDate: new Date(),
+	endDate: new Date(),
+	startTime: new Date(new Date().setHours(0, 0, 0, 0)),
+	endTime: new Date(new Date().setHours(0, 15, 0, 0)),
+};
+
+export const TEAM_SCHEDULE_SEARCH_VALUES = {
+	startDate: "",
+	endDate: "",
+};
+
+// export const TEAM_SCHEDULE_TITLE = {
+// 	MAX_L
+
+// }

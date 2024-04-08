@@ -1,12 +1,24 @@
 import { Fragment, useState } from "react";
+import type { FieldValues } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
-import { Box, Flex, Heading, Text, DatePicker, DatePickerCalendarModal } from "@/components/common";
+import {
+	Box,
+	Flex,
+	Heading,
+	Text,
+	DatePicker,
+	DatePickerCalendarModal,
+	Form,
+} from "@/components/common";
 import Lock from "@/components/Team/TeamSchedule/Lock/Lock";
 import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal";
 import TeamScheduleCard from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard";
+import * as yup from "yup";
+
+import { TEAM_SCHEDULE_SEARCH_VALUES } from "@/constants/team";
 
 import { useTeamScheduleListPage } from "@/hooks/schedule/useTeamScheduleListPage";
 import useCalendar from "@/hooks/useCalendar";
@@ -45,6 +57,13 @@ const TeamSchedule = () => {
 			isOutsideClose: false,
 		});
 	};
+	const onSubmit = (data: FieldValues) => {
+		console.log(data);
+	};
+	const schema = yup.object({
+		startDate: yup.date(),
+		endDate: yup.date(),
+	});
 
 	return (
 		<>
@@ -55,21 +74,28 @@ const TeamSchedule = () => {
 							<Heading size="xLarge" css={teamScheduleTitleStyle}>
 								TEAM SCHEDULE
 							</Heading>
-							<Flex style={{ gap: "4px", alignItems: "center" }}>
-								<DatePicker
-									selectedDate={selectedStartDate}
-									editSelectedDate={editSelectedStartDate}
-								>
-									<DatePickerCalendarModal />
-								</DatePicker>
-								~
-								<DatePicker selectedDate={selectedEndDate} editSelectedDate={editSelectedEndDate}>
-									<DatePickerCalendarModal />
-								</DatePicker>
-								<Flex tag="button" css={teamScheduleSearchButtonStyle}>
-									<Text size="xSmall">일정 검색</Text>
+							<Form schema={schema} onSubmit={onSubmit} defaultValues={TEAM_SCHEDULE_SEARCH_VALUES}>
+								<Flex style={{ gap: "4px", alignItems: "center" }}>
+									<DatePicker
+										name="startDate"
+										selectedDate={selectedStartDate}
+										editSelectedDate={editSelectedStartDate}
+									>
+										<DatePickerCalendarModal />
+									</DatePicker>
+									~
+									<DatePicker
+										name="endDate"
+										selectedDate={selectedEndDate}
+										editSelectedDate={editSelectedEndDate}
+									>
+										<DatePickerCalendarModal />
+									</DatePicker>
+									<Flex tag="button" css={teamScheduleSearchButtonStyle}>
+										<Text size="xSmall">일정 검색</Text>
+									</Flex>
 								</Flex>
-							</Flex>
+							</Form>
 						</Flex>
 						<Flex
 							onClick={handleAddSchedule}

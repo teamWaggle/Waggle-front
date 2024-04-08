@@ -8,8 +8,12 @@ import { infomationStyle } from "@/components/common/InputNotice/InputNotice.sty
 const InputNotice = ({ isValid, message }: { isValid: boolean; message?: string }) => {
 	return (
 		<Flex css={infomationStyle(isValid)}>
-			<InfomationIcon />
-			<Text>{message}</Text>
+			{message && (
+				<>
+					<InfomationIcon />
+					<Text>{message}</Text>
+				</>
+			)}
 		</Flex>
 	);
 };
