@@ -14,6 +14,18 @@ export interface TeamCardType {
 	teamColor: TeamColorType;
 }
 
+export interface TeamInfoType extends TeamCardType {
+	leader: TeamMemberType;
+	teamMemberList: Array<TeamMemberType>;
+}
+
+export interface TeamMemberType {
+	memberId: number;
+	userUrl: string;
+	nickname: string;
+	profileImgUrl: string;
+}
+
 export type TeamColorType =
 	| "team_1"
 	| "team_2"
