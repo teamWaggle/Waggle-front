@@ -78,7 +78,7 @@ const SirenContent = ({ sirenData }: SirenContentType) => {
 
 			<PostContent mediaList={mediaList} content={content} />
 
-			<PostRecommend boardId={boardId} isRecommend recommendCount={recommendCount} />
+			<PostRecommend boardId={boardId} recommendCount={recommendCount} />
 		</Flex>
 	);
 };

@@ -3,18 +3,20 @@ import RecommendOnIcon from "@/assets/svg/ic-recommend-on.svg?react";
 
 import { Flex, Heading } from "@/components/common";
 
+import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
 import { usePostRecommend } from "@/hooks/api/recommend/usePostRecommend";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
 interface PostRecommendParams {
-	isRecommend: boolean;
 	recommendCount: number;
 	boardId: number;
 }
 
-const PostRecommend = ({ isRecommend, recommendCount, boardId }: PostRecommendParams) => {
+const PostRecommend = ({ recommendCount, boardId }: PostRecommendParams) => {
+	const isRecommend = useGetIsRecommend(boardId);
+
 	const { mutate: postRecommend } = usePostRecommend();
 
 	return (
