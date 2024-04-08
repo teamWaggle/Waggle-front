@@ -52,6 +52,7 @@ export const END_POINTS = {
 	GET_TEAM_SCHEDULE_PAGE: (teamId: number, currentPage?: number) =>
 		`/api/schedules/teams/${teamId}/page?currentPage=${currentPage}`,
 	TEAM_INFO: (teamId: number) => `/api/teams/${teamId}`,
+	RECOMMEND: (boardId: number) => `/api/recommends/${boardId}`,
 };
 
 export const HTTP_STATUS_CODE = {
