@@ -44,13 +44,16 @@ export const END_POINTS = {
 		`/api/sirens/member/${memberId}?currentPage=${currentPage}`,
 	MEMBER_QUESTION: (memberId: number, currentPage: number) =>
 		`/api/questions/mebmer/${memberId}?currentPage=${currentPage}`,
+
 	MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
 	MEMBER_SCHEDULES_MONTHLY: (memberId: number, year: number, month: number) =>
 		`/api/schedules/members/${memberId}/monthly?year=${year}&month=${month}`,
+	GET_TEAM_SCHEDULE_PAGE: (teamId: number, currentPage?: unknown) =>
+		`/api/schedules/teams/${teamId}/page?currentPage=${currentPage}`,
+	ADD_TEAM_SCHEDULE: (teamId: number) => `/api/schedules/${teamId}`,
+
 	MEMBER_TEAMS: (memberId: number) => `/api/teams/user/${memberId}/teams`,
 	CREATE_TEAM: "/api/teams",
-	GET_TEAM_SCHEDULE_PAGE: (teamId: number, currentPage?: number) =>
-		`/api/schedules/teams/${teamId}/page?currentPage=${currentPage}`,
 	TEAM_INFO: (teamId: number) => `/api/teams/${teamId}`,
 	RECOMMEND: (boardId: number) => `/api/recommends/${boardId}`,
 };

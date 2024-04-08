@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
@@ -7,8 +8,10 @@ import Lock from "@/components/Team/TeamSchedule/Lock/Lock";
 import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal";
 import TeamScheduleCard from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard";
 
+import { useTeamScheduleListPage } from "@/hooks/schedule/useTeamScheduleListPage";
 import useCalendar from "@/hooks/useCalendar";
 import useModal from "@/hooks/useModal";
+import useObserver from "@/hooks/useObserver";
 
 import {
 	teamScheduleAddButtonStyle,
@@ -19,8 +22,19 @@ import {
 } from "@/components/Team/TeamSchedule/TeamSchedule.style";
 
 const TeamSchedule = () => {
+	const params = useParams();
+	const teamId = Number(params.teamId);
 	const { openModal } = useModal();
 	const [isMember] = useState(true);
+	const { teamScheduleListData, fetchNextPage, hasNextPage, isFetching } =
+		useTeamScheduleListPage(teamId);
+	const ref = useObserver(async (entry, observer) => {
+		observer.unobserve(entry.target);
+
+		if (hasNextPage && !isFetching) {
+			fetchNextPage();
+		}
+	});
 	const { selectedStartDate, selectedEndDate, editSelectedStartDate, editSelectedEndDate } =
 		useCalendar();
 	const handleAddSchedule = () => {
@@ -67,13 +81,15 @@ const TeamSchedule = () => {
 						</Flex>
 					</Flex>
 					<Box css={teamScheduleGridBoxStyle}>
-						<TeamScheduleCard isActivate={true} startDate={new Date()} />
-						<TeamScheduleCard isActivate={false} startDate={new Date()} />
-						<TeamScheduleCard isActivate={true} startDate={new Date()} />
-						<TeamScheduleCard isActivate={true} startDate={new Date()} />
-						<TeamScheduleCard isActivate={false} startDate={new Date()} />
-						<TeamScheduleCard isActivate={true} startDate={new Date()} />
+						{teamScheduleListData?.pages.map((teamScheduleData, page) => (
+							<Fragment key={page}>
+								{teamScheduleData.result.scheduleList.map((teamSchedule) => (
+									<TeamScheduleCard key={teamSchedule.boardId} teamScheduleData={teamSchedule} />
+								))}
+							</Fragment>
+						))}
 					</Box>
+					<div ref={ref} />
 				</>
 			) : (
 				<Lock />
