@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom";
 
-// import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
+import { useRecoilValue } from "recoil";
+
+import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
 import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
 
 import { PATH } from "@/constants/path";
+
+import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -30,6 +36,10 @@ const QuestionCard = ({
 	status,
 	recommendCount,
 }: QuestionListInfoType) => {
+	const isLoggedIn = useRecoilValue(isLoggedInState);
+
+	const isRecommend = isLoggedIn ? useGetIsRecommend(boardId) : false;
+
 	const navigate = useNavigate();
 
 	return (
@@ -59,9 +69,8 @@ const QuestionCard = ({
 				</Text>
 			</Box>
 
-			<Flex css={iconStyle(true)}>
-				<LikeIcon />
-				{/* <DisLikeIcon /> */}
+			<Flex css={iconStyle(isRecommend)}>
+				{isRecommend ? <LikeIcon /> : <DisLikeIcon />}
 
 				<Text>{recommendCount}</Text>
 			</Flex>
