@@ -4,6 +4,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { putReply } from "@/api/reply/putReply";
 
+import { QUERY_KEYS } from "@/constants/queryKeys";
+
 export const useEditReplyMutation = () => {
 	const queryClient = useQueryClient();
 
@@ -11,7 +13,7 @@ export const useEditReplyMutation = () => {
 		mutationFn: putReply,
 		onSuccess: () => {
 			queryClient.invalidateQueries({
-				queryKey: ["reply"],
+				queryKey: [QUERY_KEYS.REPLY],
 			});
 		},
 		onError: () => {

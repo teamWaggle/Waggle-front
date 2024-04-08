@@ -4,6 +4,8 @@ import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 import { getMemberStory } from "@/api/member/getMemberStory";
 
+import { QUERY_KEYS } from "@/constants/queryKeys";
+
 import type { StoryListType } from "@/types/story";
 
 export const useMemberStoryQuery = (memberId: number) => {
@@ -13,7 +15,7 @@ export const useMemberStoryQuery = (memberId: number) => {
 		hasNextPage,
 		isFetching,
 	} = useSuspenseInfiniteQuery<StoryListType, AxiosError>({
-		queryKey: ["memberStory"],
+		queryKey: [QUERY_KEYS.MEMBER_STORY],
 		queryFn: ({ pageParam: currentPage }) => getMemberStory(memberId, currentPage),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage) => {

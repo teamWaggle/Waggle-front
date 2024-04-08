@@ -4,6 +4,8 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { getRepresentativeQuestion } from "@/api/question/getRepresentativeQuestion";
 
+import { QUERY_KEYS } from "@/constants/queryKeys";
+
 import type { QuestionRepresentativeType } from "@/types/question";
 
 export const useQuestionRepresentativeQuery = () => {
@@ -11,7 +13,7 @@ export const useQuestionRepresentativeQuery = () => {
 		QuestionRepresentativeType,
 		AxiosError
 	>({
-		queryKey: ["questionRepresentativeList"],
+		queryKey: [QUERY_KEYS.QUESTION_REPRESENTATIVE],
 		queryFn: () => getRepresentativeQuestion(),
 	});
 
