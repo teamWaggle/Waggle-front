@@ -10,7 +10,7 @@ import type { PetInfoType } from "@/types/pet";
 
 export const usePetQuery = (memberId: number) => {
 	const { data: petData } = useSuspenseQuery<PetInfoType, AxiosError>({
-		queryKey: [QUERY_KEYS.PET_INFO],
+		queryKey: [QUERY_KEYS.PET_INFO, memberId],
 		queryFn: () => getPetInfo(memberId),
 	});
 
