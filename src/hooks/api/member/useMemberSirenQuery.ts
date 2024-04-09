@@ -10,7 +10,7 @@ import type { SirenListType } from "@/types/siren";
 
 export const useMemberSirenQuery = (memberId: number, currentPage: number) => {
 	const { data: memberSirenData } = useSuspenseQuery<SirenListType, AxiosError>({
-		queryKey: [QUERY_KEYS.MEMBER_SIREN],
+		queryKey: [QUERY_KEYS.MEMBER_SIREN, memberId],
 		queryFn: () => getMemberSiren(memberId, currentPage),
 	});
 

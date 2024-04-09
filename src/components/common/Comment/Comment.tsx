@@ -17,6 +17,10 @@ import {
 const Comment = ({ boardId }: { boardId: number }) => {
 	const { commentData } = useCommentQuery(0, boardId);
 
+	// console.log(boardId);
+
+	// console.log(commentData);
+
 	const { mutate: postCommentMutation } = usePostCommentMutation();
 	const { mutate: editCommentMutation } = useEditCommentMutation();
 

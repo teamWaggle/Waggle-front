@@ -10,7 +10,7 @@ import type { SirenType } from "@/types/siren";
 
 export const useSirenQuery = (sirenId: number) => {
 	const { data: sirenData } = useSuspenseQuery<SirenType, AxiosError>({
-		queryKey: [QUERY_KEYS.SIREN],
+		queryKey: [QUERY_KEYS.SIREN, sirenId],
 		queryFn: () => getSiren(sirenId),
 	});
 

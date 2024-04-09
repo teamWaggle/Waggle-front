@@ -61,7 +61,7 @@ const SirenCard = ({ sirenInfo, isMyPage }: SirenCardParams) => {
 				<Text css={subStyle}>{lostLocate}</Text>
 
 				<Flex css={bottomBoxStyle}>
-					<Flex styles={{ gap: "6px" }}>
+					<Flex styles={{ gap: "6px", align: "center" }}>
 						{isRecommend ? (
 							<LikeIcon width={18} height={18} />
 						) : (

@@ -15,7 +15,7 @@ export const useMemberStoryQuery = (memberId: number) => {
 		hasNextPage,
 		isFetching,
 	} = useSuspenseInfiniteQuery<StoryListType, AxiosError>({
-		queryKey: [QUERY_KEYS.MEMBER_STORY],
+		queryKey: [QUERY_KEYS.MEMBER_STORY, memberId],
 		queryFn: ({ pageParam: currentPage }) => getMemberStory(memberId, currentPage),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage) => {
