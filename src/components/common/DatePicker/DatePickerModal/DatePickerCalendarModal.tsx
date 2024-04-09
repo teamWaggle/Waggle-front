@@ -1,11 +1,11 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useMemo } from "react";
 
 import LeftArrow from "@/assets/svg/sm-left-arrow.svg?react";
 import RightArrow from "@/assets/svg/sm-right-arrow.svg?react";
 
+import ModalContainer from "@/components/common/Container/ModalContainer/ModalContainer";
 import { DatePickerContext } from "@/components/common/DatePicker/DatePicker";
-import DatePickerCalendarCard from "@/components/common/DatePicker/DatePickerModal/Calendar/DatePickerCalendarCard/DatePickerCalendarCard";
-import ModalContainer from "@/components/common/DatePicker/DatePickerModal/ModalContainer";
+import DatePickerCalendarCard from "@/components/common/DatePicker/DatePickerModal/DatePickerCalendarCard/DatePickerCalendarCard";
 import Box from "@/components/common/Design/Box/Box";
 import Flex from "@/components/common/Design/Flex/Flex";
 import Text from "@/components/common/Design/Text/Text";
@@ -15,16 +15,12 @@ import {
 	datePickerCalendarBoxStyle,
 	datePickerCalendarTitleStyle,
 	datePickerModalTitleBoxStyle,
-} from "@/components/common/DatePicker/DatePickerModal/Calendar/DatePickerCalendarModal.style";
+} from "@/components/common/DatePicker/DatePickerModal/DatePickerCalendarModal.style";
 
 const weekday = ["일", "월", "화", "수", "목", "금", "토"];
 
 const DatePickerCalendarModal = () => {
-	const { currentDate, selectedDate, handlePrevDate, handleNextDate, editCurrentDate } =
-		useContext(DatePickerContext);
-	useEffect(() => {
-		editCurrentDate(selectedDate);
-	}, []);
+	const { currentDate, handlePrevDate, handleNextDate } = useContext(DatePickerContext);
 	const CalendarDateCards = useMemo(() => {
 		const monthStart = startOfMonth(currentDate);
 		const daysInMonth = getDaysInMonth(currentDate);

@@ -1,8 +1,8 @@
-import { useContext, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
+import type { FieldPath, FieldValues } from "react-hook-form";
 
 import ScheduleIcon from "@/assets/svg/schedule-icon.svg?react";
 
-import { DatePickerContext } from "@/components/common/DatePicker/DatePicker";
 import Flex from "@/components/common/Design/Flex/Flex";
 import Text from "@/components/common/Design/Text/Text";
 import { format } from "date-fns";
@@ -12,15 +12,23 @@ import useClickOutSide from "@/hooks/useClickOutSide";
 import { useControlledForm } from "@/hooks/useControlledForm";
 
 import {
-	datePickerTriggerBoxStyle,
-	datePickerTriggerStyle,
-} from "@/components/common/DatePicker/DatePickerTrigger/DatePickerTrigger.style";
+	PickerTriggerButtonBoxStyle,
+	PickerTriggerButtonStyle,
+} from "@/components/common/Button/PickerTriggerButton/PickerTriggerButton.style";
 
-const DatePickerTrigger = ({ children }: { children: React.ReactNode }) => {
-	const { modalClose, handleTriggerOnClick, name } = useContext(DatePickerContext);
+const PickerTriggerButton = ({
+	children,
+	modalClose,
+	handleTriggerOnClick,
+	name,
+}: {
+	children: React.ReactNode;
+	modalClose: () => void;
+	handleTriggerOnClick: () => void;
+	name: FieldPath<FieldValues>;
+}) => {
 	const triggerRef = useRef(null);
 	const { field } = useControlledForm(name);
-	const today = new Date().setHours(0, 0, 0, 0);
 
 	const handleFormat = useMemo((): string => {
 		if (name.indexOf("Time") > 0) {
@@ -28,12 +36,15 @@ const DatePickerTrigger = ({ children }: { children: React.ReactNode }) => {
 		}
 		return "yyyy년 M월 d일";
 	}, []);
+
+	const today = new Date().setHours(0, 0, 0, 0);
 	const dateToFormat = field.value ? new Date(field.value) : today;
+
 	useClickOutSide(triggerRef, modalClose);
 	return (
 		<div ref={triggerRef}>
-			<Flex css={datePickerTriggerBoxStyle}>
-				<Text css={datePickerTriggerStyle} onClick={handleTriggerOnClick}>
+			<Flex css={PickerTriggerButtonBoxStyle}>
+				<Text css={PickerTriggerButtonStyle} onClick={handleTriggerOnClick}>
 					{format(dateToFormat, handleFormat, { locale: ko })}
 					<ScheduleIcon style={{ marginLeft: "6px" }} />
 				</Text>
@@ -43,4 +54,4 @@ const DatePickerTrigger = ({ children }: { children: React.ReactNode }) => {
 	);
 };
 
-export default DatePickerTrigger;
+export default PickerTriggerButton;

@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
-export const DatePickerTimeCardBoxStyle = (day: string) =>
+export const TimePickerCardBoxStyle = (day: string) =>
 	css({
 		display: "flex",
 		height: "32px",

@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 
-import ModalContainer from "@/components/common/DatePicker/DatePickerModal/ModalContainer";
-import DatePickerTimeCard from "@/components/common/DatePicker/DatePickerModal/Time/DatePickerTimeCard/DatePickerTimeCard";
+import ModalContainer from "@/components/common/Container/ModalContainer/ModalContainer";
+import TimePickerCard from "@/components/common/TimePicker/TimePickerModal/TimePickerCard/TimePickerCard";
 import { addMinutes, format } from "date-fns";
 
-const DatePickerTimeModal = () => {
+const TimePickerModal = () => {
 	const generateTimeOptions = useMemo(() => {
 		const startTime = new Date();
 		startTime.setHours(0, 0, 0, 0); // 오후 6시로 설정
@@ -16,7 +16,7 @@ const DatePickerTimeModal = () => {
 			{ length: Math.ceil((endTime.getTime() - startTime.getTime()) / (15 * 60 * 1000)) },
 			(_, index) => {
 				const currentTime = addMinutes(startTime, index * 15);
-				return <DatePickerTimeCard key={format(currentTime, "HH:mm")} day={currentTime} />;
+				return <TimePickerCard key={format(currentTime, "HH:mm")} day={currentTime} />;
 			},
 		);
 		return timeOptions;
@@ -27,4 +27,4 @@ const DatePickerTimeModal = () => {
 		</ModalContainer>
 	);
 };
-export default DatePickerTimeModal;
+export default TimePickerModal;

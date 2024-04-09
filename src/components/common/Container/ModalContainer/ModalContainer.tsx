@@ -2,7 +2,7 @@ import Box from "@/components/common/Design/Box/Box";
 
 import type { BoxProps } from "@/components/common/Design/Box/Box";
 
-import { modalContainerStyle } from "@/components/common/DatePicker/DatePickerModal/ModalContainer.style";
+import { modalContainerStyle } from "@/components/common/Container/ModalContainer/ModalContainer.style";
 
 const ModalContainer = ({ children, ...props }: BoxProps) => {
 	return (

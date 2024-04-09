@@ -1,8 +1,8 @@
-import DatePicker from "@/components/common/DatePicker/DatePicker";
-import DatePickerTimeModal from "@/components/common/DatePicker/DatePickerModal/Time/DatePickerTimeModal";
 import Flex from "@/components/common/Design/Flex/Flex";
 import Text from "@/components/common/Design/Text/Text";
 import InputNotice from "@/components/common/InputNotice/InputNotice";
+import { TimePicker } from "@/components/common/TimePicker/TimePicker";
+import TimePickerModal from "@/components/common/TimePicker/TimePickerModal/TimePickerModal";
 
 import { useControlledForm } from "@/hooks/useControlledForm";
 
@@ -14,13 +14,13 @@ const TimeRangeInputField = ({ validateText }: { validateText?: string }) => {
 	return (
 		<>
 			<Flex style={{ alignItems: "center" }}>
-				<DatePicker name="startTime" selectedDate={new Date()} editSelectedDate={() => {}}>
-					<DatePickerTimeModal />
-				</DatePicker>
+				<TimePicker name="startTime">
+					<TimePickerModal />
+				</TimePicker>
 				<Text>~</Text>
-				<DatePicker selectedDate={new Date()} editSelectedDate={() => {}} name="endTime">
-					<DatePickerTimeModal />
-				</DatePicker>
+				<TimePicker name="endTime">
+					<TimePickerModal />
+				</TimePicker>
 			</Flex>
 			<InputNotice message={startTimeErrorMessage || validateText} isValid={startTimeValid} />
 			<InputNotice message={endTimeErrorMessage || validateText} isValid={endTimeeValid} />
