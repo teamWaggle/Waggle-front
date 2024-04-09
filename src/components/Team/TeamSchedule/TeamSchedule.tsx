@@ -21,7 +21,6 @@ import * as yup from "yup";
 import { TEAM_SCHEDULE_SEARCH_VALUES } from "@/constants/team";
 
 import { useTeamScheduleListPage } from "@/hooks/schedule/useTeamScheduleListPage";
-import useCalendar from "@/hooks/useCalendar";
 import useModal from "@/hooks/useModal";
 import useObserver from "@/hooks/useObserver";
 
@@ -47,8 +46,6 @@ const TeamSchedule = () => {
 			fetchNextPage();
 		}
 	});
-	const { selectedStartDate, selectedEndDate, editSelectedStartDate, editSelectedEndDate } =
-		useCalendar();
 	const handleAddSchedule = () => {
 		openModal({
 			key: "AddSchedule",
@@ -76,19 +73,11 @@ const TeamSchedule = () => {
 							</Heading>
 							<Form schema={schema} onSubmit={onSubmit} defaultValues={TEAM_SCHEDULE_SEARCH_VALUES}>
 								<Flex style={{ gap: "4px", alignItems: "center" }}>
-									<DatePicker
-										name="startDate"
-										selectedDate={selectedStartDate}
-										editSelectedDate={editSelectedStartDate}
-									>
+									<DatePicker name="startDate">
 										<DatePickerCalendarModal />
 									</DatePicker>
 									~
-									<DatePicker
-										name="endDate"
-										selectedDate={selectedEndDate}
-										editSelectedDate={editSelectedEndDate}
-									>
+									<DatePicker name="endDate">
 										<DatePickerCalendarModal />
 									</DatePicker>
 									<Flex tag="button" css={teamScheduleSearchButtonStyle}>

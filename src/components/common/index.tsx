@@ -1,7 +1,6 @@
 import MainContainer from "@/components/common/Container/MainContainer/MainContainer";
 import DatePicker from "@/components/common/DatePicker/DatePicker";
-import DatePickerCalendarModal from "@/components/common/DatePicker/DatePickerModal/Calendar/DatePickerCalendarModal";
-import DatePickerTimeModal from "@/components/common/DatePicker/DatePickerModal/Time/DatePickerTimeModal";
+import DatePickerCalendarModal from "@/components/common/DatePicker/DatePickerModal/DatePickerCalendarModal";
 import Box from "@/components/common/Design/Box/Box";
 import Carousel from "@/components/common/Design/Carousel/Carousel";
 import Divider from "@/components/common/Design/Divider/Divider";
@@ -20,6 +19,7 @@ import Logo from "@/components/common/Logo";
 import SearchInput from "@/components/common/SearchInput/SearchInput";
 import Slider from "@/components/common/Slider/Slider";
 import SocialLogin from "@/components/common/SocialLogin";
+import DatePickerTimeModal from "@/components/common/TimePicker/TimePickerModal/TimePickerModal";
 
 export {
 	Box,
