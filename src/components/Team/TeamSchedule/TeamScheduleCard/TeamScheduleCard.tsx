@@ -1,4 +1,7 @@
 import { Box, Flex, Heading, Text } from "@/components/common";
+import { format } from "date-fns";
+
+import { getTeamScheduleStatus } from "@/utils/getTeamScheduleStatus";
 
 import type { TeamScheduleType } from "@/types/schedule";
 
@@ -11,19 +14,23 @@ import {
 } from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard.style";
 
 const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamScheduleType }) => {
-	const { teamColor, title, startDate, endDate, status = true } = teamScheduleData;
+	const { teamColor, title, startDate, endDate, status } = teamScheduleData;
+	const scheduleStatusString = getTeamScheduleStatus(status);
+
 	return (
 		<Box css={teamScheduleCardBoxStyle}>
 			<Flex css={teamScheduleCardHeaderBoxStyle}>
 				<Heading style={{ textOverflow: "ellipsis" }} size="xSmall">
 					{title}
 				</Heading>
-				<Flex css={teamScheduleCardStatusBoxStyle(true)}>{status ? "진행중" : "마감"}</Flex>
+				<Flex css={teamScheduleCardStatusBoxStyle(status !== "CLOSING")}>
+					{scheduleStatusString}
+				</Flex>
 			</Flex>
-			<Text>{startDate} ~</Text>
-			<Text>{endDate}</Text>
+			<Text>{format(startDate, "yyyy년 M월 dd일 a HH:mm")}</Text>
+			<Text>{format(endDate, "yyyy년 M월 dd일 a HH:mm")}</Text>
 			<Flex style={{ alignItems: "center", justifyContent: "space-between" }}>
-				{status && (
+				{status !== "CLOSING" && (
 					<>
 						<Flex style={{ alignItems: "center" }}>
 							겹치는 일정 <Text css={teamScheduleOverlapCount(teamColor)}>0</Text>

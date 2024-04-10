@@ -16,9 +16,11 @@ export interface TeamScheduleType {
 	startDate: string;
 	endDate: string;
 	createdDate: string;
-	status: string;
+	status: TeamScheduleStatusType;
 	member: Array<TeamMemberType>;
 }
+
+export type TeamScheduleStatusType = "IN_PROGRESS" | "UPCOMING" | "CLOSING";
 
 interface TeamScheduleResultType {
 	scheduleList: Array<TeamScheduleType>;
