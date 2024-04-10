@@ -1,5 +1,4 @@
 import DatePicker from "@/components/common/DatePicker/DatePicker";
-import DatePickerCalendarModal from "@/components/common/DatePicker/DatePickerModal/DatePickerCalendarModal";
 import Flex from "@/components/common/Design/Flex/Flex";
 import InputNotice from "@/components/common/InputNotice/InputNotice";
 
@@ -14,11 +13,11 @@ const DateRangeInputField = () => {
 		<>
 			<Flex style={{ alignItems: "center" }}>
 				<DatePicker name="startDate">
-					<DatePickerCalendarModal />
+					<DatePicker.Modal />
 				</DatePicker>
 				~
 				<DatePicker name="endDate">
-					<DatePickerCalendarModal />
+					<DatePicker.Modal />
 				</DatePicker>
 			</Flex>
 			<InputNotice message={startDateErrorMessage} isValid={startDateValid} />

@@ -2,7 +2,6 @@ import Flex from "@/components/common/Design/Flex/Flex";
 import Text from "@/components/common/Design/Text/Text";
 import InputNotice from "@/components/common/InputNotice/InputNotice";
 import { TimePicker } from "@/components/common/TimePicker/TimePicker";
-import TimePickerModal from "@/components/common/TimePicker/TimePickerModal/TimePickerModal";
 
 import { useControlledForm } from "@/hooks/useControlledForm";
 
@@ -15,11 +14,11 @@ const TimeRangeInputField = ({ validateText }: { validateText?: string }) => {
 		<>
 			<Flex style={{ alignItems: "center" }}>
 				<TimePicker name="startTime">
-					<TimePickerModal />
+					<TimePicker.Modal />
 				</TimePicker>
 				<Text>~</Text>
 				<TimePicker name="endTime">
-					<TimePickerModal />
+					<TimePicker.Modal />
 				</TimePicker>
 			</Flex>
 			<InputNotice message={startTimeErrorMessage || validateText} isValid={startTimeValid} />
