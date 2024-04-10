@@ -19,8 +19,8 @@ import Logo from "@/components/common/Logo";
 import SearchInput from "@/components/common/SearchInput/SearchInput";
 import Slider from "@/components/common/Slider/Slider";
 import SocialLogin from "@/components/common/SocialLogin";
+import { TimePicker } from "@/components/common/TimePicker/TimePicker";
 import DatePickerTimeModal from "@/components/common/TimePicker/TimePickerModal/TimePickerModal";
-
 export {
 	Box,
 	Carousel,
@@ -44,4 +44,5 @@ export {
 	Slider,
 	Form,
 	InputNotice,
+	TimePicker,
 };

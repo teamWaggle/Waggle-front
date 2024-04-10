@@ -2,6 +2,7 @@ import { createContext } from "react";
 import type { FieldPath, FieldValues } from "react-hook-form";
 
 import PickerTriggerButton from "@/components/common/Button/PickerTriggerButton/PickerTriggerButton";
+import TimePickerModal from "@/components/common/TimePicker/TimePickerModal/TimePickerModal";
 
 import useModalTrigger from "@/hooks/useModalTrigger";
 
@@ -38,3 +39,5 @@ export const TimePicker = ({
 		</TimePickerContext.Provider>
 	);
 };
+
+TimePicker.Modal = TimePickerModal;
