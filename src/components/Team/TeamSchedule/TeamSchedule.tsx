@@ -82,6 +82,9 @@ const TeamSchedule = () => {
 									<Flex tag="button" css={teamScheduleSearchButtonStyle}>
 										<Text size="xSmall">일정 검색</Text>
 									</Flex>
+									<Flex tag="button" css={teamScheduleSearchButtonStyle}>
+										<Text size="xSmall">초기화</Text>
+									</Flex>
 								</Flex>
 							</Form>
 						</Flex>
