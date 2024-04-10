@@ -37,6 +37,7 @@ const AddTeamScheduleModal = () => {
 
 	const onSubmit = async (data: FieldValues) => {
 		console.log(data);
+
 		closeModal();
 	};
 	return (

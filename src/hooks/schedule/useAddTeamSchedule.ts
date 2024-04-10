@@ -4,9 +4,12 @@ import { addTeamSchedule } from "@/api/schedule/addTeamSchedule";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
 
-import type { TeamScheduleInputType } from "@/types/schedule";
+import type { TeamScheduleDateTimeType, TeamScheduleInputType } from "@/types/schedule";
 
-export const useAddTeamSchedule = (teamId: number, teamScheduleInput: TeamScheduleInputType) => {
+export const useAddTeamSchedule = (
+	teamId: number,
+	teamScheduleInput: TeamScheduleInputType<TeamScheduleDateTimeType>,
+) => {
 	return useMutation({
 		mutationKey: [QUERY_KEYS.ADD_TEAM_SCHEDULE(teamId)],
 		mutationFn: () => addTeamSchedule(teamId, teamScheduleInput),

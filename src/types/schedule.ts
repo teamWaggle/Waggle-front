@@ -25,11 +25,13 @@ interface TeamScheduleResultType {
 	nextPageParam: number;
 }
 
-export interface TeamScheduleInputType {
+export type TeamScheduleDateTimeType = string;
+
+export interface TeamScheduleInputType<T> {
 	title: string;
 	content: string;
-	startDate: string;
-	endDate: string;
-	startTime: string;
-	endTime: string;
+	startDate: T;
+	endDate: T;
+	startTime: T;
+	endTime: T;
 }

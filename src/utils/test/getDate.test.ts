@@ -21,7 +21,7 @@ describe("getDate 테스트", () => {
 	});
 	it("getyyyyMMdd 테스트", () => {
 		const date = new Date("2021-07-01");
-		const { getyyyyMMdd } = getDate();
-		expect(getyyyyMMdd(date)).toBe("2021-07-01");
+		const { getYearMonthDay } = getDate();
+		expect(getYearMonthDay(date)).toBe("2021-07-01");
 	});
 });
