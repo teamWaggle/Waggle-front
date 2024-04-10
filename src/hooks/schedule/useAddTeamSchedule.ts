@@ -1,17 +1,18 @@
-import { useMutation } from "@tanstack/react-query";
+import type { FieldValues } from "react-hook-form";
+
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { addTeamSchedule } from "@/api/schedule/addTeamSchedule";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
 
-import type { TeamScheduleDateTimeType, TeamScheduleInputType } from "@/types/schedule";
-
-export const useAddTeamSchedule = (
-	teamId: number,
-	teamScheduleInput: TeamScheduleInputType<TeamScheduleDateTimeType>,
-) => {
+export const useAddTeamSchedule = (teamId: number) => {
+	const queryClient = useQueryClient();
 	return useMutation({
-		mutationKey: [QUERY_KEYS.ADD_TEAM_SCHEDULE(teamId)],
-		mutationFn: () => addTeamSchedule(teamId, teamScheduleInput),
+		mutationKey: [QUERY_KEYS.ADD_TEAM_SCHEDULE, { teamId }],
+		mutationFn: (teamScheduleInput: FieldValues) => addTeamSchedule(teamId, teamScheduleInput),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEAM_SCHEDULE_PAGE, { teamId }] });
+		},
 	});
 };

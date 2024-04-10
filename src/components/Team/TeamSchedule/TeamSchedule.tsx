@@ -1,6 +1,5 @@
 import { Fragment, useState } from "react";
 import type { FieldValues } from "react-hook-form";
-import { useParams } from "react-router-dom";
 
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
@@ -23,6 +22,7 @@ import { TEAM_SCHEDULE_SEARCH_VALUES } from "@/constants/team";
 import { useTeamScheduleListPage } from "@/hooks/schedule/useTeamScheduleListPage";
 import useModal from "@/hooks/useModal";
 import useObserver from "@/hooks/useObserver";
+import { useParamsTeamId } from "@/hooks/useParamsTeamId";
 
 import {
 	teamScheduleAddButtonStyle,
@@ -33,8 +33,7 @@ import {
 } from "@/components/Team/TeamSchedule/TeamSchedule.style";
 
 const TeamSchedule = () => {
-	const params = useParams();
-	const teamId = Number(params.teamId);
+	const teamId = useParamsTeamId();
 	const { openModal } = useModal();
 	const [isMember] = useState(true);
 	const { teamScheduleListData, fetchNextPage, hasNextPage, isFetching } =
@@ -49,7 +48,7 @@ const TeamSchedule = () => {
 	const handleAddSchedule = () => {
 		openModal({
 			key: "AddSchedule",
-			component: () => <AddTeamScheduleModal />,
+			component: () => <AddTeamScheduleModal teamId={teamId} />,
 			isWhiteIcon: true,
 			isOutsideClose: false,
 		});

@@ -15,7 +15,7 @@ export const useTeamScheduleListPage = (teamId: number) => {
 		hasNextPage,
 		isFetching,
 	} = useInfiniteQuery<TeamScheduleInfoType, AxiosError>({
-		queryKey: [QUERY_KEYS.TEAM_SCHEDULE_PAGE(teamId)],
+		queryKey: [QUERY_KEYS.TEAM_SCHEDULE_PAGE, { teamId }],
 		queryFn: ({ pageParam }) => getTeamScheduleListPage(teamId, pageParam),
 		enabled: !!teamId,
 		initialPageParam: 0,
