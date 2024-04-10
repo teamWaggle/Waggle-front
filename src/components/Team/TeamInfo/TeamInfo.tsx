@@ -1,5 +1,3 @@
-import { useParams } from "react-router-dom";
-
 import GroupIcon from "@/assets/svg/group.svg?react";
 import LeftArrowIcon from "@/assets/svg/sm-left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/sm-right-arrow.svg?react";
@@ -11,6 +9,7 @@ import ParticipationCard from "@/components/Team/TeamInfo/ParticipationSlider/Pa
 import { TEAM_INFO } from "@/constants/team";
 
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
+import { useParamsTeamId } from "@/hooks/useParamsTeamId";
 
 import {
 	leftArrowIconStyle,
@@ -27,8 +26,7 @@ import {
 const participatingMembers = ["안녕하ㄴㅇㄹㅇㅈ", "ade", "1", "2", "3", "4", "5", "6", "7", "8"];
 
 const TeamInfo = () => {
-	const params = useParams();
-	const teamId = Number(params.teamId);
+	const teamId = useParamsTeamId();
 	const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId) || {};
 	const participatingMemberLength = participatingMembers.length;
 	return (

@@ -1,10 +1,10 @@
+import type { FieldValues } from "react-hook-form";
+
 import { getDate } from "@/utils/getDate";
 
-import type { TeamScheduleDateTimeType, TeamScheduleInputType } from "@/types/schedule";
-
-export const convertToTeamScheduleDataFormat = (teamScheduleData: TeamScheduleInputType<Date>) => {
+export const convertToTeamScheduleDataFormat = (teamScheduleData: FieldValues) => {
 	const { getYearMonthDay, getTime } = getDate();
-	const convertedTeamScheduleData: TeamScheduleInputType<Date | TeamScheduleDateTimeType> = {
+	const convertedTeamScheduleData = {
 		...teamScheduleData,
 	};
 	convertedTeamScheduleData.startDate = getYearMonthDay(teamScheduleData.startDate);

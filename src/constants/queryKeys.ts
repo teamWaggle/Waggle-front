@@ -1,5 +1,6 @@
 export const QUERY_KEYS = {
 	//auth
+	// 문자열만 넣을 것
 	REISSUE_TOKEN: "reissueToken",
 
 	STORY: "story",
@@ -27,11 +28,11 @@ export const QUERY_KEYS = {
 	RECOMMEND: "recommend",
 
 	SCHEDULE: "schedule",
-	SCHEDULE_MONTHLY: (year: number, month: number) => `schedule/${year}/${month}`,
-	ADD_TEAM_SCHEDULE: (teamId: number) => `addTeamSchedule/${teamId}`,
+	SCHEDULE_MONTHLY: "scheduleMonthly",
+	ADD_TEAM_SCHEDULE: "addTeamSchedule",
 
 	MEMBER_TEAMS: "memberTeams",
-	TEAM_INFO: (teamId: number) => `teamInfo/${teamId}`,
+	TEAM_INFO: "teamInfo",
 
-	TEAM_SCHEDULE_PAGE: (teamId: number) => `teamSchedule/${teamId}`,
+	TEAM_SCHEDULE_PAGE: "teamSchedule",
 };

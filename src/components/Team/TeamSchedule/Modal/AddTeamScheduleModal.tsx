@@ -8,7 +8,10 @@ import * as yup from "yup";
 import { TEAM_SCHEDULE_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
 import { TEAM_CONTENT } from "@/constants/team";
 
+import { useAddTeamSchedule } from "@/hooks/schedule/useAddTeamSchedule";
 import useModal from "@/hooks/useModal";
+
+import { convertToTeamScheduleDataFormat } from "@/utils/convertToTeamScheduleDataFormat";
 
 import {
 	TeamScheduleModalAddButtonStyle,
@@ -32,13 +35,19 @@ const schema = yup.object({
 	endTime: yup.date().min(yup.ref("startTime"), "종료시간은 시작시간 이후여야 합니다."),
 });
 
-const AddTeamScheduleModal = () => {
+const AddTeamScheduleModal = ({ teamId }: { teamId: number }) => {
 	const { closeModal } = useModal();
+
+	const { mutate: addTeamSchedule } = useAddTeamSchedule(teamId);
 
 	const onSubmit = async (data: FieldValues) => {
 		console.log(data);
-
-		closeModal();
+		const convertedTeamScheduleData = convertToTeamScheduleDataFormat(data);
+		addTeamSchedule(convertedTeamScheduleData, {
+			onSuccess: () => {
+				closeModal();
+			},
+		});
 	};
 	return (
 		<Flex css={addTeamScheduleModalBoxStyle}>
