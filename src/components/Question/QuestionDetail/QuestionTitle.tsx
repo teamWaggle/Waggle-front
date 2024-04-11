@@ -11,15 +11,12 @@ import type { QuestionTitleType } from "@/types/question";
 import { titleBoxStyle, keywordBoxStyle } from "@/components/common/Post/Post.style";
 
 const QuestionTitle = ({
-	status,
-	title,
-	hashtagList,
-	member,
-	viewCount,
-	createdDate,
+	questionData,
 	handleEditQuestion,
 	handleDeleteQuestion,
 }: QuestionTitleType) => {
+	const { status, title, hashtagList, member, viewCount, createdDate } = questionData;
+
 	const memberId = Number(localStorage.getItem("MEMBER_ID"));
 
 	return (

@@ -8,7 +8,7 @@ import type { QuestionType } from "@/types/question";
 
 export const useQuestionQuery = (questionId: number) => {
 	const { data: questionData } = useSuspenseQuery<QuestionType, AxiosError>({
-		queryKey: ["question"],
+		queryKey: ["question", questionId],
 		queryFn: () => getQuestion(questionId),
 	});
 

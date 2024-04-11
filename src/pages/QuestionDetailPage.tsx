@@ -15,26 +15,9 @@ const QuestionDetailPage = () => {
 	return (
 		<>
 			{searchParams.get("mode") === "edit" ? (
-				<QuestionEdit
-					boardId={questionData.result.boardId}
-					title={questionData.result.title}
-					content={questionData.result.content}
-					hashtagList={questionData.result.hashtagList}
-					mediaList={questionData.result.mediaList}
-				/>
+				<QuestionEdit questionData={questionData.result} />
 			) : (
-				<QuestionDetail
-					boardId={questionData.result.boardId}
-					title={questionData.result.title}
-					content={questionData.result.content}
-					hashtagList={questionData.result.hashtagList}
-					mediaList={questionData.result.mediaList}
-					member={questionData.result.member}
-					viewCount={questionData.result.viewCount}
-					createdDate={questionData.result.createdDate}
-					recommendCount={questionData.result.recommendCount}
-					status={questionData.result.status}
-				/>
+				<QuestionDetail questionData={questionData.result} />
 			)}
 		</>
 	);

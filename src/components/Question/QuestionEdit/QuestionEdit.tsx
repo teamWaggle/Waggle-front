@@ -7,7 +7,7 @@ import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import type { QuestionEditType } from "@/types/question";
+import type { QuestionDataType } from "@/types/question";
 
 import {
 	layoutStyle,
@@ -15,7 +15,9 @@ import {
 	buttonBoxStyle,
 } from "@/components/Siren/SirenUpload/SirenUpload.style";
 
-const QuestionEdit = ({ boardId, title, content, mediaList, hashtagList }: QuestionEditType) => {
+const QuestionEdit = ({ questionData }: QuestionDataType) => {
+	const { boardId, title, content, mediaList, hashtagList } = questionData;
+
 	const { questionRequest, updateInputValue, handleSubmit } = useAddQuestionForm({
 		questionId: boardId,
 		initialData: {

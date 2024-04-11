@@ -8,7 +8,7 @@ import type { CommonResponseResultBooleanType } from "@/types/common";
 
 export const useGetIsRecommend = (boardId: number) => {
 	const { data: recommendData } = useSuspenseQuery<CommonResponseResultBooleanType, AxiosError>({
-		queryKey: ["recommend"],
+		queryKey: ["recommend", boardId],
 		queryFn: () => getRecommend(boardId),
 	});
 

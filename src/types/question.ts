@@ -5,33 +5,27 @@ export interface QuestionType extends CommonResponseBaseType {
 	result: QuestionResultType;
 }
 
-export interface QuestionResultType extends QuestionTitleType, QuestionContentType {
+export interface QuestionResultType {
 	boardId: number;
-}
-
-export interface QuestionTitleType {
-	status: string;
 	title: string;
+	content: string;
 	hashtagList: string[];
+	mediaList: string[];
+	recommendCount: number;
 	member: MemberType;
 	viewCount: number;
 	createdDate: Date;
+	status: string;
+}
+
+export interface QuestionTitleType {
+	questionData: QuestionResultType;
 	handleEditQuestion?: () => void;
 	handleDeleteQuestion?: () => void;
 }
 
-export interface QuestionEditType {
-	boardId: number;
-	title: string;
-	content: string;
-	hashtagList: string[];
-	mediaList: string[];
-}
-
-export interface QuestionContentType {
-	content: string;
-	recommendCount: number;
-	mediaList: string[];
+export interface QuestionDataType {
+	questionData: QuestionResultType;
 }
 
 export interface QuestionListType extends CommonResponseBaseType {
