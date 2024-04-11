@@ -1,3 +1,0 @@
-export const PLANNING = {
-	PLANNING_MYTEAM_SLIDER_AMOUNT: 4,
-};
