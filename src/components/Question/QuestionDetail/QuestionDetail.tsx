@@ -8,6 +8,7 @@ import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
 
 import { PATH } from "@/constants/path";
 
+import { useDeleteQuestionMutation } from "@/hooks/api/question/useDeleteQuestionMutation";
 import useModal from "@/hooks/useModal";
 
 import type { QuestionResultType } from "@/types/question";
@@ -26,14 +27,24 @@ const QuestionDetail = ({
 	recommendCount,
 	status,
 }: QuestionResultType) => {
+	const { mutate: deleteQuestionMutae } = useDeleteQuestionMutation();
+
 	const navigate = useNavigate();
 
 	const modal = useModal();
 
+	const deleteMutate = () => {
+		deleteQuestionMutae(boardId, {
+			onSuccess: () => {
+				window.location.href = PATH.QUESTION;
+			},
+		});
+	};
+
 	const handleDeleteQuestion = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={boardId} target="question" />,
+			component: () => <DeleteWarningModal handleDelete={deleteMutate} />,
 			notCloseIcon: true,
 		});
 	};

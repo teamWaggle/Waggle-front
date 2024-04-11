@@ -5,6 +5,7 @@ import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningMo
 import Reply from "@/components/Story/StoryComment/Reply/Reply";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
+import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -26,15 +27,24 @@ const Comment = ({
 	createdDate,
 	handleEditClick,
 }: CommentListInfoType) => {
+	const { mutate: deleteCommentMutate } = useDeleteCommentMutation();
+
 	const [replyOpen, setReplyOpen] = useState(false);
 
 	const modal = useModal();
 
+	const deleteMutate = () => {
+		deleteCommentMutate(commentId, {
+			onSuccess: () => {
+				modal.selectCloseModal(`DeleteWarningModal`);
+			},
+		});
+	};
+
 	const handleDeleteComment = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={commentId} target="comment" />,
-			isUpper: true,
+			component: () => <DeleteWarningModal targetText="댓글" handleDelete={deleteMutate} />,
 			notCloseIcon: true,
 		});
 	};

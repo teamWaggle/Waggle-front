@@ -2,6 +2,7 @@ import { Flex, Box, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
+import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import useModal from "@/hooks/useModal";
 
 import { convertToUTC } from "@/utils/convertToUTC";
@@ -20,13 +21,22 @@ const ReplyItem = ({
 	createdDate,
 	handleReplyEditClick,
 }: ReplyListInfoType) => {
+	const { mutate: deleteReplyMutate } = useDeleteRelpyMutation();
+
 	const modal = useModal();
+
+	const deleteMutate = () => {
+		deleteReplyMutate(replyId, {
+			onSuccess: () => {
+				modal.selectCloseModal(`DeleteWarningModal`);
+			},
+		});
+	};
 
 	const handleDeleteReply = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={replyId} target="reply" />,
-			isUpper: true,
+			component: () => <DeleteWarningModal targetText="답글" handleDelete={deleteMutate} />,
 			notCloseIcon: true,
 		});
 	};

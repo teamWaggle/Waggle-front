@@ -8,6 +8,7 @@ import Reply from "@/components/common/Comment/Reply/Reply";
 import ReplyInput from "@/components/common/Comment/Reply/ReplyInput";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 
+import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
 import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
 import useClickOutSide from "@/hooks/useClickOutSide";
@@ -34,6 +35,8 @@ const CommentCard = ({
 	member,
 	handleEditClick,
 }: CommentListInfoType) => {
+	const { mutate: deleteCommentMutate } = useDeleteCommentMutation();
+
 	const { replyData } = useReplyQuery(0, commentId);
 
 	const { mutate: editReplyMutation } = useEditReplyMutation();
@@ -55,10 +58,18 @@ const CommentCard = ({
 
 	useClickOutSide(menuRef, () => setMenuOpen(false));
 
+	const deleteMutate = () => {
+		deleteCommentMutate(commentId, {
+			onSuccess: () => {
+				modal.selectCloseModal(`DeleteWarningModal`);
+			},
+		});
+	};
+
 	const handleDeleteComment = useCallback(() => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={commentId} target="comment" />,
+			component: () => <DeleteWarningModal targetText="댓글" handleDelete={deleteMutate} />,
 			notCloseIcon: true,
 		});
 	}, []);

@@ -5,6 +5,7 @@ import OptionIcon from "@/assets/svg/option.svg?react";
 import { Flex, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 
+import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import useClickOutSide from "@/hooks/useClickOutSide";
 import useModal from "@/hooks/useModal";
 
@@ -25,6 +26,8 @@ const Reply = ({
 	member,
 	handleReplyEditClick,
 }: ReplyListInfoType) => {
+	const { mutate: deleteReplyMutate } = useDeleteRelpyMutation();
+
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const menuRef = useRef<HTMLUListElement>(null);
@@ -35,10 +38,18 @@ const Reply = ({
 
 	useClickOutSide(menuRef, () => setMenuOpen(false));
 
+	const deleteMutate = () => {
+		deleteReplyMutate(replyId, {
+			onSuccess: () => {
+				modal.selectCloseModal(`DeleteWarningModal`);
+			},
+		});
+	};
+
 	const handleDeleteReply = useCallback(() => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={replyId} target="reply" />,
+			component: () => <DeleteWarningModal targetText="답글" handleDelete={deleteMutate} />,
 			notCloseIcon: true,
 		});
 	}, []);
