@@ -7,30 +7,17 @@ import StoryMedia from "@/components/Story/StoryDetailModal/StoryMedia/StoryMedi
 
 import { Theme } from "@/styles/Theme";
 
-import type { StoryResultType } from "@/types/story";
+import type { StoryDataType } from "@/types/story";
 
-const StoryDetailModal = ({
-	boardId,
-	content,
-	hashtagList,
-	mediaList,
-	member,
-	createdDate,
-	recommendCount,
-}: StoryResultType) => {
+const StoryDetailModal = ({ storyData }: StoryDataType) => {
+	const { boardId, mediaList, recommendCount } = storyData;
+
 	return (
 		<Flex css={layoutStyle}>
 			<StoryMedia mediaList={mediaList} />
 
 			<Flex styles={{ direction: "column" }}>
-				<StoryContent
-					boardId={boardId}
-					member={member}
-					content={content}
-					createdDate={createdDate}
-					mediaList={mediaList}
-					hashtagList={hashtagList}
-				/>
+				<StoryContent storyData={storyData} />
 
 				<StoryComment boardId={boardId} recommendCount={recommendCount} />
 			</Flex>

@@ -13,26 +13,12 @@ import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
-import type { MemberType } from "@/types/auth";
+import type { StoryDataType } from "@/types/story";
 
-interface StoryContentParams {
-	boardId: number;
-	member: MemberType;
-	content: string;
-	createdDate: string | Date;
-	mediaList: string[];
-	hashtagList: string[];
-}
-
-const StoryContent = ({
-	boardId,
-	member,
-	content,
-	createdDate,
-	mediaList,
-	hashtagList,
-}: StoryContentParams) => {
+const StoryContent = ({ storyData }: StoryDataType) => {
 	const { mutate: deleteStoryMutate } = useDeleteStoryMutation();
+
+	const { boardId, member, content, createdDate, mediaList, hashtagList } = storyData;
 
 	const modal = useModal();
 

@@ -8,7 +8,7 @@ import type { StoryType } from "@/types/story";
 
 export const useStoryQuery = (boardId: number) => {
 	const { data: storyData } = useSuspenseQuery<StoryType, AxiosError>({
-		queryKey: ["story"],
+		queryKey: ["story", boardId],
 		queryFn: () => getStory(boardId),
 	});
 
