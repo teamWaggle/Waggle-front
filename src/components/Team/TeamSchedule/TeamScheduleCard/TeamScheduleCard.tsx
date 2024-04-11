@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Text } from "@/components/common";
 import { format } from "date-fns";
+import { ko } from "date-fns/locale";
 
 import { getTeamScheduleStatus } from "@/utils/getTeamScheduleStatus";
 
@@ -27,8 +28,12 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
 					{scheduleStatusString}
 				</Flex>
 			</Flex>
-			<Text>{format(startDate, "yyyy년 M월 dd일 a HH:mm")}</Text>
-			<Text>{format(endDate, "yyyy년 M월 dd일 a HH:mm")}</Text>
+			<Text>
+				{format(startDate, "yyyy년 M월 d일")} ~ {format(endDate, "yyyy년 M월 d일")}
+			</Text>
+			<Text>
+				{format(startDate, "a h:mm", { locale: ko })} ~ {format(endDate, "a h:mm", { locale: ko })}
+			</Text>
 			<Flex style={{ alignItems: "center", justifyContent: "space-between" }}>
 				{status !== "CLOSING" && (
 					<>

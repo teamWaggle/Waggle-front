@@ -73,7 +73,7 @@ const AddTeamScheduleModal = ({ teamId }: { teamId: number }) => {
 					</Box>
 					<Box style={{ marginBottom: "16px" }}>
 						<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
-							날짜
+							기간
 						</Heading>
 						<Flex style={{ flexDirection: "column", marginTop: "8px" }}>
 							<Form.DateRangeInputField />
@@ -81,7 +81,7 @@ const AddTeamScheduleModal = ({ teamId }: { teamId: number }) => {
 					</Box>
 					<Box style={{ marginBottom: "16px" }}>
 						<Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
-							시간
+							반복 시간
 						</Heading>
 						<Flex style={{ flexDirection: "column", marginTop: "8px" }}>
 							<Form.TimeRangeInputField />
