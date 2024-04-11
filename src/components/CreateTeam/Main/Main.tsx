@@ -30,7 +30,7 @@ const schema = yup
 const Main = () => {
 	const navigate = useNavigate();
 	const { mutate: createTeamMutate } = useCreateTeam();
-	const { convertToMediaUrl, uploadMedia } = useSingleImgUpload();
+	const { convertToMediaUrl, uploadMedia } = useSingleImgUpload({});
 
 	const onSubmit = async (data: FieldValues) => {
 		const formData = new FormData();
