@@ -13,113 +13,114 @@
     ],
     "rules": {
       "@typescript-eslint/consistent-type-imports": "error",
-      "import/order":[
-        "error",
-          {
-            "groups": [
-              "builtin",
-              "external",
-              "internal",
-              ["sibling", "parent", "index"],
-              "type",
-              "unknown"
-            ],
-            "pathGroups": [
-              {
-                "pattern": "{react*,react*/*}",
-                "group": "external",
-                "position": "before"
-              },
-              {
-                "pattern": "{axios*,axios*/*}",
-                "group": "external",
-                "position": "before"
-              },
-              {
-                "pattern": "{@emotion*,@emotion*/*}",
-                "group": "external",
-                "position": "before"
-              },
-              {
-                "pattern": "{recoil*,recoil*/*}",
-                "group": "external",
-                "position": "before"
-              },
-              {
-                "pattern": "{@storybook*,@storybook*/*}",
-                "group": "external",
-                "position": "before"
-              },
-              {
-                "pattern": "{@tanstack*,@tanstack*/*}",
-                "group": "external",
-                "position": "before"
-              },
-              {
-                "pattern": "@/assets/**/*",
-                "group": "internal",
-                "position": "before"
-              },
-              {
-                "pattern": "@/api/**/*",
-                "group": "type",
-                "position": "before"
-              },
-              {
-                "pattern": "@/constants/**/*",
-                "group": "type",
-                "position": "before"
-              },
-              {
-                "pattern": "@/hooks/**/*",
-                "group": "type",
-                "position": "before"
-              },
-              {
-                "pattern": "@/pages/**/*",
-                "group": "type",
-                "position": "before"
-              },
-              {
-                "pattern": "@/recoil/**/*",
-                "group": "type",
-                "position": "before"
-              },
-              {
-                "pattern": "@/styles/**/*",
-                "group": "type",
-                "position": "before"
-              },
-              {
-                "pattern": "@/utils/**/*",
-                "group": "type",
-                "position": "before"
-              },
-              {
-                "pattern": "@/pages/**/*.style",
-                "group": "unknown"
-              },
-              {
-                "pattern": "@/components/**/*.style",
-                "group": "unknown"
-              },
-              {
-                "pattern": "../**/*.style",
-                "group": "unknown"
-              },
-              {
-                "pattern": "./**/*.style",
-                "group": "unknown"
-              }
-            ],
-            "pathGroupsExcludedImportTypes": ["react", "unknown"],
-            "alphabetize": {
-              "order": "asc",
-              "caseInsensitive": true
-            },
-            "newlines-between": "always"
-          }
-        ]
+      "import/order": "off"
+      // "import/order":[
+      //   "error",
+      //     {
+      //       "groups": [
+      //         "builtin",
+      //         "external",
+      //         "internal",
+      //         ["sibling", "parent", "index"],
+      //         "type",
+      //         "unknown"
+      //       ],
+      //       "pathGroups": [
+      //         {
+      //           "pattern": "{react*,react*/*}",
+      //           "group": "external",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "{axios*,axios*/*}",
+      //           "group": "external",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "{@emotion*,@emotion*/*}",
+      //           "group": "external",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "{recoil*,recoil*/*}",
+      //           "group": "external",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "{@storybook*,@storybook*/*}",
+      //           "group": "external",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "{@tanstack*,@tanstack*/*}",
+      //           "group": "external",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "@/assets/**/*",
+      //           "group": "internal",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "@/api/**/*",
+      //           "group": "type",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "@/constants/**/*",
+      //           "group": "type",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "@/hooks/**/*",
+      //           "group": "type",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "@/pages/**/*",
+      //           "group": "type",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "@/recoil/**/*",
+      //           "group": "type",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "@/styles/**/*",
+      //           "group": "type",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "@/utils/**/*",
+      //           "group": "type",
+      //           "position": "before"
+      //         },
+      //         {
+      //           "pattern": "@/pages/**/*.style",
+      //           "group": "unknown"
+      //         },
+      //         {
+      //           "pattern": "@/components/**/*.style",
+      //           "group": "unknown"
+      //         },
+      //         {
+      //           "pattern": "../**/*.style",
+      //           "group": "unknown"
+      //         },
+      //         {
+      //           "pattern": "./**/*.style",
+      //           "group": "unknown"
+      //         }
+      //       ],
+      //       "pathGroupsExcludedImportTypes": ["react", "unknown"],
+      //       "alphabetize": {
+      //         "order": "asc",
+      //         "caseInsensitive": true
+      //       },
+      //       "newlines-between": "always"
+      //     }
+      //   ]
     },
     "settings": {
       "import/parsers": {

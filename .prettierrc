@@ -1,9 +1,18 @@
 {
+  "endOfLine": "auto",
   "singleQuote": false,
-  "parser": "typescript",
-  "semi": true,
   "tabWidth": 2,
-  "trailingComma": "all",
-  "useTabs": true,
-  "printWidth": 100
+  "printWidth": 100,
+  "semi": true,
+  "importOrder": [
+    "^@/utils/(.*)$",
+    "^@/api/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/pages/(.*)$",
+    "^@/components/(.*)$",
+    "^@/styles/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
