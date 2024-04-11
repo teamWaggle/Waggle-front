@@ -12,6 +12,11 @@ export const usePostRecommend = () => {
 		onSuccess: () => {
 			console.log("recommend");
 			queryClient.invalidateQueries({ queryKey: ["siren"] });
+			queryClient.invalidateQueries({ queryKey: ["question"] });
+			queryClient.invalidateQueries({ queryKey: ["questionList"] });
+			queryClient.invalidateQueries({ queryKey: ["sirenList"] });
+			queryClient.invalidateQueries({ queryKey: ["sirenRepresentativeList"] });
+			queryClient.invalidateQueries({ queryKey: ["questionRepresentativeList"] });
 			queryClient.invalidateQueries({ queryKey: ["recommend"] });
 		},
 		onError: () => {

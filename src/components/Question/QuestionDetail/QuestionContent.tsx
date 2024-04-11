@@ -2,14 +2,16 @@ import { Flex } from "@/components/common";
 import PostContent from "@/components/common/Post/PostContent";
 import PostRecommend from "@/components/common/Post/PostRecommend";
 
-import type { QuestionContentType } from "@/types/question";
+import type { QuestionDataType } from "@/types/question";
 
-const QuestionContent = ({ content, mediaList, recommendCount }: QuestionContentType) => {
+const QuestionContent = ({ questionData }: QuestionDataType) => {
+	const { boardId, content, mediaList, recommendCount } = questionData;
+
 	return (
 		<Flex styles={{ direction: "column", margin: "60px 0", gap: "60px" }}>
 			<PostContent mediaList={mediaList} content={content} />
 
-			<PostRecommend recommendCount={recommendCount} />
+			<PostRecommend boardId={boardId} recommendCount={recommendCount} />
 		</Flex>
 	);
 };

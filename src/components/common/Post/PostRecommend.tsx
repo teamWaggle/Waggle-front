@@ -1,3 +1,5 @@
+import { useRecoilValue } from "recoil";
+
 import RecommendOffIcon from "@/assets/svg/ic-recommend-off.svg?react";
 import RecommendOnIcon from "@/assets/svg/ic-recommend-on.svg?react";
 
@@ -5,6 +7,8 @@ import { Flex, Heading } from "@/components/common";
 
 import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
 import { usePostRecommend } from "@/hooks/api/recommend/usePostRecommend";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -15,7 +19,9 @@ interface PostRecommendParams {
 }
 
 const PostRecommend = ({ recommendCount, boardId }: PostRecommendParams) => {
-	const isRecommend = useGetIsRecommend(boardId);
+	const isLoggedIn = useRecoilValue(isLoggedInState);
+
+	const isRecommend = isLoggedIn ? useGetIsRecommend(boardId) : false;
 
 	const { mutate: postRecommend } = usePostRecommend();
 
@@ -23,9 +29,9 @@ const PostRecommend = ({ recommendCount, boardId }: PostRecommendParams) => {
 		<Flex styles={{ align: "center", justify: "center", width: "100%" }}>
 			<Flex styles={{ align: "center", gap: "22px" }}>
 				{isRecommend ? (
-					<RecommendOnIcon onClick={() => postRecommend(boardId)} />
+					<RecommendOnIcon onClick={() => isLoggedIn && postRecommend(boardId)} />
 				) : (
-					<RecommendOffIcon onClick={() => postRecommend(boardId)} />
+					<RecommendOffIcon onClick={() => isLoggedIn && postRecommend(boardId)} />
 				)}
 
 				<Heading
