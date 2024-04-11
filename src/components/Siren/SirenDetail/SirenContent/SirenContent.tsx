@@ -5,14 +5,14 @@ import { Flex, Box, Text, Divider } from "@/components/common";
 import PostContent from "@/components/common/Post/PostContent";
 import PostRecommend from "@/components/common/Post/PostRecommend";
 
-import type { SirenContentType } from "@/types/siren";
+import type { SirenDataType } from "@/types/siren";
 
 import {
 	textStyle,
 	subTextStyle,
 } from "@/components/Siren/SirenDetail/SirenContent/SirenContent.style";
 
-const SirenContent = ({ sirenData }: SirenContentType) => {
+const SirenContent = ({ sirenData }: SirenDataType) => {
 	const {
 		boardId,
 		lostLocate,

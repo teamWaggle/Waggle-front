@@ -12,17 +12,13 @@ import { Theme } from "@/styles/Theme";
 
 import { generateTagStyle, generateTagCategory } from "@/utils/generateTag";
 
-import type { SirenEditType } from "@/types/siren";
+import type { SirenDataType } from "@/types/siren";
 
 import { tagStyle } from "@/components/common/Tag/Tag.style";
 import { layoutStyle, inputStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
 import { buttonBoxStyle } from "@/components/Siren/SirenUpload/SirenUpload.style";
 
-interface SirenEditParams {
-	sirenData: SirenEditType;
-}
-
-const SirenEdit = ({ sirenData }: SirenEditParams) => {
+const SirenEdit = ({ sirenData }: SirenDataType) => {
 	const {
 		boardId,
 		category,

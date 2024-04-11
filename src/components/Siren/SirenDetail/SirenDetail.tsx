@@ -11,15 +11,11 @@ import { PATH } from "@/constants/path";
 import { useDeleteSirenMutation } from "@/hooks/api/siren/useDeleteSirenMutation";
 import useModal from "@/hooks/useModal";
 
-import type { SirenResultType } from "@/types/siren";
+import type { SirenDataType } from "@/types/siren";
 
 import { layoutStyle } from "@/components/common/Post/Post.style";
 
-interface SirenDetailParams {
-	sirenData: SirenResultType;
-}
-
-const SirenDetail = ({ sirenData }: SirenDetailParams) => {
+const SirenDetail = ({ sirenData }: SirenDataType) => {
 	const { mutate: deleteSirenMutate } = useDeleteSirenMutation();
 
 	const navigate = useNavigate();

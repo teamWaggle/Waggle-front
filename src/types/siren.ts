@@ -24,26 +24,11 @@ export interface SirenResultType {
 	recommendCount: number;
 }
 
-export interface SirenEditType {
-	boardId: number;
-	title: string;
-	category: string;
-	lostDate: string;
-	lostLocate: string;
-	content: string;
-	petBreed: string;
-	petAge: string;
-	petGender: string;
-	mediaList: string[];
-	contact: string;
-}
-
-export interface SirenContentType {
+export interface SirenDataType {
 	sirenData: SirenResultType;
 }
 
-export interface SirenTitleType {
-	sirenData: SirenResultType;
+export interface SirenTitleType extends SirenDataType {
 	handleEditSiren?: () => void;
 	handleDeleteSiren?: () => void;
 }

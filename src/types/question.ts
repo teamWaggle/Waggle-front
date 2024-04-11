@@ -18,8 +18,7 @@ export interface QuestionResultType {
 	status: string;
 }
 
-export interface QuestionTitleType {
-	questionData: QuestionResultType;
+export interface QuestionTitleType extends QuestionDataType {
 	handleEditQuestion?: () => void;
 	handleDeleteQuestion?: () => void;
 }
