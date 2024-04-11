@@ -6,6 +6,7 @@ import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import PetAddModal from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal";
 
+import { useDeletePetMutation } from "@/hooks/api/pet/useDeletePetMutation";
 import useModal from "@/hooks/useModal";
 
 import type { PetResultType } from "@/types/pet";
@@ -16,12 +17,18 @@ import {
 } from "@/components/MyPage/MyPageMain/MyPagePetCard/MyPagePetCard.style";
 
 const MyPagePetCard = ({ profileImgUrl, gender, name, petId, isOwner }: PetResultType) => {
+	const { mutate: deletePetMutate } = useDeletePetMutation();
+
 	const modal = useModal();
+
+	const deleteMutate = () => {
+		deletePetMutate(petId);
+	};
 
 	const handleDeletePet = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={petId} target="pet" />,
+			component: () => <DeleteWarningModal targetText="반려견" handleDelete={deleteMutate} />,
 			notCloseIcon: true,
 		});
 	};

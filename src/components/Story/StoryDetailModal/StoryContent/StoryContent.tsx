@@ -5,6 +5,7 @@ import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningMo
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 import StoryUploadModal from "@/components/Story/StoryUploadModal/StoryUploadModal";
 
+import { useDeleteStoryMutation } from "@/hooks/api/story/useDeleteStoryMutation";
 import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -31,12 +32,22 @@ const StoryContent = ({
 	mediaList,
 	hashtagList,
 }: StoryContentParams) => {
+	const { mutate: deleteStoryMutate } = useDeleteStoryMutation();
+
 	const modal = useModal();
+
+	const deleteMutate = () => {
+		deleteStoryMutate(boardId, {
+			onSuccess: () => {
+				modal.closeModal();
+			},
+		});
+	};
 
 	const handleDeleteStory = () => {
 		modal.openModal({
 			key: `DeleteWarningModal`,
-			component: () => <DeleteWarningModal targetId={boardId} target="story" />,
+			component: () => <DeleteWarningModal handleDelete={deleteMutate} />,
 			isUpper: true,
 			notCloseIcon: true,
 		});
