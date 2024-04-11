@@ -10,13 +10,13 @@ export const usePostRecommend = () => {
 	const postRecommendMutation = useMutation({
 		mutationFn: postRecommend,
 		onSuccess: () => {
-			console.log("recommend");
 			queryClient.invalidateQueries({ queryKey: ["siren"] });
 			queryClient.invalidateQueries({ queryKey: ["question"] });
 			queryClient.invalidateQueries({ queryKey: ["questionList"] });
 			queryClient.invalidateQueries({ queryKey: ["sirenList"] });
 			queryClient.invalidateQueries({ queryKey: ["sirenRepresentativeList"] });
 			queryClient.invalidateQueries({ queryKey: ["questionRepresentativeList"] });
+			queryClient.invalidateQueries({ queryKey: ["story"] });
 			queryClient.invalidateQueries({ queryKey: ["recommend"] });
 		},
 		onError: () => {

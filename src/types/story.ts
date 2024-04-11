@@ -18,6 +18,10 @@ export interface StoryResultType {
 	recommendCount: number;
 }
 
+export interface StoryDataType {
+	storyData: StoryResultType;
+}
+
 export interface StoryListType extends CommonResponseBaseType {
 	result: StoryListResultType;
 }

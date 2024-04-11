@@ -62,7 +62,11 @@ const SirenCard = ({ sirenInfo, isMyPage }: SirenCardParams) => {
 
 				<Flex css={bottomBoxStyle}>
 					<Flex styles={{ gap: "6px" }}>
-						{isRecommend ? <LikeIcon width={18} /> : <DisLikeIcon width={18} />}
+						{isRecommend ? (
+							<LikeIcon width={18} height={18} />
+						) : (
+							<DisLikeIcon width={18} height={18} />
+						)}
 
 						<Text size="xSmall" css={textStyle(isRecommend)}>
 							{recommendCount}
