@@ -1,6 +1,6 @@
 {
   "name": "waggle-design-system",
-  "version": "1.2.3",
+  "version": "1.2.9",
   "description": "Waggle 디자인 시스템",
   "homepage": "https://github.com/teamWaggle/Waggle-Design-System",
   "main": "dist/index.js",
