@@ -8113,6 +8113,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-react-require@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "babel-plugin-react-require@npm:4.0.2"
+  checksum: b3d205f201cf0433ffab3f4d92f5701c577e52184463a42c388bff2bac39d97356f4aab7fd50cac4541d0829eda17cc9cd963076627cae09f691abbabf4dad1d
+  languageName: node
+  linkType: hard
+
 "babel-plugin-transform-react-remove-prop-types@npm:^0.4.24":
   version: 0.4.24
   resolution: "babel-plugin-transform-react-remove-prop-types@npm:0.4.24"
@@ -19368,6 +19375,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^6.8.0"
     "@typescript-eslint/parser": "npm:^6.8.0"
     babel-loader: "npm:^9.1.3"
+    babel-plugin-react-require: "npm:^4.0.2"
     eslint: "npm:8.2.0"
     eslint-config-prettier: "npm:^9.0.0"
     eslint-config-react-app: "npm:^7.0.1"
