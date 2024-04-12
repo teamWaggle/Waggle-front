@@ -19344,6 +19344,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"waggle-design-system@npm:1.2.7":
+  version: 1.2.7
+  resolution: "waggle-design-system@npm:1.2.7"
+  dependencies:
+    "@emotion/babel-plugin": "npm:^11.11.0"
+    "@emotion/react": "npm:^11.11.1"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+  checksum: b378f7de9dc320d4193d7cf99f7f0f5e896cdbce2ff44b4cb4a6dc330882ec47efaf8c12ac6ab219bca90019aa7cdc1d25672df9e1168d1a1b87aac1dae53d29
+  languageName: node
+  linkType: hard
+
 "waggle-design-system@workspace:packages/waggle-design-system":
   version: 0.0.0-use.local
   resolution: "waggle-design-system@workspace:packages/waggle-design-system"
@@ -19461,6 +19473,7 @@ __metadata:
     vite-plugin-svgr: "npm:^4.1.0"
     vite-tsconfig-paths: "npm:^4.2.1"
     vitest: "npm:^1.3.1"
+    waggle-design-system: "npm:1.2.7"
     yup: "npm:^1.4.0"
   languageName: unknown
   linkType: soft

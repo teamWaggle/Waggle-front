@@ -8,6 +8,7 @@
     },
     "scripts": {
         "build:design-system": "yarn workspace waggle-design-system publish:npm",
+        "build:waggle-service": "yarn workspace waggle-service build",
         "lint": "eslint ./packages/*/src/**/*.{ts,tsx,js,jsx}",
         "lint:fix": "eslint --fix ./packages/*/src/**/*.{ts,tsx,js,jsx}",
         "postinstall": "husky install"

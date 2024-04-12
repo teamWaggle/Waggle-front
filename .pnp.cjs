@@ -5358,6 +5358,27 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
+      ["virtual:b522905a6949a8807e29982350ceaf07e32a2421704df65299364f28f063ae71a425fd1c963a30b661080dd26505fe0bbd173cdbf50cf287d75b8dbc275bc904#npm:11.11.4", {\
+        "packageLocation": "./.yarn/__virtual__/@emotion-react-virtual-7c87cf1a4c/0/cache/@emotion-react-npm-11.11.4-52eda8b8fe-6df892fd9e.zip/node_modules/@emotion/react/",\
+        "packageDependencies": [\
+          ["@emotion/react", "virtual:b522905a6949a8807e29982350ceaf07e32a2421704df65299364f28f063ae71a425fd1c963a30b661080dd26505fe0bbd173cdbf50cf287d75b8dbc275bc904#npm:11.11.4"],\
+          ["@babel/runtime", "npm:7.24.4"],\
+          ["@emotion/babel-plugin", "npm:11.11.0"],\
+          ["@emotion/cache", "npm:11.11.0"],\
+          ["@emotion/serialize", "npm:1.1.4"],\
+          ["@emotion/use-insertion-effect-with-fallbacks", "virtual:7c87cf1a4ceff9ac3d01049c5a9054573899957b9c662ac79d64c9db2579bf5c16c27b9976ec5e7b7dcd2b7d86c84250b3b0b07350a3db392f200d8bedb4019b#npm:1.0.1"],\
+          ["@emotion/utils", "npm:1.2.1"],\
+          ["@emotion/weak-memoize", "npm:0.3.1"],\
+          ["@types/react", null],\
+          ["hoist-non-react-statics", "npm:3.3.2"],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["virtual:b87f6af78ce16849aedde052ee423fdb48db75040312d2f2f93643746fda40898388a71122eecbc567a8f0db83e07d16cfbcff4bf55d6765bb068cd7a28711f9#npm:11.11.4", {\
         "packageLocation": "./.yarn/__virtual__/@emotion-react-virtual-e67799cb74/0/cache/@emotion-react-npm-11.11.4-52eda8b8fe-6df892fd9e.zip/node_modules/@emotion/react/",\
         "packageDependencies": [\
@@ -5458,6 +5479,19 @@ const RAW_RUNTIME_STATE =
           ["@emotion/use-insertion-effect-with-fallbacks", "npm:1.0.1"]\
         ],\
         "linkType": "SOFT"\
+      }],\
+      ["virtual:7c87cf1a4ceff9ac3d01049c5a9054573899957b9c662ac79d64c9db2579bf5c16c27b9976ec5e7b7dcd2b7d86c84250b3b0b07350a3db392f200d8bedb4019b#npm:1.0.1", {\
+        "packageLocation": "./.yarn/__virtual__/@emotion-use-insertion-effect-with-fallbacks-virtual-bbccf5d7f0/0/cache/@emotion-use-insertion-effect-with-fallbacks-npm-1.0.1-730758c66c-a15b216794.zip/node_modules/@emotion/use-insertion-effect-with-fallbacks/",\
+        "packageDependencies": [\
+          ["@emotion/use-insertion-effect-with-fallbacks", "virtual:7c87cf1a4ceff9ac3d01049c5a9054573899957b9c662ac79d64c9db2579bf5c16c27b9976ec5e7b7dcd2b7d86c84250b3b0b07350a3db392f200d8bedb4019b#npm:1.0.1"],\
+          ["@types/react", null],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
       }],\
       ["virtual:e58c224f0c5b45531e06cd56503561fa31a7b8760339fd9f994a43037a01173326699584c64b8c286bb17d1dc30c3c7ae6c62334bf26a90daa0244659a72c9b0#npm:1.0.1", {\
         "packageLocation": "./.yarn/__virtual__/@emotion-use-insertion-effect-with-fallbacks-virtual-d0ae54d660/0/cache/@emotion-use-insertion-effect-with-fallbacks-npm-1.0.1-730758c66c-a15b216794.zip/node_modules/@emotion/use-insertion-effect-with-fallbacks/",\
@@ -27880,6 +27914,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["waggle-design-system", [\
+      ["npm:1.2.7", {\
+        "packageLocation": "./.yarn/cache/waggle-design-system-npm-1.2.7-b522905a69-b378f7de9d.zip/node_modules/waggle-design-system/",\
+        "packageDependencies": [\
+          ["waggle-design-system", "npm:1.2.7"],\
+          ["@emotion/babel-plugin", "npm:11.11.0"],\
+          ["@emotion/react", "virtual:b522905a6949a8807e29982350ceaf07e32a2421704df65299364f28f063ae71a425fd1c963a30b661080dd26505fe0bbd173cdbf50cf287d75b8dbc275bc904#npm:11.11.4"],\
+          ["react", "npm:18.2.0"],\
+          ["react-dom", "virtual:bfca90541deadef7ca04341b77694a3566f3f74bd9fba48871c271fa573dfe36954ed36daf70be7a147b2df8f86d5f876593eb78f1d8ef71040405a3ef477ede#npm:18.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["workspace:packages/waggle-design-system", {\
         "packageLocation": "./packages/waggle-design-system/",\
         "packageDependencies": [\
@@ -27999,6 +28044,7 @@ const RAW_RUNTIME_STATE =
           ["vite-plugin-svgr", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:4.2.0"],\
           ["vite-tsconfig-paths", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:4.3.2"],\
           ["vitest", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:1.4.0"],\
+          ["waggle-design-system", "npm:1.2.7"],\
           ["yup", "npm:1.4.0"]\
         ],\
         "linkType": "SOFT"\
