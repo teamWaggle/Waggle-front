@@ -56,17 +56,18 @@ const Main = () => {
         <Flex css={teamContentBox}>
           <Form.ImageInputField name="coverImageUrl" />
           <Flex css={textInputBoxStyle}>
-            <Form.TitleInputField
+            <Form.TextInputField
               inputStyle={titleTextInputStyle}
               placeholder={TEAM_TITLE.PLACEHOLDER}
               name={TEAM_TITLE.NAME}
               validateText={TEAM_TITLE.VALIDATE_TEXT()}
             />
-            <Form.ContentInputField
+            <Form.TextInputField
               inputStyle={contentTextareaStyle}
               placeholder={TEAM_CONTENT.PLACEHOLDER}
               name={TEAM_CONTENT.NAME}
               validateText={TEAM_CONTENT.VALIDATE_TEXT()}
+              isContent
             />
           </Flex>
         </Flex>

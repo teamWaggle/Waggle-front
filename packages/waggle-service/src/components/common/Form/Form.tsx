@@ -3,11 +3,10 @@ import { FormProvider } from "react-hook-form";
 import { useForm } from "react-hook-form";
 
 import ColorRadioInputField from "@/components/common/Form/ColorRadioInputField/ColorRadioInputField";
-import ContentInputField from "@/components/common/Form/ContentInputField/ContentInputField";
 import DateRangeInputField from "@/components/common/Form/DateRangeInputField/DateRangeInputField";
 import ImageInputField from "@/components/common/Form/ImageInputField/ImageInputField";
 import TimeRangeInputField from "@/components/common/Form/TimeRangeInputField/TimeRangeInputField";
-import TitleInputField from "@/components/common/Form/TitleInputField/TitleInputField";
+import TextInputField from "@/components/common/Form/TextInputField/TextInputField";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import type * as yup from "yup";
@@ -39,8 +38,7 @@ const Form = ({
 
 Form.ColorRadioInputField = ColorRadioInputField;
 Form.ImageInputField = ImageInputField;
-Form.TitleInputField = TitleInputField;
-Form.ContentInputField = ContentInputField;
+Form.TextInputField = TextInputField;
 Form.DateRangeInputField = DateRangeInputField;
 Form.TimeRangeInputField = TimeRangeInputField;
 export default Form;
