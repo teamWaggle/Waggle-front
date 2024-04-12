@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 import {
   hasEngInPassword,
   hasNumInPassword,
@@ -245,3 +247,35 @@ export const dayData = [
   { selectText: 30 },
   { selectText: 31 },
 ];
+
+export const LOGIN_EMAIL_FORM = {
+  PLACEHOLDER: "이메일(아이디)",
+  NAME: "email",
+  RULES() {
+    return yup.string().required("이메일을 입력해주세요");
+  },
+};
+
+export const LOGIN_PASSWORD_FORM = {
+  MAX_LENGTH: 20,
+  PLACEHOLDER: "비밀번호",
+  NAME: "password",
+  RULES() {
+    return yup
+      .string()
+      .required("비밀번호를 입력해주세요")
+      .max(this.MAX_LENGTH, `비밀번호는 ${this.MAX_LENGTH}자 이하여야 합니다.`);
+  },
+};
+
+export const LOGIN_FORM_DEFAULT_VALUE = {
+  email: "",
+  password: "",
+};
+
+export const LOGIN_FORM_SCHEMA = yup
+  .object({
+    email: LOGIN_EMAIL_FORM.RULES(),
+    password: LOGIN_PASSWORD_FORM.RULES(),
+  })
+  .required();

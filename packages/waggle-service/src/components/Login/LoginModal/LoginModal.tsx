@@ -1,33 +1,40 @@
-import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
-import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
+import type { FieldValues } from "react-hook-form";
 
-import { Flex, Box, Text, Logo, SocialLogin } from "@/components/common";
+import { Flex, Box, Text, Logo, Form, SocialLogin } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 import FindEmailModal from "@/components/Login/FindEmailModal/FindEmailModal";
 import FindPasswordModal from "@/components/Login/FinedPasswordModal/FindPasswordModal";
 
-import { useLoginForm } from "@/hooks/auth/useLoginForm";
+import {
+  LOGIN_EMAIL_FORM,
+  LOGIN_PASSWORD_FORM,
+  LOGIN_FORM_DEFAULT_VALUE,
+  LOGIN_FORM_SCHEMA,
+} from "@/constants/auth";
+
 import useModal from "@/hooks/useModal";
+import { useLogInMutation } from "@/hooks/api/auth/useLogInMutation";
 
 import {
   layoutStyle,
   inputStyle,
-  passwordIconStyle,
   findTextStyle,
 } from "@/components/Login/LoginModal/LoginModal.style";
 
 const LoginModal = () => {
-  const {
-    emailRef,
-    passwordRef,
-    loginRequest,
-    updateInputValue,
-    handleSubmit,
-    passwordInputType,
-    handleShowPassword,
-  } = useLoginForm();
+  const { mutate: logInMutate } = useLogInMutation();
 
   const modal = useModal();
+
+  const onSubmit = (data: FieldValues) => {
+    const loginRequest = { email: data["email"], password: data["password"] };
+
+    logInMutate(loginRequest, {
+      onSuccess: () => {
+        modal.closeModal();
+      },
+    });
+  };
 
   const handleFindEmailModal = () => {
     modal.openModal({
@@ -48,36 +55,31 @@ const LoginModal = () => {
   return (
     <Flex css={layoutStyle}>
       <Logo width={138} height={30} />
-      <Box styles={{ margin: "36px 0 24px" }}>
-        <Flex tag="form" onSubmit={handleSubmit}>
-          <input
-            css={inputStyle}
-            placeholder="이메일(아이디)"
-            type="text"
-            onChange={(e) => updateInputValue("email", e.target.value)}
-            value={loginRequest.email}
-            ref={emailRef}
+      <Box styles={{ margin: "24px" }}>
+        <Form
+          onSubmit={onSubmit}
+          defaultValues={LOGIN_FORM_DEFAULT_VALUE}
+          schema={LOGIN_FORM_SCHEMA}
+        >
+          <Form.TextInputField
+            inputStyle={inputStyle}
+            placeholder={LOGIN_EMAIL_FORM.PLACEHOLDER}
+            name={LOGIN_EMAIL_FORM.NAME}
+            isInitialNotice={false}
           />
-          <Box styles={{ position: "relative" }}>
-            <input
-              css={inputStyle}
-              placeholder="비밀번호"
-              type={passwordInputType}
-              onChange={(e) => updateInputValue("password", e.target.value)}
-              value={loginRequest.password}
-              ref={passwordRef}
-              maxLength={20}
-            />
-            {passwordInputType === "text" ? (
-              <PasswordShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
-            ) : (
-              <PasswordNotShowIcon css={passwordIconStyle} onClick={handleShowPassword} />
-            )}
-          </Box>
-          <Button type="submit" size="medium">
+
+          <Form.PasswordInputField
+            inputStyle={inputStyle}
+            placeholder={LOGIN_PASSWORD_FORM.PLACEHOLDER}
+            name={LOGIN_PASSWORD_FORM.NAME}
+            isInitialNotice={false}
+            maxLength={LOGIN_PASSWORD_FORM.MAX_LENGTH}
+          />
+
+          <Button type="submit" size="medium" style={{ marginTop: "14px" }}>
             로그인
           </Button>
-        </Flex>
+        </Form>
       </Box>
 
       <Flex styles={{ gap: "24px" }}>

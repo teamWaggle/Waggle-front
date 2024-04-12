@@ -5,9 +5,7 @@ import { Theme } from "@/styles/Theme";
 export const layoutStyle = css({
   backgroundColor: Theme.color.white,
   borderRadius: "8px",
-  padding: "70px 40px 0",
-  width: "390px",
-  height: "490px",
+  padding: "70px 40px 56px",
   flexDirection: "column",
   alignItems: "center",
 
@@ -26,6 +24,7 @@ export const inputStyle = css({
   color: Theme.color.input_text,
   fontWeight: 500,
   fontSize: "16px",
+  marginTop: "14px",
 
   "&::placeholder": {
     color: Theme.color.border,
