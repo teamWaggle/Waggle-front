@@ -2,6 +2,7 @@ node_modules/
 src/
 public/
 tsconfig.json
+.storybook/
 .eslintrc.json
 .prettierrc
 .github
