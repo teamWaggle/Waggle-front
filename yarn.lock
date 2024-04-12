@@ -19396,9 +19396,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"waggle-front@workspace:packages/waggle-service":
+"waggle-service@workspace:packages/waggle-service":
   version: 0.0.0-use.local
-  resolution: "waggle-front@workspace:packages/waggle-service"
+  resolution: "waggle-service@workspace:packages/waggle-service"
   dependencies:
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"
