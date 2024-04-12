@@ -30,6 +30,7 @@
     "recoil": "^0.7.7",
     "styled-components": "^6.1.1",
     "vite-plugin-svgr": "^4.1.0",
+    "waggle-design-system": "1.2.7",
     "yup": "^1.4.0"
   },
   "devDependencies": {

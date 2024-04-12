@@ -18,12 +18,10 @@ import TeamScheduleCard from "@/components/Team/TeamSchedule/TeamScheduleCard/Te
 import * as yup from "yup";
 
 import { TEAM_SCHEDULE_SEARCH_VALUES } from "@/constants/team";
-
 import { useTeamScheduleListPage } from "@/hooks/schedule/useTeamScheduleListPage";
 import useModal from "@/hooks/useModal";
 import useObserver from "@/hooks/useObserver";
 import { useParamsTeamId } from "@/hooks/useParamsTeamId";
-
 import {
   teamScheduleAddButtonStyle,
   teamScheduleBoxStyle,
@@ -31,6 +29,7 @@ import {
   teamScheduleSearchButtonStyle,
   teamScheduleTitleStyle,
 } from "@/components/Team/TeamSchedule/TeamSchedule.style";
+import { Skeleton } from "waggle-design-system";
 
 const TeamSchedule = () => {
   const teamId = useParamsTeamId();
@@ -65,6 +64,7 @@ const TeamSchedule = () => {
     <>
       {isMember ? (
         <>
+          <Skeleton />
           <Flex css={teamScheduleBoxStyle}>
             <Flex style={{ alignItems: "center", gap: "16px" }}>
               <Heading size="xLarge" css={teamScheduleTitleStyle}>
