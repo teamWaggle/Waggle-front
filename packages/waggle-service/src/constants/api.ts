@@ -1,5 +1,11 @@
 export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
+export const GOOGLE_AUTH_API_URL = `${BASE_URL}${import.meta.env.VITE_GOOGLE_REDIRECT_URI}`;
+
+export const KAKAO_AUTH_API_URL = `${BASE_URL}${import.meta.env.VITE_TEST_KAKAO}`;
+
+export const NAVER_AUTH_API_URL = `${BASE_URL}${import.meta.env.VITE_NAVER_REDIRECT_URI}`;
+
 export const END_POINTS = {
   TOKEN: "/api/tokens/refresh",
   LOGIN: "/api/tokens",
