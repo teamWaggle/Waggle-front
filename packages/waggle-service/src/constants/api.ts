@@ -9,7 +9,8 @@ export const END_POINTS = {
   PASSWORD_AUTH_VERIFY: "/api/members/email/verify/password",
   MEMBER_INFO_FIRST: "/api/members/info",
   GET_MEMBER_INFO: (userUrl?: string) => `/api/members/${userUrl}`,
-  CHANGE_PASSWORD: (memberId?: number) => `/api/members/${memberId}/password`,
+  PASSWORD_RESET: (memberId?: number) => `/api/members/${memberId}/password`,
+  PASSWORD_CHANGE: `/api/members/password`,
   FIND_EMAIL: (name: string, birthday: string) =>
     `/api/members/email/find?name=${name}&birthday=${birthday}`,
   CHECK_NICKNAME: (nickname: string) => `/api/members/check-nickname?nickname=${nickname}`,
