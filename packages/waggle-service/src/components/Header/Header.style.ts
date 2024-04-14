@@ -10,8 +10,17 @@ export const headerStyle = css({
   borderBottom: `1px solid ${Theme.color.border}`,
 });
 
-export const logoStyle = css({
-  cursor: "pointer",
+export const headerBoxStyle = css({
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "0 196px",
+  height: "85px",
+  margin: "0 auto",
+  width: "1536px",
+
+  "& > svg": {
+    cursor: "pointer",
+  },
 });
 
 export const textStyle = css({

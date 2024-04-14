@@ -28,7 +28,7 @@ const Profile = () => {
       <Flex styles={{ direction: "column" }}>
         <Text css={nicknameStyle}>{memberData.result.nickname}</Text>
         <Text size="xSmall" css={getDefaultTextStyle(Theme.color.text, 500)}>
-          프로필 편집하기
+          {memberData.result.name}님
         </Text>
       </Flex>
 
