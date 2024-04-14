@@ -9,6 +9,7 @@ import { PATH } from "@/constants/path";
 
 import Error404Page from "@/pages/Error404Page";
 import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
+import RedirectPage from "@/pages/RedirectPage/RedirectPage";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -98,6 +99,7 @@ const AppRouter = () => {
           element: <SirenCreatePage />,
         },
         { path: "/team/:teamId", element: <TeamPage /> },
+        { path: PATH.REDIRECT, element: <RedirectPage /> },
       ],
     },
   ]);
