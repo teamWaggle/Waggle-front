@@ -15,6 +15,7 @@ import SortButton from "@/components/SortButton/SortButton";
 import Tag from "@/components/Tag/Tag";
 import MentionChecker from "@/components/Text/MentionChecker/MentionChecker";
 import Text from "@/components/Text/Text";
+import Spinner from "@/components/Spinner/Spinner";
 import useSlider from "@/hooks/useSlider";
 import { Theme } from "@/styles/Theme";
 import WaggleProvider from "@/WaggleProvider";
@@ -37,6 +38,7 @@ export {
   Tag,
   MentionChecker,
   Text,
+  Spinner,
   WaggleProvider,
   useSlider,
   Theme,
