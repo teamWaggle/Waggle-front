@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 import { css } from "@emotion/react";
 
@@ -19,12 +19,11 @@ import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 import { memberIdState } from "@/recoil/atoms/auth";
 
 const MyPage = () => {
-  const userUrl = localStorage.getItem("USER_URL");
+  const { userUrl } = useParams();
 
-  console.log(userUrl);
   const [memberId] = useRecoilState(memberIdState);
 
-  const { memberData } = useMemberInfoQuery("abc");
+  const { memberData } = useMemberInfoQuery(userUrl);
 
   const [searchParams, setSearchParams] = useSearchParams();
 

@@ -1,26 +1,19 @@
-// import { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 
 import Logo from "@/assets/svg/logo.svg?react";
 
 import { Flex, Box, Text } from "@/components/common";
-// import LogInMenu from "@/components/Header/LogInMenu/LogInMenu";
+import LogInMenu from "@/components/Header/LogInMenu/LogInMenu";
 
-// import { isLoggedInState } from "@/recoil/atoms/auth";
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { PATH } from "@/constants/path";
-
-// import { useReissueToken } from "@/hooks/api/auth/useReissueToken";
 
 import { headerStyle, logoStyle, textStyle } from "@/components/Header/Header.style";
 
 const Header = () => {
-  // const isLoggedIn = useRecoilValue(isLoggedInState);
-
-  // const { userUrl } = isLoggedIn ? useReissueToken() : "";
-
-  // const { userUrl } = useReissueToken();
+  const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const navigate = useNavigate();
 
@@ -50,11 +43,7 @@ const Header = () => {
               PLANNING
             </Text>
 
-            {/* {userUrl !== "" && (
-              <Suspense fallback={<div>로딩중</div>}>
-                <LogInMenu userUrl={userUrl} />
-              </Suspense>
-            )} */}
+            {isLoggedIn ? <LogInMenu /> : <div>로그인</div>}
           </Flex>
         </Flex>
       </Box>

@@ -8,7 +8,7 @@ export const END_POINTS = {
   EMAIL_AUTH_VERIFY: "/api/members/email/verify",
   PASSWORD_AUTH_VERIFY: "/api/members/email/verify/password",
   MEMBER_INFO_FIRST: "/api/members/info",
-  GET_MEMBER_INFO: (userUrl: string) => `/api/members/${userUrl}`,
+  GET_MEMBER_INFO: (userUrl?: string) => `/api/members/${userUrl}`,
   CHANGE_PASSWORD: (memberId?: number) => `/api/members/${memberId}/password`,
   FIND_EMAIL: (name: string, birthday: string) =>
     `/api/members/email/find?name=${name}&birthday=${birthday}`,
