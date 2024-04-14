@@ -1,5 +1,3 @@
-import { useRecoilState } from "recoil";
-
 import { Flex, Box, Heading } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 import MyPagePetCard from "@/components/MyPage/MyPageMain/MyPagePetCard/MyPagePetCard";
@@ -7,20 +5,18 @@ import PetAddModal from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal"
 
 import { usePetQuery } from "@/hooks/api/pet/usePetQuery";
 import useModal from "@/hooks/useModal";
-
-import { memberIdState } from "@/recoil/atoms/auth";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import type { MemberIdType } from "@/types/common";
+import type { ParamUrlType } from "@/types/common";
 
 import { layoutStyle, petCardBoxStyle } from "@/components/MyPage/MyPageMain/MyPageMain.style";
 
-const MyPageMain = ({ memberId }: MemberIdType) => {
-  const [userId] = useRecoilState(memberIdState);
-
-  const { petData } = usePetQuery(memberId);
+const MyPageMain = ({ paramUrl }: ParamUrlType) => {
+  const { petData } = usePetQuery(paramUrl);
+  const { userUrl } = useMemberInfoSaveQuery();
 
   const modal = useModal();
 
@@ -48,7 +44,7 @@ const MyPageMain = ({ memberId }: MemberIdType) => {
             gender={petInfo.gender}
             name={petInfo.name}
             petId={petInfo.petId}
-            isOwner={memberId === userId}
+            isOwner={userUrl === paramUrl}
           />
         ))}
       </Flex>

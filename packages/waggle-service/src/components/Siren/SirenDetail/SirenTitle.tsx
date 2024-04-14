@@ -3,6 +3,8 @@ import PostProfile from "@/components/common/Post/PostProfile";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 import Tag from "@/components/common/Tag/Tag";
 
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -13,7 +15,7 @@ import { titleBoxStyle } from "@/components/common/Post/Post.style";
 const SirenTitle = ({ sirenData, handleEditSiren, handleDeleteSiren }: SirenTitleType) => {
   const { category, title, member, status, createdDate, viewCount } = sirenData;
 
-  const memberId = Number(localStorage.getItem("MEMBER_ID"));
+  const { memberId } = useMemberInfoSaveQuery();
 
   return (
     <Flex css={titleBoxStyle}>

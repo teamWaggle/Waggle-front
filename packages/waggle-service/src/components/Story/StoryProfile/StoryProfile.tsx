@@ -3,6 +3,8 @@ import { css } from "@emotion/react";
 import { Flex, Text } from "@/components/common";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -15,7 +17,7 @@ interface ProfileType {
 }
 
 const StoryProfile = ({ img, nickname, ownerId, editClick, deleteClick }: ProfileType) => {
-  const memberId = Number(localStorage.getItem("MEMBER_ID"));
+  const { memberId } = useMemberInfoSaveQuery();
 
   return (
     <Flex

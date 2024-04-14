@@ -4,8 +4,12 @@ export interface MemberIdType {
   memberId: number;
 }
 
-export interface UserURLType {
+export interface UserUrlType {
   userUrl: string;
+}
+
+export interface ParamUrlType {
+  paramUrl?: string;
 }
 
 export interface sortButtonType {

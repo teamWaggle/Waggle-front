@@ -3,6 +3,8 @@ import PostProfile from "@/components/common/Post/PostProfile";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 import Tag from "@/components/common/Tag/Tag";
 
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
+
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
@@ -17,7 +19,7 @@ const QuestionTitle = ({
 }: QuestionTitleType) => {
   const { status, title, hashtagList, member, viewCount, createdDate } = questionData;
 
-  const memberId = Number(localStorage.getItem("MEMBER_ID"));
+  const { memberId } = useMemberInfoSaveQuery();
 
   return (
     <Flex css={titleBoxStyle}>

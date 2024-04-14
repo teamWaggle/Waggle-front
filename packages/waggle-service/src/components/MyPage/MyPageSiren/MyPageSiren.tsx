@@ -12,7 +12,7 @@ import { useMemberSirenQuery } from "@/hooks/api/member/useMemberSirenQuery";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import type { MemberIdType } from "@/types/common";
+import type { ParamUrlType } from "@/types/common";
 
 import {
   layoutStyle,
@@ -22,8 +22,8 @@ import {
   arrowBoxStyle,
 } from "@/components/MyPage/MyPageSiren/MyPageSiren.style";
 
-const MyPageSiren = ({ memberId }: MemberIdType) => {
-  const { memberSirenData } = useMemberSirenQuery(memberId, 0);
+const MyPageSiren = ({ paramUrl }: ParamUrlType) => {
+  const { memberSirenData } = useMemberSirenQuery(0, paramUrl);
 
   const wrapRef = useRef<HTMLDivElement>(null);
 
@@ -93,19 +93,7 @@ const MyPageSiren = ({ memberId }: MemberIdType) => {
         >
           <div css={sliderStyle}>
             {memberSirenData.result.sirenList.map((sirenInfo) => (
-              <SirenCard
-                key={sirenInfo.boardId}
-                sirenInfo={sirenInfo}
-                // boardId={sirenInfo.boardId}
-                // thumbnail={sirenInfo.thumbnail}
-                // title={sirenInfo.title}
-                // lostLocate={sirenInfo.lostLocate}
-                // recommendCount={sirenInfo.recommendCount}
-                // category={sirenInfo.category}
-                // status={sirenInfo.status}
-                // createdDate={sirenInfo.createdDate}
-                isMyPage
-              />
+              <SirenCard key={sirenInfo.boardId} sirenInfo={sirenInfo} isMyPage />
             ))}
           </div>
         </div>

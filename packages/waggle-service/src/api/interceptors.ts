@@ -5,6 +5,7 @@ import { authorizedAxiosInstance } from "@/api/axiosInstance";
 import { HTTPError } from "@/api/HTTPError";
 
 import { ACCESS_TOKEN_KEY, ERROR_CODE, HTTP_STATUS_CODE } from "@/constants/api";
+import { PATH } from "@/constants/path";
 
 export interface ErrorResponseData {
   statusCode?: number;
@@ -20,7 +21,7 @@ export const checkToken = (config: InternalAxiosRequestConfig) => {
   const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
 
   if (!accessToken) {
-    window.location.href = "/";
+    window.location.href = PATH.ROOT;
 
     throw new Error("토큰이 유효하지 않습니다");
   }
@@ -64,8 +65,6 @@ export const handleTokenError = async (error: AxiosError<ErrorResponseData>) => 
     originalRequest.headers.Authorization = `Bearer ${result.accessToken}`;
 
     localStorage.setItem(ACCESS_TOKEN_KEY, result.accessToken);
-    localStorage.setItem("MEMBER_ID", String(result.member.memberId));
-    localStorage.setItem("USER_URL", result.member.userUrl);
 
     return authorizedAxiosInstance(originalRequest);
   }

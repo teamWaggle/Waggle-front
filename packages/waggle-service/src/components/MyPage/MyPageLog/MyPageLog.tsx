@@ -9,12 +9,12 @@ import useObserver from "@/hooks/useObserver";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import type { MemberIdType } from "@/types/common";
+import type { ParamUrlType } from "@/types/common";
 
 import { layoutStyle, storyBoxStyle } from "@/components/MyPage/MyPageLog/MyPageLog.style";
 
-const MyPageLog = ({ memberId }: MemberIdType) => {
-  const { memberStoryData, hasNextPage, fetchNextPage, isFetching } = useMemberStoryQuery(memberId);
+const MyPageLog = ({ paramUrl }: ParamUrlType) => {
+  const { memberStoryData, hasNextPage, fetchNextPage, isFetching } = useMemberStoryQuery(paramUrl);
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);

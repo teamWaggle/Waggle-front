@@ -20,8 +20,6 @@ export const useLogInMutation = () => {
     mutationFn: postLogIn,
     onSuccess: ({ result }: TokenType) => {
       localStorage.setItem(ACCESS_TOKEN_KEY, result.accessToken);
-      localStorage.setItem("MEMBER_ID", String(result.member.memberId));
-      localStorage.setItem("USER_URL", result.member.userUrl);
 
       authorizedAxiosInstance.defaults.headers.Authorization = `Bearer ${result.accessToken}`;
 
