@@ -20,8 +20,6 @@ const QuestionMain = () => {
     }
   });
 
-  console.log(questionListData);
-
   return (
     <Box css={mainStyle}>
       <Flex styles={{ gap: "65px" }}>

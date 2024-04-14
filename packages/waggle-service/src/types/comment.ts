@@ -9,9 +9,7 @@ export interface CommentType {
 
 export interface CommentResultType {
   commentList: CommentListInfoType[];
-  commentCount: number;
-  isFirst: boolean;
-  isLast: boolean;
+  nextPageParam: number;
 }
 
 export interface CommentListInfoType extends EditCommentProps {
