@@ -97,6 +97,7 @@ const AddTeamScheduleModal = ({ teamId }: { teamId: number }) => {
               validateText="한영 200자 제한, 특수문자 불가"
               placeholder="일정의 설명을 입력해주세요"
               inputStyle={addTeamScheduleModalTextAreaStyle}
+              isContent
             />
           </Box>
           <Flex style={{ justifyContent: "end" }}>

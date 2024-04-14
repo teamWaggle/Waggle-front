@@ -37,7 +37,7 @@ const QuestionBio = () => {
 
         <Flex styles={{ direction: "column", gap: "24px" }}>
           {questionRepresentativeListData.result.questionList.map((questionInfo) => (
-            <QuestionCard key={questionInfo.boardId} questionData={questionInfo} />
+            <QuestionCard key={questionInfo.boardId} questionListData={questionInfo} />
           ))}
         </Flex>
       </Flex>

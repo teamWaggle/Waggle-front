@@ -5,17 +5,20 @@ export interface QuestionType extends CommonResponseBaseType {
   result: QuestionResultType;
 }
 
-export interface QuestionResultType {
+export interface QuestionResultType extends QuestionFormData {
   boardId: number;
-  title: string;
-  content: string;
-  hashtagList: string[];
-  mediaList: string[];
   recommendCount: number;
   member: MemberType;
   viewCount: number;
   createdDate: Date;
   status: string;
+}
+
+export interface QuestionFormData {
+  title: string;
+  content: string;
+  hashtagList: string[];
+  mediaList: string[];
 }
 
 export interface QuestionTitleType extends QuestionDataType {
@@ -24,7 +27,11 @@ export interface QuestionTitleType extends QuestionDataType {
 }
 
 export interface QuestionDataType {
-  questionData: QuestionResultType | QuestionListInfoType;
+  questionData: QuestionResultType;
+}
+
+export interface QuestionListDataType {
+  questionListData: QuestionListInfoType;
 }
 
 export interface QuestionListType extends CommonResponseBaseType {
@@ -52,11 +59,4 @@ export interface QuestionRepresentativeType extends CommonResponseBaseType {
 
 export interface QuestionRepresentativeResultType {
   questionList: QuestionListInfoType[];
-}
-
-export interface QuestionFormData {
-  title: string;
-  content: string;
-  hashtagList: string[];
-  mediaList: string[];
 }

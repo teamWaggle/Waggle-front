@@ -1,20 +1,20 @@
 import { Divider, Flex, Heading } from "@/components/common";
 import MyPageCommentCard from "@/components/MyPage/MyPageCommentCard/MyPageCommentCard";
 
-import { useQuestionListQuery } from "@/hooks/api/question/useQuestionListQuery";
+// import { useQuestionListQuery } from "@/hooks/api/question/useQuestionListQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
 import {
   layoutStyle,
-  sliderBoxStyle,
+  // sliderBoxStyle,
   sliderLayoutStyle,
-  sliderStyle,
+  // sliderStyle,
 } from "@/components/MyPage/MyPageSiren/MyPageSiren.style";
 
 const MyPageQuestion = () => {
-  const { questionListData } = useQuestionListQuery(0);
+  // const { questionListData } = useQuestionListQuery(0);
 
   return (
     <Flex tag="main" css={layoutStyle}>
@@ -23,9 +23,9 @@ const MyPageQuestion = () => {
       </Heading>
 
       <div css={sliderLayoutStyle}>
-        <div css={sliderBoxStyle(questionListData.result.questionList.length)}>
+        {/* <div css={sliderBoxStyle(questionListData.result.questionList.length)}>
           <div css={sliderStyle}></div>
-        </div>
+        </div> */}
       </div>
 
       <Divider />
