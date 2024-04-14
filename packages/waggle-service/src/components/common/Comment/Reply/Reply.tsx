@@ -6,6 +6,7 @@ import { Flex, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 import useClickOutSide from "@/hooks/useClickOutSide";
 import useModal from "@/hooks/useModal";
 
@@ -28,13 +29,13 @@ const Reply = ({
 }: ReplyListInfoType) => {
   const { mutate: deleteReplyMutate } = useDeleteRelpyMutation();
 
+  const { memberId } = useMemberInfoSaveQuery();
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const menuRef = useRef<HTMLUListElement>(null);
 
   const modal = useModal();
-
-  const memberId = Number(localStorage.getItem("MEMBER_ID"));
 
   useClickOutSide(menuRef, () => setMenuOpen(false));
 

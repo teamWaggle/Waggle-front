@@ -1,7 +1,5 @@
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
-import { useRecoilState } from "recoil";
-
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 import PasswordEditModal from "@/components/MyPage/MyPageProfile/PasswordEditModal/PasswordEditModal";
@@ -10,8 +8,7 @@ import ProfileEditModal from "@/components/MyPage/MyPageProfile/ProfileEditModal
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import useModal from "@/hooks/useModal";
-
-import { memberIdState } from "@/recoil/atoms/auth";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -26,7 +23,7 @@ import {
 } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
 
 const MyPageProfile = ({ profileImgUrl, nickname, memberId, name, birthday }: MemberInfoType) => {
-  const [userId] = useRecoilState(memberIdState);
+  const { memberId: userId } = useMemberInfoSaveQuery();
 
   const [searchParams] = useSearchParams();
 

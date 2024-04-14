@@ -30,7 +30,7 @@ export const END_POINTS = {
     `/api/replies/${commentId}?currentPage=${currentPage}`,
   POST_REPLY: (commentId: number) => `/api/replies/${commentId}`,
   REPLY: (replyId: number) => `/api/replies/${replyId}`,
-  MEMBER_PET: (memberId: number) => `/api/pets/${memberId}`,
+  MEMBER_PET: (userUrl?: string) => `/api/pets/${userUrl}`,
   POST_PET: "/api/pets",
   PET: (petId: number) => `/api/pets/${petId}`,
   MEDIA: "/api/media/list",
@@ -38,12 +38,12 @@ export const END_POINTS = {
   QUESTION: (questionId: number) => `/api/questions/${questionId}`,
   QUESTION_REPRESENTATIVE: `/api/questions/representative`,
   POST_QUESTION: "/api/questions",
-  MEMBER_STORY: (memberId: number, currentPage: unknown) =>
-    `/api/stories/member/${memberId}?currentPage=${currentPage}`,
-  MEMBER_SIREN: (memberId: number, currentPage: number) =>
-    `/api/sirens/member/${memberId}?currentPage=${currentPage}`,
-  MEMBER_QUESTION: (memberId: number, currentPage: number) =>
-    `/api/questions/mebmer/${memberId}?currentPage=${currentPage}`,
+  MEMBER_STORY: (currentPage: unknown, userUrl?: string) =>
+    `/api/stories/member/${userUrl}?currentPage=${currentPage}`,
+  MEMBER_SIREN: (currentPage: unknown, userUrl?: string) =>
+    `/api/sirens/member/${userUrl}?currentPage=${currentPage}`,
+  MEMBER_QUESTION: (currentPage: unknown, userUrl?: string) =>
+    `/api/questions/member/${userUrl}?currentPage=${currentPage}`,
 
   MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
   MEMBER_SCHEDULES_MONTHLY: (memberId: number, year: number, month: number) =>

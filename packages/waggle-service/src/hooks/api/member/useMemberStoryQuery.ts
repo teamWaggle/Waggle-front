@@ -8,15 +8,15 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 
 import type { StoryListType } from "@/types/story";
 
-export const useMemberStoryQuery = (memberId: number) => {
+export const useMemberStoryQuery = (paramUrl?: string) => {
   const {
     data: memberStoryData,
     fetchNextPage,
     hasNextPage,
     isFetching,
   } = useSuspenseInfiniteQuery<StoryListType, AxiosError>({
-    queryKey: [QUERY_KEYS.MEMBER_STORY, memberId],
-    queryFn: ({ pageParam: currentPage }) => getMemberStory(memberId, currentPage),
+    queryKey: [QUERY_KEYS.MEMBER_STORY, paramUrl],
+    queryFn: ({ pageParam: currentPage }) => getMemberStory(currentPage, paramUrl),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       return lastPage.result.nextPageParam === -1 ? undefined : lastPage.result.nextPageParam;

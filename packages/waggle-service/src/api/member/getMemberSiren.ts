@@ -4,9 +4,9 @@ import { END_POINTS } from "@/constants/api";
 
 import type { SirenListType } from "@/types/siren";
 
-export const getMemberSiren = async (memberId: number, currentPage: number) => {
+export const getMemberSiren = async (currentPage: unknown, userUrl?: string) => {
   const { data } = await axiosInstance.get<SirenListType>(
-    END_POINTS.MEMBER_SIREN(memberId, currentPage)
+    END_POINTS.MEMBER_SIREN(currentPage, userUrl)
   );
 
   return data;

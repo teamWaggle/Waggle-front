@@ -3,8 +3,6 @@ import { useParams, useSearchParams } from "react-router-dom";
 
 import { css } from "@emotion/react";
 
-import { useRecoilState } from "recoil";
-
 import { Flex } from "@/components/common";
 import MyPageLog from "@/components/MyPage/MyPageLog/MyPageLog";
 import MyPageMain from "@/components/MyPage/MyPageMain/MyPageMain";
@@ -16,14 +14,10 @@ import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 
-import { memberIdState } from "@/recoil/atoms/auth";
-
 const MyPage = () => {
-  const { userUrl } = useParams();
+  const { userUrl: paramUrl } = useParams();
 
-  const [memberId] = useRecoilState(memberIdState);
-
-  const { memberData } = useMemberInfoQuery(userUrl);
+  const { memberData } = useMemberInfoQuery(paramUrl);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -49,11 +43,11 @@ const MyPage = () => {
         birthday={memberData.result.birthday}
       />
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain memberId={memberId} />}
+      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain paramUrl={paramUrl} />}
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog memberId={memberId} />}
+      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog paramUrl={paramUrl} />}
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN && <MyPageSiren memberId={memberId} />}
+      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN && <MyPageSiren paramUrl={paramUrl} />}
 
       {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION && <MyPageQuestion />}
     </Flex>

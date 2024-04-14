@@ -11,6 +11,7 @@ import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningMo
 import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
 import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 import useClickOutSide from "@/hooks/useClickOutSide";
 import useModal from "@/hooks/useModal";
 
@@ -36,10 +37,10 @@ const CommentCard = ({
   handleEditClick,
 }: CommentListInfoType) => {
   const { mutate: deleteCommentMutate } = useDeleteCommentMutation();
+  const { mutate: editReplyMutation } = useEditReplyMutation();
 
   const { replyData } = useReplyQuery(0, commentId);
-
-  const { mutate: editReplyMutation } = useEditReplyMutation();
+  const { memberId } = useMemberInfoSaveQuery();
 
   const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,8 +54,6 @@ const CommentCard = ({
   const replyRef = useRef<HTMLTextAreaElement>(null);
 
   const modal = useModal();
-
-  const memberId = Number(localStorage.getItem("MEMBER_ID"));
 
   useClickOutSide(menuRef, () => setMenuOpen(false));
 
