@@ -15,6 +15,7 @@ const AppRouter = () => {
     {
       path: PATH.ROOT,
       element: <App />,
+      errorElement: <Error404Page />,
       children: [
         {
           path: "",
@@ -97,7 +98,6 @@ const AppRouter = () => {
           element: <SirenCreatePage />,
         },
         { path: "/team/:teamId", element: <TeamPage /> },
-        { path: "*", element: <Error404Page /> },
       ],
     },
   ]);
