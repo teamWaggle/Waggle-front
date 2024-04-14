@@ -36,7 +36,7 @@ const FindPasswordModal = () => {
     updateInputValue: updatePasswordInputValue,
     handleChangeValidateComplete,
     handlePasswordChange,
-  } = usePasswordForm({ memberId, handleChangeMode });
+  } = usePasswordForm({ memberId, isReset: true, handleChangeMode });
 
   const modal = useModal();
 

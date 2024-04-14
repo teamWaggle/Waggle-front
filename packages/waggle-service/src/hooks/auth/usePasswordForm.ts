@@ -1,17 +1,23 @@
 import { useCallback, useState, useRef } from "react";
 
-import { useChangePasswordMutation } from "@/hooks/api/auth/usePasswordChangeMutation";
+import { usePasswordResetMutation } from "@/hooks/api/auth/usePasswordResetMutation";
+import { usePasswordChangeMutation } from "@/hooks/api/auth/usePasswordChangeMutation";
 import { useValidateForm } from "@/hooks/useValidateForm";
+import useModal from "@/hooks/useModal";
 
 import type { PasswordFormType } from "@/types/auth";
 
 interface usePasswordFormParams {
   memberId?: number;
+  isReset?: boolean;
   handleChangeMode?: (mode: string) => void;
 }
 
-export const usePasswordForm = ({ memberId, handleChangeMode }: usePasswordFormParams) => {
-  const { mutate: passwordChangeMutate } = useChangePasswordMutation();
+export const usePasswordForm = ({ memberId, isReset, handleChangeMode }: usePasswordFormParams) => {
+  const { mutate: passwordResetMutate } = usePasswordResetMutation();
+  const { mutate: passwordChangeMutate } = usePasswordChangeMutation();
+
+  const modal = useModal();
 
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordCheckRef = useRef<HTMLInputElement>(null);
@@ -73,11 +79,24 @@ export const usePasswordForm = ({ memberId, handleChangeMode }: usePasswordFormP
       return;
     }
 
+    if (isReset) {
+      passwordResetMutate(
+        { memberId, password: passwordRequest.password },
+        {
+          onSuccess: () => {
+            handleChangeMode && handleChangeMode("complete");
+          },
+        }
+      );
+
+      return;
+    }
+
     passwordChangeMutate(
-      { memberId, password: passwordRequest.password },
+      { password: passwordRequest.password },
       {
         onSuccess: () => {
-          handleChangeMode && handleChangeMode("complete");
+          modal.closeModal();
         },
       }
     );
