@@ -4,6 +4,7 @@ import { Flex, Text } from "@/components/common";
 
 import { useLogoutMutation } from "@/hooks/api/auth/useLogoutMutation";
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -16,7 +17,8 @@ import {
 } from "@/components/Sidebar/Profile/Profile.style";
 
 const Profile = () => {
-  const { memberData } = useMemberInfoQuery("abc");
+  const { userUrl } = useMemberInfoSaveQuery();
+  const { memberData } = useMemberInfoQuery(userUrl);
 
   const { mutate: mutateLogOut } = useLogoutMutation();
 

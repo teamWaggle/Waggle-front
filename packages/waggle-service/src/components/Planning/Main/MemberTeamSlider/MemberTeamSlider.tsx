@@ -7,7 +7,7 @@ import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 
 import { PLANNING } from "@/constants/planning";
 
-import { useReissueToken } from "@/hooks/api/auth/useReissueToken";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 import { useGetMemberTeams } from "@/hooks/api/team/useGetMemberTeams";
 
 import {
@@ -17,7 +17,7 @@ import {
 } from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider.style";
 
 const MemberTeamSlider = () => {
-  const { memberId } = useReissueToken();
+  const { memberId } = useMemberInfoSaveQuery();
   const teamList = useGetMemberTeams(memberId);
 
   return (

@@ -1,7 +1,6 @@
 export const QUERY_KEYS = {
   //auth
   // 문자열만 넣을 것
-  REISSUE_TOKEN: "reissueToken",
 
   STORY: "story",
   STORY_LIST: "storyList",
@@ -22,6 +21,7 @@ export const QUERY_KEYS = {
   MEMBER_QUESTION: "memberQuestion",
   MEMBER_SIREN: "memberSiren",
   MEMBER_STORY: "memberStory",
+  MEMBER_INFO_SAVE: "memberInfoSave",
 
   PET_INFO: "petInfo",
 
