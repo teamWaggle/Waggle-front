@@ -11,6 +11,11 @@ interface VitestConfigExport extends UserConfig {
 
 export default defineConfig({
   plugins: [react(), vitePluginSvgr(), tsconfigPaths()],
+  base: "/",
+  server: {
+    host: true,
+    port: 3001,
+  },
   test: {
     globals: true,
     environment: "jsdom",

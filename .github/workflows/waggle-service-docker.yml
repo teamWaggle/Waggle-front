@@ -1,0 +1,46 @@
+name: Buiid and Push Docker Image
+on:
+    push:
+        branches:
+        - develop
+jobs:
+    bulid:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+
+        - name: Create .env file
+          run: |
+            touch .env
+            echo "${{ secrets.VITE_BASE_URL }}" >> .env
+            echo "${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> .env
+            echo "${{ secrets.VITE_GOOGLE_CLIENT_SECRET }}" >> .env
+            echo "${{ secrets.VITE_GOOGLE_REDIRECT_URI }}" >> .env
+            echo "${{ secrets.VITE_KAKAO_API_KEY }}" >> .env
+            echo "${{ secrets.VITE_KAKAO_REDIRECT_URI }}" >> .env
+            echo "${{ secrets.VITE_NAVER_CLIENT_ID }}" >> .env
+            echo "${{ secrets.VITE_NAVER_CLIENT_SECRET }}" >> .env
+            echo "${{ secrets.VITE_NAVER_REDIRECT_URI }}" >> .env
+
+        - name: Get the version
+          id: get_version
+          run: |
+                RELEASE_VERSION_WITHOUT_V="$(cut -d'v' -f2 <<< ${GITHUB_REF#refs/*/})"
+                echo ::set-output name=version::$(echo $GITHUB_SHA | cut -c1-7)
+        - name: Set up docker buildx
+          uses: docker/setup-buildx-action@v1
+
+        - name: Login to DockerHub
+          uses: docker/login-action@v2
+          with:
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+        - name: Build and push
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            file: ./Dockerfile.waggle-service
+            platforms: linux/amd64
+            push: true
+            tags: ${{ secrets.DOCKER_USERNAME }}/waggle-service:${{ steps.get_version.outputs.version }}
