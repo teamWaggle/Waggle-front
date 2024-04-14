@@ -35,7 +35,7 @@ const QuestionMain = () => {
             {questionListData.pages.map((questionData, index) => (
               <Fragment key={index}>
                 {questionData.result.questionList.map((questionInfo) => (
-                  <QuestionCard key={questionInfo.boardId} questionData={questionInfo} />
+                  <QuestionCard key={questionInfo.boardId} questionListData={questionInfo} />
                 ))}
               </Fragment>
             ))}

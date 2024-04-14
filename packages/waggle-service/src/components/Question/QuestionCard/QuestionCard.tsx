@@ -18,7 +18,7 @@ import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
-import type { QuestionDataType } from "@/types/question";
+import type { QuestionListDataType } from "@/types/question";
 
 import {
   cardStyle,
@@ -28,9 +28,9 @@ import {
   iconStyle,
 } from "@/components/Question/QuestionCard/QuestionCard.style";
 
-const QuestionCard = ({ questionData }: QuestionDataType) => {
+const QuestionCard = ({ questionListData }: QuestionListDataType) => {
   const { boardId, title, content, createdDate, hashtagList, status, recommendCount } =
-    questionData;
+    questionListData;
 
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
