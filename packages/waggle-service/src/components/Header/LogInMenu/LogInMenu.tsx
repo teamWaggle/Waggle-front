@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import { css } from "@emotion/react";
 
-import { Text } from "@/components/common";
+import ProfileIcon from "@/assets/svg/ic-header-profile.svg?react";
+import NotiIcon from "@/assets/svg/ic-header-noti.svg?react";
+
+import { Flex } from "@/components/common";
 
 import { PATH } from "@/constants/path";
 
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-
-import { textStyle } from "@/components/Header/Header.style";
 
 const LogInMenu = () => {
   const { userUrl } = useMemberInfoSaveQuery();
@@ -17,14 +19,24 @@ const LogInMenu = () => {
   const navigate = useNavigate();
 
   return (
-    <Text
-      size="xLarge"
-      css={textStyle}
-      onClick={() => navigate(PATH.MY(memberData.result.userUrl))}
-    >
-      My waggle
-    </Text>
+    <Flex css={layoutStyle}>
+      <NotiIcon width={30} height={30} />
+      <ProfileIcon
+        width={40}
+        height={40}
+        onClick={() => navigate(PATH.MY(memberData.result.userUrl))}
+      />
+    </Flex>
   );
 };
 
 export default LogInMenu;
+
+const layoutStyle = css({
+  alignItems: "center",
+  gap: "10px",
+
+  "& > svg": {
+    cursor: "pointer",
+  },
+});
