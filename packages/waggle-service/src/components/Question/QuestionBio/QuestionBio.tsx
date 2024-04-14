@@ -37,15 +37,7 @@ const QuestionBio = () => {
 
         <Flex styles={{ direction: "column", gap: "24px" }}>
           {questionRepresentativeListData.result.questionList.map((questionInfo) => (
-            <QuestionCard
-              key={questionInfo.boardId}
-              boardId={questionInfo.boardId}
-              title={questionInfo.title}
-              createdDate={questionInfo.createdDate}
-              hashtagList={questionInfo.hashtagList}
-              status={questionInfo.status}
-              recommendCount={questionInfo.recommendCount}
-            />
+            <QuestionCard key={questionInfo.boardId} questionData={questionInfo} />
           ))}
         </Flex>
       </Flex>

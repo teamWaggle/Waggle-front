@@ -18,7 +18,7 @@ import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
-import type { QuestionListInfoType } from "@/types/question";
+import type { QuestionDataType } from "@/types/question";
 
 import {
   cardStyle,
@@ -28,14 +28,10 @@ import {
   iconStyle,
 } from "@/components/Question/QuestionCard/QuestionCard.style";
 
-const QuestionCard = ({
-  boardId,
-  title,
-  createdDate,
-  hashtagList,
-  status,
-  recommendCount,
-}: QuestionListInfoType) => {
+const QuestionCard = ({ questionData }: QuestionDataType) => {
+  const { boardId, title, content, createdDate, hashtagList, status, recommendCount } =
+    questionData;
+
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const isRecommend = isLoggedIn ? useGetIsRecommend(boardId) : false;
@@ -61,12 +57,7 @@ const QuestionCard = ({
       </Flex>
 
       <Box css={contentBoxStyle}>
-        <Text>
-          딴은 밤을 세워 우는 벌레는 부끄러운 이름을 슬퍼하는 까닭입니다. 나는 무엇인지 그리워 이
-          많은 별빛이 내린 언덕 위에 내 이름자를 써보고 흙으로 덮어 버리었읍니다. 딴은 밤을 세워
-          우는 벌레는 부끄러운 이름을 슬퍼하는 까닭입니다 흙으로 덮어 버리었읍니다. 딴은 밤을 세워
-          우는 벌레는 부끄러운 이름을 슬퍼하는 까닭입니다
-        </Text>
+        <Text>{content}</Text>
       </Box>
 
       <Flex css={iconStyle(isRecommend)}>

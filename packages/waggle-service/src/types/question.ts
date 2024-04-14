@@ -24,7 +24,7 @@ export interface QuestionTitleType extends QuestionDataType {
 }
 
 export interface QuestionDataType {
-  questionData: QuestionResultType;
+  questionData: QuestionResultType | QuestionListInfoType;
 }
 
 export interface QuestionListType extends CommonResponseBaseType {
@@ -33,14 +33,13 @@ export interface QuestionListType extends CommonResponseBaseType {
 
 export interface QuestionListResultType {
   questionList: QuestionListInfoType[];
-  questionCount: number;
-  isFirst: boolean;
-  isLast: boolean;
+  nextPageParam: number;
 }
 
 export interface QuestionListInfoType {
   boardId: number;
   title: string;
+  content: string;
   status: string;
   createdDate: string;
   hashtagList: string[];

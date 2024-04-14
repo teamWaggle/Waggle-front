@@ -1,6 +1,6 @@
 import type { AxiosError } from "axios";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 import { getQuestionList } from "@/api/question/getQuestionList";
 
@@ -8,11 +8,29 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 
 import type { QuestionListType } from "@/types/question";
 
-export const useQuestionListQuery = (currentPage: number) => {
-  const { data: questionListData } = useSuspenseQuery<QuestionListType, AxiosError>({
+export const useQuestionListQuery = () => {
+  const {
+    data: questionListData,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+  } = useSuspenseInfiniteQuery<QuestionListType, AxiosError>({
     queryKey: [QUERY_KEYS.QUESTION_LIST],
-    queryFn: () => getQuestionList(currentPage),
+    queryFn: ({ pageParam: currentPage }) => getQuestionList(currentPage),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      return lastPage.result.nextPageParam === -1 ? undefined : lastPage.result.nextPageParam;
+    },
   });
 
-  return { questionListData };
+  return { questionListData, fetchNextPage, hasNextPage, isFetching };
 };
+
+// export const useQuestionListQuery = (currentPage: number) => {
+//   const { data: questionListData } = useSuspenseQuery<QuestionListType, AxiosError>({
+//     queryKey: [QUERY_KEYS.QUESTION_LIST],
+//     queryFn: () => getQuestionList(currentPage),
+//   });
+
+//   return { questionListData };
+// };
