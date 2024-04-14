@@ -4,6 +4,10 @@ export interface MemberIdType {
   memberId: number;
 }
 
+export interface UserURLType {
+  userUrl: string;
+}
+
 export interface sortButtonType {
   defaultText: string;
 }

@@ -6,12 +6,12 @@ import { PATH } from "@/constants/path";
 
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 
-import type { MemberIdType } from "@/types/common";
+import type { UserURLType } from "@/types/common";
 
 import { textStyle } from "@/components/Header/Header.style";
 
-const LogInMenu = ({ memberId }: MemberIdType) => {
-  const { memberData } = useMemberInfoQuery(memberId);
+const LogInMenu = ({ userUrl }: UserURLType) => {
+  const { memberData } = useMemberInfoQuery(userUrl);
 
   const navigate = useNavigate();
 

@@ -21,6 +21,7 @@ export const useLogoutMutation = () => {
     onSuccess: () => {
       localStorage.removeItem("ACCESS_TOKEN");
       localStorage.removeItem("MEMBER_ID");
+      localStorage.removeItem("USER_URL");
       queryClient.clear();
 
       setIsLoggedIn(false);

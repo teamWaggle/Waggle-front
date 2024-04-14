@@ -8,10 +8,10 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 
 import type { MemberInfoResponseType } from "@/types/auth";
 
-export const useMemberInfoQuery = (memberId: number) => {
+export const useMemberInfoQuery = (userUrl: string) => {
   const { data: memberData } = useSuspenseQuery<MemberInfoResponseType, AxiosError>({
-    queryKey: [QUERY_KEYS.MEMBER_INFO, memberId],
-    queryFn: () => getMemberInfo(memberId),
+    queryKey: [QUERY_KEYS.MEMBER_INFO, userUrl],
+    queryFn: () => getMemberInfo(userUrl),
   });
 
   return { memberData };
