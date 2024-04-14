@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, Fragment } from "react";
 
 import { Flex, Box } from "@/components/common";
 import CommentCard from "@/components/common/Comment/CommentCard";
@@ -7,6 +7,7 @@ import Button from "@/components/common/Design/Button/Button";
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
 import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
 import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
+import useObserver from "@/hooks/useObserver";
 
 import {
   commentBoxStyle,
@@ -15,11 +16,7 @@ import {
 } from "@/components/common/Comment/Comment.style";
 
 const Comment = ({ boardId }: { boardId: number }) => {
-  const { commentData } = useCommentQuery(0, boardId);
-
-  // console.log(boardId);
-
-  // console.log(commentData);
+  const { commentData, hasNextPage, fetchNextPage, isFetching } = useCommentQuery(boardId);
 
   const { mutate: postCommentMutation } = usePostCommentMutation();
   const { mutate: editCommentMutation } = useEditCommentMutation();
@@ -30,6 +27,14 @@ const Comment = ({ boardId }: { boardId: number }) => {
   const [commentId, setCommentId] = useState(0);
 
   const commentRef = useRef<HTMLTextAreaElement>(null);
+
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
 
   const handleAddComment = () => {
     postCommentMutation(
@@ -70,20 +75,23 @@ const Comment = ({ boardId }: { boardId: number }) => {
 
   return (
     <Flex css={commentBoxStyle}>
-      {commentData && (
-        <Flex styles={{ direction: "column", gap: "36px", width: "100%" }}>
-          {commentData.result.commentList.map((data) => (
-            <CommentCard
-              key={data.commentId}
-              commentId={data.commentId}
-              content={data.content}
-              createdDate={data.createdDate}
-              member={data.member}
-              handleEditClick={handleEditClick}
-            />
-          ))}
-        </Flex>
-      )}
+      <Flex styles={{ direction: "column", gap: "36px", width: "100%" }}>
+        {commentData.pages.map((commentData, index) => (
+          <Fragment key={index}>
+            {commentData.result.commentList.map((commentInfo) => (
+              <CommentCard
+                key={commentInfo.commentId}
+                commentId={commentInfo.commentId}
+                content={commentInfo.content}
+                createdDate={commentInfo.createdDate}
+                member={commentInfo.member}
+                handleEditClick={handleEditClick}
+              />
+            ))}
+          </Fragment>
+        ))}
+        <div ref={ref} />
+      </Flex>
 
       <Box styles={{ position: "relative", marginBottom: "60px" }}>
         <textarea

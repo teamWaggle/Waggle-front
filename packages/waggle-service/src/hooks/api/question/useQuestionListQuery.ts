@@ -25,12 +25,3 @@ export const useQuestionListQuery = () => {
 
   return { questionListData, fetchNextPage, hasNextPage, isFetching };
 };
-
-// export const useQuestionListQuery = (currentPage: number) => {
-//   const { data: questionListData } = useSuspenseQuery<QuestionListType, AxiosError>({
-//     queryKey: [QUERY_KEYS.QUESTION_LIST],
-//     queryFn: () => getQuestionList(currentPage),
-//   });
-
-//   return { questionListData };
-// };

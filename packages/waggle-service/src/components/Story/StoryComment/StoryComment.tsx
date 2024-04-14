@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, Fragment } from "react";
 
 import { css } from "@emotion/react";
 
@@ -16,6 +16,7 @@ import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutati
 import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
 import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
 import { usePostRecommend } from "@/hooks/api/recommend/usePostRecommend";
+import useObserver from "@/hooks/useObserver";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
@@ -32,7 +33,7 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
 
   const isRecommend = isLoggedIn ? useGetIsRecommend(boardId) : false;
 
-  const { commentData } = useCommentQuery(0, boardId);
+  const { commentData, hasNextPage, fetchNextPage, isFetching } = useCommentQuery(boardId);
 
   const { mutate: postCommentMutation } = usePostCommentMutation();
   const { mutate: editCommentMutation } = useEditCommentMutation();
@@ -44,6 +45,14 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
   const [commentId, setCommentId] = useState(0);
 
   const commentInputRef = useRef<HTMLInputElement>(null);
+
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
 
   const handleAddComment = () => {
     postCommentMutation(
@@ -91,16 +100,21 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
 
       {/* 코멘트 영역 */}
       <Box css={commentLayoutStyle}>
-        {commentData.result.commentList.map((comment) => (
-          <Comment
-            key={comment.commentId}
-            commentId={comment.commentId}
-            content={comment.content}
-            createdDate={comment.createdDate}
-            member={comment.member}
-            handleEditClick={handleEditClick}
-          />
+        {commentData.pages.map((commentData, index) => (
+          <Fragment key={index}>
+            {commentData.result.commentList.map((commentInfo) => (
+              <Comment
+                key={commentInfo.commentId}
+                commentId={commentInfo.commentId}
+                content={commentInfo.content}
+                createdDate={commentInfo.createdDate}
+                member={commentInfo.member}
+                handleEditClick={handleEditClick}
+              />
+            ))}
+          </Fragment>
         ))}
+        <div ref={ref} />
       </Box>
 
       <Divider length="309px" />
