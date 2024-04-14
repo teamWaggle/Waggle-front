@@ -3,12 +3,15 @@ import { Suspense } from "react";
 import { useRecoilValue } from "recoil";
 
 import { Flex } from "@/components/common";
-import { Login, Profile, Widget } from "@/components/Sidebar";
+// import { Login, Profile, Widget } from "@/components/Sidebar";
+import { Login, Widget } from "@/components/Sidebar";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
 const Sidebar = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
+
+  console.log(isLoggedIn);
 
   return (
     <Flex
@@ -18,7 +21,10 @@ const Sidebar = () => {
       }}
       tag="aside"
     >
-      <Suspense fallback={<div>로딩중</div>}>{isLoggedIn ? <Profile /> : <Login />}</Suspense>
+      <Suspense fallback={<div>로딩중</div>}>
+        <Login />
+      </Suspense>
+      {/* <Suspense fallback={<div>로딩중</div>}>{isLoggedIn ? <Profile /> : <Login />}</Suspense> */}
       <Widget />
     </Flex>
   );

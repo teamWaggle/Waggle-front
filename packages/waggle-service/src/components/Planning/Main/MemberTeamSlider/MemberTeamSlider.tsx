@@ -17,7 +17,7 @@ import {
 } from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider.style";
 
 const MemberTeamSlider = () => {
-  const memberId = useReissueToken();
+  const { memberId } = useReissueToken();
   const teamList = useGetMemberTeams(memberId);
 
   return (

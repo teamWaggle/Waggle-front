@@ -1,13 +1,9 @@
-import { useRecoilState } from "recoil";
-
 import LogoutIcon from "@/assets/svg/ic-logout.svg?react";
 
 import { Flex, Text } from "@/components/common";
 
 import { useLogoutMutation } from "@/hooks/api/auth/useLogoutMutation";
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
-
-import { memberIdState } from "@/recoil/atoms/auth";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -20,9 +16,7 @@ import {
 } from "@/components/Sidebar/Profile/Profile.style";
 
 const Profile = () => {
-  const [memberId] = useRecoilState(memberIdState);
-
-  const { memberData } = useMemberInfoQuery(memberId);
+  const { memberData } = useMemberInfoQuery("abc");
 
   const { mutate: mutateLogOut } = useLogoutMutation();
 

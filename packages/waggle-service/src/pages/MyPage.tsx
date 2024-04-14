@@ -19,9 +19,12 @@ import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 import { memberIdState } from "@/recoil/atoms/auth";
 
 const MyPage = () => {
+  const userUrl = localStorage.getItem("USER_URL");
+
+  console.log(userUrl);
   const [memberId] = useRecoilState(memberIdState);
 
-  const { memberData } = useMemberInfoQuery(memberId);
+  const { memberData } = useMemberInfoQuery("abc");
 
   const [searchParams, setSearchParams] = useSearchParams();
 

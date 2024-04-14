@@ -24,7 +24,7 @@ const useCalendar = () => {
   const currentPrevYear = getCurrentYear(subMonths(currentDate, 1));
   const currentPrevMonth = getCurrentMonth(subMonths(currentDate, 1));
 
-  const memberId = useReissueToken();
+  const { memberId } = useReissueToken();
   const { data } = useGetMemberScheduleMonthly(memberId, currentYear, currentMonth);
 
   prefetchScheduleMonthly(memberId, currentNextYear, currentNextMonth);

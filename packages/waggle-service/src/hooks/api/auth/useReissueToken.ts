@@ -14,5 +14,7 @@ export const useReissueToken = () => {
   });
   localStorage.setItem(ACCESS_TOKEN_KEY, data.result.accessToken);
   const memberId = data.result.member.memberId;
-  return memberId;
+  const userUrl = data.result.member.userUrl;
+
+  return { memberId, userUrl };
 };
