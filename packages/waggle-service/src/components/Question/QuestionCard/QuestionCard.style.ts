@@ -11,7 +11,6 @@ export const cardStyle = css({
   width: "754px",
   height: "160px",
   flexDirection: "column",
-  justifyContent: "center",
   gap: "10px",
   cursor: "pointer",
 });
