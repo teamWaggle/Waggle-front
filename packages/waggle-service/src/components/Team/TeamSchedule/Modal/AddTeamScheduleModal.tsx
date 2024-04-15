@@ -64,7 +64,7 @@ const AddTeamScheduleModal = ({ teamId }: { teamId: number }) => {
             <Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
               일정 이름
             </Heading>
-            <Form.TitleInputField
+            <Form.TextInputField
               name="title"
               validateText="한영 30자 제한, 특수문자 불가"
               placeholder="일정의 이름을 입력해주세요"
@@ -91,8 +91,9 @@ const AddTeamScheduleModal = ({ teamId }: { teamId: number }) => {
             <Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
               일정 설명
             </Heading>
-            <Form.ContentInputField
+            <Form.TextInputField
               name="content"
+              isContent
               validateText="한영 200자 제한, 특수문자 불가"
               placeholder="일정의 설명을 입력해주세요"
               inputStyle={addTeamScheduleModalTextAreaStyle}
