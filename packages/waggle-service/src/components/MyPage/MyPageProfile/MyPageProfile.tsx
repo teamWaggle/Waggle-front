@@ -16,7 +16,7 @@ import { isLoggedInState } from "@/recoil/atoms/auth";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import type { MemberInfoType } from "@/types/auth";
+import type { MemberDataType } from "@/types/auth";
 
 import {
   layoutStyle,
@@ -25,7 +25,10 @@ import {
   menuItemStyle,
 } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
 
-const MyPageProfile = ({ profileImgUrl, nickname, memberId, name, birthday }: MemberInfoType) => {
+const MyPageProfile = ({ memberData }: MemberDataType) => {
+  const { profileImgUrl, nickname, memberId, name, birthday, followerCount, followingCount } =
+    memberData;
+
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const userData = isLoggedIn && useMemberInfoSaveQuery();
@@ -75,8 +78,8 @@ const MyPageProfile = ({ profileImgUrl, nickname, memberId, name, birthday }: Me
           </Heading>
 
           <Text size="small" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
-            <span>팔로워 36</span>
-            <span>팔로잉 36</span>
+            <span>팔로워 {followerCount}</span>
+            <span>팔로잉 {followingCount}</span>
           </Text>
         </Box>
       </Flex>

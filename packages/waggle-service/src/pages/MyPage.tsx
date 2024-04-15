@@ -35,13 +35,7 @@ const MyPage = () => {
 
   return (
     <Flex css={layoutStyle}>
-      <MyPageProfile
-        profileImgUrl={memberData.result.profileImgUrl}
-        nickname={memberData.result.nickname}
-        memberId={memberData.result.memberId}
-        name={memberData.result.name}
-        birthday={memberData.result.birthday}
-      />
+      <MyPageProfile memberData={memberData.result} />
 
       {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain paramUrl={paramUrl} />}
 
