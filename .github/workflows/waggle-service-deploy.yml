@@ -10,6 +10,30 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3
 
+
+        - name: Get Github action IP
+          id: ip
+          uses: haythem/public-ip@v1.2
+
+        - name: Setting environment variables
+          run: |
+           echo "AWS_DEFAULT_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
+           echo "AWS_SG_NAME=${{ secrets.AWS_SG_NAME }}" >> $GITHUB_ENV
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ secrets.AWS_REGION }}
+        - name: Add Github Actions IP to Security group
+          run: |
+            aws ec2 authorize-security-group-ingress --group-name ${{ secrets.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+
+
         - name: Create ./packages/waggle-service/.env file
           run: |
             touch .env
@@ -55,3 +79,11 @@ jobs:
               docker rm ${{secrets.DOCKER_CONTAINER_NAME}}
               docker pull ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
               docker run -d -p 3001:80 --name "${{secrets.DOCKER_CONTAINER_NAME}}" ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
+
+        - name: Remove Github Actions IP from security group
+          run: |
+            aws ec2 revoke-security-group-ingress --group-name ${{ secrets.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
