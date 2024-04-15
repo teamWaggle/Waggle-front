@@ -48,13 +48,10 @@ const ReplyItem = ({
         width: "100%",
       }}
     >
-      {/* 프로필 영역 */}
       <StoryProfile
-        img={member.profileImgUrl}
-        nickname={member.nickname}
+        memberData={member}
         editClick={() => handleReplyEditClick(content, replyId)}
         deleteClick={handleDeleteReply}
-        ownerId={member.memberId}
       />
 
       <Box styles={{ maxWidth: "215px", paddingLeft: "43px" }}>

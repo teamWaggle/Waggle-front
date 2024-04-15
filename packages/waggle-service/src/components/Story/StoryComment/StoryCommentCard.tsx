@@ -13,20 +13,16 @@ import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
-import type { CommentListInfoType } from "@/types/comment";
+import type { CommentDataType } from "@/types/comment";
 
 import {
   getCommentTextStyle,
   handleCommentTextStyle,
 } from "@/components/Story/StoryComment/Comment.style";
 
-const Comment = ({
-  commentId,
-  member,
-  content,
-  createdDate,
-  handleEditClick,
-}: CommentListInfoType) => {
+const StoryCommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
+  const { commentId, member, content, createdDate } = commentData;
+
   const { mutate: deleteCommentMutate } = useDeleteCommentMutation();
 
   const [replyOpen, setReplyOpen] = useState(false);
@@ -46,17 +42,16 @@ const Comment = ({
       key: `DeleteWarningModal`,
       component: () => <DeleteWarningModal targetText="댓글" handleDelete={deleteMutate} />,
       notCloseIcon: true,
+      isUpper: true,
     });
   };
 
   return (
     <Flex styles={{ direction: "column", padding: "0 30px 0 18px" }}>
       <StoryProfile
-        img={member.profileImgUrl}
-        nickname={member.nickname}
+        memberData={member}
         deleteClick={handleDeleteComment}
         editClick={() => handleEditClick(content, commentId)}
-        ownerId={member.memberId}
       />
 
       <Box styles={{ maxWidth: "215px", paddingLeft: "43px" }}>
@@ -83,4 +78,4 @@ const Comment = ({
   );
 };
 
-export default Comment;
+export default StoryCommentCard;

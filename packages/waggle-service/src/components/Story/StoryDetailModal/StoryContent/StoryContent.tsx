@@ -58,11 +58,9 @@ const StoryContent = ({ storyData }: StoryDataType) => {
   return (
     <Flex css={contentBoxStyle}>
       <StoryProfile
-        img={member.profileImgUrl}
-        nickname={member.nickname}
+        memberData={member}
         editClick={handleEditStory}
         deleteClick={handleDeleteStory}
-        ownerId={member.memberId}
       />
 
       <Box styles={{ maxWidth: "270px" }}>

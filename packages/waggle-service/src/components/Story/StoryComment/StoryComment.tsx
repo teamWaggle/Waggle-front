@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, Fragment } from "react";
+import { Fragment } from "react";
 
 import { css } from "@emotion/react";
 
@@ -8,15 +8,15 @@ import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
 import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
 
 import { Flex, Box, Divider, Text } from "@/components/common";
-import Comment from "@/components/Story/StoryComment/Comment";
-import CommentInput from "@/components/Story/StoryComment/CommentInput";
+import StoryCommentCard from "@/components/Story/StoryComment/StoryCommentCard";
+import CommentInput from "@/components/Story/StoryComment/StoryCommentInput";
 
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
-import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
-import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
+
 import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
 import { usePostRecommend } from "@/hooks/api/recommend/usePostRecommend";
 import useObserver from "@/hooks/common/useObserver";
+import { useComment } from "@/hooks/comment/useComment";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
@@ -31,20 +31,23 @@ interface StoryCommentParams {
 const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
-  const isRecommend = isLoggedIn ? useGetIsRecommend(boardId) : false;
+  const { mutate: postRecommend } = usePostRecommend();
 
   const { commentData, hasNextPage, fetchNextPage, isFetching } = useCommentQuery(boardId);
 
-  const { mutate: postCommentMutation } = usePostCommentMutation();
-  const { mutate: editCommentMutation } = useEditCommentMutation();
-  const { mutate: postRecommend } = usePostRecommend();
+  const {
+    commentContent,
+    commentButtonText,
+    commentInputRef,
+    handleAddComment,
+    handleEditComment,
+    handleEditClick,
+    handleCommentContent,
+  } = useComment({
+    boardId,
+  });
 
-  const [commentContent, setCommentContent] = useState("");
-  const [mentionedMemberList] = useState<string[]>(["test"]);
-  const [commentButtonText, setCommentButtonText] = useState("등록");
-  const [commentId, setCommentId] = useState(0);
-
-  const commentInputRef = useRef<HTMLInputElement>(null);
+  const isRecommend = isLoggedIn ? useGetIsRecommend(boardId) : false;
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -54,61 +57,17 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
     }
   });
 
-  const handleAddComment = () => {
-    postCommentMutation(
-      { content: commentContent, mentionedMemberList, boardId },
-      {
-        onSuccess: () => {
-          setCommentContent("");
-        },
-      }
-    );
-  };
-
-  const handleEditComment = () => {
-    editCommentMutation(
-      {
-        content: commentContent,
-        mentionedMemberList,
-        commentId,
-      },
-      {
-        onSuccess: () => {
-          setCommentContent("");
-          setCommentId(0);
-        },
-      }
-    );
-  };
-
-  const handleEditClick = useCallback((content: string, commentId: number) => {
-    if (!commentInputRef.current) return;
-
-    commentInputRef.current.focus();
-    setCommentContent(content);
-    setCommentId(commentId);
-    setCommentButtonText("수정");
-  }, []);
-
-  if (!commentData) {
-    return <div>로딩중...</div>;
-  }
-
   return (
     <>
       <Divider length="309px" />
 
-      {/* 코멘트 영역 */}
       <Box css={commentLayoutStyle}>
         {commentData.pages.map((commentData, index) => (
           <Fragment key={index}>
             {commentData.result.commentList.map((commentInfo) => (
-              <Comment
+              <StoryCommentCard
                 key={commentInfo.commentId}
-                commentId={commentInfo.commentId}
-                content={commentInfo.content}
-                createdDate={commentInfo.createdDate}
-                member={commentInfo.member}
+                commentData={commentInfo}
                 handleEditClick={handleEditClick}
               />
             ))}
@@ -119,7 +78,6 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
 
       <Divider length="309px" />
 
-      {/* 코멘트 작성 영역 */}
       <Flex styles={{ direction: "column", gap: "10px", padding: "15px 24px" }}>
         <Flex styles={{ align: "center", gap: "6px" }}>
           {isRecommend ? (
@@ -148,7 +106,7 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
           placeholder="댓글 작성"
           handleButtonClick={commentButtonText === "등록" ? handleAddComment : handleEditComment}
           content={commentContent}
-          setContent={setCommentContent}
+          handleCommentContent={handleCommentContent}
           commentInputRef={commentInputRef}
           commentButtonText={commentButtonText}
         />

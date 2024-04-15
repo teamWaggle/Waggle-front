@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from "react";
 import { flushSync } from "react-dom";
 
 import { Flex, Box, Text, Divider } from "@/components/common";
-import CommentInput from "@/components/Story/StoryComment/CommentInput";
+import CommentInput from "@/components/Story/StoryComment/StoryCommentInput";
 import ReplyItem from "@/components/Story/StoryComment/Reply/ReplyItem";
 
 import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
