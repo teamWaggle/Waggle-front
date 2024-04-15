@@ -29,6 +29,10 @@ const StoryCommentCard = ({ commentData, handleEditClick }: CommentDataType) => 
 
   const modal = useModal();
 
+  const handleReplyOpen = (open: boolean) => {
+    setReplyOpen(open);
+  };
+
   const deleteMutate = () => {
     deleteCommentMutate(commentId, {
       onSuccess: () => {
@@ -73,7 +77,7 @@ const StoryCommentCard = ({ commentData, handleEditClick }: CommentDataType) => 
         </Text>
       </Flex>
 
-      {replyOpen && <Reply commentId={commentId} setReplyOpen={setReplyOpen} />}
+      {replyOpen && <Reply commentId={commentId} handleReplyOpen={handleReplyOpen} />}
     </Flex>
   );
 };

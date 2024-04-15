@@ -22,14 +22,14 @@ export const END_POINTS = {
   COMMENTS: (currentPage: unknown, boardId: number) =>
     `/api/comments/page/${boardId}?currentPage=${currentPage}`,
   COMMENT: (commentId: number) => `/api/comments/${commentId}`,
-  POST_COMMENT: (boardId: number) => `/api/comments/${boardId}`,
+  POST_COMMENT: (boardId?: number) => `/api/comments/${boardId}`,
   SIREN: (sirenId: number) => `/api/sirens/${sirenId}`,
   SIREN_LIST: (curretPage: number) => `/api/sirens?currentPage=${curretPage}`,
   SIREN_REPRESENTATIVE: "/api/sirens/representative",
   POST_SIREN: "/api/sirens",
   REPLIES: (currentPage: number, commentId: number) =>
     `/api/replies/${commentId}?currentPage=${currentPage}`,
-  POST_REPLY: (commentId: number) => `/api/replies/${commentId}`,
+  POST_REPLY: (commentId?: number) => `/api/replies/${commentId}`,
   REPLY: (replyId: number) => `/api/replies/${replyId}`,
   MEMBER_PET: (userUrl?: string) => `/api/pets/${userUrl}`,
   POST_PET: "/api/pets",

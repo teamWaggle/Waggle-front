@@ -7,20 +7,16 @@ import useModal from "@/hooks/common/useModal";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
-import type { ReplyListInfoType } from "@/types/reply";
+import type { ReplyDataType } from "@/types/reply";
 
 import {
   getCommentTextStyle,
   replyDateTextStyle,
 } from "@/components/Story/StoryComment/Comment.style";
 
-const ReplyItem = ({
-  replyId,
-  content,
-  member,
-  createdDate,
-  handleReplyEditClick,
-}: ReplyListInfoType) => {
+const ReplyItem = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
+  const { replyId, content, member, createdDate } = replyData;
+
   const { mutate: deleteReplyMutate } = useDeleteRelpyMutation();
 
   const modal = useModal();
@@ -38,6 +34,7 @@ const ReplyItem = ({
       key: `DeleteWarningModal`,
       component: () => <DeleteWarningModal targetText="답글" handleDelete={deleteMutate} />,
       notCloseIcon: true,
+      isUpper: true,
     });
   };
 

@@ -14,7 +14,11 @@ export interface ReplyResultType {
   isLast: boolean;
 }
 
-export interface ReplyListInfoType extends EditCommentProps {
+export interface ReplyDataType extends EditCommentProps {
+  replyData: ReplyListInfoType;
+}
+
+export interface ReplyListInfoType {
   replyId: number;
   content: string;
   createdDate: string;
@@ -31,7 +35,7 @@ export interface PutReplyType extends ReplyRequestType {
 }
 
 export interface PostReplyType extends ReplyRequestType {
-  commentId: number;
+  commentId?: number;
 }
 
 export interface ReplyRequestType {

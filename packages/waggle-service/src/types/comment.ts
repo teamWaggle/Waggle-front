@@ -33,7 +33,7 @@ export interface PutCommentType extends CommentRequestType {
 }
 
 export interface PostCommentType extends CommentRequestType {
-  boardId: number;
+  boardId?: number;
 }
 
 export interface CommentRequestType {
