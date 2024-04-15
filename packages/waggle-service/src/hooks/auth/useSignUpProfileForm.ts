@@ -118,7 +118,6 @@ export const useSignUpProfileForm = ({
       nickname: signUpProfileRequest.nickname,
       name,
       birthday,
-      password: "test1234!",
       memberProfileImg: uploadMedia,
     };
 

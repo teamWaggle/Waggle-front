@@ -36,6 +36,10 @@ export interface MemberInfoResponseType extends CommonResponseBaseType {
   result: MemberInfoResultType;
 }
 
+export interface MemberDataType {
+  memberData: MemberInfoResultType;
+}
+
 export interface MemberInfoResultType {
   memberId: number;
   userUrl: string;
@@ -43,6 +47,8 @@ export interface MemberInfoResultType {
   name: string;
   birthday: string;
   profileImgUrl: string;
+  followingCount: number;
+  followerCount: number;
 }
 
 export interface FindEmailResponseType extends CommonResponseBaseType {
@@ -72,12 +78,4 @@ export interface updatePetInputValueType {
     key: Key,
     value: SignUpPetFormType[Key]
   ) => void;
-}
-
-export interface MemberInfoType {
-  profileImgUrl: string;
-  nickname: string;
-  memberId: number;
-  name: string;
-  birthday: string;
 }
