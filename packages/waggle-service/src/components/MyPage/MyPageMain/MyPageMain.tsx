@@ -1,3 +1,5 @@
+import { useRecoilValue } from "recoil";
+
 import { Flex, Box, Heading } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 import MyPagePetCard from "@/components/MyPage/MyPageMain/MyPagePetCard/MyPagePetCard";
@@ -10,13 +12,19 @@ import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuer
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import { isLoggedInState } from "@/recoil/atoms/auth";
+
 import type { ParamUrlType } from "@/types/common";
 
 import { layoutStyle, petCardBoxStyle } from "@/components/MyPage/MyPageMain/MyPageMain.style";
 
 const MyPageMain = ({ paramUrl }: ParamUrlType) => {
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+
   const { petData } = usePetQuery(paramUrl);
-  const { userUrl } = useMemberInfoSaveQuery();
+  const userData = isLoggedIn && useMemberInfoSaveQuery();
+
+  const userUrl = userData ? userData.userUrl : "";
 
   const modal = useModal();
 

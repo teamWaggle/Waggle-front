@@ -1,3 +1,5 @@
+import { useRecoilValue } from "recoil";
+
 import { Flex, Heading } from "@/components/common";
 import PostProfile from "@/components/common/Post/PostProfile";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
@@ -8,6 +10,8 @@ import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuer
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
+import { isLoggedInState } from "@/recoil/atoms/auth";
+
 import type { SirenTitleType } from "@/types/siren";
 
 import { titleBoxStyle } from "@/components/common/Post/Post.style";
@@ -15,7 +19,11 @@ import { titleBoxStyle } from "@/components/common/Post/Post.style";
 const SirenTitle = ({ sirenData, handleEditSiren, handleDeleteSiren }: SirenTitleType) => {
   const { category, title, member, status, createdDate, viewCount } = sirenData;
 
-  const { memberId } = useMemberInfoSaveQuery();
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+
+  const userData = isLoggedIn && useMemberInfoSaveQuery();
+
+  const memberId = userData ? userData.memberId : null;
 
   return (
     <Flex css={titleBoxStyle}>
