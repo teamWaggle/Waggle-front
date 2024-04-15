@@ -13,16 +13,15 @@ jobs:
         - name: Create ./packages/waggle-service/.env file
           run: |
             touch .env
-            echo "${{ secrets.VITE_BASE_URL }}" >> ./packages/waggle-service/.env
-            echo "${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> ./packages/waggle-service/.env
-            echo "${{ secrets.VITE_GOOGLE_CLIENT_SECRET }}" >> ./packages/waggle-service/.env
-            echo "${{ secrets.VITE_GOOGLE_REDIRECT_URI }}" >> ./packages/waggle-service/.env
-            echo "${{ secrets.VITE_KAKAO_API_KEY }}" >> ./packages/waggle-service/.env
-            echo "${{ secrets.VITE_KAKAO_REDIRECT_URI }}" >> ./packages/waggle-service/.env
-            echo "${{ secrets.VITE_NAVER_CLIENT_ID }}" >> ./packages/waggle-service/.env
-            echo "${{ secrets.VITE_NAVER_CLIENT_SECRET }}" >> ./packages/waggle-service/.env
-            echo "${{ secrets.VITE_NAVER_REDIRECT_URI }}" >> ./packages/waggle-service/.env
-
+            echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> ./packages/waggle-service/.env
+            echo "VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> ./packages/waggle-service/.env
+            echo "VITE_GOOGLE_CLIENT_SECRET=${{ secrets.VITE_GOOGLE_CLIENT_SECRET }}" >> ./packages/waggle-service/.env
+            echo "VITE_GOOGLE_REDIRECT_URI=${{ secrets.VITE_GOOGLE_REDIRECT_URI }}" >> ./packages/waggle-service/.env
+            echo "VITE_KAKAO_API_KEY=${{ secrets.VITE_KAKAO_API_KEY }}" >> ./packages/waggle-service/.env
+            echo "VITE_KAKAO_REDIRECT_URI=${{ secrets.VITE_KAKAO_REDIRECT_URI }}" >> ./packages/waggle-service/.env
+            echo "VITE_NAVER_CLIENT_ID=${{ secrets.VITE_NAVER_CLIENT_ID }}" >> ./packages/waggle-service/.env
+            echo "VITE_NAVER_CLIENT_SECRET=${{ secrets.VITE_NAVER_CLIENT_SECRET }}" >> ./packages/waggle-service/.env
+            echo "VITE_NAVER_REDIRECT_URI=${{ secrets.VITE_NAVER_REDIRECT_URI }}" >> ./packages/waggle-service/.env
         # - name: Get the version
         #   id: get_version
         #   run: |
@@ -32,22 +31,17 @@ jobs:
           uses: docker/setup-buildx-action@v3
 
         - name: Login to DockerHub
-          uses: docker/login-action@v3
+          uses: docker/login-action@v2
           with:
             username: ${{ secrets.DOCKER_USERNAME }}
             password: ${{ secrets.DOCKER_PASSWORD }}
         - name: Build and push
-          # uses: docker/build-push-action@v5
-          # with:
-          #   context: .
-          #   file: ./Dockerfile
-          #   platforms: linux/amd64
-          #   push: true
-          #   tags: /waggle-front-waggle-service
-          run: |
-            docker-compose build
-            docker tag ${{secrets.DOCKER_TAG_NAME}} ${{ secrets.DOCKER_USERNAME }}/${{secrets.DOCKER_TAG_NAME}}
-            docker push ${{ secrets.DOCKER_USERNAME }}/${{secrets.DOCKER_TAG_NAME}}
+          uses: docker/build-push-action@v5
+          with:
+            context: .
+            file: ./Dockerfile
+            push: true
+            tags: ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
 
         - name: Deploy EC2
           uses: appleboy/ssh-action@master
@@ -59,5 +53,5 @@ jobs:
             script: |
               docker stop ${{secrets.DOCKER_CONTAINER_NAME}}
               docker rm ${{secrets.DOCKER_CONTAINER_NAME}}
-              docker pull ${{ secrets.DOCKER_USERNAME }}/${{secrets.DOCKER_TAG_NAME}}
-              docker run -d -p 3001:80 --name "${{secrets.DOCKER_CONTAINER_NAME}}" ${{ secrets.DOCKER_USERNAME }}/${{secrets.DOCKER_TAG_NAME}}
+              docker pull ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
+              docker run -d -p 3001:80 --name "${{secrets.DOCKER_CONTAINER_NAME}}" ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
