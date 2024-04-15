@@ -8,26 +8,26 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
 
-        - name: Create .env file
+        - name: Create ./packages/waggle-service/.env file
           run: |
             touch .env
-            echo "${{ secrets.VITE_BASE_URL }}" >> .env
-            echo "${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> .env
-            echo "${{ secrets.VITE_GOOGLE_CLIENT_SECRET }}" >> .env
-            echo "${{ secrets.VITE_GOOGLE_REDIRECT_URI }}" >> .env
-            echo "${{ secrets.VITE_KAKAO_API_KEY }}" >> .env
-            echo "${{ secrets.VITE_KAKAO_REDIRECT_URI }}" >> .env
-            echo "${{ secrets.VITE_NAVER_CLIENT_ID }}" >> .env
-            echo "${{ secrets.VITE_NAVER_CLIENT_SECRET }}" >> .env
-            echo "${{ secrets.VITE_NAVER_REDIRECT_URI }}" >> .env
+            echo "${{ secrets.VITE_BASE_URL }}" >> ./packages/waggle-service/.env
+            echo "${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> ./packages/waggle-service/.env
+            echo "${{ secrets.VITE_GOOGLE_CLIENT_SECRET }}" >> ./packages/waggle-service/.env
+            echo "${{ secrets.VITE_GOOGLE_REDIRECT_URI }}" >> ./packages/waggle-service/.env
+            echo "${{ secrets.VITE_KAKAO_API_KEY }}" >> ./packages/waggle-service/.env
+            echo "${{ secrets.VITE_KAKAO_REDIRECT_URI }}" >> ./packages/waggle-service/.env
+            echo "${{ secrets.VITE_NAVER_CLIENT_ID }}" >> ./packages/waggle-service/.env
+            echo "${{ secrets.VITE_NAVER_CLIENT_SECRET }}" >> ./packages/waggle-service/.env
+            echo "${{ secrets.VITE_NAVER_REDIRECT_URI }}" >> ./packages/waggle-service/.env
 
-        - name: Get the version
-          id: get_version
-          run: |
-                RELEASE_VERSION_WITHOUT_V="$(cut -d'v' -f2 <<< ${GITHUB_REF#refs/*/})"
-                echo ::set-output name=version::$(echo $GITHUB_SHA | cut -c1-7)
+        # - name: Get the version
+        #   id: get_version
+        #   run: |
+        #         RELEASE_VERSION_WITHOUT_V="$(cut -d'v' -f2 <<< ${GITHUB_REF#refs/*/})"
+        #         echo ::set-output name=version::$(echo $GITHUB_SHA | cut -c1-7)
         - name: Set up docker buildx
           uses: docker/setup-buildx-action@v1
 
@@ -40,7 +40,20 @@ jobs:
           uses: docker/build-push-action@v2
           with:
             context: .
-            file: ./Dockerfile.waggle-service
+            file: ./Dockerfile
             platforms: linux/amd64
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/waggle-service:${{ steps.get_version.outputs.version }}
+            tags: ${{ secrets.DOCKER_USERNAME }}//waggle-front-waggle-service
+
+        - name: Deploy EC2
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.HOST_IP }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.AWS_KEY }}
+            port: ${{ secrets.SSH_PORT }}
+            script: |
+              docker pull ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
+              docker stop ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
+              docker rm ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
+              docker run -d -p 3001:80 --name ${{ secrets.DOCKER_USERNAME }}//waggle-front-waggle-service
