@@ -1,5 +1,4 @@
 import { useState, useRef, useCallback } from "react";
-import { flushSync } from "react-dom";
 
 import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
 import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
@@ -8,11 +7,11 @@ import { usePostReplyMutation } from "@/hooks/api/reply/usePostReplyMutation";
 
 interface UseCommentParams {
   boardId?: number;
+  isTextArea?: boolean;
   targetCommentId?: number;
-  handleReplyOpen?: (open: boolean) => void;
 }
 
-export const useComment = ({ boardId, targetCommentId, handleReplyOpen }: UseCommentParams) => {
+export const useComment = ({ boardId, isTextArea, targetCommentId }: UseCommentParams) => {
   const { mutate: postCommentMutation } = usePostCommentMutation();
   const { mutate: editCommentMutation } = useEditCommentMutation();
   const { mutate: postReplyMutation } = usePostReplyMutation();
@@ -24,6 +23,7 @@ export const useComment = ({ boardId, targetCommentId, handleReplyOpen }: UseCom
   const [commentId, setCommentId] = useState(0);
 
   const commentInputRef = useRef<HTMLInputElement>(null);
+  const commentTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleCommentContent = useCallback(
     (content: string) => {
@@ -60,9 +60,16 @@ export const useComment = ({ boardId, targetCommentId, handleReplyOpen }: UseCom
   };
 
   const handleEditClick = useCallback((content: string, commentId: number) => {
-    if (!commentInputRef.current) return;
+    if (isTextArea) {
+      if (!commentTextAreaRef.current) return;
 
-    commentInputRef.current.focus();
+      commentTextAreaRef.current.focus();
+    } else {
+      if (!commentInputRef.current) return;
+
+      commentInputRef.current.focus();
+    }
+
     setCommentContent(content);
     setCommentId(commentId);
     setCommentButtonText("수정");
@@ -99,29 +106,16 @@ export const useComment = ({ boardId, targetCommentId, handleReplyOpen }: UseCom
     );
   };
 
-  const handleReplyEditClick = useCallback((content: string, replyId: number) => {
-    flushSync(() => {
-      handleReplyOpen && handleReplyOpen(true);
-    });
-
-    if (!commentInputRef.current) return;
-
-    commentInputRef.current.focus();
-    setCommentContent(content);
-    setCommentId(replyId);
-    setCommentButtonText("수정");
-  }, []);
-
   return {
     commentContent,
     commentButtonText,
     commentInputRef,
+    commentTextAreaRef,
     handleAddComment,
     handleEditComment,
     handleEditClick,
     handleCommentContent,
     handleAddReply,
     handleEditReply,
-    handleReplyEditClick,
   };
 };

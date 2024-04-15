@@ -11,9 +11,3 @@ export const replyCardBoxStyle = css({
     borderRadius: "50%",
   },
 });
-
-export const moreButtonStyle = css({
-  cursor: "pointer",
-  position: "absolute",
-  right: 0,
-});

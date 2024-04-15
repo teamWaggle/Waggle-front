@@ -22,8 +22,8 @@ const Reply = ({ commentId, handleReplyOpen }: ReplyProps) => {
     handleCommentContent,
     handleAddReply,
     handleEditReply,
-    handleReplyEditClick,
-  } = useComment({ targetCommentId: commentId, handleReplyOpen });
+    handleEditClick,
+  } = useComment({ targetCommentId: commentId });
 
   return (
     <>
@@ -40,7 +40,7 @@ const Reply = ({ commentId, handleReplyOpen }: ReplyProps) => {
             <ReplyItem
               key={reply.replyId}
               replyData={reply}
-              handleReplyEditClick={handleReplyEditClick}
+              handleReplyEditClick={handleEditClick}
             />
           ))}
 
