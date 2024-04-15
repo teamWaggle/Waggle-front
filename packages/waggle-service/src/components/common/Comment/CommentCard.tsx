@@ -1,20 +1,17 @@
-import { useState, useRef, useCallback } from "react";
-import { flushSync } from "react-dom";
+import { useState, useCallback } from "react";
 import { useRecoilValue } from "recoil";
-
-import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Text } from "@/components/common";
 import Reply from "@/components/common/Comment/Reply/Reply";
 import ReplyInput from "@/components/common/Comment/Reply/ReplyInput";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
+import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 
 import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
-import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-import useClickOutSide from "@/hooks/common/useClickOutSide";
 import useModal from "@/hooks/common/useModal";
+import { useComment } from "@/hooks/comment/useComment";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -23,46 +20,36 @@ import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
-import type { CommentListInfoType } from "@/types/comment";
+import type { CommentDataType } from "@/types/comment";
 
-import {
-  commentCardBoxStyle,
-  replyBoxStyle,
-  moreButtonStyle,
-  menuStyle,
-} from "@/components/common/Comment/Comment.style";
+import { commentCardBoxStyle, replyBoxStyle } from "@/components/common/Comment/Comment.style";
 
-const CommentCard = ({
-  commentId,
-  content,
-  createdDate,
-  member,
-  handleEditClick,
-}: CommentListInfoType) => {
+const CommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
+  const { commentId, member, content, createdDate } = commentData;
+
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const { mutate: deleteCommentMutate } = useDeleteCommentMutation();
-  const { mutate: editReplyMutation } = useEditReplyMutation();
 
   const { replyData } = useReplyQuery(0, commentId);
+
   const userData = isLoggedIn && useMemberInfoSaveQuery();
 
   const memberId = userData ? userData.memberId : null;
 
+  const {
+    commentContent,
+    commentButtonText,
+    handleCommentContent,
+    handleAddReply,
+    handleEditReply,
+    handleEditClick: handleReplyEditClick,
+    commentTextAreaRef,
+  } = useComment({ targetCommentId: commentId, isTextArea: true });
+
   const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const [replyContent, setReplyContent] = useState("");
-  const [mentionedMemberList] = useState<string[]>(["test"]);
-  const [replyButtonText, setReplyButtonText] = useState("등록");
-  const [replyId, setReplyId] = useState(0);
-
-  const menuRef = useRef<HTMLUListElement>(null);
-  const replyRef = useRef<HTMLTextAreaElement>(null);
 
   const modal = useModal();
-
-  useClickOutSide(menuRef, () => setMenuOpen(false));
 
   const deleteMutate = () => {
     deleteCommentMutate(commentId, {
@@ -78,36 +65,6 @@ const CommentCard = ({
       component: () => <DeleteWarningModal targetText="댓글" handleDelete={deleteMutate} />,
       notCloseIcon: true,
     });
-  }, []);
-
-  const handleEditReply = () => {
-    editReplyMutation(
-      {
-        content: replyContent,
-        mentionedMemberList,
-        replyId,
-      },
-      {
-        onSuccess: () => {
-          setReplyContent("");
-          setReplyId(0);
-          setReplyButtonText("등록");
-        },
-      }
-    );
-  };
-
-  const handleReplyEditClick = useCallback((content: string, replyId: number) => {
-    flushSync(() => {
-      setIsReplyBoxOpen(true);
-    });
-
-    if (!replyRef.current) return;
-
-    replyRef.current.focus();
-    setReplyContent(content);
-    setReplyId(replyId);
-    setReplyButtonText("수정");
   }, []);
 
   return (
@@ -129,27 +86,22 @@ const CommentCard = ({
         </Flex>
 
         {isReplyBoxOpen &&
-          replyData &&
-          replyData.result.replyList.map((data) => (
+          replyData.result.replyList.map((replyData) => (
             <Reply
-              key={data.replyId}
-              replyId={data.replyId}
-              content={data.content}
-              createdDate={data.createdDate}
-              member={data.member}
+              key={replyData.replyId}
+              replyData={replyData}
               handleReplyEditClick={handleReplyEditClick}
             />
           ))}
 
         {isReplyBoxOpen && (
           <ReplyInput
-            commentId={commentId}
-            content={replyContent}
-            setContent={setReplyContent}
-            mentionedMemberList={mentionedMemberList}
-            replyButtonText={replyButtonText}
+            content={commentContent}
+            handleCommentContent={handleCommentContent}
+            replyButtonText={commentButtonText}
+            handleAddReply={handleAddReply}
             handleEditReply={handleEditReply}
-            replyRef={replyRef}
+            replyRef={commentTextAreaRef}
           />
         )}
       </Flex>
@@ -160,15 +112,11 @@ const CommentCard = ({
         </Text>
 
         {member.memberId === memberId && (
-          <Flex css={moreButtonStyle} onClick={() => setMenuOpen((prev) => !prev)}>
-            <OptionIcon />
-
-            {menuOpen && (
-              <ul css={menuStyle} ref={menuRef}>
-                <li onClick={() => handleEditClick(content, commentId)}>수정하기</li>
-                <li onClick={handleDeleteComment}>삭제하기</li>
-              </ul>
-            )}
+          <Flex styles={{ align: "center", paddingTop: "4px" }}>
+            <ProfileOptionMenu
+              handleEditMenu={() => handleEditClick(content, commentId)}
+              handleDeleteMenu={handleDeleteComment}
+            />
           </Flex>
         )}
       </Flex>

@@ -55,32 +55,3 @@ export const buttonBoxStyle = css({
   bottom: "14px",
   right: "14px",
 });
-
-export const moreButtonStyle = css({
-  cursor: "pointer",
-  position: "relative",
-});
-
-export const menuStyle = css({
-  position: "absolute",
-  top: "-2px",
-  left: "12px",
-  width: "63px",
-  border: `1px solid ${Theme.color.border}`,
-  borderRadius: "2px",
-
-  "& > li": {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "10px",
-    fontWeight: 600,
-    backgroundColor: Theme.color.white,
-    color: Theme.color.text,
-    height: "22px",
-
-    "&:last-of-type": {
-      borderTop: `1px solid ${Theme.color.border}`,
-    },
-  },
-});

@@ -1,14 +1,13 @@
-import { useState, useRef, useCallback } from "react";
+import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-
-import OptionIcon from "@/assets/svg/option.svg?react";
 
 import { Flex, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
+import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-import useClickOutSide from "@/hooks/common/useClickOutSide";
+
 import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -18,18 +17,13 @@ import { convertToUTC } from "@/utils/convertToUTC";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
-import type { ReplyListInfoType } from "@/types/reply";
+import type { ReplyDataType } from "@/types/reply";
 
-import { menuStyle } from "@/components/common/Comment/Comment.style";
-import { replyCardBoxStyle, moreButtonStyle } from "@/components/common/Comment/Reply/Reply.style";
+import { replyCardBoxStyle } from "@/components/common/Comment/Reply/Reply.style";
 
-const Reply = ({
-  replyId,
-  content,
-  createdDate,
-  member,
-  handleReplyEditClick,
-}: ReplyListInfoType) => {
+const Reply = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
+  const { replyId, content, createdDate, member } = replyData;
+
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const { mutate: deleteReplyMutate } = useDeleteRelpyMutation();
@@ -38,13 +32,7 @@ const Reply = ({
 
   const memberId = userData ? userData.memberId : null;
 
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const menuRef = useRef<HTMLUListElement>(null);
-
   const modal = useModal();
-
-  useClickOutSide(menuRef, () => setMenuOpen(false));
 
   const deleteMutate = () => {
     deleteReplyMutate(replyId, {
@@ -82,16 +70,10 @@ const Reply = ({
       </Flex>
 
       {member.memberId === memberId && (
-        <Flex css={moreButtonStyle} onClick={() => setMenuOpen((prev) => !prev)}>
-          <OptionIcon />
-
-          {menuOpen && (
-            <ul css={menuStyle} ref={menuRef}>
-              <li onClick={() => handleReplyEditClick(content, replyId)}>수정하기</li>
-              <li onClick={handleDeleteReply}>삭제하기</li>
-            </ul>
-          )}
-        </Flex>
+        <ProfileOptionMenu
+          handleEditMenu={() => handleReplyEditClick(content, replyId)}
+          handleDeleteMenu={handleDeleteReply}
+        />
       )}
     </Flex>
   );

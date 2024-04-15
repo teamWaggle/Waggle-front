@@ -1,13 +1,13 @@
-import { useState, useRef, useCallback, Fragment } from "react";
+import { Fragment } from "react";
 
 import { Flex, Box } from "@/components/common";
 import CommentCard from "@/components/common/Comment/CommentCard";
 import Button from "@/components/common/Design/Button/Button";
 
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
-import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
-import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
+
 import useObserver from "@/hooks/common/useObserver";
+import { useComment } from "@/hooks/comment/useComment";
 
 import {
   commentBoxStyle,
@@ -18,15 +18,18 @@ import {
 const Comment = ({ boardId }: { boardId: number }) => {
   const { commentData, hasNextPage, fetchNextPage, isFetching } = useCommentQuery(boardId);
 
-  const { mutate: postCommentMutation } = usePostCommentMutation();
-  const { mutate: editCommentMutation } = useEditCommentMutation();
-
-  const [content, setContent] = useState("");
-  const [mentionedMemberList] = useState<string[]>(["test"]);
-  const [commentButtonText, setCommentButtonText] = useState("등록");
-  const [commentId, setCommentId] = useState(0);
-
-  const commentRef = useRef<HTMLTextAreaElement>(null);
+  const {
+    commentContent,
+    commentButtonText,
+    commentTextAreaRef,
+    handleAddComment,
+    handleEditComment,
+    handleEditClick,
+    handleCommentContent,
+  } = useComment({
+    boardId,
+    isTextArea: true,
+  });
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -36,43 +39,6 @@ const Comment = ({ boardId }: { boardId: number }) => {
     }
   });
 
-  const handleAddComment = () => {
-    postCommentMutation(
-      { content, mentionedMemberList, boardId },
-      {
-        onSuccess: () => {
-          setContent("");
-        },
-      }
-    );
-  };
-
-  const handleEditComment = () => {
-    editCommentMutation(
-      {
-        content,
-        mentionedMemberList,
-        commentId,
-      },
-      {
-        onSuccess: () => {
-          setContent("");
-          setCommentId(0);
-          setCommentButtonText("등록");
-        },
-      }
-    );
-  };
-
-  const handleEditClick = useCallback((content: string, commentId: number) => {
-    if (!commentRef.current) return;
-
-    commentRef.current.focus();
-    setContent(content);
-    setCommentId(commentId);
-    setCommentButtonText("수정");
-  }, []);
-
   return (
     <Flex css={commentBoxStyle}>
       <Flex styles={{ direction: "column", gap: "36px", width: "100%" }}>
@@ -81,10 +47,7 @@ const Comment = ({ boardId }: { boardId: number }) => {
             {commentData.result.commentList.map((commentInfo) => (
               <CommentCard
                 key={commentInfo.commentId}
-                commentId={commentInfo.commentId}
-                content={commentInfo.content}
-                createdDate={commentInfo.createdDate}
-                member={commentInfo.member}
+                commentData={commentInfo}
                 handleEditClick={handleEditClick}
               />
             ))}
@@ -97,9 +60,9 @@ const Comment = ({ boardId }: { boardId: number }) => {
         <textarea
           placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."
           css={commentTextareaStyle(1144, 194)}
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          ref={commentRef}
+          value={commentContent}
+          onChange={(e) => handleCommentContent(e.target.value)}
+          ref={commentTextAreaRef}
         />
         <Box
           css={buttonBoxStyle}
