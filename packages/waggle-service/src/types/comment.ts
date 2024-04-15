@@ -12,7 +12,11 @@ export interface CommentResultType {
   nextPageParam: number;
 }
 
-export interface CommentListInfoType extends EditCommentProps {
+export interface CommentDataType extends EditCommentProps {
+  commentData: CommentListInfoType;
+}
+
+export interface CommentListInfoType {
   commentId: number;
   content: string;
   createdDate: Date;

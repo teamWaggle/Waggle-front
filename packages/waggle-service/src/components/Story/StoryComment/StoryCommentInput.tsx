@@ -7,17 +7,17 @@ interface CommentInputProps {
   placeholder: string;
   handleButtonClick: () => void;
   content: string;
-  setContent: React.Dispatch<React.SetStateAction<string>>;
+  handleCommentContent: (content: string) => void;
   commentInputRef: React.RefObject<HTMLInputElement>;
   commentButtonText: string;
 }
 
-const CommentInput = ({
+const StoryCommentInput = ({
   width,
   placeholder,
   handleButtonClick,
   content,
-  setContent,
+  handleCommentContent,
   commentInputRef,
   commentButtonText,
 }: CommentInputProps) => {
@@ -28,7 +28,7 @@ const CommentInput = ({
         css={commentInputStyle(width)}
         placeholder={placeholder}
         value={content}
-        onChange={(e) => setContent(e.target.value)}
+        onChange={(e) => handleCommentContent(e.target.value)}
         ref={commentInputRef}
       />
 
@@ -39,4 +39,4 @@ const CommentInput = ({
   );
 };
 
-export default CommentInput;
+export default StoryCommentInput;

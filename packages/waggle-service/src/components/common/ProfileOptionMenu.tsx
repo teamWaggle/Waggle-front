@@ -33,8 +33,22 @@ const ProfileOptionMenu = ({
 
       {menuOpen && (
         <ul>
-          <li onClick={handleEditMenu}>수정하기</li>
-          <li onClick={handleDeleteMenu}>삭제하기</li>
+          <li
+            onClick={() => {
+              handleEditMenu && handleEditMenu();
+              setMenuOpen(false);
+            }}
+          >
+            수정하기
+          </li>
+          <li
+            onClick={() => {
+              handleDeleteMenu && handleDeleteMenu();
+              setMenuOpen(false);
+            }}
+          >
+            삭제하기
+          </li>
         </ul>
       )}
     </div>

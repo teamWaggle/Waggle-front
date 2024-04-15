@@ -11,15 +11,21 @@ import { Theme } from "@/styles/Theme";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
-interface ProfileType {
-  img: string | undefined;
+interface MemberDataType {
+  profileImgUrl: string | undefined;
   nickname: string | undefined;
-  ownerId: number;
+  memberId: number;
+}
+
+interface StoryProfileProps {
+  memberData: MemberDataType;
   editClick?: () => void;
   deleteClick?: () => void;
 }
 
-const StoryProfile = ({ img, nickname, ownerId, editClick, deleteClick }: ProfileType) => {
+const StoryProfile = ({ memberData, editClick, deleteClick }: StoryProfileProps) => {
+  const { profileImgUrl, nickname, memberId: ownerId } = memberData;
+
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const userData = isLoggedIn && useMemberInfoSaveQuery();
@@ -31,7 +37,7 @@ const StoryProfile = ({ img, nickname, ownerId, editClick, deleteClick }: Profil
       styles={{ align: "center", justify: "space-between", width: "100%", position: "relative" }}
     >
       <Flex styles={{ align: "center", gap: "10px" }}>
-        <img src={img} alt="profileImg" css={profileStyle} />
+        <img src={profileImgUrl} alt="profileImg" css={profileStyle} />
         <Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
           {nickname}
         </Text>
