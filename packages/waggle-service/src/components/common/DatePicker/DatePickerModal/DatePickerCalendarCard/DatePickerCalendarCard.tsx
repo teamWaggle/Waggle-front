@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { DatePickerContext } from "@/components/common/DatePicker/DatePicker";
 import { format, isSameDay } from "date-fns";
 
-import { useControlledForm } from "@/hooks/useControlledForm";
+import { useControlledForm } from "@/hooks/common/useControlledForm";
 
 import { datePickerCalendarCardStyle } from "@/components/common/DatePicker/DatePickerModal/DatePickerCalendarCard/DatePickerCalendarCard.style";
 

@@ -9,7 +9,7 @@ import ParticipationCard from "@/components/Team/TeamInfo/ParticipationSlider/Pa
 import { TEAM_INFO } from "@/constants/team";
 
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
-import { useParamsTeamId } from "@/hooks/useParamsTeamId";
+import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 
 import {
   leftArrowIconStyle,

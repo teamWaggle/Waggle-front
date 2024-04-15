@@ -9,8 +9,8 @@ import CarouselItem from "@/components/common/Design/Carousel/CarouselItem";
 import Dots from "@/components/common/Design/Carousel/Dots";
 import Gallery from "@/components/common/Design/Carousel/Gallery/Gallery";
 
-import useCarousel from "@/hooks/useCarousel";
-import useClickOutSide from "@/hooks/useClickOutSide";
+import useCarousel from "@/hooks/common/useCarousel";
+import useClickOutSide from "@/hooks/common/useClickOutSide";
 
 import type { QuestionFormData } from "@/types/question";
 import type { SirenFormData } from "@/types/siren";

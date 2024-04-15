@@ -4,7 +4,7 @@ import { Flex, Heading } from "@/components/common";
 import StoryCard from "@/components/Story/StoryCard/StoryCard";
 
 import { useMemberStoryQuery } from "@/hooks/api/member/useMemberStoryQuery";
-import useObserver from "@/hooks/useObserver";
+import useObserver from "@/hooks/common/useObserver";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

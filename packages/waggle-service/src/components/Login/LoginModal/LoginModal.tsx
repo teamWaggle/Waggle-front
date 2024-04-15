@@ -12,7 +12,7 @@ import {
   LOGIN_FORM_SCHEMA,
 } from "@/constants/auth";
 
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 import { useLogInMutation } from "@/hooks/api/auth/useLogInMutation";
 
 import {

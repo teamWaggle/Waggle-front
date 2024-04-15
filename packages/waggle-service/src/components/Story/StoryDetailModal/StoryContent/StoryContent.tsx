@@ -6,7 +6,7 @@ import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 import StoryUploadModal from "@/components/Story/StoryUploadModal/StoryUploadModal";
 
 import { useDeleteStoryMutation } from "@/hooks/api/story/useDeleteStoryMutation";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

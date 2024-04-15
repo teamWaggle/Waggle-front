@@ -7,7 +7,7 @@ import Button from "@/components/common/Design/Button/Button";
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
 import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
 import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
-import useObserver from "@/hooks/useObserver";
+import useObserver from "@/hooks/common/useObserver";
 
 import {
   commentBoxStyle,

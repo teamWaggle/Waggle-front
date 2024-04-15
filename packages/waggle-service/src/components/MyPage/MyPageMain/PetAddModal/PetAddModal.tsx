@@ -7,7 +7,7 @@ import PetNameInput from "@/components/SignUp/SignUpPet/PetNameInput/PetNameInpu
 import PetProfileInput from "@/components/SignUp/SignUpPet/PetProfileInput/PetProfileInput";
 
 import { useSignUpPetForm } from "@/hooks/auth/useSignUpPetForm";
-import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
+import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
 import type { PetParams } from "@/types/pet";
 

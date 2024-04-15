@@ -6,7 +6,7 @@ import Reply from "@/components/Story/StoryComment/Reply/Reply";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
 import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

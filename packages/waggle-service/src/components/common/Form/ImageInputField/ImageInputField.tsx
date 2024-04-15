@@ -8,7 +8,7 @@ import { Box, Flex } from "@/components/common";
 
 import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
-import useImagePreview from "@/hooks/useImagePreview";
+import useImagePreview from "@/hooks/common/useImagePreview";
 
 import {
   imageBoxStyle,

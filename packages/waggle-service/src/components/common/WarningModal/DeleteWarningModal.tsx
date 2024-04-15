@@ -2,7 +2,7 @@ import { useCallback } from "react";
 
 import { Flex, Box, Heading, Text } from "@/components/common";
 
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import {
   layoutStyle,

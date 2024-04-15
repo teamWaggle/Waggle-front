@@ -8,8 +8,8 @@ import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningMo
 
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-import useClickOutSide from "@/hooks/useClickOutSide";
-import useModal from "@/hooks/useModal";
+import useClickOutSide from "@/hooks/common/useClickOutSide";
+import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

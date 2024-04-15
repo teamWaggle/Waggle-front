@@ -9,7 +9,7 @@ import { TEAM_SCHEDULE_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
 import { TEAM_CONTENT } from "@/constants/team";
 
 import { useAddTeamSchedule } from "@/hooks/schedule/useAddTeamSchedule";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import { convertToTeamScheduleDataFormat } from "@/utils/convertToTeamScheduleDataFormat";
 

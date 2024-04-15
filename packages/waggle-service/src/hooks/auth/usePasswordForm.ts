@@ -2,8 +2,8 @@ import { useCallback, useState, useRef } from "react";
 
 import { usePasswordResetMutation } from "@/hooks/api/auth/usePasswordResetMutation";
 import { usePasswordChangeMutation } from "@/hooks/api/auth/usePasswordChangeMutation";
-import { useValidateForm } from "@/hooks/useValidateForm";
-import useModal from "@/hooks/useModal";
+import { useValidateForm } from "@/hooks/common/useValidateForm";
+import useModal from "@/hooks/common/useModal";
 
 import type { PasswordFormType } from "@/types/auth";
 

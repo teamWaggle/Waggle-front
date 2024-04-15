@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 
 import { usePostStoryMutation } from "@/hooks/api/story/usePostStoryMutation";
 import { usePutStoryMutation } from "@/hooks/api/story/usePutStoryMutation";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import type { StoryFormData } from "@/types/story";
 

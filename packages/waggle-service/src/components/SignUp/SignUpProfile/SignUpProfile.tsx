@@ -9,7 +9,7 @@ import UserUrlInput from "@/components/SignUp/SignUpProfile/UserUrlInput/UserUrl
 
 import { useFindEmailForm } from "@/hooks/auth/useFindEmailForm";
 import { useSignUpProfileForm } from "@/hooks/auth/useSignUpProfileForm";
-import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
+import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
 import { Theme } from "@/styles/Theme";
 

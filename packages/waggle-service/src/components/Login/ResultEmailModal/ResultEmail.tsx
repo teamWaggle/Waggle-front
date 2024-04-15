@@ -2,7 +2,7 @@ import { Box, Flex, Text } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
 
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

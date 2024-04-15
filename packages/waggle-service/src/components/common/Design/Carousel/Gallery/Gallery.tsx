@@ -6,7 +6,7 @@ import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 import { Flex } from "@/components/common";
 import GallerySlider from "@/components/common/Design/Carousel/Gallery/GallerySlider/GallerySlider";
 
-import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
+import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
 
 import type { QuestionFormData } from "@/types/question";
 import type { SirenFormData } from "@/types/siren";

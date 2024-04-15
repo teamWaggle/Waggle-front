@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 
 import OptionIcon from "@/assets/svg/option.svg?react";
 
-import useClickOutSide from "@/hooks/useClickOutSide";
+import useClickOutSide from "@/hooks/common/useClickOutSide";
 
 import { Theme } from "@/styles/Theme";
 

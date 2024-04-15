@@ -2,7 +2,7 @@ import DatePicker from "@/components/common/DatePicker/DatePicker";
 import Flex from "@/components/common/Design/Flex/Flex";
 import InputNotice from "@/components/common/InputNotice/InputNotice";
 
-import { useControlledForm } from "@/hooks/useControlledForm";
+import { useControlledForm } from "@/hooks/common/useControlledForm";
 
 const DateRangeInputField = () => {
   const { isValid: startDateValid, errorMessage: startDateErrorMessage } =

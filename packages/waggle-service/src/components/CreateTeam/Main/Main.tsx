@@ -9,7 +9,7 @@ import * as yup from "yup";
 import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
 
 import { useCreateTeam } from "@/hooks/api/team/useCreateTeam";
-import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
+import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
 import {
   colorTitleStyle,

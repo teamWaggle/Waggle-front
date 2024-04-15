@@ -4,7 +4,7 @@ import { Flex } from "@/components/common";
 import StoryDetailModal from "@/components/Story/StoryDetailModal/StoryDetailModal";
 
 import { useStoryQuery } from "@/hooks/api/story/useStoryQuery";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import type { StoryListInfoType } from "@/types/story";
 

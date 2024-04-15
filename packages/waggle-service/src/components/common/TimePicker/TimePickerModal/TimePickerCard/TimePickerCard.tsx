@@ -5,7 +5,7 @@ import { TimePickerContext } from "@/components/common/TimePicker/TimePicker";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 
-import { useControlledForm } from "@/hooks/useControlledForm";
+import { useControlledForm } from "@/hooks/common/useControlledForm";
 
 import { TimePickerCardBoxStyle } from "@/components/common/TimePicker/TimePickerModal/TimePickerCard/TimePickerCard.style";
 

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { useRef } from "react";
 import { createContext, useState } from "react";
 
-import useClickOutSide from "@/hooks/useClickOutSide";
+import useClickOutSide from "@/hooks/common/useClickOutSide";
 
 export const DropdownProvider = createContext<{
   isDropdownOpen: boolean;

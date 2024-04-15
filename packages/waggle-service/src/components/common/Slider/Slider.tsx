@@ -2,7 +2,7 @@ import type { SerializedStyles } from "@emotion/react";
 
 import { Box, Flex } from "@/components/common";
 
-import useSlider from "@/hooks/useSlider";
+import useSlider from "@/hooks/common/useSlider";
 
 const Slider = ({
   children,

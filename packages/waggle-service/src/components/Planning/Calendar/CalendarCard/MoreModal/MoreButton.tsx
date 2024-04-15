@@ -3,8 +3,8 @@ import { useRef } from "react";
 
 import { Box, Text } from "@/components/common";
 
-import useClickOutSide from "@/hooks/useClickOutSide";
-import useModalTrigger from "@/hooks/useModalTrigger";
+import useClickOutSide from "@/hooks/common/useClickOutSide";
+import useModalTrigger from "@/hooks/common/useModalTrigger";
 
 import type { ScheduleType } from "@/types/planning";
 

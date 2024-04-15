@@ -3,7 +3,7 @@ import Text from "@/components/common/Design/Text/Text";
 import InputNotice from "@/components/common/InputNotice/InputNotice";
 import { TimePicker } from "@/components/common/TimePicker/TimePicker";
 
-import { useControlledForm } from "@/hooks/useControlledForm";
+import { useControlledForm } from "@/hooks/common/useControlledForm";
 
 const TimeRangeInputField = ({ validateText }: { validateText?: string }) => {
   const { isValid: startTimeValid, errorMessage: startTimeErrorMessage } =

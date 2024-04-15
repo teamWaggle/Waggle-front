@@ -4,7 +4,7 @@ import { format } from "date-fns";
 
 import { MAX_CALENDAR_CONTENT } from "@/constants/calendar";
 
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import type { MoreModalType } from "@/types/modal";
 import type { ScheduleType } from "@/types/planning";
