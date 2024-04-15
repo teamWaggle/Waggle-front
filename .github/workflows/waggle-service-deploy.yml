@@ -43,7 +43,7 @@ jobs:
             file: ./Dockerfile
             platforms: linux/amd64
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}//waggle-front-waggle-service
+            tags: ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
 
         - name: Deploy EC2
           uses: appleboy/ssh-action@master
