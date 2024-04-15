@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { useRecoilValue } from "recoil";
 
 import { Flex, Text } from "@/components/common";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
@@ -7,6 +8,8 @@ import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuer
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 interface ProfileType {
   img: string | undefined;
@@ -17,7 +20,11 @@ interface ProfileType {
 }
 
 const StoryProfile = ({ img, nickname, ownerId, editClick, deleteClick }: ProfileType) => {
-  const { memberId } = useMemberInfoSaveQuery();
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+
+  const userData = isLoggedIn && useMemberInfoSaveQuery();
+
+  const memberId = userData ? userData.memberId : null;
 
   return (
     <Flex

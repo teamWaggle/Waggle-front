@@ -34,7 +34,11 @@ const MyPageLog = ({ paramUrl }: ParamUrlType) => {
         {memberStoryData.pages.map((storyData, index) => (
           <Fragment key={index}>
             {storyData.result.storyList.map((storyInfo) => (
-              <StoryCard boardId={storyInfo.boardId} thumbnail={storyInfo.thumbnail} />
+              <StoryCard
+                key={storyInfo.boardId}
+                boardId={storyInfo.boardId}
+                thumbnail={storyInfo.thumbnail}
+              />
             ))}
           </Fragment>
         ))}

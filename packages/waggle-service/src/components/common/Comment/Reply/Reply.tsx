@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from "react";
+import { useRecoilValue } from "recoil";
 
 import OptionIcon from "@/assets/svg/option.svg?react";
 
@@ -15,6 +16,8 @@ import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
+import { isLoggedInState } from "@/recoil/atoms/auth";
+
 import type { ReplyListInfoType } from "@/types/reply";
 
 import { menuStyle } from "@/components/common/Comment/Comment.style";
@@ -27,9 +30,13 @@ const Reply = ({
   member,
   handleReplyEditClick,
 }: ReplyListInfoType) => {
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+
   const { mutate: deleteReplyMutate } = useDeleteRelpyMutation();
 
-  const { memberId } = useMemberInfoSaveQuery();
+  const userData = isLoggedIn && useMemberInfoSaveQuery();
+
+  const memberId = userData ? userData.memberId : null;
 
   const [menuOpen, setMenuOpen] = useState(false);
 

@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import { flushSync } from "react-dom";
+import { useRecoilValue } from "recoil";
 
 import OptionIcon from "@/assets/svg/option.svg?react";
 
@@ -17,6 +18,8 @@ import useModal from "@/hooks/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
@@ -36,11 +39,15 @@ const CommentCard = ({
   member,
   handleEditClick,
 }: CommentListInfoType) => {
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+
   const { mutate: deleteCommentMutate } = useDeleteCommentMutation();
   const { mutate: editReplyMutation } = useEditReplyMutation();
 
   const { replyData } = useReplyQuery(0, commentId);
-  const { memberId } = useMemberInfoSaveQuery();
+  const userData = isLoggedIn && useMemberInfoSaveQuery();
+
+  const memberId = userData ? userData.memberId : null;
 
   const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);

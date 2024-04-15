@@ -1,3 +1,5 @@
+import { useRecoilValue } from "recoil";
+
 import { Flex, Heading, Text } from "@/components/common";
 import PostProfile from "@/components/common/Post/PostProfile";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
@@ -7,6 +9,8 @@ import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuer
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import type { QuestionTitleType } from "@/types/question";
 
@@ -19,7 +23,11 @@ const QuestionTitle = ({
 }: QuestionTitleType) => {
   const { status, title, hashtagList, member, viewCount, createdDate } = questionData;
 
-  const { memberId } = useMemberInfoSaveQuery();
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+
+  const userData = isLoggedIn && useMemberInfoSaveQuery();
+
+  const memberId = userData ? userData.memberId : null;
 
   return (
     <Flex css={titleBoxStyle}>
