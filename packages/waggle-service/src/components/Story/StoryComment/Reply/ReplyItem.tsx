@@ -3,7 +3,7 @@ import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningMo
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 

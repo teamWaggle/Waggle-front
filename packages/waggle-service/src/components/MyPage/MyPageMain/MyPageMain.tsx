@@ -6,7 +6,7 @@ import MyPagePetCard from "@/components/MyPage/MyPageMain/MyPagePetCard/MyPagePe
 import PetAddModal from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal";
 
 import { usePetQuery } from "@/hooks/api/pet/usePetQuery";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";

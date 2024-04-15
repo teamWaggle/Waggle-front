@@ -12,7 +12,7 @@ import PetProfileInput from "@/components/SignUp/SignUpPet/PetProfileInput/PetPr
 import { PATH } from "@/constants/path";
 
 import { useSignUpPetForm } from "@/hooks/auth/useSignUpPetForm";
-import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
+import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
 import {
   boxStyle,

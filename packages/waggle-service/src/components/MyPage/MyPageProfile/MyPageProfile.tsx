@@ -8,7 +8,7 @@ import ProfileEditModal from "@/components/MyPage/MyPageProfile/ProfileEditModal
 
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";

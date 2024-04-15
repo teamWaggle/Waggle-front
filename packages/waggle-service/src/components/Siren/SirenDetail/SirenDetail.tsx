@@ -9,7 +9,7 @@ import SirenTitle from "@/components/Siren/SirenDetail/SirenTitle";
 import { PATH } from "@/constants/path";
 
 import { useDeleteSirenMutation } from "@/hooks/api/siren/useDeleteSirenMutation";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import type { SirenDataType } from "@/types/siren";
 

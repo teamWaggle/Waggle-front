@@ -4,7 +4,7 @@ import { PATH } from "@/constants/path";
 
 import { usePetInfoMutation } from "@/hooks/api/pet/usePetInfoMutation";
 import { usePutPetInfoMutation } from "@/hooks/api/pet/usePutPetInfoMutation";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import type { SignUpPetFormType } from "@/types/auth";
 

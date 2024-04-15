@@ -4,7 +4,7 @@ import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 import QuestionSidebar from "@/components/Question/QuestionSidebar/QuestionSidebar";
 
 import { useQuestionListQuery } from "@/hooks/api/question/useQuestionListQuery";
-import useObserver from "@/hooks/useObserver";
+import useObserver from "@/hooks/common/useObserver";
 
 import { mainStyle } from "@/components/Question/QuestionMain/QuestionMain.style";
 import { Fragment } from "react";

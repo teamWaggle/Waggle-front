@@ -5,7 +5,7 @@ import Button from "@/components/common/Design/Button/Button";
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
 
 import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
-import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
+import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

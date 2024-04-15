@@ -4,7 +4,7 @@ import type { SerializedStyles } from "@emotion/react";
 
 import { InputNotice } from "@/components/common";
 
-import { useControlledForm } from "@/hooks/useControlledForm";
+import { useControlledForm } from "@/hooks/common/useControlledForm";
 
 interface TextInputFieldProps {
   name: FieldPath<FieldValues>;

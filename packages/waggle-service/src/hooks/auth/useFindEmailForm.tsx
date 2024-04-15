@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import ResultEmailModal from "@/components/Login/ResultEmailModal/ResultEmailModal";
 
 import { useFindEmailMutation } from "@/hooks/api/auth/useFindEmailMutation";
-import useModal from "@/hooks/useModal";
-import { useValidateForm } from "@/hooks/useValidateForm";
+import useModal from "@/hooks/common/useModal";
+import { useValidateForm } from "@/hooks/common/useValidateForm";
 
 import { dateFormatToUTC } from "@/utils/dateFormatToUTC";
 

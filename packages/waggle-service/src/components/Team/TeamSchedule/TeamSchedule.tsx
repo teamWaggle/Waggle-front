@@ -19,9 +19,9 @@ import * as yup from "yup";
 
 import { TEAM_SCHEDULE_SEARCH_VALUES } from "@/constants/team";
 import { useTeamScheduleListPage } from "@/hooks/schedule/useTeamScheduleListPage";
-import useModal from "@/hooks/useModal";
-import useObserver from "@/hooks/useObserver";
-import { useParamsTeamId } from "@/hooks/useParamsTeamId";
+import useModal from "@/hooks/common/useModal";
+import useObserver from "@/hooks/common/useObserver";
+import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import {
   teamScheduleAddButtonStyle,
   teamScheduleBoxStyle,

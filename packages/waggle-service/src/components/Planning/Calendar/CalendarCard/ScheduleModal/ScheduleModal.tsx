@@ -12,7 +12,7 @@ import CommentInput from "@/components/Planning/Calendar/CalendarCard/ScheduleMo
 import OptionDropdown from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/OptionDropdown/OptionDropdown";
 import { format } from "date-fns";
 
-import useClickOutSide from "@/hooks/useClickOutSide";
+import useClickOutSide from "@/hooks/common/useClickOutSide";
 
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 

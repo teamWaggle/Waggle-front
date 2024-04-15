@@ -7,7 +7,7 @@ import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningMo
 import PetAddModal from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal";
 
 import { useDeletePetMutation } from "@/hooks/api/pet/useDeletePetMutation";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import type { PetResultType } from "@/types/pet";
 

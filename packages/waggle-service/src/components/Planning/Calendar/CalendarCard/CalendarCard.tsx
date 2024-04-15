@@ -8,7 +8,7 @@ import { format, isSameDay } from "date-fns";
 
 import { MAX_CALENDAR_CONTENT } from "@/constants/calendar";
 
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import type { ScheduleCalendarCardType, ScheduleType } from "@/types/planning";
 

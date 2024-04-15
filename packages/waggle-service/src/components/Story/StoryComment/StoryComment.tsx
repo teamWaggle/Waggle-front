@@ -16,7 +16,7 @@ import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutati
 import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
 import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
 import { usePostRecommend } from "@/hooks/api/recommend/usePostRecommend";
-import useObserver from "@/hooks/useObserver";
+import useObserver from "@/hooks/common/useObserver";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 

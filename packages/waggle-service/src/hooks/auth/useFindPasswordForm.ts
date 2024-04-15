@@ -2,7 +2,7 @@ import { useCallback, useState, useRef } from "react";
 
 import { useEmailAuthSendMutation } from "@/hooks/api/auth/useEmailAuthSendMutation";
 import { usePasswordAuthVerifyMutation } from "@/hooks/api/auth/usePasswordAuthVerifyMutation";
-import { useValidateForm } from "@/hooks/useValidateForm";
+import { useValidateForm } from "@/hooks/common/useValidateForm";
 
 import type { EmailAuthVerifyType } from "@/types/auth";
 import type { CommonResponseType } from "@/types/common";

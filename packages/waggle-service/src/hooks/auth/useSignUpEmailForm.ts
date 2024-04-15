@@ -7,7 +7,7 @@ import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 import { useCheckEmailMutation } from "@/hooks/api/auth/useCheckEmailMutation";
 import { useLogInMutation } from "@/hooks/api/auth/useLogInMutation";
 import { useSignUpMutation } from "@/hooks/api/auth/useSignUpMutation";
-import { useValidateForm } from "@/hooks/useValidateForm";
+import { useValidateForm } from "@/hooks/common/useValidateForm";
 
 import type { EmailAuthVerifyType } from "@/types/auth";
 

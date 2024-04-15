@@ -4,7 +4,7 @@ import type { FieldPath, FieldValues } from "react-hook-form";
 import PickerTriggerButton from "@/components/common/Button/PickerTriggerButton/PickerTriggerButton";
 import TimePickerModal from "@/components/common/TimePicker/TimePickerModal/TimePickerModal";
 
-import useModalTrigger from "@/hooks/useModalTrigger";
+import useModalTrigger from "@/hooks/common/useModalTrigger";
 
 interface TimePickerContextProps {
   handleTriggerOnClick: () => void;

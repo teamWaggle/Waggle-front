@@ -4,8 +4,8 @@ import type { FieldPath, FieldValues } from "react-hook-form";
 import PickerTriggerButton from "@/components/common/Button/PickerTriggerButton/PickerTriggerButton";
 import DatePickerCalendarModal from "@/components/common/DatePicker/DatePickerModal/DatePickerCalendarModal";
 
-import useCalendar from "@/hooks/useCalendar";
-import useModalTrigger from "@/hooks/useModalTrigger";
+import useCalendar from "@/hooks/common/useCalendar";
+import useModalTrigger from "@/hooks/common/useModalTrigger";
 
 interface DatePickerContextProps {
   modalClose: () => void;

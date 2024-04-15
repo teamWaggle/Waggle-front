@@ -8,7 +8,7 @@ import SirenUploadInput from "@/components/Siren/SirenUpload/SirenUploadInput/Si
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
 import { useAddSirenForm } from "@/hooks/siren/useAddSirenForm";
-import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
+import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

@@ -5,8 +5,8 @@ import { useMemberInfoMutation } from "../api/member/useMemberInfoMutation";
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useMemberInfoFirstMutation } from "@/hooks/api/member/useMemberInfoFirstMutation";
-import useModal from "@/hooks/useModal";
-import { useValidateForm } from "@/hooks/useValidateForm";
+import useModal from "@/hooks/common/useModal";
+import { useValidateForm } from "@/hooks/common/useValidateForm";
 
 import type { SignUpProfileFormType } from "@/types/auth";
 

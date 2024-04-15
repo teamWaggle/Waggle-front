@@ -5,7 +5,7 @@ import Button from "@/components/common/Design/Button/Button";
 import SortButton from "@/components/common/SortButton/SortButton";
 import StoryUploadMediaModal from "@/components/Story/StoryUploadMediaModal/StoryUploadMediaModal";
 
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import {
   headingStyle,

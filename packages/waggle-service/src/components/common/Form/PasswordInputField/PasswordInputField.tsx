@@ -9,7 +9,7 @@ import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 
 import { InputNotice } from "@/components/common";
 
-import { useControlledForm } from "@/hooks/useControlledForm";
+import { useControlledForm } from "@/hooks/common/useControlledForm";
 
 interface PasswordInputFieldProps {
   name: FieldPath<FieldValues>;

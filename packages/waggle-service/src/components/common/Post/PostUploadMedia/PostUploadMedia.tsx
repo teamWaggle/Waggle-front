@@ -5,7 +5,7 @@ import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
 import { Flex, Text } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 
-import { useDragAndDrop } from "@/hooks/useDragAndDrop";
+import { useDragAndDrop } from "@/hooks/common/useDragAndDrop";
 
 import { uploadMediaBoxStyle } from "@/components/common/Post/PostUploadMedia/PostUploadMedia.style";
 

@@ -7,7 +7,7 @@ import { passwordFormData } from "@/constants/auth";
 
 import { useFindPasswordForm } from "@/hooks/auth/useFindPasswordForm";
 import { usePasswordForm } from "@/hooks/auth/usePasswordForm";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import {
   layoutStyle,

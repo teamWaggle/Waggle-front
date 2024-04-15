@@ -7,9 +7,9 @@ import { Flex, Text } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 import StoryUploadModal from "@/components/Story/StoryUploadModal/StoryUploadModal";
 
-import { useDragAndDrop } from "@/hooks/useDragAndDrop";
-import useModal from "@/hooks/useModal";
-import { useMultipleImgUpload } from "@/hooks/useMultipleImgUpload";
+import { useDragAndDrop } from "@/hooks/common/useDragAndDrop";
+import useModal from "@/hooks/common/useModal";
+import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
 
 import { uploadMediaBoxStyle } from "@/components/common/Post/PostUploadMedia/PostUploadMedia.style";
 

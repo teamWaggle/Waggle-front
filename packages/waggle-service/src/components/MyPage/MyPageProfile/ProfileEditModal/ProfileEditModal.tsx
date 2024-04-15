@@ -7,7 +7,7 @@ import ProfileInput from "@/components/SignUp/SignUpProfile/ProfileInput/Profile
 
 import { useFindEmailForm } from "@/hooks/auth/useFindEmailForm";
 import { useSignUpProfileForm } from "@/hooks/auth/useSignUpProfileForm";
-import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
+import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
 import type { MemberDataType } from "@/types/auth";
 

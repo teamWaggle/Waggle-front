@@ -6,7 +6,7 @@ import StoryCard from "@/components/Story/StoryCard/StoryCard";
 import StorySearchBar from "@/components/Story/StorySearchBar/StorySearchBar";
 
 import { useStoryListQuery } from "@/hooks/api/story/useStoryListQuery";
-import useObserver from "@/hooks/useObserver";
+import useObserver from "@/hooks/common/useObserver";
 
 import {
   mainStyle,

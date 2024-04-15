@@ -15,7 +15,7 @@ import {
   isWithinInterval,
 } from "date-fns";
 
-import useCalendar from "@/hooks/useCalendar";
+import useCalendar from "@/hooks/common/useCalendar";
 
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 

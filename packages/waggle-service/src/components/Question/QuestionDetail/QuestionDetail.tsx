@@ -9,7 +9,7 @@ import QuestionTitle from "@/components/Question/QuestionDetail/QuestionTitle";
 import { PATH } from "@/constants/path";
 
 import { useDeleteQuestionMutation } from "@/hooks/api/question/useDeleteQuestionMutation";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import type { QuestionDataType } from "@/types/question";
 

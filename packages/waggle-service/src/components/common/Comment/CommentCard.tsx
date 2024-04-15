@@ -13,8 +13,8 @@ import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMu
 import { useEditReplyMutation } from "@/hooks/api/reply/useEditReplyMutation";
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-import useClickOutSide from "@/hooks/useClickOutSide";
-import useModal from "@/hooks/useModal";
+import useClickOutSide from "@/hooks/common/useClickOutSide";
+import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";

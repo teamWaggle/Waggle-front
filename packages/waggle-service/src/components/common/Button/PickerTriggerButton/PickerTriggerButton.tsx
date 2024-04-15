@@ -8,8 +8,8 @@ import Text from "@/components/common/Design/Text/Text";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 
-import useClickOutSide from "@/hooks/useClickOutSide";
-import { useControlledForm } from "@/hooks/useControlledForm";
+import useClickOutSide from "@/hooks/common/useClickOutSide";
+import { useControlledForm } from "@/hooks/common/useControlledForm";
 
 import {
   PickerTriggerButtonBoxStyle,
