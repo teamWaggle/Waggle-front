@@ -53,7 +53,7 @@ jobs:
             key: ${{ secrets.AWS_KEY }}
             port: ${{ secrets.SSH_PORT }}
             script: |
-              docker pull ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
               docker stop ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
               docker rm ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
+              docker pull ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
               docker run -d -p 3001:80 ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
