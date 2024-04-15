@@ -2,7 +2,7 @@ import ProfileTeamCardIcon from "@/assets/svg/profile-teamcard.svg?react";
 
 import { Box, Flex, Text } from "@/components/common";
 
-import { useHandleLinkWithDetectKeys } from "@/hooks/useHandleLinkWithDetectKeys";
+import { useHandleLinkWithDetectKeys } from "@/hooks/team/useHandleLinkWithDetectKeys";
 
 import type { TeamCardType } from "@/types/team";
 
