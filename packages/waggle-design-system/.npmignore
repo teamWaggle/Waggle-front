@@ -2,15 +2,10 @@ node_modules/
 src/
 public/
 tsconfig.json
+tsconfig.node.json
+vite.config.ts
 .storybook/
-.eslintrc.json
-.prettierrc
-.github
-.husky
-.vscode
 .yarn
-.babelrc.json
-webpack.config.js
 .yarnrc.yml
 .pnp.cjs
 .pnp.lodaer.mjs

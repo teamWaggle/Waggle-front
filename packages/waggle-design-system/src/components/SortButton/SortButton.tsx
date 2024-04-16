@@ -1,9 +1,11 @@
 import type { sortButtonType } from "@/types/common";
 
-import SortArrowIcon from "@/assets/svg/ic-sort-arrow.svg";
+import SortArrowIcon from "@/assets/svg/ic-sort-arrow.svg?react";
+
 import Flex from "@/components/Flex/Flex";
 import { textStyle } from "@/components/SortButton/SortButton.style";
 import Text from "@/components/Text/Text";
+
 import { Theme } from "@/styles/Theme";
 
 const SortButton = ({ defaultText }: sortButtonType) => {

@@ -10,7 +10,16 @@ interface VitestConfigExport extends UserConfig {
 }
 
 export default defineConfig({
-  plugins: [react(), vitePluginSvgr(), tsconfigPaths()],
+  plugins: [
+    react({
+      jsxImportSource: "@emotion/react",
+      babel: {
+        plugins: ["@emotion/babel-plugin"],
+      },
+    }),
+    vitePluginSvgr(),
+    tsconfigPaths(),
+  ],
   base: "/",
   server: {
     host: true,

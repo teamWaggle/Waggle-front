@@ -5,11 +5,6 @@ import { skeletonStyle } from "@/components/Skeleton/Skeleton.style";
 export interface SkeletonProps extends ComponentPropsWithoutRef<"div"> {
   width?: string;
   height?: string;
-  /**
-   * Skeleton 모양
-   *
-   * @default 'square'
-   */
   variant?: "square" | "circle";
 }
 
