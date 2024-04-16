@@ -40,7 +40,7 @@ const AuthPage = () => {
 
     setIsLoggedIn(true);
 
-    if (isGuest) {
+    if (isGuest === "true") {
       navigate(`${PATH.SIGN_UP}?tab=profile`);
     } else {
       navigate(PATH.ROOT);
