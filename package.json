@@ -7,7 +7,7 @@
         ]
     },
     "scripts": {
-        "dev:waggle-service": "yarn workspace waggle-service dev",
+        "dev": "yarn workspace waggle-service dev",
         "build:design-system": "yarn workspace waggle-design-system publish:npm",
         "build:waggle-service": "yarn workspace waggle-service build",
         "preview:waggle-service": "yarn workspace waggle-service preview",
@@ -60,6 +60,7 @@
     "resolutions": {
         "@storybook/core-common/webpack": "^5",
         "@storybook/core-server/webpack": "^5",
-        "@storybook/react/webpack": "^5"
+        "@storybook/react/webpack": "^5",
+        "rollup": "npm:@rollup/wasm-node@*"
     }
 }
