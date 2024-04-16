@@ -1,3 +1,5 @@
+import { useRecoilValue } from "recoil";
+
 import LogIcon from "@/assets/svg/log.svg?react";
 
 import { Flex, Heading, SearchInput } from "@/components/common";
@@ -7,12 +9,16 @@ import StoryUploadMediaModal from "@/components/Story/StoryUploadMediaModal/Stor
 
 import useModal from "@/hooks/common/useModal";
 
+import { isLoggedInState } from "@/recoil/atoms/auth";
+
 import {
   headingStyle,
   sortButtonBoxStyle,
 } from "@/components/Story/StorySearchBar/StorySearchBar.style";
 
 const StorySearchBar = () => {
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+
   const modal = useModal();
 
   const storyUploadOpen = () => {
@@ -32,7 +38,7 @@ const StorySearchBar = () => {
             <LogIcon />
           </Heading>
 
-          <Button onClick={storyUploadOpen}>글 작성하기</Button>
+          {isLoggedIn && <Button onClick={storyUploadOpen}>글 작성하기</Button>}
         </Flex>
 
         <SearchInput onChange={() => {}} width="252px" />
