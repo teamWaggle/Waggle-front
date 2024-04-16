@@ -14,12 +14,12 @@ import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
 import { uploadMediaBoxStyle } from "@/components/common/Post/PostUploadMedia/PostUploadMedia.style";
 
 const StoryUploadMediaModal = () => {
-  const modal = useModal();
-
   const { uploadMediaList, handleImgUpload, dropImgUpload } = useMultipleImgUpload({});
 
   const { isDragOver, handleDragIn, handleDragOut, handleDragOver, handleDrop } =
     useDragAndDrop(dropImgUpload);
+
+  const modal = useModal();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 

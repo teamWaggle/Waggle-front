@@ -1,10 +1,11 @@
-import SampleImg from "@/assets/png/post-sample.png";
 import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Flex, Text, Carousel } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 
 import { useAddStoryForm } from "@/hooks/story/useAddStoryForm";
+import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -33,6 +34,9 @@ const StoryUploadModal = ({
   storyId,
   uploadMediaList,
 }: StoryEditModalParams) => {
+  const { userUrl } = useMemberInfoSaveQuery();
+  const { memberData } = useMemberInfoQuery(userUrl);
+
   const { storyRequest, updateInputValue, handleSubmit } = useAddStoryForm(
     uploadMediaList
       ? {
@@ -83,13 +87,12 @@ const StoryUploadModal = ({
           <Flex styles={{ direction: "column", gap: "12px", width: "100%" }}>
             {/* 프로필 */}
             <Flex styles={{ align: "center", gap: "10px" }}>
-              <img src={SampleImg} alt="profileImg" css={profileImgStyle} />
+              <img src={memberData.result.profileImgUrl} alt="profileImg" css={profileImgStyle} />
               <Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
-                강아지댕댕댕
+                {memberData.result.nickname}
               </Text>
             </Flex>
 
-            {/* 본문 입력 */}
             <textarea
               css={textareaStyle}
               placeholder="사진에 대한 설명을 입력해주세요"
@@ -98,7 +101,6 @@ const StoryUploadModal = ({
               onChange={(e) => updateInputValue("content", e.target.value)}
             />
 
-            {/* 글자수 */}
             <Text size="small" css={lengthTextStyle}>
               {storyRequest.content ? storyRequest.content.length : 0}/500
             </Text>
