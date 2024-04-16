@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { useSetRecoilState } from "recoil";
@@ -15,10 +15,10 @@ import { PATH } from "@/constants/path";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
+import { isAuthProvider } from "@/utils/checkAuthProvider";
+
 const AuthPage = () => {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
-
-  const [isAuthError, setIsAuthError] = useState(false);
 
   const [searchParams] = useSearchParams();
 
@@ -29,28 +29,21 @@ const AuthPage = () => {
   const provider = searchParams.get("provider");
   const isGuest = searchParams.get("isGuest");
 
-  const isAuthProvider = (provider: string | null) => {
-    return ["naver", "google", "kakao"].some((authProvider) => authProvider === provider);
-  };
-
   if (error || !code || !isAuthProvider(provider)) {
-    setIsAuthError(true);
     throw new Error("로그인/회원가입에 실패했습니다.");
   }
 
   useEffect(() => {
-    if (!isAuthError && code) {
-      localStorage.setItem(ACCESS_TOKEN_KEY, code);
+    localStorage.setItem(ACCESS_TOKEN_KEY, code);
 
-      authorizedAxiosInstance.defaults.headers.Authorization = `Bearer ${code}`;
+    authorizedAxiosInstance.defaults.headers.Authorization = `Bearer ${code}`;
 
-      setIsLoggedIn(true);
+    setIsLoggedIn(true);
 
-      if (isGuest) {
-        navigate(`${PATH.SIGN_UP}?tab=profile`);
-      } else {
-        navigate(PATH.ROOT);
-      }
+    if (isGuest) {
+      navigate(`${PATH.SIGN_UP}?tab=profile`);
+    } else {
+      navigate(PATH.ROOT);
     }
   }, [code, provider]);
 
