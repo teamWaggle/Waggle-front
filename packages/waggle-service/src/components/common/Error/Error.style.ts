@@ -1,7 +1,5 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "waggle-design-system";
-
 export const layoutStyle = css({
   flexDirection: "column",
   alignItems: "center",
@@ -12,11 +10,12 @@ export const layoutStyle = css({
 });
 
 export const headingStyle = css({
-  marginTop: Theme.spacer.spacing6,
+  marginTop: "48px",
 });
 
 export const textStyle = css({
   width: "300px",
-  marginTop: Theme.spacer.spacing3,
+  marginTop: "16px",
+  marginBottom: "24px",
   textAlign: "center",
 });
