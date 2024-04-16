@@ -35,5 +35,6 @@ export const QUERY_KEYS = {
   MEMBER_TEAMS: "memberTeams",
   TEAM_INFO: "teamInfo",
   TEAM_PARTICIPATION_LIST: "teamParticipationList",
+  TEAM_PARTICIPATION_ACCEPT: "teamParticipationAccept",
   TEAM_SCHEDULE_PAGE: "teamSchedule",
 };
