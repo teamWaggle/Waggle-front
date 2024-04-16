@@ -26,8 +26,7 @@ import {
 } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
 
 const MyPageProfile = ({ memberData }: MemberDataType) => {
-  const { profileImgUrl, nickname, memberId, name, birthday, followerCount, followingCount } =
-    memberData;
+  const { profileImgUrl, nickname, memberId, followerCount, followingCount } = memberData;
 
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
@@ -48,15 +47,7 @@ const MyPageProfile = ({ memberData }: MemberDataType) => {
   const handleProfileEdit = () => {
     modal.openModal({
       key: "ProfileEditModal",
-      component: () => (
-        <ProfileEditModal
-          profileImgUrl={profileImgUrl}
-          nickname={nickname}
-          name={name}
-          birthday={birthday}
-          memberId={memberId}
-        />
-      ),
+      component: () => <ProfileEditModal memberData={memberData} />,
     });
   };
 

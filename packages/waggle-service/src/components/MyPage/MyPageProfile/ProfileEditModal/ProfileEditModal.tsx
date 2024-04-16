@@ -9,17 +9,13 @@ import { useFindEmailForm } from "@/hooks/auth/useFindEmailForm";
 import { useSignUpProfileForm } from "@/hooks/auth/useSignUpProfileForm";
 import { useSingleImgUpload } from "@/hooks/useSingleImgUpload";
 
-import type { MemberInfoType } from "@/types/auth";
+import type { MemberDataType } from "@/types/auth";
 
 import { layoutStyle } from "@/components/MyPage/MyPageProfile/ProfileEditModal/ProfileEditModal.style";
 
-const ProfileEditModal = ({
-  profileImgUrl,
-  nickname,
-  memberId,
-  name,
-  birthday,
-}: MemberInfoType) => {
+const ProfileEditModal = ({ memberData }: MemberDataType) => {
+  const { profileImgUrl, nickname, memberId, name, birthday } = memberData;
+
   const { handleImgUpload, uploadMedia } = useSingleImgUpload({ prevImg: profileImgUrl });
 
   const {
