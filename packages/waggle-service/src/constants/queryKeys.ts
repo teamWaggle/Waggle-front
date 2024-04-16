@@ -31,8 +31,9 @@ export const QUERY_KEYS = {
   SCHEDULE_MONTHLY: "scheduleMonthly",
   ADD_TEAM_SCHEDULE: "addTeamSchedule",
 
+  //Team
   MEMBER_TEAMS: "memberTeams",
   TEAM_INFO: "teamInfo",
-
+  TEAM_PARTICIPATION_LIST: "teamParticipationList",
   TEAM_SCHEDULE_PAGE: "teamSchedule",
 };

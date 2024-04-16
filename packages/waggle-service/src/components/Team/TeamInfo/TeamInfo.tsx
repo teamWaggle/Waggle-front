@@ -22,13 +22,12 @@ import {
   teamInfoSubTitleStyle,
   teamSectionStyle,
 } from "@/components/Team/TeamInfo/TeamInfo.style";
-
-const participatingMembers = ["안녕하ㄴㅇㄹㅇㅈ", "ade", "1", "2", "3", "4", "5", "6", "7", "8"];
+import { useTeamParticipationList } from "@/hooks/api/team/useTeamParticipationList";
 
 const TeamInfo = () => {
   const teamId = useParamsTeamId();
   const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId) || {};
-  const participatingMemberLength = participatingMembers.length;
+  const memberList = useTeamParticipationList(teamId);
   return (
     <Flex css={teamSectionStyle} tag="section">
       <img css={teamImgStyle} src={coverImageUrl} />
@@ -63,9 +62,9 @@ const TeamInfo = () => {
             rightIcon={<RightArrowIcon css={rightArrowIconStyle} />}
             cardBoxstyle={participationSliderBoxStyle}
             displayCount={TEAM_INFO.PARTICIPATION_SLIDER_AMOUNT}
-            dataLength={participatingMemberLength}
+            dataLength={memberList.length || 0}
           >
-            {participatingMembers.map((participatingMember, index) => (
+            {memberList.map((participatingMember, index) => (
               <ParticipationCard key={index} participatingMember={participatingMember} />
             ))}
           </Slider>

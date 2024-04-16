@@ -35,3 +35,8 @@ export type TeamColorType =
   | "team_6"
   | "team_7"
   | "team_8";
+
+export interface TeamParticipationListType {
+  memberList: Array<TeamMemberType>;
+  memberCount: number;
+}

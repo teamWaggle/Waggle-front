@@ -59,9 +59,11 @@ export const END_POINTS = {
     `/api/schedules/teams/${teamId}/page?currentPage=${currentPage}`,
   ADD_TEAM_SCHEDULE: (teamId: number) => `/api/schedules/${teamId}`,
 
+  //Team
   MEMBER_TEAMS: (memberId: number) => `/api/teams/user/${memberId}/teams`,
   CREATE_TEAM: "/api/teams",
   TEAM_INFO: (teamId: number) => `/api/teams/${teamId}`,
+  TEAM_PARTICIPATION_LIST: (teamId: number) => `/api/teams/${teamId}/participation`,
   RECOMMEND: (boardId: number) => `/api/recommends/${boardId}`,
 };
 
