@@ -65,6 +65,8 @@ export const END_POINTS = {
   TEAM_INFO: (teamId: number) => `/api/teams/${teamId}`,
   TEAM_PARTICIPATION_LIST: (teamId: number) => `/api/teams/${teamId}/participation`,
   RECOMMEND: (boardId: number) => `/api/recommends/${boardId}`,
+  TEAM_PARTICIPATION_ACCEPT: (teamId: number, memberId: number, isAccept: boolean) =>
+    `/api/teams/${teamId}/participation/${memberId}?accept=${isAccept}`,
 };
 
 export const HTTP_STATUS_CODE = {

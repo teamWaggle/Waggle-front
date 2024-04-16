@@ -27,7 +27,7 @@ import { useTeamParticipationList } from "@/hooks/api/team/useTeamParticipationL
 const TeamInfo = () => {
   const teamId = useParamsTeamId();
   const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId) || {};
-  const memberList = useTeamParticipationList(teamId);
+  const participationMemberList = useTeamParticipationList(teamId);
   return (
     <Flex css={teamSectionStyle} tag="section">
       <img css={teamImgStyle} src={coverImageUrl} />
@@ -62,9 +62,9 @@ const TeamInfo = () => {
             rightIcon={<RightArrowIcon css={rightArrowIconStyle} />}
             cardBoxstyle={participationSliderBoxStyle}
             displayCount={TEAM_INFO.PARTICIPATION_SLIDER_AMOUNT}
-            dataLength={memberList.length || 0}
+            dataLength={participationMemberList.length || 0}
           >
-            {memberList.map((participatingMember, index) => (
+            {participationMemberList.map((participatingMember, index) => (
               <ParticipationCard key={index} participatingMember={participatingMember} />
             ))}
           </Slider>

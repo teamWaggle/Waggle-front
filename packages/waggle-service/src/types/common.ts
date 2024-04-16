@@ -33,7 +33,7 @@ export interface CommonResponseResultBooleanType {
   isSuccess: boolean;
   code: number;
   message: string;
-  result: boolean;
+  result: boolean | null;
 }
 
 export interface DropdownButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {

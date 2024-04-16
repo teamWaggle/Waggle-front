@@ -8,11 +8,26 @@ import {
   participationCardTextStyle,
   rejectButtonStyle,
 } from "@/components/Team/TeamInfo/ParticipationSlider/ParticipationCard.style";
+import { useTeamParticipationAccept } from "@/hooks/api/team/useTeamParticipationAccept";
+import { useParamsTeamId } from "@/hooks/useParamsTeamId";
 import type { TeamMemberType } from "@/types/team";
 import { useNavigate } from "react-router-dom";
 
 const ParticipationCard = ({ participatingMember }: { participatingMember: TeamMemberType }) => {
-  const { nickname, userUrl, profileImgUrl } = participatingMember;
+  console.log(participatingMember);
+  const { nickname, userUrl, profileImgUrl, memberId } = participatingMember;
+  const teamId = useParamsTeamId();
+
+  const { mutate: accectOrRefuseParticipationMutate } = useTeamParticipationAccept(
+    teamId,
+    memberId
+  );
+  const handleAccept = () => {
+    accectOrRefuseParticipationMutate(true);
+  };
+  const handleReject = () => {
+    accectOrRefuseParticipationMutate(false);
+  };
   const navigate = useNavigate();
   const handleOnclickCard = () => {
     navigate(userUrl);
@@ -23,8 +38,12 @@ const ParticipationCard = ({ participatingMember }: { participatingMember: TeamM
         <img css={participationCardImgStyle} src={profileImgUrl} alt="" />
         <Text css={participationCardTextStyle}>{nickname}</Text>
       </Flex>
-      <Flex css={approveButtonStyle}>승인</Flex>
-      <Flex css={rejectButtonStyle}>거절</Flex>
+      <Flex css={approveButtonStyle} onClick={handleAccept}>
+        승인
+      </Flex>
+      <Flex css={rejectButtonStyle} onClick={handleReject}>
+        거절
+      </Flex>
     </Flex>
   );
 };
