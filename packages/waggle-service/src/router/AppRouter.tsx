@@ -9,7 +9,7 @@ import { PATH } from "@/constants/path";
 
 import Error404Page from "@/pages/Error404Page";
 import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
-import RedirectPage from "@/pages/RedirectPage/RedirectPage";
+import AuthPage from "@/pages/AuthPage/AuthPage";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -79,14 +79,6 @@ const AppRouter = () => {
           ),
         },
         {
-          path: PATH.MY(":userUrl"),
-          element: (
-            <Suspense fallback={<div>로딩중</div>}>
-              <Lazy.MyPage />
-            </Suspense>
-          ),
-        },
-        {
           path: "/planning/create-team",
           element: (
             <Suspense fallback={<div></div>}>
@@ -99,7 +91,15 @@ const AppRouter = () => {
           element: <SirenCreatePage />,
         },
         { path: "/team/:teamId", element: <TeamPage /> },
-        { path: PATH.REDIRECT, element: <RedirectPage /> },
+        { path: PATH.AUTH, element: <AuthPage /> },
+        {
+          path: PATH.MY(":userUrl"),
+          element: (
+            <Suspense fallback={<div>로딩중</div>}>
+              <Lazy.MyPage />
+            </Suspense>
+          ),
+        },
       ],
     },
   ]);

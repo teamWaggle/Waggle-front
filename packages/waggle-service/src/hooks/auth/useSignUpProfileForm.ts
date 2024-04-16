@@ -106,7 +106,7 @@ export const useSignUpProfileForm = ({
     const memberProfileRequest = {
       nickname:
         prevReqeust?.nickname !== signUpProfileRequest.nickname
-          ? signUpProfileRequest
+          ? signUpProfileRequest.nickname
           : prevReqeust?.nickname,
       name,
       birthday,
@@ -127,6 +127,10 @@ export const useSignUpProfileForm = ({
       }
 
       formData.append("memberProfileRequest", JSON.stringify(memberProfileRequest));
+
+      for (const value of formData) {
+        console.log(value);
+      }
 
       memberInfoFirstMutate(formData, {
         onSuccess: () => {
