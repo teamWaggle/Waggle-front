@@ -84,8 +84,5 @@
       "pre-commit": "lint-staged"
     }
   },
-  "packageManager": "yarn@4.0.2",
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.6.1"
-  }
+  "packageManager": "yarn@4.0.2"
 }

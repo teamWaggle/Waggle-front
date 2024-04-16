@@ -17,13 +17,6 @@
     },
     "dependencies": {
         "@babel/runtime": "7.14.6",
-        "@esbuild/linux-x64": "^0.20.2",
-        "@swc/core": "^1.4.13",
-        "@swc/core-linux-arm64-musl": "^1.4.13",
-        "@swc/core-linux-x64-musl": "^1.4.13",
-        "@testing-library/user-event": "^14.5.2",
-        "esbuild": "^0.20.2",
-        "esbuild-linux-64": "^0.15.18",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "ts-pattern": "^4",
@@ -67,11 +60,6 @@
     "resolutions": {
         "@storybook/core-common/webpack": "^5",
         "@storybook/core-server/webpack": "^5",
-        "@storybook/react/webpack": "^5",
-        "webpack": "5",
-        "rollup": "npm:@rollup/wasm-node@*"
-    },
-    "optionalDependencies": {
-        "@rollup/rollup-linux-x64-gnu": "^4.14.2"
+        "@storybook/react/webpack": "^5"
     }
 }
