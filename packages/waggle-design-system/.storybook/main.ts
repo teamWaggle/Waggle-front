@@ -1,59 +1,24 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
-import path from 'path';
+import type { StorybookConfig } from "@storybook/react-vite";
 
+import { join, dirname } from "path";
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, "package.json")));
+}
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-a11y',
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-onboarding"),
+    getAbsolutePath("@storybook/addon-interactions"),
   ],
   framework: {
-    name: '@storybook/react-webpack5',
+    name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
   docs: {
-    autodocs: true,
-  },
-  webpackFinal: async (config) => {
-    if (config.resolve) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '@': path.resolve(__dirname, '../src'),
-        '@/components': path.resolve(__dirname, '../src/components'),
-        '@/type': path.resolve(__dirname, '../src/types'),
-        '@/hooks': path.resolve(__dirname, '../src/hooks'),
-        '@/styles': path.resolve(__dirname, '../src/styles'),
-        '@/constants': path.resolve(__dirname, '../src/constants'),
-        '@/assets': path.resolve(__dirname, '../src/assets'),
-        '@/stories': path.resolve(__dirname, '../src/stories'),
-        '@/utils': path.resolve(__dirname, '../src/utils'),
-      };
-    }
-
-    const imageRule = config.module?.rules?.find((rule) => {
-      const test = (rule as { test: RegExp }).test;
-
-      if (!test) return false;
-
-      return test.test('.svg');
-    }) as { [key: string]: any };
-
-    imageRule.exclude = /\.svg$/;
-
-    config.module?.rules?.push({
-      test: /\.svg$/,
-      issuer: /\.(jsx|tsx)$/,
-      use: ['@svgr/webpack'],
-    });
-    config.module?.rules?.push({
-      test: /\.svg$/,
-      issuer: /\.(js|ts)$/,
-      use: ['url-loader'],
-    });
-
-    return config;
+    autodocs: "tag",
   },
 };
 export default config;

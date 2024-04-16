@@ -12,13 +12,16 @@ import MainContainer from "@/components/MainContainer/MainContainer";
 import Skeleton from "@/components/Skeleton/Skeleton";
 import Slider from "@/components/Slider/Slider";
 import SortButton from "@/components/SortButton/SortButton";
+import Spinner from "@/components/Spinner/Spinner";
 import Tag from "@/components/Tag/Tag";
 import MentionChecker from "@/components/Text/MentionChecker/MentionChecker";
 import Text from "@/components/Text/Text";
-import Spinner from "@/components/Spinner/Spinner";
-import useSlider from "@/hooks/useSlider";
+
 import { Theme } from "@/styles/Theme";
+
 import WaggleProvider from "@/WaggleProvider";
+
+import useSlider from "@/hooks/useSlider";
 
 export {
   Box,
