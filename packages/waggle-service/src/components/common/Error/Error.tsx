@@ -1,4 +1,5 @@
-// import { Box, Button, Flex, Heading, Text } from "waggle-design-system";
+import { Box, Flex, Heading, Text, Logo } from "@/components/common";
+import Button from "@/components/common/Design/Button/Button";
 
 import { ERROR_CODE, HTTP_ERROR_MESSAGE, HTTP_STATUS_CODE } from "@/constants/api";
 
@@ -6,7 +7,7 @@ import { useTokenError } from "@/hooks/api/auth/useTokenError";
 
 import { hasKeyInObject } from "@/utils/hasKeyInObject";
 
-// import { layoutStyle, headingStyle, textStyle } from "@/components/common/Error/Error.style";
+import { layoutStyle, headingStyle, textStyle } from "@/components/common/Error/Error.style";
 
 export interface ErrorProps {
   statusCode?: number;
@@ -30,12 +31,16 @@ const Error = ({ statusCode = HTTP_STATUS_CODE.NOT_FOUND, errorCode, resetError 
   }
 
   return (
-    // <Box>
-    //   <Flex css={layoutStyle}>
-    //     <Heading>fsdf</Heading>
-    //   </Flex>
-    // </Box>
-    <div>test</div>
+    <Box>
+      <Flex css={layoutStyle}>
+        <Logo width={300} height={300} />
+        <Heading css={headingStyle} size="small">
+          {HTTP_ERROR_MESSAGE[statusCode].HEADING}
+        </Heading>
+        <Text css={textStyle}>{HTTP_ERROR_MESSAGE[statusCode].BODY}</Text>
+        <Button onClick={resetError}>{HTTP_ERROR_MESSAGE[statusCode].BUTTON}</Button>
+      </Flex>
+    </Box>
   );
 };
 
