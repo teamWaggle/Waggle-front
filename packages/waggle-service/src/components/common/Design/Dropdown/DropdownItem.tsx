@@ -6,11 +6,7 @@ import { dropdownItemStyle } from "@/components/common/Design/Dropdown/Dropdown.
 
 const DropdownItem = ({ children, icon, ...props }: DropDownItemType) => {
   return (
-    <Flex
-      css={dropdownItemStyle}
-      styles={{ gap: "4px", align: "center", justify: "center" }}
-      {...props}
-    >
+    <Flex css={dropdownItemStyle} {...props}>
       {icon}
       {children}
     </Flex>

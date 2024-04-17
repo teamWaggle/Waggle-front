@@ -3,8 +3,11 @@ import { useRef } from "react";
 import { createContext, useState } from "react";
 
 import useClickOutSide from "@/hooks/common/useClickOutSide";
+import DropdownButton from "@/components/common/Design/Dropdown/DropdownButton";
+import DropdownList from "@/components/common/Design/Dropdown/DropdownList";
+import DropdownItem from "@/components/common/Design/Dropdown/DropdownItem";
 
-export const DropdownProvider = createContext<{
+export const DropdownContext = createContext<{
   isDropdownOpen: boolean;
   toggleDropdown: () => void;
 }>({ isDropdownOpen: false, toggleDropdown: () => {} });
@@ -25,11 +28,14 @@ const Dropdown = ({ children }: { children: ReactNode }) => {
 
   return (
     <section ref={dropdownRef}>
-      <DropdownProvider.Provider value={{ toggleDropdown, isDropdownOpen }}>
+      <DropdownContext.Provider value={{ toggleDropdown, isDropdownOpen }}>
         {children}
-      </DropdownProvider.Provider>
+      </DropdownContext.Provider>
     </section>
   );
 };
 
 export default Dropdown;
+Dropdown.Button = DropdownButton;
+Dropdown.List = DropdownList;
+Dropdown.Item = DropdownItem;

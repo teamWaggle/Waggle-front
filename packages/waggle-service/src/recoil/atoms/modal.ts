@@ -11,3 +11,8 @@ export const scheduleModalState = atom<ModalType[]>({
   key: "scheduleModalState",
   default: [],
 });
+
+export const teamInfoModalState = atom<ModalType[]>({
+  key: "teamInfoModalState",
+  default: [],
+});

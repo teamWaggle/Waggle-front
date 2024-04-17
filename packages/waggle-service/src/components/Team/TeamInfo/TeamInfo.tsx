@@ -1,33 +1,27 @@
 import GroupIcon from "@/assets/svg/group.svg?react";
-import LeftArrowIcon from "@/assets/svg/sm-left-arrow.svg?react";
-import RightArrowIcon from "@/assets/svg/sm-right-arrow.svg?react";
 
-import { Box, Flex, Heading, Slider, Text } from "@/components/common";
-import MemberCard from "@/components/Team/TeamInfo/MemberSlider/MemberCard";
-import ParticipationCard from "@/components/Team/TeamInfo/ParticipationSlider/ParticipationCard";
-
-import { TEAM_INFO } from "@/constants/team";
-
+import { Flex, Heading, Text, Box } from "@/components/common";
+import MemberCard from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberCard";
+import ParticipationCard from "@/components/Team/TeamInfo/SliderTemplate/ParticipationSlider/ParticipationCard";
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
-
 import {
-  leftArrowIconStyle,
-  memberSliderBoxStyle,
-  participationSliderBoxStyle,
-  rightArrowIconStyle,
   teamImgStyle,
   teamInfoBoxStyle,
   teamInfoNewApplyStyle,
   teamInfoSubTitleStyle,
+  teamParticipationBoxStyle,
   teamSectionStyle,
 } from "@/components/Team/TeamInfo/TeamInfo.style";
 import { useTeamParticipationList } from "@/hooks/api/team/useTeamParticipationList";
+import MemberSlider from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberSlider";
+import ParticipationSlider from "@/components/Team/TeamInfo/SliderTemplate/ParticipationSlider/ParticipationSlider";
 
 const TeamInfo = () => {
   const teamId = useParamsTeamId();
   const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId) || {};
   const participationMemberList = useTeamParticipationList(teamId);
+
   return (
     <Flex css={teamSectionStyle} tag="section">
       <img css={teamImgStyle} src={coverImageUrl} />
@@ -36,38 +30,26 @@ const TeamInfo = () => {
         <Text size="xLarge" css={teamInfoSubTitleStyle}>
           {description}
         </Text>
-        <Flex styles={{ align: "center" }}>
+        <Flex styles={{ align: "center", position: "relative" }}>
           <GroupIcon />
           <Text size="large" style={{ marginRight: "40px" }}>
             {teamSize}/50
           </Text>
-          <Slider
-            leftIcon={<LeftArrowIcon css={leftArrowIconStyle} />}
-            rightIcon={<RightArrowIcon css={rightArrowIconStyle} />}
-            cardBoxstyle={memberSliderBoxStyle}
-            displayCount={TEAM_INFO.MEMBERS_SLIDER_AMOUNT}
-            dataLength={teamSize || 0}
-          >
+          <MemberSlider memberList={teamMemberList}>
             {teamMemberList?.map((member, index) => (
-              <MemberCard key={index} member={member} />
+              <MemberCard key={index} member={member} index={index} />
             ))}
-          </Slider>
+          </MemberSlider>
         </Flex>
-        <Flex styles={{ align: "center", marginTop: "10px" }}>
+        <Flex css={teamParticipationBoxStyle}>
           <Text css={teamInfoNewApplyStyle} style={{ marginRight: "40px" }}>
             새로운 가입 신청
           </Text>
-          <Slider
-            leftIcon={<LeftArrowIcon css={leftArrowIconStyle} />}
-            rightIcon={<RightArrowIcon css={rightArrowIconStyle} />}
-            cardBoxstyle={participationSliderBoxStyle}
-            displayCount={TEAM_INFO.PARTICIPATION_SLIDER_AMOUNT}
-            dataLength={participationMemberList.length || 0}
-          >
-            {participationMemberList.map((participatingMember, index) => (
+          <ParticipationSlider participationMemberList={participationMemberList}>
+            {participationMemberList?.map((participatingMember, index) => (
               <ParticipationCard key={index} participatingMember={participatingMember} />
             ))}
-          </Slider>
+          </ParticipationSlider>
         </Flex>
       </Box>
     </Flex>
