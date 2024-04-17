@@ -33,7 +33,7 @@ export interface CommonResponseResultBooleanType {
   isSuccess: boolean;
   code: number;
   message: string;
-  result: boolean | null;
+  result: boolean;
 }
 
 export interface DropdownButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -56,4 +56,9 @@ export interface DefaultApiResponseType<T> {
   code: number;
   message: string;
   result: T;
+}
+
+export interface OptionModalItemType extends HTMLAttributes<HTMLButtonElement> {
+  icon?: ReactNode;
+  children: ReactNode;
 }

@@ -1,7 +1,5 @@
 import { useRef } from "react";
 
-import { useResetRecoilState } from "recoil";
-
 import GroupIcon from "@/assets/svg/group.svg?react";
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
 import ScheduleModalCloseIcon from "@/assets/svg/scheduleModalClose.svg?react";
@@ -13,8 +11,6 @@ import OptionDropdown from "@/components/Planning/Calendar/CalendarCard/Schedule
 import { format } from "date-fns";
 
 import useClickOutSide from "@/hooks/common/useClickOutSide";
-
-import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 
 import type { ScheduleModalType } from "@/types/modal";
 
@@ -28,12 +24,12 @@ import {
   scheduleModalTeamName,
   scheduleCommentBoxStyle,
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal.style";
+import useModal from "@/hooks/useModal";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const scheduleModalRef = useRef<HTMLDivElement>(null);
-  const closeScheduleModal = useResetRecoilState(scheduleModalSelector);
+  const { closeScheduleModal } = useModal();
   useClickOutSide(scheduleModalRef, closeScheduleModal);
-
   const handleCloseModal = () => {
     closeScheduleModal();
   };

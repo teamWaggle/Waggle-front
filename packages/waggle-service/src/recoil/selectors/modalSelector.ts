@@ -1,6 +1,6 @@
 import { selector } from "recoil";
 
-import { modalState, scheduleModalState } from "@/recoil/atoms/modal";
+import { modalState, scheduleModalState, teamInfoModalState } from "@/recoil/atoms/modal";
 
 import type { ModalType } from "@/types/modal";
 
@@ -17,5 +17,13 @@ export const modalSelector = selector<ModalType[]>({
   get: ({ get }) => get(modalState),
   set: ({ set }, newValue) => {
     set(modalState, newValue);
+  },
+});
+
+export const teamInfoModalSelector = selector<ModalType[]>({
+  key: "teamInfoModalSelector",
+  get: ({ get }) => get(teamInfoModalState),
+  set: ({ set }, newValue) => {
+    set(teamInfoModalState, newValue);
   },
 });

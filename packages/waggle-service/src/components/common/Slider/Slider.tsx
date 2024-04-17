@@ -3,6 +3,11 @@ import type { SerializedStyles } from "@emotion/react";
 import { Box, Flex } from "@/components/common";
 
 import useSlider from "@/hooks/common/useSlider";
+import { createContext } from "react";
+
+export const SliderContext = createContext<{ displayCount: number }>({
+  displayCount: 0,
+});
 
 const Slider = ({
   children,
@@ -27,7 +32,9 @@ const Slider = ({
     <Box style={{ position: "relative" }}>
       {currentIndex !== 0 && <Box onClick={handlePrevOnClick}>{leftIcon}</Box>}
       <Flex style={{ overflow: "hidden" }}>
-        <Box css={cardBoxstyle(currentIndex)}>{children}</Box>
+        <SliderContext.Provider value={{ displayCount }}>
+          <Box css={cardBoxstyle(currentIndex)}>{children}</Box>
+        </SliderContext.Provider>
       </Flex>
       {currentIndex <= dataLength - displayCount && (
         <Box onClick={handleNextOnClick}>{rightIcon}</Box>
