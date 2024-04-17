@@ -1,6 +1,6 @@
 import { Flex } from "@/components/common";
 
-import Skeleton from "../../common/Design/Skeleton/Skeleton";
+import Skeleton from "@/components/common/Design/Skeleton/Skeleton";
 
 const StoryCardSkeleton = () => {
   return (

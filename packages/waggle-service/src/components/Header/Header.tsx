@@ -15,6 +15,7 @@ import { PATH } from "@/constants/path";
 import useModal from "@/hooks/common/useModal";
 
 import { headerStyle, headerBoxStyle, textStyle } from "@/components/Header/Header.style";
+import { Suspense } from "react";
 
 const Header = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
@@ -50,7 +51,9 @@ const Header = () => {
           </Text>
         </Flex>
         {isLoggedIn ? (
-          <LogInMenu />
+          <Suspense fallback={<div>로딩중</div>}>
+            <LogInMenu />
+          </Suspense>
         ) : (
           <NotiIcon width={30} height={30} onClick={handleLoginModal} />
         )}

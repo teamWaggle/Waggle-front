@@ -20,7 +20,7 @@ export const skeletonStyle = (width: string, height: string, variant: "square" |
     height: variant === "square" ? height : width,
     borderRadius: variant === "square" ? Theme.spacer.spacing2 : "50%",
 
-    background: `linear-gradient(-90deg,${Theme.color.gray100}, ${Theme.color.gray200}, ${Theme.color.gray100}, ${Theme.color.gray200})`,
+    background: `linear-gradient(-90deg,${Theme.color.gray100}, ${Theme.color.gray300}, ${Theme.color.gray100}, ${Theme.color.gray300})`,
     backgroundSize: "400%",
 
     animation: `${skeletonAnimation} 5s infinite ease-out`,
