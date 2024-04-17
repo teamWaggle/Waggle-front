@@ -1,7 +1,9 @@
+import type { FallbackProps } from "react-error-boundary";
+
 import { Box, Flex, Heading, Text, Logo } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 
-import { ERROR_CODE, HTTP_ERROR_MESSAGE, HTTP_STATUS_CODE } from "@/constants/api";
+import { ERROR_CODE, HTTP_ERROR_MESSAGE } from "@/constants/api";
 
 import { useTokenError } from "@/hooks/api/auth/useTokenError";
 
@@ -9,22 +11,16 @@ import { hasKeyInObject } from "@/utils/hasKeyInObject";
 
 import { layoutStyle, headingStyle, textStyle } from "@/components/common/Error/Error.style";
 
-export interface ErrorProps {
-  statusCode?: number;
-  errorCode?: number;
-  resetError?: () => void;
-}
+const Error = ({ error, resetErrorBoundary }: FallbackProps) => {
+  const statusCode = error.response.status;
 
-const Error = ({ statusCode = HTTP_STATUS_CODE.NOT_FOUND, errorCode, resetError }: ErrorProps) => {
   const isHTTPError = hasKeyInObject(HTTP_ERROR_MESSAGE, statusCode);
-
-  resetError && resetError();
 
   const { handleTokenError } = useTokenError();
 
   if (!isHTTPError) return null;
 
-  if (errorCode && errorCode > ERROR_CODE.TOKEN_ERROR_RANGE) {
+  if (error.response.code > ERROR_CODE.TOKEN_ERROR_RANGE) {
     handleTokenError();
 
     return null;
@@ -38,7 +34,7 @@ const Error = ({ statusCode = HTTP_STATUS_CODE.NOT_FOUND, errorCode, resetError 
           {HTTP_ERROR_MESSAGE[statusCode].HEADING}
         </Heading>
         <Text css={textStyle}>{HTTP_ERROR_MESSAGE[statusCode].BODY}</Text>
-        <Button onClick={resetError}>{HTTP_ERROR_MESSAGE[statusCode].BUTTON}</Button>
+        <Button onClick={resetErrorBoundary}>{HTTP_ERROR_MESSAGE[statusCode].BUTTON}</Button>
       </Flex>
     </Box>
   );

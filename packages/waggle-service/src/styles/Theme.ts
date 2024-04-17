@@ -26,6 +26,7 @@ const color = {
   team_8: "#3F3F3F",
   gray100: "#f3f3f3",
   gray200: "#e8e8e8",
+  gray300: "#dddddd",
   saturday: "#0075FF",
 };
 
