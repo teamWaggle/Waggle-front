@@ -9,7 +9,7 @@ import {
   rejectButtonStyle,
 } from "@/components/Team/TeamInfo/SliderTemplate/ParticipationSlider/ParticipationCard.style";
 import { useTeamParticipationAccept } from "@/hooks/api/team/useTeamParticipationAccept";
-import { useParamsTeamId } from "@/hooks/useParamsTeamId";
+import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import type { TeamMemberType } from "@/types/team";
 import { useNavigate } from "react-router-dom";
 

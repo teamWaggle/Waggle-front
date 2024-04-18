@@ -1,6 +1,6 @@
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
+import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
-import { useParamsTeamId } from "@/hooks/useParamsTeamId";
 
 const TeamLeaderContainer = ({ children }: { children: React.ReactNode }) => {
   const teamId = useParamsTeamId();
