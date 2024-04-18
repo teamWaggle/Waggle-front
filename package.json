@@ -8,7 +8,7 @@
     },
     "scripts": {
         "dev": "yarn workspace waggle-service dev",
-        "build:design-system": "yarn workspace waggle-design-system publish:npm",
+        "build:design-system": "yarn workspace waggle-design-system build",
         "build:waggle-service": "yarn workspace waggle-service build",
         "preview:waggle-service": "yarn workspace waggle-service preview",
         "lint": "eslint ./packages/*/src/**/*.{ts,tsx,js,jsx}",

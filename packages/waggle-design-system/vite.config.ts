@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.tsx"),
-      name: "waggle-desin-system",
+      name: "waggle-design-system",
       formats: ["es", "cjs"],
       fileName: (format) => `index.${format}.js`,
     },

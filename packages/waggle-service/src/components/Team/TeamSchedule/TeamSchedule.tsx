@@ -29,7 +29,6 @@ import {
   teamScheduleSearchButtonStyle,
   teamScheduleTitleStyle,
 } from "@/components/Team/TeamSchedule/TeamSchedule.style";
-import { Skeleton } from "waggle-design-system";
 
 const TeamSchedule = () => {
   const teamId = useParamsTeamId();
@@ -64,7 +63,6 @@ const TeamSchedule = () => {
     <>
       {isMember ? (
         <>
-          <Skeleton />
           <Flex css={teamScheduleBoxStyle}>
             <Flex style={{ alignItems: "center", gap: "16px" }}>
               <Heading size="xLarge" css={teamScheduleTitleStyle}>

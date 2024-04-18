@@ -4,8 +4,7 @@ import { useRecoilValue } from "recoil";
 import Logo from "@/assets/svg/logo.svg?react";
 import NotiIcon from "@/assets/svg/ic-header-noti.svg?react";
 
-import { Flex } from "@/components/common";
-import { Text } from "waggle-design-system";
+import { Flex, Text } from "@/components/common";
 import LogInMenu from "@/components/Header/LogInMenu/LogInMenu";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
 
