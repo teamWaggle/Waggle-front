@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN yarn install
+RUN yarn build:design-system
 RUN yarn build:waggle-service
 
 FROM node:19-alpine AS Release
