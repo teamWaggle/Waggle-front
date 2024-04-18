@@ -7126,10 +7126,7 @@ const RAW_RUNTIME_STATE =
           ["find-cache-dir", "npm:3.3.2"],\
           ["fs-extra", "npm:11.2.0"],\
           ["magic-string", "npm:0.30.9"],\
-          ["rollup", [\
-            "@rollup/wasm-node",\
-            "npm:4.14.3"\
-          ]],\
+          ["rollup", "npm:3.29.4"],\
           ["typescript", null],\
           ["vite", "virtual:b87f6af78ce16849aedde052ee423fdb48db75040312d2f2f93643746fda40898388a71122eecbc567a8f0db83e07d16cfbcff4bf55d6765bb068cd7a28711f9#npm:5.2.9"],\
           ["vite-plugin-glimmerx", null]\
@@ -25459,10 +25456,7 @@ const RAW_RUNTIME_STATE =
           ["less", null],\
           ["lightningcss", null],\
           ["postcss", "npm:8.4.38"],\
-          ["rollup", [\
-            "@rollup/wasm-node",\
-            "npm:4.14.3"\
-          ]],\
+          ["rollup", "npm:4.14.3"],\
           ["sass", null],\
           ["stylus", null],\
           ["sugarss", null],\
