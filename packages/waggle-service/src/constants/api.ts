@@ -67,6 +67,8 @@ export const END_POINTS = {
   RECOMMEND: (boardId: number) => `/api/recommends/${boardId}`,
   TEAM_PARTICIPATION_ACCEPT: (teamId: number, memberId: number, isAccept: boolean) =>
     `/api/teams/${teamId}/participation/${memberId}?accept=${isAccept}`,
+  DELETE_TEAM_MEMBER: (teamId: number, memberId: number) =>
+    `/api/teams/${teamId}/member/${memberId}`,
 };
 
 export const HTTP_STATUS_CODE = {
