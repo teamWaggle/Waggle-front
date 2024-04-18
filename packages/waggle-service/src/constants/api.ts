@@ -77,6 +77,7 @@ export const HTTP_STATUS_CODE = {
 
 // 토큰 만료 에러 코드 추가 예정
 export const ERROR_CODE = {
+  TOKEN_ERROR_RANGE: 4000,
   INVALID_REFRESH_TOKEN: 4050,
   MISMATCH_REFRESH_TOKEN: 4051,
   INVALID_TOKEN: 4052,
@@ -88,5 +89,23 @@ export const ERROR_CODE = {
   REFRESH_NOT_EXIST_IN_COOKIE: 4058,
   MISMATCH_EMAIL_AND_PASSWORD: 4059,
 };
+
+export const HTTP_ERROR_MESSAGE = {
+  [HTTP_STATUS_CODE.NOT_FOUND]: {
+    HEADING: "길을 잃었나요?",
+    BODY: "요청하신 페이지를 찾을 수 없습니다.",
+    BUTTON: "홈으로 가기",
+  },
+  [HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR]: {
+    HEADING: "현재 페이지를 표시할 수 없습니다.",
+    BODY: `잠시 후 다시 시도해주세요.`,
+    BUTTON: "새로고침",
+  },
+  [HTTP_STATUS_CODE.BAD_REQUEST]: {
+    HEADING: "잘못된 요청입니다.",
+    BODY: "확인 후 다시 시도해주세요.",
+    BUTTON: "홈으로 가기",
+  },
+} as const;
 
 export const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
