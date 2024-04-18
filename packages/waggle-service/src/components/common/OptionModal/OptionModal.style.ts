@@ -19,7 +19,7 @@ export const optiopnModalItemStyle = css({
   gap: "4px",
   align: "center",
   justify: "center",
-  "&:first-child": {
+  "&:first-of-type": {
     borderTopLeftRadius: "6px",
     borderTopRightRadius: "6px",
   },
