@@ -7,8 +7,8 @@ export interface ScheduleType {
   teamColor: TeamColorType;
   title: string;
   content: string;
-  startTime: Date;
-  endTime: Date;
+  startDate: Date;
+  endDate: Date;
   createdDate: Date;
   status: string;
   member: MemberType;

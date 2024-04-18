@@ -47,10 +47,10 @@ const CalendarCard = ({
         {schedulesSlice.map((schedule, i) => (
           <Box
             key={schedule.boardId + dayString}
-            css={scheduleTextStyle(schedulesSlice[i].teamColor, isSameDay(schedule.endTime, day))}
+            css={scheduleTextStyle(schedulesSlice[i].teamColor, isSameDay(schedule.endDate, day))}
             onClick={() => handleScheduleOnclick(schedule)}
           >
-            {isSameDay(schedule.startTime, day) ? schedule.title : ""}
+            {isSameDay(schedule.startDate, day) ? schedule.title : ""}
           </Box>
         ))}
         {schedules.length > 2 && (

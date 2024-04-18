@@ -24,13 +24,13 @@ const useCalendar = () => {
   const currentPrevYear = getCurrentYear(subMonths(currentDate, 1));
   const currentPrevMonth = getCurrentMonth(subMonths(currentDate, 1));
 
-  const { memberId } = useMemberInfoSaveQuery();
-  const { data } = useGetMemberScheduleMonthly(memberId, currentYear, currentMonth);
+  const { userUrl } = useMemberInfoSaveQuery();
+  const { data } = useGetMemberScheduleMonthly(userUrl, currentYear, currentMonth);
 
-  prefetchScheduleMonthly(memberId, currentNextYear, currentNextMonth);
-  prefetchScheduleMonthly(memberId, currentPrevYear, currentPrevMonth);
+  prefetchScheduleMonthly(userUrl, currentNextYear, currentNextMonth);
+  prefetchScheduleMonthly(userUrl, currentPrevYear, currentPrevMonth);
 
-  const { scheduleList } = data?.result ?? { scheduleList: [] };
+  const { scheduleList } = data?.result || { scheduleList: [] };
 
   const editSelectedStartDate = (date: Date) => {
     setSelectedStartDate(date);

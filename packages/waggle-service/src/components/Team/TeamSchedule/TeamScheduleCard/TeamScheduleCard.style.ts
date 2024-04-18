@@ -39,4 +39,5 @@ export const addScheduleButtonStyle = (color: TeamColorType) =>
     color: Theme.color[color],
     borderRadius: "16px",
     padding: "6px 12px",
+    cursor: "pointer",
   });

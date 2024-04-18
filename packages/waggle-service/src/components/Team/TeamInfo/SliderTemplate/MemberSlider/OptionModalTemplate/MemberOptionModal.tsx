@@ -5,6 +5,7 @@ import AlertModal from "@/components/common/AlertModal/AlerlModal";
 import type { SerializedStyles } from "@emotion/react";
 import { useDeleteTeamMember } from "@/hooks/api/team/useDeleteTeamMember";
 import useModal from "@/hooks/common/useModal";
+import { toast } from "react-toastify";
 
 const MemberOptionModal = ({
   modalPositionBoxStyle,
@@ -17,10 +18,12 @@ const MemberOptionModal = ({
 }) => {
   const { openModal, closeModal } = useModal();
   const { mutate: deleteMemberMutate } = useDeleteTeamMember();
+
   const handleDeleteMemberConfirm = () => {
-    deleteMemberMutate({ memberId });
+    deleteMemberMutate(memberId, { onSuccess: () => toast.success("팀원이 삭제되었습니다.") });
     closeModal();
   };
+
   const handleDeleteMember = () => {
     openModal({
       key: "DeleteMemberModal",

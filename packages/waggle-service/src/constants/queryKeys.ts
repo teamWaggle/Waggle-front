@@ -26,10 +26,11 @@ export const QUERY_KEYS = {
   PET_INFO: "petInfo",
 
   RECOMMEND: "recommend",
-
+  // Schedule
   SCHEDULE: "schedule",
   SCHEDULE_MONTHLY: "scheduleMonthly",
   ADD_TEAM_SCHEDULE: "addTeamSchedule",
+  ADD_TEAM_SCHEDULE_TO_MY_SCHEDULE: "addTeamScheduleToMySchedule",
 
   //Team
   MEMBER_TEAMS: "memberTeams",

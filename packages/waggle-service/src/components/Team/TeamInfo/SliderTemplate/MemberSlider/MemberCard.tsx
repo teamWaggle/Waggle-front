@@ -14,7 +14,7 @@ import useModal from "@/hooks/common/useModal";
 
 import { useContext } from "react";
 import { SliderContext } from "@/components/common/Slider/Slider";
-import MemberOptionModal from "@/components/Team/TeamInfo/OptionModalTemplate/MemberOptionModal";
+import MemberOptionModal from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/OptionModalTemplate/MemberOptionModal";
 import TeamLeaderAuthorizationContainer from "@/components/Team/TeamInfo/TeamLeaderAuthorizationContainer/TeamLeaderAuthorizationContainer";
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
