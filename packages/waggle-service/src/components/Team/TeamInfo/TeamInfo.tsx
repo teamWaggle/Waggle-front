@@ -16,6 +16,27 @@ import {
 import { useTeamParticipationList } from "@/hooks/api/team/useTeamParticipationList";
 import MemberSlider from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberSlider";
 import ParticipationSlider from "@/components/Team/TeamInfo/SliderTemplate/ParticipationSlider/ParticipationSlider";
+import TeamLeaderContainer from "@/components/Team/TeamInfo/TeamLeaderContainer/TeamLeaderContainer";
+
+// const memberList = [
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
+// ];
 
 const TeamInfo = () => {
   const teamId = useParamsTeamId();
@@ -41,16 +62,18 @@ const TeamInfo = () => {
             ))}
           </MemberSlider>
         </Flex>
-        <Flex css={teamParticipationBoxStyle}>
-          <Text css={teamInfoNewApplyStyle} style={{ marginRight: "40px" }}>
-            새로운 가입 신청
-          </Text>
-          <ParticipationSlider participationMemberList={participationMemberList}>
-            {participationMemberList?.map((participatingMember, index) => (
-              <ParticipationCard key={index} participatingMember={participatingMember} />
-            ))}
-          </ParticipationSlider>
-        </Flex>
+        <TeamLeaderContainer>
+          <Flex css={teamParticipationBoxStyle}>
+            <Text css={teamInfoNewApplyStyle} style={{ marginRight: "40px" }}>
+              새로운 가입 신청
+            </Text>
+            <ParticipationSlider participationMemberList={participationMemberList}>
+              {participationMemberList?.map((participatingMember, index) => (
+                <ParticipationCard key={index} participatingMember={participatingMember} />
+              ))}
+            </ParticipationSlider>
+          </Flex>
+        </TeamLeaderContainer>
       </Box>
     </Flex>
   );

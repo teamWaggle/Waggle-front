@@ -4,7 +4,6 @@ import { Theme } from "@/styles/Theme";
 
 export const participationCardBoxStyle = css({
   gap: "4px",
-  width: "100%",
 });
 
 export const participationCardNameStyle = css({

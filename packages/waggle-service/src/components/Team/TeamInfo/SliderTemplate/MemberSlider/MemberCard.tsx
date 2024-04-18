@@ -1,6 +1,6 @@
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
 
-import { Box, Flex } from "@/components/common";
+import { Flex } from "@/components/common";
 
 import type { TeamMemberType } from "@/types/team";
 
@@ -10,10 +10,10 @@ import {
   modalPositionBoxStyle,
 } from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberCard.style";
 import useModal from "@/hooks/useModal";
-import OptionModal from "@/components/common/OptionModal/OptionModal";
-import OptionModalItem from "@/components/common/OptionModal/OptionModalItem";
+
 import { useContext } from "react";
 import { SliderContext } from "@/components/common/Slider/Slider";
+import MemberOptionModal from "@/components/Team/TeamInfo/OptionModalTemplate/MemberOptionModal";
 
 const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }) => {
   const { teamInfoModalOpen, teamInfoModalClose } = useModal();
@@ -22,12 +22,11 @@ const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }
     teamInfoModalOpen({
       key: "MemberOptionDropDown",
       component: () => (
-        <Box css={modalPositionBoxStyle(displayCount, index)}>
-          <OptionModal closeModal={teamInfoModalClose}>
-            <OptionModalItem>팀원 삭제하기</OptionModalItem>
-            <OptionModalItem>팀장 권한 위임</OptionModalItem>
-          </OptionModal>
-        </Box>
+        <MemberOptionModal
+          memberId={member.memberId}
+          modalPositionBoxStyle={modalPositionBoxStyle(displayCount, index)}
+          closeOptionModal={teamInfoModalClose}
+        />
       ),
     });
   };
