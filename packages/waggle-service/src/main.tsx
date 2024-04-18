@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { toast } from "react-toastify";
 
-import { Global, ThemeProvider } from "@emotion/react";
+import { WaggleProvider } from "waggle-design-system";
 
 import { RecoilRoot } from "recoil";
 
@@ -11,9 +11,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import ModalRoot from "@/components/common/Design/Modal/ModalRoot";
 import AppRouter from "@/router/AppRouter";
-
-import { GlobalStyle } from "@/styles/GlobalStyle";
-import { Theme } from "@/styles/Theme";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,13 +32,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <ThemeProvider theme={Theme}>
+        <WaggleProvider>
           <Suspense fallback={<div></div>}>
-            <Global styles={GlobalStyle} />
             <ModalRoot></ModalRoot>
             <AppRouter />
           </Suspense>
-        </ThemeProvider>
+        </WaggleProvider>
       </RecoilRoot>
       <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
