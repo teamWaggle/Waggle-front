@@ -25,3 +25,10 @@ export const modalPositionBoxStyle = (displayCount: number, index: number) =>
     left: `${(index % displayCount) * 190 + 240}px`,
     bottom: "35px",
   });
+
+export const nicknameStyle = css({
+  fontSize: "14px",
+  color: Theme.color.text,
+  marginLeft: "8px",
+  marginRight: "auto",
+});

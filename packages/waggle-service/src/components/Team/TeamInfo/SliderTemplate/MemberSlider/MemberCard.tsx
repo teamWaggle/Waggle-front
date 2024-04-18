@@ -1,6 +1,6 @@
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
 
-import { Flex } from "@/components/common";
+import { Flex, Text } from "@/components/common";
 
 import type { TeamMemberType } from "@/types/team";
 
@@ -8,17 +8,22 @@ import {
   memberCardBoxStyle,
   memberCardImgStyle,
   modalPositionBoxStyle,
+  nicknameStyle,
 } from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberCard.style";
 import useModal from "@/hooks/common/useModal";
 
 import { useContext } from "react";
 import { SliderContext } from "@/components/common/Slider/Slider";
 import MemberOptionModal from "@/components/Team/TeamInfo/OptionModalTemplate/MemberOptionModal";
-import TeamLeaderContainer from "@/components/Team/TeamInfo/TeamLeaderContainer/TeamLeaderContainer";
+import TeamLeaderAuthorizationContainer from "@/components/Team/TeamInfo/TeamLeaderAuthorizationContainer/TeamLeaderAuthorizationContainer";
+import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
+import { useTeamInfo } from "@/hooks/team/useTeamInfo";
 
 const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }) => {
   const { teamInfoModalOpen, teamInfoModalClose } = useModal();
   const { displayCount } = useContext(SliderContext);
+  const teamId = useParamsTeamId();
+  const { leader } = useTeamInfo(teamId) || {};
   const handleMenuOnclick = () => {
     teamInfoModalOpen({
       key: "MemberOptionDropDown",
@@ -34,10 +39,10 @@ const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }
   return (
     <Flex css={memberCardBoxStyle}>
       <img css={memberCardImgStyle} src="https://source.unsplash.com/random/32x32" alt="" />
-      {member.nickname}
-      <TeamLeaderContainer>
-        <KebabMenuIcon onClick={handleMenuOnclick} />
-      </TeamLeaderContainer>
+      <Text css={nicknameStyle}>{member.nickname}</Text>
+      <TeamLeaderAuthorizationContainer>
+        {member.memberId !== leader.memberId && <KebabMenuIcon onClick={handleMenuOnclick} />}
+      </TeamLeaderAuthorizationContainer>
     </Flex>
   );
 };
