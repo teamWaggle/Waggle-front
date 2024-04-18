@@ -8,13 +8,14 @@ import { RecoilRoot } from "recoil";
 
 import { worker } from "@/mocks/browser";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, MutationCache, QueryCache } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import ModalRoot from "@/components/common/Design/Modal/ModalRoot";
 import AppRouter from "@/router/AppRouter";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import { Theme } from "@/styles/Theme";
+import { toast } from "react-toastify";
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -22,6 +23,18 @@ export const queryClient = new QueryClient({
       refetchOnReconnect: false,
     },
   },
+  queryCache: new QueryCache({
+    onError: (error) => {
+      console.log(error);
+
+      toast.error(error.name);
+    },
+  }),
+  mutationCache: new MutationCache({
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  }),
 });
 
 if (process.env.NODE_ENV === "development") {

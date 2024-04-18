@@ -13,11 +13,20 @@ import {
   teamScheduleCardStatusBoxStyle,
   teamScheduleOverlapCount,
 } from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard.style";
+import { useAddTeamScheduleToMySchedule } from "@/hooks/api/schedule/useAddTeamScheduleToMySchedule";
 
 const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamScheduleType }) => {
-  const { teamColor, title, startDate, endDate, status } = teamScheduleData;
+  const { teamColor, title, startDate, endDate, status, boardId } = teamScheduleData;
+  // const startYear = format(startDate, "yyyy");
+  // const endYear = format(endDate, "yyyy");
+  // const startMonth = format(startDate, "M");
+  // const endMonth = format(endDate, "M");
+  // const scheduleDate = { startYear, endYear, startMonth, endMonth };
   const scheduleStatusString = getTeamScheduleStatus(status);
-
+  const { mutate: addToMySchedule } = useAddTeamScheduleToMySchedule(startDate, endDate);
+  const handleAddToMySchedule = () => {
+    addToMySchedule(boardId);
+  };
   return (
     <Box css={teamScheduleCardBoxStyle}>
       <Flex css={teamScheduleCardHeaderBoxStyle}>
@@ -40,7 +49,9 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
             <Flex style={{ alignItems: "center" }}>
               겹치는 일정 <Text css={teamScheduleOverlapCount(teamColor)}>0</Text>
             </Flex>
-            <Flex css={addScheduleButtonStyle("team_1")}>내 일정에 추가</Flex>
+            <Flex onClick={handleAddToMySchedule} css={addScheduleButtonStyle(teamColor)}>
+              내 일정에 추가
+            </Flex>
           </>
         )}
       </Flex>

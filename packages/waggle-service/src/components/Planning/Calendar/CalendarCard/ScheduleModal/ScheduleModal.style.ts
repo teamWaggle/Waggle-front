@@ -59,7 +59,6 @@ export const scheduleModalIcon = css({
 export const scheduleModalTime = css({
   fontSize: "16px",
   color: Theme.color.readonly_text,
-  marginLeft: "36px",
   marginBottom: "16px",
 });
 

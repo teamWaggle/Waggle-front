@@ -51,13 +51,14 @@ export const END_POINTS = {
     `/api/sirens/member/${userUrl}?currentPage=${currentPage}`,
   MEMBER_QUESTION: (currentPage: unknown, userUrl?: string) =>
     `/api/questions/member/${userUrl}?currentPage=${currentPage}`,
-
+  // Schuedule
   MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
-  MEMBER_SCHEDULES_MONTHLY: (memberId: number, year: number, month: number) =>
-    `/api/schedules/members/${memberId}/monthly?year=${year}&month=${month}`,
+  MEMBER_SCHEDULES_MONTHLY: (userUrl: string, year: number, month: number) =>
+    `/api/schedules/members/${userUrl}/monthly?year=${year}&month=${month}`,
   GET_TEAM_SCHEDULE_PAGE: (teamId: number, currentPage?: unknown) =>
     `/api/schedules/teams/${teamId}/page?currentPage=${currentPage}`,
   ADD_TEAM_SCHEDULE: (teamId: number) => `/api/schedules/${teamId}`,
+  ADD_TEAM_SCHEDULE_TO_MY_SCHEDULE: (scheduleId: number) => `/api/schedules/members/${scheduleId}`,
 
   //Team
   MEMBER_TEAMS: (memberId: number) => `/api/teams/user/${memberId}/teams`,

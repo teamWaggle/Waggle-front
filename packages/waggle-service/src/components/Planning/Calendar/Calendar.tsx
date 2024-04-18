@@ -36,9 +36,9 @@ const Calendar = () => {
       const { row, column } = generateCalendarPosition(index);
       const daySchedules = scheduleList.filter(
         (schedule) =>
-          isSameDay(schedule.startTime, day) ||
-          isSameDay(schedule.endTime, day) ||
-          isWithinInterval(day, { start: schedule.startTime, end: schedule.endTime })
+          isSameDay(schedule.startDate, day) ||
+          isSameDay(schedule.endDate, day) ||
+          isWithinInterval(day, { start: schedule.startDate, end: schedule.endDate })
       );
       const position = {
         row,
@@ -59,7 +59,7 @@ const Calendar = () => {
         />
       );
     });
-  }, [currentDate]);
+  }, [currentDate, scheduleList]);
 
   return (
     <>
