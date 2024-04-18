@@ -2,9 +2,9 @@ import { Box } from "@/components/common";
 import OptionModal from "@/components/common/OptionModal/OptionModal";
 import OptionModalItem from "@/components/common/OptionModal/OptionModalItem";
 import AlertModal from "@/components/common/AlertModal/AlerlModal";
-import useModal from "@/hooks/useModal";
 import type { SerializedStyles } from "@emotion/react";
 import { useDeleteTeamMember } from "@/hooks/api/team/useDeleteTeamMember";
+import useModal from "@/hooks/common/useModal";
 
 const MemberOptionModal = ({
   modalPositionBoxStyle,

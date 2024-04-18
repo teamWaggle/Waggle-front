@@ -24,7 +24,7 @@ import {
   scheduleModalTeamName,
   scheduleCommentBoxStyle,
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal.style";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const scheduleModalRef = useRef<HTMLDivElement>(null);

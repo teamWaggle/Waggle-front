@@ -1,5 +1,5 @@
 import { optionModalList } from "@/components/common/OptionModal/OptionModal.style";
-import useClickOutSide from "@/hooks/useClickOutSide";
+import useClickOutSide from "@/hooks/common/useClickOutSide";
 import { createContext, useRef } from "react";
 
 export const OptionModalContext = createContext<{ closeModal: () => void }>({

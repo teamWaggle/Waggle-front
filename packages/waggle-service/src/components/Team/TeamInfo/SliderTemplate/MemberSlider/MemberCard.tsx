@@ -9,11 +9,12 @@ import {
   memberCardImgStyle,
   modalPositionBoxStyle,
 } from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberCard.style";
-import useModal from "@/hooks/useModal";
+import useModal from "@/hooks/common/useModal";
 
 import { useContext } from "react";
 import { SliderContext } from "@/components/common/Slider/Slider";
 import MemberOptionModal from "@/components/Team/TeamInfo/OptionModalTemplate/MemberOptionModal";
+import TeamLeaderContainer from "@/components/Team/TeamInfo/TeamLeaderContainer/TeamLeaderContainer";
 
 const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }) => {
   const { teamInfoModalOpen, teamInfoModalClose } = useModal();
@@ -34,7 +35,9 @@ const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }
     <Flex css={memberCardBoxStyle}>
       <img css={memberCardImgStyle} src="https://source.unsplash.com/random/32x32" alt="" />
       {member.nickname}
-      <KebabMenuIcon onClick={handleMenuOnclick} />
+      <TeamLeaderContainer>
+        <KebabMenuIcon onClick={handleMenuOnclick} />
+      </TeamLeaderContainer>
     </Flex>
   );
 };

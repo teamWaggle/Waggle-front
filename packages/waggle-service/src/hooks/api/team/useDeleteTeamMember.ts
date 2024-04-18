@@ -1,6 +1,6 @@
 import { deleteTeamMember } from "@/api/team/deleteTeamMember";
 import { QUERY_KEYS } from "@/constants/queryKeys";
-import { useParamsTeamId } from "@/hooks/useParamsTeamId";
+import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import { useMutation } from "@tanstack/react-query";
 
 export const useDeleteTeamMember = () => {
