@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import { Flex, Box, Text } from "waggle-design-system";
@@ -5,7 +7,6 @@ import { Flex, Box, Text } from "waggle-design-system";
 import { TAB_KEY, MY_PAGE_TAB_DATA } from "@/constants/tab";
 
 import { menuItemStyle } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
-import { Fragment } from "react";
 
 const MyPageProfileTab = () => {
   const [searchParams] = useSearchParams();
