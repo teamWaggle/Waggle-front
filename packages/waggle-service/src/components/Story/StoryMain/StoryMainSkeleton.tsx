@@ -18,7 +18,7 @@ const StoryMainSkeleton = () => {
             <StorySearchBar />
 
             <Flex css={storyBoxStyle}>
-              {Array.from({ length }, (_, index) => (
+              {Array.from({ length: 9 }, (_, index) => (
                 <StoryCardSkeleton key={index} />
               ))}
             </Flex>
