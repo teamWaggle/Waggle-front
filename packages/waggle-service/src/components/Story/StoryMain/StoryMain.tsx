@@ -4,6 +4,7 @@ import { Flex, Box } from "@/components/common";
 import { Sidebar } from "@/components/Sidebar";
 import StoryCard from "@/components/Story/StoryCard/StoryCard";
 import StorySearchBar from "@/components/Story/StorySearchBar/StorySearchBar";
+import RootErrorBoundary from "@/components/common/ErrorBoundary/RootErrorBoundary";
 
 import { useStoryListQuery } from "@/hooks/api/story/useStoryListQuery";
 import useObserver from "@/hooks/common/useObserver";
@@ -33,17 +34,19 @@ const StoryMain = () => {
             <StorySearchBar />
 
             <Flex css={storyBoxStyle}>
-              {storyListData.pages.map((storyData, index) => (
-                <Fragment key={index}>
-                  {storyData.result.storyList.map((storyInfo) => (
-                    <StoryCard
-                      key={storyInfo.boardId}
-                      boardId={storyInfo.boardId}
-                      thumbnail={storyInfo.thumbnail}
-                    />
-                  ))}
-                </Fragment>
-              ))}
+              <RootErrorBoundary>
+                {storyListData.pages.map((storyData, index) => (
+                  <Fragment key={index}>
+                    {storyData.result.storyList.map((storyInfo) => (
+                      <StoryCard
+                        key={storyInfo.boardId}
+                        boardId={storyInfo.boardId}
+                        thumbnail={storyInfo.thumbnail}
+                      />
+                    ))}
+                  </Fragment>
+                ))}
+              </RootErrorBoundary>
             </Flex>
 
             <div ref={ref} />

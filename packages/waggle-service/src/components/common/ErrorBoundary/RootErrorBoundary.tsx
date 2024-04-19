@@ -8,7 +8,7 @@ const RootErrorBoundary = ({ children }: { children: React.ReactNode }) => {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
-    <ErrorBoundary onReset={() => reset} FallbackComponent={Error}>
+    <ErrorBoundary onReset={reset} FallbackComponent={Error}>
       {children}
     </ErrorBoundary>
   );
