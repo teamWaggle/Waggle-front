@@ -8,9 +8,20 @@ import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
 import type { ParamUrlType } from "@/types/common";
+import useObserver from "@/hooks/common/useObserver";
+import { Fragment } from "react";
 
 const MyPageQuestion = ({ paramUrl }: ParamUrlType) => {
-  const { memberQuestionData } = useMemberQuestionQuery(0, paramUrl);
+  const { memberQuestionData, hasNextPage, fetchNextPage, isFetching } =
+    useMemberQuestionQuery(paramUrl);
+
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
 
   return (
     <Flex
@@ -28,10 +39,16 @@ const MyPageQuestion = ({ paramUrl }: ParamUrlType) => {
       </Heading>
 
       <Flex styles={{ direction: "column", gap: "10px" }}>
-        {memberQuestionData.result.questionList.map((questionInfo) => (
-          <QuestionCard key={questionInfo.boardId} questionListData={questionInfo} />
+        {memberQuestionData.pages.map((questionData) => (
+          <Fragment key={questionData.result.nextPageParam}>
+            {questionData.result.questionList.map((questionInfo) => (
+              <QuestionCard key={questionInfo.boardId} questionListData={questionInfo} />
+            ))}
+          </Fragment>
         ))}
       </Flex>
+
+      <div ref={ref} />
     </Flex>
   );
 };

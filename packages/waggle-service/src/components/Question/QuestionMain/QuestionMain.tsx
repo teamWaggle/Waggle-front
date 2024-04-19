@@ -30,8 +30,8 @@ const QuestionMain = () => {
           </Flex>
 
           <Flex styles={{ direction: "column", gap: "24px", marginTop: "60px" }}>
-            {questionListData.pages.map((questionData, index) => (
-              <Fragment key={index}>
+            {questionListData.pages.map((questionData) => (
+              <Fragment key={questionData.result.nextPageParam}>
                 {questionData.result.questionList.map((questionInfo) => (
                   <QuestionCard key={questionInfo.boardId} questionListData={questionInfo} />
                 ))}
