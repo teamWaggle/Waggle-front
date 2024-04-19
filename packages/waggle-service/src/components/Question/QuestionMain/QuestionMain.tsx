@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 import { Flex, Box, SearchInput } from "@/components/common";
 import SortButton from "@/components/common/SortButton/SortButton";
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
@@ -7,7 +9,6 @@ import { useQuestionListQuery } from "@/hooks/api/question/useQuestionListQuery"
 import useObserver from "@/hooks/common/useObserver";
 
 import { mainStyle } from "@/components/Question/QuestionMain/QuestionMain.style";
-import { Fragment } from "react";
 
 const QuestionMain = () => {
   const { questionListData, hasNextPage, fetchNextPage, isFetching } = useQuestionListQuery();
