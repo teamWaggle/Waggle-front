@@ -24,10 +24,11 @@ export const queryClient = new QueryClient({
     },
   },
   queryCache: new QueryCache({
-    onError: (error) => {
-      console.log(error);
-
-      toast.error(error.name);
+    onError: (error, query) => {
+      if (query.meta?.errorMessage) {
+        return toast.error(query.meta.errorMessage as string);
+      }
+      toast.error(error.message);
     },
   }),
   mutationCache: new MutationCache({
