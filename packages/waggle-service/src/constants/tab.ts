@@ -27,6 +27,51 @@ export const signUpTabData = [
 export const MY_PAGE_TAB_KEY = {
   PROFILE: "profile",
   LOG: "log",
-  SIREN: "siren",
-  QUESTION: "question",
+  SIREN_POST: "siren-post",
+  SIREN_COMMENT: "siren-comment",
+  QUESTION_POST: "question-post",
+  QUESTION_COMMENT: "question-comment",
 };
+
+export const MY_PAGE_TAB_DATA = [
+  {
+    title: "프로필",
+    link: MY_PAGE_TAB_KEY.PROFILE,
+  },
+  {
+    title: "Waggle Log",
+    link: MY_PAGE_TAB_KEY.LOG,
+  },
+  {
+    title: "SIREN",
+    link: MY_PAGE_TAB_KEY.SIREN_POST,
+    hasSub: true,
+    subLink: MY_PAGE_TAB_KEY.SIREN_COMMENT,
+    subData: [
+      {
+        title: "작성한 글",
+        link: MY_PAGE_TAB_KEY.SIREN_POST,
+      },
+      {
+        title: "댓글",
+        link: MY_PAGE_TAB_KEY.SIREN_COMMENT,
+      },
+    ],
+  },
+  {
+    title: "Q&A",
+    link: MY_PAGE_TAB_KEY.QUESTION_POST,
+    hasSub: true,
+    subLink: MY_PAGE_TAB_KEY.QUESTION_COMMENT,
+    subData: [
+      {
+        title: "작성한 글",
+        link: MY_PAGE_TAB_KEY.QUESTION_POST,
+      },
+      {
+        title: "댓글",
+        link: MY_PAGE_TAB_KEY.QUESTION_COMMENT,
+      },
+    ],
+  },
+];

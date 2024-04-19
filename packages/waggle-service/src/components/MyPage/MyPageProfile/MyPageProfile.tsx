@@ -1,12 +1,10 @@
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import { Flex, Box, Divider, Heading, Text } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 import PasswordEditModal from "@/components/MyPage/MyPageProfile/PasswordEditModal/PasswordEditModal";
 import ProfileEditModal from "@/components/MyPage/MyPageProfile/ProfileEditModal/ProfileEditModal";
-
-import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
+import MyPageProfileTab from "@/components/MyPage/MyPageProfile/MyPageProfileTab/MyPageProfileTab";
 
 import useModal from "@/hooks/common/useModal";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
@@ -21,8 +19,6 @@ import type { MemberDataType } from "@/types/auth";
 import {
   layoutStyle,
   profileInfoBoxStyle,
-  menuBoxStyle,
-  menuItemStyle,
 } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
 
 const MyPageProfile = ({ memberData }: MemberDataType) => {
@@ -33,12 +29,6 @@ const MyPageProfile = ({ memberData }: MemberDataType) => {
   const userData = isLoggedIn && useMemberInfoSaveQuery();
 
   const userId = userData ? userData.memberId : null;
-
-  const [searchParams] = useSearchParams();
-
-  const navigate = useNavigate();
-
-  const parmas = useParams();
 
   const modal = useModal();
 
@@ -101,43 +91,7 @@ const MyPageProfile = ({ memberData }: MemberDataType) => {
 
       <Divider />
 
-      <Flex tag="ul" css={menuBoxStyle}>
-        <Flex
-          tag="li"
-          css={menuItemStyle(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE)}
-          onClick={() => navigate(`/${parmas.userUrl}?${TAB_KEY}=${MY_PAGE_TAB_KEY.PROFILE}`)}
-        >
-          <Box />
-          <Text size="large">프로필</Text>
-        </Flex>
-
-        <Flex
-          tag="li"
-          css={menuItemStyle(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG)}
-          onClick={() => navigate(`/${parmas.userUrl}?${TAB_KEY}=${MY_PAGE_TAB_KEY.LOG}`)}
-        >
-          <Box />
-          <Text size="large">Waggle Log</Text>
-        </Flex>
-
-        <Flex
-          tag="li"
-          css={menuItemStyle(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN)}
-          onClick={() => navigate(`/${parmas.userUrl}?${TAB_KEY}=${MY_PAGE_TAB_KEY.SIREN}`)}
-        >
-          <Box />
-          <Text size="large">Siren</Text>
-        </Flex>
-
-        <Flex
-          tag="li"
-          css={menuItemStyle(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION)}
-          onClick={() => navigate(`/${parmas.userUrl}?${TAB_KEY}=${MY_PAGE_TAB_KEY.QUESTION}`)}
-        >
-          <Box />
-          <Text size="large">Q&A</Text>
-        </Flex>
-      </Flex>
+      <MyPageProfileTab />
     </Box>
   );
 };
