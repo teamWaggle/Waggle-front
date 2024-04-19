@@ -6,6 +6,10 @@ export const layoutStyle = css({
   padding: "80px 30px 0 0",
   borderRight: `1px solid ${Theme.color.border}`,
   height: "calc(100vh - 86px)",
+
+  li: {
+    cursor: "pointer",
+  },
 });
 
 export const profileInfoBoxStyle = css({
@@ -30,18 +34,8 @@ export const profileInfoBoxStyle = css({
   },
 });
 
-export const menuBoxStyle = css({
-  marginTop: "24px",
-  flexDirection: "column",
-  gap: "12px",
-});
-
 export const menuItemStyle = (isActive: boolean) =>
   css({
-    gap: "20px",
-    alignItems: "center",
-    cursor: "pointer",
-
     "& > div": {
       width: "4px",
       height: "4px",

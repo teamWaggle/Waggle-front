@@ -26,8 +26,10 @@ const MyPage = () => {
       !searchParams ||
       (searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.PROFILE &&
         searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.LOG &&
-        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.SIREN &&
-        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.QUESTION)
+        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.SIREN_POST &&
+        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.SIREN_COMMENT &&
+        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.QUESTION_POST &&
+        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.QUESTION_COMMENT)
     ) {
       setSearchParams(`${TAB_KEY}=${MY_PAGE_TAB_KEY.PROFILE}`);
     }
@@ -41,9 +43,11 @@ const MyPage = () => {
 
       {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog paramUrl={paramUrl} />}
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN && <MyPageSiren paramUrl={paramUrl} />}
+      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN_POST && (
+        <MyPageSiren paramUrl={paramUrl} />
+      )}
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION && <MyPageQuestion />}
+      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION_POST && <MyPageQuestion />}
     </Flex>
   );
 };
