@@ -9,6 +9,7 @@ import MyPageMain from "@/components/MyPage/MyPageMain/MyPageMain";
 import MyPageProfile from "@/components/MyPage/MyPageProfile/MyPageProfile";
 import MyPageQuestion from "@/components/MyPage/MyPageQuestion/MyPageQuestion";
 import MyPageSiren from "@/components/MyPage/MyPageSiren/MyPageSiren";
+import MyPageComment from "@/components/MyPage/MyPageComment/MyPageComment";
 
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
@@ -47,7 +48,17 @@ const MyPage = () => {
         <MyPageSiren paramUrl={paramUrl} />
       )}
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION_POST && <MyPageQuestion />}
+      {(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN_COMMENT ||
+        searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION_COMMENT) && (
+        <MyPageComment
+          paramUrl={paramUrl}
+          isQuestion={searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION_COMMENT}
+        />
+      )}
+
+      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION_POST && (
+        <MyPageQuestion paramUrl={paramUrl} />
+      )}
     </Flex>
   );
 };

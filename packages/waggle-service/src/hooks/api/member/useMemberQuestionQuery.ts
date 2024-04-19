@@ -9,10 +9,10 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 import type { QuestionListType } from "@/types/question";
 
 export const useMemberQuestionQuery = (currentPage: number, userUrl?: string) => {
-  const { data: mebmerQuestionData } = useSuspenseQuery<QuestionListType, AxiosError>({
+  const { data: memberQuestionData } = useSuspenseQuery<QuestionListType, AxiosError>({
     queryKey: [QUERY_KEYS.MEMBER_QUESTION, userUrl],
     queryFn: () => getMebmerQuestion(currentPage, userUrl),
   });
 
-  return { mebmerQuestionData };
+  return { memberQuestionData };
 };

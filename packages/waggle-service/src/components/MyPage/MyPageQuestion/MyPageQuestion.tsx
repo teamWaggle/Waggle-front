@@ -1,43 +1,36 @@
-import { Divider, Flex, Heading } from "@/components/common";
-import MyPageCommentCard from "@/components/MyPage/MyPageCommentCard/MyPageCommentCard";
+import { Flex, Heading } from "waggle-design-system";
 
-// import { useQuestionListQuery } from "@/hooks/api/question/useQuestionListQuery";
+import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
+
+import { useMemberQuestionQuery } from "@/hooks/api/member/useMemberQuestionQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
 
-import {
-  layoutStyle,
-  // sliderBoxStyle,
-  sliderLayoutStyle,
-  // sliderStyle,
-} from "@/components/MyPage/MyPageSiren/MyPageSiren.style";
+import type { ParamUrlType } from "@/types/common";
 
-const MyPageQuestion = () => {
-  // const { questionListData } = useQuestionListQuery(0);
+const MyPageQuestion = ({ paramUrl }: ParamUrlType) => {
+  const { memberQuestionData } = useMemberQuestionQuery(0, paramUrl);
 
   return (
-    <Flex tag="main" css={layoutStyle}>
+    <Flex
+      tag="main"
+      styles={{
+        direction: "column",
+        gap: "30px",
+        marginTop: "80px",
+        paddingLeft: "30px",
+        width: "calc(100% - 311px)",
+      }}
+    >
       <Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
-        Question
+        작성한 글
       </Heading>
 
-      <div css={sliderLayoutStyle}>
-        {/* <div css={sliderBoxStyle(questionListData.result.questionList.length)}>
-          <div css={sliderStyle}></div>
-        </div> */}
-      </div>
-
-      <Divider />
-
-      <Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
-        댓글
-      </Heading>
-
-      <Flex styles={{ direction: "column", gap: "10px", width: "100%" }}>
-        <MyPageCommentCard />
-        <MyPageCommentCard />
-        <MyPageCommentCard />
+      <Flex styles={{ direction: "column", gap: "10px" }}>
+        {memberQuestionData.result.questionList.map((questionInfo) => (
+          <QuestionCard key={questionInfo.boardId} questionListData={questionInfo} />
+        ))}
       </Flex>
     </Flex>
   );
