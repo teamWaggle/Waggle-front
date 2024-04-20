@@ -22,16 +22,11 @@ const MyPage = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const validTabs = Object.values(MY_PAGE_TAB_KEY);
+  const tabMode = searchParams.get(TAB_KEY);
+
   useEffect(() => {
-    if (
-      !searchParams ||
-      (searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.PROFILE &&
-        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.LOG &&
-        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.SIREN_POST &&
-        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.SIREN_COMMENT &&
-        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.QUESTION_POST &&
-        searchParams.get(TAB_KEY) !== MY_PAGE_TAB_KEY.QUESTION_COMMENT)
-    ) {
+    if (tabMode === null || validTabs.includes(tabMode) === false) {
       setSearchParams(`${TAB_KEY}=${MY_PAGE_TAB_KEY.PROFILE}`);
     }
   }, [searchParams]);
@@ -40,25 +35,21 @@ const MyPage = () => {
     <Flex css={layoutStyle}>
       <MyPageProfile memberData={memberData.result} />
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain paramUrl={paramUrl} />}
+      {tabMode === MY_PAGE_TAB_KEY.PROFILE && <MyPageMain paramUrl={paramUrl} />}
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.LOG && <MyPageLog paramUrl={paramUrl} />}
+      {tabMode === MY_PAGE_TAB_KEY.LOG && <MyPageLog paramUrl={paramUrl} />}
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN_POST && (
-        <MyPageSiren paramUrl={paramUrl} />
-      )}
+      {tabMode === MY_PAGE_TAB_KEY.SIREN_POST && <MyPageSiren paramUrl={paramUrl} />}
 
-      {(searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.SIREN_COMMENT ||
-        searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION_COMMENT) && (
+      {(tabMode === MY_PAGE_TAB_KEY.SIREN_COMMENT ||
+        tabMode === MY_PAGE_TAB_KEY.QUESTION_COMMENT) && (
         <MyPageComment
           paramUrl={paramUrl}
-          isQuestion={searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION_COMMENT}
+          isQuestion={tabMode === MY_PAGE_TAB_KEY.QUESTION_COMMENT}
         />
       )}
 
-      {searchParams.get(TAB_KEY) === MY_PAGE_TAB_KEY.QUESTION_POST && (
-        <MyPageQuestion paramUrl={paramUrl} />
-      )}
+      {tabMode === MY_PAGE_TAB_KEY.QUESTION_POST && <MyPageQuestion paramUrl={paramUrl} />}
     </Flex>
   );
 };
