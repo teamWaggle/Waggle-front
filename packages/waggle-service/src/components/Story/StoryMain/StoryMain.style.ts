@@ -5,6 +5,7 @@ export const mainStyle = css({
   margin: "0 auto",
   padding: "32px 196px 60px",
   position: "relative",
+  overscrollBehavior: "contain",
 });
 
 export const mainBoxStyle = css({
