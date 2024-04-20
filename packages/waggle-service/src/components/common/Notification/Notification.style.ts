@@ -8,6 +8,8 @@ export const layoutStyle = css({
   backgroundColor: Theme.color.white,
   width: "445px",
   height: "100vh",
-  paddingTop: "35px",
-  paddingLeft: "14px",
+  padding: "16px 0 100px 14px",
+  overflowY: "auto",
+  zIndex: 1,
+  overscrollBehavior: "contain",
 });
