@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { css } from "@emotion/react";
 
 import ProfileIcon from "@/assets/svg/ic-header-profile.svg?react";
 import NotiIcon from "@/assets/svg/ic-header-noti.svg?react";
@@ -14,6 +12,9 @@ import { PATH } from "@/constants/path";
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
+import { layoutStyle, notiBoxStyle } from "@/components/Header/LogInMenu/LogInMenu.style";
+import { useNotificationTrigger } from "@/hooks/common/useNotificationTrigger";
+
 const LogInMenu = () => {
   const { userUrl } = useMemberInfoSaveQuery();
 
@@ -21,14 +22,10 @@ const LogInMenu = () => {
 
   const navigate = useNavigate();
 
-  const [isNotiOpen, setIsNotiOpen] = useState(false);
-
-  const handleNotiOpen = () => {
-    setIsNotiOpen((prev) => !prev);
-  };
+  const { notiRef, isNotiOpen, isFadeIn, handleNotiOpen } = useNotificationTrigger();
 
   return (
-    <Box styles={{ position: "relative" }}>
+    <div ref={notiRef}>
       <Flex css={layoutStyle}>
         <NotiIcon width={30} height={30} onClick={handleNotiOpen} />
         <ProfileIcon
@@ -37,18 +34,14 @@ const LogInMenu = () => {
           onClick={() => navigate(PATH.MY(memberData.result.userUrl))}
         />
       </Flex>
-      {isNotiOpen && <Notification />}
-    </Box>
+
+      {isNotiOpen && (
+        <Box css={notiBoxStyle(isFadeIn)} style={{ position: "relative", zIndex: 1 }}>
+          <Notification />
+        </Box>
+      )}
+    </div>
   );
 };
 
 export default LogInMenu;
-
-const layoutStyle = css({
-  alignItems: "center",
-  gap: "10px",
-
-  "& > svg": {
-    cursor: "pointer",
-  },
-});
