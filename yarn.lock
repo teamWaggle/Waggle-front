@@ -16684,6 +16684,7 @@ __metadata:
     "@rollup/rollup-linux-s390x-gnu": "npm:4.14.3"
     "@rollup/rollup-linux-x64-gnu": "npm:4.14.3"
     "@rollup/rollup-linux-x64-musl": "npm:4.14.3"
+    "@rollup/rollup-win32-arm64-msvc": "npm:4.14.3"
     "@rollup/rollup-win32-ia32-msvc": "npm:4.14.3"
     "@rollup/rollup-win32-x64-msvc": "npm:4.14.3"
     "@types/estree": "npm:1.0.5"
@@ -16745,6 +16746,9 @@ __metadata:
   languageName: node
   linkType: hard
 
+"run-async@npm:^2.4.0":
+  version: 2.4.1
+  resolution: "run-async@npm:2.4.1"
   checksum: 10c0/35a68c8f1d9664f6c7c2e153877ca1d6e4f886e5ca067c25cdd895a6891ff3a1466ee07c63d6a9be306e9619ff7d509494e6d9c129516a36b9fd82263d579ee1
   languageName: node
   linkType: hard
