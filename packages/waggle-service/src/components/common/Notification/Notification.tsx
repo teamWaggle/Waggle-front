@@ -1,12 +1,16 @@
-import { Box } from "waggle-design-system";
+import { Flex } from "waggle-design-system";
 
-import { layoutStyle } from "./Notification.style";
+import NotificationCard from "@/components/common/Notification/NotificationCard/NotificationCard";
+
+import { layoutStyle } from "@/components/common/Notification/Notification.style";
 
 const Notification = () => {
   return (
-    <Box styles={{ position: "absolute" }} css={layoutStyle}>
-      sdfasdf
-    </Box>
+    <Flex styles={{ position: "absolute" }} css={layoutStyle}>
+      <Flex styles={{ direction: "column" }}>
+        <NotificationCard nickname="정한" hasTitle />
+      </Flex>
+    </Flex>
   );
 };
 

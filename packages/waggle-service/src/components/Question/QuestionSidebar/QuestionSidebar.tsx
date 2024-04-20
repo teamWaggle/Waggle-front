@@ -1,5 +1,5 @@
 import Flex from "@/components/common/Design/Flex/Flex";
-import NotificationCard from "@/components/common/Notification/NotificationCard/NotificationCard";
+
 import QuestionSidebarProfile from "@/components/Question/QuestionSidebar/QuestionSidebarProfile/QuestionSidebarProfile";
 
 const QuestionSidebar = () => {
@@ -14,9 +14,6 @@ const QuestionSidebar = () => {
       tag="aside"
     >
       <QuestionSidebarProfile />
-      <NotificationCard />
-      <NotificationCard />
-      <NotificationCard />
     </Flex>
   );
 };

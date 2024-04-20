@@ -5,7 +5,9 @@ import { Theme } from "@/styles/Theme";
 export const headerStyle = css({
   position: "sticky",
   top: 0,
-  zIndex: 1,
+  zIndex: 2,
+  height: "85px",
+  padding: "22px 0",
   backgroundColor: Theme.color.white,
   borderBottom: `1px solid ${Theme.color.border}`,
 });
@@ -14,9 +16,8 @@ export const headerBoxStyle = css({
   justifyContent: "space-between",
   alignItems: "center",
   padding: "0 196px",
-  height: "85px",
   margin: "0 auto",
-  width: "1536px",
+  mawWidth: "1536px",
 
   "& > svg": {
     cursor: "pointer",
