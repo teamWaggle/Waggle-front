@@ -4,7 +4,7 @@ import { Theme } from "waggle-design-system";
 
 export const layoutStyle = css({
   right: "-292px",
-  top: "63px",
+  top: "23px",
   backgroundColor: Theme.color.white,
   width: "445px",
   height: "100vh",
