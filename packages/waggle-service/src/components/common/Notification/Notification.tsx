@@ -4,7 +4,7 @@ import { layoutStyle } from "./Notification.style";
 
 const Notification = () => {
   return (
-    <Box styles={{ position: "fixed" }} css={layoutStyle}>
+    <Box styles={{ position: "absolute" }} css={layoutStyle}>
       sdfasdf
     </Box>
   );
