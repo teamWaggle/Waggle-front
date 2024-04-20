@@ -1,32 +1,42 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
-export const layoutStyle = css({
-  boxShadow: "0px 2px 7px 0px rgba(0, 40, 37, 0.10)",
-  backgroundColor: Theme.color.white,
-  borderRadius: "14px",
-  gap: "14px",
-  border: `1px solid ${Theme.color.border}`,
-  padding: "12px",
-  width: "100%",
-  alignItems: "center",
+//   "& > p": {
+//     color: Theme.color.readonly_text,
+//     fontWeight: 500,
+//     textOverflow: "ellipsis",
+//     overflow: "hidden",
+//     wordBreak: "break-word",
+//     display: "-webkit-box",
+//     WebkitLineClamp: 2,
+//     WebkitBoxOrient: "vertical",
 
-  "& > img": {
-    width: "35px",
-    height: "35px",
-    borderRadius: "50%",
-    objectFit: "cover",
+export const variantTextStyle = css({
+  color: Theme.color.input_text,
+
+  "& > span": {
+    fontWeight: 600,
   },
+});
 
-  "& > p": {
-    color: Theme.color.readonly_text,
-    fontWeight: 500,
-    textOverflow: "ellipsis",
-    overflow: "hidden",
-    wordBreak: "break-word",
-    display: "-webkit-box",
-    WebkitLineClamp: 2,
-    WebkitBoxOrient: "vertical",
+export const titleStyle = css({
+  fontWeight: 600,
+  color: Theme.color.readonly_text,
+  position: "relative",
+  paddingLeft: "8px",
+
+  "&:before": {
+    content: "''",
+    width: "2px",
+    height: "30px",
+    backgroundColor: Theme.color.brand_primary,
+    position: "absolute",
+    left: 0,
   },
+});
+
+export const contentStyle = css({
+  fontWeight: 600,
+  color: Theme.color.input_text,
 });

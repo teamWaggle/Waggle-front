@@ -1,15 +1,31 @@
-import ProfileImg from "@/assets/png/post-sample.png";
+import { Flex, Text } from "waggle-design-system";
 
-import { Flex, Text } from "@/components/common";
+import {
+  variantTextStyle,
+  titleStyle,
+  contentStyle,
+} from "@/components/common/Notification/NotificationCard/NotificationCard.style";
 
-import { layoutStyle } from "./NotificationCard.style";
+interface NotificationCardProps {
+  nickname: string;
+  hasTitle?: boolean;
+}
 
-const NotificationCard = () => {
+const NotificationCard = ({ nickname, hasTitle }: NotificationCardProps) => {
   return (
-    <Flex css={layoutStyle}>
-      <img src={ProfileImg} alt="profileImg" />
-      <Text size="small">
-        내가 팔로우하는 @ksjdkla님이 아직 고민해결을 못했어요 😭sadfsadfasdfs
+    <Flex styles={{ paddingLeft: "22px", direction: "column", gap: "6px" }}>
+      <Text size="xLarge" css={variantTextStyle}>
+        <span>{nickname}</span>님이 게시물에 댓글을 남겼습니다.
+      </Text>
+
+      {hasTitle && (
+        <Text size="xLarge" css={titleStyle}>
+          강아지 찾는거 도와주세요
+        </Text>
+      )}
+
+      <Text size="xLarge" css={contentStyle}>
+        저 강아지 본 적 있는데.. 지금 어디세요?
       </Text>
     </Flex>
   );
