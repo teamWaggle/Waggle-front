@@ -55,6 +55,7 @@ const SignUpEmail = () => {
         {/* 비밀번호 영역 */}
         {passwordFormData.map((data) => (
           <Password
+            key={data.id}
             data={data}
             passwordRequest={passwordRequest}
             updatePasswordInputValue={updatePasswordInputValue}
