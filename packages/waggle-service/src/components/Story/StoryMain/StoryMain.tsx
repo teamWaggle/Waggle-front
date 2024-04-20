@@ -4,7 +4,7 @@ import { Flex, Box } from "@/components/common";
 import { Sidebar } from "@/components/Sidebar";
 import StoryCard from "@/components/Story/StoryCard/StoryCard";
 import StorySearchBar from "@/components/Story/StorySearchBar/StorySearchBar";
-import RootErrorBoundary from "@/components/common/ErrorBoundary/RootErrorBoundary";
+import RetryErrorBoundary from "@/components/common/ErrorBoundary/RetryErrorBoundary";
 
 import { useStoryListQuery } from "@/hooks/api/story/useStoryListQuery";
 import useObserver from "@/hooks/common/useObserver";
@@ -34,7 +34,7 @@ const StoryMain = () => {
             <StorySearchBar />
 
             <Flex css={storyBoxStyle}>
-              <RootErrorBoundary>
+              <RetryErrorBoundary>
                 {storyListData.pages.map((storyData, index) => (
                   <Fragment key={index}>
                     {storyData.result.storyList.map((storyInfo) => (
@@ -46,7 +46,7 @@ const StoryMain = () => {
                     ))}
                   </Fragment>
                 ))}
-              </RootErrorBoundary>
+              </RetryErrorBoundary>
             </Flex>
 
             <div ref={ref} />
