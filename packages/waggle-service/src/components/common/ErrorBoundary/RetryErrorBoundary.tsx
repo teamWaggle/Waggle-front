@@ -4,7 +4,7 @@ import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 
 import Error from "@/components/common/Error/Error";
 
-const RootErrorBoundary = ({ children }: { children: React.ReactNode }) => {
+const RetryErrorBoundary = ({ children }: { children: React.ReactNode }) => {
   const { reset } = useQueryErrorResetBoundary();
 
   return (
@@ -14,4 +14,4 @@ const RootErrorBoundary = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default RootErrorBoundary;
+export default RetryErrorBoundary;

@@ -97,7 +97,7 @@ export const HTTP_ERROR_MESSAGE = {
     BUTTON: "홈으로 가기",
   },
   [HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR]: {
-    HEADING: "현재 페이지를 표시할 수 없습니다.",
+    HEADING: "데이터를 불러오는데 실패하였습니다.",
     BODY: `잠시 후 다시 시도해주세요.`,
     BUTTON: "새로고침",
   },

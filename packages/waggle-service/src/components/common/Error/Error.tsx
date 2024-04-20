@@ -3,9 +3,7 @@ import type { FallbackProps } from "react-error-boundary";
 import { Box, Flex, Heading, Text, Logo } from "@/components/common";
 import Button from "@/components/common/Design/Button/Button";
 
-import { ERROR_CODE, HTTP_ERROR_MESSAGE } from "@/constants/api";
-
-import { useTokenError } from "@/hooks/api/auth/useTokenError";
+import { HTTP_ERROR_MESSAGE } from "@/constants/api";
 
 import { hasKeyInObject } from "@/utils/hasKeyInObject";
 
@@ -16,15 +14,7 @@ const Error = ({ error, resetErrorBoundary }: FallbackProps) => {
 
   const isHTTPError = hasKeyInObject(HTTP_ERROR_MESSAGE, statusCode);
 
-  const { handleTokenError } = useTokenError();
-
   if (!isHTTPError) return null;
-
-  if (error.response.code > ERROR_CODE.TOKEN_ERROR_RANGE) {
-    handleTokenError();
-
-    return null;
-  }
 
   return (
     <Box>
