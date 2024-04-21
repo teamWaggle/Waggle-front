@@ -10,6 +10,7 @@ import NotiIcon from "@/assets/svg/ic-header-noti.svg?react";
 import LogInMenu from "@/components/Header/LogInMenu/LogInMenu";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
 import FindEmailModal from "@/components/Login/FindEmailModal/FindEmailModal";
+import FindPasswordModal from "@/components/Login/FinedPasswordModal/FindPasswordModal";
 
 import { PATH } from "@/constants/path";
 
@@ -28,6 +29,12 @@ const Header = () => {
     isOpen: isFindEmailModalOpen,
     close: closeFindEmailModal,
     open: openFindEmailModal,
+  } = useOverlay();
+
+  const {
+    isOpen: isFindPasswordModalOpen,
+    close: closeFindPasswordModal,
+    open: openFindPasswordModal,
   } = useOverlay();
 
   return (
@@ -67,6 +74,7 @@ const Header = () => {
           isOpen={isLoginModalOpen}
           onClose={closeLoginModal}
           openFindEmailModal={openFindEmailModal}
+          openFindPasswordModal={openFindPasswordModal}
         />
       )}
 
@@ -74,6 +82,14 @@ const Header = () => {
         <FindEmailModal
           isOpen={isFindEmailModalOpen}
           onClose={closeFindEmailModal}
+          openLoginModal={openLoginModal}
+        />
+      )}
+
+      {isFindPasswordModalOpen && (
+        <FindPasswordModal
+          isOpen={isFindPasswordModalOpen}
+          onClose={closeFindPasswordModal}
           openLoginModal={openLoginModal}
         />
       )}
