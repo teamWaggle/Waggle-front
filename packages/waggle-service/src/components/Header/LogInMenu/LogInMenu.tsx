@@ -11,7 +11,9 @@ import { PATH } from "@/constants/path";
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
-const LogInMenu = () => {
+import type { handleNotiType } from "@/types/common";
+
+const LogInMenu = ({ handleNotiOpen }: handleNotiType) => {
   const { userUrl } = useMemberInfoSaveQuery();
 
   const { memberData } = useMemberInfoQuery(userUrl);
@@ -20,7 +22,7 @@ const LogInMenu = () => {
 
   return (
     <Flex css={layoutStyle}>
-      <NotiIcon width={30} height={30} />
+      <NotiIcon width={30} height={30} onClick={handleNotiOpen} />
       <ProfileIcon
         width={40}
         height={40}

@@ -15,10 +15,12 @@ import { PATH } from "@/constants/path";
 
 import useModal from "@/hooks/common/useModal";
 
-import { headerStyle, headerBoxStyle, textStyle } from "@/components/Header/Header.style";
-import { Suspense } from "react";
+import type { handleNotiType } from "@/types/common";
 
-const Header = () => {
+import { headerStyle, headerBoxStyle, textStyle } from "@/components/Header/Header.style";
+// import { Suspense } from "react";
+
+const Header = ({ handleNotiOpen }: handleNotiType) => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const navigate = useNavigate();
@@ -52,9 +54,7 @@ const Header = () => {
           </Text>
         </Flex>
         {isLoggedIn ? (
-          <Suspense fallback={<div>로딩중</div>}>
-            <LogInMenu />
-          </Suspense>
+          <LogInMenu handleNotiOpen={handleNotiOpen} />
         ) : (
           <NotiIcon width={30} height={30} onClick={handleLoginModal} />
         )}

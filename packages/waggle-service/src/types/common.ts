@@ -12,6 +12,10 @@ export interface ParamUrlType {
   paramUrl?: string;
 }
 
+export interface handleNotiType {
+  handleNotiOpen: () => void;
+}
+
 export interface sortButtonType {
   defaultText: string;
 }
