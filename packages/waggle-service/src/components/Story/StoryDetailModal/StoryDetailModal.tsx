@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
 
+import ModalTest from "@/components/common/Design/Modal/ModalTest";
+
 import { Flex } from "@/components/common";
 import StoryComment from "@/components/Story/StoryComment/StoryComment";
 import StoryContent from "@/components/Story/StoryDetailModal/StoryContent/StoryContent";
@@ -9,19 +11,26 @@ import { Theme } from "@/styles/Theme";
 
 import type { StoryDataType } from "@/types/story";
 
-const StoryDetailModal = ({ storyData }: StoryDataType) => {
+interface StoryDetailModalProps extends StoryDataType {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const StoryDetailModal = ({ storyData, isOpen, onClose }: StoryDetailModalProps) => {
   const { boardId, mediaList, recommendCount } = storyData;
 
   return (
-    <Flex css={layoutStyle}>
-      <StoryMedia mediaList={mediaList} />
+    <ModalTest isOpen={isOpen} closeModal={onClose}>
+      <Flex css={layoutStyle}>
+        <StoryMedia mediaList={mediaList} />
 
-      <Flex styles={{ direction: "column" }}>
-        <StoryContent storyData={storyData} />
+        <Flex styles={{ direction: "column" }}>
+          <StoryContent storyData={storyData} />
 
-        <StoryComment boardId={boardId} recommendCount={recommendCount} />
+          <StoryComment boardId={boardId} recommendCount={recommendCount} />
+        </Flex>
       </Flex>
-    </Flex>
+    </ModalTest>
   );
 };
 
