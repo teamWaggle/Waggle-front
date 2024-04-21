@@ -1,10 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { toast } from "react-toastify";
 
-import ResultEmailModal from "@/components/Login/ResultEmailModal/ResultEmailModal";
-
 import { useFindEmailMutation } from "@/hooks/api/auth/useFindEmailMutation";
-import useModal from "@/hooks/common/useModal";
 import { useValidateForm } from "@/hooks/common/useValidateForm";
 
 import { dateFormatToUTC } from "@/utils/dateFormatToUTC";
@@ -29,9 +26,9 @@ interface UseFindEmailFormParas {
 export const useFindEmailForm = ({ prevName, prevBirthday }: UseFindEmailFormParas) => {
   const { mutate: findEmailMutation } = useFindEmailMutation();
 
-  const modal = useModal();
-
   const nameRef = useRef<HTMLInputElement>(null);
+
+  const [emailResult, setEmailResult] = useState<string[]>();
 
   const [birthdayRequest, setBirthdayRequest] = useState(
     prevBirthday ?? {
@@ -125,11 +122,7 @@ export const useFindEmailForm = ({ prevName, prevBirthday }: UseFindEmailFormPar
       { name: name.value, birthday },
       {
         onSuccess: ({ result }: FindEmailResponseType) => {
-          modal.closeModal();
-          modal.openModal({
-            key: "ResultEmailModal",
-            component: () => <ResultEmailModal emailList={result.emailList} />,
-          });
+          setEmailResult(result.emailList);
         },
       }
     );
@@ -145,5 +138,6 @@ export const useFindEmailForm = ({ prevName, prevBirthday }: UseFindEmailFormPar
     birthdayRequest,
     updateBirthdayValue,
     birthday,
+    emailResult,
   };
 };

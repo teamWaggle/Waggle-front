@@ -1,11 +1,11 @@
 import MediaIcon from "@/assets/svg/ic-many-media.svg?react";
 
+import { useOverlay } from "waggle-design-system";
+
 import { Flex } from "@/components/common";
 import StoryDetailModal from "@/components/Story/StoryDetailModal/StoryDetailModal";
 
 import { useStoryQuery } from "@/hooks/api/story/useStoryQuery";
-import { useOverlay } from "@/hooks/common/useOverlay";
-
 import type { StoryListInfoType } from "@/types/story";
 
 import { imgStyle, iconStyle } from "@/components/Story/StoryCard/StoryCard.style";

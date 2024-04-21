@@ -9,6 +9,7 @@ import Flex from "@/components/Flex/Flex";
 import Heading from "@/components/Heading/Heading";
 import Logo from "@/components/Logo/Logo";
 import MainContainer from "@/components/MainContainer/MainContainer";
+import Modal from "@/components/Modal/Modal";
 import Skeleton from "@/components/Skeleton/Skeleton";
 import Slider from "@/components/Slider/Slider";
 import SortButton from "@/components/SortButton/SortButton";
@@ -22,6 +23,7 @@ import { Theme } from "@/styles/Theme";
 import WaggleProvider from "@/WaggleProvider";
 
 import useSlider from "@/hooks/useSlider";
+import { useOverlay } from "@/hooks/useOverlay";
 
 export {
   Box,
@@ -35,6 +37,7 @@ export {
   Heading,
   Logo,
   MainContainer,
+  Modal,
   Skeleton,
   Slider,
   SortButton,
@@ -44,5 +47,6 @@ export {
   Spinner,
   WaggleProvider,
   useSlider,
+  useOverlay,
   Theme,
 };
