@@ -1,13 +1,20 @@
-import { Flex, Text } from "@/components/common";
+import { useEffect } from "react";
+
+import { Flex, Text, Button } from "waggle-design-system";
+
 import Birthday from "@/components/common/BirthDay/Birthday";
-import Button from "@/components/common/Design/Button/Button";
 
 import { useFindEmailForm } from "@/hooks/auth/useFindEmailForm";
 
 import { formTextStyle, inputStyle } from "@/components/Login/FindEmailModal/FindEmailModal.style";
 
-const FindEmail = () => {
+interface FindEmailProps {
+  handleEmailList: (emailList?: string[]) => void;
+}
+
+const FindEmail = ({ handleEmailList }: FindEmailProps) => {
   const {
+    emailResult,
     selectOpen,
     handleSelectOpen,
     birthdayRequest,
@@ -17,6 +24,10 @@ const FindEmail = () => {
     name,
     nameRef,
   } = useFindEmailForm({});
+
+  useEffect(() => {
+    handleEmailList(emailResult);
+  }, [emailResult]);
 
   return (
     <>

@@ -3,9 +3,6 @@ import { css } from "@emotion/react";
 import { Theme } from "@/styles/Theme";
 
 export const layoutStyle = css({
-  flexDirection: "column",
-  alignItems: "center",
-  gap: "60px",
   backgroundColor: Theme.color.white,
   borderRadius: "8px",
   padding: "62px 65px",
@@ -22,6 +19,7 @@ export const textStyle = css({
   color: Theme.color.text,
   fontWeight: 500,
   textAlign: "center",
+  whiteSpace: "pre-line",
 });
 
 export const formTextStyle = css({

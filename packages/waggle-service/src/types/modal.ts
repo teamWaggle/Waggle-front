@@ -1,5 +1,10 @@
 import type { SchedulePositionType, ScheduleType } from "@/types/planning";
 
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 export interface ModalType {
   key: string;
   component?: () => JSX.Element;

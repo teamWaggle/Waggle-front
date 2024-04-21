@@ -4,11 +4,7 @@ import { createPortal } from "react-dom";
 
 import CloseIcon from "@/assets/svg/ic-close-modal.svg?react";
 
-import {
-  backdropStyle,
-  dialogStyle,
-  closeButtonStyling,
-} from "@/components/common/Design/Modal/Modal.style";
+import { backdropStyle, dialogStyle, closeButtonStyling } from "@/components/Modal/Modal.style";
 
 export interface ModalProps extends ComponentPropsWithoutRef<"dialog"> {
   isOpen: boolean;
@@ -19,7 +15,7 @@ export interface ModalProps extends ComponentPropsWithoutRef<"dialog"> {
   closeModal: () => void;
 }
 
-const ModalTest = ({
+const Modal = ({
   isOpen = false,
   hasCloseButton = true,
   isOutsideClose = true,
@@ -75,4 +71,4 @@ const ModalTest = ({
   );
 };
 
-export default ModalTest;
+export default Modal;

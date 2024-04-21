@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import ModalTest from "@/components/common/Design/Modal/ModalTest";
+import { Modal } from "waggle-design-system";
 
 import { Flex } from "@/components/common";
 import StoryComment from "@/components/Story/StoryComment/StoryComment";
@@ -20,7 +20,7 @@ const StoryDetailModal = ({ storyData, isOpen, onClose }: StoryDetailModalProps)
   const { boardId, mediaList, recommendCount } = storyData;
 
   return (
-    <ModalTest isOpen={isOpen} closeModal={onClose}>
+    <Modal isOpen={isOpen} closeModal={onClose}>
       <Flex css={layoutStyle}>
         <StoryMedia mediaList={mediaList} />
 
@@ -30,7 +30,7 @@ const StoryDetailModal = ({ storyData, isOpen, onClose }: StoryDetailModalProps)
           <StoryComment boardId={boardId} recommendCount={recommendCount} />
         </Flex>
       </Flex>
-    </ModalTest>
+    </Modal>
   );
 };
 

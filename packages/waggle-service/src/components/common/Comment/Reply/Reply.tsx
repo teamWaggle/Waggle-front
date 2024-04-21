@@ -1,5 +1,6 @@
-import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+
+import { useOverlay } from "waggle-design-system";
 
 import { Flex, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
@@ -7,8 +8,6 @@ import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-
-import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { Theme } from "@/styles/Theme";
@@ -32,23 +31,19 @@ const Reply = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
 
   const memberId = userData ? userData.memberId : null;
 
-  const modal = useModal();
+  const {
+    isOpen: isDeleteWarningModalOpen,
+    close: closeDeleteWarningModal,
+    open: openDeleteWarningModal,
+  } = useOverlay();
 
   const deleteMutate = () => {
     deleteReplyMutate(replyId, {
       onSuccess: () => {
-        modal.selectCloseModal(`DeleteWarningModal`);
+        closeDeleteWarningModal();
       },
     });
   };
-
-  const handleDeleteReply = useCallback(() => {
-    modal.openModal({
-      key: `DeleteWarningModal`,
-      component: () => <DeleteWarningModal targetText="답글" handleDelete={deleteMutate} />,
-      notCloseIcon: true,
-    });
-  }, []);
 
   return (
     <Flex css={replyCardBoxStyle}>
@@ -72,7 +67,16 @@ const Reply = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
       {member.memberId === memberId && (
         <ProfileOptionMenu
           handleEditMenu={() => handleReplyEditClick(content, replyId)}
-          handleDeleteMenu={handleDeleteReply}
+          handleDeleteMenu={openDeleteWarningModal}
+        />
+      )}
+
+      {isDeleteWarningModalOpen && (
+        <DeleteWarningModal
+          isOpen={isDeleteWarningModalOpen}
+          onClose={closeDeleteWarningModal}
+          targetText="답글"
+          handleDelete={deleteMutate}
         />
       )}
     </Flex>

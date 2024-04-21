@@ -1,5 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useRecoilValue } from "recoil";
+
+import { useOverlay } from "waggle-design-system";
 
 import { Flex, Text } from "@/components/common";
 import Reply from "@/components/common/Comment/Reply/Reply";
@@ -10,7 +12,6 @@ import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-import useModal from "@/hooks/common/useModal";
 import { useComment } from "@/hooks/comment/useComment";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
@@ -47,25 +48,21 @@ const CommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
     commentTextAreaRef,
   } = useComment({ targetCommentId: commentId, isTextArea: true });
 
-  const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
+  const {
+    isOpen: isDeleteWarningModalOpen,
+    close: closeDeleteWarningModal,
+    open: openDeleteWarningModal,
+  } = useOverlay();
 
-  const modal = useModal();
+  const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
 
   const deleteMutate = () => {
     deleteCommentMutate(commentId, {
       onSuccess: () => {
-        modal.selectCloseModal(`DeleteWarningModal`);
+        closeDeleteWarningModal();
       },
     });
   };
-
-  const handleDeleteComment = useCallback(() => {
-    modal.openModal({
-      key: `DeleteWarningModal`,
-      component: () => <DeleteWarningModal targetText="댓글" handleDelete={deleteMutate} />,
-      notCloseIcon: true,
-    });
-  }, []);
 
   return (
     <Flex css={commentCardBoxStyle}>
@@ -115,11 +112,20 @@ const CommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
           <Flex styles={{ align: "center", paddingTop: "4px" }}>
             <ProfileOptionMenu
               handleEditMenu={() => handleEditClick(content, commentId)}
-              handleDeleteMenu={handleDeleteComment}
+              handleDeleteMenu={openDeleteWarningModal}
             />
           </Flex>
         )}
       </Flex>
+
+      {isDeleteWarningModalOpen && (
+        <DeleteWarningModal
+          isOpen={isDeleteWarningModalOpen}
+          onClose={closeDeleteWarningModal}
+          targetText="댓글"
+          handleDelete={deleteMutate}
+        />
+      )}
     </Flex>
   );
 };
