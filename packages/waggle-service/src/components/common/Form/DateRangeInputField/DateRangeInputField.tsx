@@ -1,27 +1,35 @@
 import DatePicker from "@/components/common/DatePicker/DatePicker";
 import Flex from "@/components/common/Design/Flex/Flex";
 import InputNotice from "@/components/common/InputNotice/InputNotice";
+import { TimePicker } from "@/components/common/TimePicker/TimePicker";
 
 import { useControlledForm } from "@/hooks/common/useControlledForm";
 
-const DateRangeInputField = () => {
+interface DateRangeInputFieldProps {
+  dateName: string;
+  TimeName: string;
+}
+
+const DateRangeInputField = ({ dateName, TimeName }: DateRangeInputFieldProps) => {
   const { isValid: startDateValid, errorMessage: startDateErrorMessage } =
-    useControlledForm("startDate");
-  const { isValid: endDateValid, errorMessage: endDateErrorMessage } = useControlledForm("endDate");
+    useControlledForm(dateName);
+  const { isValid: endDateValid, errorMessage: endDateErrorMessage } = useControlledForm(TimeName);
 
   return (
     <>
-      <Flex style={{ alignItems: "center" }}>
-        <DatePicker name="startDate">
-          <DatePicker.Modal />
-        </DatePicker>
-        ~
-        <DatePicker name="endDate">
-          <DatePicker.Modal />
-        </DatePicker>
+      <Flex style={{ flexDirection: "column" }}>
+        <Flex style={{ alignItems: "center", gap: "8px" }}>
+          <DatePicker name={dateName}>
+            <DatePicker.Modal />
+          </DatePicker>
+
+          <TimePicker name={TimeName}>
+            <TimePicker.Modal />
+          </TimePicker>
+        </Flex>
+        <InputNotice message={startDateErrorMessage} isValid={startDateValid} />
+        <InputNotice message={endDateErrorMessage} isValid={endDateValid} />
       </Flex>
-      <InputNotice message={startDateErrorMessage} isValid={startDateValid} />
-      <InputNotice message={endDateErrorMessage} isValid={endDateValid} />
     </>
   );
 };

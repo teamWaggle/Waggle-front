@@ -2,8 +2,8 @@ import type React from "react";
 import type { FieldPath, FieldValues } from "react-hook-form";
 import { useFormContext, useController, useFormState } from "react-hook-form";
 
-export const useControlledForm = (name: FieldPath<FieldValues>) => {
-  const { control, trigger } = useFormContext();
+export const useControlledForm = (name?: FieldPath<FieldValues>) => {
+  const { control, trigger, reset } = useFormContext();
 
   const { field } = useController({
     control,
@@ -26,5 +26,5 @@ export const useControlledForm = (name: FieldPath<FieldValues>) => {
     field.onChange({ target: { value: e.currentTarget.value } });
   };
 
-  return { handleButtonOnClick, handleTextOnChange, isValid, errorMessage, field };
+  return { handleButtonOnClick, handleTextOnChange, isValid, errorMessage, field, reset };
 };

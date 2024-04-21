@@ -100,7 +100,14 @@ const AppRouter = () => {
           path: "/siren-new",
           element: <SirenCreatePage />,
         },
-        { path: "/team/:teamId", element: <TeamPage /> },
+        {
+          path: "/team/:teamId",
+          element: (
+            <Suspense fallback={<div></div>}>
+              <TeamPage />
+            </Suspense>
+          ),
+        },
         { path: PATH.AUTH, element: <AuthPage /> },
         {
           path: PATH.CONNECTION,
