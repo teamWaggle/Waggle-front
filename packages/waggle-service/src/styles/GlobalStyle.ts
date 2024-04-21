@@ -1,6 +1,9 @@
 import { css } from "@emotion/react";
 
 export const GlobalStyle = css`
+  #root {
+    position: relative;
+  }
   * {
     padding: 0;
     margin: 0;

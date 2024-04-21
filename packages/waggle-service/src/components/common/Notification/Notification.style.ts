@@ -1,13 +1,12 @@
 import { css } from "@emotion/react";
 
-export const notificationStyle = css({
-  position: "fixed",
-  bottom: "20px",
-  left: "220px",
-});
+import { Theme } from "waggle-design-system";
 
-export const cardBoxStyle = css({
-  position: "absolute",
-  bottom: "84px",
-  left: "72px",
+export const layoutStyle = css({
+  right: 0,
+  top: "85px",
+  zIndex: 10,
+  backgroundColor: Theme.color.white,
+  width: "445px",
+  height: "100%",
 });
