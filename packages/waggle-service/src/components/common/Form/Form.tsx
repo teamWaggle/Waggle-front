@@ -11,6 +11,7 @@ import PasswordInputField from "@/components/common/Form/PasswordInputField/Pass
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import type * as yup from "yup";
+import ResetButton from "@/components/common/Form/ResetButton/ResetButton";
 
 const Form = ({
   children,
@@ -43,4 +44,5 @@ Form.TextInputField = TextInputField;
 Form.DateRangeInputField = DateRangeInputField;
 Form.TimeRangeInputField = TimeRangeInputField;
 Form.PasswordInputField = PasswordInputField;
+Form.ResetButton = ResetButton;
 export default Form;

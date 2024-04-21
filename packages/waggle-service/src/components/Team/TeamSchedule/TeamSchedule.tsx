@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import type { FieldValues } from "react-hook-form";
 
 import AddIcon from "@/assets/svg/add-icon.svg?react";
@@ -29,13 +29,20 @@ import {
   teamScheduleSearchButtonStyle,
   teamScheduleTitleStyle,
 } from "@/components/Team/TeamSchedule/TeamSchedule.style";
+import { getDate } from "@/utils/getDate";
+
+import { useTeamScheduleListPeriod } from "@/hooks/api/schedule/useTeamScheduleListPeriod";
 
 const TeamSchedule = () => {
+  const { getYearMonthDay } = getDate();
   const teamId = useParamsTeamId();
   const { openModal } = useModal();
   const [isMember] = useState(true);
   const { teamScheduleListData, fetchNextPage, hasNextPage, isFetching } =
     useTeamScheduleListPage(teamId);
+  const [period, setPeriod] = useState({ start: "", end: "" });
+  const [isSearch, setIsSearch] = useState(false);
+  const { data: TeamScheduleListPeriod, refetch } = useTeamScheduleListPeriod(period);
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
@@ -51,13 +58,26 @@ const TeamSchedule = () => {
       isOutsideClose: false,
     });
   };
+  const handleResetButton = () => {
+    setIsSearch(false);
+  };
   const onSubmit = (data: FieldValues) => {
     console.log(data);
+    data.startDate = getYearMonthDay(data.startDate);
+    data.endDate = getYearMonthDay(data.endDate);
+    console.log(data);
+    // refetch({ start: data.startDate, end: data.endDate });
+    setPeriod({ start: data.startDate, end: data.endDate });
+    setIsSearch(true);
   };
   const schema = yup.object({
     startDate: yup.date(),
-    endDate: yup.date(),
+    endDate: yup.date().min(yup.ref("startDate"), "종료일은 시작일 이후여야 합니다."),
   });
+
+  useEffect(() => {
+    if (period.end && period.start) refetch();
+  }, [period]);
 
   return (
     <>
@@ -77,12 +97,14 @@ const TeamSchedule = () => {
                   <DatePicker name="endDate">
                     <DatePickerCalendarModal />
                   </DatePicker>
-                  <Flex tag="button" css={teamScheduleSearchButtonStyle}>
+                  <button type="submit" css={teamScheduleSearchButtonStyle}>
                     <Text size="xSmall">일정 검색</Text>
-                  </Flex>
-                  <Flex tag="button" css={teamScheduleSearchButtonStyle}>
-                    <Text size="xSmall">초기화</Text>
-                  </Flex>
+                  </button>
+                  <Form.ResetButton onClick={handleResetButton}>
+                    <Flex tag="button" css={teamScheduleSearchButtonStyle}>
+                      <Text size="xSmall">초기화</Text>
+                    </Flex>
+                  </Form.ResetButton>
                 </Flex>
               </Form>
             </Flex>
@@ -96,13 +118,20 @@ const TeamSchedule = () => {
             </Flex>
           </Flex>
           <Box css={teamScheduleGridBoxStyle}>
-            {teamScheduleListData?.pages.map((teamScheduleData, page) => (
-              <Fragment key={page}>
-                {teamScheduleData.result.scheduleList.map((teamSchedule) => (
+            {!isSearch
+              ? teamScheduleListData?.pages.map((teamScheduleData, page) => (
+                  <Fragment key={page}>
+                    {teamScheduleData.result.scheduleList.map((teamSchedule) => (
+                      <TeamScheduleCard
+                        key={teamSchedule.boardId}
+                        teamScheduleData={teamSchedule}
+                      />
+                    ))}
+                  </Fragment>
+                ))
+              : TeamScheduleListPeriod?.result.scheduleList.map((teamSchedule) => (
                   <TeamScheduleCard key={teamSchedule.boardId} teamScheduleData={teamSchedule} />
                 ))}
-              </Fragment>
-            ))}
           </Box>
           <div ref={ref} />
         </>

@@ -16,12 +16,8 @@ import {
 import { useAddTeamScheduleToMySchedule } from "@/hooks/api/schedule/useAddTeamScheduleToMySchedule";
 
 const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamScheduleType }) => {
-  const { teamColor, title, startDate, endDate, status, boardId } = teamScheduleData;
-  // const startYear = format(startDate, "yyyy");
-  // const endYear = format(endDate, "yyyy");
-  // const startMonth = format(startDate, "M");
-  // const endMonth = format(endDate, "M");
-  // const scheduleDate = { startYear, endYear, startMonth, endMonth };
+  const { teamColor, title, startDate, endDate, status, boardId, overlappedScheduleCount } =
+    teamScheduleData;
   const scheduleStatusString = getTeamScheduleStatus(status);
   const { mutate: addToMySchedule } = useAddTeamScheduleToMySchedule(startDate, endDate);
   const handleAddToMySchedule = () => {
@@ -47,7 +43,8 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
         {status !== "CLOSING" && (
           <>
             <Flex style={{ alignItems: "center" }}>
-              겹치는 일정 <Text css={teamScheduleOverlapCount(teamColor)}>0</Text>
+              겹치는 일정{" "}
+              <Text css={teamScheduleOverlapCount(teamColor)}>{overlappedScheduleCount}</Text>
             </Flex>
             <Flex onClick={handleAddToMySchedule} css={addScheduleButtonStyle(teamColor)}>
               내 일정에 추가

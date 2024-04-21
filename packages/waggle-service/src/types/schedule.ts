@@ -18,6 +18,14 @@ export interface TeamScheduleType {
   createdDate: string;
   status: TeamScheduleStatusType;
   member: Array<TeamMemberType>;
+  isScheduled: boolean;
+  overlappedScheduleList: Array<overlappedScheduleType>;
+  overlappedScheduleCount: number;
+}
+export interface overlappedScheduleType {
+  teamName: string;
+  teamColor: TeamColorType;
+  scheduleTitle: string;
 }
 
 export type TeamScheduleStatusType = "IN_PROGRESS" | "UPCOMING" | "CLOSING";

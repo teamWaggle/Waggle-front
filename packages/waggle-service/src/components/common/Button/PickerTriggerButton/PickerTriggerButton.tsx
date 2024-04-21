@@ -37,15 +37,16 @@ const PickerTriggerButton = ({
     return "yyyy년 M월 d일";
   }, []);
 
-  const today = new Date().setHours(0, 0, 0, 0);
-  const dateToFormat = field.value ? new Date(field.value) : today;
+  const dateToFormat = field.value
+    ? format(field.value, handleFormat, { locale: ko })
+    : "----년 --월 --일";
 
   useClickOutSide(triggerRef, modalClose);
   return (
     <div ref={triggerRef}>
       <Flex css={PickerTriggerButtonBoxStyle}>
         <Text css={PickerTriggerButtonStyle} onClick={handleTriggerOnClick}>
-          {format(dateToFormat, handleFormat, { locale: ko })}
+          {dateToFormat}
           <ScheduleIcon style={{ marginLeft: "6px" }} />
         </Text>
         {children}

@@ -1,13 +1,14 @@
 import { authorizedAxiosInstance } from "@/api/axiosInstance";
-
 import { END_POINTS } from "@/constants/api";
-
 import type { TeamScheduleInfoType } from "@/types/schedule";
 
-export const getTeamScheduleListPage = async (teamId: number, currentPage: unknown) => {
+export const getTeamScheduleListPeriod = async (
+  teamId: number,
+  startDate: string,
+  endDate: string
+) => {
   const { data } = await authorizedAxiosInstance.get<TeamScheduleInfoType>(
-    END_POINTS.GET_TEAM_SCHEDULE_PAGE(teamId, currentPage)
+    END_POINTS.GET_TEAM_SCHEDULE_PERIOD(teamId, startDate, endDate)
   );
-
-  return { ...data, nextPageParam: (currentPage as number) + 1 };
+  return data;
 };
