@@ -6,7 +6,7 @@ import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
 interface MyPageCommentProps {
   paramUrl?: string;
-  isQuestion: boolean;
+  isQuestion?: boolean;
 }
 
 const MyPageComment = ({ paramUrl, isQuestion }: MyPageCommentProps) => {
