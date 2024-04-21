@@ -1,6 +1,8 @@
 import { css } from "@emotion/react";
 
-import { Flex, Carousel } from "@/components/common";
+import { Flex } from "waggle-design-system";
+
+import { Carousel } from "@/components/common";
 
 interface StoryMediaParams {
   mediaList: string[];
@@ -32,5 +34,4 @@ export default StoryMedia;
 const mediaBoxStyle = css({
   width: "740px",
   height: "100%",
-  borderRight: "1px solid #d2d2d2",
 });

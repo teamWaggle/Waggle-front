@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Box, Text, Theme } from "waggle-design-system";
+
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import Reply from "@/components/Story/StoryComment/Reply/Reply";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
@@ -9,7 +10,6 @@ import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMu
 import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
@@ -51,7 +51,7 @@ const StoryCommentCard = ({ commentData, handleEditClick }: CommentDataType) => 
   };
 
   return (
-    <Flex styles={{ direction: "column", padding: "0 30px 0 18px" }}>
+    <Flex styles={{ direction: "column", padding: "0 30px 0 18px", width: "100%" }}>
       <StoryProfile
         memberData={member}
         deleteClick={handleDeleteComment}

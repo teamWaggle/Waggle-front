@@ -1,5 +1,5 @@
 import { Flex, Box, Text, Divider } from "@/components/common";
-import CommentInput from "@/components/Story/StoryComment/StoryCommentInput";
+import StoryCommentInput from "@/components/Story/StoryComment/StoryCommentInput";
 import ReplyItem from "@/components/Story/StoryComment/Reply/ReplyItem";
 
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
@@ -44,7 +44,7 @@ const Reply = ({ commentId, handleReplyOpen }: ReplyProps) => {
             />
           ))}
 
-          <CommentInput
+          <StoryCommentInput
             width="215px"
             placeholder="답글 작성"
             handleButtonClick={commentButtonText === "등록" ? handleAddReply : handleEditReply}
@@ -56,7 +56,7 @@ const Reply = ({ commentId, handleReplyOpen }: ReplyProps) => {
         </Flex>
       ) : (
         <Box styles={{ paddingLeft: "43px" }}>
-          <CommentInput
+          <StoryCommentInput
             width="215px"
             placeholder="답글 작성"
             handleButtonClick={handleAddReply}

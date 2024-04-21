@@ -54,6 +54,7 @@ export const useComment = ({ boardId, isTextArea, targetCommentId }: UseCommentP
         onSuccess: () => {
           setCommentContent("");
           setCommentId(0);
+          setCommentButtonText("등록");
         },
       }
     );
@@ -101,6 +102,7 @@ export const useComment = ({ boardId, isTextArea, targetCommentId }: UseCommentP
         onSuccess: () => {
           setCommentContent("");
           setCommentId(0);
+          setCommentButtonText("등록");
         },
       }
     );

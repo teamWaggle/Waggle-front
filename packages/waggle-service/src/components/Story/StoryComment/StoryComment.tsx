@@ -4,15 +4,15 @@ import { css } from "@emotion/react";
 
 import { useRecoilValue } from "recoil";
 
+import { Flex, Divider, Text, Theme } from "waggle-design-system";
+
 import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
 import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
 
-import { Flex, Box, Divider, Text } from "@/components/common";
 import StoryCommentCard from "@/components/Story/StoryComment/StoryCommentCard";
 import CommentInput from "@/components/Story/StoryComment/StoryCommentInput";
 
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
-
 import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
 import { usePostRecommend } from "@/hooks/api/recommend/usePostRecommend";
 import useObserver from "@/hooks/common/useObserver";
@@ -21,7 +21,6 @@ import { useComment } from "@/hooks/comment/useComment";
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 interface StoryCommentParams {
   boardId: number;
@@ -61,7 +60,7 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
     <>
       <Divider length="309px" />
 
-      <Box css={commentLayoutStyle}>
+      <Flex styles={{ direction: "column", gap: "20px" }} css={commentLayoutStyle}>
         {commentData.pages.map((commentData, index) => (
           <Fragment key={index}>
             {commentData.result.commentList.map((commentInfo) => (
@@ -74,7 +73,7 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
           </Fragment>
         ))}
         <div ref={ref} />
-      </Box>
+      </Flex>
 
       <Divider length="309px" />
 
@@ -117,12 +116,9 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
 
 export default StoryComment;
 
-const commentLayoutStyle = css({
+export const commentLayoutStyle = css({
   width: "100%",
   overflow: "auto",
   height: "450px",
-  display: "flex",
-  flexDirection: "column",
-  gap: "20px",
   padding: "20px 0",
 });
