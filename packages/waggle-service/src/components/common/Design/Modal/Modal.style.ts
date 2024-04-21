@@ -33,12 +33,18 @@ export const closeButtonStyling = (isWhiteIcon?: boolean) => {
     position: "absolute",
     right: "24px",
     top: "24px",
+    border: "none",
+    backgroundColor: "transparent",
     cursor: "pointer",
-    width: "16px",
-    height: "16px",
+    zIndex: 1,
 
-    "& > g > line": {
-      stroke: isWhiteIcon ? Theme.color.white : "",
+    "& > svg": {
+      width: "16px",
+      height: "16px",
+
+      "& > g > line": {
+        stroke: isWhiteIcon ? Theme.color.white : "",
+      },
     },
   });
 };

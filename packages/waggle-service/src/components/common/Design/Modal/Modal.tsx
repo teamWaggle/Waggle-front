@@ -2,7 +2,7 @@ import { useEffect, useCallback } from "react";
 
 import { useRecoilValue } from "recoil";
 
-import CloseIcon from "@/assets/svg/CloseIcon.svg?react";
+import CloseIcon from "@/assets/svg/ic-close-modal.svg?react";
 
 import { modalState } from "@/recoil/atoms/modal";
 
