@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
 import type { FieldValues } from "react-hook-form";
-
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
 import {
@@ -32,6 +31,7 @@ import {
 import { getDate } from "@/utils/getDate";
 
 import { useTeamScheduleListPeriod } from "@/hooks/api/schedule/useTeamScheduleListPeriod";
+import Spinner from "@/components/common/Design/Spinner/Spinner";
 
 const TeamSchedule = () => {
   const { getYearMonthDay } = getDate();
@@ -42,7 +42,7 @@ const TeamSchedule = () => {
     useTeamScheduleListPage(teamId);
   const [period, setPeriod] = useState({ start: "", end: "" });
   const [isSearch, setIsSearch] = useState(false);
-  const { data: TeamScheduleListPeriod, refetch } = useTeamScheduleListPeriod(period);
+  const { data: TeamScheduleListPeriod, refetch, isLoading } = useTeamScheduleListPeriod(period);
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
@@ -62,11 +62,9 @@ const TeamSchedule = () => {
     setIsSearch(false);
   };
   const onSubmit = (data: FieldValues) => {
-    console.log(data);
     data.startDate = getYearMonthDay(data.startDate);
     data.endDate = getYearMonthDay(data.endDate);
-    console.log(data);
-    // refetch({ start: data.startDate, end: data.endDate });
+
     setPeriod({ start: data.startDate, end: data.endDate });
     setIsSearch(true);
   };
@@ -117,6 +115,17 @@ const TeamSchedule = () => {
               <AddIcon />
             </Flex>
           </Flex>
+          {isLoading && (
+            <Flex
+              style={{
+                height: "300px",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Spinner />
+            </Flex>
+          )}
           <Box css={teamScheduleGridBoxStyle}>
             {!isSearch
               ? teamScheduleListData?.pages.map((teamScheduleData, page) => (
