@@ -2,11 +2,11 @@ import { useState, useRef } from "react";
 
 import { css } from "@emotion/react";
 
+import { Theme } from "waggle-design-system";
+
 import OptionIcon from "@/assets/svg/option.svg?react";
 
 import useClickOutSide from "@/hooks/common/useClickOutSide";
-
-import { Theme } from "@/styles/Theme";
 
 interface ProfileOptionMenuParams {
   handleEditMenu?: () => void;

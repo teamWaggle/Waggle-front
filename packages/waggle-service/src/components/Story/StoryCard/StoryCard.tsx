@@ -1,18 +1,17 @@
+import { Suspense } from "react";
+
+import { Flex, useOverlay } from "waggle-design-system";
+
 import MediaIcon from "@/assets/svg/ic-many-media.svg?react";
 
-import { useOverlay } from "waggle-design-system";
-
-import { Flex } from "@/components/common";
 import StoryDetailModal from "@/components/Story/StoryDetailModal/StoryDetailModal";
+import StoryDetailModalSkeleton from "@/components/Story/StoryDetailModal/StoryDetailModalSkeleton";
 
-import { useStoryQuery } from "@/hooks/api/story/useStoryQuery";
 import type { StoryListInfoType } from "@/types/story";
 
 import { imgStyle, iconStyle } from "@/components/Story/StoryCard/StoryCard.style";
 
 const StoryCard = ({ boardId, thumbnail }: StoryListInfoType) => {
-  const { storyData } = useStoryQuery(boardId);
-
   const {
     isOpen: isStoryDetailModalOpen,
     close: closeStoryDetailModal,
@@ -30,11 +29,13 @@ const StoryCard = ({ boardId, thumbnail }: StoryListInfoType) => {
       </Flex>
 
       {isStoryDetailModalOpen && (
-        <StoryDetailModal
-          isOpen={isStoryDetailModalOpen}
-          onClose={closeStoryDetailModal}
-          storyData={storyData.result}
-        />
+        <Suspense fallback={<StoryDetailModalSkeleton />}>
+          <StoryDetailModal
+            isOpen={isStoryDetailModalOpen}
+            onClose={closeStoryDetailModal}
+            boardId={boardId}
+          />
+        </Suspense>
       )}
     </>
   );

@@ -1,4 +1,4 @@
-import { Box } from "@/components/common";
+import { Box } from "waggle-design-system";
 
 import { commentInputStyle, replyButtonStyle } from "@/components/Story/StoryComment/Comment.style";
 

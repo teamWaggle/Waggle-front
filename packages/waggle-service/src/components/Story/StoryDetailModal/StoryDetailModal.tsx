@@ -1,33 +1,38 @@
+import { Suspense } from "react";
+
 import { css } from "@emotion/react";
 
-import { Modal } from "waggle-design-system";
+import { Flex, Modal, Theme } from "waggle-design-system";
 
-import { Flex } from "@/components/common";
 import StoryComment from "@/components/Story/StoryComment/StoryComment";
 import StoryContent from "@/components/Story/StoryDetailModal/StoryContent/StoryContent";
 import StoryMedia from "@/components/Story/StoryDetailModal/StoryMedia/StoryMedia";
+import StoryCommentSkeleton from "@/components/Story//StoryComment/StoryCommentSkeleton";
 
-import { Theme } from "@/styles/Theme";
+import { useStoryQuery } from "@/hooks/api/story/useStoryQuery";
 
-import type { StoryDataType } from "@/types/story";
-
-interface StoryDetailModalProps extends StoryDataType {
+interface StoryDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
+  boardId: number;
 }
 
-const StoryDetailModal = ({ storyData, isOpen, onClose }: StoryDetailModalProps) => {
-  const { boardId, mediaList, recommendCount } = storyData;
+const StoryDetailModal = ({ isOpen, onClose, boardId }: StoryDetailModalProps) => {
+  const { storyData } = useStoryQuery(boardId);
+
+  const { mediaList, recommendCount } = storyData.result;
 
   return (
     <Modal isOpen={isOpen} closeModal={onClose}>
       <Flex css={layoutStyle}>
         <StoryMedia mediaList={mediaList} />
 
-        <Flex styles={{ direction: "column" }}>
-          <StoryContent storyData={storyData} />
+        <Flex styles={{ direction: "column", borderLeft: "1px solid #d2d2d2", height: "100%" }}>
+          <StoryContent storyData={storyData.result} />
 
-          <StoryComment boardId={boardId} recommendCount={recommendCount} />
+          <Suspense fallback={<StoryCommentSkeleton />}>
+            <StoryComment boardId={boardId} recommendCount={recommendCount} />
+          </Suspense>
         </Flex>
       </Flex>
     </Modal>
@@ -36,12 +41,11 @@ const StoryDetailModal = ({ storyData, isOpen, onClose }: StoryDetailModalProps)
 
 export default StoryDetailModal;
 
-const layoutStyle = css({
+export const layoutStyle = css({
   width: "1060px",
   height: "736px",
   backgroundColor: Theme.color.white,
   borderRadius: "42px",
   border: `5px solid ${Theme.color.brand_primary}`,
   boxShadow: Theme.boxShadow.shadow1,
-  position: "relative",
 });

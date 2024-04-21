@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Box, Text, Theme } from "waggle-design-system";
+
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 import StoryUploadModal from "@/components/Story/StoryUploadModal/StoryUploadModal";
@@ -9,7 +10,6 @@ import { useDeleteStoryMutation } from "@/hooks/api/story/useDeleteStoryMutation
 import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
@@ -56,7 +56,7 @@ const StoryContent = ({ storyData }: StoryDataType) => {
   };
 
   return (
-    <Flex css={contentBoxStyle}>
+    <Flex styles={{ direction: "column", gap: "12px" }} css={contentBoxStyle}>
       <StoryProfile
         memberData={member}
         editClick={handleEditStory}
@@ -79,8 +79,6 @@ const StoryContent = ({ storyData }: StoryDataType) => {
 export default StoryContent;
 
 const contentBoxStyle = css({
-  flexDirection: "column",
   padding: "52px 30px 12px 18px",
-  gap: "12px",
   width: "100%",
 });

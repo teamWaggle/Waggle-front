@@ -1,13 +1,13 @@
 import { css } from "@emotion/react";
 import { useRecoilValue } from "recoil";
 
-import { Flex, Text } from "@/components/common";
+import { Flex, Text, Theme } from "waggle-design-system";
+
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
