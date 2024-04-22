@@ -1,7 +1,8 @@
 import { Fragment } from "react";
 
-import { Flex, Box } from "@/components/common";
-import { Sidebar } from "@/components/Sidebar";
+import { Flex, Box } from "waggle-design-system";
+
+import Sidebar from "@/components/Sidebar/Sidebar";
 import StoryCard from "@/components/Story/StoryCard/StoryCard";
 import StorySearchBar from "@/components/Story/StorySearchBar/StorySearchBar";
 import RetryErrorBoundary from "@/components/common/ErrorBoundary/RetryErrorBoundary";
@@ -9,11 +10,7 @@ import RetryErrorBoundary from "@/components/common/ErrorBoundary/RetryErrorBoun
 import { useStoryListQuery } from "@/hooks/api/story/useStoryListQuery";
 import useObserver from "@/hooks/common/useObserver";
 
-import {
-  mainStyle,
-  mainBoxStyle,
-  storyBoxStyle,
-} from "@/components/Story/StoryMain/StoryMain.style";
+import { gridBoxStyle } from "@/components/Story/StoryMain/StoryMain.style";
 
 const StoryMain = () => {
   const { storyListData, hasNextPage, fetchNextPage, isFetching } = useStoryListQuery();
@@ -27,32 +24,27 @@ const StoryMain = () => {
   });
 
   return (
-    <Box tag="main" css={mainStyle}>
-      <Flex styles={{ justify: "space-between" }}>
-        <Flex tag="section" css={mainBoxStyle}>
-          <Flex styles={{ gap: "20px", direction: "column", width: "100%" }}>
-            <StorySearchBar />
-
-            <Flex css={storyBoxStyle}>
-              <RetryErrorBoundary>
-                {storyListData.pages.map((storyData, index) => (
-                  <Fragment key={index}>
-                    {storyData.result.storyList.map((storyInfo) => (
-                      <StoryCard
-                        key={storyInfo.boardId}
-                        boardId={storyInfo.boardId}
-                        thumbnail={storyInfo.thumbnail}
-                      />
-                    ))}
-                  </Fragment>
-                ))}
-              </RetryErrorBoundary>
-            </Flex>
-
-            <div ref={ref} />
-          </Flex>
-        </Flex>
-
+    <Box tag="section" styles={{ padding: "32px 0 60px" }}>
+      <Flex styles={{ gap: "30px", justify: "center" }}>
+        <Box>
+          <StorySearchBar />
+          <Box tag="ol" css={gridBoxStyle}>
+            <RetryErrorBoundary>
+              {storyListData.pages.map((storyData, index) => (
+                <Fragment key={index}>
+                  {storyData.result.storyList.map((storyInfo) => (
+                    <StoryCard
+                      key={storyInfo.boardId}
+                      boardId={storyInfo.boardId}
+                      thumbnail={storyInfo.thumbnail}
+                    />
+                  ))}
+                </Fragment>
+              ))}
+            </RetryErrorBoundary>
+          </Box>
+          <div ref={ref} />
+        </Box>
         <Sidebar />
       </Flex>
     </Box>

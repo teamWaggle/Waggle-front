@@ -13,7 +13,9 @@ const App = () => {
       <ScrollTop />
       <LogIn>
         <Header />
-        <Outlet />
+        <main>
+          <Outlet />
+        </main>
       </LogIn>
       <ToastContainer position="top-center" style={{ width: "auto" }} autoClose={1000} />
     </>

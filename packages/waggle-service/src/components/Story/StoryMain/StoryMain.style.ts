@@ -1,22 +1,8 @@
 import { css } from "@emotion/react";
 
-export const mainStyle = css({
-  maxWidth: "1536px",
-  margin: "0 auto",
-  padding: "32px 196px 60px",
-  position: "relative",
-  overscrollBehavior: "contain",
-});
-
-export const mainBoxStyle = css({
-  flexDirection: "column",
-  gap: "62px",
-  width: "814px",
-});
-
-export const storyBoxStyle = css({
-  alignItems: "center",
-  flexWrap: "wrap",
+export const gridBoxStyle = css({
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
   gap: "28px",
-  width: "100%",
+  marginTop: "20px",
 });

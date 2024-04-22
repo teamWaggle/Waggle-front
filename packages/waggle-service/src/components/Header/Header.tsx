@@ -2,19 +2,18 @@ import { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
-import { useOverlay, Text } from "waggle-design-system";
+import { Flex, Spinner, Text, useOverlay } from "waggle-design-system";
 
 import Logo from "@/assets/svg/logo.svg?react";
 import NotiIcon from "@/assets/svg/ic-header-noti.svg?react";
 
-import { Flex } from "@/components/common";
 import LogInMenu from "@/components/Header/LogInMenu/LogInMenu";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
 import FindEmailModal from "@/components/Login/FindEmailModal/FindEmailModal";
 
-import { isLoggedInState } from "@/recoil/atoms/auth";
-
 import { PATH } from "@/constants/path";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { headerStyle, headerBoxStyle, textStyle } from "@/components/Header/Header.style";
 
@@ -33,10 +32,13 @@ const Header = () => {
 
   return (
     <header css={headerStyle}>
-      <Flex css={headerBoxStyle}>
+      <Flex
+        styles={{ justify: "space-between", align: "center", margin: "0 auto" }}
+        css={headerBoxStyle}
+      >
         <Logo onClick={() => navigate("/")} />
 
-        <Flex styles={{ align: "center", gap: "100px" }}>
+        <Flex styles={{ align: "center", gap: "80px" }}>
           <Text size="xLarge" css={textStyle} onClick={() => navigate(PATH.SIREN)}>
             SIREN
           </Text>
@@ -50,8 +52,9 @@ const Header = () => {
             PLANNING
           </Text>
         </Flex>
+
         {isLoggedIn ? (
-          <Suspense fallback={<div>로딩중</div>}>
+          <Suspense fallback={<Spinner size={30} width={3} />}>
             <LogInMenu />
           </Suspense>
         ) : (

@@ -1,15 +1,20 @@
 import { Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import App from "@/App";
-import { QuestionCreatePage, SignUpPage, SirenCreatePage, TeamPage } from "@/pages";
-import * as Lazy from "@/router/lazy";
-
 import { PATH } from "@/constants/path";
 
-import Error404Page from "@/pages/Error404Page";
+import App from "@/App";
+import {
+  QuestionCreatePage,
+  SignUpPage,
+  SirenCreatePage,
+  TeamPage,
+  Error404Page,
+  AuthPage,
+} from "@/pages";
 import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
-import AuthPage from "@/pages/AuthPage/AuthPage";
+
+import * as Lazy from "@/router/lazy";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
