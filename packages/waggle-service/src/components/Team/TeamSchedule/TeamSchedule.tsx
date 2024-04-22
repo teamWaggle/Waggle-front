@@ -12,7 +12,6 @@ import {
   Form,
 } from "@/components/common";
 import Lock from "@/components/Team/TeamSchedule/Lock/Lock";
-import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal";
 import TeamScheduleCard from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard";
 import * as yup from "yup";
 
@@ -32,17 +31,19 @@ import { getDate } from "@/utils/getDate";
 
 import { useTeamScheduleListPeriod } from "@/hooks/api/schedule/useTeamScheduleListPeriod";
 import Spinner from "@/components/common/Design/Spinner/Spinner";
+import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal";
 
 const TeamSchedule = () => {
   const { getYearMonthDay } = getDate();
   const teamId = useParamsTeamId();
   const { openModal } = useModal();
   const [isMember] = useState(true);
+  const [isSearch, setIsSearch] = useState(false);
   const { teamScheduleListData, fetchNextPage, hasNextPage, isFetching } =
     useTeamScheduleListPage(teamId);
   const [period, setPeriod] = useState({ start: "", end: "" });
-  const [isSearch, setIsSearch] = useState(false);
   const { data: TeamScheduleListPeriod, refetch, isLoading } = useTeamScheduleListPeriod(period);
+
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
@@ -58,9 +59,11 @@ const TeamSchedule = () => {
       isOutsideClose: false,
     });
   };
+
   const handleResetButton = () => {
     setIsSearch(false);
   };
+
   const onSubmit = (data: FieldValues) => {
     data.startDate = getYearMonthDay(data.startDate);
     data.endDate = getYearMonthDay(data.endDate);
@@ -68,6 +71,7 @@ const TeamSchedule = () => {
     setPeriod({ start: data.startDate, end: data.endDate });
     setIsSearch(true);
   };
+
   const schema = yup.object({
     startDate: yup.date(),
     endDate: yup.date().min(yup.ref("startDate"), "종료일은 시작일 이후여야 합니다."),

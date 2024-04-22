@@ -8,10 +8,12 @@ const OptionDropdown = ({
   children,
   handleCancelSchedule,
   handleDeleteSchedule,
+  handleEditSchedule,
 }: {
   children: ReactNode;
   handleCancelSchedule: () => void;
   handleDeleteSchedule: () => void;
+  handleEditSchedule: () => void;
 }) => {
   return (
     <Dropdown>
@@ -19,7 +21,7 @@ const OptionDropdown = ({
       <Dropdown.List>
         <Dropdown.Item onClick={handleDeleteSchedule}>일정 삭제</Dropdown.Item>
         <Dropdown.Item onClick={handleCancelSchedule}>일정 취소</Dropdown.Item>
-        <Dropdown.Item>일정 수정</Dropdown.Item>
+        <Dropdown.Item onClick={handleEditSchedule}>일정 수정</Dropdown.Item>
         <Dropdown.Item>권한 위임</Dropdown.Item>
       </Dropdown.List>
     </Dropdown>

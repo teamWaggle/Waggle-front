@@ -22,7 +22,7 @@ const TimePickerModal = () => {
     return timeOptions;
   }, []);
   return (
-    <ModalContainer style={{ height: "300px", width: "200px" }}>
+    <ModalContainer style={{ height: "300px", width: "130px" }}>
       {generateTimeOptions}
     </ModalContainer>
   );
