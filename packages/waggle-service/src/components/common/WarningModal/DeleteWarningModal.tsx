@@ -12,6 +12,7 @@ import type { ModalProps } from "@/types/modal";
 interface DeleteWarningModalParams extends ModalProps {
   targetText?: string;
   handleDelete: () => void;
+  isUpper?: boolean;
 }
 
 const DeleteWarningModal = ({
@@ -19,11 +20,12 @@ const DeleteWarningModal = ({
   onClose,
   targetText,
   handleDelete,
+  isUpper,
 }: DeleteWarningModalParams) => {
   const text = targetText ?? "게시물";
 
   return (
-    <Modal isOpen={isOpen} closeModal={onClose} hasCloseButton={false}>
+    <Modal isOpen={isOpen} closeModal={onClose} hasCloseButton={false} isUpper={isUpper}>
       <Flex css={layoutStyle}>
         <Heading size="xSmall" style={{ marginTop: "32px" }}>
           {text}을 삭제하시겠어요?

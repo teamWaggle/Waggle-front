@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Box, Divider } from "@/components/common";
+import { Flex, Box, Divider, useOverlay } from "waggle-design-system";
+
 import Comment from "@/components/common/Comment/Comment";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import SirenContent from "@/components/Siren/SirenDetail/SirenContent/SirenContent";
@@ -9,7 +10,6 @@ import SirenTitle from "@/components/Siren/SirenDetail/SirenTitle";
 import { PATH } from "@/constants/path";
 
 import { useDeleteSirenMutation } from "@/hooks/api/siren/useDeleteSirenMutation";
-import useModal from "@/hooks/common/useModal";
 
 import type { SirenDataType } from "@/types/siren";
 
@@ -20,9 +20,13 @@ const SirenDetail = ({ sirenData }: SirenDataType) => {
 
   const navigate = useNavigate();
 
-  const modal = useModal();
-
   const { boardId } = sirenData;
+
+  const {
+    isOpen: isDeleteWarningModalOpen,
+    close: closeDeleteWarningModal,
+    open: openDeleteWarningModal,
+  } = useOverlay();
 
   const deleteMutate = () => {
     deleteSirenMutate(boardId, {
@@ -32,21 +36,13 @@ const SirenDetail = ({ sirenData }: SirenDataType) => {
     });
   };
 
-  const handleDeleteSiren = () => {
-    modal.openModal({
-      key: `DeleteWarningModal`,
-      component: () => <DeleteWarningModal handleDelete={deleteMutate} />,
-      notCloseIcon: true,
-    });
-  };
-
   return (
     <Box tag="main">
-      <Flex css={layoutStyle}>
+      <Flex styles={{ margin: "70px auto 0", direction: "column" }} css={layoutStyle}>
         <SirenTitle
           sirenData={sirenData}
           handleEditSiren={() => navigate(PATH.SIREN_EDIT(String(boardId)))}
-          handleDeleteSiren={handleDeleteSiren}
+          handleDeleteSiren={openDeleteWarningModal}
         />
 
         <Divider />
@@ -57,6 +53,14 @@ const SirenDetail = ({ sirenData }: SirenDataType) => {
       <Divider />
 
       <Comment boardId={boardId} />
+
+      {isDeleteWarningModalOpen && (
+        <DeleteWarningModal
+          isOpen={isDeleteWarningModalOpen}
+          onClose={closeDeleteWarningModal}
+          handleDelete={deleteMutate}
+        />
+      )}
     </Box>
   );
 };

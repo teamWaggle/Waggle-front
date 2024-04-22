@@ -28,7 +28,7 @@ const StoryDetailModal = ({ isOpen, onClose, boardId }: StoryDetailModalProps) =
         <StoryMedia mediaList={mediaList} />
 
         <Flex styles={{ direction: "column", borderLeft: "1px solid #d2d2d2", height: "100%" }}>
-          <StoryContent storyData={storyData.result} />
+          <StoryContent storyData={storyData.result} onClose={onClose} />
 
           <Suspense fallback={<StoryCommentSkeleton />}>
             <StoryComment boardId={boardId} recommendCount={recommendCount} />

@@ -1,6 +1,8 @@
-import { Flex } from "@/components/common";
+import { css } from "@emotion/react";
+
+import { Modal, Flex, Theme, Button } from "waggle-design-system";
+
 import Birthday from "@/components/common/BirthDay/Birthday";
-import Button from "@/components/common/Design/Button/Button";
 import NameInput from "@/components/SignUp/SignUpProfile/NameInput/NameInput";
 import NicknameInput from "@/components/SignUp/SignUpProfile/NicknameInput/NicknameInput";
 import ProfileInput from "@/components/SignUp/SignUpProfile/ProfileInput/ProfileInput";
@@ -11,9 +13,12 @@ import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
 import type { MemberDataType } from "@/types/auth";
 
-import { layoutStyle } from "@/components/MyPage/MyPageProfile/ProfileEditModal/ProfileEditModal.style";
+interface ProfileEditModalProps extends MemberDataType {
+  isOpen: boolean;
+  onClose: () => void;
+}
 
-const ProfileEditModal = ({ memberData }: MemberDataType) => {
+const ProfileEditModal = ({ memberData, isOpen, onClose }: ProfileEditModalProps) => {
   const { profileImgUrl, nickname, memberId, name, birthday } = memberData;
 
   const { handleImgUpload, uploadMedia } = useSingleImgUpload({ prevImg: profileImgUrl });
@@ -55,35 +60,41 @@ const ProfileEditModal = ({ memberData }: MemberDataType) => {
   });
 
   return (
-    <Flex css={layoutStyle}>
-      <Flex styles={{ direction: "column", gap: "36px" }}>
-        {/* 프로필 영역 */}
-        <ProfileInput handleImgUpload={handleImgUpload} uploadMedia={uploadMedia} />
+    <Modal isOpen={isOpen} closeModal={onClose}>
+      <Flex styles={{ direction: "column", align: "center", gap: "50px" }} css={layoutStyle}>
+        <Flex styles={{ direction: "column", gap: "36px" }}>
+          <ProfileInput handleImgUpload={handleImgUpload} uploadMedia={uploadMedia} />
 
-        {/* 닉네임 영역 */}
-        <NicknameInput
-          nickname={signUpProfileRequest.nickname}
-          updateInputValue={updateInputValue}
-          nicknameRef={nicknameRef}
-          nicknameCheckComplete={nicknameCheckComplete}
-          handleNicknameCheckComplete={handleNicknameCheckComplete}
-        />
+          <NicknameInput
+            nickname={signUpProfileRequest.nickname}
+            updateInputValue={updateInputValue}
+            nicknameRef={nicknameRef}
+            nicknameCheckComplete={nicknameCheckComplete}
+            handleNicknameCheckComplete={handleNicknameCheckComplete}
+          />
 
-        {/* 이름 영역 */}
-        <NameInput name={newName.value} updateNameValue={updateNameValue} nameRef={nameRef} />
+          <NameInput name={newName.value} updateNameValue={updateNameValue} nameRef={nameRef} />
 
-        {/* 생년월일 영역 */}
-        <Birthday
-          selectOpen={selectOpen}
-          handleSelectOpen={handleSelectOpen}
-          birthdayRequest={birthdayRequest}
-          updateBirthdayValue={updateBirthdayValue}
-        />
+          <Birthday
+            selectOpen={selectOpen}
+            handleSelectOpen={handleSelectOpen}
+            birthdayRequest={birthdayRequest}
+            updateBirthdayValue={updateBirthdayValue}
+          />
 
-        <Button onClick={handleSubmit}>저장</Button>
+          <Button onClick={handleSubmit} style={{ alignSelf: "flex-end" }}>
+            저장
+          </Button>
+        </Flex>
       </Flex>
-    </Flex>
+    </Modal>
   );
 };
 
 export default ProfileEditModal;
+
+const layoutStyle = css({
+  width: "554px",
+  backgroundColor: Theme.color.white,
+  padding: "60px 38px 62px",
+});

@@ -29,7 +29,14 @@ const StoryCard = ({ boardId, thumbnail }: StoryListInfoType) => {
       </Flex>
 
       {isStoryDetailModalOpen && (
-        <Suspense fallback={<StoryDetailModalSkeleton />}>
+        <Suspense
+          fallback={
+            <StoryDetailModalSkeleton
+              isOpen={isStoryDetailModalOpen}
+              onClose={closeStoryDetailModal}
+            />
+          }
+        >
           <StoryDetailModal
             isOpen={isStoryDetailModalOpen}
             onClose={closeStoryDetailModal}

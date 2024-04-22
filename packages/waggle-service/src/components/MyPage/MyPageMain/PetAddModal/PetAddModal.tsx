@@ -1,4 +1,5 @@
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Modal, Button } from "waggle-design-system";
+
 import PetAgeInput from "@/components/SignUp/SignUpPet/PetAgeInput/PetAgeInput";
 import PetBreedInput from "@/components/SignUp/SignUpPet/PetBreedInput/PetBreedInput";
 import PetGenderInput from "@/components/SignUp/SignUpPet/PetGenderInput/PetGenderInput";
@@ -11,12 +12,21 @@ import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
 import type { PetParams } from "@/types/pet";
 
-import {
-  layoutStyle,
-  buttonStyle,
-} from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal.style";
+import { layoutStyle } from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal.style";
 
-const PetAddModal = ({ profileImgUrl, gender, name, petId }: PetParams) => {
+interface PetAddModalParams extends PetParams {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const PetAddModal = ({
+  isOpen,
+  onClose,
+  profileImgUrl,
+  gender,
+  name,
+  petId,
+}: PetAddModalParams) => {
   const { handleImgUpload, uploadMedia } = useSingleImgUpload({ prevImg: profileImgUrl });
 
   const { signUpPetRequest, updateInputValue, handleSaveClick } = useSignUpPetForm({
@@ -33,28 +43,30 @@ const PetAddModal = ({ profileImgUrl, gender, name, petId }: PetParams) => {
   });
 
   return (
-    <Flex css={layoutStyle}>
-      <PetProfileInput handleImgUpload={handleImgUpload} uploadMedia={uploadMedia} />
+    <Modal isOpen={isOpen} closeModal={onClose}>
+      <Flex styles={{ direction: "column", gap: "30px" }} css={layoutStyle}>
+        <PetProfileInput handleImgUpload={handleImgUpload} uploadMedia={uploadMedia} />
 
-      <PetNameInput name={signUpPetRequest.name} updateInputValue={updateInputValue} />
+        <PetNameInput name={signUpPetRequest.name} updateInputValue={updateInputValue} />
 
-      <Flex styles={{ align: "center", gap: "60px" }}>
-        <PetAgeInput age={signUpPetRequest.age} updateInputValue={updateInputValue} />
+        <Flex styles={{ align: "center", gap: "60px" }}>
+          <PetAgeInput age={signUpPetRequest.age} updateInputValue={updateInputValue} />
 
-        <PetGenderInput gender={signUpPetRequest.gender} updateInputValue={updateInputValue} />
+          <PetGenderInput gender={signUpPetRequest.gender} updateInputValue={updateInputValue} />
+        </Flex>
+
+        <PetBreedInput breed={signUpPetRequest.breed} updateInputValue={updateInputValue} />
+
+        <PetIntroductionInput
+          introduction={signUpPetRequest.introduction}
+          updateInputValue={updateInputValue}
+        />
+
+        <Button style={{ alignSelf: "flex-end" }} onClick={handleSaveClick}>
+          저장
+        </Button>
       </Flex>
-
-      <PetBreedInput breed={signUpPetRequest.breed} updateInputValue={updateInputValue} />
-
-      <PetIntroductionInput
-        introduction={signUpPetRequest.introduction}
-        updateInputValue={updateInputValue}
-      />
-
-      <Box tag="button" css={buttonStyle} onClick={handleSaveClick}>
-        <Text size="large">저장</Text>
-      </Box>
-    </Flex>
+    </Modal>
   );
 };
 

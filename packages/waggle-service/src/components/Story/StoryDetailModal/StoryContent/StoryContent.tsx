@@ -1,13 +1,12 @@
 import { css } from "@emotion/react";
 
-import { Flex, Box, Text, Theme } from "waggle-design-system";
+import { Flex, Box, Text, Theme, useOverlay } from "waggle-design-system";
 
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 import StoryUploadModal from "@/components/Story/StoryUploadModal/StoryUploadModal";
 
 import { useDeleteStoryMutation } from "@/hooks/api/story/useDeleteStoryMutation";
-import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
@@ -15,43 +14,32 @@ import { convertToUTC } from "@/utils/convertToUTC";
 
 import type { StoryDataType } from "@/types/story";
 
-const StoryContent = ({ storyData }: StoryDataType) => {
+interface StoryContentProps extends StoryDataType {
+  onClose: () => void;
+}
+
+const StoryContent = ({ onClose, storyData }: StoryContentProps) => {
   const { mutate: deleteStoryMutate } = useDeleteStoryMutation();
 
-  const { boardId, member, content, createdDate, mediaList, hashtagList } = storyData;
+  const { boardId, member, content, createdDate } = storyData;
 
-  const modal = useModal();
+  const {
+    isOpen: isDeleteWarningModalOpen,
+    close: closeDeleteWarningModal,
+    open: openDeleteWarningModal,
+  } = useOverlay();
+
+  const {
+    isOpen: isStoryEditModalOpen,
+    close: closeStoryEditModal,
+    open: openStoryEditModal,
+  } = useOverlay();
 
   const deleteMutate = () => {
     deleteStoryMutate(boardId, {
       onSuccess: () => {
-        modal.closeModal();
+        closeDeleteWarningModal();
       },
-    });
-  };
-
-  const handleDeleteStory = () => {
-    modal.openModal({
-      key: `DeleteWarningModal`,
-      component: () => <DeleteWarningModal handleDelete={deleteMutate} />,
-      isUpper: true,
-      notCloseIcon: true,
-    });
-  };
-
-  const handleEditStory = () => {
-    modal.closeModal();
-
-    modal.openModal({
-      key: `StoryUploadModal`,
-      component: () => (
-        <StoryUploadModal
-          mediaList={mediaList}
-          content={content}
-          hashtagList={hashtagList}
-          storyId={boardId}
-        />
-      ),
     });
   };
 
@@ -59,8 +47,8 @@ const StoryContent = ({ storyData }: StoryDataType) => {
     <Flex styles={{ direction: "column", gap: "12px" }} css={contentBoxStyle}>
       <StoryProfile
         memberData={member}
-        editClick={handleEditStory}
-        deleteClick={handleDeleteStory}
+        editClick={openStoryEditModal}
+        deleteClick={openDeleteWarningModal}
       />
 
       <Box styles={{ maxWidth: "270px" }}>
@@ -72,6 +60,24 @@ const StoryContent = ({ storyData }: StoryDataType) => {
           {convertToUTC(new Date(createdDate)).date}
         </Text>
       </Flex>
+
+      {isDeleteWarningModalOpen && (
+        <DeleteWarningModal
+          isOpen={isDeleteWarningModalOpen}
+          onClose={closeDeleteWarningModal}
+          handleDelete={deleteMutate}
+          isUpper
+        />
+      )}
+
+      {isStoryEditModalOpen && (
+        <StoryUploadModal
+          isOpen={isStoryEditModalOpen}
+          onClose={closeStoryEditModal}
+          closeStoryModal={onClose}
+          storyData={storyData}
+        />
+      )}
     </Flex>
   );
 };
