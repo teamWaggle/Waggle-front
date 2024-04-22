@@ -40,6 +40,7 @@ const PetAddModal = ({
       introduction: "test",
     },
     petId,
+    onClose,
   });
 
   return (
