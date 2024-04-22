@@ -13,9 +13,6 @@ export const layoutStyle = css({
 });
 
 export const profileInfoBoxStyle = css({
-  gap: "20px",
-  alignItems: "center",
-
   "& > img": {
     width: "72px",
     height: "72px",

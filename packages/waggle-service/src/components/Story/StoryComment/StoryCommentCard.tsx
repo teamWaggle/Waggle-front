@@ -1,13 +1,12 @@
 import { useState } from "react";
 
-import { Flex, Box, Text, Theme } from "waggle-design-system";
+import { Flex, Box, Text, Theme, useOverlay } from "waggle-design-system";
 
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import Reply from "@/components/Story/StoryComment/Reply/Reply";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
 import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
-import useModal from "@/hooks/common/useModal";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
@@ -27,7 +26,11 @@ const StoryCommentCard = ({ commentData, handleEditClick }: CommentDataType) => 
 
   const [replyOpen, setReplyOpen] = useState(false);
 
-  const modal = useModal();
+  const {
+    isOpen: isDeleteWarningModalOpen,
+    close: closeDeleteWarningModal,
+    open: openDeleteWarningModal,
+  } = useOverlay();
 
   const handleReplyOpen = (open: boolean) => {
     setReplyOpen(open);
@@ -36,17 +39,8 @@ const StoryCommentCard = ({ commentData, handleEditClick }: CommentDataType) => 
   const deleteMutate = () => {
     deleteCommentMutate(commentId, {
       onSuccess: () => {
-        modal.selectCloseModal(`DeleteWarningModal`);
+        closeDeleteWarningModal();
       },
-    });
-  };
-
-  const handleDeleteComment = () => {
-    modal.openModal({
-      key: `DeleteWarningModal`,
-      component: () => <DeleteWarningModal targetText="댓글" handleDelete={deleteMutate} />,
-      notCloseIcon: true,
-      isUpper: true,
     });
   };
 
@@ -54,7 +48,7 @@ const StoryCommentCard = ({ commentData, handleEditClick }: CommentDataType) => 
     <Flex styles={{ direction: "column", padding: "0 30px 0 18px", width: "100%" }}>
       <StoryProfile
         memberData={member}
-        deleteClick={handleDeleteComment}
+        deleteClick={openDeleteWarningModal}
         editClick={() => handleEditClick(content, commentId)}
       />
 
@@ -78,6 +72,16 @@ const StoryCommentCard = ({ commentData, handleEditClick }: CommentDataType) => 
       </Flex>
 
       {replyOpen && <Reply commentId={commentId} handleReplyOpen={handleReplyOpen} />}
+
+      {isDeleteWarningModalOpen && (
+        <DeleteWarningModal
+          isOpen={isDeleteWarningModalOpen}
+          onClose={closeDeleteWarningModal}
+          handleDelete={deleteMutate}
+          targetText="댓글"
+          isUpper
+        />
+      )}
     </Flex>
   );
 };

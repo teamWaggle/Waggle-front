@@ -42,7 +42,7 @@ export const closeButtonStyling = (isWhiteIcon?: boolean) => {
       width: "16px",
       height: "16px",
 
-      "& > g > line": {
+      "& > line": {
         stroke: isWhiteIcon ? Theme.color.white : "",
       },
     },

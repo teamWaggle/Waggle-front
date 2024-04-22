@@ -1,13 +1,13 @@
+import { Flex, Heading, Text, useOverlay } from "waggle-design-system";
+
 import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
 
-import { Flex, Heading, Text } from "@/components/common";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import PetAddModal from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal";
 
 import { useDeletePetMutation } from "@/hooks/api/pet/useDeletePetMutation";
-import useModal from "@/hooks/common/useModal";
 
 import type { PetResultType } from "@/types/pet";
 
@@ -19,34 +19,30 @@ import {
 const MyPagePetCard = ({ profileImgUrl, gender, name, petId, isOwner }: PetResultType) => {
   const { mutate: deletePetMutate } = useDeletePetMutation();
 
-  const modal = useModal();
+  const {
+    isOpen: isPetAddModalOpen,
+    close: closePetAddModal,
+    open: openPetAddModal,
+  } = useOverlay();
+
+  const {
+    isOpen: isDeleteWarningModalOpen,
+    close: closeDeleteWarningModal,
+    open: openDeleteWarningModal,
+  } = useOverlay();
 
   const deleteMutate = () => {
     deletePetMutate(petId);
-  };
-
-  const handleDeletePet = () => {
-    modal.openModal({
-      key: `DeleteWarningModal`,
-      component: () => <DeleteWarningModal targetText="반려견" handleDelete={deleteMutate} />,
-      notCloseIcon: true,
-    });
-  };
-
-  const handleEditPet = () => {
-    modal.openModal({
-      key: "PetAddModal",
-      component: () => (
-        <PetAddModal profileImgUrl={profileImgUrl} gender={gender} name={name} petId={petId} />
-      ),
-    });
   };
 
   return (
     <Flex css={petCardStyle}>
       <img src={profileImgUrl} alt="petImg" />
 
-      <Flex css={petInfoBoxStyle}>
+      <Flex
+        styles={{ direction: "column", gap: "14px", position: "relative" }}
+        css={petInfoBoxStyle}
+      >
         <Flex styles={{ align: "center", gap: "6px" }}>
           {gender === "MALE" ? <MaleIcon /> : <FeMaleIcon />}
 
@@ -54,8 +50,8 @@ const MyPagePetCard = ({ profileImgUrl, gender, name, petId, isOwner }: PetResul
 
           {isOwner && (
             <ProfileOptionMenu
-              handleEditMenu={handleEditPet}
-              handleDeleteMenu={handleDeletePet}
+              handleEditMenu={openPetAddModal}
+              handleDeleteMenu={openDeleteWarningModal}
               isPet
             />
           )}
@@ -66,6 +62,26 @@ const MyPagePetCard = ({ profileImgUrl, gender, name, petId, isOwner }: PetResul
         </Text>
         <Text>반려견 소개가 입력되지 않았습니다.</Text>
       </Flex>
+
+      {isPetAddModalOpen && (
+        <PetAddModal
+          isOpen={isPetAddModalOpen}
+          onClose={closePetAddModal}
+          profileImgUrl={profileImgUrl}
+          gender={gender}
+          name={name}
+          petId={petId}
+        />
+      )}
+
+      {isDeleteWarningModalOpen && (
+        <DeleteWarningModal
+          isOpen={isDeleteWarningModalOpen}
+          onClose={closeDeleteWarningModal}
+          targetText="반려견"
+          handleDelete={deleteMutate}
+        />
+      )}
     </Flex>
   );
 };

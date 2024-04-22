@@ -1,9 +1,9 @@
-import { Flex, Box, Text } from "@/components/common";
+import { Flex, Box, Text, useOverlay } from "waggle-design-system";
+
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
 
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
-import useModal from "@/hooks/common/useModal";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
@@ -19,22 +19,17 @@ const ReplyItem = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
 
   const { mutate: deleteReplyMutate } = useDeleteRelpyMutation();
 
-  const modal = useModal();
+  const {
+    isOpen: isDeleteWarningModalOpen,
+    close: closeDeleteWarningModal,
+    open: openDeleteWarningModal,
+  } = useOverlay();
 
   const deleteMutate = () => {
     deleteReplyMutate(replyId, {
       onSuccess: () => {
-        modal.selectCloseModal(`DeleteWarningModal`);
+        closeDeleteWarningModal();
       },
-    });
-  };
-
-  const handleDeleteReply = () => {
-    modal.openModal({
-      key: `DeleteWarningModal`,
-      component: () => <DeleteWarningModal targetText="답글" handleDelete={deleteMutate} />,
-      notCloseIcon: true,
-      isUpper: true,
     });
   };
 
@@ -48,7 +43,7 @@ const ReplyItem = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
       <StoryProfile
         memberData={member}
         editClick={() => handleReplyEditClick(content, replyId)}
-        deleteClick={handleDeleteReply}
+        deleteClick={openDeleteWarningModal}
       />
 
       <Box styles={{ maxWidth: "215px", paddingLeft: "43px" }}>
@@ -57,6 +52,16 @@ const ReplyItem = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
         </Text>
         <Text css={replyDateTextStyle}>{convertToUTC(new Date(createdDate)).date}</Text>
       </Box>
+
+      {isDeleteWarningModalOpen && (
+        <DeleteWarningModal
+          isOpen={isDeleteWarningModalOpen}
+          onClose={closeDeleteWarningModal}
+          handleDelete={deleteMutate}
+          targetText="답글"
+          isUpper
+        />
+      )}
     </Flex>
   );
 };

@@ -14,10 +14,6 @@ export const uploadMediaBoxStyle = (
     backgroundColor: isDragOver ? "#ffeaca" : Theme.color.brand_primary,
     borderRadius,
     border: width > 700 ? `5px solid ${Theme.color.white}` : "none",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    gap: "20px",
 
     "& > p": {
       fontWeight: 600,

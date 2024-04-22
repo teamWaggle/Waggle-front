@@ -1,9 +1,8 @@
 import { useRef } from "react";
 
-import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
+import { Flex, Text, Button } from "waggle-design-system";
 
-import { Flex, Text } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import UploadMediaIcon from "@/assets/svg/ic-media-upload.svg?react";
 
 import { useDragAndDrop } from "@/hooks/common/useDragAndDrop";
 
@@ -26,6 +25,7 @@ const PostUploadMedia = ({ handleImgUpload, dropImgUpload }: PostUploadMediaPara
 
   return (
     <Flex
+      styles={{ justify: "center", align: "center", direction: "column", gap: "20px" }}
       css={uploadMediaBoxStyle(isDragOver, 536, 466, "20px")}
       onDrop={handleDrop}
       onDragEnter={handleDragIn}
@@ -41,7 +41,7 @@ const PostUploadMedia = ({ handleImgUpload, dropImgUpload }: PostUploadMediaPara
       </label>
       <input
         type="file"
-        multiple={true}
+        multiple
         id="media"
         onChange={handleImgUpload}
         accept="image/jpeg, image/png, image/heic, image/heif, image/jpg"
