@@ -8,7 +8,7 @@ import * as yup from "yup";
 import { TEAM_SCHEDULE_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
 import { TEAM_CONTENT } from "@/constants/team";
 
-import { useAddTeamSchedule } from "@/hooks/schedule/useAddTeamSchedule";
+import { useAddTeamSchedule } from "@/hooks/api/schedule/useAddTeamSchedule";
 import useModal from "@/hooks/common/useModal";
 
 import { convertToTeamScheduleDataFormat } from "@/utils/convertToTeamScheduleDataFormat";

@@ -7,15 +7,17 @@ import { dropdownButtonStyle } from "@/components/Planning/Calendar/CalendarCard
 const OptionDropdown = ({
   children,
   handleCancelSchedule,
+  handleDeleteSchedule,
 }: {
   children: ReactNode;
   handleCancelSchedule: () => void;
+  handleDeleteSchedule: () => void;
 }) => {
   return (
     <Dropdown>
       <Dropdown.Button css={dropdownButtonStyle}>{children}</Dropdown.Button>
       <Dropdown.List>
-        <Dropdown.Item>일정 삭제</Dropdown.Item>
+        <Dropdown.Item onClick={handleDeleteSchedule}>일정 삭제</Dropdown.Item>
         <Dropdown.Item onClick={handleCancelSchedule}>일정 취소</Dropdown.Item>
         <Dropdown.Item>일정 수정</Dropdown.Item>
         <Dropdown.Item>권한 위임</Dropdown.Item>

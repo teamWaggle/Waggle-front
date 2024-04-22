@@ -25,19 +25,24 @@ import {
   scheduleCommentBoxStyle,
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal.style";
 import useModal from "@/hooks/common/useModal";
-import { useCancelMemberSchedule } from "@/hooks/schedule/useCancelMemberSchedule";
+import { useCancelMemberSchedule } from "@/hooks/api/schedule/useCancelMemberSchedule";
+import { useDeleteTeamSchedule } from "@/hooks/api/schedule/useDeleteTeamSchedule";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const scheduleModalRef = useRef<HTMLDivElement>(null);
   const { closeScheduleModal } = useModal();
   const { mutate: cancelMemberScheduleMutate } = useCancelMemberSchedule();
-
+  const { mutate: deleteTeamScheduleMutate } = useDeleteTeamSchedule();
   useClickOutSide(scheduleModalRef, closeScheduleModal);
   const handleCloseModal = () => {
     closeScheduleModal();
   };
   const handleCancelSchedule = () => {
     cancelMemberScheduleMutate(schedule.boardId);
+    closeScheduleModal();
+  };
+  const handleDeleteSchedule = () => {
+    deleteTeamScheduleMutate(schedule.boardId);
     closeScheduleModal();
   };
   return (
@@ -50,7 +55,10 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
           </Heading>
         </Flex>
         <Flex styles={{ gap: "15px" }}>
-          <OptionDropdown handleCancelSchedule={handleCancelSchedule}>
+          <OptionDropdown
+            handleDeleteSchedule={handleDeleteSchedule}
+            handleCancelSchedule={handleCancelSchedule}
+          >
             <KebabMenuIcon css={scheduleModalIcon} />
           </OptionDropdown>
           <ScheduleModalCloseIcon css={scheduleModalIcon} onClick={handleCloseModal} />
