@@ -62,6 +62,7 @@ export const END_POINTS = {
   ADD_TEAM_SCHEDULE: (teamId: number) => `/api/schedules/${teamId}`,
   ADD_TEAM_SCHEDULE_TO_MY_SCHEDULE: (scheduleId: number) => `/api/schedules/members/${scheduleId}`,
   CANCEL_MEMBER_SCHEDULE: (scheduleId: number) => `/api/schedules/${scheduleId}/members`,
+  DELETE_TEAM_SCHEDULE: (scheduleId: number) => `/api/schedules/${scheduleId}`,
 
   //Team
   MEMBER_TEAMS: (memberId: number) => `/api/teams/user/${memberId}/teams`,

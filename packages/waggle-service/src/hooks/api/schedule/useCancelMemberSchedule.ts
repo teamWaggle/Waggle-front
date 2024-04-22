@@ -4,6 +4,7 @@ import type { CommonResponseResultBooleanType, DefaultApiResponseType } from "@/
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { ScheduleResultType } from "@/types/planning";
 import { cancelMemberSchedule } from "@/api/schedule/cancelMemberSchedule";
+import { toast } from "react-toastify";
 
 // 현재 모든 데이터를 update하는 방식으로 구현되어 있어서, 성능을 생각했을 때 추후에는 수정이 필요할 수 있음
 export const useCancelMemberSchedule = () => {
@@ -49,6 +50,9 @@ export const useCancelMemberSchedule = () => {
           { updater: () => (context as { previousStartDateData?: unknown }).previousStartDateData }
         );
       }
+    },
+    onSuccess: () => {
+      toast.success("스케줄이 취소되었습니다.");
     },
   });
 };
