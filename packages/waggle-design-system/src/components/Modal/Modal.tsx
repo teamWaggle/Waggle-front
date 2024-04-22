@@ -48,24 +48,20 @@ const Modal = ({
 
   return createPortal(
     <>
-      {isOpen && (
-        <>
-          <div css={backdropStyle(isUpper)} onClick={isOutsideClose ? closeModal : undefined} />
-          <dialog aria-modal={isOpen} css={dialogStyle(isUpper)} {...attributes}>
-            {hasCloseButton && (
-              <button
-                type="button"
-                aria-label="모달 닫기 버튼"
-                onClick={closeModal}
-                css={closeButtonStyling(isWhiteIcon)}
-              >
-                <CloseIcon />
-              </button>
-            )}
-            {children}
-          </dialog>
-        </>
-      )}
+      <div css={backdropStyle(isUpper)} onClick={isOutsideClose ? closeModal : undefined} />
+      <dialog aria-modal={isOpen} css={dialogStyle(isUpper)} {...attributes}>
+        {hasCloseButton && (
+          <button
+            type="button"
+            aria-label="모달 닫기 버튼"
+            onClick={closeModal}
+            css={closeButtonStyling(isWhiteIcon)}
+          >
+            <CloseIcon />
+          </button>
+        )}
+        {children}
+      </dialog>
     </>,
     document.body
   );
