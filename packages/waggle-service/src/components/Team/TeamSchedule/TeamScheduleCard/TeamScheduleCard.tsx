@@ -19,7 +19,7 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
   const { teamColor, title, startDate, endDate, status, boardId, overlappedScheduleCount } =
     teamScheduleData;
   const scheduleStatusString = getTeamScheduleStatus(status);
-  const { mutate: addToMySchedule } = useAddTeamScheduleToMySchedule(startDate, endDate);
+  const { mutate: addToMySchedule } = useAddTeamScheduleToMySchedule();
   const handleAddToMySchedule = () => {
     addToMySchedule(boardId);
   };

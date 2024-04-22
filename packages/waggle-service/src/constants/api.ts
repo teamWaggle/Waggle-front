@@ -61,7 +61,7 @@ export const END_POINTS = {
     `/api/schedules/teams/${teamId}/period?start=${startDate}&end=${endDate}`,
   ADD_TEAM_SCHEDULE: (teamId: number) => `/api/schedules/${teamId}`,
   ADD_TEAM_SCHEDULE_TO_MY_SCHEDULE: (scheduleId: number) => `/api/schedules/members/${scheduleId}`,
-  DELETE_MEMBER_SCHEDULE: (scheduleId: number) => `/api/schedules/${scheduleId}/members`,
+  CANCEL_MEMBER_SCHEDULE: (scheduleId: number) => `/api/schedules/${scheduleId}/members`,
 
   //Team
   MEMBER_TEAMS: (memberId: number) => `/api/teams/user/${memberId}/teams`,
