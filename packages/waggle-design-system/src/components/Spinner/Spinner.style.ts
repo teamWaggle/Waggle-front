@@ -3,6 +3,8 @@ import { keyframes } from "@emotion/react";
 
 import { Theme } from "@/styles/Theme";
 
+import type { SpinnerProps } from "@/components/Spinner/Spinner";
+
 export const spinnerRotation = keyframes`
   0% {
     transform: rotate(0deg);
@@ -12,12 +14,12 @@ export const spinnerRotation = keyframes`
   }
 `;
 
-export const spinnerStyle = () =>
+export const spinnerStyle = ({ size, width }: Required<SpinnerProps>) =>
   css({
     display: "inline-block",
-    width: "80px",
-    height: "80px",
-    border: `8px solid ${Theme.color.gray200}`,
+    width: `${size}px`,
+    height: `${size}px`,
+    border: `${width}px solid ${Theme.color.gray200}`,
     borderBottomColor: Theme.color.brand_primary,
     borderRadius: "50%",
     animation: `${spinnerRotation} 1s linear infinite`,

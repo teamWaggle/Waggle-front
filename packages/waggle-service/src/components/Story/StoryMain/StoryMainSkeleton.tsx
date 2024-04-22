@@ -1,32 +1,22 @@
-import { Flex, Box } from "@/components/common";
-import { Sidebar } from "@/components/Sidebar";
-import StoryCardSkeleton from "@/components/Story/StoryCard/StoryCardSkeleton";
-import StorySearchBar from "@/components/Story/StorySearchBar/StorySearchBar";
+import { Flex, Box } from "waggle-design-system";
 
-import {
-  mainStyle,
-  mainBoxStyle,
-  storyBoxStyle,
-} from "@/components/Story/StoryMain/StoryMain.style";
+import Sidebar from "@/components/Sidebar/Sidebar";
+import StoryCardSkeleton from "@/components/Story/StoryCard/StoryCardSkeleton";
+
+import { gridBoxStyle } from "@/components/Story/StoryMain/StoryMain.style";
 
 const StoryMainSkeleton = () => {
   return (
-    <Box tag="main" css={mainStyle}>
+    <Box tag="main" styles={{ padding: "32px 0 60px" }}>
       <Flex styles={{ justify: "space-between" }}>
-        <Flex tag="section" css={mainBoxStyle}>
-          <Flex styles={{ gap: "20px", direction: "column", width: "100%" }}>
-            <StorySearchBar />
-
-            <Flex css={storyBoxStyle}>
-              {Array.from({ length: 9 }, (_, index) => (
-                <StoryCardSkeleton key={index} />
-              ))}
-            </Flex>
-          </Flex>
-        </Flex>
-
-        <Sidebar />
+        <Box tag="ol" css={gridBoxStyle}>
+          {Array.from({ length: 9 }, (_, index) => (
+            <StoryCardSkeleton key={index} />
+          ))}
+        </Box>
       </Flex>
+
+      <Sidebar />
     </Box>
   );
 };

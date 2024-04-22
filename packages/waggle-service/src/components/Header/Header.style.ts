@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const headerStyle = css({
   position: "sticky",
@@ -11,12 +11,9 @@ export const headerStyle = css({
 });
 
 export const headerBoxStyle = css({
-  justifyContent: "space-between",
-  alignItems: "center",
-  padding: "0 196px",
+  padding: "0 50px",
   height: "85px",
-  margin: "0 auto",
-  width: "1536px",
+  maxWidth: "1254px",
 
   "& > svg": {
     cursor: "pointer",

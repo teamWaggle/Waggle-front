@@ -1,19 +1,20 @@
 import { useNavigate } from "react-router-dom";
+import { css } from "@emotion/react";
+
+import { Flex, Box } from "waggle-design-system";
 
 import ProfileIcon from "@/assets/svg/ic-header-profile.svg?react";
 import NotiIcon from "@/assets/svg/ic-header-noti.svg?react";
 
-import { Flex } from "@/components/common";
-import { Box } from "waggle-design-system";
 import Notification from "@/components/common/Notification/Notification";
 
 import { PATH } from "@/constants/path";
 
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-
-import { layoutStyle, notiBoxStyle } from "@/components/Header/LogInMenu/LogInMenu.style";
 import { useNotificationTrigger } from "@/hooks/common/useNotificationTrigger";
+
+import { notiBoxStyle } from "@/components/Header/LogInMenu/LogInMenu.style";
 
 const LogInMenu = () => {
   const { userUrl } = useMemberInfoSaveQuery();
@@ -26,7 +27,7 @@ const LogInMenu = () => {
 
   return (
     <div ref={notiRef}>
-      <Flex css={layoutStyle}>
+      <Flex styles={{ align: "center", gap: "10px" }} css={flexBoxStyle}>
         <NotiIcon width={30} height={30} onClick={handleNotiOpen} />
         <ProfileIcon
           width={40}
@@ -45,3 +46,9 @@ const LogInMenu = () => {
 };
 
 export default LogInMenu;
+
+const flexBoxStyle = css({
+  "& > svg": {
+    cursor: "pointer",
+  },
+});
