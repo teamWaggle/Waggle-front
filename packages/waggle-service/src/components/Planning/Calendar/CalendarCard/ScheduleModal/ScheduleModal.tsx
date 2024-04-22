@@ -27,10 +27,12 @@ import {
 import useModal from "@/hooks/common/useModal";
 import { useCancelMemberSchedule } from "@/hooks/api/schedule/useCancelMemberSchedule";
 import { useDeleteTeamSchedule } from "@/hooks/api/schedule/useDeleteTeamSchedule";
+import EditTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/EditTeamScheduleModal";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const scheduleModalRef = useRef<HTMLDivElement>(null);
-  const { closeScheduleModal } = useModal();
+  // const { getYearMonthDay, getTime } = getDate();
+  const { closeScheduleModal, openModal } = useModal();
   const { mutate: cancelMemberScheduleMutate } = useCancelMemberSchedule();
   const { mutate: deleteTeamScheduleMutate } = useDeleteTeamSchedule();
   useClickOutSide(scheduleModalRef, closeScheduleModal);
@@ -45,6 +47,28 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
     deleteTeamScheduleMutate(schedule.boardId);
     closeScheduleModal();
   };
+
+  const editDefaultValues = {
+    title: schedule.title,
+    content: schedule.content,
+    startDate: schedule.startDate,
+    endDate: schedule.endDate,
+    endTime: schedule.endDate,
+    startTime: schedule.startDate,
+  };
+
+  console.log(editDefaultValues);
+  const handleEditSchedule = () => {
+    openModal({
+      key: "EditSchedule",
+      component: () => (
+        <EditTeamScheduleModal scheduleId={schedule.boardId} defaultValues={editDefaultValues} />
+      ),
+      isWhiteIcon: true,
+      isOutsideClose: false,
+    });
+    closeScheduleModal();
+  };
   return (
     <section css={scheduleModalBoxStyle(position)} ref={scheduleModalRef}>
       <Flex css={scheduleTitleBoxStyle}>
@@ -56,6 +80,7 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
         </Flex>
         <Flex styles={{ gap: "15px" }}>
           <OptionDropdown
+            handleEditSchedule={handleEditSchedule}
             handleDeleteSchedule={handleDeleteSchedule}
             handleCancelSchedule={handleCancelSchedule}
           >

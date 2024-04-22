@@ -2,7 +2,7 @@ import type React from "react";
 import type { FieldPath, FieldValues } from "react-hook-form";
 import { useFormContext, useController, useFormState } from "react-hook-form";
 
-export const useControlledForm = (name?: FieldPath<FieldValues>) => {
+export const useControlledForm = (name: FieldPath<FieldValues>) => {
   const { control, trigger, reset } = useFormContext();
 
   const { field } = useController({

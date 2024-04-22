@@ -25,14 +25,19 @@ const TextInputField = ({
   maxLength,
   isContent,
 }: TextInputFieldProps) => {
-  const { handleTextOnChange, isValid, errorMessage } = useControlledForm(name);
+  const { handleTextOnChange, isValid, errorMessage, field } = useControlledForm(name);
 
   const message = isInitialNotice ? validateText : "";
 
   return (
     <>
       {isContent ? (
-        <textarea css={inputStyle} placeholder={placeholder} onChange={handleTextOnChange} />
+        <textarea
+          value={field.value}
+          css={inputStyle}
+          placeholder={placeholder}
+          onChange={handleTextOnChange}
+        />
       ) : (
         <input
           css={inputStyle}
@@ -40,6 +45,7 @@ const TextInputField = ({
           onChange={handleTextOnChange}
           placeholder={placeholder}
           maxLength={maxLength}
+          value={field.value}
         />
       )}
 

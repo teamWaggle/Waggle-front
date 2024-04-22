@@ -3,6 +3,7 @@ import { addTeamScheduleToMySchedule } from "@/api/schedule/addTeamScheduleToMyS
 import { QUERY_KEYS } from "@/constants/queryKeys";
 import type { CommonResponseResultBooleanType } from "@/types/common";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export const useAddTeamScheduleToMySchedule = () => {
   const queryClient = useQueryClient();
@@ -14,9 +15,7 @@ export const useAddTeamScheduleToMySchedule = () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.SCHEDULE_MONTHLY],
       });
-    },
-    onError: (error) => {
-      console.log(error);
+      toast.success("스케줄이 추가되었습니다.");
     },
   });
 };

@@ -6,7 +6,7 @@ export const TimePickerCardBoxStyle = (day: string) =>
   css({
     display: "flex",
     height: "32px",
-    width: "180px",
+    width: "100%",
     minWidth: "fit-content",
     alignItems: "center",
     paddingLeft: "8px",
