@@ -57,6 +57,7 @@ const ProfileEditModal = ({ memberData, isOpen, onClose }: ProfileEditModalProps
       userUrl: "",
     },
     memberId,
+    onClose,
   });
 
   return (

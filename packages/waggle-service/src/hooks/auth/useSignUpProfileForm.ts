@@ -5,7 +5,6 @@ import { useMemberInfoMutation } from "../api/member/useMemberInfoMutation";
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useMemberInfoFirstMutation } from "@/hooks/api/member/useMemberInfoFirstMutation";
-import useModal from "@/hooks/common/useModal";
 import { useValidateForm } from "@/hooks/common/useValidateForm";
 
 import type { SignUpProfileFormType } from "@/types/auth";
@@ -16,6 +15,7 @@ interface UseSignUpProfileFormParams {
   uploadMedia?: string;
   prevReqeust?: { nickname: string; userUrl: string };
   memberId?: number;
+  onClose?: () => void;
 }
 
 export const useSignUpProfileForm = ({
@@ -24,14 +24,13 @@ export const useSignUpProfileForm = ({
   uploadMedia,
   prevReqeust,
   memberId,
+  onClose,
 }: UseSignUpProfileFormParams) => {
   const { mutate: memberInfoFirstMutate } = useMemberInfoFirstMutation();
   const { mutate: memberInfoMutate } = useMemberInfoMutation();
 
   const nicknameRef = useRef<HTMLInputElement>(null);
   const userUrlRef = useRef<HTMLInputElement>(null);
-
-  const modal = useModal();
 
   const [nicknameCheckComplete, setNicknameCheckComplete] = useState(false);
   const [userUrlCheckComplete, setUserUrlCheckComplete] = useState(false);
@@ -146,7 +145,7 @@ export const useSignUpProfileForm = ({
 
       memberInfoMutate(formData, {
         onSuccess: () => {
-          modal.closeModal();
+          onClose && onClose();
         },
       });
     }

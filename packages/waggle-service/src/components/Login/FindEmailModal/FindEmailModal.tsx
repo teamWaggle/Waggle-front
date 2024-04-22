@@ -13,7 +13,7 @@ import {
   textStyle,
 } from "@/components/Login/FindEmailModal/FindEmailModal.style";
 
-interface FindEmailModalProps extends ModalProps {
+export interface FindEmailModalProps extends ModalProps {
   openLoginModal: () => void;
 }
 

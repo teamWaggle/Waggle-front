@@ -36,7 +36,7 @@ const FindPasswordModal = ({ isOpen, onClose, openLoginModal }: FindEmailModalPr
     updateInputValue: updatePasswordInputValue,
     handleChangeValidateComplete,
     handlePasswordChange,
-  } = usePasswordForm({ memberId, isReset: true, handleChangeMode });
+  } = usePasswordForm({ memberId, isReset: true, handleChangeMode, onClose });
 
   return (
     <Modal isOpen={isOpen} closeModal={onClose}>
