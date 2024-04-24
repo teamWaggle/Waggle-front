@@ -12,4 +12,5 @@ export const layoutStyle = css({
   overflowY: "auto",
   zIndex: 1,
   overscrollBehavior: "contain",
+  borderLeft: `1px solid ${Theme.color.border}`,
 });

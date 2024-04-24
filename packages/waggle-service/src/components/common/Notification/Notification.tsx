@@ -35,6 +35,27 @@ const Notification = () => {
           createdDate="2024.03.25"
           teamName="말티즈 친구들"
         />
+        <NotificationCard
+          nickname="정한"
+          isFollow
+          category="CONNECTION"
+          createdDate="2024.03.25"
+          teamName="말티즈 친구들"
+        />
+        <NotificationCard
+          nickname="정한"
+          isFollow
+          category="CONNECTION"
+          createdDate="2024.03.25"
+          teamName="말티즈 친구들"
+        />
+        <NotificationCard
+          nickname="정한"
+          isFollow
+          category="CONNECTION"
+          createdDate="2024.03.25"
+          teamName="말티즈 친구들"
+        />
       </Flex>
     </Flex>
   );
