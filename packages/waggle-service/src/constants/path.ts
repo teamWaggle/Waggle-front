@@ -8,7 +8,7 @@ export const PATH = {
   QUESTION_DETAIL: (questionId: string) => `/question/${questionId}`,
   QUESTION_EDIT: (questionId: string) => `/question/${questionId}?mode=edit`,
   QUESTION_CREATE: "/question-new",
-  MY: (userUrl: string) => `/${userUrl}`,
+  MY: (userUrl: string) => `/${userUrl}?tab=profile`,
   AUTH: "/auth",
   SIGN_UP: "/signup",
   RELOAD: 0,
