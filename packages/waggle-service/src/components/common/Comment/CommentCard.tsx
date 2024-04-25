@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
 import { useOverlay } from "waggle-design-system";
@@ -8,6 +9,8 @@ import Reply from "@/components/common/Comment/Reply/Reply";
 import ReplyInput from "@/components/common/Comment/Reply/ReplyInput";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
+
+import { PATH } from "@/constants/path";
 
 import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
@@ -56,6 +59,8 @@ const CommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
 
   const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const deleteMutate = () => {
     deleteCommentMutate(commentId, {
       onSuccess: () => {
@@ -66,7 +71,11 @@ const CommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
 
   return (
     <Flex css={commentCardBoxStyle}>
-      <img src={member.profileImgUrl} alt="profileImg" />
+      <img
+        src={member.profileImgUrl}
+        alt="profileImg"
+        onClick={() => navigate(`${PATH.MY(member.userUrl)}?tab=profile`)}
+      />
 
       <Flex styles={{ direction: "column", gap: "22px", width: "calc(100% - 64px)" }}>
         <Flex styles={{ direction: "column" }}>

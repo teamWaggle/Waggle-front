@@ -1,10 +1,13 @@
 import { useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 import { useOverlay } from "waggle-design-system";
 
 import { Flex, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
+
+import { PATH } from "@/constants/path";
 
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
@@ -31,6 +34,8 @@ const Reply = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
 
   const memberId = userData ? userData.memberId : null;
 
+  const navigate = useNavigate();
+
   const {
     isOpen: isDeleteWarningModalOpen,
     close: closeDeleteWarningModal,
@@ -47,7 +52,11 @@ const Reply = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
 
   return (
     <Flex css={replyCardBoxStyle}>
-      <img src={member.profileImgUrl} alt="memberProfileImg" />
+      <img
+        src={member.profileImgUrl}
+        alt="memberProfileImg"
+        onClick={() => navigate(`${PATH.MY(member.userUrl)}?tab=profile`)}
+      />
 
       <Flex styles={{ direction: "column", gap: "22px" }}>
         <Flex styles={{ direction: "column" }}>
