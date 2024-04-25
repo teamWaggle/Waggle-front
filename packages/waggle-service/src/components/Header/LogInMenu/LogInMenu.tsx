@@ -32,7 +32,7 @@ const LogInMenu = () => {
         <ProfileIcon
           width={40}
           height={40}
-          onClick={() => navigate(PATH.MY(memberData.result.userUrl))}
+          onClick={() => navigate(`${PATH.MY(memberData.result.userUrl)}?tab=profile`)}
         />
       </Flex>
 

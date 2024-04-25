@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { css } from "@emotion/react";
 import { useRecoilValue } from "recoil";
 
@@ -10,11 +11,13 @@ import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuer
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
+import { PATH } from "@/constants/path";
 
 interface MemberDataType {
   profileImgUrl: string | undefined;
   nickname: string | undefined;
   memberId: number;
+  userUrl: string;
 }
 
 interface StoryProfileProps {
@@ -24,7 +27,7 @@ interface StoryProfileProps {
 }
 
 const StoryProfile = ({ memberData, editClick, deleteClick }: StoryProfileProps) => {
-  const { profileImgUrl, nickname, memberId: ownerId } = memberData;
+  const { profileImgUrl, nickname, memberId: ownerId, userUrl } = memberData;
 
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
@@ -32,12 +35,19 @@ const StoryProfile = ({ memberData, editClick, deleteClick }: StoryProfileProps)
 
   const memberId = userData ? userData.memberId : null;
 
+  const navigate = useNavigate();
+
   return (
     <Flex
       styles={{ align: "center", justify: "space-between", width: "100%", position: "relative" }}
     >
       <Flex styles={{ align: "center", gap: "10px" }}>
-        <img src={profileImgUrl} alt="profileImg" css={profileStyle} />
+        <img
+          src={profileImgUrl}
+          alt="profileImg"
+          css={profileStyle}
+          onClick={() => navigate(`${PATH.MY(userUrl)}?tab=profile`)}
+        />
         <Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
           {nickname}
         </Text>
@@ -57,4 +67,5 @@ const profileStyle = css({
   height: "33px",
   borderRadius: "50%",
   objectFit: "cover",
+  cursor: "pointer",
 });

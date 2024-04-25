@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 
 import { css } from "@emotion/react";
@@ -47,11 +47,9 @@ const MyPage = () => {
 
   return (
     <Flex css={layoutStyle} styles={{ margin: "0 auto", width: "100%" }}>
-      <Suspense fallback={<div></div>}>
-        <MyPageProfile paramUrl={paramUrl} />
+      <MyPageProfile paramUrl={paramUrl} />
 
-        {myPageContents()}
-      </Suspense>
+      {myPageContents()}
     </Flex>
   );
 };
