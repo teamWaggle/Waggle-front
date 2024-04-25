@@ -50,7 +50,9 @@ const ReplyItem = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
         <Text size="small" css={getCommentTextStyle}>
           {content}
         </Text>
-        <Text css={replyDateTextStyle}>{convertToUTC(new Date(createdDate)).date}</Text>
+        <Text style={{ fontSize: "10px", lineHeight: "12px" }} css={replyDateTextStyle}>
+          {convertToUTC(new Date(createdDate)).date}
+        </Text>
       </Box>
 
       {isDeleteWarningModalOpen && (

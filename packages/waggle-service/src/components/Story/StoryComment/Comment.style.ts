@@ -44,8 +44,6 @@ export const replyButtonStyle = css({
 });
 
 export const replyDateTextStyle = css({
-  fontSize: "10px",
-  lineHeight: "12px",
   fontWeight: 500,
   color: Theme.color.readonly_text,
   marginTop: "4px",
