@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 
 import { css } from "@emotion/react";
@@ -14,12 +14,8 @@ import MyPageComment from "@/components/MyPage/MyPageComment/MyPageComment";
 
 import { MY_PAGE_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
-import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
-
 const MyPage = () => {
   const { userUrl: paramUrl } = useParams();
-
-  const { memberData } = useMemberInfoQuery(paramUrl);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -47,13 +43,15 @@ const MyPage = () => {
     if (tabMode === null || validTabs.includes(tabMode) === false) {
       setSearchParams(`${TAB_KEY}=${MY_PAGE_TAB_KEY.PROFILE}`);
     }
-  }, [searchParams]);
+  }, [searchParams, tabMode]);
 
   return (
     <Flex css={layoutStyle} styles={{ margin: "0 auto", width: "100%" }}>
-      <MyPageProfile memberData={memberData.result} />
+      <Suspense fallback={<div></div>}>
+        <MyPageProfile paramUrl={paramUrl} />
 
-      {myPageContents()}
+        {myPageContents()}
+      </Suspense>
     </Flex>
   );
 };
