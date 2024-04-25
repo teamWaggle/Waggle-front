@@ -1,6 +1,9 @@
 import { css } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
 
 import { Flex, Text } from "@/components/common";
+
+import { PATH } from "@/constants/path";
 
 import { Theme } from "@/styles/Theme";
 
@@ -15,9 +18,15 @@ interface PostProfilePropsType {
 }
 
 const PostProfile = ({ member, viewCount, createdDate }: PostProfilePropsType) => {
+  const navigate = useNavigate();
+
   return (
     <Flex css={profileStyle}>
-      <img src={member.profileImgUrl} alt="profileImg" />
+      <img
+        src={member.profileImgUrl}
+        alt="profileImg"
+        onClick={() => navigate(`${PATH.MY(member.userUrl)}?tab=profile`)}
+      />
       <Text>
         <span>{member.nickname}</span>
         <span>조회 {viewCount}</span>
@@ -39,6 +48,7 @@ const profileStyle = css({
     height: "40px",
     borderRadius: "50%",
     objectFit: "cover",
+    cursor: "pointer",
   },
 
   span: {

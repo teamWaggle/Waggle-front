@@ -36,6 +36,7 @@ export const commentCardBoxStyle = css({
     width: "50px",
     height: "50px",
     borderRadius: "50%",
+    cursor: "pointer",
   },
 });
 
