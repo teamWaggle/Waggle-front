@@ -12,15 +12,19 @@ import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
-import type { MemberDataType } from "@/types/auth";
+import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
+
+import type { ParamUrlType } from "@/types/common";
 
 import {
   layoutStyle,
   profileInfoBoxStyle,
 } from "@/components/MyPage/MyPageProfile/MyPageProfile.style";
 
-const MyPageProfile = ({ memberData }: MemberDataType) => {
-  const { profileImgUrl, nickname, memberId, followerCount, followingCount } = memberData;
+const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
+  const { memberData } = useMemberInfoQuery(paramUrl);
+
+  const { profileImgUrl, nickname, memberId, followerCount, followingCount } = memberData.result;
 
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
@@ -89,7 +93,7 @@ const MyPageProfile = ({ memberData }: MemberDataType) => {
 
       {isProfileEditModalOpen && (
         <ProfileEditModal
-          memberData={memberData}
+          memberData={memberData.result}
           isOpen={isProfileEditModalOpen}
           onClose={closeProfileEditModal}
         />

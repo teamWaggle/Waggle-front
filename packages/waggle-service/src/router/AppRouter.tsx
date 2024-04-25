@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 
 import { PATH } from "@/constants/path";
 
@@ -15,6 +16,7 @@ import {
 import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
 
 import * as Lazy from "@/router/lazy";
+import Error from "@/components/common/Error/Error";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -100,9 +102,12 @@ const AppRouter = () => {
         {
           path: PATH.MY(":userUrl"),
           element: (
-            <Suspense fallback={<div>로딩중</div>}>
+            <ErrorBoundary
+              onReset={() => (window.location.href = PATH.ROOT)}
+              FallbackComponent={Error}
+            >
               <Lazy.MyPage />
-            </Suspense>
+            </ErrorBoundary>
           ),
         },
       ],
