@@ -106,7 +106,9 @@ const AppRouter = () => {
               onReset={() => (window.location.href = PATH.ROOT)}
               FallbackComponent={Error}
             >
-              <Lazy.MyPage />
+              <Suspense fallback={<div />}>
+                <Lazy.MyPage />
+              </Suspense>
             </ErrorBoundary>
           ),
         },
