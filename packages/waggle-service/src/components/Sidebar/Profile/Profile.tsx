@@ -1,5 +1,4 @@
 import LogoutIcon from "@/assets/svg/ic-logout.svg?react";
-import DefaultProfileImg from "@/assets/png/profile.png";
 
 import { Flex, Text } from "@/components/common";
 
@@ -25,10 +24,7 @@ const Profile = () => {
 
   return (
     <Flex css={layoutStyle}>
-      <img
-        src={memberData.result.profileImgUrl ? memberData.result.profileImgUrl : DefaultProfileImg}
-        alt="profileImg"
-      />
+      <img src={memberData.result.profileImgUrl} alt="profileImg" />
       <Flex styles={{ direction: "column" }}>
         <Text css={nicknameStyle}>{memberData.result.nickname}</Text>
         <Text size="xSmall" css={getDefaultTextStyle(Theme.color.text, 500)}>
