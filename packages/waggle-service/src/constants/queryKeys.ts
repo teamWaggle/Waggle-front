@@ -26,6 +26,7 @@ export const QUERY_KEYS = {
   MEMBER_SIREN: "memberSiren",
   MEMBER_STORY: "memberStory",
   MEMBER_SIREN_COMMENT: "memberSirenComment",
+  MEMBER_QUESTION_COMMENT: "memberQuestionComment",
   MEMBER_INFO_SAVE: "memberInfoSave",
 
   PET_INFO: "petInfo",

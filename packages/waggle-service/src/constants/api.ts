@@ -61,6 +61,8 @@ export const END_POINTS = {
     `/api/questions/member/${userUrl}?currentPage=${currentPage}`,
   MEMBER_SIREN_COMMENT: (currentPage: unknown, userUrl?: string) =>
     `/api/comments/members/${userUrl}/siren/paged?currentPage=${currentPage}`,
+  MEMBER_QUESTION_COMMENT: (currentPage: unknown, userUrl?: string) =>
+    `/api/comments/members/${userUrl}/question/paged?currentPage=${currentPage}`,
 
   // Schuedule
   MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
