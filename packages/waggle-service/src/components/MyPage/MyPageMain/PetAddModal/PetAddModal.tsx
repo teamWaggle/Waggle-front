@@ -10,23 +10,25 @@ import PetProfileInput from "@/components/SignUp/SignUpPet/PetProfileInput/PetPr
 import { useSignUpPetForm } from "@/hooks/auth/useSignUpPetForm";
 import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
-import type { PetParams } from "@/types/pet";
-
 import { layoutStyle } from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal.style";
 
-interface PetAddModalParams extends PetParams {
+interface PetAddModalParams {
   isOpen: boolean;
   onClose: () => void;
+  petData: {
+    profileImgUrl?: string;
+    gender?: string;
+    name?: string;
+    breed?: string;
+    description?: string;
+    age?: string;
+    petId?: number;
+  };
 }
 
-const PetAddModal = ({
-  isOpen,
-  onClose,
-  profileImgUrl,
-  gender,
-  name,
-  petId,
-}: PetAddModalParams) => {
+const PetAddModal = ({ isOpen, onClose, petData }: PetAddModalParams) => {
+  const { profileImgUrl, gender, name, breed, description, age, petId } = petData;
+
   const { handleImgUpload, uploadMedia } = useSingleImgUpload({ prevImg: profileImgUrl });
 
   const { signUpPetRequest, updateInputValue, handleSaveClick } = useSignUpPetForm({
@@ -35,9 +37,9 @@ const PetAddModal = ({
     prevRequest: {
       name,
       gender,
-      age: "test",
-      breed: "test",
-      introduction: "test",
+      age,
+      breed,
+      description,
     },
     petId,
     onClose,
@@ -59,7 +61,7 @@ const PetAddModal = ({
         <PetBreedInput breed={signUpPetRequest.breed} updateInputValue={updateInputValue} />
 
         <PetIntroductionInput
-          introduction={signUpPetRequest.introduction}
+          description={signUpPetRequest.description}
           updateInputValue={updateInputValue}
         />
 

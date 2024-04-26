@@ -72,7 +72,7 @@ const StoryUploadMediaModal = ({ isOpen, onClose }: ModalProps) => {
           onClose={closeStoryUploadModal}
           closeStoryModal={onClose}
           uploadMediaList={uploadMediaList}
-          storyData={{ content: "" }}
+          storyData={{}}
         />
       )}
     </Modal>

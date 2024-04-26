@@ -5,7 +5,7 @@ import type { updatePetInputValueType } from "@/types/auth";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
 interface PetAgeInputParams extends updatePetInputValueType {
-  age: string;
+  age?: string;
 }
 
 const PetAgeInput = ({ age, updateInputValue }: PetAgeInputParams) => {
@@ -15,7 +15,7 @@ const PetAgeInput = ({ age, updateInputValue }: PetAgeInputParams) => {
       <input
         css={getInputStyle("214px")}
         placeholder="강아지 나이를 입력해주세요"
-        value={age}
+        value={age ?? ""}
         onChange={(e) => updateInputValue("age", e.target.value)}
       />
     </Flex>

@@ -13,9 +13,9 @@ interface UseSignUpPetFormParams {
   prevRequest?: {
     name?: string;
     gender?: string;
-    age: string;
-    breed: string;
-    introduction: string;
+    age?: string;
+    breed?: string;
+    description?: string;
   };
   petId?: number;
   onClose?: () => void;
@@ -37,7 +37,7 @@ export const useSignUpPetForm = ({
       age: "",
       gender: "FEMALE",
       breed: "",
-      introduction: "",
+      description: "",
     }
   );
 
@@ -46,7 +46,7 @@ export const useSignUpPetForm = ({
       !signUpPetRequest.name &&
       !signUpPetRequest.age &&
       !signUpPetRequest.breed &&
-      !signUpPetRequest.introduction
+      !signUpPetRequest.description
     ) {
       return false;
     }
@@ -73,7 +73,7 @@ export const useSignUpPetForm = ({
 
     const createPetRequest = {
       name: signUpPetRequest.name,
-      description: signUpPetRequest.introduction,
+      description: signUpPetRequest.description,
       breed: signUpPetRequest.breed,
       gender: signUpPetRequest.gender,
       age: signUpPetRequest.age,

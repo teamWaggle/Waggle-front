@@ -5,7 +5,7 @@ import type { updatePetInputValueType } from "@/types/auth";
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
 interface PetBreedInputParams extends updatePetInputValueType {
-  breed: string;
+  breed?: string;
 }
 
 const PetBreedInput = ({ breed, updateInputValue }: PetBreedInputParams) => {
@@ -15,7 +15,7 @@ const PetBreedInput = ({ breed, updateInputValue }: PetBreedInputParams) => {
       <input
         css={getInputStyle("444px")}
         placeholder="강아지종을 입력해주세요"
-        value={breed}
+        value={breed ?? ""}
         onChange={(e) => updateInputValue("breed", e.target.value)}
       />
     </Flex>

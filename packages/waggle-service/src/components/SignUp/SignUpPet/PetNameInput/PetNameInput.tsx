@@ -15,7 +15,7 @@ const PetNameInput = ({ name, updateInputValue }: PetNameInputParams) => {
       <input
         css={getInputStyle("444px")}
         placeholder="사랑스러운 반려견의 이름을 입력해주세요"
-        value={name}
+        value={name ?? ""}
         onChange={(e) => updateInputValue("name", e.target.value)}
       />
     </Flex>
