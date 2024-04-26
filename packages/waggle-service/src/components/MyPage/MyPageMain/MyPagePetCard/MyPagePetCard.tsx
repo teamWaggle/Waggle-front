@@ -9,14 +9,16 @@ import PetAddModal from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal"
 
 import { useDeletePetMutation } from "@/hooks/api/pet/useDeletePetMutation";
 
-import type { PetResultType } from "@/types/pet";
+import type { PetDataType } from "@/types/pet";
 
 import {
   petCardStyle,
   petInfoBoxStyle,
 } from "@/components/MyPage/MyPageMain/MyPagePetCard/MyPagePetCard.style";
 
-const MyPagePetCard = ({ profileImgUrl, gender, name, petId, isOwner }: PetResultType) => {
+const MyPagePetCard = ({ petData, isOwner }: PetDataType) => {
+  const { profileImgUrl, gender, name, petId, age, breed, description } = petData;
+
   const { mutate: deletePetMutate } = useDeletePetMutation();
 
   const {
@@ -57,21 +59,14 @@ const MyPagePetCard = ({ profileImgUrl, gender, name, petId, isOwner }: PetResul
           )}
         </Flex>
         <Text>
-          <span>시고르자브종</span>
-          <span>2살</span>
+          <span>{breed}</span>
+          <span>{age}</span>
         </Text>
-        <Text>반려견 소개가 입력되지 않았습니다.</Text>
+        <Text>{description ? description : "반려견 소개가 입력되지 않았습니다."}</Text>
       </Flex>
 
       {isPetAddModalOpen && (
-        <PetAddModal
-          isOpen={isPetAddModalOpen}
-          onClose={closePetAddModal}
-          profileImgUrl={profileImgUrl}
-          gender={gender}
-          name={name}
-          petId={petId}
-        />
+        <PetAddModal isOpen={isPetAddModalOpen} onClose={closePetAddModal} petData={petData} />
       )}
 
       {isDeleteWarningModalOpen && (

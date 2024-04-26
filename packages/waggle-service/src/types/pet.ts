@@ -4,18 +4,18 @@ export interface PetInfoType extends CommonResponseBaseType {
   result: PetResultType[];
 }
 
-export interface PetParams extends OwnerType {
-  petId?: number;
-  name?: string;
-  gender?: string;
-  profileImgUrl?: string;
-}
-
-export interface PetResultType extends OwnerType {
+interface PetResultType {
   petId: number;
   name: string;
+  breed: string;
   gender: string;
+  description: string;
+  age: string;
   profileImgUrl: string;
+}
+
+export interface PetDataType extends OwnerType {
+  petData: PetResultType;
 }
 
 interface OwnerType {

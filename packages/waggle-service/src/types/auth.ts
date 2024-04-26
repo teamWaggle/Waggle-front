@@ -70,7 +70,7 @@ export interface SignUpPetFormType {
   age: string;
   gender: string;
   breed: string;
-  introduction: string;
+  description: string;
 }
 
 export interface updatePetInputValueType {

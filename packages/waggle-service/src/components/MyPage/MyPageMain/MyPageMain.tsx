@@ -41,18 +41,13 @@ const MyPageMain = ({ paramUrl }: ParamUrlType) => {
 
       <Flex styles={{ direction: "column", gap: "20px", marginTop: "30px" }}>
         {petData.result.map((petInfo) => (
-          <MyPagePetCard
-            key={petInfo.petId}
-            profileImgUrl={petInfo.profileImgUrl}
-            gender={petInfo.gender}
-            name={petInfo.name}
-            petId={petInfo.petId}
-            isOwner={userUrl === paramUrl}
-          />
+          <MyPagePetCard key={petInfo.petId} petData={petInfo} isOwner={userUrl === paramUrl} />
         ))}
       </Flex>
 
-      {isPetAddModalOpen && <PetAddModal isOpen={isPetAddModalOpen} onClose={closePetAddModal} />}
+      {isPetAddModalOpen && (
+        <PetAddModal isOpen={isPetAddModalOpen} onClose={closePetAddModal} petData={{}} />
+      )}
     </Box>
   );
 };
