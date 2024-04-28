@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-import MessageCard from "@/components/Connection/ConnectionMain/ConnectionSidebar/MessageCard";
+import MessageCard from "@/components/Connection/ConnectionSidebar/MessageCard";
 
 const NewMessageList = () => {
   return (
