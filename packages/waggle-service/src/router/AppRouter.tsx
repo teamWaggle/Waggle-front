@@ -2,21 +2,24 @@ import { Suspense } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 
-import { PATH } from "@/constants/path";
+import * as Lazy from "@/router/lazy";
 
 import App from "@/App";
+
+import { PATH } from "@/constants/path";
+
+import Error from "@/components/common/Error/Error";
+
 import {
-  QuestionCreatePage,
   SignUpPage,
-  SirenCreatePage,
-  TeamPage,
   Error404Page,
   AuthPage,
+  ConnectionPage,
+  StoryPageSkeleton,
+  SirenCreatePage,
+  QuestionCreatePage,
+  TeamPage,
 } from "@/pages";
-import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
-
-import * as Lazy from "@/router/lazy";
-import Error from "@/components/common/Error/Error";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -99,6 +102,10 @@ const AppRouter = () => {
         },
         { path: "/team/:teamId", element: <TeamPage /> },
         { path: PATH.AUTH, element: <AuthPage /> },
+        {
+          path: PATH.CONNECTION,
+          element: <ConnectionPage />,
+        },
         {
           path: PATH.MY(":userUrl"),
           element: (

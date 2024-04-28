@@ -52,7 +52,7 @@ const Header = () => {
           <Text size="xLarge" css={textStyle} onClick={() => navigate(PATH.QUESTION)}>
             Q&A
           </Text>
-          <Text size="xLarge" css={textStyle} onClick={() => navigate("/connection")}>
+          <Text size="xLarge" css={textStyle} onClick={() => navigate(PATH.CONNECTION)}>
             CONNECTION
           </Text>
           <Text size="xLarge" css={textStyle} onClick={() => navigate("/planning")}>
