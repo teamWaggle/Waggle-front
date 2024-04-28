@@ -26,7 +26,9 @@ const StorySearchBar = () => {
 
   return (
     <Flex styles={{ direction: "column", width: "100%" }}>
-      <Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
+      <Flex
+        styles={{ align: "center", justify: "space-between", width: "100%", marginBottom: "40px" }}
+      >
         <Flex styles={{ align: "center", gap: "20px" }}>
           <Heading size="large" css={headingStyle}>
             Waggle LOG
@@ -39,7 +41,7 @@ const StorySearchBar = () => {
         <SearchInput onChange={() => {}} width="252px" />
       </Flex>
 
-      <Flex styles={{ marginTop: "40px" }} css={sortButtonBoxStyle}>
+      <Flex css={sortButtonBoxStyle}>
         <SortButton defaultText="인기순" />
       </Flex>
 
