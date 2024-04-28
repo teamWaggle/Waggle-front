@@ -22,7 +22,7 @@ const StoryCommentInput = ({
   commentButtonText,
 }: CommentInputProps) => {
   return (
-    <Box styles={{ position: "relative" }}>
+    <Box style={{ position: "relative" }}>
       <input
         type="text"
         css={commentInputStyle(width)}
