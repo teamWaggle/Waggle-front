@@ -2,7 +2,8 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Heading, Text, Modal, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-import LockChatting from "@/components/Connection/Chatting/LockChatting";
+// import LockChatting from "@/components/Connection/Chatting/LockChatting";
+import ChattingRoom from "@/components/Connection/Chatting/ChattingRoom";
 
 import type { ModalProps } from "@/types/modal";
 
@@ -18,7 +19,8 @@ const ChattingRoomModal = ({ isOpen, onClose }: ModalProps) => {
         </Box>
 
         <Flex css={contentBoxStyle}>
-          <LockChatting onClose={onClose} />
+          {/* <LockChatting onClose={onClose} /> */}
+          <ChattingRoom />
         </Flex>
       </Box>
     </Modal>
