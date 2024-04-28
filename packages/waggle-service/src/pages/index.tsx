@@ -10,9 +10,10 @@ import SirenPage from "./SirenPage";
 import StoryPage from "./StoryPage/StoryPage";
 import TeamPage from "./TeamPage";
 import LoadingPage from "./LoadingPage";
+import ConnectionPage from "./ConnectionPage";
 import Error404Page from "./Error404Page";
+import StoryPageSkeleton from "./StoryPage/StoryPageSkeleton";
 import AuthPage from "./AuthPage/AuthPage";
-
 export {
   StoryPage,
   QuestionPage,
@@ -26,6 +27,8 @@ export {
   TeamPage,
   CreateTeamPage,
   LoadingPage,
+  ConnectionPage,
   Error404Page,
+  StoryPageSkeleton,
   AuthPage,
 };

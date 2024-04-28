@@ -11,5 +11,6 @@ export const PATH = {
   MY: (userUrl: string) => `/${userUrl}`,
   AUTH: "/auth",
   SIGN_UP: "/signup",
+  CONNECTION: "/connection",
   RELOAD: 0,
 } as const;
