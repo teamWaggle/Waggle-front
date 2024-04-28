@@ -15,6 +15,7 @@ import MentionChecker from "@/components/Text/MentionChecker/MentionChecker";
 import Text from "@/components/Text/Text";
 
 import { Theme } from "@/styles/Theme";
+import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
 import WaggleProvider from "@/WaggleProvider";
 
@@ -41,4 +42,5 @@ export {
   useSlider,
   useOverlay,
   Theme,
+  getDefaultTextStyle,
 };

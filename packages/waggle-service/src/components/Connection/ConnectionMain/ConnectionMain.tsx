@@ -4,6 +4,7 @@ import { Flex, Box, Divider } from "waggle-design-system";
 
 import ConnectionSearchbar from "@/components/Connection/ConnectionMain/ConnectionSearchbar";
 import ConnectionCard from "@/components/Connection/ConnectionMain/ConnectionCard";
+import ConnectionSidebar from "@/components/Connection/ConnectionMain/ConnectionSidebar/ConnectionSidebar";
 
 const ConnectionMain = () => {
   return (
@@ -20,6 +21,8 @@ const ConnectionMain = () => {
         </Flex>
 
         <Divider direction="vertical" length="100vh" />
+
+        <ConnectionSidebar />
       </Flex>
     </Box>
   );
