@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { Flex, Box, Heading, Text, Modal, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 // import LockChatting from "@/components/Connection/Chatting/LockChatting";
-import ChattingRoom from "@/components/Connection/Chatting/ChattingRoom";
+import ChattingRoom from "@/components/Connection/Chatting/ChattingRoom/ChattingRoom";
 
 import type { ModalProps } from "@/types/modal";
 
