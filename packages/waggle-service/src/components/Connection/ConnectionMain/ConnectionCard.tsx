@@ -1,7 +1,6 @@
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { css } from "@emotion/react";
 
-import { Flex, Text, Button, Theme } from "waggle-design-system";
+import { Flex, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
 

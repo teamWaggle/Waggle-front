@@ -1,6 +1,5 @@
-import { Flex, Heading, Theme } from "waggle-design-system";
+import { Flex, Heading, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import { SearchInput } from "@/components/common";
 
 const ConnectionSearchbar = () => {
