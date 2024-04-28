@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Heading } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import { Flex, Heading, Button } from "waggle-design-system";
+
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
 import { PATH } from "@/constants/path";
