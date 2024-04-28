@@ -1,10 +1,17 @@
 import { css } from "@emotion/react";
 
-import { Flex, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-system";
+import { Flex, Text, Button, Theme, getDefaultTextStyle, useOverlay } from "waggle-design-system";
 
 import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
+import ChattingRoomModal from "../Chatting/ChattingRoomModal";
 
 const ConnectionCard = () => {
+  const {
+    isOpen: isChattingRoomModalOpen,
+    close: closeChattingRoomModal,
+    open: openChattingRoomModal,
+  } = useOverlay();
+
   return (
     <Flex styles={{ direction: "column", gap: "8px" }} css={cardBoxStyle}>
       <Text css={getDefaultTextStyle(Theme.color.text, 700)}>말티즈 키우는 사람만</Text>
@@ -18,8 +25,17 @@ const ConnectionCard = () => {
             3/7
           </Text>
         </Flex>
-        <Button style={{ padding: "6px 10px", borderRadius: "13px" }}>입장</Button>
+        <Button
+          style={{ padding: "6px 10px", borderRadius: "13px" }}
+          onClick={openChattingRoomModal}
+        >
+          입장
+        </Button>
       </Flex>
+
+      {isChattingRoomModalOpen && (
+        <ChattingRoomModal isOpen={isChattingRoomModalOpen} onClose={closeChattingRoomModal} />
+      )}
     </Flex>
   );
 };
