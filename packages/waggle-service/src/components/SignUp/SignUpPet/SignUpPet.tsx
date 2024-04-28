@@ -50,7 +50,7 @@ const SignUpPet = () => {
           <PetBreedInput breed={signUpPetRequest.breed} updateInputValue={updateInputValue} />
 
           <PetIntroductionInput
-            introduction={signUpPetRequest.introduction}
+            description={signUpPetRequest.description}
             updateInputValue={updateInputValue}
           />
         </Flex>
