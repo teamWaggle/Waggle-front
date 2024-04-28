@@ -22,7 +22,6 @@ export interface BoxStylingProps {
   borderLeft?: string;
   backgroundColor?: string;
   color?: string;
-  position?: "static" | "absolute" | "relative" | "fixed" | "inherit";
   boxShadow?: string;
   maxWidth?: string;
   maxHeight?: string;
@@ -50,7 +49,6 @@ export const getBoxStyling = ({
   borderLeft = "",
   backgroundColor = "",
   color = "",
-  position = "static",
   boxShadow = "",
   maxWidth = "",
   maxHeight = "",
@@ -77,7 +75,6 @@ export const getBoxStyling = ({
     borderLeft,
     backgroundColor,
     color,
-    position,
     boxShadow,
     maxWidth,
     maxHeight,
