@@ -4,7 +4,7 @@ import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-syste
 
 import SampleImg from "@/assets/png/post-sample.png";
 
-import { circleTextBoxStyle } from "@/components/Connection/ConnectionMain/ConnectionSidebar/NewMessageList";
+import { circleTextBoxStyle } from "@/components/Connection/ConnectionSidebar/NewMessageList";
 
 const MessageCard = () => {
   return (

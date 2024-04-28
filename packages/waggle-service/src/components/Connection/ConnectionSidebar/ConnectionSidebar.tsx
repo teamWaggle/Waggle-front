@@ -2,8 +2,8 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Button } from "waggle-design-system";
 
-import NewMessageList from "@/components/Connection/ConnectionMain/ConnectionSidebar/NewMessageList";
-import ConnectionProfile from "@/components/Connection/ConnectionMain/ConnectionSidebar/ConnectionProfile";
+import NewMessageList from "@/components/Connection/ConnectionSidebar/NewMessageList";
+import ConnectionProfile from "@/components/Connection/ConnectionSidebar/ConnectionProfile";
 
 const ConnectionSidebar = () => {
   return (
