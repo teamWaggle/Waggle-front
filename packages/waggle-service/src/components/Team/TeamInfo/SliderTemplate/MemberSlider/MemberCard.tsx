@@ -23,7 +23,7 @@ const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }
   const { teamInfoModalOpen, teamInfoModalClose } = useModal();
   const { displayCount } = useContext(SliderContext);
   const teamId = useParamsTeamId();
-  const { leader } = useTeamInfo(teamId) || {};
+  const { teamLeader } = useTeamInfo(teamId) || {};
   const handleMenuOnclick = () => {
     teamInfoModalOpen({
       key: "MemberOptionDropDown",
@@ -41,7 +41,7 @@ const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }
       <img css={memberCardImgStyle} src="https://source.unsplash.com/random/32x32" alt="" />
       <Text css={nicknameStyle}>{member.nickname}</Text>
       <TeamLeaderAuthorizationContainer>
-        {member.memberId !== leader.memberId && <KebabMenuIcon onClick={handleMenuOnclick} />}
+        {member.memberId !== teamLeader.memberId && <KebabMenuIcon onClick={handleMenuOnclick} />}
       </TeamLeaderAuthorizationContainer>
     </Flex>
   );

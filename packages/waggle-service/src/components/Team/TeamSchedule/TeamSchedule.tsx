@@ -32,6 +32,7 @@ import { getDate } from "@/utils/getDate";
 import { useTeamScheduleListPeriod } from "@/hooks/api/schedule/useTeamScheduleListPeriod";
 import Spinner from "@/components/common/Design/Spinner/Spinner";
 import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal";
+import { useTeamInfo } from "@/hooks/team/useTeamInfo";
 
 const TeamSchedule = () => {
   const { getYearMonthDay } = getDate();
@@ -43,7 +44,7 @@ const TeamSchedule = () => {
     useTeamScheduleListPage(teamId);
   const [period, setPeriod] = useState({ start: "", end: "" });
   const { data: TeamScheduleListPeriod, refetch, isLoading } = useTeamScheduleListPeriod(period);
-
+  const { name: teamName, teamColor } = useTeamInfo(teamId);
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
@@ -54,7 +55,9 @@ const TeamSchedule = () => {
   const handleAddSchedule = () => {
     openModal({
       key: "AddSchedule",
-      component: () => <AddTeamScheduleModal teamId={teamId} />,
+      component: () => (
+        <AddTeamScheduleModal teamColor={teamColor} teamName={teamName} teamId={teamId} />
+      ),
       isWhiteIcon: true,
       isOutsideClose: false,
     });

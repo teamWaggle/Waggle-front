@@ -7,15 +7,14 @@ export interface TeamResultType extends DefaultResultType {
 export interface TeamCardType {
   teamId: number;
   name: string;
-  coverImageUrl: string;
   description: string;
-  teamSize: number;
-  maxTeamSize: number;
+  coverImageUrl: string;
   teamColor: TeamColorType;
+  teamSize: number;
 }
 
 export interface TeamInfoType extends TeamCardType {
-  leader: TeamMemberType;
+  teamLeader: TeamMemberType;
   teamMemberList: Array<TeamMemberType>;
 }
 

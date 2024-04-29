@@ -4,9 +4,9 @@ import { useTeamInfo } from "@/hooks/team/useTeamInfo";
 
 const TeamLeaderAuthorizationContainer = ({ children }: { children: React.ReactNode }) => {
   const teamId = useParamsTeamId();
-  const { leader } = useTeamInfo(teamId) || {};
+  const { teamLeader } = useTeamInfo(teamId) || {};
   const { memberId: myId } = useMemberInfoSaveQuery();
-  const { memberId: leaderId } = leader;
+  const { memberId: leaderId } = teamLeader;
 
   return <>{myId === leaderId && children}</>;
 };

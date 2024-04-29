@@ -55,7 +55,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <ThemeProvider theme={Theme}>
             <Global styles={GlobalStyle} />
             <Suspense fallback={<div></div>}>
-              <Global styles={GlobalStyle} />
               <ModalRoot />
               <AppRouter />
             </Suspense>

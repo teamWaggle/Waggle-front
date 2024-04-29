@@ -17,7 +17,7 @@ export interface TeamScheduleType {
   endDate: string;
   createdDate: string;
   status: TeamScheduleStatusType;
-  member: Array<TeamMemberType>;
+  scheduleOwner: TeamMemberType;
   isScheduled: boolean;
   overlappedScheduleList: Array<overlappedScheduleType>;
   overlappedScheduleCount: number;
