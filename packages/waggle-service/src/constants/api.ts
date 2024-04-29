@@ -56,7 +56,7 @@ export const END_POINTS = {
   MEMBER_SCHEDULES_MONTHLY: (userUrl: string, year: number, month: number) =>
     `/api/schedules/members/${userUrl}/monthly?year=${year}&month=${month}`,
   GET_TEAM_SCHEDULE_PAGE: (teamId: number, currentPage?: unknown) =>
-    `/api/schedules/teams/${teamId}/page?currentPage=${currentPage}`,
+    `/api/schedules/teams/${teamId}?currentPage=${currentPage}`,
   GET_TEAM_SCHEDULE_PERIOD: (teamId: number, startDate: string, endDate: string) =>
     `/api/schedules/teams/${teamId}/period?start=${startDate}&end=${endDate}`,
   ADD_TEAM_SCHEDULE: (teamId: number) => `/api/schedules/${teamId}`,

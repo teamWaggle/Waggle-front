@@ -18,6 +18,7 @@ import {
   addTeamScheduleModalTitleBoxStyle,
   addTeamScheduleTitleCircleStyle,
 } from "@/components/Team/TeamSchedule/Modal/TeamScheduleInputModal.style";
+import type { TeamColorType } from "@/types/team";
 
 const schema = yup.object({
   title: TEAM_TITLE.RULES(),
@@ -27,7 +28,17 @@ const schema = yup.object({
     .min(new Date(new Date().setHours(0, 0, 0, 0)), "시작일은 오늘 혹은 이후여야 합니다.")
     .max(yup.ref("endDate"), "시작일은 종료일 이전이어야 합니다."),
   endDate: yup.date().min(yup.ref("startDate"), "종료일은 시작일이거나 이후여야 합니다."),
+  // 추후 변경
+  // startTime: yup.date().when(["startDate"], (values, schema) => {
+  //   const startDate = values[0];
+  //   const today = new Date();
+  //   if (startDate && format(startDate, "yyyy-mm-dd") === format(today, "yyyy-mm-dd")) {
+  //     return schema.min(today, "시작시간은 현재시간 이후여야 합니다.");
+  //   }
+  //   return schema;
+  // }),
   startTime: yup.date(),
+
   endTime: yup.date().min(yup.ref("startTime"), "종료시간은 시작시간 이후여야 합니다."),
 });
 
@@ -35,21 +46,24 @@ const TeamScheduleInputModal = ({
   modalTitle,
   handleSubmit,
   defaultValues,
+  teamName,
+  teamColor,
 }: {
   modalTitle: string;
+  teamColor: TeamColorType;
   handleSubmit: (data: FieldValues) => void;
   defaultValues: FieldValues;
+  teamName: string;
 }) => {
   const onSubmit = (data: FieldValues) => {
     handleSubmit(data);
   };
-
   return (
     <Flex css={addTeamScheduleModalBoxStyle}>
-      <Box css={addTeamScheduleModalTitleBoxStyle("team_1")}>
+      <Box css={addTeamScheduleModalTitleBoxStyle(teamColor)}>
         <Flex style={{ alignItems: "center" }}>
           <Box css={addTeamScheduleTitleCircleStyle} />
-          <Text size="xLarge">team name</Text>
+          <Text size="xLarge">{teamName}</Text>
         </Flex>
         <Heading size="medium">{modalTitle}</Heading>
       </Box>

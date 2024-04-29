@@ -28,14 +28,18 @@ import useModal from "@/hooks/common/useModal";
 import { useCancelMemberSchedule } from "@/hooks/api/schedule/useCancelMemberSchedule";
 import { useDeleteTeamSchedule } from "@/hooks/api/schedule/useDeleteTeamSchedule";
 import EditTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/EditTeamScheduleModal";
+import { useTeamInfo } from "@/hooks/team/useTeamInfo";
+import { ko } from "date-fns/locale";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const scheduleModalRef = useRef<HTMLDivElement>(null);
-  // const { getYearMonthDay, getTime } = getDate();
   const { closeScheduleModal, openModal } = useModal();
+  const { name: teamName } = useTeamInfo(schedule.teamId);
   const { mutate: cancelMemberScheduleMutate } = useCancelMemberSchedule();
   const { mutate: deleteTeamScheduleMutate } = useDeleteTeamSchedule();
+
   useClickOutSide(scheduleModalRef, closeScheduleModal);
+
   const handleCloseModal = () => {
     closeScheduleModal();
   };
@@ -48,21 +52,10 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
     closeScheduleModal();
   };
 
-  const editDefaultValues = {
-    title: schedule.title,
-    content: schedule.content,
-    startDate: schedule.startDate,
-    endDate: schedule.endDate,
-    endTime: schedule.endDate,
-    startTime: schedule.startDate,
-  };
-
   const handleEditSchedule = () => {
     openModal({
       key: "EditSchedule",
-      component: () => (
-        <EditTeamScheduleModal scheduleId={schedule.boardId} defaultValues={editDefaultValues} />
-      ),
+      component: () => <EditTeamScheduleModal scheduleData={schedule} teamName={teamName} />,
       isWhiteIcon: true,
       isOutsideClose: false,
     });
@@ -88,12 +81,12 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
         </Flex>
       </Flex>
       <Text css={scheduleModalTime}>
-        {format(schedule.startDate, "yyyy년 M월d일 aa h시")} ~
-        {format(schedule.endDate, "yyyy년 M월dd일 aa h시")}
+        {format(schedule.startDate, "yyyy년 M월d일 aa h시", { locale: ko })} ~
+        {format(schedule.endDate, "yyyy년 M월d일 aa h시", { locale: ko })}
       </Text>
       <Flex styles={{ gap: "8px" }}>
         <GroupIcon />
-        <Box css={scheduleModalTeamName(schedule.teamColor)}>신나는 강아지 유치원</Box>
+        <Box css={scheduleModalTeamName(schedule.teamColor)}>{teamName}</Box>
       </Flex>
       <Flex css={scheduleCommentBoxStyle}>
         <Comment />
