@@ -37,9 +37,16 @@ const PickerTriggerButton = ({
     return "yyyy년 M월 d일";
   }, []);
 
+  const handleDefaultFormat = useMemo(() => {
+    if (name === "startDate") {
+      return "시작일";
+    }
+    return "종료일";
+  }, []);
+
   const dateToFormat = field.value
     ? format(field.value, handleFormat, { locale: ko })
-    : "----년 --월 --일";
+    : handleDefaultFormat;
 
   useClickOutSide(triggerRef, modalClose);
   return (
