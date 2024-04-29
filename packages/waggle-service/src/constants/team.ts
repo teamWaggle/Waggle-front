@@ -7,6 +7,7 @@ import type { TeamColorType } from "@/types/team";
 export const TEAM_INFO = {
   MEMBERS_SLIDER_AMOUNT: 4,
   PARTICIPATION_SLIDER_AMOUNT: 3,
+  TEAM_MAX_SIZE: 50,
 };
 
 export const TEAM_COLOR: TeamColorType[] = [

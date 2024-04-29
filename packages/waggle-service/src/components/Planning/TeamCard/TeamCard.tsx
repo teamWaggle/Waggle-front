@@ -15,9 +15,10 @@ import {
   textBoxStyle,
   textStyle,
 } from "@/components/Planning/TeamCard/TeamCard.style";
+import { TEAM_INFO } from "@/constants/team";
 
 const TeamCard = ({ data }: { data: TeamCardType }) => {
-  const { name, coverImageUrl, description, teamSize, maxTeamSize, teamColor, teamId } = data;
+  const { name, coverImageUrl, description, teamSize, teamColor, teamId } = data;
   const handleOnclick = useHandleLinkWithDetectKeys();
   return (
     <Box tag="a" css={boxStyle} onClick={(e) => handleOnclick(e, `/team/${teamId}`)}>
@@ -39,7 +40,7 @@ const TeamCard = ({ data }: { data: TeamCardType }) => {
         <Flex styles={{ align: "center", gap: "6px" }}>
           <ProfileTeamCardIcon />
           <Text css={groupCountTextStyle} size="small">
-            {teamSize}/{maxTeamSize}
+            {teamSize}/{TEAM_INFO.TEAM_MAX_SIZE}
           </Text>
         </Flex>
       </Box>
