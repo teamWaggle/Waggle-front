@@ -8,8 +8,11 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 
 import type { DefaultApiResponseType } from "@/types/common";
 import type { ScheduleResultType } from "@/types/planning";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
-export const useGetMemberScheduleMonthly = (userUrl: string, year: number, month: number) => {
+export const useGetMemberScheduleMonthly = (year: number, month: number) => {
+  const { userUrl } = useMemberInfoSaveQuery();
+
   return useQuery<DefaultApiResponseType<ScheduleResultType>, AxiosError>({
     queryKey: [QUERY_KEYS.SCHEDULE_MONTHLY, { year }, { month }, { userUrl }],
     queryFn: () => getMemberScheduleMonthly(userUrl, year, month),
@@ -17,8 +20,10 @@ export const useGetMemberScheduleMonthly = (userUrl: string, year: number, month
   });
 };
 
-export const prefetchScheduleMonthly = (userUrl: string, year: number, month: number) => {
+export const prefetchScheduleMonthly = (year: number, month: number) => {
   const queryClient = useQueryClient();
+  const { userUrl } = useMemberInfoSaveQuery();
+
   return queryClient.prefetchQuery({
     queryKey: [QUERY_KEYS.SCHEDULE_MONTHLY, { year }, { month }, { userUrl }],
     queryFn: () => getMemberScheduleMonthly(userUrl, year, month),

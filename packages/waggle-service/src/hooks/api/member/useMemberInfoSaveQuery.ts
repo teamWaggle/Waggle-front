@@ -10,6 +10,7 @@ export const useMemberInfoSaveQuery = () => {
     queryFn: getMemberInfoSave,
     staleTime: Infinity,
     retry: false,
+    meta: { errorMessage: false },
   });
 
   const memberId = data.result.memberId;
