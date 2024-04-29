@@ -9,17 +9,13 @@ export const layoutStyle = css({
   border: `5px solid ${Theme.color.white}`,
   borderRadius: "42px",
   boxShadow: Theme.boxShadow.shadow1,
-  flexDirection: "column",
 });
 
 export const headerStyle = css({
-  justifyContent: "center",
-  alignItems: "center",
   width: "100%",
   height: "54px",
   padding: "0 36px",
   borderBottom: `1px solid ${Theme.color.border}`,
-  position: "relative",
 
   "& > svg": {
     position: "absolute",
@@ -28,8 +24,6 @@ export const headerStyle = css({
 });
 
 export const contentBoxStyle = css({
-  flexDirection: "column",
-  justifyContent: "space-between",
   padding: "14px 28px",
   width: "319px",
   height: "100%",

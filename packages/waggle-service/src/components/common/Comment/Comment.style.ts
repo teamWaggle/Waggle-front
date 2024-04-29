@@ -1,16 +1,19 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const commentBoxStyle = css({
   maxWidth: "1536px",
   padding: "0 196px",
-  margin: "60px auto 0",
-  flexDirection: "column",
-  gap: "60px",
 });
 
-export const commentTextareaStyle = (width: number, height: number) =>
+export const textareaBoxStyle = css({
+  position: "relative",
+  marginBottom: "60px",
+  width: "100%",
+});
+
+export const commentTextareaStyle = (width: number | string, height: number) =>
   css({
     border: `1px solid ${Theme.color.border}`,
     borderRadius: "4px",
@@ -28,9 +31,7 @@ export const commentTextareaStyle = (width: number, height: number) =>
   });
 
 export const commentCardBoxStyle = css({
-  position: "relative",
   width: "100%",
-  gap: "14px",
 
   "& > img": {
     width: "50px",
@@ -41,9 +42,6 @@ export const commentCardBoxStyle = css({
 });
 
 export const replyBoxStyle = css({
-  alignItems: "center",
-  gap: "16px",
-  position: "absolute",
   top: 0,
   right: 0,
   color: Theme.color.readonly_text,

@@ -1,6 +1,6 @@
-import SelectArrowIcon from "@/assets/svg/ic-select-arrow.svg?react";
+import { Flex, Box, Text } from "waggle-design-system";
 
-import { Flex, Box, Text } from "@/components/common";
+import SelectArrowIcon from "@/assets/svg/ic-select-arrow.svg?react";
 
 import { yearData, monthData, dayData } from "@/constants/auth";
 

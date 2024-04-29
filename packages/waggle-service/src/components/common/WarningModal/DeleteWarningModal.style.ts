@@ -1,14 +1,11 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const layoutStyle = css({
   width: "400px",
   borderRadius: "12px",
   backgroundColor: Theme.color.white,
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
 });
 
 export const buttonBoxStyle = css({

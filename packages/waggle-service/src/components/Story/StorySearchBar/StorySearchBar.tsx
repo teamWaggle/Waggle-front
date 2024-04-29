@@ -1,12 +1,14 @@
 import { useRecoilValue } from "recoil";
 
-import { Flex, Heading, useOverlay, Button, SortButton } from "waggle-design-system";
+import { Flex, Heading, Button, SortButton } from "waggle-design-system";
 
 import LogIcon from "@/assets/svg/log.svg?react";
 
 import { SearchInput } from "@/components/common";
 
 import StoryUploadMediaModal from "@/components/Story/StoryUploadMediaModal/StoryUploadMediaModal";
+
+import useModal from "@/hooks/common/useModal";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
@@ -18,11 +20,15 @@ import {
 const StorySearchBar = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
-  const {
-    isOpen: isStoryUploadMediaModalOpen,
-    close: closeStoryUploadMediaModal,
-    open: openStoryUploadMediaModal,
-  } = useOverlay();
+  const { openModal } = useModal();
+
+  const handleStoryUploadOpen = () => {
+    openModal({
+      key: `StoryUpload`,
+      component: () => <StoryUploadMediaModal />,
+      isWhiteIcon: true,
+    });
+  };
 
   return (
     <Flex styles={{ direction: "column", width: "100%" }}>
@@ -35,7 +41,7 @@ const StorySearchBar = () => {
             <LogIcon />
           </Heading>
 
-          {isLoggedIn && <Button onClick={openStoryUploadMediaModal}>글 작성하기</Button>}
+          {isLoggedIn && <Button onClick={handleStoryUploadOpen}>글 작성하기</Button>}
         </Flex>
 
         <SearchInput onChange={() => {}} width="252px" />
@@ -44,13 +50,6 @@ const StorySearchBar = () => {
       <Flex css={sortButtonBoxStyle}>
         <SortButton defaultText="인기순" />
       </Flex>
-
-      {isStoryUploadMediaModalOpen && (
-        <StoryUploadMediaModal
-          isOpen={isStoryUploadMediaModalOpen}
-          onClose={closeStoryUploadMediaModal}
-        />
-      )}
     </Flex>
   );
 };
