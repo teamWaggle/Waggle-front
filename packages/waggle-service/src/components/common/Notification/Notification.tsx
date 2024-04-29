@@ -2,9 +2,15 @@ import { Flex } from "waggle-design-system";
 
 import NotificationCard from "@/components/common/Notification/NotificationCard/NotificationCard";
 
+import { useNotificationListQuery } from "@/hooks/api/notification/useNotificationListQuery";
+
 import { layoutStyle } from "@/components/common/Notification/Notification.style";
 
 const Notification = () => {
+  const { notificationListData } = useNotificationListQuery(0);
+
+  console.log(notificationListData);
+
   return (
     <Flex styles={{ position: "absolute" }} css={layoutStyle}>
       <Flex styles={{ direction: "column", width: "100%" }}>

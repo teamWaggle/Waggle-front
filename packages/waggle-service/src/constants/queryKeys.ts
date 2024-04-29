@@ -58,4 +58,6 @@ export const QUERY_KEYS = {
   DELETE_TEAM_MEMBER: "deleteTeamMember",
   RECOMMEND_TEAMS: "recommendTeams",
   SEARCH_TEAMS_BY_NAME: "searchTeamsByName",
+
+  NOTIFICATION_LIST: "notificationList",
 };
