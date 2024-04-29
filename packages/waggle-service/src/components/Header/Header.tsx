@@ -2,17 +2,17 @@ import { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
-import { Flex, Spinner, Text, useOverlay } from "waggle-design-system";
+import { Flex, Spinner, Text } from "waggle-design-system";
 
 import Logo from "@/assets/svg/logo.svg?react";
 import NotiIcon from "@/assets/svg/ic-header-noti.svg?react";
 
 import LogInMenu from "@/components/Header/LogInMenu/LogInMenu";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
-import FindEmailModal from "@/components/Login/FindEmailModal/FindEmailModal";
-import FindPasswordModal from "@/components/Login/FinedPasswordModal/FindPasswordModal";
 
 import { PATH } from "@/constants/path";
+
+import useModal from "@/hooks/common/useModal";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
@@ -23,19 +23,14 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  const { isOpen: isLoginModalOpen, close: closeLoginModal, open: openLoginModal } = useOverlay();
+  const { openModal } = useModal();
 
-  const {
-    isOpen: isFindEmailModalOpen,
-    close: closeFindEmailModal,
-    open: openFindEmailModal,
-  } = useOverlay();
-
-  const {
-    isOpen: isFindPasswordModalOpen,
-    close: closeFindPasswordModal,
-    open: openFindPasswordModal,
-  } = useOverlay();
+  const handleLoginModal = () => {
+    openModal({
+      key: `LoginModal`,
+      component: () => <LoginModal />,
+    });
+  };
 
   return (
     <header css={headerStyle}>
@@ -65,34 +60,9 @@ const Header = () => {
             <LogInMenu />
           </Suspense>
         ) : (
-          <NotiIcon width={30} height={30} onClick={openLoginModal} />
+          <NotiIcon width={30} height={30} onClick={handleLoginModal} />
         )}
       </Flex>
-
-      {isLoginModalOpen && (
-        <LoginModal
-          isOpen={isLoginModalOpen}
-          onClose={closeLoginModal}
-          openFindEmailModal={openFindEmailModal}
-          openFindPasswordModal={openFindPasswordModal}
-        />
-      )}
-
-      {isFindEmailModalOpen && (
-        <FindEmailModal
-          isOpen={isFindEmailModalOpen}
-          onClose={closeFindEmailModal}
-          openLoginModal={openLoginModal}
-        />
-      )}
-
-      {isFindPasswordModalOpen && (
-        <FindPasswordModal
-          isOpen={isFindPasswordModalOpen}
-          onClose={closeFindPasswordModal}
-          openLoginModal={openLoginModal}
-        />
-      )}
     </header>
   );
 };

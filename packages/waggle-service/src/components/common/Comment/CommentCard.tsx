@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
-import { useOverlay } from "waggle-design-system";
+import { Flex, Text, getDefaultTextStyle, Theme } from "waggle-design-system";
 
-import { Flex, Text } from "@/components/common";
 import Reply from "@/components/common/Comment/Reply/Reply";
 import ReplyInput from "@/components/common/Comment/Reply/ReplyInput";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
@@ -16,9 +15,7 @@ import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMu
 import { useReplyQuery } from "@/hooks/api/reply/useReplyQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 import { useComment } from "@/hooks/comment/useComment";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
+import useModal from "@/hooks/common/useModal";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
@@ -51,26 +48,30 @@ const CommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
     commentTextAreaRef,
   } = useComment({ targetCommentId: commentId, isTextArea: true });
 
-  const {
-    isOpen: isDeleteWarningModalOpen,
-    close: closeDeleteWarningModal,
-    open: openDeleteWarningModal,
-  } = useOverlay();
+  const { openModal, selectCloseModal } = useModal();
 
   const [isReplyBoxOpen, setIsReplyBoxOpen] = useState(false);
 
   const navigate = useNavigate();
 
+  const handleDeleteComment = useCallback(() => {
+    openModal({
+      key: `DeleteWarningModal`,
+      component: () => <DeleteWarningModal targetText="댓글" handleDelete={deleteMutate} />,
+      notCloseIcon: true,
+    });
+  }, []);
+
   const deleteMutate = () => {
     deleteCommentMutate(commentId, {
       onSuccess: () => {
-        closeDeleteWarningModal();
+        selectCloseModal(`DeleteWarningModal`);
       },
     });
   };
 
   return (
-    <Flex css={commentCardBoxStyle}>
+    <Flex styles={{ gap: "14px", position: "relative" }} css={commentCardBoxStyle}>
       <img
         src={member.profileImgUrl}
         alt="profileImg"
@@ -112,7 +113,7 @@ const CommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
         )}
       </Flex>
 
-      <Flex css={replyBoxStyle}>
+      <Flex styles={{ align: "center", gap: "16px", position: "absolute" }} css={replyBoxStyle}>
         <Text onClick={() => setIsReplyBoxOpen(!isReplyBoxOpen)}>
           {isReplyBoxOpen ? "답글접기" : "답글"}
         </Text>
@@ -121,20 +122,11 @@ const CommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
           <Flex styles={{ align: "center", paddingTop: "4px" }}>
             <ProfileOptionMenu
               handleEditMenu={() => handleEditClick(content, commentId)}
-              handleDeleteMenu={openDeleteWarningModal}
+              handleDeleteMenu={handleDeleteComment}
             />
           </Flex>
         )}
       </Flex>
-
-      {isDeleteWarningModalOpen && (
-        <DeleteWarningModal
-          isOpen={isDeleteWarningModalOpen}
-          onClose={closeDeleteWarningModal}
-          targetText="댓글"
-          handleDelete={deleteMutate}
-        />
-      )}
     </Flex>
   );
 };

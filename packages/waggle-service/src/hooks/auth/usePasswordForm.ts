@@ -3,6 +3,7 @@ import { useCallback, useState, useRef } from "react";
 import { usePasswordResetMutation } from "@/hooks/api/auth/usePasswordResetMutation";
 import { usePasswordChangeMutation } from "@/hooks/api/auth/usePasswordChangeMutation";
 import { useValidateForm } from "@/hooks/common/useValidateForm";
+import useModal from "@/hooks/common/useModal";
 
 import type { PasswordFormType } from "@/types/auth";
 
@@ -10,17 +11,13 @@ interface usePasswordFormParams {
   memberId?: number;
   isReset?: boolean;
   handleChangeMode?: (mode: string) => void;
-  onClose?: () => void;
 }
 
-export const usePasswordForm = ({
-  memberId,
-  isReset,
-  handleChangeMode,
-  onClose,
-}: usePasswordFormParams) => {
+export const usePasswordForm = ({ memberId, isReset, handleChangeMode }: usePasswordFormParams) => {
   const { mutate: passwordResetMutate } = usePasswordResetMutation();
   const { mutate: passwordChangeMutate } = usePasswordChangeMutation();
+
+  const { closeModal } = useModal();
 
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordCheckRef = useRef<HTMLInputElement>(null);
@@ -99,7 +96,7 @@ export const usePasswordForm = ({
       { password: passwordRequest.password },
       {
         onSuccess: () => {
-          onClose && onClose();
+          closeModal();
         },
       }
     );

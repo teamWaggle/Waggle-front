@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 
 import { usePostStoryMutation } from "@/hooks/api/story/usePostStoryMutation";
 import { usePutStoryMutation } from "@/hooks/api/story/usePutStoryMutation";
+import useModal from "@/hooks/common/useModal";
 
 import type { StoryFormData } from "@/types/story";
 
@@ -9,19 +10,13 @@ interface UseAddStoryFormParams {
   storyId?: number;
   initialData?: StoryFormData;
   mediaList?: string[];
-  onClose?: () => void;
-  closeStoryModal?: () => void;
 }
 
-export const useAddStoryForm = ({
-  storyId,
-  initialData,
-  mediaList,
-  onClose,
-  closeStoryModal,
-}: UseAddStoryFormParams) => {
+export const useAddStoryForm = ({ storyId, initialData, mediaList }: UseAddStoryFormParams) => {
   const { mutate: postStoryMutate } = usePostStoryMutation();
   const { mutate: putStoryMutate } = usePutStoryMutation();
+
+  const { closeModal } = useModal();
 
   const [storyRequest, setStoryRequest] = useState(
     initialData ?? {
@@ -55,8 +50,7 @@ export const useAddStoryForm = ({
 
       postStoryMutate(formData, {
         onSuccess: () => {
-          closeStoryModal && closeStoryModal();
-          onClose && onClose();
+          closeModal();
         },
       });
     } else {
@@ -69,8 +63,7 @@ export const useAddStoryForm = ({
         },
         {
           onSuccess: () => {
-            closeStoryModal && closeStoryModal();
-            onClose && onClose();
+            closeModal();
           },
         }
       );
