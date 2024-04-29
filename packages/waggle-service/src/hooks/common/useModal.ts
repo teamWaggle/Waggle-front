@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { useSetRecoilState, useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 import { modalState, scheduleModalState } from "@/recoil/atoms/modal";
 
@@ -8,7 +8,7 @@ import type { ModalType } from "@/types/modal";
 import { teamInfoModalSelector } from "@/recoil/selectors/modalSelector";
 
 const useModal = () => {
-  const [modals, setModals] = useRecoilState(modalState);
+  const setModals = useSetRecoilState(modalState);
   const setScheduleModals = useSetRecoilState(scheduleModalState);
   const setTeamInfoModals = useSetRecoilState(teamInfoModalSelector);
   const teamInfoModalOpen = ({ key, component }: ModalType) => {
@@ -41,7 +41,7 @@ const useModal = () => {
 
   const selectCloseModal = useCallback(
     (key?: string) => {
-      setModals(modals.filter((prev) => prev.key !== key));
+      setModals((prev) => prev.filter((modal) => modal.key !== key));
     },
     [setModals]
   );
