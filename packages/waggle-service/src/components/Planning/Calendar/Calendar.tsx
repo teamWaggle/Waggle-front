@@ -15,17 +15,24 @@ import {
   isWithinInterval,
 } from "date-fns";
 
-import useCalendar from "@/hooks/common/useCalendar";
-
 import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 
 import generateCalendarPosition from "@/utils/generateCalendarPosition";
 
 import { boxStyle, containerStyle } from "@/components/Planning/Calendar/Calendar.style";
+import type { ScheduleType } from "@/types/planning";
 
-const Calendar = () => {
-  const { scheduleList, currentDate, handlePrevDate, handleNextDate } = useCalendar();
-
+const Calendar = ({
+  scheduleList,
+  handlePrevDate,
+  handleNextDate,
+  currentDate,
+}: {
+  scheduleList: ScheduleType[];
+  handlePrevDate: () => void;
+  handleNextDate: () => void;
+  currentDate: Date;
+}) => {
   const scheduleModals = useRecoilValue(scheduleModalSelector);
 
   const CalendarCards = useMemo(() => {

@@ -9,9 +9,12 @@ import {
   flexStyle,
   gridBoxStyle,
 } from "@/components/Planning/Main/Main.style";
+import { useRecoilValue } from "recoil";
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 const Main = () => {
   const navigate = useNavigate();
+  const isLoggedIn = useRecoilValue(isLoggedInState);
   return (
     <MainContainer>
       <Flex css={flexStyle}>
@@ -22,7 +25,7 @@ const Main = () => {
           <Text size="large">팀 만들기</Text>
         </button>
       </Flex>
-      <MemberTeamSlider />
+      {isLoggedIn && <MemberTeamSlider />}
       <Flex css={flexStyle}>
         <Heading css={headingStyle} size="medium">
           Waggle에서 모여봐요!

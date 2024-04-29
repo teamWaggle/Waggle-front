@@ -7,7 +7,6 @@ import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 
 import { PLANNING } from "@/constants/planning";
 
-import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 import { useGetMemberTeams } from "@/hooks/api/team/useGetMemberTeams";
 
 import {
@@ -17,8 +16,7 @@ import {
 } from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider.style";
 
 const MemberTeamSlider = () => {
-  const { memberId } = useMemberInfoSaveQuery();
-  const teamList = useGetMemberTeams(memberId);
+  const teamList = useGetMemberTeams();
 
   return (
     <>
