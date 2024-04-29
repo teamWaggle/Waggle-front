@@ -31,7 +31,7 @@ export default ChattingRoomModal;
 
 const titleBoxStyle = css({
   backgroundColor: Theme.color.brand_primary,
-  padding: "40px",
+  padding: "30px 40px",
   borderRadius: "20px 20px 0 0",
 
   "& > p": {
