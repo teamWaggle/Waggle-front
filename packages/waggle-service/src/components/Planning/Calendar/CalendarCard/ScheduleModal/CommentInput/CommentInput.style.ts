@@ -4,7 +4,7 @@ import { Theme } from "@/styles/Theme";
 
 export const commentBoxStyle = css({
   width: "100%",
-  height: "100%",
+  overscrollBehavior: "contain",
   overflowY: "auto",
   marginTop: "8px",
 });

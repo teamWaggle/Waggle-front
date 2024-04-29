@@ -80,4 +80,5 @@ export const scheduleCommentBoxStyle = css({
   marginTop: "16px",
   height: "200px",
   overflow: "auto",
+  overscrollBehavior: "contain",
 });

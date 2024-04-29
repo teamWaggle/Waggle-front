@@ -33,13 +33,17 @@ const schema = yup.object({
 
 const TeamScheduleInputModal = ({
   modalTitle,
-  onSubmit,
+  handleSubmit,
   defaultValues,
 }: {
   modalTitle: string;
-  onSubmit: (data: FieldValues) => void;
+  handleSubmit: (data: FieldValues) => void;
   defaultValues: FieldValues;
 }) => {
+  const onSubmit = (data: FieldValues) => {
+    handleSubmit(data);
+  };
+
   return (
     <Flex css={addTeamScheduleModalBoxStyle}>
       <Box css={addTeamScheduleModalTitleBoxStyle("team_1")}>
@@ -94,7 +98,7 @@ const TeamScheduleInputModal = ({
           </Box>
           <Flex style={{ justifyContent: "end" }}>
             <button type="submit" css={TeamScheduleModalAddButtonStyle("team_1")}>
-              <Text size="xSmall">일정 추가</Text>
+              <Text size="xSmall">{modalTitle}</Text>
               <AddIcon />
             </button>
           </Flex>

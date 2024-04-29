@@ -1,5 +1,6 @@
 import TeamScheduleInputModal from "@/components/Team/TeamSchedule/Modal/TeamScheduleInputModal";
 import { useEditTeamSchedule } from "@/hooks/api/schedule/useEditTeamSchedule";
+import useModal from "@/hooks/common/useModal";
 import { convertToTeamScheduleDataFormat } from "@/utils/convertToTeamScheduleDataFormat";
 import type { FieldValues } from "react-hook-form";
 
@@ -11,15 +12,20 @@ const EditTeamScheduleModal = ({
   scheduleId: number;
 }) => {
   const { mutate: editTeamSchedule } = useEditTeamSchedule(scheduleId);
-  const onSubmit = (data: FieldValues) => {
+  const { selectCloseModal } = useModal();
+  const handleSubmit = (data: FieldValues) => {
     const convertedTeamScheduleData = convertToTeamScheduleDataFormat(data);
-    editTeamSchedule(convertedTeamScheduleData);
+    editTeamSchedule(convertedTeamScheduleData, {
+      onSuccess: () => {
+        selectCloseModal("EditSchedule");
+      },
+    });
   };
 
   return (
     <TeamScheduleInputModal
       modalTitle="일정 수정"
-      onSubmit={onSubmit}
+      handleSubmit={handleSubmit}
       defaultValues={defaultValues}
     />
   );

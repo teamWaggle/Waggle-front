@@ -6,13 +6,14 @@ import { convertToTeamScheduleDataFormat } from "@/utils/convertToTeamScheduleDa
 import { useAddTeamSchedule } from "@/hooks/api/schedule/useAddTeamSchedule";
 
 const AddTeamScheduleModal = ({ teamId }: { teamId: number }) => {
-  const { closeModal } = useModal();
+  const { selectCloseModal } = useModal();
   const { mutate: addTeamSchedule } = useAddTeamSchedule(teamId);
-  const onSubmit = (data: FieldValues) => {
+
+  const handleSubmit = (data: FieldValues) => {
     const convertedTeamScheduleData = convertToTeamScheduleDataFormat(data);
     addTeamSchedule(convertedTeamScheduleData, {
       onSuccess: () => {
-        closeModal();
+        selectCloseModal("AddSchedule");
       },
     });
   };
@@ -20,7 +21,7 @@ const AddTeamScheduleModal = ({ teamId }: { teamId: number }) => {
   return (
     <TeamScheduleInputModal
       modalTitle="일정 추가"
-      onSubmit={onSubmit}
+      handleSubmit={handleSubmit}
       defaultValues={TEAM_SCHEDULE_DEFAULT_VALUES}
     />
   );

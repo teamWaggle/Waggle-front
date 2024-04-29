@@ -57,7 +57,6 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
     startTime: schedule.startDate,
   };
 
-  console.log(editDefaultValues);
   const handleEditSchedule = () => {
     openModal({
       key: "EditSchedule",
@@ -67,7 +66,6 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
       isWhiteIcon: true,
       isOutsideClose: false,
     });
-    closeScheduleModal();
   };
   return (
     <section css={scheduleModalBoxStyle(position)} ref={scheduleModalRef}>
