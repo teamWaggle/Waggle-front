@@ -1,5 +1,14 @@
-import { Flex, Box, Divider, Heading, Text } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import {
+  Flex,
+  Box,
+  Divider,
+  Heading,
+  Text,
+  Button,
+  getDefaultTextStyle,
+  Theme,
+} from "waggle-design-system";
+
 import PostEdit from "@/components/common/Post/PostEdit";
 import SirenUploadInput from "@/components/Siren/SirenUpload/SirenUploadInput/SirenUploadInput";
 
@@ -7,15 +16,11 @@ import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
 import { useAddSirenForm } from "@/hooks/siren/useAddSirenForm";
 
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
-
 import { generateTagStyle, generateTagCategory } from "@/utils/generateTag";
 
 import type { SirenDataType } from "@/types/siren";
 
-import { tagStyle } from "@/components/common/Tag/Tag.style";
-import { layoutStyle, inputStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
+import { layoutStyle, inputStyle, tagStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
 import { buttonBoxStyle } from "@/components/Siren/SirenUpload/SirenUpload.style";
 
 const SirenEdit = ({ sirenData }: SirenDataType) => {

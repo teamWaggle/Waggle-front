@@ -1,8 +1,6 @@
-import { Flex, Box, Heading, Theme } from "waggle-design-system";
+import { Flex, Box, Heading, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import ConnectionMain from "@/components/Connection/ConnectionMain/ConnectionMain";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
 const ConnectionPage = () => {
   return (

@@ -1,13 +1,10 @@
-import LogoutIcon from "@/assets/svg/ic-logout.svg?react";
+import { Flex, Text, getDefaultTextStyle, Theme } from "waggle-design-system";
 
-import { Flex, Text } from "@/components/common";
+import LogoutIcon from "@/assets/svg/ic-logout.svg?react";
 
 import { useLogoutMutation } from "@/hooks/api/auth/useLogoutMutation";
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import {
   layoutStyle,
@@ -23,7 +20,7 @@ const Profile = () => {
   const { mutate: mutateLogOut } = useLogoutMutation();
 
   return (
-    <Flex css={layoutStyle}>
+    <Flex styles={{ justify: "center", align: "center", gap: "14px" }} css={layoutStyle}>
       <img src={memberData.result.profileImgUrl} alt="profileImg" />
       <Flex styles={{ direction: "column" }}>
         <Text css={nicknameStyle}>{memberData.result.nickname}</Text>
@@ -32,10 +29,10 @@ const Profile = () => {
         </Text>
       </Flex>
 
-      <Flex tag="button" css={buttonBoxStyle} onClick={() => mutateLogOut()}>
-        <Text css={buttonTextStyle}>로그아웃</Text>
+      <button css={buttonBoxStyle} onClick={() => mutateLogOut()}>
+        <p css={buttonTextStyle}>로그아웃</p>
         <LogoutIcon />
-      </Flex>
+      </button>
     </Flex>
   );
 };

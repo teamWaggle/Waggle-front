@@ -50,7 +50,7 @@ const SirenDetail = ({ sirenData }: SirenDataType) => {
           handleDeleteSiren={handleDeleteSiren}
         />
 
-        <Divider />
+        <Divider style={{ marginTop: "18px" }} />
 
         <SirenContent sirenData={sirenData} />
       </Flex>

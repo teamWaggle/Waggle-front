@@ -1,6 +1,4 @@
-import { Flex, Heading, Theme } from "waggle-design-system";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
+import { Flex, Heading, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 const StoryBio = () => {
   return (

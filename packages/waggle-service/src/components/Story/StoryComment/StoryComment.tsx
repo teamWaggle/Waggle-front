@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 
 import { useRecoilValue } from "recoil";
 
-import { Flex, Divider, Text, Theme } from "waggle-design-system";
+import { Flex, Divider, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
 import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
@@ -19,8 +19,6 @@ import useObserver from "@/hooks/common/useObserver";
 import { useComment } from "@/hooks/comment/useComment";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
 interface StoryCommentParams {
   boardId: number;

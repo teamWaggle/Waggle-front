@@ -7,16 +7,7 @@ export const layoutStyle = css({
   padding: "0 196px",
 });
 
-export const titleBoxStyle = css({
-  flexDirection: "column",
-  gap: "12px",
-  marginBottom: "18px",
-  position: "relative",
-  width: "100%",
-});
-
 export const keywordBoxStyle = css({
-  gap: "18px",
   color: Theme.color.black,
   fontWeight: 600,
 });

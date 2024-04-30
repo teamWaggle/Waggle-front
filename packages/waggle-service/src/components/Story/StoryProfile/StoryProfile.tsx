@@ -1,16 +1,15 @@
 import { css } from "@emotion/react";
 import { useRecoilValue } from "recoil";
 
-import { Flex, Text, Theme } from "waggle-design-system";
+import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 
+import { PATH } from "@/constants/path";
+
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-
 import { isLoggedInState } from "@/recoil/atoms/auth";
-import { PATH } from "@/constants/path";
 
 interface MemberDataType {
   profileImgUrl: string | undefined;

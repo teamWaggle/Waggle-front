@@ -1,12 +1,8 @@
 import { useRef } from "react";
 
+import { Flex, Text, Button, getDefaultTextStyle, Theme } from "waggle-design-system";
+
 import DefaultProfileImg from "@/assets/png/pet-profile.png";
-
-import { Flex, Text } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import { inputNoneDisplayStyle, getFormTextStyle } from "@/components/SignUp/SignUp.shared.style";
 import { imgStyle } from "@/components/SignUp/SignUpPet/SignUpPet.style";

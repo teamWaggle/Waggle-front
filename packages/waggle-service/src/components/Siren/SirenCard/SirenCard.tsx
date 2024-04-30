@@ -2,20 +2,16 @@ import { useNavigate } from "react-router-dom";
 
 import { useRecoilValue } from "recoil";
 
+import { Flex, Heading, Text, Tag, getDefaultTextStyle, Theme } from "waggle-design-system";
+
 import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
 import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
-
-import { Flex, Heading, Text } from "@/components/common";
-import Tag from "@/components/common/Tag/Tag";
 
 import { PATH } from "@/constants/path";
 
 import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
@@ -27,7 +23,6 @@ import {
   infoStyle,
   subStyle,
   textStyle,
-  bottomBoxStyle,
 } from "@/components/Siren/SirenCard/SirenCard.style";
 
 interface SirenCardParams {
@@ -46,21 +41,27 @@ const SirenCard = ({ sirenInfo, isMyPage }: SirenCardParams) => {
   const navigate = useNavigate();
 
   return (
-    <Flex css={cardStyle(isMyPage)} onClick={() => navigate(PATH.SIREN_DETAIL(String(boardId)))}>
-      <Flex css={tagBoxStyle}>
+    <Flex
+      styles={{ direction: "column", position: "relative" }}
+      css={cardStyle(isMyPage)}
+      onClick={() => navigate(PATH.SIREN_DETAIL(String(boardId)))}
+    >
+      <Flex styles={{ position: "absolute", align: "center", gap: "10px" }} css={tagBoxStyle}>
         <Tag tagText={category} />
         <Tag tagText={status} isResolveTag />
       </Flex>
 
       <img src={thumbnail} alt="thumbnail" />
-      <Flex css={infoStyle}>
+      <Flex styles={{ direction: "column" }} css={infoStyle}>
         <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.brand_primary, 700)}>
           {title}
         </Heading>
 
         <Text css={subStyle}>{lostLocate}</Text>
 
-        <Flex css={bottomBoxStyle}>
+        <Flex
+          styles={{ justify: "space-between", align: "center", marginTop: "16px", width: "100%" }}
+        >
           <Flex styles={{ gap: "6px", align: "center" }}>
             {isRecommend ? (
               <LikeIcon width={18} height={18} />

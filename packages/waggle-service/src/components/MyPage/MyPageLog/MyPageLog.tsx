@@ -1,17 +1,13 @@
 import { Fragment } from "react";
 
-import { Flex, Heading } from "@/components/common";
+import { Flex, Heading, getDefaultTextStyle, Theme } from "waggle-design-system";
+
 import StoryCard from "@/components/Story/StoryCard/StoryCard";
 
 import { useMemberStoryQuery } from "@/hooks/api/member/useMemberStoryQuery";
 import useObserver from "@/hooks/common/useObserver";
 
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
-
 import type { ParamUrlType } from "@/types/common";
-
-import { layoutStyle, storyBoxStyle } from "@/components/MyPage/MyPageLog/MyPageLog.style";
 
 const MyPageLog = ({ paramUrl }: ParamUrlType) => {
   const { memberStoryData, hasNextPage, fetchNextPage, isFetching } = useMemberStoryQuery(paramUrl);
@@ -25,12 +21,15 @@ const MyPageLog = ({ paramUrl }: ParamUrlType) => {
   });
 
   return (
-    <Flex tag="main" css={layoutStyle}>
+    <Flex
+      tag="main"
+      styles={{ direction: "column", gap: "30px", marginTop: "80px", paddingLeft: "30px" }}
+    >
       <Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
         Waggle Log
       </Heading>
 
-      <Flex css={storyBoxStyle}>
+      <Flex styles={{ align: "center", wrap: "wrap", gap: "16px", width: "789px" }}>
         {memberStoryData.pages.map((storyData, index) => (
           <Fragment key={index}>
             {storyData.result.storyList.map((storyInfo) => (
