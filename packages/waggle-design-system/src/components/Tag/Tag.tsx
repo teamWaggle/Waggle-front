@@ -7,9 +7,10 @@ import { generateTagStyle, generateTagName } from "@/utils/generateTag";
 interface TagParams {
   tagText: string;
   isResolveTag?: boolean;
+  isSmall?: boolean;
 }
 
-const Tag = ({ tagText, isResolveTag }: TagParams) => {
+const Tag = ({ tagText, isResolveTag, isSmall }: TagParams) => {
   if (isResolveTag) {
     return (
       <Flex
@@ -22,7 +23,7 @@ const Tag = ({ tagText, isResolveTag }: TagParams) => {
 
   return (
     <Flex css={tagStyle(generateTagStyle(tagText))}>
-      <Text>{generateTagName(tagText)}</Text>
+      <Text size={isSmall ? "xSmall" : "medium"}>{generateTagName(tagText)}</Text>
     </Flex>
   );
 };
