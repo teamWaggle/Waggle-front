@@ -1,14 +1,10 @@
 import { useState } from "react";
 
+import { Flex, Text, Button, getDefaultTextStyle, Theme } from "waggle-design-system";
+
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 
-import { Flex, Text } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
-
 import { useCheckUserUrlMutation } from "@/hooks/api/auth/useCheckUserUrlMutation";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import type { SignUpProfileFormType } from "@/types/auth";
 

@@ -1,11 +1,8 @@
-import { Box, Heading } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import { Box, Heading, Button, getDefaultTextStyle, Theme } from "waggle-design-system";
+
 import PostEdit from "@/components/common/Post/PostEdit";
 
 import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import type { QuestionDataType } from "@/types/question";
 

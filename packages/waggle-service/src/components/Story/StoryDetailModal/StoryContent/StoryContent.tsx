@@ -2,7 +2,7 @@ import { useCallback } from "react";
 
 import { css } from "@emotion/react";
 
-import { Flex, Box, Text, Theme } from "waggle-design-system";
+import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import StoryProfile from "@/components/Story/StoryProfile/StoryProfile";
@@ -10,8 +10,6 @@ import StoryUploadModal from "@/components/Story/StoryUploadModal/StoryUploadMod
 
 import { useDeleteStoryMutation } from "@/hooks/api/story/useDeleteStoryMutation";
 import useModal from "@/hooks/common/useModal";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 

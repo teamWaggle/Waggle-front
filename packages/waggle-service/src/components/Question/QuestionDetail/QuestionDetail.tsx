@@ -50,7 +50,7 @@ const QuestionDetail = ({ questionData }: QuestionDataType) => {
           handleDeleteQuestion={handleDeleteQuestion}
         />
 
-        <Divider />
+        <Divider style={{ marginTop: "18px" }} />
 
         <QuestionContent questionData={questionData} />
       </Flex>

@@ -1,20 +1,15 @@
 import { useRecoilValue } from "recoil";
 
-import { Flex, Heading } from "@/components/common";
+import { Flex, Heading, Tag, getDefaultTextStyle, Theme } from "waggle-design-system";
+
 import PostProfile from "@/components/common/Post/PostProfile";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
-import Tag from "@/components/common/Tag/Tag";
 
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import type { SirenTitleType } from "@/types/siren";
-
-import { titleBoxStyle } from "@/components/common/Post/Post.style";
 
 const SirenTitle = ({ sirenData, handleEditSiren, handleDeleteSiren }: SirenTitleType) => {
   const { category, title, member, status, createdDate, viewCount } = sirenData;
@@ -26,7 +21,14 @@ const SirenTitle = ({ sirenData, handleEditSiren, handleDeleteSiren }: SirenTitl
   const memberId = userData ? userData.memberId : null;
 
   return (
-    <Flex css={titleBoxStyle}>
+    <Flex
+      styles={{
+        direction: "column",
+        gap: "12px",
+        position: "relative",
+        width: "100%",
+      }}
+    >
       <Flex styles={{ gap: "14px" }}>
         <Tag tagText={category} />
         <Tag tagText={status} isResolveTag />

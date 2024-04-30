@@ -1,14 +1,11 @@
 import { useCallback } from "react";
 
-import { Box, Heading } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import { Box, Heading, Button, getDefaultTextStyle, Theme } from "waggle-design-system";
+
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
 
 import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
 import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import {
   layoutStyle,

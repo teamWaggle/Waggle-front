@@ -1,9 +1,6 @@
 import CheckIcon from "@/assets/svg/ic-password-check.svg?react";
 
-import { Flex, Text } from "@/components/common";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
+import { Flex, Text, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 const NicknameDescription = () => {
   return (

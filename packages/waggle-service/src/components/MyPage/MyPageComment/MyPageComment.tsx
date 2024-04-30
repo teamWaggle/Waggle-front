@@ -1,8 +1,6 @@
-import { Flex, Heading, Theme } from "waggle-design-system";
+import { Flex, Heading, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import MyPageCommentCard from "@/components/MyPage/MyPageCommentCard/MyPageCommentCard";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
 interface MyPageCommentProps {
   paramUrl?: string;

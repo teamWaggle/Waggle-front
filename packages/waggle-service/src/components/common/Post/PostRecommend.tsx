@@ -1,17 +1,14 @@
 import { useRecoilValue } from "recoil";
 
+import { Flex, Heading, getDefaultTextStyle, Theme } from "waggle-design-system";
+
 import RecommendOffIcon from "@/assets/svg/ic-recommend-off.svg?react";
 import RecommendOnIcon from "@/assets/svg/ic-recommend-on.svg?react";
-
-import { Flex, Heading } from "@/components/common";
 
 import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
 import { usePostRecommend } from "@/hooks/api/recommend/usePostRecommend";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 interface PostRecommendParams {
   recommendCount: number;

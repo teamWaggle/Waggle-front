@@ -1,15 +1,13 @@
-import { Flex, Heading } from "waggle-design-system";
+import { Fragment } from "react";
+
+import { Flex, Heading, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 
 import { useMemberQuestionQuery } from "@/hooks/api/member/useMemberQuestionQuery";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
+import useObserver from "@/hooks/common/useObserver";
 
 import type { ParamUrlType } from "@/types/common";
-import useObserver from "@/hooks/common/useObserver";
-import { Fragment } from "react";
 
 const MyPageQuestion = ({ paramUrl }: ParamUrlType) => {
   const { memberQuestionData, hasNextPage, fetchNextPage, isFetching } =

@@ -8,9 +8,6 @@ export const layoutStyle = css({
   boxShadow: Theme.boxShadow.shadow2,
   width: "310px",
   height: "106px",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: "14px",
 
   "& > img": {
     width: "60px",
@@ -30,19 +27,21 @@ export const nicknameStyle = css({
 });
 
 export const buttonBoxStyle = css({
-  all: "unset",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: "4px",
+  outline: "none",
+  backgroundColor: "transparent",
   width: "60px",
   height: "22px",
   border: `1px solid ${Theme.color.border}`,
   borderRadius: "10px",
   cursor: "pointer",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "4px",
 });
 
 export const buttonTextStyle = css({
   fontSize: "10px",
+  lineHeight: "10px",
   color: Theme.color.readonly_text,
 });

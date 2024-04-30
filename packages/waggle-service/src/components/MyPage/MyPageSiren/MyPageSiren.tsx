@@ -1,11 +1,8 @@
-import { Flex, Heading } from "waggle-design-system";
+import { Flex, Heading, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
 import { useMemberSirenQuery } from "@/hooks/api/member/useMemberSirenQuery";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
 
 import type { ParamUrlType } from "@/types/common";
 
