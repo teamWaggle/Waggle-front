@@ -12,7 +12,6 @@ import TeamPage from "./TeamPage";
 import LoadingPage from "./LoadingPage";
 import ConnectionPage from "./ConnectionPage";
 import Error404Page from "./Error404Page";
-import StoryPageSkeleton from "./StoryPage/StoryPageSkeleton";
 import AuthPage from "./AuthPage/AuthPage";
 export {
   StoryPage,
@@ -29,6 +28,5 @@ export {
   LoadingPage,
   ConnectionPage,
   Error404Page,
-  StoryPageSkeleton,
   AuthPage,
 };
