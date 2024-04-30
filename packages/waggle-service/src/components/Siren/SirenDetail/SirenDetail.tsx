@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Box, Divider, useOverlay } from "waggle-design-system";
+import { Flex, Box, Divider } from "waggle-design-system";
 
 import Comment from "@/components/common/Comment/Comment";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
@@ -10,6 +10,7 @@ import SirenTitle from "@/components/Siren/SirenDetail/SirenTitle";
 import { PATH } from "@/constants/path";
 
 import { useDeleteSirenMutation } from "@/hooks/api/siren/useDeleteSirenMutation";
+import useModal from "@/hooks/common/useModal";
 
 import type { SirenDataType } from "@/types/siren";
 
@@ -22,11 +23,7 @@ const SirenDetail = ({ sirenData }: SirenDataType) => {
 
   const { boardId } = sirenData;
 
-  const {
-    isOpen: isDeleteWarningModalOpen,
-    close: closeDeleteWarningModal,
-    open: openDeleteWarningModal,
-  } = useOverlay();
+  const { openModal } = useModal();
 
   const deleteMutate = () => {
     deleteSirenMutate(boardId, {
@@ -36,13 +33,21 @@ const SirenDetail = ({ sirenData }: SirenDataType) => {
     });
   };
 
+  const handleDeleteSiren = () => {
+    openModal({
+      key: `DeleteWarningModal`,
+      component: () => <DeleteWarningModal handleDelete={deleteMutate} />,
+      notCloseIcon: true,
+    });
+  };
+
   return (
     <Box tag="main">
       <Flex styles={{ margin: "70px auto 0", direction: "column" }} css={layoutStyle}>
         <SirenTitle
           sirenData={sirenData}
           handleEditSiren={() => navigate(PATH.SIREN_EDIT(String(boardId)))}
-          handleDeleteSiren={openDeleteWarningModal}
+          handleDeleteSiren={handleDeleteSiren}
         />
 
         <Divider />
@@ -53,14 +58,6 @@ const SirenDetail = ({ sirenData }: SirenDataType) => {
       <Divider />
 
       <Comment boardId={boardId} />
-
-      {isDeleteWarningModalOpen && (
-        <DeleteWarningModal
-          isOpen={isDeleteWarningModalOpen}
-          onClose={closeDeleteWarningModal}
-          handleDelete={deleteMutate}
-        />
-      )}
     </Box>
   );
 };

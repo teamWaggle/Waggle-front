@@ -27,6 +27,8 @@ const LoginModal = () => {
   const { openModal, closeModal } = useModal();
 
   const handleFindEmailModal = () => {
+    closeModal();
+
     openModal({
       key: `FindEmailModal`,
       component: () => <FindEmailModal />,
@@ -34,6 +36,8 @@ const LoginModal = () => {
   };
 
   const handleFindPasswordModal = () => {
+    closeModal();
+
     openModal({
       key: `FindEmailModal`,
       component: () => <FindPasswordModal />,

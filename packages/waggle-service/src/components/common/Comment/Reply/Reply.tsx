@@ -1,9 +1,9 @@
+import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 
-import { useOverlay } from "waggle-design-system";
+import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-import { Flex, Text } from "@/components/common";
 import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 import ProfileOptionMenu from "@/components/common/ProfileOptionMenu";
 
@@ -11,9 +11,7 @@ import { PATH } from "@/constants/path";
 
 import { useDeleteRelpyMutation } from "@/hooks/api/reply/useDeleteReplyMutation";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import { Theme } from "@/styles/Theme";
+import useModal from "@/hooks/common/useModal";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
@@ -36,22 +34,26 @@ const Reply = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
 
   const navigate = useNavigate();
 
-  const {
-    isOpen: isDeleteWarningModalOpen,
-    close: closeDeleteWarningModal,
-    open: openDeleteWarningModal,
-  } = useOverlay();
+  const { openModal, selectCloseModal } = useModal();
 
   const deleteMutate = () => {
     deleteReplyMutate(replyId, {
       onSuccess: () => {
-        closeDeleteWarningModal();
+        selectCloseModal(`DeleteWarningModal`);
       },
     });
   };
 
+  const handleDeleteReply = useCallback(() => {
+    openModal({
+      key: `DeleteWarningModal`,
+      component: () => <DeleteWarningModal targetText="답글" handleDelete={deleteMutate} />,
+      notCloseIcon: true,
+    });
+  }, []);
+
   return (
-    <Flex css={replyCardBoxStyle}>
+    <Flex styles={{ position: "relative", gap: "14px" }} css={replyCardBoxStyle}>
       <img
         src={member.profileImgUrl}
         alt="memberProfileImg"
@@ -76,16 +78,7 @@ const Reply = ({ replyData, handleReplyEditClick }: ReplyDataType) => {
       {member.memberId === memberId && (
         <ProfileOptionMenu
           handleEditMenu={() => handleReplyEditClick(content, replyId)}
-          handleDeleteMenu={openDeleteWarningModal}
-        />
-      )}
-
-      {isDeleteWarningModalOpen && (
-        <DeleteWarningModal
-          isOpen={isDeleteWarningModalOpen}
-          onClose={closeDeleteWarningModal}
-          targetText="답글"
-          handleDelete={deleteMutate}
+          handleDeleteMenu={handleDeleteReply}
         />
       )}
     </Flex>
