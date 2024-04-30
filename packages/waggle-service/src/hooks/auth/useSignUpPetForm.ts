@@ -4,6 +4,7 @@ import { PATH } from "@/constants/path";
 
 import { usePetInfoMutation } from "@/hooks/api/pet/usePetInfoMutation";
 import { usePutPetInfoMutation } from "@/hooks/api/pet/usePutPetInfoMutation";
+import useModal from "@/hooks/common/useModal";
 
 import type { SignUpPetFormType } from "@/types/auth";
 
@@ -18,7 +19,6 @@ interface UseSignUpPetFormParams {
     description?: string;
   };
   petId?: number;
-  onClose?: () => void;
 }
 
 export const useSignUpPetForm = ({
@@ -26,10 +26,11 @@ export const useSignUpPetForm = ({
   isMyPage,
   prevRequest,
   petId,
-  onClose,
 }: UseSignUpPetFormParams) => {
   const { mutate: petInfoMutate } = usePetInfoMutation();
   const { mutate: putPetInfoMutate } = usePutPetInfoMutation();
+
+  const { closeModal } = useModal();
 
   const [signUpPetRequest, setSignUpPetRequest] = useState(
     prevRequest ?? {
@@ -87,7 +88,7 @@ export const useSignUpPetForm = ({
         petInfoMutate(formData, {
           onSuccess: () => {
             if (isMyPage) {
-              onClose && onClose();
+              closeModal();
             } else {
               window.location.href = PATH.ROOT;
             }
@@ -99,7 +100,7 @@ export const useSignUpPetForm = ({
           { petId, formData },
           {
             onSuccess: () => {
-              onClose && onClose();
+              closeModal();
             },
           }
         );

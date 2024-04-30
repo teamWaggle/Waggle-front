@@ -1,9 +1,7 @@
 import { css } from "@emotion/react";
 
 export const replyCardBoxStyle = css({
-  position: "relative",
   width: "100%",
-  gap: "14px",
 
   "& > img": {
     width: "40px",
@@ -11,4 +9,9 @@ export const replyCardBoxStyle = css({
     borderRadius: "50%",
     cursor: "pointer",
   },
+});
+
+export const replyInputBoxStyle = css({
+  position: "relative",
+  width: "100%",
 });

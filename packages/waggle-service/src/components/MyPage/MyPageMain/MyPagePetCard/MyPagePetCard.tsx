@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, useOverlay } from "waggle-design-system";
+import { Flex, Heading, Text } from "waggle-design-system";
 
 import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
@@ -8,6 +8,7 @@ import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningMo
 import PetAddModal from "@/components/MyPage/MyPageMain/PetAddModal/PetAddModal";
 
 import { useDeletePetMutation } from "@/hooks/api/pet/useDeletePetMutation";
+import useModal from "@/hooks/common/useModal";
 
 import type { PetDataType } from "@/types/pet";
 
@@ -21,20 +22,25 @@ const MyPagePetCard = ({ petData, isOwner }: PetDataType) => {
 
   const { mutate: deletePetMutate } = useDeletePetMutation();
 
-  const {
-    isOpen: isPetAddModalOpen,
-    close: closePetAddModal,
-    open: openPetAddModal,
-  } = useOverlay();
-
-  const {
-    isOpen: isDeleteWarningModalOpen,
-    close: closeDeleteWarningModal,
-    open: openDeleteWarningModal,
-  } = useOverlay();
+  const { openModal } = useModal();
 
   const deleteMutate = () => {
     deletePetMutate(petId);
+  };
+
+  const handleDeletePet = () => {
+    openModal({
+      key: `DeleteWarningModal`,
+      component: () => <DeleteWarningModal targetText="반려견" handleDelete={deleteMutate} />,
+      notCloseIcon: true,
+    });
+  };
+
+  const handleEditPet = () => {
+    openModal({
+      key: "PetAddModal",
+      component: () => <PetAddModal petData={petData} />,
+    });
   };
 
   return (
@@ -52,8 +58,8 @@ const MyPagePetCard = ({ petData, isOwner }: PetDataType) => {
 
           {isOwner && (
             <ProfileOptionMenu
-              handleEditMenu={openPetAddModal}
-              handleDeleteMenu={openDeleteWarningModal}
+              handleEditMenu={handleEditPet}
+              handleDeleteMenu={handleDeletePet}
               isPet
             />
           )}
@@ -64,19 +70,6 @@ const MyPagePetCard = ({ petData, isOwner }: PetDataType) => {
         </Text>
         <Text>{description ? description : "반려견 소개가 입력되지 않았습니다."}</Text>
       </Flex>
-
-      {isPetAddModalOpen && (
-        <PetAddModal isOpen={isPetAddModalOpen} onClose={closePetAddModal} petData={petData} />
-      )}
-
-      {isDeleteWarningModalOpen && (
-        <DeleteWarningModal
-          isOpen={isDeleteWarningModalOpen}
-          onClose={closeDeleteWarningModal}
-          targetText="반려견"
-          handleDelete={deleteMutate}
-        />
-      )}
     </Flex>
   );
 };

@@ -20,7 +20,6 @@ import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 import WaggleProvider from "@/WaggleProvider";
 
 import useSlider from "@/hooks/useSlider";
-import { useOverlay } from "@/hooks/useOverlay";
 
 export {
   Box,
@@ -40,7 +39,6 @@ export {
   Spinner,
   WaggleProvider,
   useSlider,
-  useOverlay,
   Theme,
   getDefaultTextStyle,
 };

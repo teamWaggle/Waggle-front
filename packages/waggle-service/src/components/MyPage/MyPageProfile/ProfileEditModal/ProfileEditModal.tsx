@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Modal, Flex, Theme, Button } from "waggle-design-system";
+import { Flex, Theme, Button } from "waggle-design-system";
 
 import Birthday from "@/components/common/BirthDay/Birthday";
 import NameInput from "@/components/SignUp/SignUpProfile/NameInput/NameInput";
@@ -13,12 +13,7 @@ import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
 import type { MemberDataType } from "@/types/auth";
 
-interface ProfileEditModalProps extends MemberDataType {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const ProfileEditModal = ({ memberData, isOpen, onClose }: ProfileEditModalProps) => {
+const ProfileEditModal = ({ memberData }: MemberDataType) => {
   const { profileImgUrl, nickname, memberId, name, birthday } = memberData;
 
   const { handleImgUpload, uploadMedia } = useSingleImgUpload({ prevImg: profileImgUrl });
@@ -57,38 +52,35 @@ const ProfileEditModal = ({ memberData, isOpen, onClose }: ProfileEditModalProps
       userUrl: "",
     },
     memberId,
-    onClose,
   });
 
   return (
-    <Modal isOpen={isOpen} closeModal={onClose}>
-      <Flex styles={{ direction: "column", align: "center", gap: "50px" }} css={layoutStyle}>
-        <Flex styles={{ direction: "column", gap: "36px" }}>
-          <ProfileInput handleImgUpload={handleImgUpload} uploadMedia={uploadMedia} />
+    <Flex styles={{ direction: "column", align: "center", gap: "50px" }} css={layoutStyle}>
+      <Flex styles={{ direction: "column", gap: "36px" }}>
+        <ProfileInput handleImgUpload={handleImgUpload} uploadMedia={uploadMedia} />
 
-          <NicknameInput
-            nickname={signUpProfileRequest.nickname}
-            updateInputValue={updateInputValue}
-            nicknameRef={nicknameRef}
-            nicknameCheckComplete={nicknameCheckComplete}
-            handleNicknameCheckComplete={handleNicknameCheckComplete}
-          />
+        <NicknameInput
+          nickname={signUpProfileRequest.nickname}
+          updateInputValue={updateInputValue}
+          nicknameRef={nicknameRef}
+          nicknameCheckComplete={nicknameCheckComplete}
+          handleNicknameCheckComplete={handleNicknameCheckComplete}
+        />
 
-          <NameInput name={newName.value} updateNameValue={updateNameValue} nameRef={nameRef} />
+        <NameInput name={newName.value} updateNameValue={updateNameValue} nameRef={nameRef} />
 
-          <Birthday
-            selectOpen={selectOpen}
-            handleSelectOpen={handleSelectOpen}
-            birthdayRequest={birthdayRequest}
-            updateBirthdayValue={updateBirthdayValue}
-          />
+        <Birthday
+          selectOpen={selectOpen}
+          handleSelectOpen={handleSelectOpen}
+          birthdayRequest={birthdayRequest}
+          updateBirthdayValue={updateBirthdayValue}
+        />
 
-          <Button onClick={handleSubmit} style={{ alignSelf: "flex-end" }}>
-            저장
-          </Button>
-        </Flex>
+        <Button onClick={handleSubmit} style={{ alignSelf: "flex-end" }}>
+          저장
+        </Button>
       </Flex>
-    </Modal>
+    </Flex>
   );
 };
 

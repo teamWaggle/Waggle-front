@@ -1,16 +1,24 @@
 import { useRecoilValue } from "recoil";
 
-import { Flex, Box, Divider, Heading, Text, useOverlay, Theme, Button } from "waggle-design-system";
+import {
+  Flex,
+  Box,
+  Divider,
+  Heading,
+  Text,
+  Theme,
+  Button,
+  getDefaultTextStyle,
+} from "waggle-design-system";
 
 import PasswordEditModal from "@/components/MyPage/MyPageProfile/PasswordEditModal/PasswordEditModal";
 import ProfileEditModal from "@/components/MyPage/MyPageProfile/ProfileEditModal/ProfileEditModal";
 import MyPageProfileTab from "@/components/MyPage/MyPageProfile/MyPageProfileTab/MyPageProfileTab";
 
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
+import useModal from "@/hooks/common/useModal";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
-
-import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 
@@ -32,19 +40,23 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
 
   const userId = userData ? userData.memberId : null;
 
-  const {
-    isOpen: isProfileEditModalOpen,
-    close: closeProfileEditModal,
-    open: openProfileEditModal,
-  } = useOverlay();
-
-  const {
-    isOpen: isPasswordEditModalOpen,
-    close: closePasswordEditModal,
-    open: openPasswordEditModal,
-  } = useOverlay();
+  const { openModal } = useModal();
 
   const follow = true;
+
+  const handleProfileEdit = () => {
+    openModal({
+      key: "ProfileEditModal",
+      component: () => <ProfileEditModal memberData={memberData.result} />,
+    });
+  };
+
+  const handlePasswordEdit = () => {
+    openModal({
+      key: "PasswordEditModal",
+      component: () => <PasswordEditModal memberId={memberId} />,
+    });
+  };
 
   return (
     <Box css={layoutStyle}>
@@ -65,13 +77,13 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
 
       {memberId === userId ? (
         <Flex styles={{ gap: "20px", margin: "24px 0" }}>
-          <Button style={{ width: "130px", height: "40px" }} onClick={openProfileEditModal}>
+          <Button style={{ width: "130px", height: "40px" }} onClick={handleProfileEdit}>
             프로필 수정
           </Button>
           <Button
             style={{ width: "130px", height: "40px" }}
             variant="disabled"
-            onClick={openPasswordEditModal}
+            onClick={handlePasswordEdit}
           >
             비밀번호 변경
           </Button>
@@ -90,22 +102,6 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
       <Divider />
 
       <MyPageProfileTab />
-
-      {isProfileEditModalOpen && (
-        <ProfileEditModal
-          memberData={memberData.result}
-          isOpen={isProfileEditModalOpen}
-          onClose={closeProfileEditModal}
-        />
-      )}
-
-      {isPasswordEditModalOpen && (
-        <PasswordEditModal
-          memberId={memberId}
-          isOpen={isPasswordEditModalOpen}
-          onClose={closePasswordEditModal}
-        />
-      )}
     </Box>
   );
 };
