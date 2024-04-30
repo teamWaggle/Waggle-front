@@ -1,6 +1,6 @@
-import { Flex, Box } from "@/components/common";
+import { Flex, Box, Button, Theme } from "waggle-design-system";
+
 import Birthday from "@/components/common/BirthDay/Birthday";
-import Button from "@/components/common/Design/Button/Button";
 import NameInput from "@/components/SignUp/SignUpProfile/NameInput/NameInput";
 import NicknameDescription from "@/components/SignUp/SignUpProfile/NicknameInput/NicknameDescription";
 import NicknameInput from "@/components/SignUp/SignUpProfile/NicknameInput/NicknameInput";
@@ -10,8 +10,6 @@ import UserUrlInput from "@/components/SignUp/SignUpProfile/UserUrlInput/UserUrl
 import { useFindEmailForm } from "@/hooks/auth/useFindEmailForm";
 import { useSignUpProfileForm } from "@/hooks/auth/useSignUpProfileForm";
 import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
-
-import { Theme } from "@/styles/Theme";
 
 const SignUpProfile = () => {
   const { handleImgUpload, uploadMedia } = useSingleImgUpload({});

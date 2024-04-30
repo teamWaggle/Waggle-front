@@ -1,7 +1,6 @@
 import type { FallbackProps } from "react-error-boundary";
 
-import { Box, Flex, Heading, Text, Logo } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import { Box, Flex, Heading, Text, Logo, Button } from "waggle-design-system";
 
 import { HTTP_ERROR_MESSAGE } from "@/constants/api";
 
@@ -18,7 +17,10 @@ const Error = ({ error, resetErrorBoundary }: FallbackProps) => {
 
   return (
     <Box>
-      <Flex css={layoutStyle}>
+      <Flex
+        styles={{ direction: "column", align: "center", position: "absolute" }}
+        css={layoutStyle}
+      >
         <Logo width={300} height={300} />
         <Heading css={headingStyle} size="small">
           {HTTP_ERROR_MESSAGE[statusCode].HEADING}

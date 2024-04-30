@@ -6,8 +6,6 @@ export const layoutStyle = css({
   backgroundColor: Theme.color.white,
   borderRadius: "8px",
   padding: "70px 40px 56px",
-  flexDirection: "column",
-  alignItems: "center",
 
   form: {
     flexDirection: "column",

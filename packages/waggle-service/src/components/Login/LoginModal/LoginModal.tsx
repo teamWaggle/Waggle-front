@@ -1,7 +1,9 @@
 import type { FieldValues } from "react-hook-form";
 
-import { Flex, Box, Text, Logo, Form, SocialLogin } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import { Flex, Box, Text, Logo, Button } from "waggle-design-system";
+
+import { Form, SocialLogin } from "@/components/common";
+
 import FindEmailModal from "@/components/Login/FindEmailModal/FindEmailModal";
 import FindPasswordModal from "@/components/Login/FinedPasswordModal/FindPasswordModal";
 
@@ -55,7 +57,7 @@ const LoginModal = () => {
   };
 
   return (
-    <Flex css={layoutStyle}>
+    <Flex styles={{ align: "center", direction: "column" }} css={layoutStyle}>
       <Logo width={138} height={30} />
       <Box styles={{ margin: "24px" }}>
         <Form

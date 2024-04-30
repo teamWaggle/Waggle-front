@@ -1,9 +1,9 @@
 import { useState } from "react";
 
+import { Flex, Text } from "waggle-design-system";
+
 import PasswordNotShowIcon from "@/assets/svg/PasswordNotShowIcon.svg?react";
 import PasswordShowIcon from "@/assets/svg/PasswordShowIcon.svg?react";
-
-import { Flex, Text } from "@/components/common";
 
 import type { PasswordFormType } from "@/types/auth";
 

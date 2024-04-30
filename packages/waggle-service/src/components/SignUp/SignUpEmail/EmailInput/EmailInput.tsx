@@ -1,5 +1,4 @@
-import { Flex, Text } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import { Flex, Text, Button } from "waggle-design-system";
 
 import { useEmailAuthSendMutation } from "@/hooks/api/auth/useEmailAuthSendMutation";
 
