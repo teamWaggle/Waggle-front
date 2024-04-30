@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 const containerStyle = css({
   display: "flex",

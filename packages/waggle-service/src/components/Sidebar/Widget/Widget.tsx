@@ -1,7 +1,6 @@
-import { Flex, Text } from "@/components/common";
-import SirenWidgetCard from "@/components/Sidebar/Widget/SirenWidgetCard";
+import { Flex, Text, Theme } from "waggle-design-system";
 
-import { Theme } from "@/styles/Theme";
+import SirenWidgetCard from "@/components/Sidebar/Widget/SirenWidgetCard";
 
 import { titleStyle, subStyle } from "@/components/Sidebar/Widget/Widget.style";
 

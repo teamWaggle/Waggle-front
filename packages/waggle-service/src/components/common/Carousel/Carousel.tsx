@@ -1,13 +1,14 @@
 import { createContext, useMemo, useState, useRef } from "react";
 import type { PropsWithChildren } from "react";
 
+import { Box } from "waggle-design-system";
+
 import LeftArrowIcon from "@/assets/svg/ic-left-arrow.svg?react";
 import RightArrowIcon from "@/assets/svg/ic-right-arrow.svg?react";
 
-import { Box } from "@/components/common";
-import CarouselItem from "@/components/common/Design/Carousel/CarouselItem";
-import Dots from "@/components/common/Design/Carousel/Dots";
-import Gallery from "@/components/common/Design/Carousel/Gallery/Gallery";
+import CarouselItem from "@/components/common/Carousel/CarouselItem";
+import Dots from "@/components/common/Carousel/Dots";
+import Gallery from "@/components/common/Carousel/Gallery/Gallery";
 
 import useCarousel from "@/hooks/common/useCarousel";
 import useClickOutSide from "@/hooks/common/useClickOutSide";

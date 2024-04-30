@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Box from "@/components/common/Design/Box/Box";
-import Flex from "@/components/common/Design/Flex/Flex";
-
-import { Theme } from "@/styles/Theme";
+import { Flex, Box, Theme } from "waggle-design-system";
 
 const meta = {
   title: "Flex",

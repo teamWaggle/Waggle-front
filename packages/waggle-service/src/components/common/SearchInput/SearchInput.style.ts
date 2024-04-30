@@ -1,10 +1,9 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const searchStyle = (width: string) =>
   css({
-    position: "relative",
     padding: "0 12px",
     borderRadius: "27.5px",
     border: `1px solid ${Theme.color.brand_primary}`,

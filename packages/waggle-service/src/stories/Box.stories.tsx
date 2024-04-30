@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Box from "@/components/common/Design/Box/Box";
-import { containerStyle } from "@/stories/styles";
+import { Box, Theme } from "waggle-design-system";
 
-import { Theme } from "@/styles/Theme";
+import { containerStyle } from "@/stories/styles";
 
 const meta = {
   title: "Box",

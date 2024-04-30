@@ -1,6 +1,8 @@
 import { Fragment } from "react";
 
-import { Flex, Box, SearchInput } from "@/components/common";
+import { Flex, Box } from "waggle-design-system";
+
+import { SearchInput } from "@/components/common";
 import SortButton from "@/components/common/SortButton/SortButton";
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 import QuestionSidebar from "@/components/Question/QuestionSidebar/QuestionSidebar";

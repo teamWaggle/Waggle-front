@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const headingStyle = css({
   color: Theme.color.text,
@@ -9,11 +9,6 @@ export const headingStyle = css({
 });
 
 export const boxStyle = css({
-  flexDirection: "column",
-  alignItems: "center",
-  gap: "6px",
-  position: "relative",
-
   "&:after": {
     position: "absolute",
     top: "25px",
@@ -31,8 +26,6 @@ export const boxStyle = css({
 
 export const getCircleBoxStyle = (disabled: boolean) =>
   css({
-    justifyContent: "center",
-    alignItems: "center",
     width: "25px",
     height: "25px",
     backgroundColor: disabled ? Theme.color.brand_primary : Theme.color.border,

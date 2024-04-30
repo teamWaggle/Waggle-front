@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 
+import { Flex } from "waggle-design-system";
+
 import PlusIcon from "@/assets/svg/ic-gallery-plus.svg?react";
 import GalleryIcon from "@/assets/svg/ic-many-media.svg?react";
 
-import { Flex } from "@/components/common";
-import GallerySlider from "@/components/common/Design/Carousel/Gallery/GallerySlider/GallerySlider";
+import GallerySlider from "@/components/common/Carousel/Gallery/GallerySlider/GallerySlider";
 
 import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
 
@@ -16,7 +17,7 @@ import {
   galleryIconBoxStyle,
   galleryBoxStyle,
   galleryPlusIconBoxStyle,
-} from "@/components/common/Design/Carousel/Gallery/Gallery.style";
+} from "@/components/common/Carousel/Gallery/Gallery.style";
 
 interface GalleryProps {
   isGalleryOpen: boolean;
@@ -71,7 +72,7 @@ const Gallery = ({
       <GalleryIcon onClick={handleGalleryOpen} />
 
       {isGalleryOpen && (
-        <Flex css={galleryBoxStyle}>
+        <Flex styles={{ gap: "24px", align: "center", position: "absolute" }} css={galleryBoxStyle}>
           <GallerySlider
             mediaCurrentIndex={mediaCurrentIndex}
             updatedMediaList={uploadMediaList}

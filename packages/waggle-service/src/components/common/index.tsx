@@ -2,7 +2,7 @@ import MainContainer from "@/components/common/Container/MainContainer/MainConta
 import DatePicker from "@/components/common/DatePicker/DatePicker";
 import DatePickerCalendarModal from "@/components/common/DatePicker/DatePickerModal/DatePickerCalendarModal";
 import Box from "@/components/common/Design/Box/Box";
-import Carousel from "@/components/common/Design/Carousel/Carousel";
+import Carousel from "@/components/common/Carousel/Carousel";
 import Divider from "@/components/common/Design/Divider/Divider";
 import Dropdown from "@/components/common/Design/Dropdown/Dropdown";
 import DropdownButton from "@/components/common/Design/Dropdown/DropdownButton";

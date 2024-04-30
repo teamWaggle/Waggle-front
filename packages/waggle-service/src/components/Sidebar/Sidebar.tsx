@@ -2,7 +2,8 @@ import { Suspense } from "react";
 
 import { useRecoilValue } from "recoil";
 
-import { Flex } from "@/components/common";
+import { Flex } from "waggle-design-system";
+
 import { Login, Profile, Widget } from "@/components/Sidebar";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";

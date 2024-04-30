@@ -1,12 +1,8 @@
+import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
+
 import SortArrowIcon from "@/assets/svg/sort-arrow.svg?react";
 
-import { Flex, Text } from "@/components/common";
-
-import { Theme } from "@/styles/Theme";
-
 import type { sortButtonType } from "@/types/common";
-
-import { textStyle } from "@/components/common/SortButton/SortButton.style";
 
 const SortButton = ({ defaultText }: sortButtonType) => {
   return (
@@ -18,7 +14,7 @@ const SortButton = ({ defaultText }: sortButtonType) => {
         border: `1px solid ${Theme.color.border}`,
       }}
     >
-      <Text css={textStyle}>{defaultText}</Text>
+      <Text css={getDefaultTextStyle(Theme.color.text_02, 500)}>{defaultText}</Text>
       <SortArrowIcon />
     </Flex>
   );

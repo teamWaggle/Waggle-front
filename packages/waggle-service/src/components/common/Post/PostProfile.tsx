@@ -1,11 +1,9 @@
 import { css } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Text } from "@/components/common";
+import { Flex, Text, Theme } from "waggle-design-system";
 
 import { PATH } from "@/constants/path";
-
-import { Theme } from "@/styles/Theme";
 
 import { convertToUTC } from "@/utils/convertToUTC";
 
@@ -21,7 +19,7 @@ const PostProfile = ({ member, viewCount, createdDate }: PostProfilePropsType) =
   const navigate = useNavigate();
 
   return (
-    <Flex css={profileStyle}>
+    <Flex styles={{ align: "center" }} css={profileStyle}>
       <img
         src={member.profileImgUrl}
         alt="profileImg"
@@ -39,7 +37,6 @@ const PostProfile = ({ member, viewCount, createdDate }: PostProfilePropsType) =
 export default PostProfile;
 
 const profileStyle = css({
-  alignItems: "center",
   color: Theme.color.disabled_text,
   fontWeight: 500,
 

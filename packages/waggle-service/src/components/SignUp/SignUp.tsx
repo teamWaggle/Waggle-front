@@ -3,7 +3,8 @@ import { useSearchParams } from "react-router-dom";
 
 import { css } from "@emotion/react";
 
-import { Flex } from "@/components/common";
+import { Flex } from "waggle-design-system";
+
 import SignUpEmail from "@/components/SignUp/SignUpEmail/SignUpEmail";
 import SignUpPet from "@/components/SignUp/SignUpPet/SignUpPet";
 import SignUpProfile from "@/components/SignUp/SignUpProfile/SignUpProfile";
@@ -26,7 +27,7 @@ const SignUp = () => {
   }, []);
 
   return (
-    <Flex css={layoutStyle}>
+    <Flex styles={{ direction: "column", align: "center", margin: "0 auto" }} css={layoutStyle}>
       <SignUpTab />
 
       {searchParams.get(TAB_KEY) === SIGN_UP_TAB_KEY.EMAIL && <SignUpEmail />}
@@ -42,8 +43,5 @@ export default SignUp;
 
 const layoutStyle = css({
   maxWidth: "1536px",
-  margin: "0 auto",
   padding: "110px 196px",
-  flexDirection: "column",
-  alignItems: "center",
 });

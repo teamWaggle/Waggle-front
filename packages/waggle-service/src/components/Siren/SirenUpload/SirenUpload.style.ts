@@ -1,12 +1,11 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const layoutStyle = css({
   maxWidth: "1536px",
-  margin: "0 auto",
+  margin: "70px auto 0",
   padding: "0 196px 132px",
-  marginTop: "70px",
 });
 
 export const inputStyle = css({

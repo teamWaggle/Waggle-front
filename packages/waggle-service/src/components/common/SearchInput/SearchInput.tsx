@@ -1,8 +1,8 @@
 import type { ChangeEvent } from "react";
 
-import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
+import { Flex } from "waggle-design-system";
 
-import { Flex } from "@/components/common";
+import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
 
 import {
   searchStyle,
@@ -17,7 +17,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ onChange, width }: SearchBarProps) => {
   return (
-    <Flex styles={{ align: "center" }} css={searchStyle(width)}>
+    <Flex styles={{ align: "center", position: "relative" }} css={searchStyle(width)}>
       <input
         css={searchInputStyle(width)}
         type="text"

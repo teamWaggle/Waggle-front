@@ -1,6 +1,4 @@
-import { Flex } from "@/components/common";
-
-import Skeleton from "@/components/common/Design/Skeleton/Skeleton";
+import { Flex, Skeleton } from "waggle-design-system";
 
 const StoryCardSkeleton = () => {
   return (

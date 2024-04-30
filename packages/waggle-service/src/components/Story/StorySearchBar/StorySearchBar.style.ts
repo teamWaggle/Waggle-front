@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const headingStyle = css({
   color: Theme.color.brand_primary,

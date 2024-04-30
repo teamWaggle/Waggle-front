@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const galleryIconBoxStyle = css({
   display: "flex",
@@ -18,13 +18,10 @@ export const galleryIconBoxStyle = css({
 });
 
 export const galleryBoxStyle = css({
-  gap: "24px",
-  alignItems: "center",
   height: "134px",
   padding: "14px",
   borderRadius: "10px",
   backgroundColor: "rgba(0, 0, 0, 0.7)",
-  position: "absolute",
   bottom: "60px",
   right: 0,
 

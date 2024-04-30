@@ -1,4 +1,5 @@
-import Flex from "@/components/common/Design/Flex/Flex";
+import { Flex } from "waggle-design-system";
+
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
 import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";

@@ -1,6 +1,6 @@
 import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
 
-import { Flex, Text } from "@/components/common";
+import { Flex, Text } from "waggle-design-system";
 
 import { getFormTextStyle, getInputStyle } from "@/components/SignUp/SignUp.shared.style";
 
