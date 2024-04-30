@@ -37,6 +37,7 @@ const PasswordEditModal = ({ memberId }: MemberIdType) => {
       <Flex styles={{ direction: "column", gap: "20px" }}>
         {passwordFormData.map((data) => (
           <Password
+            key={data.id}
             data={data}
             passwordRequest={passwordRequest}
             updatePasswordInputValue={updatePasswordInputValue}

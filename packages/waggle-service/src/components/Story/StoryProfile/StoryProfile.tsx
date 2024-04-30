@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { css } from "@emotion/react";
 import { useRecoilValue } from "recoil";
 
@@ -35,8 +34,6 @@ const StoryProfile = ({ memberData, editClick, deleteClick }: StoryProfileProps)
 
   const memberId = userData ? userData.memberId : null;
 
-  const navigate = useNavigate();
-
   return (
     <Flex
       styles={{ align: "center", justify: "space-between", width: "100%", position: "relative" }}
@@ -46,7 +43,7 @@ const StoryProfile = ({ memberData, editClick, deleteClick }: StoryProfileProps)
           src={profileImgUrl}
           alt="profileImg"
           css={profileStyle}
-          onClick={() => navigate(`${PATH.MY(userUrl)}?tab=profile`)}
+          onClick={() => (window.location.href = `${PATH.MY(userUrl)}?tab=profile`)}
         />
         <Text size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
           {nickname}
