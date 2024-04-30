@@ -17,8 +17,8 @@ const SirenBio = () => {
 
   return (
     <Flex tag="section" styles={{ gap: "50px" }}>
-      <Flex styles={{ direction: "column", gap: "28px" }}>
-        <Flex css={titleStyle}>
+      <Flex styles={{ marginTop: "50px", direction: "column", gap: "28px" }}>
+        <Flex styles={{ direction: "column", gap: "10px" }} css={titleStyle}>
           <Heading>위급한 일이 생겼나요?</Heading>
           <Heading>Waggle 견주들과</Heading>
           <Heading>함께 문제를 해결해요</Heading>

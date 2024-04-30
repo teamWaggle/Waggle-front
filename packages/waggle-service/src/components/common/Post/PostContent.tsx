@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Text, getDefaultTextStyle, Theme } from "waggle-design-system";
 
-import Carousel from "@/components/common/Design/Carousel/Carousel";
+import Carousel from "@/components/common/Carousel/Carousel";
 
 interface PostContentParams {
   mediaList: string[];

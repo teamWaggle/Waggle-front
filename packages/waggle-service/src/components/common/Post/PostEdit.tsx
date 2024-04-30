@@ -1,4 +1,6 @@
-import { Flex, Carousel } from "@/components/common";
+import { Flex } from "waggle-design-system";
+
+import Carousel from "@/components/common/Carousel/Carousel";
 
 import type { QuestionFormData } from "@/types/question";
 import type { SirenFormData } from "@/types/siren";

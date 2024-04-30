@@ -1,4 +1,5 @@
-import { Flex } from "@/components/common";
+import { Flex } from "waggle-design-system";
+
 import PostContent from "@/components/common/Post/PostContent";
 import PostRecommend from "@/components/common/Post/PostRecommend";
 

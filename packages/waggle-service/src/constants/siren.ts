@@ -1,4 +1,4 @@
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const SIREN_TAG_CATEGORY = [
   {

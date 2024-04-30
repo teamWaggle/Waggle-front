@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const sectionStyle = css({
   width: "100%",
@@ -15,7 +15,5 @@ export const boxStyle = css({
 export const titleBoxStyle = css({
   color: Theme.color.white,
   fontWeight: 700,
-  flexDirection: "column",
-  gap: "10px",
   width: "198px",
 });

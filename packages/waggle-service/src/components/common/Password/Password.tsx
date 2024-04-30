@@ -1,4 +1,5 @@
-import { Flex } from "@/components/common";
+import { Flex } from "waggle-design-system";
+
 import PasswordInput from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordInput";
 import PasswordValidator from "@/components/SignUp/SignUpEmail/PasswordInput/PasswordValidator";
 

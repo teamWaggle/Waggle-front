@@ -1,25 +1,12 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
-export const layoutStyle = (locate: string) => {
-  return css({
-    flexDirection: "column",
-    alignItems: "center",
-    marginTop: locate === "login" ? "24px" : 0,
-  });
-};
-
-export const socialButtonStyle = (locate: string) => {
-  return css({
-    gap: "20px",
-    marginTop: locate === "login" ? "16px" : "30px",
-
-    "& > svg": {
-      cursor: "pointer",
-    },
-  });
-};
+export const socialButtonStyle = css({
+  "& > svg": {
+    cursor: "pointer",
+  },
+});
 
 export const getTextStyle = (locate: string) => {
   return css({

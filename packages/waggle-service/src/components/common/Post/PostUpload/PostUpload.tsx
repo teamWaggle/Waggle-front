@@ -1,4 +1,6 @@
-import { Flex, Carousel } from "@/components/common";
+import { Flex } from "waggle-design-system";
+
+import { Carousel } from "@/components/common";
 import PostUploadMedia from "@/components/common/Post/PostUploadMedia/PostUploadMedia";
 
 import type { QuestionFormData } from "@/types/question";

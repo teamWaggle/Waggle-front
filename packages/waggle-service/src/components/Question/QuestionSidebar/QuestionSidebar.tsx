@@ -1,4 +1,4 @@
-import Flex from "@/components/common/Design/Flex/Flex";
+import { Flex } from "waggle-design-system";
 
 import QuestionSidebarProfile from "@/components/Question/QuestionSidebar/QuestionSidebarProfile/QuestionSidebarProfile";
 

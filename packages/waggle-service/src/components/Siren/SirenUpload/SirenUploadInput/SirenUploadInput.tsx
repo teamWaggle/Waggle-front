@@ -1,9 +1,9 @@
+import { Flex, Box, Text } from "waggle-design-system";
+
 import FeMaleDisabledIcon from "@/assets/svg/ic-female-disabled.svg?react";
 import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleDisabledIcon from "@/assets/svg/ic-male-disabled.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
-
-import { Flex, Box, Text } from "@/components/common";
 
 import type { SirenFormData } from "@/types/siren";
 

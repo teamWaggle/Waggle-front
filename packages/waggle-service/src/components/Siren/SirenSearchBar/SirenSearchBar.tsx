@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import { Flex, Text, SearchInput } from "@/components/common";
+import { Flex, Text, Theme } from "waggle-design-system";
+
+import { SearchInput } from "@/components/common";
 import SortButton from "@/components/common/SortButton/SortButton";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
-
-import { Theme } from "@/styles/Theme";
 
 import { tagStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
 

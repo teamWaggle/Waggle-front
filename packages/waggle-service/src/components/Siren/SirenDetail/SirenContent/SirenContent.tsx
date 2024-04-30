@@ -1,7 +1,8 @@
+import { Flex, Box, Text, Divider } from "waggle-design-system";
+
 import FeMaleIcon from "@/assets/svg/ic-female.svg?react";
 import MaleIcon from "@/assets/svg/ic-male.svg?react";
 
-import { Flex, Box, Text, Divider } from "@/components/common";
 import PostContent from "@/components/common/Post/PostContent";
 import PostRecommend from "@/components/common/Post/PostRecommend";
 

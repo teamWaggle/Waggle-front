@@ -1,4 +1,5 @@
-import { Flex, Box, Text, Divider } from "@/components/common";
+import { Flex, Box, Text, Divider } from "waggle-design-system";
+
 import StoryCommentInput from "@/components/Story/StoryComment/StoryCommentInput";
 import ReplyItem from "@/components/Story/StoryComment/Reply/ReplyItem";
 

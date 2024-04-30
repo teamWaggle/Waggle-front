@@ -1,4 +1,4 @@
-import { Flex, Text } from "@/components/common";
+import { Flex, Text } from "waggle-design-system";
 
 import type { updatePetInputValueType } from "@/types/auth";
 

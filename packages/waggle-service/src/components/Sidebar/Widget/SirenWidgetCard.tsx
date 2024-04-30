@@ -1,8 +1,6 @@
+import { Flex, Text, Theme } from "waggle-design-system";
+
 import SampleImg from "@/assets/png/post-sample.png";
-
-import { Flex, Text } from "@/components/common";
-
-import { Theme } from "@/styles/Theme";
 
 import {
   imgStyle,

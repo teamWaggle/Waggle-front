@@ -1,6 +1,6 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-import { Flex, Heading, Text, Logo } from "@/components/common";
+import { Flex, Heading, Text, Logo } from "waggle-design-system";
 
 import { signUpTabData, TAB_KEY } from "@/constants/tab";
 
@@ -28,11 +28,15 @@ const SignUpTab = () => {
       <Flex styles={{ align: "center", marginTop: "40px", gap: "160px" }}>
         {signUpTabData.map((data) => (
           <Flex
+            styles={{ direction: "column", align: "center", gap: "6px", position: "relative" }}
             css={boxStyle}
             key={data.text}
             onClick={() => navigate(`/signup?${TAB_KEY}=${data.id}`)}
           >
-            <Flex css={getCircleBoxStyle(searchParams.get(TAB_KEY) === data.id)}>
+            <Flex
+              styles={{ align: "center", justify: "center" }}
+              css={getCircleBoxStyle(searchParams.get(TAB_KEY) === data.id)}
+            >
               <Text size="small" css={circleNumberStyle}>
                 {data.number}
               </Text>
