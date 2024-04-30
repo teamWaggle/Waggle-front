@@ -1,4 +1,4 @@
-import { Flex, Text, Theme } from "waggle-design-system";
+import { Flex, Theme, Tag } from "waggle-design-system";
 
 import SampleImg from "@/assets/png/post-sample.png";
 
@@ -24,12 +24,12 @@ const SirenWidgetCard = () => {
     >
       <img src={SampleImg} alt="sampleImg" css={imgStyle} />
       <Flex styles={{ direction: "column", justify: "center", gap: "8px" }}>
-        <Text css={textStyle}>강아지를 찾고 있습니다asdfasdfasddfasasdfasfdsasdfasdf</Text>
-        <Text css={subTextStyle}>제주특별자치도 제주시</Text>
+        <p css={textStyle}>강아지를 찾고 있습니다asdfasdfasddfasasdfasfdsasdfasdf</p>
+        <p css={subTextStyle}>제주특별자치도 제주시</p>
       </Flex>
 
-      <Flex styles={{ align: "center", justify: "center" }} css={tagStyle}>
-        <Text size="xSmall">강아지 찾아요</Text>
+      <Flex styles={{ position: "absolute" }} css={tagStyle}>
+        <Tag tagText="FIND_PET" isSmall />
       </Flex>
     </Flex>
   );

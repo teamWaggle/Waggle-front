@@ -42,13 +42,12 @@ export const subTextStyle = css({
 });
 
 export const tagStyle = css({
-  position: "absolute",
   top: "-14px",
   left: "-16px",
-  backgroundColor: Theme.color.btn_02,
-  borderRadius: "17px",
-  padding: "4px 10px",
-  color: Theme.color.text,
-  fontFamily: "Inter",
-  fontWeight: "500",
+  // backgroundColor: Theme.color.btn_02,
+  // borderRadius: "17px",
+  // padding: "4px 10px",
+  // color: Theme.color.text,
+  // fontFamily: "Inter",
+  // fontWeight: "500",
 });
