@@ -1,7 +1,10 @@
+import { Suspense } from "react";
+
 import { Box, Theme } from "waggle-design-system";
 
 import StoryBio from "@/components/Story/StoryBio/StoryBio";
 import StoryMain from "@/components/Story/StoryMain/StoryMain";
+import StoryMainSkeleton from "@/components/Story/StoryMain/StoryMainSkeleton";
 
 const StoryPage = () => {
   return (
@@ -10,7 +13,9 @@ const StoryPage = () => {
         <StoryBio />
       </Box>
 
-      <StoryMain />
+      <Suspense fallback={<StoryMainSkeleton />}>
+        <StoryMain />
+      </Suspense>
     </>
   );
 };

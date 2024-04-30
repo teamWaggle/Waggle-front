@@ -15,7 +15,6 @@ import {
   Error404Page,
   AuthPage,
   ConnectionPage,
-  StoryPageSkeleton,
   SirenCreatePage,
   QuestionCreatePage,
   TeamPage,
@@ -30,11 +29,7 @@ const AppRouter = () => {
       children: [
         {
           path: "",
-          element: (
-            <Suspense fallback={<StoryPageSkeleton />}>
-              <Lazy.StoryPage />
-            </Suspense>
-          ),
+          element: <Lazy.StoryPage />,
         },
         {
           path: PATH.SIREN,
