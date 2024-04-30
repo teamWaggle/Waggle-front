@@ -9,9 +9,7 @@ export const sectionStyle = css({
 
 export const boxStyle = css({
   maxWidth: "1536px",
-  margin: "0 auto",
   padding: "50px 196px",
-  justifyContent: "space-between",
 });
 
 export const titleBoxStyle = css({

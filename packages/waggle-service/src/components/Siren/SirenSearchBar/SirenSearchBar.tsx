@@ -7,7 +7,7 @@ import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
 import { Theme } from "@/styles/Theme";
 
-import { tagStyle } from "@/components/common/Tag/Tag.style";
+import { tagStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
 
 const SirenSearchBar = () => {
   const [tagName, setTagName] = useState("강아지 찾아요");

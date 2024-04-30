@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Box, Heading } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import { Flex, Box, Heading, Button } from "waggle-design-system";
+
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 
 import { PATH } from "@/constants/path";
@@ -21,9 +21,9 @@ const QuestionBio = () => {
 
   return (
     <Box tag="section" css={sectionStyle}>
-      <Flex css={boxStyle}>
+      <Flex styles={{ margin: "0 auto", justify: "space-between" }} css={boxStyle}>
         <Flex styles={{ direction: "column", gap: "52px", marginTop: "54px" }}>
-          <Flex css={titleBoxStyle}>
+          <Flex styles={{ direction: "column", gap: "10px" }} css={titleBoxStyle}>
             <Heading size="small">물어보고 싶은</Heading>
             <Heading size="small">강아지 관련 궁금증이</Heading>
             <Heading size="small">있나요? Q&A에서</Heading>

@@ -1,9 +1,6 @@
 import { css } from "@emotion/react";
 
 export const layoutStyle = css({
-  flexDirection: "column",
-  alignItems: "center",
-  position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",

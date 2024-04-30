@@ -1,23 +1,22 @@
-import { Flex, Box, Divider, Text } from "@/components/common";
-import Tag from "@/components/common/Tag/Tag";
+import { Flex, Box, Divider, Text, Tag, getDefaultTextStyle, Theme } from "waggle-design-system";
 
-import {
-  titleBoxStyle,
-  titleStyle,
-  infoBoxStyle,
-} from "@/components/MyPage/MyPageCommentCard/MyPageCommentCard.style";
+import { infoBoxStyle } from "@/components/MyPage/MyPageCommentCard/MyPageCommentCard.style";
 
 const MyPageCommentCard = () => {
   return (
     <Box styles={{ width: "100%" }}>
-      <Flex css={titleBoxStyle}>
-        <Flex css={titleStyle}>
+      <Flex
+        styles={{ align: "center", justify: "space-between", width: "100%", marginBottom: "6px" }}
+      >
+        <Flex styles={{ gap: "8px", align: "center" }}>
           <Tag tagText="FIND_PET" />
           <Tag tagText="UNRESOLVED" isResolveTag />
-          <Text size="large">강아지를 찾고 있어요 도와주세요</Text>
+          <Text size="large" css={getDefaultTextStyle(Theme.color.text, 600)}>
+            강아지를 찾고 있어요 도와주세요
+          </Text>
         </Flex>
 
-        <Flex css={infoBoxStyle}>
+        <Flex styles={{ gap: "18px" }} css={infoBoxStyle}>
           <Text size="small">멍댕멍댕</Text>
           <Text size="small">조회 129</Text>
           <Text size="small">23.12.27</Text>

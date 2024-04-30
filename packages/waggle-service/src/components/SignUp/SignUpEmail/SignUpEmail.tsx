@@ -1,5 +1,6 @@
-import { Flex, SocialLogin } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import { Flex, Button } from "waggle-design-system";
+
+import { SocialLogin } from "@/components/common";
 import Password from "@/components/common/Password/Password";
 import EmailAuthCodeInput from "@/components/SignUp/SignUpEmail/EmailAuthCodeInput/EmailAuthCodeInput";
 import EmailInput from "@/components/SignUp/SignUpEmail/EmailInput/EmailInput";

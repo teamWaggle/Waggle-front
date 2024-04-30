@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { Flex, Heading } from "@/components/common";
-import Button from "@/components/common/Design/Button/Button";
+import { Flex, Heading, Button } from "waggle-design-system";
+
 import PetAgeInput from "@/components/SignUp/SignUpPet/PetAgeInput/PetAgeInput";
 import PetBreedInput from "@/components/SignUp/SignUpPet/PetBreedInput/PetBreedInput";
 import PetGenderInput from "@/components/SignUp/SignUpPet/PetGenderInput/PetGenderInput";
@@ -14,11 +14,7 @@ import { PATH } from "@/constants/path";
 import { useSignUpPetForm } from "@/hooks/auth/useSignUpPetForm";
 import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
 
-import {
-  boxStyle,
-  formLayoutStyle,
-  buttonLayoutStyle,
-} from "@/components/SignUp/SignUpPet/SignUpPet.style";
+import { boxStyle, formLayoutStyle } from "@/components/SignUp/SignUpPet/SignUpPet.style";
 
 const SignUpPet = () => {
   const navigate = useNavigate();
@@ -29,14 +25,14 @@ const SignUpPet = () => {
 
   return (
     <Flex styles={{ direction: "column", marginTop: "50px", gap: "30px" }}>
-      <Flex css={boxStyle}>
+      <Flex styles={{ direction: "column", gap: "40px", align: "center" }} css={boxStyle}>
         <Heading size="xSmall">
           나의 반려견을 등록해보세요!
           <br />
           My Waggle에서 언제든지 반려견을 등록하고 수정할 수 있어요
         </Heading>
 
-        <Flex css={formLayoutStyle}>
+        <Flex styles={{ direction: "column", gap: "30px" }} css={formLayoutStyle}>
           <PetProfileInput handleImgUpload={handleImgUpload} uploadMedia={uploadMedia} />
 
           <PetNameInput name={signUpPetRequest.name} updateInputValue={updateInputValue} />
@@ -56,7 +52,7 @@ const SignUpPet = () => {
         </Flex>
       </Flex>
 
-      <Flex css={buttonLayoutStyle}>
+      <Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
         <Button variant="disabled" onClick={() => navigate(PATH.ROOT)}>
           건너뛰기
         </Button>
