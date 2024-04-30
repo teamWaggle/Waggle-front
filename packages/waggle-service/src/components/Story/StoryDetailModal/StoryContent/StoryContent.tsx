@@ -27,7 +27,7 @@ const StoryContent = ({ storyData }: StoryDataType) => {
   const handleDeleteStory = useCallback(() => {
     openModal({
       key: `DeleteWarningModal`,
-      component: () => <DeleteWarningModal targetText="댓글" handleDelete={deleteMutate} />,
+      component: () => <DeleteWarningModal handleDelete={deleteMutate} />,
       isUpper: true,
       notCloseIcon: true,
     });

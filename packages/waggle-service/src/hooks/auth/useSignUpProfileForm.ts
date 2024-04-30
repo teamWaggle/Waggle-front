@@ -1,11 +1,11 @@
 import { useState, useRef, useCallback } from "react";
 
-import { useMemberInfoMutation } from "../api/member/useMemberInfoMutation";
-
 import { SIGN_UP_TAB_KEY, TAB_KEY } from "@/constants/tab";
 
 import { useMemberInfoFirstMutation } from "@/hooks/api/member/useMemberInfoFirstMutation";
+import { useMemberInfoMutation } from "@/hooks/api/member/useMemberInfoMutation";
 import { useValidateForm } from "@/hooks/common/useValidateForm";
+import useModal from "@/hooks/common/useModal";
 
 import type { SignUpProfileFormType } from "@/types/auth";
 
@@ -15,7 +15,6 @@ interface UseSignUpProfileFormParams {
   uploadMedia?: string;
   prevReqeust?: { nickname: string; userUrl: string };
   memberId?: number;
-  onClose?: () => void;
 }
 
 export const useSignUpProfileForm = ({
@@ -24,10 +23,11 @@ export const useSignUpProfileForm = ({
   uploadMedia,
   prevReqeust,
   memberId,
-  onClose,
 }: UseSignUpProfileFormParams) => {
   const { mutate: memberInfoFirstMutate } = useMemberInfoFirstMutation();
   const { mutate: memberInfoMutate } = useMemberInfoMutation();
+
+  const { closeModal } = useModal();
 
   const nicknameRef = useRef<HTMLInputElement>(null);
   const userUrlRef = useRef<HTMLInputElement>(null);
@@ -75,7 +75,7 @@ export const useSignUpProfileForm = ({
   const validateEditForm = () => {
     if (
       prevReqeust?.nickname !== signUpProfileRequest.nickname &&
-      !useValidateForm(nicknameCheckComplete, nicknameRef, "닉네임 중복 확인을 해주세요")
+      useValidateForm(nicknameCheckComplete, nicknameRef, "닉네임 중복 확인을 해주세요") === false
     ) {
       return false;
     }
@@ -145,7 +145,7 @@ export const useSignUpProfileForm = ({
 
       memberInfoMutate(formData, {
         onSuccess: () => {
-          onClose && onClose();
+          closeModal();
         },
       });
     }

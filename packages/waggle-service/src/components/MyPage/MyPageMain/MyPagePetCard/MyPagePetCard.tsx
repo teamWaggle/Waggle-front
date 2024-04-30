@@ -22,10 +22,10 @@ const MyPagePetCard = ({ petData, isOwner }: PetDataType) => {
 
   const { mutate: deletePetMutate } = useDeletePetMutation();
 
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   const deleteMutate = () => {
-    deletePetMutate(petId);
+    deletePetMutate(petId, { onSuccess: () => closeModal() });
   };
 
   const handleDeletePet = () => {
