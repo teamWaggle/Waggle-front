@@ -12,7 +12,3 @@ export const headingStyle = css({
     marginLeft: "4px",
   },
 });
-
-export const sortButtonBoxStyle = css({
-  alignSelf: "flex-end",
-});
