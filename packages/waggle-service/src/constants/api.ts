@@ -44,6 +44,8 @@ export const END_POINTS = {
   PET: (petId: number) => `/api/pets/${petId}`,
   MEDIA: "/api/media/list",
   QUESTIONS: (currentPage: unknown) => `/api/questions?currentPage=${currentPage}`,
+  QUESTION_FILTER: (filter: string, currentPage: unknown) =>
+    `/api/questions/filter?filterParam=${filter}&currentPage=${currentPage}`,
   QUESTION: (questionId: number) => `/api/questions/${questionId}`,
   QUESTION_REPRESENTATIVE: `/api/questions/representative`,
   POST_QUESTION: "/api/questions",
