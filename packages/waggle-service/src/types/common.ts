@@ -14,6 +14,8 @@ export interface ParamUrlType {
 
 export interface sortButtonType {
   defaultText: string;
+  handleFilterText: (text: string) => void;
+  handleFilterOption: (option: string) => void;
 }
 
 export interface CommonResponseBaseType {

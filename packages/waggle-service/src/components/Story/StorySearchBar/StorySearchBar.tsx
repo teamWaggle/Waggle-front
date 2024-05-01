@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 
-import { Flex, Heading, Button, SortButton } from "waggle-design-system";
+import { Flex, Heading, Button } from "waggle-design-system";
 
 import LogIcon from "@/assets/svg/log.svg?react";
 
@@ -12,10 +12,7 @@ import useModal from "@/hooks/common/useModal";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
-import {
-  headingStyle,
-  sortButtonBoxStyle,
-} from "@/components/Story/StorySearchBar/StorySearchBar.style";
+import { headingStyle } from "@/components/Story/StorySearchBar/StorySearchBar.style";
 
 const StorySearchBar = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
@@ -33,7 +30,7 @@ const StorySearchBar = () => {
   return (
     <Flex styles={{ direction: "column", width: "100%" }}>
       <Flex
-        styles={{ align: "center", justify: "space-between", width: "100%", marginBottom: "40px" }}
+        styles={{ align: "center", justify: "space-between", width: "100%", marginBottom: "20px" }}
       >
         <Flex styles={{ align: "center", gap: "20px" }}>
           <Heading size="large" css={headingStyle}>
@@ -45,10 +42,6 @@ const StorySearchBar = () => {
         </Flex>
 
         <SearchInput onChange={() => {}} width="252px" />
-      </Flex>
-
-      <Flex css={sortButtonBoxStyle}>
-        <SortButton defaultText="인기순" />
       </Flex>
     </Flex>
   );
