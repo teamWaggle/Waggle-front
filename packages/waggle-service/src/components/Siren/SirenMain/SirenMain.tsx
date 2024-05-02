@@ -20,7 +20,7 @@ const SirenMain = () => {
 
   const { sirenListData, refetch } = useSirenFilterQuery(filterOption, 0);
 
-  const [tagName, setTagName] = useState("임시보호");
+  const [category, setCategory] = useState("PROTECT");
 
   useEffect(() => {
     refetch();
@@ -43,8 +43,10 @@ const SirenMain = () => {
             {SIREN_TAG_CATEGORY.map((tag) => (
               <Flex
                 key={tag.tagName}
-                css={tagStyle(tagName === tag.tagName ? tag.color : Theme.color.border)}
-                onClick={() => setTagName(tag.tagName)}
+                css={tagStyle(category === tag.category ? tag.color : Theme.color.border)}
+                onClick={() => {
+                  setCategory(tag.category);
+                }}
               >
                 <Text>{tag.tagName}</Text>
               </Flex>
