@@ -1,15 +1,11 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 import type { TeamColorType } from "@/types/team";
 
 export const addTeamScheduleModalBoxStyle = css({
-  width: "600px",
   backgroundColor: Theme.color.white,
-  borderRadius: "16px",
-  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-  flexDirection: "column",
 });
 
 export const addTeamScheduleModalTitleBoxStyle = (color: TeamColorType) =>

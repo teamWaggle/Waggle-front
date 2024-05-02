@@ -1,7 +1,7 @@
 import PenIcon from "@/assets/svg/pen.svg?react";
 import TrashIcon from "@/assets/svg/trashCan.svg?react";
 
-import { Box, Flex, MentionChecker, Text } from "@/components/common";
+import { Box, Flex, MentionChecker, Text } from "waggle-design-system";
 import { format } from "date-fns";
 
 import {
@@ -14,7 +14,7 @@ import {
 
 const Comment = () => {
   return (
-    <Flex css={commentBoxStyle}>
+    <Flex styles={{ align: "center", marginBottom: "16px" }} css={commentBoxStyle}>
       <Box tag="figure">
         <img css={imgStyle} src="https://source.unsplash.com/random/300x300" alt="" />
       </Box>

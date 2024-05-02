@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
 import { useRef } from "react";
 
-import { Box, Text } from "@/components/common";
+import { Box, Text } from "waggle-design-system";
 
 import useClickOutSide from "@/hooks/common/useClickOutSide";
 import useModalTrigger from "@/hooks/common/useModalTrigger";

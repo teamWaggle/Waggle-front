@@ -4,7 +4,7 @@ import GroupIcon from "@/assets/svg/group.svg?react";
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
 import ScheduleModalCloseIcon from "@/assets/svg/scheduleModalClose.svg?react";
 
-import { Box, Flex, Heading, Text } from "@/components/common";
+import { Box, Flex, Heading, Text } from "waggle-design-system";
 import Comment from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/Comment/Comment";
 import CommentInput from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentInput/CommentInput";
 import OptionDropdown from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/OptionDropdown/OptionDropdown";
@@ -18,7 +18,6 @@ import {
   scheduleModalBoxStyle,
   circleDivStyle,
   scheduleModalIcon,
-  scheduleTitleBoxStyle,
   scheduleTitleStyle,
   scheduleModalTime,
   scheduleModalTeamName,
@@ -62,7 +61,9 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   };
   return (
     <section css={scheduleModalBoxStyle(position)} ref={scheduleModalRef}>
-      <Flex css={scheduleTitleBoxStyle}>
+      <Flex
+        styles={{ width: "100%", justify: "space-between", align: "center", marginBottom: "16px" }}
+      >
         <Flex styles={{ align: "center", gap: "8px" }}>
           <Box css={circleDivStyle(schedule.teamColor)} />
           <Heading size="small" css={scheduleTitleStyle}>
@@ -88,7 +89,10 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
         <GroupIcon />
         <Box css={scheduleModalTeamName(schedule.teamColor)}>{teamName}</Box>
       </Flex>
-      <Flex css={scheduleCommentBoxStyle}>
+      <Flex
+        styles={{ direction: "column", width: "100%", height: "200px", marginTop: "16px" }}
+        css={scheduleCommentBoxStyle}
+      >
         <Comment />
         <Comment />
         <Comment />

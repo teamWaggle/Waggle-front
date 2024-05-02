@@ -1,12 +1,10 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const commentBoxStyle = css({
-  width: "100%",
   overscrollBehavior: "contain",
   overflowY: "auto",
-  marginTop: "8px",
 });
 
 export const commentInputStyle = css({

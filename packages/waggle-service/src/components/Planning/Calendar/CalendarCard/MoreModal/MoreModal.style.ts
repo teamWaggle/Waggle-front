@@ -1,22 +1,13 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 import type { TeamColorType } from "@/types/team";
 
 export const moreModalContainerStyle = css({
-  display: "flex",
-  position: "absolute",
-  alignItems: "center",
-  flexDirection: "column",
-  zIndex: 100,
-  width: "200px",
+  zIndex: 1,
   backgroundColor: Theme.color.white,
-  boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-  borderRadius: "10px",
   left: "-20px",
-  paddingRight: "20px",
-  paddingLeft: "20px",
 });
 
 export const moreModalDayStyle = css({ color: Theme.color.text, marginTop: "16px" });

@@ -1,13 +1,10 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 import type { TeamColorType } from "@/types/team";
 
 export const flexStyle = css({
-  alignItems: "center",
-  flexDirection: "column",
-  height: "100%",
   flexWrap: "nowrap",
   backgroundColor: Theme.color.white,
   boxSizing: "border-box",
@@ -25,13 +22,6 @@ export const dateTextStyle = (isSameMonth?: boolean) =>
     fontSize: Theme.text.xSmall.fontSize,
     lineHeight: Theme.text.xSmall.lineHeight,
   });
-
-export const scheduleFlexBox = css({
-  flexDirection: "column",
-  width: "100%",
-  height: "100%",
-  border: "none",
-});
 
 export const scheduleTextStyle = (color: TeamColorType, lastSchedule?: boolean) =>
   css({

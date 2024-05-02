@@ -1,18 +1,12 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
-
-export const participationCardBoxStyle = css({
-  gap: "4px",
-});
+import { Theme } from "waggle-design-system";
 
 export const participationCardNameStyle = css({
   height: "32px",
   width: "150px",
   borderRadius: "4px",
   border: `1px solid ${Theme.color.btn_danger}`,
-  alignItems: "center",
-  justifyContent: "space-between",
 });
 export const participationCardImgStyle = css({
   height: "18px",
@@ -28,8 +22,6 @@ export const participationCardTextStyle = css({
 
 export const approveButtonStyle = css({
   width: "40px",
-  justifyContent: "center",
-  alignItems: "center",
   height: "32px",
   borderRadius: "4px",
   backgroundColor: Theme.color.btn_danger,
@@ -40,8 +32,6 @@ export const approveButtonStyle = css({
 
 export const rejectButtonStyle = css({
   width: "40px",
-  justifyContent: "center",
-  alignItems: "center",
   height: "32px",
   borderRadius: "4px",
   backgroundColor: Theme.color.disabled_text,

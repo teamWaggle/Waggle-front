@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 import type { SchedulePositionType } from "@/types/planning";
 import type { TeamColorType } from "@/types/team";
@@ -30,14 +30,6 @@ export const circleDivStyle = (color: TeamColorType) =>
     background: Theme.color[color],
     boxShadow: "none", // Add the boxShadow property with an appropriate value
   });
-
-export const scheduleTitleBoxStyle = css({
-  display: "flex",
-  width: "100%",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: "16px",
-});
 
 export const scheduleTitleStyle = css({
   fontSize: "24px",
@@ -74,11 +66,6 @@ export const scheduleModalTeamName = (color: TeamColorType) =>
   });
 
 export const scheduleCommentBoxStyle = css({
-  display: "flex",
-  flexDirection: "column",
-  width: "100%",
-  marginTop: "16px",
-  height: "200px",
   overflow: "auto",
   overscrollBehavior: "contain",
 });

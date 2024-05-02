@@ -1,23 +1,26 @@
 import { useNavigate } from "react-router-dom";
 
-import { Box, Flex, Heading, SearchInput, Text, MainContainer } from "@/components/common";
+import { Box, Flex, Heading, Text, MainContainer } from "waggle-design-system";
 import MemberTeamSlider from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider";
 
-import {
-  headingStyle,
-  buttonStyle,
-  flexStyle,
-  gridBoxStyle,
-} from "@/components/Planning/Main/Main.style";
+import { headingStyle, buttonStyle, gridBoxStyle } from "@/components/Planning/Main/Main.style";
 import { useRecoilValue } from "recoil";
 import { isLoggedInState } from "@/recoil/atoms/auth";
+import { SearchInput } from "@/components/common";
 
 const Main = () => {
   const navigate = useNavigate();
   const isLoggedIn = useRecoilValue(isLoggedInState);
   return (
     <MainContainer>
-      <Flex css={flexStyle}>
+      <Flex
+        styles={{
+          justify: "space-between",
+          align: "center",
+          marginTop: "52px",
+          marginBottom: "23px",
+        }}
+      >
         <Heading css={headingStyle} size="medium">
           My TEAM
         </Heading>
@@ -26,7 +29,14 @@ const Main = () => {
         </button>
       </Flex>
       {isLoggedIn && <MemberTeamSlider />}
-      <Flex css={flexStyle}>
+      <Flex
+        styles={{
+          justify: "space-between",
+          align: "center",
+          marginTop: "52px",
+          marginBottom: "23px",
+        }}
+      >
         <Heading css={headingStyle} size="medium">
           Waggle에서 모여봐요!
         </Heading>
