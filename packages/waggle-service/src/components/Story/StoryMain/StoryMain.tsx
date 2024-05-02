@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import { Flex, Box } from "waggle-design-system";
 
@@ -20,7 +20,7 @@ const StoryMain = () => {
   const [filterOption, setFilterOption] = useState(FILTER_DEFAULT.OPTION);
   const [filterText, setFilterText] = useState(FILTER_DEFAULT.TEXT);
 
-  const { storyListData, hasNextPage, fetchNextPage, isFetching } =
+  const { storyListData, hasNextPage, fetchNextPage, isFetching, refetch } =
     useStoryFilterQuery(filterOption);
 
   const ref = useObserver(async (entry, observer) => {
@@ -38,6 +38,10 @@ const StoryMain = () => {
   const handleFilterText = (text: string) => {
     setFilterText(text);
   };
+
+  useEffect(() => {
+    refetch();
+  }, [filterOption]);
 
   return (
     <Box tag="section" styles={{ padding: "32px 0 60px" }}>
