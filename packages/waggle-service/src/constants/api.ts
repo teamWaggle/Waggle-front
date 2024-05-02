@@ -35,6 +35,8 @@ export const END_POINTS = {
   SIREN_LIST: (curretPage: number) => `/api/sirens?currentPage=${curretPage}`,
   SIREN_FILTER: (filter: string, currentPage: unknown) =>
     `/api/sirens/filter?filterParam=${filter}&currentPage=${currentPage}`,
+  SIREN_CATEGORY: (category: string, currentPage: unknown) =>
+    `/api/sirens/category?category=${category}&currentPage=${currentPage}`,
   SIREN_REPRESENTATIVE: "/api/sirens/representative",
   POST_SIREN: "/api/sirens",
   REPLIES: (currentPage: number, commentId: number) =>
