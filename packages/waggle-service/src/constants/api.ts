@@ -59,6 +59,9 @@ export const END_POINTS = {
     `/api/sirens/member/${userUrl}?currentPage=${currentPage}`,
   MEMBER_QUESTION: (currentPage: unknown, userUrl?: string) =>
     `/api/questions/member/${userUrl}?currentPage=${currentPage}`,
+  MEMBER_SIREN_COMMENT: (currentPage: unknown, userUrl?: string) =>
+    `/api/comments/members/${userUrl}/siren/paged?currentPage=${currentPage}`,
+
   // Schuedule
   MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
   MEMBER_SCHEDULES_MONTHLY: (userUrl: string, year: number, month: number) =>

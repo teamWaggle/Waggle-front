@@ -121,7 +121,7 @@ const CommentCard = ({ commentData, handleEditClick }: CommentDataType) => {
         {member.memberId === memberId && (
           <Flex styles={{ align: "center", paddingTop: "4px" }}>
             <ProfileOptionMenu
-              handleEditMenu={() => handleEditClick(content, commentId)}
+              handleEditMenu={() => handleEditClick && handleEditClick(content, commentId)}
               handleDeleteMenu={handleDeleteComment}
             />
           </Flex>
