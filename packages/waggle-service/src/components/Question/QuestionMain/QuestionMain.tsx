@@ -7,7 +7,7 @@ import SortButton from "@/components/common/SortButton/SortButton";
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 import QuestionSidebar from "@/components/Question/QuestionSidebar/QuestionSidebar";
 
-import { useQuestionListQuery } from "@/hooks/api/question/useQuestionListQuery";
+import { useQuestionFilterQuery } from "@/hooks/api/question/useQuestionFilterQuery";
 import useObserver from "@/hooks/common/useObserver";
 
 import { mainStyle } from "@/components/Question/QuestionMain/QuestionMain.style";
@@ -35,9 +35,8 @@ const QuestionMain = () => {
   const [filterOption, setFilterOption] = useState("latest");
   const [filterText, setFilterText] = useState("최신순");
 
-  const { questionListData, hasNextPage, fetchNextPage, isFetching } = useQuestionListQuery();
-
-  console.log(filterOption);
+  const { questionListData, hasNextPage, fetchNextPage, isFetching } =
+    useQuestionFilterQuery(filterOption);
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
