@@ -14,7 +14,7 @@ import SirenUploadInput from "@/components/Siren/SirenUpload/SirenUploadInput/Si
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
-import { useAddSirenForm } from "@/hooks/siren/useAddSirenForm";
+import { useAddSirenForm } from "@/hooks/post/useAddSirenForm";
 
 import { generateTagStyle, generateTagCategory } from "@/utils/generateTag";
 

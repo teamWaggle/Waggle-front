@@ -4,7 +4,7 @@ import { Box, Heading, Button, getDefaultTextStyle, Theme } from "waggle-design-
 
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
 
-import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
+import { useAddQuestionForm } from "@/hooks/post/useAddQuestionForm";
 import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
 
 import {
