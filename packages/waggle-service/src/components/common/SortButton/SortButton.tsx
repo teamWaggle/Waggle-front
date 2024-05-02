@@ -8,7 +8,12 @@ import SortArrowIcon from "@/assets/svg/sort-arrow.svg?react";
 
 import type { sortButtonType } from "@/types/common";
 
-const SortButton = ({ defaultText, handleFilterText, handleFilterOption }: sortButtonType) => {
+const SortButton = ({
+  defaultText,
+  handleFilterText,
+  handleFilterOption,
+  buttonData,
+}: sortButtonType) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -26,26 +31,19 @@ const SortButton = ({ defaultText, handleFilterText, handleFilterOption }: sortB
 
       {isOpen && (
         <Box css={innerBoxStyle}>
-          <Flex
-            styles={{ align: "center" }}
-            onClick={() => {
-              handleFilterOption("latest");
-              handleFilterText("최신순");
-              setIsOpen(false);
-            }}
-          >
-            최신순
-          </Flex>
-          <Flex
-            styles={{ align: "center" }}
-            onClick={() => {
-              handleFilterOption("recommend");
-              handleFilterText("인기순");
-              setIsOpen(false);
-            }}
-          >
-            인기순
-          </Flex>
+          {buttonData.map((data) => (
+            <Flex
+              key={data.text}
+              styles={{ align: "center" }}
+              onClick={() => {
+                handleFilterOption(data.option);
+                handleFilterText(data.text);
+                setIsOpen(false);
+              }}
+            >
+              {data.text}
+            </Flex>
+          ))}
         </Box>
       )}
     </Box>

@@ -16,6 +16,10 @@ export interface sortButtonType {
   defaultText: string;
   handleFilterText: (text: string) => void;
   handleFilterOption: (option: string) => void;
+  buttonData: {
+    text: string;
+    option: string;
+  }[];
 }
 
 export interface CommonResponseBaseType {
