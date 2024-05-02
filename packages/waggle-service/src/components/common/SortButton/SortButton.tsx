@@ -12,7 +12,7 @@ const SortButton = ({
   defaultText,
   handleFilterText,
   handleFilterOption,
-  buttonData,
+  filterData,
 }: sortButtonType) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,7 +31,7 @@ const SortButton = ({
 
       {isOpen && (
         <Box css={innerBoxStyle}>
-          {buttonData.map((data) => (
+          {filterData.map((data) => (
             <Flex
               key={data.text}
               styles={{ align: "center" }}

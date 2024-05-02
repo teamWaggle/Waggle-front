@@ -8,26 +8,17 @@ import StorySearchBar from "@/components/Story/StorySearchBar/StorySearchBar";
 import RetryErrorBoundary from "@/components/common/ErrorBoundary/RetryErrorBoundary";
 import SortButton from "@/components/common/SortButton/SortButton";
 
+import { STORY_FILTER, FILTER_DEFAULT } from "@/constants/filter";
+
 // import { useStoryListQuery } from "@/hooks/api/story/useStoryListQuery";
 import { useStoryFilterQuery } from "@/hooks/api/story/useStoryFilterQuery";
 import useObserver from "@/hooks/common/useObserver";
 
 import { gridBoxStyle } from "@/components/Story/StoryMain/StoryMain.style";
 
-const data = [
-  {
-    text: "최신순",
-    option: "latest",
-  },
-  {
-    text: "인기순",
-    option: "recommend",
-  },
-];
-
 const StoryMain = () => {
-  const [filterOption, setFilterOption] = useState("latest");
-  const [filterText, setFilterText] = useState("최신순");
+  const [filterOption, setFilterOption] = useState(FILTER_DEFAULT.OPTION);
+  const [filterText, setFilterText] = useState(FILTER_DEFAULT.TEXT);
 
   const { storyListData, hasNextPage, fetchNextPage, isFetching } =
     useStoryFilterQuery(filterOption);
@@ -59,7 +50,7 @@ const StoryMain = () => {
               defaultText={filterText}
               handleFilterOption={handleFilterOption}
               handleFilterText={handleFilterText}
-              buttonData={data}
+              filterData={STORY_FILTER}
             />
           </Flex>
 

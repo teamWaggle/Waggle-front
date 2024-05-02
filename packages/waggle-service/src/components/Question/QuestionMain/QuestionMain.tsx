@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import { Flex, Box } from "waggle-design-system";
 
@@ -7,35 +7,18 @@ import SortButton from "@/components/common/SortButton/SortButton";
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 import QuestionSidebar from "@/components/Question/QuestionSidebar/QuestionSidebar";
 
+import { QUESTION_FILTER, FILTER_DEFAULT } from "@/constants/filter";
+
 import { useQuestionFilterQuery } from "@/hooks/api/question/useQuestionFilterQuery";
 import useObserver from "@/hooks/common/useObserver";
 
 import { mainStyle } from "@/components/Question/QuestionMain/QuestionMain.style";
 
-const data = [
-  {
-    text: "최신순",
-    option: "latest",
-  },
-  {
-    text: "인기순",
-    option: "recommend",
-  },
-  {
-    text: "해결",
-    option: "resolved",
-  },
-  {
-    text: "미해결",
-    option: "unresolved",
-  },
-];
-
 const QuestionMain = () => {
-  const [filterOption, setFilterOption] = useState("latest");
-  const [filterText, setFilterText] = useState("최신순");
+  const [filterOption, setFilterOption] = useState(FILTER_DEFAULT.OPTION);
+  const [filterText, setFilterText] = useState(FILTER_DEFAULT.TEXT);
 
-  const { questionListData, hasNextPage, fetchNextPage, isFetching } =
+  const { questionListData, hasNextPage, fetchNextPage, isFetching, refetch } =
     useQuestionFilterQuery(filterOption);
 
   const ref = useObserver(async (entry, observer) => {
@@ -54,6 +37,10 @@ const QuestionMain = () => {
     setFilterText(text);
   };
 
+  useEffect(() => {
+    refetch();
+  }, [filterOption]);
+
   return (
     <Box css={mainStyle}>
       <Flex styles={{ gap: "65px" }}>
@@ -63,7 +50,7 @@ const QuestionMain = () => {
               defaultText={filterText}
               handleFilterOption={handleFilterOption}
               handleFilterText={handleFilterText}
-              buttonData={data}
+              filterData={QUESTION_FILTER}
             />
             <SearchInput onChange={() => {}} width="644px" />
           </Flex>
