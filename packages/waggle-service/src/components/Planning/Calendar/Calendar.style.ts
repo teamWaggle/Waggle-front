@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const containerStyle = css({
   position: "relative",
@@ -13,7 +13,7 @@ export const boxStyle = css({
   gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
   gridAutoRows: "minmax(50px, 200px)",
   width: "1128px",
-  height: "535px",
+  height: "590px",
   borderRadius: "16px",
   backgroundColor: Theme.color.border,
   "& > :first-of-type": {

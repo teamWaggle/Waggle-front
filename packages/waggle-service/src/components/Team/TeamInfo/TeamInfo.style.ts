@@ -1,11 +1,9 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const teamSectionStyle = css({
-  marginTop: "50px",
   width: "100%",
-  alignItems: "center",
 });
 
 export const teamImgStyle = css({
@@ -28,9 +26,4 @@ export const teamInfoSubTitleStyle = css({
 
 export const teamInfoNewApplyStyle = css({
   color: Theme.color.btn_danger,
-});
-
-export const teamParticipationBoxStyle = css({
-  marginTop: "10px",
-  alignItems: "center",
 });

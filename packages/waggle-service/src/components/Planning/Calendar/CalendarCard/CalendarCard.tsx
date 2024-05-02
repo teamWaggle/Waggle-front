@@ -15,7 +15,6 @@ import type { ScheduleCalendarCardType, ScheduleType } from "@/types/planning";
 import {
   dateTextStyle,
   flexStyle,
-  scheduleFlexBox,
   scheduleTextStyle,
   weekdayTextStyle,
 } from "@/components/Planning/Calendar/CalendarCard/CalendarCard.style";
@@ -40,10 +39,14 @@ const CalendarCard = ({
     });
   };
   return (
-    <Flex tag="section" css={flexStyle}>
+    <Flex
+      tag="section"
+      styles={{ align: "center", direction: "column", height: "100%" }}
+      css={flexStyle}
+    >
       <Text css={weekdayTextStyle}>{index < 7 ? weekday[index] : ""}</Text>
       <Text css={dateTextStyle(isSameMonth)}>{format(day, "d")}</Text>
-      <Flex css={scheduleFlexBox}>
+      <Flex styles={{ direction: "column", width: "100%", height: "100%", border: "none" }}>
         {schedulesSlice.map((schedule, i) => (
           <Box
             key={schedule.boardId + dayString}

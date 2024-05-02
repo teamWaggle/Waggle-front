@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const textStyle = css({
   color: Theme.color.white,
@@ -11,8 +11,5 @@ export const textStyle = css({
 });
 
 export const flexStyle = css({
-  alignItems: "center",
-  margin: "0 auto",
   minWidth: "1128px",
-  justifyContent: "center",
 });

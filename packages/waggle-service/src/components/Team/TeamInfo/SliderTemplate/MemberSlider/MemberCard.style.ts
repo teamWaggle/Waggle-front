@@ -1,14 +1,12 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const memberCardBoxStyle = css({
   height: "32px",
   width: "180px",
   borderRadius: "4px",
   border: `1px solid ${Theme.color.border}`,
-  alignItems: "center",
-  justifyContent: "space-between",
 });
 
 export const memberCardImgStyle = css({

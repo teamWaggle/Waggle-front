@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 import type { TeamColorType } from "@/types/team";
 
@@ -8,12 +8,6 @@ export const teamScheduleCardBoxStyle = css({
   borderRadius: "16px",
   border: `1px solid ${Theme.color.border}`,
   padding: "20px",
-});
-
-export const teamScheduleCardHeaderBoxStyle = css({
-  justifyContent: "space-between",
-  alignItems: "start",
-  marginBottom: "20px",
 });
 
 export const teamScheduleCardStatusBoxStyle = (isActivate: boolean) =>
@@ -40,4 +34,8 @@ export const addScheduleButtonStyle = (color: TeamColorType) =>
     borderRadius: "16px",
     padding: "6px 12px",
     cursor: "pointer",
+    ":hover": {
+      backgroundColor: Theme.color[color],
+      color: Theme.color.white,
+    },
   });

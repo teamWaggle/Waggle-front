@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from "@/components/common";
+import { Box, Flex, Heading, Text } from "waggle-design-system";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 
@@ -9,7 +9,6 @@ import type { TeamScheduleType } from "@/types/schedule";
 import {
   addScheduleButtonStyle,
   teamScheduleCardBoxStyle,
-  teamScheduleCardHeaderBoxStyle,
   teamScheduleCardStatusBoxStyle,
   teamScheduleOverlapCount,
 } from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard.style";
@@ -25,7 +24,7 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
   };
   return (
     <Box css={teamScheduleCardBoxStyle}>
-      <Flex css={teamScheduleCardHeaderBoxStyle}>
+      <Flex styles={{ justify: "space-between", marginBottom: "20px" }}>
         <Heading style={{ textOverflow: "ellipsis" }} size="xSmall">
           {title}
         </Heading>

@@ -1,8 +1,7 @@
-import { Flex, Text } from "@/components/common";
+import { Flex, Text } from "waggle-design-system";
 
 import {
   approveButtonStyle,
-  participationCardBoxStyle,
   participationCardImgStyle,
   participationCardNameStyle,
   participationCardTextStyle,
@@ -33,15 +32,27 @@ const ParticipationCard = ({ participatingMember }: { participatingMember: TeamM
     navigate(userUrl);
   };
   return (
-    <Flex css={participationCardBoxStyle}>
-      <Flex css={participationCardNameStyle} onClick={handleOnclickCard}>
+    <Flex styles={{ gap: "4px" }}>
+      <Flex
+        styles={{ align: "center", justify: "space-between" }}
+        css={participationCardNameStyle}
+        onClick={handleOnclickCard}
+      >
         <img css={participationCardImgStyle} src={profileImgUrl} alt="" />
         <Text css={participationCardTextStyle}>{nickname}</Text>
       </Flex>
-      <Flex css={approveButtonStyle} onClick={handleAccept}>
+      <Flex
+        styles={{ justify: "center", align: "center" }}
+        css={approveButtonStyle}
+        onClick={handleAccept}
+      >
         승인
       </Flex>
-      <Flex css={rejectButtonStyle} onClick={handleReject}>
+      <Flex
+        styles={{ justify: "center", align: "center" }}
+        css={rejectButtonStyle}
+        onClick={handleReject}
+      >
         거절
       </Flex>
     </Flex>

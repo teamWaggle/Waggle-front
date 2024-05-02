@@ -1,6 +1,6 @@
 import ProfileTeamCardIcon from "@/assets/svg/profile-teamcard.svg?react";
 
-import { Box, Flex, Text } from "@/components/common";
+import { Box, Flex, Text } from "waggle-design-system";
 
 import { useHandleLinkWithDetectKeys } from "@/hooks/team/useHandleLinkWithDetectKeys";
 

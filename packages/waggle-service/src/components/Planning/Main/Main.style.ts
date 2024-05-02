@@ -1,13 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
-
-export const flexStyle = css({
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginTop: "52px",
-  marginBottom: "23px",
-});
+import { Theme } from "waggle-design-system";
 
 export const gridBoxStyle = css({
   display: "grid",

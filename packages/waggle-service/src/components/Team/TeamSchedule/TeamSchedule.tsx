@@ -2,15 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import type { FieldValues } from "react-hook-form";
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
-import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-  DatePicker,
-  DatePickerCalendarModal,
-  Form,
-} from "@/components/common";
+import { Box, Flex, Heading, Text } from "waggle-design-system";
 import Lock from "@/components/Team/TeamSchedule/Lock/Lock";
 import TeamScheduleCard from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard";
 import * as yup from "yup";
@@ -22,7 +14,6 @@ import useObserver from "@/hooks/common/useObserver";
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import {
   teamScheduleAddButtonStyle,
-  teamScheduleBoxStyle,
   teamScheduleGridBoxStyle,
   teamScheduleSearchButtonStyle,
   teamScheduleTitleStyle,
@@ -33,6 +24,7 @@ import { useTeamScheduleListPeriod } from "@/hooks/api/schedule/useTeamScheduleL
 import Spinner from "@/components/common/Design/Spinner/Spinner";
 import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal";
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
+import { DatePicker, DatePickerCalendarModal, Form } from "@/components/common";
 
 const TeamSchedule = () => {
   const { getYearMonthDay } = getDate();
@@ -88,7 +80,7 @@ const TeamSchedule = () => {
     <>
       {isMember ? (
         <>
-          <Flex css={teamScheduleBoxStyle}>
+          <Flex styles={{ justify: "space-between", align: "center", marginTop: "20px" }}>
             <Flex style={{ alignItems: "center", gap: "16px" }}>
               <Heading size="xLarge" css={teamScheduleTitleStyle}>
                 TEAM SCHEDULE
@@ -113,14 +105,14 @@ const TeamSchedule = () => {
                 </Flex>
               </Form>
             </Flex>
-            <Flex
+            <Box
               onClick={handleAddSchedule}
               tag="button"
               css={teamScheduleAddButtonStyle("team_1")}
             >
               <Text size="xSmall">일정 추가</Text>
               <AddIcon />
-            </Flex>
+            </Box>
           </Flex>
           {isLoading && (
             <Flex

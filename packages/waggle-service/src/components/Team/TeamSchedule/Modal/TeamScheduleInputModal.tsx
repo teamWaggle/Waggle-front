@@ -2,7 +2,7 @@ import type { FieldValues } from "react-hook-form";
 
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
-import { Box, Flex, Form, Heading, Text } from "@/components/common";
+import { Box, Flex, Heading, Text } from "waggle-design-system";
 import * as yup from "yup";
 
 import { TEAM_TITLE } from "@/constants/team";
@@ -19,6 +19,7 @@ import {
   addTeamScheduleTitleCircleStyle,
 } from "@/components/Team/TeamSchedule/Modal/TeamScheduleInputModal.style";
 import type { TeamColorType } from "@/types/team";
+import { Form } from "@/components/common";
 
 const schema = yup.object({
   title: TEAM_TITLE.RULES(),
@@ -59,7 +60,15 @@ const TeamScheduleInputModal = ({
     handleSubmit(data);
   };
   return (
-    <Flex css={addTeamScheduleModalBoxStyle}>
+    <Flex
+      styles={{
+        direction: "column",
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+        borderRadius: "16px",
+        width: "600px",
+      }}
+      css={addTeamScheduleModalBoxStyle}
+    >
       <Box css={addTeamScheduleModalTitleBoxStyle(teamColor)}>
         <Flex style={{ alignItems: "center" }}>
           <Box css={addTeamScheduleTitleCircleStyle} />

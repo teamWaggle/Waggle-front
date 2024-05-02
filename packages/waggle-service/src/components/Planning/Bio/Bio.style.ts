@@ -1,10 +1,10 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const sectionStyle = css({
   position: "relative",
-  height: "665px",
+  height: "700px",
   minWidth: "1536px",
   maxWidth: "100%",
   flexDirection: "column",

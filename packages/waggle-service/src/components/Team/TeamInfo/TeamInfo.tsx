@@ -1,6 +1,6 @@
 import GroupIcon from "@/assets/svg/group.svg?react";
 
-import { Flex, Heading, Text, Box } from "@/components/common";
+import { Flex, Heading, Text, Box } from "waggle-design-system";
 import MemberCard from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberCard";
 import ParticipationCard from "@/components/Team/TeamInfo/SliderTemplate/ParticipationSlider/ParticipationCard";
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
@@ -10,7 +10,6 @@ import {
   teamInfoBoxStyle,
   teamInfoNewApplyStyle,
   teamInfoSubTitleStyle,
-  teamParticipationBoxStyle,
   teamSectionStyle,
 } from "@/components/Team/TeamInfo/TeamInfo.style";
 import { useTeamParticipationList } from "@/hooks/api/team/useTeamParticipationList";
@@ -44,7 +43,7 @@ const TeamInfo = () => {
   const participationMemberList = useTeamParticipationList(teamId);
 
   return (
-    <Flex css={teamSectionStyle} tag="section">
+    <Flex css={teamSectionStyle} styles={{ marginTop: "50px", align: "center" }} tag="section">
       <img css={teamImgStyle} src={coverImageUrl} />
       <Box css={teamInfoBoxStyle}>
         <Heading size="xLarge">{name}</Heading>
@@ -63,7 +62,7 @@ const TeamInfo = () => {
           </MemberSlider>
         </Flex>
         <TeamLeaderAuthorizationContainer>
-          <Flex css={teamParticipationBoxStyle}>
+          <Flex styles={{ marginTop: "10px", align: "center" }}>
             <Text css={teamInfoNewApplyStyle} style={{ marginRight: "40px" }}>
               새로운 가입 신청
             </Text>

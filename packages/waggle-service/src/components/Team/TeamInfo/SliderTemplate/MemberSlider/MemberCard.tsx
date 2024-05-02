@@ -1,6 +1,6 @@
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
 
-import { Flex, Text } from "@/components/common";
+import { Flex, Text } from "waggle-design-system";
 
 import type { TeamMemberType } from "@/types/team";
 
@@ -37,7 +37,7 @@ const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }
     });
   };
   return (
-    <Flex css={memberCardBoxStyle}>
+    <Flex styles={{ align: "center", justify: "space-between" }} css={memberCardBoxStyle}>
       <img css={memberCardImgStyle} src="https://source.unsplash.com/random/32x32" alt="" />
       <Text css={nicknameStyle}>{member.nickname}</Text>
       <TeamLeaderAuthorizationContainer>

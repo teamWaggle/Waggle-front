@@ -1,14 +1,9 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 import type { TeamColorType } from "@/types/team";
 
-export const teamScheduleBoxStyle = css({
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginTop: "20px",
-});
 export const teamScheduleTitleStyle = css({
   fontSize: "22px",
   fontWeight: 600,
@@ -34,6 +29,7 @@ export const teamScheduleAddButtonStyle = (color: TeamColorType) =>
     backgroundColor: Theme.color[color],
     color: Theme.color.white,
     cursor: "pointer",
+    display: "flex",
   });
 
 export const teamScheduleGridBoxStyle = css({

@@ -1,16 +1,15 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const commentBoxStyle = css({
   display: "flex",
   alignItems: "center",
-  marginBottom: "16px",
-  border: `1px solid ${Theme.color.border}`,
   borderRadius: "4px",
   width: "100%",
   padding: "16px",
   overflowX: "hidden",
+  border: `1px solid ${Theme.color.border}`,
 });
 
 export const imgStyle = css({

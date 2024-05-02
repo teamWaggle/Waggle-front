@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Mention, MentionsInput } from "react-mentions";
 
-import { Flex, Text } from "@/components/common";
+import { Flex, Text } from "waggle-design-system";
 
 import {
   commentSubmitButtonStyle,
@@ -32,7 +32,7 @@ const CommentInput = () => {
     console.log(comment);
   }, [comment]);
   return (
-    <Flex css={commentBoxStyle}>
+    <Flex styles={{ width: "100%", marginTop: "8px" }} css={commentBoxStyle}>
       <MentionsInput
         singleLine={true}
         style={mentionInputStyle}

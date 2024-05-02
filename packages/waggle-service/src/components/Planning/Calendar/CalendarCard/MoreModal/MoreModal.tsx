@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@/components/common";
+import { Box, Flex, Text } from "waggle-design-system";
 import ScheduleModal from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal";
 import { format } from "date-fns";
 
@@ -31,7 +31,18 @@ const MoreModal = ({ day, schedules, position }: MoreModalType) => {
 
   const schedulesSlice = schedules.slice(MAX_CALENDAR_CONTENT);
   return (
-    <Flex css={moreModalContainerStyle}>
+    <Flex
+      styles={{
+        position: "absolute",
+        align: "center",
+        direction: "column",
+        width: "200px",
+        borderRadius: "10px",
+        padding: "0 20px",
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+      }}
+      css={moreModalContainerStyle}
+    >
       <Text css={moreModalDayStyle}>{Week[day.getDay()]}</Text>
       <Text css={moreModalDateStyle}>{day.getDate()}</Text>
       <Box css={moreModalScheduleBoxStyle}>
