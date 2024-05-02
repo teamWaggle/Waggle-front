@@ -1,8 +1,7 @@
 import { useContext } from "react";
 
-import { DropdownContext } from "@/components/common/Dropdown/Dropdown";
-
 import type { DropdownButtonType } from "@/types/common";
+import { DropdownContext } from "@/components/Dropdown/Dropdown";
 
 const DropdownButton = ({ children, ...props }: DropdownButtonType) => {
   const { toggleDropdown } = useContext(DropdownContext);
