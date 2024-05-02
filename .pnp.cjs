@@ -23049,6 +23049,32 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["rollup-plugin-visualizer", [\
+      ["npm:5.12.0", {\
+        "packageLocation": "./.yarn/cache/rollup-plugin-visualizer-npm-5.12.0-a9cce23360-0e44a64122.zip/node_modules/rollup-plugin-visualizer/",\
+        "packageDependencies": [\
+          ["rollup-plugin-visualizer", "npm:5.12.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:5.12.0", {\
+        "packageLocation": "./.yarn/__virtual__/rollup-plugin-visualizer-virtual-ddc2720de3/0/cache/rollup-plugin-visualizer-npm-5.12.0-a9cce23360-0e44a64122.zip/node_modules/rollup-plugin-visualizer/",\
+        "packageDependencies": [\
+          ["rollup-plugin-visualizer", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:5.12.0"],\
+          ["@types/rollup", null],\
+          ["open", "npm:8.4.2"],\
+          ["picomatch", "npm:2.3.1"],\
+          ["rollup", null],\
+          ["source-map", "npm:0.7.4"],\
+          ["yargs", "npm:17.7.2"]\
+        ],\
+        "packagePeers": [\
+          "@types/rollup",\
+          "rollup"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["rrweb-cssom", [\
       ["npm:0.6.0", {\
         "packageLocation": "./.yarn/cache/rrweb-cssom-npm-0.6.0-04bbb1169b-3d9d90d53c.zip/node_modules/rrweb-cssom/",\
@@ -26284,6 +26310,7 @@ const RAW_RUNTIME_STATE =
           ["react-router-dom", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:6.22.3"],\
           ["react-toastify", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:10.0.5"],\
           ["recoil", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:0.7.7"],\
+          ["rollup-plugin-visualizer", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:5.12.0"],\
           ["storybook", "npm:7.6.17"],\
           ["styled-components", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:6.1.8"],\
           ["typescript", "patch:typescript@npm%3A5.0.4#optional!builtin<compat/typescript>::version=5.0.4&hash=b5f058"],\
