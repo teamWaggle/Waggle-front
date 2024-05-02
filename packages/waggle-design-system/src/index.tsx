@@ -14,7 +14,7 @@ import Spinner from "@/components/Spinner/Spinner";
 import Tag from "@/components/Tag/Tag";
 import MentionChecker from "@/components/Text/MentionChecker/MentionChecker";
 import Text from "@/components/Text/Text";
-
+import Dropdown from "@/components/Dropdown/Dropdown";
 import { Theme } from "@/styles/Theme";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
 
@@ -43,4 +43,5 @@ export {
   useSlider,
   Theme,
   getDefaultTextStyle,
+  Dropdown,
 };
