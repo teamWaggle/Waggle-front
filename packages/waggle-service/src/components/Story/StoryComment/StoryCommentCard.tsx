@@ -53,7 +53,7 @@ const StoryCommentCard = ({ commentData, handleEditClick }: CommentDataType) => 
       <StoryProfile
         memberData={member}
         deleteClick={handleDeleteComment}
-        editClick={() => handleEditClick(content, commentId)}
+        editClick={() => handleEditClick && handleEditClick(content, commentId)}
       />
 
       <Box styles={{ maxWidth: "215px", paddingLeft: "43px" }}>

@@ -25,7 +25,7 @@ export interface CommentListInfoType {
 }
 
 interface EditCommentProps {
-  handleEditClick: (content: string, commentId: number) => void;
+  handleEditClick?: (content: string, commentId: number) => void;
 }
 
 export interface PutCommentType extends CommentRequestType {

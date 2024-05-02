@@ -2,13 +2,15 @@ import { Flex, Heading, Theme, getDefaultTextStyle } from "waggle-design-system"
 
 import MyPageCommentCard from "@/components/MyPage/MyPageCommentCard/MyPageCommentCard";
 
+import { useMemberSirenCommentQuery } from "@/hooks/api/member/useMemberSirenCommentQuery";
+
 interface MyPageCommentProps {
   paramUrl?: string;
   isQuestion?: boolean;
 }
 
 const MyPageComment = ({ paramUrl, isQuestion }: MyPageCommentProps) => {
-  console.log(paramUrl);
+  const { memberSirenCommentData } = useMemberSirenCommentQuery(0, paramUrl);
 
   console.log(isQuestion);
 
@@ -28,9 +30,9 @@ const MyPageComment = ({ paramUrl, isQuestion }: MyPageCommentProps) => {
       </Heading>
 
       <Flex styles={{ direction: "column", gap: "10px", width: "100%" }}>
-        <MyPageCommentCard />
-        <MyPageCommentCard />
-        <MyPageCommentCard />
+        {memberSirenCommentData.result.commentList.map((commentInfo) => (
+          <MyPageCommentCard key={commentInfo.commentId} commentData={commentInfo} />
+        ))}
       </Flex>
     </Flex>
   );
