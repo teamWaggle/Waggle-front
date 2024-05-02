@@ -1,15 +1,17 @@
-import { Flex, Heading } from "@/components/common";
-import {
-  alertInputBoxStyle,
-  alertModalBoxStyle,
-} from "@/components/common/AlertModal/AlertModal.style";
+import { Flex, Heading } from "waggle-design-system";
+
 import AlertModalButton from "@/components/common/AlertModal/AlertModalButton";
+
+import { alertModalBoxStyle } from "@/components/common/AlertModal/AlertModal.style";
 
 const AlertModal = ({ title, children }: { title: string; children: React.ReactNode }) => {
   return (
-    <Flex css={alertModalBoxStyle}>
+    <Flex
+      styles={{ direction: "column", align: "center", justify: "center" }}
+      css={alertModalBoxStyle}
+    >
       <Heading size="xSmall">{title}</Heading>
-      <Flex css={alertInputBoxStyle}>{children}</Flex>
+      <Flex styles={{ marginTop: "32px", width: "100%", gap: "12px" }}>{children}</Flex>
     </Flex>
   );
 };

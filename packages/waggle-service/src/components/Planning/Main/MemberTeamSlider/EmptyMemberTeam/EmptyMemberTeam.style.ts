@@ -2,13 +2,6 @@ import { css } from "@emotion/react";
 
 import { Theme } from "waggle-design-system";
 
-export const emptyMemberTeamStyle = css({
-  width: "100%",
-  justifyContent: "center",
-  alignItems: "center",
-  flexDirection: "column",
-  margin: "100px 0",
-});
 export const questionIconStyle = css({
   width: "60px",
   height: "60px",

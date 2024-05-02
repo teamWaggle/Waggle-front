@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 
-import { Box, Flex, Text } from "@/components/common";
+import { Box, Flex, Text } from "waggle-design-system";
 import MoreButton from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreButton";
 import MoreModal from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreModal";
 import ScheduleModal from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal";

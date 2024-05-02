@@ -3,13 +3,10 @@ import { css } from "@emotion/react";
 import { Theme } from "waggle-design-system";
 
 export const sectionStyle = css({
-  position: "relative",
   height: "700px",
   minWidth: "1536px",
   maxWidth: "100%",
-  flexDirection: "column",
   padding: "0 196px",
-  alignItems: "center",
   backgroundColor: Theme.color.brand_primary,
 });
 

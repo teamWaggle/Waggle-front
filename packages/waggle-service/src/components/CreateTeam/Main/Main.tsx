@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import LeftArrowIcon from "@/assets/svg/left-arrow-brand-primary.svg?react";
 
-import { Box, Flex, Form, Heading, Text } from "@/components/common";
+import { Box, Flex, Heading, Text } from "waggle-design-system";
+import { Form } from "@/components/common";
 import * as yup from "yup";
 
 import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";

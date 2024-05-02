@@ -1,16 +1,23 @@
 import QuestionIcon from "@/assets/svg/ic-question-like.svg?react";
 
-import { Flex, Text } from "@/components/common";
+import { Flex, Text } from "waggle-design-system";
 
 import {
-  emptyMemberTeamStyle,
   emptyMemberTeamTextStyle,
   questionIconStyle,
 } from "@/components/Planning/Main/MemberTeamSlider/EmptyMemberTeam/EmptyMemberTeam.style";
 
 const EmptyMemberTeam = () => {
   return (
-    <Flex css={emptyMemberTeamStyle}>
+    <Flex
+      styles={{
+        justify: "center",
+        align: "center",
+        direction: "column",
+        width: "100%",
+        margin: "100px 0",
+      }}
+    >
       <QuestionIcon css={questionIconStyle} />
       <Text css={emptyMemberTeamTextStyle}>아직 가입된 팀이 없어요!</Text>
       <Text css={emptyMemberTeamTextStyle}>

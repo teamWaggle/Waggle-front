@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import Text from "@/components/common/Design/Text/Text";
+import { Text } from "waggle-design-system";
 import { TimePickerContext } from "@/components/common/TimePicker/TimePicker";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";

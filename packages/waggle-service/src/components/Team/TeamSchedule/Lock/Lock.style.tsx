@@ -4,12 +4,6 @@ import { Theme } from "waggle-design-system";
 
 import type { TeamColorType } from "@/types/team";
 
-export const LockBoxStyle = css({
-  width: "100%",
-  flexDirection: "column",
-  alignItems: "center",
-});
-
 export const LockButtonStyle = (color: TeamColorType) =>
   css({
     width: "300px",

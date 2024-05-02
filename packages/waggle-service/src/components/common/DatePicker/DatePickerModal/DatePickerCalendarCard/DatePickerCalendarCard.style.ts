@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 import { isSameDay } from "date-fns";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const datePickerCalendarCardStyle = (day: Date | "", isSelected: boolean) =>
   css({

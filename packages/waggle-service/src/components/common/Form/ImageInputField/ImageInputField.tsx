@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 import PhotoIcon from "@/assets/svg/ic-media-upload.svg?react";
 
-import { Box, Flex } from "@/components/common";
+import { Box, Flex } from "waggle-design-system";
 
 import { FILE_SIZE_MAX_LIMIT } from "@/constants/file";
 
@@ -57,7 +57,11 @@ const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
         {imagePreview && <img css={imageStyle} src={imagePreview} alt="team image" />}
         {!imagePreview && <PhotoIcon style={{ width: "40px" }} />}
       </label>
-      <Flex onClick={handleResetImage} css={resetImageButtonStyle}>
+      <Flex
+        styles={{ justify: "center", marginTop: "4px" }}
+        onClick={handleResetImage}
+        css={resetImageButtonStyle}
+      >
         사진 초기화
       </Flex>
     </Box>

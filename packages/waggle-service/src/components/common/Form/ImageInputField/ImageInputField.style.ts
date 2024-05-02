@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const imageInputBoxStyle = css({
   display: "block",
@@ -39,7 +39,5 @@ export const resetImageButtonStyle = css({
   cursor: "pointer",
   backgroundColor: Theme.color.brand_primary,
   width: "100%",
-  justifyContent: "center",
   borderRadius: "20px",
-  marginTop: "4px",
 });

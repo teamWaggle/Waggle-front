@@ -1,6 +1,6 @@
 import type { SerializedStyles } from "@emotion/react";
 
-import { Box, Flex } from "@/components/common";
+import { Box, Flex } from "waggle-design-system";
 
 import useSlider from "@/hooks/common/useSlider";
 import { createContext } from "react";

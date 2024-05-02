@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 
-import ModalContainer from "@/components/common/Container/ModalContainer/ModalContainer";
+import { ModalContainer } from "waggle-design-system";
+
 import TimePickerCard from "@/components/common/TimePicker/TimePickerModal/TimePickerCard/TimePickerCard";
 import { addMinutes, format } from "date-fns";
 

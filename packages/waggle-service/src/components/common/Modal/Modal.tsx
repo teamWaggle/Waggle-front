@@ -12,7 +12,7 @@ import {
   backdropStyle,
   dialogStyle,
   closeButtonStyling,
-} from "@/components/common/Design/Modal/Modal.style";
+} from "@/components/common/Modal/Modal.style";
 
 const Modal = ({
   component,

@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import type { FieldValues } from "react-hook-form";
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
-import { Box, Flex, Heading, Text } from "waggle-design-system";
+import { Box, Flex, Heading, Text, Spinner } from "waggle-design-system";
 import Lock from "@/components/Team/TeamSchedule/Lock/Lock";
 import TeamScheduleCard from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard";
 import * as yup from "yup";
@@ -21,7 +21,7 @@ import {
 import { getDate } from "@/utils/getDate";
 
 import { useTeamScheduleListPeriod } from "@/hooks/api/schedule/useTeamScheduleListPeriod";
-import Spinner from "@/components/common/Design/Spinner/Spinner";
+
 import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal";
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
 import { DatePicker, DatePickerCalendarModal, Form } from "@/components/common";

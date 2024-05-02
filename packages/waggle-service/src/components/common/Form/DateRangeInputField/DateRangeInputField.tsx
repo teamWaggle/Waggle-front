@@ -1,5 +1,5 @@
 import DatePicker from "@/components/common/DatePicker/DatePicker";
-import Flex from "@/components/common/Design/Flex/Flex";
+import { Flex } from "waggle-design-system";
 import InputNotice from "@/components/common/InputNotice/InputNotice";
 import { TimePicker } from "@/components/common/TimePicker/TimePicker";
 
