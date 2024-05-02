@@ -14,6 +14,17 @@ import useObserver from "@/hooks/common/useObserver";
 
 import { gridBoxStyle } from "@/components/Story/StoryMain/StoryMain.style";
 
+const data = [
+  {
+    text: "최신순",
+    option: "latest",
+  },
+  {
+    text: "인기순",
+    option: "recommend",
+  },
+];
+
 const StoryMain = () => {
   const [filterOption, setFilterOption] = useState("latest");
   const [filterText, setFilterText] = useState("최신순");
@@ -48,6 +59,7 @@ const StoryMain = () => {
               defaultText={filterText}
               handleFilterOption={handleFilterOption}
               handleFilterText={handleFilterText}
+              buttonData={data}
             />
           </Flex>
 

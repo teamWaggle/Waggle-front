@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 import { Flex, Box } from "waggle-design-system";
 
@@ -12,8 +12,32 @@ import useObserver from "@/hooks/common/useObserver";
 
 import { mainStyle } from "@/components/Question/QuestionMain/QuestionMain.style";
 
+const data = [
+  {
+    text: "최신순",
+    option: "latest",
+  },
+  {
+    text: "인기순",
+    option: "recommend",
+  },
+  {
+    text: "해결",
+    option: "resolved",
+  },
+  {
+    text: "미해결",
+    option: "unresolved",
+  },
+];
+
 const QuestionMain = () => {
+  const [filterOption, setFilterOption] = useState("latest");
+  const [filterText, setFilterText] = useState("최신순");
+
   const { questionListData, hasNextPage, fetchNextPage, isFetching } = useQuestionListQuery();
+
+  console.log(filterOption);
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -23,12 +47,25 @@ const QuestionMain = () => {
     }
   });
 
+  const handleFilterOption = (option: string) => {
+    setFilterOption(option);
+  };
+
+  const handleFilterText = (text: string) => {
+    setFilterText(text);
+  };
+
   return (
     <Box css={mainStyle}>
       <Flex styles={{ gap: "65px" }}>
         <section>
           <Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
-            <SortButton defaultText="해결" />
+            <SortButton
+              defaultText={filterText}
+              handleFilterOption={handleFilterOption}
+              handleFilterText={handleFilterText}
+              buttonData={data}
+            />
             <SearchInput onChange={() => {}} width="644px" />
           </Flex>
 
