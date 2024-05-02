@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 
 import { Flex, Box } from "waggle-design-system";
 
@@ -7,16 +7,16 @@ import SortButton from "@/components/common/SortButton/SortButton";
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 import QuestionSidebar from "@/components/Question/QuestionSidebar/QuestionSidebar";
 
-import { QUESTION_FILTER, FILTER_DEFAULT } from "@/constants/filter";
+import { QUESTION_FILTER } from "@/constants/filter";
 
 import { useQuestionFilterQuery } from "@/hooks/api/question/useQuestionFilterQuery";
 import useObserver from "@/hooks/common/useObserver";
+import { useFilter } from "@/hooks/post/useFilter";
 
 import { mainStyle } from "@/components/Question/QuestionMain/QuestionMain.style";
 
 const QuestionMain = () => {
-  const [filterOption, setFilterOption] = useState(FILTER_DEFAULT.OPTION);
-  const [filterText, setFilterText] = useState(FILTER_DEFAULT.TEXT);
+  const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
 
   const { questionListData, hasNextPage, fetchNextPage, isFetching, refetch } =
     useQuestionFilterQuery(filterOption);
@@ -28,14 +28,6 @@ const QuestionMain = () => {
       fetchNextPage();
     }
   });
-
-  const handleFilterOption = (option: string) => {
-    setFilterOption(option);
-  };
-
-  const handleFilterText = (text: string) => {
-    setFilterText(text);
-  };
 
   useEffect(() => {
     refetch();

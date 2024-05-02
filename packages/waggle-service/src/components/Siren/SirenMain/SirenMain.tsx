@@ -7,28 +7,20 @@ import { SearchInput } from "@/components/common";
 import SortButton from "@/components/common/SortButton/SortButton";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
-import { QUESTION_FILTER, FILTER_DEFAULT } from "@/constants/filter";
+import { QUESTION_FILTER } from "@/constants/filter";
 
 // import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";
 import { useSirenFilterQuery } from "@/hooks/api/siren/useSirenFilterQuery";
+import { useFilter } from "@/hooks/post/useFilter";
 
 import { tagStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
 
 const SirenMain = () => {
-  const [filterOption, setFilterOption] = useState(FILTER_DEFAULT.OPTION);
-  const [filterText, setFilterText] = useState(FILTER_DEFAULT.TEXT);
+  const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
 
   const { sirenListData, refetch } = useSirenFilterQuery(filterOption, 0);
 
   const [tagName, setTagName] = useState("임시보호");
-
-  const handleFilterOption = (option: string) => {
-    setFilterOption(option);
-  };
-
-  const handleFilterText = (text: string) => {
-    setFilterText(text);
-  };
 
   useEffect(() => {
     refetch();

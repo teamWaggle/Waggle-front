@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 
 import { Flex, Box } from "waggle-design-system";
 
@@ -8,17 +8,17 @@ import StorySearchBar from "@/components/Story/StorySearchBar/StorySearchBar";
 import RetryErrorBoundary from "@/components/common/ErrorBoundary/RetryErrorBoundary";
 import SortButton from "@/components/common/SortButton/SortButton";
 
-import { STORY_FILTER, FILTER_DEFAULT } from "@/constants/filter";
+import { STORY_FILTER } from "@/constants/filter";
 
 // import { useStoryListQuery } from "@/hooks/api/story/useStoryListQuery";
 import { useStoryFilterQuery } from "@/hooks/api/story/useStoryFilterQuery";
 import useObserver from "@/hooks/common/useObserver";
+import { useFilter } from "@/hooks/post/useFilter";
 
 import { gridBoxStyle } from "@/components/Story/StoryMain/StoryMain.style";
 
 const StoryMain = () => {
-  const [filterOption, setFilterOption] = useState(FILTER_DEFAULT.OPTION);
-  const [filterText, setFilterText] = useState(FILTER_DEFAULT.TEXT);
+  const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
 
   const { storyListData, hasNextPage, fetchNextPage, isFetching, refetch } =
     useStoryFilterQuery(filterOption);
@@ -30,14 +30,6 @@ const StoryMain = () => {
       fetchNextPage();
     }
   });
-
-  const handleFilterOption = (option: string) => {
-    setFilterOption(option);
-  };
-
-  const handleFilterText = (text: string) => {
-    setFilterText(text);
-  };
 
   useEffect(() => {
     refetch();
