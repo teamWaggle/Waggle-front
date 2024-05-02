@@ -6,12 +6,6 @@ import { Theme } from "waggle-design-system";
 
 import type { TeamColorType } from "@/types/team";
 
-export const ColorRadioInputFieldStyle = css({
-  alignItems: "center",
-  width: "100%",
-  justifyContent: "space-between",
-});
-
 export const ColorRadioLabelStyle = (color: TeamColorType) =>
   css({
     display: "flex",

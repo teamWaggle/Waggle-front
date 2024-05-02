@@ -1,19 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
-
-export const datePickerModalTitleBoxStyle = css({
-  alignItems: "center",
-  justifyContent: "space-between",
-  marginBottom: "8px",
-  marginLeft: "12px",
-});
-
-export const datePickerCalendarTitleStyle = css({
-  fontWeight: "400",
-  fontSize: "14px",
-  fontFamily: "pretendard",
-});
+import { Theme } from "waggle-design-system";
 
 export const datePickerCalendarBoxStyle = css({
   display: "grid",

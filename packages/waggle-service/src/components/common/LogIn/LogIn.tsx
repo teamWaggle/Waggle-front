@@ -7,9 +7,7 @@ import { ACCESS_TOKEN_KEY } from "@/constants/api";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
-interface LogInProps extends PropsWithChildren {}
-
-const LogIn = ({ children }: LogInProps) => {
+const LogIn = ({ children }: PropsWithChildren) => {
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   useLayoutEffect(() => {

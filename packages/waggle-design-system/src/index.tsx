@@ -5,6 +5,7 @@ import Flex from "@/components/Flex/Flex";
 import Heading from "@/components/Heading/Heading";
 import Logo from "@/components/Logo/Logo";
 import MainContainer from "@/components/MainContainer/MainContainer";
+import ModalContainer from "@/components/ModalContainer/ModalContainer";
 import Modal from "@/components/Modal/Modal";
 import Skeleton from "@/components/Skeleton/Skeleton";
 import Slider from "@/components/Slider/Slider";
@@ -29,6 +30,7 @@ export {
   Heading,
   Logo,
   MainContainer,
+  ModalContainer,
   Modal,
   Skeleton,
   Slider,

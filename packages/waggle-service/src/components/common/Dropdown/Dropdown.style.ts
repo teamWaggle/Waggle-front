@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "@/styles/Theme";
+import { Theme } from "waggle-design-system";
 
 export const dropdownListStyle = css({
   position: "absolute",
@@ -13,9 +13,7 @@ export const dropdownItemStyle = css({
   padding: "8px 10px",
   borderBottom: `1px solid ${Theme.color.border}`,
   cursor: "pointer",
-  gap: "4px",
-  align: "center",
-  justify: "center",
+
   "&:hover": {
     backgroundColor: Theme.color.border,
   },

@@ -7,8 +7,7 @@ import { css } from "@emotion/react";
 
 import { authorizedAxiosInstance } from "@/api/axiosInstance";
 
-import { Flex, Heading } from "@/components/common";
-import Spinner from "@/components/common/Design/Spinner/Spinner";
+import { Flex, Heading, Spinner } from "waggle-design-system";
 
 import { ACCESS_TOKEN_KEY } from "@/constants/api";
 import { PATH } from "@/constants/path";
@@ -48,7 +47,10 @@ const AuthPage = () => {
   }, [code, provider]);
 
   return (
-    <Flex css={layoutStyle}>
+    <Flex
+      styles={{ direction: "column", align: "center", justify: "center", gap: "32px" }}
+      css={layoutStyle}
+    >
       <Spinner />
       <Heading size="xSmall">로그인 중입니다</Heading>
     </Flex>
@@ -59,8 +61,4 @@ export default AuthPage;
 
 const layoutStyle = css({
   minHeight: "calc(100vh - 81px)",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: "32px",
 });

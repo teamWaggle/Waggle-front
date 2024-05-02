@@ -1,4 +1,4 @@
-import { Flex } from "@/components/common";
+import { Flex } from "waggle-design-system";
 import Calendar from "@/components/Planning/Calendar/Calendar";
 
 import { sectionStyle } from "@/components/Planning/Bio/Bio.style";
@@ -9,7 +9,11 @@ const Bio = () => {
   const { currentDate, handlePrevDate, handleNextDate } = useCalendar();
   const scheduleList = useCalendarSchedule(currentDate);
   return (
-    <Flex tag="section" css={sectionStyle}>
+    <Flex
+      tag="section"
+      styles={{ direction: "column", align: "center", position: "relative" }}
+      css={sectionStyle}
+    >
       <Calendar
         scheduleList={scheduleList}
         currentDate={currentDate}

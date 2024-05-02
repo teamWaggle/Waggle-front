@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { DropdownContext } from "@/components/common/Design/Dropdown/Dropdown";
+import { DropdownContext } from "@/components/common/Dropdown/Dropdown";
 
 import type { DropdownButtonType } from "@/types/common";
 

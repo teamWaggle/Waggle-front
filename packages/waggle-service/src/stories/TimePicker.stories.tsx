@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { Flex, Form, TimePicker } from "@/components/common";
+import { Form, TimePicker } from "@/components/common";
+import { Flex } from "waggle-design-system";
 import * as yup from "yup";
 
 import { TEAM_SCHEDULE_DEFAULT_VALUES } from "@/constants/team";

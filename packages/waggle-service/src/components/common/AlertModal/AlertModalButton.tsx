@@ -1,6 +1,8 @@
-import { Box } from "@/components/common";
-import { alertModalConfirmButtonStyle } from "@/components/common/AlertModal/AlertModal.style";
 import type { HTMLAttributes } from "react";
+
+import { Box } from "waggle-design-system";
+
+import { alertModalConfirmButtonStyle } from "@/components/common/AlertModal/AlertModal.style";
 
 interface AlertModalButtonProps extends HTMLAttributes<HTMLDivElement> {
   text: string;

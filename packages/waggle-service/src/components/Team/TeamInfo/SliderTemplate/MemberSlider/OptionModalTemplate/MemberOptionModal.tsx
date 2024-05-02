@@ -1,4 +1,4 @@
-import { Box } from "@/components/common";
+import { Box } from "waggle-design-system";
 import OptionModal from "@/components/common/OptionModal/OptionModal";
 import OptionModalItem from "@/components/common/OptionModal/OptionModalItem";
 import AlertModal from "@/components/common/AlertModal/AlerlModal";

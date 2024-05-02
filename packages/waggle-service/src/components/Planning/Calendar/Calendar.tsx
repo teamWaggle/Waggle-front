@@ -2,7 +2,8 @@ import { useMemo } from "react";
 
 import { useRecoilValue } from "recoil";
 
-import { Box } from "@/components/common";
+import { Box } from "waggle-design-system";
+
 import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
 import CalendarHeader from "@/components/Planning/Calendar/CalendarHeader/CalendarHeader";
 import {

@@ -1,20 +1,17 @@
 import { useMemo, useRef } from "react";
 import type { FieldPath, FieldValues } from "react-hook-form";
 
+import { Flex, Text } from "waggle-design-system";
+
 import ScheduleIcon from "@/assets/svg/schedule-icon.svg?react";
 
-import Flex from "@/components/common/Design/Flex/Flex";
-import Text from "@/components/common/Design/Text/Text";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 
 import useClickOutSide from "@/hooks/common/useClickOutSide";
 import { useControlledForm } from "@/hooks/common/useControlledForm";
 
-import {
-  PickerTriggerButtonBoxStyle,
-  PickerTriggerButtonStyle,
-} from "@/components/common/Button/PickerTriggerButton/PickerTriggerButton.style";
+import { PickerTriggerButtonStyle } from "@/components/common/Button/PickerTriggerButton/PickerTriggerButton.style";
 
 const PickerTriggerButton = ({
   children,
@@ -51,7 +48,7 @@ const PickerTriggerButton = ({
   useClickOutSide(triggerRef, modalClose);
   return (
     <div ref={triggerRef}>
-      <Flex css={PickerTriggerButtonBoxStyle}>
+      <Flex styles={{ align: "center", position: "relative", borderRadius: "2px" }}>
         <Text css={PickerTriggerButtonStyle} onClick={handleTriggerOnClick}>
           {dateToFormat}
           <ScheduleIcon style={{ marginLeft: "6px" }} />
