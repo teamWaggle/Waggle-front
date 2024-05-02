@@ -1,9 +1,14 @@
+import { Fragment } from "react";
+
+import { css } from "@emotion/react";
+
 import { Flex, Heading, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import MyPageCommentCard from "@/components/MyPage/MyPageCommentCard/MyPageCommentCard";
 
 import { useMemberSirenCommentQuery } from "@/hooks/api/member/useMemberSirenCommentQuery";
 import { useMemberQuestionCommentQuery } from "@/hooks/api/member/useMemberQuestionCommentQuery";
+import useObserver from "@/hooks/common/useObserver";
 
 interface MyPageCommentProps {
   paramUrl?: string;
@@ -11,10 +16,17 @@ interface MyPageCommentProps {
 }
 
 const MyPageComment = ({ paramUrl, isQuestion }: MyPageCommentProps) => {
-  const { memberSirenCommentData } = useMemberSirenCommentQuery(0, paramUrl);
-  const { memberQuestionCommentData } = useMemberQuestionCommentQuery(0, paramUrl);
+  const { memberCommentData, hasNextPage, fetchNextPage, isFetching } = isQuestion
+    ? useMemberQuestionCommentQuery(paramUrl)
+    : useMemberSirenCommentQuery(paramUrl);
 
-  const commentsData = isQuestion ? memberQuestionCommentData : memberSirenCommentData;
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
 
   return (
     <Flex
@@ -22,22 +34,33 @@ const MyPageComment = ({ paramUrl, isQuestion }: MyPageCommentProps) => {
       styles={{
         direction: "column",
         gap: "30px",
-        marginTop: "80px",
-        paddingLeft: "30px",
-        width: "calc(100% - 311px)",
       }}
+      css={layoutStyle}
     >
       <Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
         댓글
       </Heading>
 
       <Flex styles={{ direction: "column", gap: "10px", width: "100%" }}>
-        {commentsData.result.commentList.map((commentInfo) => (
-          <MyPageCommentCard key={commentInfo.commentId} commentData={commentInfo} />
+        {memberCommentData.pages.map((commentData) => (
+          <Fragment key={commentData.result.nextPageParam}>
+            {commentData.result.commentList.map((commentInfo) => (
+              <MyPageCommentCard key={commentInfo.commentId} commentData={commentInfo} />
+            ))}
+          </Fragment>
         ))}
       </Flex>
+      <div ref={ref} />
     </Flex>
   );
 };
 
 export default MyPageComment;
+
+const layoutStyle = css({
+  padding: "80px 0 0 30px",
+  width: "calc(100% - 311px)",
+  borderLeft: `1px solid ${Theme.color.border}`,
+  height: "100%",
+  minHeight: "100vh",
+});

@@ -4,8 +4,6 @@ import { Theme } from "waggle-design-system";
 
 export const layoutStyle = css({
   padding: "80px 30px 0 0",
-  borderRight: `1px solid ${Theme.color.border}`,
-  height: "calc(100vh - 86px)",
 
   li: {
     cursor: "pointer",
