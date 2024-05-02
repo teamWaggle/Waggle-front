@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import vitePluginSvgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { visualizer } from "rollup-plugin-visualizer";
 
 import type { UserConfig, InlineConfig } from "vite";
 
@@ -19,6 +20,11 @@ export default defineConfig({
     }),
     vitePluginSvgr(),
     tsconfigPaths(),
+    visualizer({
+      filename: "./dist/report.html",
+      open: true,
+      brotliSize: true,
+    }),
   ],
   base: "/",
   server: {
