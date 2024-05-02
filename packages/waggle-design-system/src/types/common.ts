@@ -14,7 +14,3 @@ export interface DropDownItemType extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type Size = "xSmall" | "small" | "medium" | "large" | "xLarge" | "xxLarge";
-
-export interface sortButtonType {
-  defaultText: string;
-}
