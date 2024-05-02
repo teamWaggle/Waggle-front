@@ -1,7 +1,7 @@
 import { Flex, Text } from "waggle-design-system";
 
 import InputNotice from "@/components/common/InputNotice/InputNotice";
-import { TimePicker } from "@/components/common/TimePicker/TimePicker";
+import TimePicker from "@/components/common/TimePicker/TimePicker";
 
 import { useControlledForm } from "@/hooks/common/useControlledForm";
 

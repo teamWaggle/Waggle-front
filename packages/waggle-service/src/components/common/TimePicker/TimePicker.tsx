@@ -18,7 +18,7 @@ export const TimePickerContext = createContext<TimePickerContextProps>({
   name: "",
 });
 
-export const TimePicker = ({
+const TimePicker = ({
   name,
   children,
 }: {
@@ -40,4 +40,5 @@ export const TimePicker = ({
   );
 };
 
+export default TimePicker;
 TimePicker.Modal = TimePickerModal;
