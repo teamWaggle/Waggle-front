@@ -1,5 +1,3 @@
-import { css } from "@emotion/react";
-
 import { useState } from "react";
 
 import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
@@ -7,6 +5,8 @@ import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-syste
 import SortArrowIcon from "@/assets/svg/sort-arrow.svg?react";
 
 import type { sortButtonType } from "@/types/common";
+
+import { boxStyle, innerBoxStyle } from "@/components/common/SortButton/SortButton.style";
 
 const SortButton = ({
   defaultText,
@@ -51,33 +51,3 @@ const SortButton = ({
 };
 
 export default SortButton;
-
-const boxStyle = css({
-  padding: "2px 6px 2px 12px",
-  borderRadius: "4px",
-  border: `1px solid ${Theme.color.border}`,
-  cursor: "pointer",
-  height: "34px",
-  width: "89px",
-});
-
-const innerBoxStyle = css({
-  position: "absolute",
-  top: "calc(100% + 4px)",
-  zIndex: 1,
-  borderRadius: "4px",
-  border: `1px solid ${Theme.color.border}`,
-  cursor: "pointer",
-  backgroundColor: Theme.color.white,
-
-  "& > div": {
-    padding: "2px 6px 2px 12px",
-    height: "34px",
-    width: "87px",
-    cursor: "pointer",
-
-    "&:first-of-type": {
-      borderBottom: `1px solid ${Theme.color.border}`,
-    },
-  },
-});
