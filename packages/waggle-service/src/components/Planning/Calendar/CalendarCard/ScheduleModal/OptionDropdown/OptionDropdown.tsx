@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Dropdown } from "@/components/common";
+import { Dropdown } from "waggle-design-system";
 
 import { dropdownButtonStyle } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/OptionDropdown/OptionDropdown.style";
 
