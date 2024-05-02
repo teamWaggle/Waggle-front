@@ -4,7 +4,7 @@ import PrevArrowIcon from "@/assets/svg/ic-left-arrow-primary.svg?react";
 
 import { Carousel } from "@/components/common";
 
-import { useAddStoryForm } from "@/hooks/story/useAddStoryForm";
+import { useAddStoryForm } from "@/hooks/post/useAddStoryForm";
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 

@@ -2,7 +2,7 @@ import { Box, Heading, Button, getDefaultTextStyle, Theme } from "waggle-design-
 
 import PostEdit from "@/components/common/Post/PostEdit";
 
-import { useAddQuestionForm } from "@/hooks/question/useAddQuestionForm";
+import { useAddQuestionForm } from "@/hooks/post/useAddQuestionForm";
 
 import type { QuestionDataType } from "@/types/question";
 
