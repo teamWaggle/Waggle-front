@@ -1,6 +1,5 @@
-import { Box } from "waggle-design-system";
-
 import type { BoxProps } from "@/components/Box/Box";
+import Box from "@/components/Box/Box";
 
 import { modalContainerStyle } from "@/components/ModalContainer/ModalContainer.style";
 
