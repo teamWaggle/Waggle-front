@@ -16,7 +16,7 @@ export interface sortButtonType {
   defaultText: string;
   handleFilterText: (text: string) => void;
   handleFilterOption: (option: string) => void;
-  buttonData: {
+  filterData: {
     text: string;
     option: string;
   }[];

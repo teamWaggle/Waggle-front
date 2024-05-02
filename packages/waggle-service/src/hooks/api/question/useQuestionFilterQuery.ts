@@ -14,6 +14,7 @@ export const useQuestionFilterQuery = (filter: string) => {
     fetchNextPage,
     hasNextPage,
     isFetching,
+    refetch,
   } = useSuspenseInfiniteQuery<QuestionListType, AxiosError>({
     queryKey: [QUERY_KEYS.QUESTION_FILTER],
     queryFn: ({ pageParam: currentPage }) => getQuestionFilter(filter, currentPage),
@@ -23,5 +24,5 @@ export const useQuestionFilterQuery = (filter: string) => {
     },
   });
 
-  return { questionListData, fetchNextPage, hasNextPage, isFetching };
+  return { questionListData, fetchNextPage, hasNextPage, isFetching, refetch };
 };
