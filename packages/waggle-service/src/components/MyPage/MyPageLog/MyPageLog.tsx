@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 
+import { css } from "@emotion/react";
+
 import { Flex, Heading, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import StoryCard from "@/components/Story/StoryCard/StoryCard";
@@ -23,7 +25,11 @@ const MyPageLog = ({ paramUrl }: ParamUrlType) => {
   return (
     <Flex
       tag="main"
-      styles={{ direction: "column", gap: "30px", marginTop: "80px", paddingLeft: "30px" }}
+      styles={{
+        direction: "column",
+        gap: "30px",
+      }}
+      css={layoutStyle}
     >
       <Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
         Waggle Log
@@ -49,3 +55,10 @@ const MyPageLog = ({ paramUrl }: ParamUrlType) => {
 };
 
 export default MyPageLog;
+
+const layoutStyle = css({
+  padding: "80px 0 0 30px",
+  borderLeft: `1px solid ${Theme.color.border}`,
+  height: "100%",
+  minHeight: "100vh",
+});

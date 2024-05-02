@@ -1,3 +1,5 @@
+import { css } from "@emotion/react";
+
 import { Flex, Heading, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
@@ -15,10 +17,8 @@ const MyPageSiren = ({ paramUrl }: ParamUrlType) => {
       styles={{
         direction: "column",
         gap: "30px",
-        marginTop: "80px",
-        paddingLeft: "30px",
-        width: "calc(100% - 311px)",
       }}
+      css={layoutStyle}
     >
       <Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
         작성한 글
@@ -34,3 +34,11 @@ const MyPageSiren = ({ paramUrl }: ParamUrlType) => {
 };
 
 export default MyPageSiren;
+
+const layoutStyle = css({
+  padding: "80px 0 0 30px",
+  borderLeft: `1px solid ${Theme.color.border}`,
+  height: "100%",
+  width: "calc(100% - 311px)",
+  minHeight: "100vh",
+});

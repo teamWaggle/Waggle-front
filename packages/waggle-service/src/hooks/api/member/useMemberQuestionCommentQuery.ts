@@ -1,6 +1,6 @@
 import type { AxiosError } from "axios";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 import { getMemberQuestionComment } from "@/api/member/getMemberQuestionComment";
 
@@ -8,11 +8,20 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 
 import type { CommentType } from "@/types/comment";
 
-export const useMemberQuestionCommentQuery = (currentPage: number, userUrl?: string) => {
-  const { data: memberQuestionCommentData } = useSuspenseQuery<CommentType, AxiosError>({
+export const useMemberQuestionCommentQuery = (userUrl?: string) => {
+  const {
+    data: memberCommentData,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+  } = useSuspenseInfiniteQuery<CommentType, AxiosError>({
     queryKey: [QUERY_KEYS.MEMBER_QUESTION_COMMENT, userUrl],
-    queryFn: () => getMemberQuestionComment(currentPage, userUrl),
+    queryFn: ({ pageParam: currentPage }) => getMemberQuestionComment(currentPage, userUrl),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      return lastPage.result.nextPageParam === -1 ? undefined : lastPage.result.nextPageParam;
+    },
   });
 
-  return { memberQuestionCommentData };
+  return { memberCommentData, fetchNextPage, hasNextPage, isFetching };
 };

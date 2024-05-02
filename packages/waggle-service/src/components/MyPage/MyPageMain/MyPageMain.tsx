@@ -1,5 +1,7 @@
 import { useRecoilValue } from "recoil";
 
+import { css } from "@emotion/react";
+
 import { Flex, Box, Heading, Button, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import MyPagePetCard from "@/components/MyPage/MyPageMain/MyPagePetCard/MyPagePetCard";
@@ -12,8 +14,6 @@ import useModal from "@/hooks/common/useModal";
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import type { ParamUrlType } from "@/types/common";
-
-import { layoutStyle } from "@/components/MyPage/MyPageMain/MyPageMain.style";
 
 const MyPageMain = ({ paramUrl }: ParamUrlType) => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
@@ -52,3 +52,11 @@ const MyPageMain = ({ paramUrl }: ParamUrlType) => {
 };
 
 export default MyPageMain;
+
+const layoutStyle = css({
+  padding: "80px 0 0 30px",
+  borderLeft: `1px solid ${Theme.color.border}`,
+  height: "100%",
+  width: "100%",
+  minHeight: "100vh",
+});

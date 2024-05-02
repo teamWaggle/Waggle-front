@@ -1,5 +1,7 @@
 import { Fragment } from "react";
 
+import { css } from "@emotion/react";
+
 import { Flex, Heading, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
@@ -27,10 +29,8 @@ const MyPageQuestion = ({ paramUrl }: ParamUrlType) => {
       styles={{
         direction: "column",
         gap: "30px",
-        marginTop: "80px",
-        paddingLeft: "30px",
-        width: "calc(100% - 311px)",
       }}
+      css={layoutStyle}
     >
       <Heading size="small" css={getDefaultTextStyle(Theme.color.text, 700)}>
         작성한 글
@@ -52,3 +52,11 @@ const MyPageQuestion = ({ paramUrl }: ParamUrlType) => {
 };
 
 export default MyPageQuestion;
+
+const layoutStyle = css({
+  padding: "80px 0 0 30px",
+  borderLeft: `1px solid ${Theme.color.border}`,
+  height: "100%",
+  width: "calc(100% - 311px)",
+  minHeight: "100vh",
+});

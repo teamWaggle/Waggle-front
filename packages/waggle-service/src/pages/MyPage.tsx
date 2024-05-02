@@ -29,7 +29,7 @@ const MyPage = () => {
       [MY_PAGE_TAB_KEY.PROFILE]: () => <MyPageMain paramUrl={paramUrl} />,
       [MY_PAGE_TAB_KEY.LOG]: () => <MyPageLog paramUrl={paramUrl} />,
       [MY_PAGE_TAB_KEY.SIREN_POST]: () => <MyPageSiren paramUrl={paramUrl} />,
-      [MY_PAGE_TAB_KEY.SIREN_POST]: () => <MyPageQuestion paramUrl={paramUrl} />,
+      [MY_PAGE_TAB_KEY.QUESTION_POST]: () => <MyPageQuestion paramUrl={paramUrl} />,
       [MY_PAGE_TAB_KEY.SIREN_COMMENT]: () => <MyPageComment paramUrl={paramUrl} />,
       [MY_PAGE_TAB_KEY.QUESTION_COMMENT]: () => <MyPageComment paramUrl={paramUrl} isQuestion />,
     };
