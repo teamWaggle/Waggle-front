@@ -8,7 +8,6 @@ import MainContainer from "@/components/MainContainer/MainContainer";
 import ModalContainer from "@/components/ModalContainer/ModalContainer";
 import Skeleton from "@/components/Skeleton/Skeleton";
 import Slider from "@/components/Slider/Slider";
-import SortButton from "@/components/SortButton/SortButton";
 import Spinner from "@/components/Spinner/Spinner";
 import Tag from "@/components/Tag/Tag";
 import MentionChecker from "@/components/Text/MentionChecker/MentionChecker";
@@ -32,7 +31,6 @@ export {
   ModalContainer,
   Skeleton,
   Slider,
-  SortButton,
   Tag,
   MentionChecker,
   Text,
