@@ -6,7 +6,7 @@ import MemberTeamSlider from "@/components/Planning/Main/MemberTeamSlider/Member
 import { headingStyle, buttonStyle, gridBoxStyle } from "@/components/Planning/Main/Main.style";
 import { useRecoilValue } from "recoil";
 import { isLoggedInState } from "@/recoil/atoms/auth";
-import { SearchInput } from "@/components/common";
+import { SearchInput } from "waggle-design-system";
 
 const Main = () => {
   const navigate = useNavigate();
