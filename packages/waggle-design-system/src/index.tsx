@@ -6,7 +6,6 @@ import Heading from "@/components/Heading/Heading";
 import Logo from "@/components/Logo/Logo";
 import MainContainer from "@/components/MainContainer/MainContainer";
 import ModalContainer from "@/components/ModalContainer/ModalContainer";
-import Modal from "@/components/Modal/Modal";
 import Skeleton from "@/components/Skeleton/Skeleton";
 import Slider from "@/components/Slider/Slider";
 import SortButton from "@/components/SortButton/SortButton";
@@ -17,7 +16,7 @@ import Text from "@/components/Text/Text";
 import Dropdown from "@/components/Dropdown/Dropdown";
 import { Theme } from "@/styles/Theme";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-
+import SearchInput from "@/components/SearchInput/SearchInput";
 import WaggleProvider from "@/WaggleProvider";
 
 import useSlider from "@/hooks/useSlider";
@@ -31,7 +30,6 @@ export {
   Logo,
   MainContainer,
   ModalContainer,
-  Modal,
   Skeleton,
   Slider,
   SortButton,
@@ -44,4 +42,5 @@ export {
   Theme,
   getDefaultTextStyle,
   Dropdown,
+  SearchInput,
 };

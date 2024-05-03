@@ -1,21 +1,20 @@
 import type { ChangeEvent } from "react";
 
-import { Flex } from "waggle-design-system";
-
 import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
 
+import Flex from "@/components/Flex/Flex";
 import {
-  searchStyle,
-  searchInputStyle,
   searchButtonStyle,
-} from "@/components/common/SearchInput/SearchInput.style";
+  searchInputStyle,
+  searchStyle,
+} from "@/components/SearchInput/SearchInput.style";
 
 interface SearchBarProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   width: string;
 }
 
-const SearchBar = ({ onChange, width }: SearchBarProps) => {
+const SearchInput = ({ onChange, width }: SearchBarProps) => {
   return (
     <Flex styles={{ align: "center", position: "relative" }} css={searchStyle(width)}>
       <input
@@ -30,4 +29,4 @@ const SearchBar = ({ onChange, width }: SearchBarProps) => {
     </Flex>
   );
 };
-export default SearchBar;
+export default SearchInput;
