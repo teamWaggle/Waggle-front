@@ -5,6 +5,7 @@ import { Box, Theme } from "waggle-design-system";
 import StoryBio from "@/components/Story/StoryBio/StoryBio";
 import StoryMain from "@/components/Story/StoryMain/StoryMain";
 import StoryMainSkeleton from "@/components/Story/StoryMain/StoryMainSkeleton";
+import RetryErrorBoundary from "@/components/common/ErrorBoundary/RetryErrorBoundary";
 
 const StoryPage = () => {
   return (
@@ -13,9 +14,11 @@ const StoryPage = () => {
         <StoryBio />
       </Box>
 
-      <Suspense fallback={<StoryMainSkeleton />}>
-        <StoryMain />
-      </Suspense>
+      <RetryErrorBoundary>
+        <Suspense fallback={<StoryMainSkeleton />}>
+          <StoryMain />
+        </Suspense>
+      </RetryErrorBoundary>
     </>
   );
 };

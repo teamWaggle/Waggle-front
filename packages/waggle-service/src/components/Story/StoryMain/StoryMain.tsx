@@ -5,7 +5,6 @@ import { Flex, Box } from "waggle-design-system";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import StoryCard from "@/components/Story/StoryCard/StoryCard";
 import StorySearchBar from "@/components/Story/StorySearchBar/StorySearchBar";
-import RetryErrorBoundary from "@/components/common/ErrorBoundary/RetryErrorBoundary";
 import SortButton from "@/components/common/SortButton/SortButton";
 
 import { STORY_FILTER } from "@/constants/filter";
@@ -51,19 +50,17 @@ const StoryMain = () => {
           </Flex>
 
           <Box tag="ol" css={gridBoxStyle}>
-            <RetryErrorBoundary>
-              {storyListData.pages.map((storyData, index) => (
-                <Fragment key={index}>
-                  {storyData.result.storyList.map((storyInfo) => (
-                    <StoryCard
-                      key={storyInfo.boardId}
-                      boardId={storyInfo.boardId}
-                      thumbnail={storyInfo.thumbnail}
-                    />
-                  ))}
-                </Fragment>
-              ))}
-            </RetryErrorBoundary>
+            {storyListData.pages.map((storyData, index) => (
+              <Fragment key={index}>
+                {storyData.result.storyList.map((storyInfo) => (
+                  <StoryCard
+                    key={storyInfo.boardId}
+                    boardId={storyInfo.boardId}
+                    thumbnail={storyInfo.thumbnail}
+                  />
+                ))}
+              </Fragment>
+            ))}
           </Box>
           <div ref={ref} />
         </Box>
