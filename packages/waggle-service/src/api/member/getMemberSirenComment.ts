@@ -2,10 +2,10 @@ import { axiosInstance } from "@/api/axiosInstance";
 
 import { END_POINTS } from "@/constants/api";
 
-import type { CommentType } from "@/types/comment";
+import type { MemberCommentType } from "@/types/comment";
 
 export const getMemberSirenComment = async (currentPage: unknown, userUrl?: string) => {
-  const { data } = await axiosInstance.get<CommentType>(
+  const { data } = await axiosInstance.get<MemberCommentType>(
     END_POINTS.MEMBER_SIREN_COMMENT(currentPage, userUrl)
   );
 

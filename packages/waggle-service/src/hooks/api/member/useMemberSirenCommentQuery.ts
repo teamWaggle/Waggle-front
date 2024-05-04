@@ -6,7 +6,7 @@ import { getMemberSirenComment } from "@/api/member/getMemberSirenComment";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
 
-import type { CommentType } from "@/types/comment";
+import type { MemberCommentType } from "@/types/comment";
 
 export const useMemberSirenCommentQuery = (userUrl?: string) => {
   const {
@@ -14,7 +14,7 @@ export const useMemberSirenCommentQuery = (userUrl?: string) => {
     fetchNextPage,
     hasNextPage,
     isFetching,
-  } = useSuspenseInfiniteQuery<CommentType, AxiosError>({
+  } = useSuspenseInfiniteQuery<MemberCommentType, AxiosError>({
     queryKey: [QUERY_KEYS.MEMBER_SIREN_COMMENT, userUrl],
     queryFn: ({ pageParam: currentPage }) => getMemberSirenComment(currentPage, userUrl),
     initialPageParam: 0,
