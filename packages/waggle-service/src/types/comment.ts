@@ -1,4 +1,5 @@
 import type { MemberType } from "@/types/auth";
+import type { CommonResponseBaseType } from "@/types/common";
 
 export interface CommentType {
   isSuccess: boolean;
@@ -39,4 +40,17 @@ export interface PostCommentType extends CommentRequestType {
 export interface CommentRequestType {
   content: string;
   mentionedMemberList: string[];
+}
+
+export interface MemberCommentType extends CommonResponseBaseType {
+  result: { commentList: MemberCommentListInfoType[]; nextPageParam: number };
+}
+
+export interface MemberCommentListInfoType {
+  commentId: number;
+  content: string;
+  sirenTitle: string;
+  sirenStatus: "RESOLVED" | "UNRESOLVED";
+  sirenCategory: "FIND_PET" | "FIND_OWNER" | "PROTECT" | "ETC";
+  createdDate: Date;
 }
