@@ -17,6 +17,7 @@ import MyPageProfileTab from "@/components/MyPage/MyPageProfile/MyPageProfileTab
 
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 import { usePostFollow } from "@/hooks/api/follow/usePostFollow";
+import { usePostUnfollow } from "@/hooks/api/follow/ustPostUnfollow";
 import useModal from "@/hooks/common/useModal";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
@@ -32,12 +33,11 @@ import {
 
 const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
   const { mutate: followMutate } = usePostFollow();
+  const { mutate: unfollowMutate } = usePostUnfollow();
 
   const { memberData } = useMemberInfoQuery(paramUrl);
 
   const { profileImgUrl, nickname, memberId, followerCount, followingCount } = memberData.result;
-
-  console.log(memberId);
 
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
@@ -98,7 +98,7 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
           <Button
             style={{ width: "294px", height: "40px" }}
             variant={follow ? "disabled" : "default"}
-            onClick={() => followMutate(memberId)}
+            onClick={() => (follow ? followMutate(memberId) : unfollowMutate(memberId))}
           >
             {follow ? "팔로우" : "팔로잉"}
           </Button>
