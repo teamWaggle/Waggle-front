@@ -20,7 +20,7 @@ const StoryContent = ({ storyData }: StoryDataType) => {
 
   const { boardId, member, content, createdDate } = storyData;
 
-  const { openModal, closeModal, selectCloseModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   const handleDeleteStory = useCallback(() => {
     openModal({
@@ -43,7 +43,7 @@ const StoryContent = ({ storyData }: StoryDataType) => {
   const deleteMutate = () => {
     deleteStoryMutate(boardId, {
       onSuccess: () => {
-        selectCloseModal("DeleteWarningModal");
+        closeModal();
       },
     });
   };

@@ -14,5 +14,5 @@ export const useRecommendListQuery = (boardId: number) => {
     queryFn: () => getRecommendList(boardId),
   });
 
-  return recommendListData;
+  return { recommendListData };
 };
