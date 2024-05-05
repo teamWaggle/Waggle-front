@@ -23,9 +23,6 @@ export interface CommentListInfoType {
   createdDate: Date;
   mentionedMemberList?: string[];
   member: MemberType;
-  title?: string;
-  status?: "RESOLVED" | "UNRESOLVED";
-  category?: "FIND_PET" | "FIND_OWNER" | "PROTECT" | "ETC";
 }
 
 interface EditCommentProps {
