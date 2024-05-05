@@ -13,15 +13,15 @@ const MyPageCommentCard = ({ commentData }: { commentData: MemberCommentListInfo
         styles={{ align: "center", justify: "space-between", width: "100%", marginBottom: "6px" }}
       >
         <Flex styles={{ gap: "8px", align: "center" }}>
-          <Tag tagText={commentData.sirenCategory} />
-          <Tag tagText={commentData.sirenStatus} isResolveTag />
+          {commentData.category && <Tag tagText={commentData.category} />}
+          <Tag tagText={commentData.status} isResolveTag />
           <Text size="large" css={getDefaultTextStyle(Theme.color.text, 600)}>
-            {commentData.sirenTitle}
+            {commentData.title}
           </Text>
         </Flex>
 
         <Flex styles={{ gap: "18px" }} css={infoBoxStyle}>
-          <Text size="small">닉네임 영역</Text>
+          <Text size="small">{commentData.member.nickname}</Text>
           <Text size="small">{convertToUTC(new Date(commentData.createdDate)).date}</Text>
         </Flex>
       </Flex>
