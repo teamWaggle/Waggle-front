@@ -23,6 +23,9 @@ export interface CommentListInfoType {
   createdDate: Date;
   mentionedMemberList?: string[];
   member: MemberType;
+  title?: string;
+  status?: "RESOLVED" | "UNRESOLVED";
+  category?: "FIND_PET" | "FIND_OWNER" | "PROTECT" | "ETC";
 }
 
 interface EditCommentProps {
@@ -49,8 +52,9 @@ export interface MemberCommentType extends CommonResponseBaseType {
 export interface MemberCommentListInfoType {
   commentId: number;
   content: string;
-  sirenTitle: string;
-  sirenStatus: "RESOLVED" | "UNRESOLVED";
-  sirenCategory: "FIND_PET" | "FIND_OWNER" | "PROTECT" | "ETC";
+  title: string;
+  status: "RESOLVED" | "UNRESOLVED";
+  category: "FIND_PET" | "FIND_OWNER" | "PROTECT" | "ETC";
   createdDate: Date;
+  member: MemberType;
 }
