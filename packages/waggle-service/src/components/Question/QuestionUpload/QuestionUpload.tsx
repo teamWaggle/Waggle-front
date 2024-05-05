@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { Box, Heading, Button, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
+import Keyword from "@/components/Question/QuestionUpload/Keyword/Keyword";
 
 import { useAddQuestionForm } from "@/hooks/post/useAddQuestionForm";
 import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
@@ -40,6 +41,8 @@ const QuestionUpload = () => {
         value={questionRequest.title}
         onChange={(e) => updateInputValue("title", e.target.value)}
       />
+
+      <Keyword />
 
       <PostUpload
         value={questionRequest.content}
