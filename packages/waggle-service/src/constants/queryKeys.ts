@@ -32,6 +32,7 @@ export const QUERY_KEYS = {
   PET_INFO: "petInfo",
 
   RECOMMEND: "recommend",
+  RECOMMEND_LIST: "recommendList",
   // Schedule
   SCHEDULE: "schedule",
   SCHEDULE_MONTHLY: "scheduleMonthly",
