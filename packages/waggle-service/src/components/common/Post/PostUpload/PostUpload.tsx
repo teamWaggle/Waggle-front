@@ -34,7 +34,7 @@ const PostUpload = ({
   dropImgUpload,
 }: PostUploadPropsType) => {
   return (
-    <Flex styles={{ gap: "64px", marginTop: "60px" }}>
+    <Flex styles={{ gap: "64px", marginTop: "80px" }}>
       {!isLoading ? (
         <Carousel
           width={536}
