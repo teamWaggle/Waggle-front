@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 import { useRecoilValue } from "recoil";
 
@@ -46,7 +46,11 @@ const Recommend = ({ boardId, recommendCount }: RecommendProps) => {
         {recommendCount}
       </Text>
 
-      {isRecommendListOpen && <RecommendList closeList={() => setIsRecommendListOpen(false)} />}
+      {isRecommendListOpen && (
+        <Suspense fallback={<div />}>
+          <RecommendList boardId={boardId} handleClose={() => setIsRecommendListOpen(false)} />
+        </Suspense>
+      )}
     </Flex>
   );
 };

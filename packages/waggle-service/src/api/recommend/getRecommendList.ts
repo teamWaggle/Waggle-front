@@ -5,8 +5,13 @@ import { END_POINTS } from "@/constants/api";
 import type { MemberType } from "@/types/auth";
 import type { CommonResponseBaseType } from "@/types/common";
 
+interface RecommendResultType {
+  memberList: MemberType[];
+  memberCount: number;
+}
+
 export interface RecommendListType extends CommonResponseBaseType {
-  result: { memberList: MemberType; memberCount: number }[];
+  result: RecommendResultType;
 }
 
 export const getRecommendList = async (boardId: number) => {
