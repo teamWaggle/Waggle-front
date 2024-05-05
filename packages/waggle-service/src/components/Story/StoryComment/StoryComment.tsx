@@ -2,23 +2,16 @@ import { Fragment } from "react";
 
 import { css } from "@emotion/react";
 
-import { useRecoilValue } from "recoil";
-
-import { Flex, Divider, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
-
-import DisLikeIcon from "@/assets/svg/ic-question-dislike.svg?react";
-import LikeIcon from "@/assets/svg/ic-question-like.svg?react";
+import { Flex, Divider } from "waggle-design-system";
 
 import StoryCommentCard from "@/components/Story/StoryComment/StoryCommentCard";
 import CommentInput from "@/components/Story/StoryComment/StoryCommentInput";
 
 import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
-import { useGetIsRecommend } from "@/hooks/api/recommend/useGetIsRecommend";
-import { usePostRecommend } from "@/hooks/api/recommend/usePostRecommend";
 import useObserver from "@/hooks/common/useObserver";
 import { useComment } from "@/hooks/comment/useComment";
 
-import { isLoggedInState } from "@/recoil/atoms/auth";
+import Recommend from "./Recommend/Recommend";
 
 interface StoryCommentParams {
   boardId: number;
@@ -26,10 +19,6 @@ interface StoryCommentParams {
 }
 
 const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
-  const isLoggedIn = useRecoilValue(isLoggedInState);
-
-  const { mutate: postRecommend } = usePostRecommend();
-
   const { commentData, hasNextPage, fetchNextPage, isFetching } = useCommentQuery(boardId);
 
   const {
@@ -43,8 +32,6 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
   } = useComment({
     boardId,
   });
-
-  const isRecommend = isLoggedIn ? useGetIsRecommend(boardId) : false;
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -76,27 +63,7 @@ const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
       <Divider length="309px" />
 
       <Flex styles={{ direction: "column", gap: "10px", padding: "15px 24px" }}>
-        <Flex styles={{ align: "center", gap: "6px" }}>
-          {isRecommend ? (
-            <LikeIcon width={18} height={18} onClick={() => isLoggedIn && postRecommend(boardId)} />
-          ) : (
-            <DisLikeIcon
-              width={18}
-              height={18}
-              onClick={() => isLoggedIn && postRecommend(boardId)}
-            />
-          )}
-
-          <Text
-            size="small"
-            css={getDefaultTextStyle(
-              isRecommend ? Theme.color.brand_primary : Theme.color.border,
-              600
-            )}
-          >
-            {recommendCount}
-          </Text>
-        </Flex>
+        <Recommend boardId={boardId} recommendCount={recommendCount} />
 
         <CommentInput
           width="260px"
