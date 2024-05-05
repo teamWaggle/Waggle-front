@@ -35,10 +35,7 @@ export interface CommonResponseType {
   result: number;
 }
 
-export interface CommonResponseResultBooleanType {
-  isSuccess: boolean;
-  code: number;
-  message: string;
+export interface CommonResponseResultBooleanType extends CommonResponseBaseType {
   result: boolean;
 }
 

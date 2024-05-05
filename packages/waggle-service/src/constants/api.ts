@@ -64,6 +64,8 @@ export const END_POINTS = {
   MEMBER_QUESTION_COMMENT: (currentPage: unknown, userUrl?: string) =>
     `/api/comments/members/${userUrl}/question/paged?currentPage=${currentPage}`,
 
+  FOLLOW: (memberId: number) => `/api/follows/follow?toMemberId=${memberId}`,
+  UNFOLLOW: (memberId: number) => `/api/follows/unfollow?toMemberId=${memberId}`,
   // Schuedule
   MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
   MEMBER_SCHEDULES_MONTHLY: (userUrl: string, year: number, month: number) =>
