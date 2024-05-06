@@ -6,7 +6,7 @@ import type { TeamColorType } from "@/types/team";
 
 export const sectionStyle = (color: TeamColorType) =>
   css({
-    height: "700px",
+    height: "770px",
     minWidth: "1536px",
     maxWidth: "100%",
     padding: "0 196px",

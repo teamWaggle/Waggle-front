@@ -11,9 +11,9 @@ export const boxStyle = css({
   display: "grid",
   gridGap: "1px",
   gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
-  gridAutoRows: "minmax(50px, 200px)",
+  gridAutoRows: "minmax(110px, 200px)",
   width: "1128px",
-  height: "590px",
+  height: "600px",
   borderRadius: "16px",
   backgroundColor: Theme.color.border,
   "& > :first-of-type": {

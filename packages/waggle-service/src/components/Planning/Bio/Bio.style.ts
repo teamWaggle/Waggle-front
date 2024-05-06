@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { Theme } from "waggle-design-system";
 
 export const sectionStyle = css({
-  height: "700px",
+  height: "770px",
   minWidth: "1536px",
   maxWidth: "100%",
   padding: "0 196px",
