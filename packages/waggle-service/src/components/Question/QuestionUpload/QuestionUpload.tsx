@@ -42,7 +42,7 @@ const QuestionUpload = () => {
         onChange={(e) => updateInputValue("title", e.target.value)}
       />
 
-      <Keyword />
+      <Keyword updateInputValue={updateInputValue} />
 
       <PostUpload
         value={questionRequest.content}

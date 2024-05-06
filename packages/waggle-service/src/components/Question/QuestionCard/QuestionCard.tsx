@@ -19,7 +19,6 @@ import type { QuestionListDataType } from "@/types/question";
 
 import {
   cardStyle,
-  kewordBoxStyle,
   contentBoxStyle,
   iconStyle,
 } from "@/components/Question/QuestionCard/QuestionCard.style";
@@ -51,8 +50,13 @@ const QuestionCard = ({ questionListData }: QuestionListDataType) => {
         </Text>
       </Flex>
 
-      <Flex css={kewordBoxStyle}>
-        {hashtagList && hashtagList.map((tag) => <Text key={tag}>#{tag}</Text>)}
+      <Flex styles={{ gap: "18px" }}>
+        {hashtagList &&
+          hashtagList.map((tag) => (
+            <Text key={tag} css={getDefaultTextStyle(Theme.color.black, 600)}>
+              #{tag}
+            </Text>
+          ))}
       </Flex>
 
       <Box css={contentBoxStyle}>
