@@ -13,7 +13,7 @@ export const boxStyle = css({
   gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
   gridAutoRows: "minmax(110px, 200px)",
   width: "1128px",
-  height: "600px",
+  height: "670px",
   borderRadius: "16px",
   backgroundColor: Theme.color.border,
   "& > :first-of-type": {
