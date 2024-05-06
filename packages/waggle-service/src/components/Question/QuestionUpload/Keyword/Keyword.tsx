@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { Flex, Box, Text, getDefaultTextStyle, Theme } from "waggle-design-system";
 
@@ -8,6 +8,8 @@ import CloseIcon from "@/assets/svg/ic-close-modal.svg?react";
 
 import useClickOutSide from "@/hooks/common/useClickOutSide";
 
+import type { QuestionFormData } from "@/types/question";
+
 import {
   keywordBoxStyle,
   infoIconStyle,
@@ -16,7 +18,14 @@ import {
   tooltipBoxStyle,
 } from "@/components/Question/QuestionUpload/Keyword/Keyword.style";
 
-const Keyword = () => {
+interface KeywordProps {
+  updateInputValue: <Key extends keyof QuestionFormData>(
+    key: Key,
+    value: QuestionFormData[Key]
+  ) => void;
+}
+
+const Keyword = ({ updateInputValue }: KeywordProps) => {
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
   const [isInputOpen, setIsInputOpen] = useState(false);
 
@@ -43,6 +52,10 @@ const Keyword = () => {
     }
   };
 
+  useEffect(() => {
+    updateInputValue("hashtagList", keywordList);
+  }, [keywordList]);
+
   return (
     <div css={keywordBoxStyle} ref={tooltipRef}>
       <InformationIcon css={infoIconStyle} onClick={() => setIsToolTipOpen((prev) => !prev)} />
@@ -50,8 +63,8 @@ const Keyword = () => {
         연관 키워드 추가
       </Text>
 
-      {keywordList.map((keyword) => (
-        <Box key={keyword} css={keywordStyle}>
+      {keywordList.map((keyword, index) => (
+        <Box key={`${keyword}${index}`} css={keywordStyle}>
           #{keyword}
           <CloseIcon width={10} height={10} onClick={() => handleDeleteKeyword(keyword)} />
         </Box>

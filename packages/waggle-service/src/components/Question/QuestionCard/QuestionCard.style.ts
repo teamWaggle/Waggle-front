@@ -12,12 +12,6 @@ export const cardStyle = css({
   cursor: "pointer",
 });
 
-export const kewordBoxStyle = css({
-  gap: "18px",
-  color: Theme.color.black,
-  fontWeight: 600,
-});
-
 export const contentBoxStyle = css({
   textOverflow: "ellipsis",
   overflow: "hidden",

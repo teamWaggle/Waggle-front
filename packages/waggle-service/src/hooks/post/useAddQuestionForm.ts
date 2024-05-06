@@ -23,7 +23,7 @@ export const useAddQuestionForm = ({ questionId, initialData }: UseAddQuestionFo
     initialData ?? {
       title: "",
       content: "",
-      hashtagList: ["test"],
+      hashtagList: [],
       mediaList: [],
     }
   );
