@@ -56,4 +56,5 @@ export const QUERY_KEYS = {
   TEAM_PARTICIPATION_ACCEPT: "teamParticipationAccept",
   TEAM_SCHEDULE_PAGE: "teamSchedule",
   DELETE_TEAM_MEMBER: "deleteTeamMember",
+  RECOMMEND_TEAMS: "recommendTeams",
 };
