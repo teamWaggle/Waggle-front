@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Fragment } from "react";
 
 import { Box, Flex, Heading, Text, MainContainer } from "waggle-design-system";
 import MemberTeamSlider from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider";
@@ -7,10 +8,21 @@ import { headingStyle, buttonStyle, gridBoxStyle } from "@/components/Planning/M
 import { useRecoilValue } from "recoil";
 import { isLoggedInState } from "@/recoil/atoms/auth";
 import { SearchInput } from "waggle-design-system";
+import { useGetRecommendTeams } from "@/hooks/api/team/useGetRecommendTeams";
+import TeamCard from "@/components/Planning/TeamCard/TeamCard";
+import useObserver from "@/hooks/common/useObserver";
 
 const Main = () => {
   const navigate = useNavigate();
   const isLoggedIn = useRecoilValue(isLoggedInState);
+  const { recommendTeamsData, fetchNextPage, hasNextPage, isFetching } = useGetRecommendTeams();
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
   return (
     <MainContainer>
       {isLoggedIn && (
@@ -47,8 +59,15 @@ const Main = () => {
         <SearchInput onChange={() => {}} width="247px" />
       </Flex>
       <Box css={gridBoxStyle}>
-        {/* {teamList?.map((data) => <TeamCard key={data.teamId} data={data} />)} */}
+        {recommendTeamsData?.pages?.map((recommendTeamData, page) => (
+          <Fragment key={page}>
+            {recommendTeamData.result.teamList.map((team) => (
+              <TeamCard key={team.teamId} data={team} />
+            ))}
+          </Fragment>
+        ))}
       </Box>
+      <div ref={ref} />
     </MainContainer>
   );
 };

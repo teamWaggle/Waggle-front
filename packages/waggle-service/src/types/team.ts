@@ -3,6 +3,7 @@ import type { DefaultResultType } from "@/types/planning";
 export interface TeamResultType extends DefaultResultType {
   teamList: Array<TeamCardType>;
   teamCount: number;
+  nextPageParam: number;
 }
 export interface TeamCardType {
   teamId: number;

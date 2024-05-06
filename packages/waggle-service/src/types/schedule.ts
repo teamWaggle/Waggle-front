@@ -1,11 +1,7 @@
 import type { DefaultApiResponseType } from "@/types/common";
 import type { TeamColorType, TeamMemberType } from "@/types/team";
 
-export interface TeamScheduleInfoType extends DefaultApiResponseType<TeamScheduleResultType> {
-  scheduleCount: number;
-  isFirst: boolean;
-  isLast: boolean;
-}
+export type TeamScheduleInfoType = DefaultApiResponseType<TeamScheduleResultType>;
 
 export interface TeamScheduleType {
   boardId: number;
@@ -33,6 +29,9 @@ export type TeamScheduleStatusType = "IN_PROGRESS" | "UPCOMING" | "CLOSING";
 interface TeamScheduleResultType {
   scheduleList: Array<TeamScheduleType>;
   nextPageParam: number;
+  scheduleCount: number;
+  isFirst: boolean;
+  isLast: boolean;
 }
 
 export type TeamScheduleDateTimeType = string;
