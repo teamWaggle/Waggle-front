@@ -19,18 +19,19 @@ import {
 } from "@/components/Question/QuestionUpload/Keyword/Keyword.style";
 
 interface KeywordProps {
+  initialValue?: string[];
   updateInputValue: <Key extends keyof QuestionFormData>(
     key: Key,
     value: QuestionFormData[Key]
   ) => void;
 }
 
-const Keyword = ({ updateInputValue }: KeywordProps) => {
+const Keyword = ({ initialValue, updateInputValue }: KeywordProps) => {
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
   const [isInputOpen, setIsInputOpen] = useState(false);
 
   const [keyword, setKeyword] = useState("");
-  const [keywordList, setKeyWordList] = useState<string[]>([]);
+  const [keywordList, setKeyWordList] = useState<string[]>(initialValue ?? []);
 
   const tooltipRef = useRef<HTMLDivElement>(null);
 

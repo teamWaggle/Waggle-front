@@ -1,6 +1,7 @@
 import { Box, Heading, Button, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import PostEdit from "@/components/common/Post/PostEdit";
+import Keyword from "@/components/Question/QuestionUpload/Keyword/Keyword";
 
 import { useAddQuestionForm } from "@/hooks/post/useAddQuestionForm";
 
@@ -30,6 +31,8 @@ const QuestionEdit = ({ questionData }: QuestionDataType) => {
       <Heading size="large" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>
         Q&A - 질문 수정하기
       </Heading>
+
+      <Keyword initialValue={hashtagList} updateInputValue={updateInputValue} />
 
       <input
         type="text"
