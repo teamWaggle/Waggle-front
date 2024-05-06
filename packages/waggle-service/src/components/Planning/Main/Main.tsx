@@ -13,22 +13,26 @@ const Main = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
   return (
     <MainContainer>
-      <Flex
-        styles={{
-          justify: "space-between",
-          align: "center",
-          marginTop: "52px",
-          marginBottom: "23px",
-        }}
-      >
-        <Heading css={headingStyle} size="medium">
-          My TEAM
-        </Heading>
-        <button css={buttonStyle} onClick={() => navigate("/planning/create-team")}>
-          <Text size="large">팀 만들기</Text>
-        </button>
-      </Flex>
-      {isLoggedIn && <MemberTeamSlider />}
+      {isLoggedIn && (
+        <>
+          <Flex
+            styles={{
+              justify: "space-between",
+              align: "center",
+              marginTop: "52px",
+              marginBottom: "23px",
+            }}
+          >
+            <Heading css={headingStyle} size="medium">
+              My TEAM
+            </Heading>
+            <button css={buttonStyle} onClick={() => navigate("/planning/create-team")}>
+              <Text size="large">팀 만들기</Text>
+            </button>
+          </Flex>
+          <MemberTeamSlider />
+        </>
+      )}
       <Flex
         styles={{
           justify: "space-between",
