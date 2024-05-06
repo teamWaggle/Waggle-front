@@ -21,6 +21,37 @@ export const keywordButtonBoxStyle = css({
   borderRadius: "4px",
   boxShadow: "0px 0px 2px 0px rgba(0,0,0,0.25)",
   cursor: "pointer",
+
+  "& > svg > line": {
+    stroke: Theme.color.border,
+  },
+});
+
+export const keywordStyle = css({
+  borderRadius: "4px",
+  border: `1px solid ${Theme.color.border}`,
+  boxShadow: "0px 0px 2px 0px rgba(0,0,0,0.25)",
+  padding: "7px",
+  outline: "none",
+  width: "130px",
+  fontSize: "14px",
+  color: Theme.color.readonly_text,
+  position: "relative",
+
+  "&::placeholder": {
+    color: Theme.color.border,
+  },
+
+  "& > svg": {
+    position: "absolute",
+    top: "11px",
+    right: "7px",
+    cursor: "pointer",
+
+    "& > line": {
+      stroke: Theme.color.border,
+    },
+  },
 });
 
 export const tooltipBoxStyle = css({
