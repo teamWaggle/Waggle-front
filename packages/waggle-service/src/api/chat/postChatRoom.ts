@@ -6,7 +6,7 @@ import { END_POINTS } from "@/constants/api";
 
 import type { CommonResponseType } from "@/types/common";
 
-interface ChatRoomRequestType {
+export interface ChatRoomRequestType {
   name: string;
   description: string;
   password: string;
