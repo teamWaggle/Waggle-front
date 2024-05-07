@@ -63,6 +63,10 @@ export const buttonBoxStyle = css({
     fontSize: "18px",
     cursor: "pointer",
 
+    "&.deleteButton": {
+      backgroundColor: Theme.color.disabled_text,
+    },
+
     "&:last-of-type": {
       marginTop: "18px",
     },
