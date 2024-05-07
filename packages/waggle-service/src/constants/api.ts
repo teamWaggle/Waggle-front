@@ -71,6 +71,7 @@ export const END_POINTS = {
 
   CHAT_ROOM_LIST: (currentPage: number) => `/api/chat/rooms/paged?currentPage=${currentPage}`,
   CREATE_CHAT_ROOM: `/api/chat/rooms`,
+  CHAT_ROOM: (chatRoomId: number) => `/api/chat/rooms/${chatRoomId}`,
   // Schuedule
   MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
   MEMBER_SCHEDULES_MONTHLY: (userUrl: string, year: number, month: number) =>
