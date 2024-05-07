@@ -2,15 +2,15 @@ import { Flex, Box } from "waggle-design-system";
 
 import SendButtonIcon from "@/assets/svg/ic-message-send.svg?react";
 
-import ChattingMessage from "@/components/Connection/Chatting/ChatRoomContent/ChatMessage/ChatMessage";
-import ChattingMessageMine from "@/components/Connection/Chatting/ChatRoomContent/ChatMessage/ChatMessageMine";
+import ChattingMessage from "@/components/Connection/Chat/ChatRoomContent/ChatMessage/ChatMessage";
+import ChattingMessageMine from "@/components/Connection/Chat/ChatRoomContent/ChatMessage/ChatMessageMine";
 
 import {
   chattingContentBoxStyle,
   inputBoxStyle,
   chattingInputStyle,
   buttonStyle,
-} from "@/components/Connection/Chatting/ChatRoomContent/ChatRoomContent.style";
+} from "@/components/Connection/Chat/ChatRoomContent/ChatRoomContent.style";
 
 const ChatRoomContent = () => {
   return (

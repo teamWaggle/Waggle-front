@@ -20,9 +20,9 @@ import {
   contentBoxStyle,
   titleInputStyle,
   buttonBoxStyle,
-} from "@/components/Connection/ConnectionSidebar/CreateRoomModal/CreateRoomModal.style";
+} from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
 
-const CreateRoomModal = () => {
+const ChatRoomCreateModal = () => {
   const { mutate: chatRoomMutate } = usePostChatRoomMutation();
 
   const { closeModal } = useModal();
@@ -93,4 +93,4 @@ const CreateRoomModal = () => {
   );
 };
 
-export default CreateRoomModal;
+export default ChatRoomCreateModal;
