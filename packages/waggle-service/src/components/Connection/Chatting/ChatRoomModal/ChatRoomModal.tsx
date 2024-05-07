@@ -2,12 +2,12 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Theme } from "waggle-design-system";
 
-import ChattingRoom from "@/components/Connection/Chatting/ChattingRoom/ChattingRoom";
+import ChatRoomContent from "@/components/Connection/Chatting/ChatRoomContent/ChatRoomContent";
 import ChatRoomInfoBox from "@/components/Connection/Chatting/ChatRoomInfoBox/ChatRoomInfoBox";
 
 import { useChatRoomQuery } from "@/hooks/api/chat/useChatRoomQuery";
 
-const ChattingRoomModal = ({ chatRoomId }: { chatRoomId: number }) => {
+const ChatRoomModal = ({ chatRoomId }: { chatRoomId: number }) => {
   const { chatRoomData } = useChatRoomQuery(chatRoomId);
 
   console.log(chatRoomData);
@@ -23,13 +23,13 @@ const ChattingRoomModal = ({ chatRoomId }: { chatRoomId: number }) => {
       />
 
       <Flex css={contentBoxStyle}>
-        <ChattingRoom />
+        <ChatRoomContent />
       </Flex>
     </Box>
   );
 };
 
-export default ChattingRoomModal;
+export default ChatRoomModal;
 
 const contentBoxStyle = css({
   height: "600px",
