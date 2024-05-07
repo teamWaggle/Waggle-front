@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 import { Flex, Box, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import ChatRoomInfoBox from "@/components/Connection/Chatting/ChatRoomInfoBox/ChatRoomInfoBox";
-import ChattingRoomModal from "@/components/Connection/Chatting/ChattingRoomModal";
+import ChattingRoomModal from "@/components/Connection/Chatting/ChatRoomModal/ChatRoomModal";
 import { Form } from "@/components/common";
 
 import { ROOM_PASSWORD_FORM, ROOM_JOIN_FORM_SCHEMA } from "@/constants/form";
@@ -15,19 +15,19 @@ import useModal from "@/hooks/common/useModal";
 
 import { titleInputStyle } from "@/components/Connection/ConnectionSidebar/CreateRoomModal/CreateRoomModal.style";
 
-interface ChattingRoomJoinModalProps {
+interface ChatRoomJoinModalProps {
   chatRoomId: number;
   name: string;
   description: string;
   memberCount: number;
 }
 
-const ChattingRoomJoinModal = ({
+const ChatRoomJoinModal = ({
   chatRoomId,
   name,
   description,
   memberCount,
-}: ChattingRoomJoinModalProps) => {
+}: ChatRoomJoinModalProps) => {
   const { mutate: joinChatRoomMutate } = useJoinChatRoomMutation();
 
   const { openModal, closeModal } = useModal();
@@ -93,7 +93,7 @@ const ChattingRoomJoinModal = ({
   );
 };
 
-export default ChattingRoomJoinModal;
+export default ChatRoomJoinModal;
 
 const contentBoxStyle = css({
   height: "600px",

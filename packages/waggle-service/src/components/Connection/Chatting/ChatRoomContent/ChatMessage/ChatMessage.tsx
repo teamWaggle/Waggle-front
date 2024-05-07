@@ -4,7 +4,7 @@ import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-syste
 
 import SampleImg from "@/assets/png/post-sample.png";
 
-const ChattingMessage = () => {
+const ChatMessage = () => {
   return (
     <Flex styles={{ gap: "24px" }}>
       <img src={SampleImg} alt="profileImg" css={profileImgStyle} />
@@ -22,7 +22,7 @@ const ChattingMessage = () => {
   );
 };
 
-export default ChattingMessage;
+export default ChatMessage;
 
 const profileImgStyle = css({
   width: "60px",
