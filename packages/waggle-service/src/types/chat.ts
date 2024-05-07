@@ -6,15 +6,19 @@ export interface ChatType extends CommonResponseBaseType {
 }
 
 interface ChatResultType {
-  chatRooms: ChatRoomType;
+  chatRooms: ChatRoomType[];
 }
 
-interface ChatRoomType {
+export interface ChatRoomType {
   id: number;
   name: string;
   description: string;
   chatRoomMembers: ChatRoomMemberType;
   owner: MemberType;
+}
+
+export interface ChatRoomInfoType {
+  chatRoomInfo: ChatRoomType;
 }
 
 interface ChatRoomMemberType {
