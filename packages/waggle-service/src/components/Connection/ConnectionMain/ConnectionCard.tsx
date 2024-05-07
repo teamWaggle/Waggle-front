@@ -4,7 +4,8 @@ import { Flex, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-sy
 
 import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
 
-import ChattingRoomModal from "@/components/Connection/Chatting/ChattingRoomModal";
+// import ChattingRoomModal from "@/components/Connection/Chatting/ChattingRoomModal";
+import ChattingRoomJoinModal from "@/components/Connection/Chatting/ChattingRoomJoinModal/ChattingRoomJoinModal";
 
 import useModal from "@/hooks/common/useModal";
 
@@ -14,17 +15,29 @@ import { Suspense } from "react";
 const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
   const { openModal } = useModal();
 
-  const handleRoomOpen = () => {
+  const handleJoinRoomOpen = () => {
     openModal({
-      key: "ChattingRoomModal",
+      key: "JoinChatRoomModal",
       component: () => (
         <Suspense fallback={<div />}>
-          <ChattingRoomModal chatRoomId={chatRoomInfo.id} />
+          <ChattingRoomJoinModal chatRoomId={chatRoomInfo.id} />
         </Suspense>
       ),
       isWhiteIcon: true,
     });
   };
+
+  // const handleRoomOpen = () => {
+  //   openModal({
+  //     key: "ChattingRoomModal",
+  //     component: () => (
+  //       <Suspense fallback={<div />}>
+  //         <ChattingRoomModal chatRoomId={chatRoomInfo.id} />
+  //       </Suspense>
+  //     ),
+  //     isWhiteIcon: true,
+  //   });
+  // };
 
   return (
     <Flex styles={{ direction: "column", gap: "8px" }} css={cardBoxStyle}>
@@ -39,7 +52,7 @@ const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
             {chatRoomInfo.chatRoomMembers.memberCount}/7
           </Text>
         </Flex>
-        <Button style={{ padding: "6px 10px", borderRadius: "13px" }} onClick={handleRoomOpen}>
+        <Button style={{ padding: "6px 10px", borderRadius: "13px" }} onClick={handleJoinRoomOpen}>
           입장
         </Button>
       </Flex>
