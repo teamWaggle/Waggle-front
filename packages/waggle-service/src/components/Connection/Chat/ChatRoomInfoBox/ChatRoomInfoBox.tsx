@@ -4,7 +4,7 @@ import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-des
 
 import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
 
-import RoomSettingButton from "@/components/Connection/Chatting/ChatRoomInfoBox/RoomSettingButton";
+import RoomSettingButton from "@/components/Connection/Chat/ChatRoomInfoBox/RoomSettingButton";
 
 interface ChatRoomInfoBoxProps {
   name: string;

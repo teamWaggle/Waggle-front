@@ -6,7 +6,7 @@ import { Flex, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-sy
 import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
 
 // import ChattingRoomJoinModal from "@/components/Connection/Chatting/ChattingRoomJoinModal/ChattingRoomJoinModal";
-import ChatRoomModal from "@/components/Connection/Chatting/ChatRoomModal/ChatRoomModal";
+import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
 import useModal from "@/hooks/common/useModal";
 
