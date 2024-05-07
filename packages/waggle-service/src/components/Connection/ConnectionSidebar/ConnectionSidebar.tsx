@@ -4,7 +4,7 @@ import { Flex, Box, Button } from "waggle-design-system";
 
 import NewMessageList from "@/components/Connection/ConnectionSidebar/NewMessageList";
 import ConnectionProfile from "@/components/Connection/ConnectionSidebar/ConnectionProfile";
-import CreateRoomModal from "@/components/Connection/ConnectionSidebar/CreateRoomModal/CreateRoomModal";
+import ChatRoomCreateModal from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal";
 
 import useModal from "@/hooks/common/useModal";
 
@@ -14,7 +14,7 @@ const ConnectionSidebar = () => {
   const handleCreateRoom = () => {
     openModal({
       key: "CreateRoomModal",
-      component: () => <CreateRoomModal />,
+      component: () => <ChatRoomCreateModal />,
       isWhiteIcon: true,
     });
   };

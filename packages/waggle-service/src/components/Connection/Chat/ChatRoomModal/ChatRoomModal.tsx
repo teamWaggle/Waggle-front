@@ -2,8 +2,8 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Theme } from "waggle-design-system";
 
-import ChatRoomContent from "@/components/Connection/Chatting/ChatRoomContent/ChatRoomContent";
-import ChatRoomInfoBox from "@/components/Connection/Chatting/ChatRoomInfoBox/ChatRoomInfoBox";
+import ChatRoomContent from "@/components/Connection/Chat/ChatRoomContent/ChatRoomContent";
+import ChatRoomInfoBox from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRoomInfoBox";
 
 import { useChatRoomQuery } from "@/hooks/api/chat/useChatRoomQuery";
 

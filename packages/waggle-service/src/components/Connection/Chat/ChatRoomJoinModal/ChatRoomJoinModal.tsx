@@ -4,8 +4,8 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-import ChatRoomInfoBox from "@/components/Connection/Chatting/ChatRoomInfoBox/ChatRoomInfoBox";
-import ChattingRoomModal from "@/components/Connection/Chatting/ChatRoomModal/ChatRoomModal";
+import ChatRoomInfoBox from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRoomInfoBox";
+import ChattingRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 import { Form } from "@/components/common";
 
 import { ROOM_PASSWORD_FORM, ROOM_JOIN_FORM_SCHEMA } from "@/constants/form";
@@ -13,7 +13,7 @@ import { ROOM_PASSWORD_FORM, ROOM_JOIN_FORM_SCHEMA } from "@/constants/form";
 import { useJoinChatRoomMutation } from "@/hooks/api/chat/useJoinChatRoomMutation";
 import useModal from "@/hooks/common/useModal";
 
-import { titleInputStyle } from "@/components/Connection/ConnectionSidebar/CreateRoomModal/CreateRoomModal.style";
+import { titleInputStyle } from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
 
 interface ChatRoomJoinModalProps {
   chatRoomId: number;
