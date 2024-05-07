@@ -8,7 +8,9 @@ import ChattingRoomModal from "@/components/Connection/Chatting/ChattingRoomModa
 
 import useModal from "@/hooks/common/useModal";
 
-const ConnectionCard = () => {
+import type { ChatRoomInfoType } from "@/types/chat";
+
+const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
   const { openModal } = useModal();
 
   const handleRoomOpen = () => {
@@ -21,15 +23,15 @@ const ConnectionCard = () => {
 
   return (
     <Flex styles={{ direction: "column", gap: "8px" }} css={cardBoxStyle}>
-      <Text css={getDefaultTextStyle(Theme.color.text, 700)}>말티즈 키우는 사람만</Text>
+      <Text css={getDefaultTextStyle(Theme.color.text, 700)}>{chatRoomInfo.name}</Text>
       <Text size="small" css={getDefaultTextStyle(Theme.color.input_text, 500)}>
-        말티즈에 대해서 이야기해요! 다른 강아지도 좋아하지만 말티즈가 더 좋아요
+        {chatRoomInfo.description}
       </Text>
       <Flex styles={{ align: "center", justify: "space-between", width: "100%" }}>
         <Flex styles={{ gap: "12px" }}>
           <PersonIcon />
           <Text size="small" css={getDefaultTextStyle("#9a9a9a", 600)}>
-            3/7
+            {chatRoomInfo.chatRoomMembers.memberCount}/7
           </Text>
         </Flex>
         <Button style={{ padding: "6px 10px", borderRadius: "13px" }} onClick={handleRoomOpen}>
