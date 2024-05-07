@@ -31,7 +31,7 @@ const ChatRoomInfoBox = ({
             {memberCount}/7
           </Text>
         </Flex>
-        {isMember && <RoomSettingButton ownerId={ownerId} />}
+        {isMember && <RoomSettingButton name={name} description={description} ownerId={ownerId} />}
       </Flex>
       <Text css={getDefaultTextStyle(Theme.color.white, 500)}>{description}</Text>
     </Box>

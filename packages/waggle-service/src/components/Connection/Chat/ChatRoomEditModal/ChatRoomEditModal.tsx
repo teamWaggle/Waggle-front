@@ -1,0 +1,84 @@
+import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
+
+import { Form } from "@/components/common";
+
+import {
+  ROOM_TITLE_FORM,
+  ROOM_DESCRIPTION_FORM,
+  ROOM_PASSWORD_FORM,
+  ROOM_FORM_SCHEMA,
+} from "@/constants/form";
+
+import {
+  titleBoxStyle,
+  contentBoxStyle,
+  titleInputStyle,
+  buttonBoxStyle,
+} from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
+
+interface ChatRoomEditModalProps {
+  name: string;
+  description: string;
+}
+
+const ChatRoomEditModal = ({ name, description }: ChatRoomEditModalProps) => {
+  const handleSubmit = () => {};
+
+  return (
+    <Box styles={{ width: "600px" }}>
+      <Box css={titleBoxStyle}>
+        <Heading css={getDefaultTextStyle(Theme.color.white, 700)}>채팅방 설정</Heading>
+        <Text css={getDefaultTextStyle(Theme.color.white, 500)}>
+          채팅방을 자유롭게 설정해보세요!
+        </Text>
+      </Box>
+
+      <Flex css={contentBoxStyle}>
+        <Form
+          onSubmit={handleSubmit}
+          defaultValues={{ title: name, description, password: "" }}
+          schema={ROOM_FORM_SCHEMA}
+        >
+          <Box styles={{ width: "100%" }}>
+            <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+              {ROOM_TITLE_FORM.TITLE}
+            </Heading>
+            <Form.TextInputField
+              inputStyle={titleInputStyle()}
+              name={ROOM_TITLE_FORM.NAME}
+              placeholder={ROOM_TITLE_FORM.PLACEHOLDER}
+            />
+          </Box>
+          <Box styles={{ width: "100%" }}>
+            <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+              {ROOM_DESCRIPTION_FORM.TITLE}
+            </Heading>
+            <Form.TextInputField
+              inputStyle={titleInputStyle()}
+              name={ROOM_DESCRIPTION_FORM.NAME}
+              placeholder={ROOM_DESCRIPTION_FORM.PLACEHOLDER}
+            />
+          </Box>
+          <Box styles={{ width: "100%" }}>
+            <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+              {ROOM_PASSWORD_FORM.TITLE}
+            </Heading>
+            <Form.TextInputField
+              inputStyle={titleInputStyle(true)}
+              name={ROOM_PASSWORD_FORM.NAME}
+              placeholder={ROOM_PASSWORD_FORM.PLACEHOLDER}
+              maxLength={ROOM_PASSWORD_FORM.MAX_LENGTH}
+            />
+          </Box>
+
+          <Box css={buttonBoxStyle}>
+            <button className="deleteButton">채팅방 삭제하기</button>
+            <button>채팅방 설정 저장하기</button>
+          </Box>
+        </Form>
+      </Flex>
+    </Box>
+  );
+};
+
+export default ChatRoomEditModal;
