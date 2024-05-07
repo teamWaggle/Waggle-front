@@ -1,3 +1,5 @@
+import type { FieldValues } from "react-hook-form";
+
 import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import { Form } from "@/components/common";
@@ -10,6 +12,8 @@ import {
   ROOM_FORM_SCHEMA,
 } from "@/constants/form";
 
+import { usePostChatRoomMutation } from "@/hooks/api/chat/usePostChatRoomMutation";
+
 import {
   titleBoxStyle,
   contentBoxStyle,
@@ -18,7 +22,17 @@ import {
 } from "@/components/Connection/ConnectionSidebar/CreateRoomModal/CreateRoomModal.style";
 
 const CreateRoomModal = () => {
-  const handleSubmit = () => {};
+  const { mutate: chatRoomMutate } = usePostChatRoomMutation();
+
+  const handleSubmit = (data: FieldValues) => {
+    const chatRoomRequest = {
+      name: data["title"],
+      description: data["description"],
+      password: data["password"],
+    };
+
+    chatRoomMutate(chatRoomRequest);
+  };
 
   return (
     <Box styles={{ width: "600px" }}>
