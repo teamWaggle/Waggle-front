@@ -14,9 +14,10 @@ interface RoomtSettingButtonProps {
   name: string;
   description: string;
   ownerId?: number;
+  roomId?: number;
 }
 
-const RoomSettingButton = ({ name, description, ownerId }: RoomtSettingButtonProps) => {
+const RoomSettingButton = ({ name, description, ownerId, roomId }: RoomtSettingButtonProps) => {
   const { memberId } = useMemberInfoSaveQuery();
 
   const { openModal, closeModal } = useModal();
@@ -27,7 +28,8 @@ const RoomSettingButton = ({ name, description, ownerId }: RoomtSettingButtonPro
     closeModal();
     openModal({
       key: "ChatRoomEditModal",
-      component: () => <ChatRoomEditModal name={name} description={description} />,
+      component: () => <ChatRoomEditModal name={name} description={description} roomId={roomId} />,
+      isWhiteIcon: true,
     });
   };
 

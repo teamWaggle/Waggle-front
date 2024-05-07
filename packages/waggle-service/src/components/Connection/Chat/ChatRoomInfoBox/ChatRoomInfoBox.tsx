@@ -12,6 +12,7 @@ interface ChatRoomInfoBoxProps {
   memberCount: number;
   ownerId?: number;
   isMember?: boolean;
+  roomId?: number;
 }
 
 const ChatRoomInfoBox = ({
@@ -19,6 +20,7 @@ const ChatRoomInfoBox = ({
   description,
   memberCount,
   ownerId,
+  roomId,
   isMember,
 }: ChatRoomInfoBoxProps) => {
   return (
@@ -31,7 +33,14 @@ const ChatRoomInfoBox = ({
             {memberCount}/7
           </Text>
         </Flex>
-        {isMember && <RoomSettingButton name={name} description={description} ownerId={ownerId} />}
+        {isMember && (
+          <RoomSettingButton
+            name={name}
+            description={description}
+            ownerId={ownerId}
+            roomId={roomId}
+          />
+        )}
       </Flex>
       <Text css={getDefaultTextStyle(Theme.color.white, 500)}>{description}</Text>
     </Box>

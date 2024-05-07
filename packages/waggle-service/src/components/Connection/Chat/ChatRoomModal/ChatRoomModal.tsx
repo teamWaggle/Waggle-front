@@ -7,7 +7,7 @@ import ChatRoomInfoBox from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRo
 
 import { useChatRoomQuery } from "@/hooks/api/chat/useChatRoomQuery";
 
-const ChatRoomModal = ({ chatRoomId }: { chatRoomId: number }) => {
+const ChatRoomModal = ({ chatRoomId }: { chatRoomId?: number }) => {
   const { chatRoomData } = useChatRoomQuery(chatRoomId);
 
   console.log(chatRoomData);
@@ -19,6 +19,7 @@ const ChatRoomModal = ({ chatRoomId }: { chatRoomId: number }) => {
         description={chatRoomData.result.description}
         memberCount={chatRoomData.result.chatRoomMembers.memberCount}
         ownerId={chatRoomData.result.owner.memberId}
+        roomId={chatRoomData.result.id}
         isMember
       />
 

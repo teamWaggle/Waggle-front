@@ -1,6 +1,10 @@
+import type { FieldValues } from "react-hook-form";
+import { Suspense } from "react";
+
 import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import { Form } from "@/components/common";
+import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
 import {
   ROOM_TITLE_FORM,
@@ -8,6 +12,9 @@ import {
   ROOM_PASSWORD_FORM,
   ROOM_FORM_SCHEMA,
 } from "@/constants/form";
+
+import { useEditChatRoomMutation } from "@/hooks/api/chat/useEditChatRoomMutation";
+import useModal from "@/hooks/common/useModal";
 
 import {
   titleBoxStyle,
@@ -19,10 +26,37 @@ import {
 interface ChatRoomEditModalProps {
   name: string;
   description: string;
+  roomId?: number;
 }
 
-const ChatRoomEditModal = ({ name, description }: ChatRoomEditModalProps) => {
-  const handleSubmit = () => {};
+const ChatRoomEditModal = ({ name, description, roomId }: ChatRoomEditModalProps) => {
+  const { mutate: editChatRoomMutate } = useEditChatRoomMutation(roomId);
+
+  const { openModal, closeModal } = useModal();
+
+  const handleSubmit = (data: FieldValues) => {
+    const chatRoomRequest = {
+      name: data["title"],
+      description: data["description"],
+      password: data["password"],
+      chatRoomId: roomId,
+    };
+
+    editChatRoomMutate(chatRoomRequest, {
+      onSuccess: () => {
+        closeModal();
+        openModal({
+          key: "ChatRoomModal",
+          component: () => (
+            <Suspense fallback={<div />}>
+              <ChatRoomModal chatRoomId={roomId} />
+            </Suspense>
+          ),
+          isWhiteIcon: true,
+        });
+      },
+    });
+  };
 
   return (
     <Box styles={{ width: "600px" }}>
