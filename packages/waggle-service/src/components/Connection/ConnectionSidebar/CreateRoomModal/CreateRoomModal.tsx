@@ -13,6 +13,7 @@ import {
 } from "@/constants/form";
 
 import { usePostChatRoomMutation } from "@/hooks/api/chat/usePostChatRoomMutation";
+import useModal from "@/hooks/common/useModal";
 
 import {
   titleBoxStyle,
@@ -24,6 +25,8 @@ import {
 const CreateRoomModal = () => {
   const { mutate: chatRoomMutate } = usePostChatRoomMutation();
 
+  const { closeModal } = useModal();
+
   const handleSubmit = (data: FieldValues) => {
     const chatRoomRequest = {
       name: data["title"],
@@ -31,7 +34,7 @@ const CreateRoomModal = () => {
       password: data["password"],
     };
 
-    chatRoomMutate(chatRoomRequest);
+    chatRoomMutate(chatRoomRequest, { onSuccess: () => closeModal() });
   };
 
   return (
