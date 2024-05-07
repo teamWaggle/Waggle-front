@@ -2,17 +2,17 @@ import { Flex, Box } from "waggle-design-system";
 
 import SendButtonIcon from "@/assets/svg/ic-message-send.svg?react";
 
-import ChattingMessage from "@/components/Connection/Chatting/ChattingMessage";
-import ChattingMessageMine from "@/components/Connection/Chatting/ChattingMessageMine";
+import ChattingMessage from "@/components/Connection/Chatting/ChatRoomContent/ChatMessage/ChatMessage";
+import ChattingMessageMine from "@/components/Connection/Chatting/ChatRoomContent/ChatMessage/ChatMessageMine";
 
 import {
   chattingContentBoxStyle,
   inputBoxStyle,
   chattingInputStyle,
   buttonStyle,
-} from "@/components/Connection/Chatting/ChattingRoom/ChattingRoom.style";
+} from "@/components/Connection/Chatting/ChatRoomContent/ChatRoomContent.style";
 
-const ChattingRoom = () => {
+const ChatRoomContent = () => {
   return (
     <Box>
       <Flex styles={{ direction: "column", gap: "20px" }} css={chattingContentBoxStyle}>
@@ -39,4 +39,4 @@ const ChattingRoom = () => {
   );
 };
 
-export default ChattingRoom;
+export default ChatRoomContent;

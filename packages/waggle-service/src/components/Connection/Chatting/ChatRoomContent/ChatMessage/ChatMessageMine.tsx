@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-const ChattingMessageMine = () => {
+const ChatMessageMine = () => {
   return (
     <Flex styles={{ direction: "column", marginLeft: "auto" }}>
       <Flex styles={{ gap: "16px", align: "center", marginLeft: "auto" }}>
@@ -14,7 +14,7 @@ const ChattingMessageMine = () => {
   );
 };
 
-export default ChattingMessageMine;
+export default ChatMessageMine;
 
 const messageBoxStyle = css({
   border: `1px solid ${Theme.color.brand_primary}`,
