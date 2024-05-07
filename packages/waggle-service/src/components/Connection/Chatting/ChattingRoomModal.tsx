@@ -2,9 +2,8 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Theme } from "waggle-design-system";
 
-// import LockChatting from "@/components/Connection/Chatting/LockChatting";
 import ChattingRoom from "@/components/Connection/Chatting/ChattingRoom/ChattingRoom";
-import ChattingRoomInfoBox from "@/components/Connection/Chatting/ChattingRoomInfoBox/ChattingRoomInfoBox";
+import ChatRoomInfoBox from "@/components/Connection/Chatting/ChatRoomInfoBox/ChatRoomInfoBox";
 
 import { useChatRoomQuery } from "@/hooks/api/chat/useChatRoomQuery";
 
@@ -15,13 +14,15 @@ const ChattingRoomModal = ({ chatRoomId }: { chatRoomId: number }) => {
 
   return (
     <Box styles={{ width: "600px" }}>
-      <ChattingRoomInfoBox
+      <ChatRoomInfoBox
         name={chatRoomData.result.name}
         description={chatRoomData.result.description}
+        memberCount={chatRoomData.result.chatRoomMembers.memberCount}
+        ownerId={chatRoomData.result.owner.memberId}
+        isMember
       />
 
       <Flex css={contentBoxStyle}>
-        {/* <LockChatting onClose={onClose} /> */}
         <ChattingRoom />
       </Flex>
     </Box>
