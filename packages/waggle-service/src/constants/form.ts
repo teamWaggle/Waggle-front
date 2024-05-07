@@ -28,7 +28,7 @@ export const ROOM_DESCRIPTION_FORM = {
 
 export const ROOM_PASSWORD_FORM = {
   TITLE: "비밀번호",
-  PLACEHOLDER: "비밀번호",
+  PLACEHOLDER: "비밀번호 6자리",
   NAME: "password",
   MAX_LENGTH: 6,
   RULES() {
@@ -46,4 +46,8 @@ export const ROOM_FORM_SCHEMA = yup
     description: ROOM_DESCRIPTION_FORM.RULES(),
     password: ROOM_PASSWORD_FORM.RULES(),
   })
+  .required();
+
+export const ROOM_JOIN_FORM_SCHEMA = yup
+  .object({ password: ROOM_PASSWORD_FORM.RULES() })
   .required();
