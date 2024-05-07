@@ -5,16 +5,41 @@ import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 import RootSettingIcon from "@/assets/svg/ic-room-setting.svg?react";
 import RoomOutIcon from "@/assets/svg/ic-room-out.svg?react";
 
-import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
+import ChatRoomEditModal from "@/components/Connection/Chat/ChatRoomEditModal/ChatRoomEditModal";
 
-const RoomSettingButton = ({ ownerId }: { ownerId?: number }) => {
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
+import useModal from "@/hooks/common/useModal";
+
+interface RoomtSettingButtonProps {
+  name: string;
+  description: string;
+  ownerId?: number;
+}
+
+const RoomSettingButton = ({ name, description, ownerId }: RoomtSettingButtonProps) => {
   const { memberId } = useMemberInfoSaveQuery();
 
+  const { openModal, closeModal } = useModal();
+
+  const isOwner = memberId === ownerId;
+
+  const handleEditModalOpen = () => {
+    closeModal();
+    openModal({
+      key: "ChatRoomEditModal",
+      component: () => <ChatRoomEditModal name={name} description={description} />,
+    });
+  };
+
   return (
-    <Flex styles={{ align: "center", gap: "4px" }} css={buttonBoxStyle}>
-      {memberId === ownerId ? <RootSettingIcon /> : <RoomOutIcon />}
+    <Flex
+      styles={{ align: "center", gap: "4px" }}
+      css={buttonBoxStyle}
+      onClick={() => (isOwner ? handleEditModalOpen() : "")}
+    >
+      {isOwner ? <RootSettingIcon /> : <RoomOutIcon />}
       <Text size="small" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>
-        {memberId === ownerId ? "채팅방 설정" : "채팅방 나가기"}
+        {isOwner ? "채팅방 설정" : "채팅방 나가기"}
       </Text>
     </Flex>
   );
