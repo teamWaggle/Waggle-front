@@ -14,6 +14,7 @@ import {
 } from "@/constants/form";
 
 import { useEditChatRoomMutation } from "@/hooks/api/chat/useEditChatRoomMutation";
+import { useDeleteChatRoomMutation } from "@/hooks/api/chat/useDeleteChatRoomMutation";
 import useModal from "@/hooks/common/useModal";
 
 import {
@@ -31,8 +32,17 @@ interface ChatRoomEditModalProps {
 
 const ChatRoomEditModal = ({ name, description, roomId }: ChatRoomEditModalProps) => {
   const { mutate: editChatRoomMutate } = useEditChatRoomMutation(roomId);
+  const { mutate: deleteChatRoomMutate } = useDeleteChatRoomMutation();
 
   const { openModal, closeModal } = useModal();
+
+  const handleDeleteChatRoom = () => {
+    deleteChatRoomMutate(roomId, {
+      onSuccess: () => {
+        closeModal();
+      },
+    });
+  };
 
   const handleSubmit = (data: FieldValues) => {
     const chatRoomRequest = {
@@ -106,8 +116,10 @@ const ChatRoomEditModal = ({ name, description, roomId }: ChatRoomEditModalProps
           </Box>
 
           <Box css={buttonBoxStyle}>
-            <button className="deleteButton">채팅방 삭제하기</button>
-            <button>채팅방 설정 저장하기</button>
+            <button className="deleteButton" onClick={handleDeleteChatRoom}>
+              채팅방 삭제하기
+            </button>
+            <button type="submit">채팅방 설정 저장하기</button>
           </Box>
         </Form>
       </Flex>
