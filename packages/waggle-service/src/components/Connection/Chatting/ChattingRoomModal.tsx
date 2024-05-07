@@ -1,9 +1,10 @@
 import { css } from "@emotion/react";
 
-import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
+import { Flex, Box, Theme } from "waggle-design-system";
 
 // import LockChatting from "@/components/Connection/Chatting/LockChatting";
 import ChattingRoom from "@/components/Connection/Chatting/ChattingRoom/ChattingRoom";
+import ChattingRoomInfoBox from "@/components/Connection/Chatting/ChattingRoomInfoBox/ChattingRoomInfoBox";
 
 import { useChatRoomQuery } from "@/hooks/api/chat/useChatRoomQuery";
 
@@ -14,14 +15,10 @@ const ChattingRoomModal = ({ chatRoomId }: { chatRoomId: number }) => {
 
   return (
     <Box styles={{ width: "600px" }}>
-      <Box css={titleBoxStyle}>
-        <Heading css={getDefaultTextStyle(Theme.color.white, 700)}>
-          {chatRoomData.result.name}
-        </Heading>
-        <Text css={getDefaultTextStyle(Theme.color.white, 500)}>
-          {chatRoomData.result.description}
-        </Text>
-      </Box>
+      <ChattingRoomInfoBox
+        name={chatRoomData.result.name}
+        description={chatRoomData.result.description}
+      />
 
       <Flex css={contentBoxStyle}>
         {/* <LockChatting onClose={onClose} /> */}
@@ -32,16 +29,6 @@ const ChattingRoomModal = ({ chatRoomId }: { chatRoomId: number }) => {
 };
 
 export default ChattingRoomModal;
-
-const titleBoxStyle = css({
-  backgroundColor: Theme.color.brand_primary,
-  padding: "30px 40px",
-  borderRadius: "20px 20px 0 0",
-
-  "& > p": {
-    marginTop: "14px",
-  },
-});
 
 const contentBoxStyle = css({
   height: "600px",
