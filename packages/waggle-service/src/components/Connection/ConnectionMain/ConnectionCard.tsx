@@ -9,6 +9,7 @@ import ChattingRoomModal from "@/components/Connection/Chatting/ChattingRoomModa
 import useModal from "@/hooks/common/useModal";
 
 import type { ChatRoomInfoType } from "@/types/chat";
+import { Suspense } from "react";
 
 const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
   const { openModal } = useModal();
@@ -16,7 +17,11 @@ const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
   const handleRoomOpen = () => {
     openModal({
       key: "ChattingRoomModal",
-      component: () => <ChattingRoomModal />,
+      component: () => (
+        <Suspense fallback={<div />}>
+          <ChattingRoomModal chatRoomId={chatRoomInfo.id} />
+        </Suspense>
+      ),
       isWhiteIcon: true,
     });
   };

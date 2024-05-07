@@ -6,10 +6,10 @@ import { getChatRoomList } from "@/api/chat/getChatRoomList";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
 
-import type { ChatType } from "@/types/chat";
+import type { ChatListType } from "@/types/chat";
 
 export const useChatRoomListQuery = (currentPage: number) => {
-  const { data: chatRoomListData } = useSuspenseQuery<ChatType, AxiosError>({
+  const { data: chatRoomListData } = useSuspenseQuery<ChatListType, AxiosError>({
     queryKey: [QUERY_KEYS.CHAT_ROOM_LIST],
     queryFn: () => getChatRoomList(currentPage),
   });

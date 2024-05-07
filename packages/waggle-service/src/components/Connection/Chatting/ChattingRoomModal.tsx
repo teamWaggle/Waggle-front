@@ -5,13 +5,21 @@ import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-des
 // import LockChatting from "@/components/Connection/Chatting/LockChatting";
 import ChattingRoom from "@/components/Connection/Chatting/ChattingRoom/ChattingRoom";
 
-const ChattingRoomModal = () => {
+import { useChatRoomQuery } from "@/hooks/api/chat/useChatRoomQuery";
+
+const ChattingRoomModal = ({ chatRoomId }: { chatRoomId: number }) => {
+  const { chatRoomData } = useChatRoomQuery(chatRoomId);
+
+  console.log(chatRoomData);
+
   return (
     <Box styles={{ width: "600px" }}>
       <Box css={titleBoxStyle}>
-        <Heading css={getDefaultTextStyle(Theme.color.white, 700)}>말티즈 키우는 사람만</Heading>
+        <Heading css={getDefaultTextStyle(Theme.color.white, 700)}>
+          {chatRoomData.result.name}
+        </Heading>
         <Text css={getDefaultTextStyle(Theme.color.white, 500)}>
-          말티즈에 대해서 이야기해요! 다른 강아지도 좋아하지만 말티즈가 더 좋아요
+          {chatRoomData.result.description}
         </Text>
       </Box>
 
