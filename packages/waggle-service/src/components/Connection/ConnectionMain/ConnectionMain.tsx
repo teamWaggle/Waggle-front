@@ -11,8 +11,6 @@ import { useChatRoomListQuery } from "@/hooks/api/chat/useChatRoomListQuery";
 const ConnectionMain = () => {
   const { chatRoomListData } = useChatRoomListQuery(0);
 
-  console.log(chatRoomListData);
-
   return (
     <Box tag="main" css={mainBoxStyle}>
       <Flex styles={{ gap: "24px" }}>
@@ -20,9 +18,9 @@ const ConnectionMain = () => {
           <ConnectionSearchbar />
 
           <Box tag="ol" css={gridBoxStyle}>
-            <ConnectionCard />
-            <ConnectionCard />
-            <ConnectionCard />
+            {chatRoomListData.result.chatRooms.map((chatRoomInfo) => (
+              <ConnectionCard key={chatRoomInfo.id} chatRoomInfo={chatRoomInfo} />
+            ))}
           </Box>
         </Flex>
 
