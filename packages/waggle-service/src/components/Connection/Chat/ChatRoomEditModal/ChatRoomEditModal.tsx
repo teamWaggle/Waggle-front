@@ -1,12 +1,10 @@
 import type { FieldValues } from "react-hook-form";
-import { Suspense, useContext } from "react";
+import { Suspense } from "react";
 
 import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import { Form } from "@/components/common";
 import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
-
-import { ChatRoomContext } from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
 import {
   ROOM_TITLE_FORM,
@@ -26,13 +24,13 @@ import {
   buttonBoxStyle,
 } from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
 
-const ChatRoomEditModal = () => {
-  const context = useContext(ChatRoomContext);
+interface ChatRoomEditModalProps {
+  name: string;
+  description: string;
+  chatRoomId?: number;
+}
 
-  if (!context) throw Error("context error");
-
-  const { name, description, chatRoomId } = context;
-
+const ChatRoomEditModal = ({ name, description, chatRoomId }: ChatRoomEditModalProps) => {
   const { mutate: editChatRoomMutate } = useEditChatRoomMutation(chatRoomId);
   const { mutate: deleteChatRoomMutate } = useDeleteChatRoomMutation();
 

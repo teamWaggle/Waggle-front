@@ -18,7 +18,7 @@ const RoomSettingButton = () => {
 
   if (!context) throw Error("context error");
 
-  const { ownerId } = context;
+  const { name, description, chatRoomId, ownerId } = context;
 
   const { memberId } = useMemberInfoSaveQuery();
 
@@ -30,7 +30,9 @@ const RoomSettingButton = () => {
     closeModal();
     openModal({
       key: "ChatRoomEditModal",
-      component: () => <ChatRoomEditModal />,
+      component: () => (
+        <ChatRoomEditModal name={name} description={description} chatRoomId={chatRoomId} />
+      ),
       isWhiteIcon: true,
     });
   };
