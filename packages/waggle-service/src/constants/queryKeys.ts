@@ -33,6 +33,7 @@ export const QUERY_KEYS = {
 
   RECOMMEND: "recommend",
   RECOMMEND_LIST: "recommendList",
+  FOLLOW: "follow",
   // Schedule
   SCHEDULE: "schedule",
   SCHEDULE_MONTHLY: "scheduleMonthly",

@@ -23,6 +23,7 @@ import useModal from "@/hooks/common/useModal";
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
+import { useFollowQuery } from "@/hooks/api/follow/useFollowQuery";
 
 import type { ParamUrlType } from "@/types/common";
 
@@ -36,6 +37,7 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
   const { mutate: unfollowMutate } = usePostUnfollow();
 
   const { memberData } = useMemberInfoQuery(paramUrl);
+  const { isFollow } = useFollowQuery(paramUrl);
 
   const { profileImgUrl, nickname, memberId, followerCount, followingCount } = memberData.result;
 
@@ -46,8 +48,6 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
   const userId = userData ? userData.memberId : null;
 
   const { openModal } = useModal();
-
-  const follow = true;
 
   const handleProfileEdit = () => {
     openModal({
@@ -97,10 +97,10 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
         <Box styles={{ margin: "24px 0" }}>
           <Button
             style={{ width: "294px", height: "40px" }}
-            variant={follow ? "disabled" : "default"}
-            onClick={() => (follow ? followMutate(paramUrl) : unfollowMutate(paramUrl))}
+            variant={isFollow ? "disabled" : "default"}
+            onClick={() => (isFollow ? unfollowMutate(paramUrl) : followMutate(paramUrl))}
           >
-            {follow ? "팔로우" : "팔로잉"}
+            {isFollow ? "팔로잉" : "팔로우"}
           </Button>
         </Box>
       )}
