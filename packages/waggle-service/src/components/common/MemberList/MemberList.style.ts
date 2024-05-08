@@ -2,28 +2,30 @@ import { css } from "@emotion/react";
 
 import { Theme } from "waggle-design-system";
 
-export const listBoxStyle = css({
-  position: "absolute",
-  bottom: "calc(100% + 16px)",
-  left: 0,
-  border: `1px solid ${Theme.color.border}`,
-  borderRadius: "10px",
-  width: "188px",
-  backgroundColor: Theme.color.white,
-  zIndex: 1,
-
-  "& > svg": {
+export const listBoxStyle = (isFollow: boolean) =>
+  css({
     position: "absolute",
-    right: "8px",
-    top: "8px",
-    cursor: "pointer",
-  },
+    top: isFollow ? "calc(100% + 8px)" : "auto",
+    bottom: isFollow ? "auto" : "calc(100% + 16px)",
+    left: 0,
+    border: `1px solid ${Theme.color.border}`,
+    borderRadius: "10px",
+    width: "188px",
+    backgroundColor: Theme.color.white,
+    zIndex: 1,
 
-  "& > p": {
-    textAlign: "center",
-    fontWeight: 500,
-  },
-});
+    "& > svg": {
+      position: "absolute",
+      right: "8px",
+      top: "8px",
+      cursor: "pointer",
+    },
+
+    "& > p": {
+      textAlign: "center",
+      fontWeight: 500,
+    },
+  });
 
 export const titleBoxStyle = css({
   padding: "4px 8px",
