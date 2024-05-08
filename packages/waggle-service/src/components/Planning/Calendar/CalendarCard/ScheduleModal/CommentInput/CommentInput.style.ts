@@ -31,23 +31,22 @@ export const commentSubmitButtonStyle = css({
 export const mentionInputStyle = {
   control: {
     backgroundColor: "#fff",
-    fontSize: 16,
     fontWeight: "normal",
   },
   highlighter: {
-    padding: 9,
-    marginLeft: "4px",
     border: "1px solid transparent",
+    marginLeft: "4px",
+    padding: "4px 12px",
     color: "transparent",
   },
   width: "330px",
+  fontSize: 16,
   height: "32px",
   input: {
     color: Theme.color.text,
     width: "100%",
-    padding: "4px 8px",
+    padding: "4px 6px",
     outline: "none",
-    letterSpacing: "0.5px",
     border: "none",
     borderBottom: `2px solid ${Theme.color.brand_primary}`,
   },
@@ -64,11 +63,10 @@ export const mentionInputStyle = {
     list: {
       backgroundColor: "white",
       border: "1px solid rgba(0,0,0,0.15)",
-      fontSize: 14,
+      fontSize: 16,
       borderRadius: "8px",
       overflow: "hidden",
     },
-
     item: {
       padding: "5px 15px",
       borderBottom: "1px solid rgba(0,0,0,0.15)",
@@ -81,8 +79,8 @@ export const mentionInputStyle = {
 };
 export const mentionStyle = {
   backgroundColor: Theme.color.brand_primary,
-  letterSpacing: "0.5px",
   borderRadius: "4px",
+  fontSize: 16,
 };
 
 export const mentionImageStyle = css({

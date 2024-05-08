@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import GroupIcon from "@/assets/svg/group.svg?react";
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
@@ -29,6 +29,8 @@ import { useDeleteTeamSchedule } from "@/hooks/api/schedule/useDeleteTeamSchedul
 import EditTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/EditTeamScheduleModal";
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
 import { ko } from "date-fns/locale";
+import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
+import useObserver from "@/hooks/common/useObserver";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const scheduleModalRef = useRef<HTMLDivElement>(null);
@@ -36,8 +38,16 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const { name: teamName } = useTeamInfo(schedule.teamId);
   const { mutate: cancelMemberScheduleMutate } = useCancelMemberSchedule();
   const { mutate: deleteTeamScheduleMutate } = useDeleteTeamSchedule();
-
+  const { commentData, fetchNextPage, hasNextPage, isFetching } = useCommentQuery(schedule.boardId);
   useClickOutSide(scheduleModalRef, closeScheduleModal);
+  const [comment, setComment] = useState("");
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
 
   const handleCloseModal = () => {
     closeScheduleModal();
@@ -58,6 +68,10 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
       isWhiteIcon: true,
       isOutsideClose: false,
     });
+  };
+
+  const handleComment = (comment: string) => {
+    setComment(comment);
   };
   return (
     <section css={scheduleModalBoxStyle(position)} ref={scheduleModalRef}>
@@ -94,12 +108,16 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
         styles={{ direction: "column", width: "100%", height: "200px", marginTop: "16px" }}
         css={scheduleCommentBoxStyle}
       >
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
+        {commentData?.pages?.map((commentData, page) => (
+          <Flex key={page} styles={{ direction: "column", gap: "8px" }}>
+            {commentData.result.commentList.map((comment) => (
+              <Comment key={comment.commentId} comment={comment} />
+            ))}
+          </Flex>
+        ))}
+        <div ref={ref} />
       </Flex>
-      <CommentInput />
+      <CommentInput value={comment} handleOnChange={handleComment} />
     </section>
   );
 };
