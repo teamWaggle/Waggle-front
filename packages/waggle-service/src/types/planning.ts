@@ -11,7 +11,7 @@ export interface ScheduleType {
   endDate: Date;
   createdDate: Date;
   status: string;
-  member: MemberType;
+  scheduleOwner: MemberType;
 }
 
 export interface SchedulePositionType {

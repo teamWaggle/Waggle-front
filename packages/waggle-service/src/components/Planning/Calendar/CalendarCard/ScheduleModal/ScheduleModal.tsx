@@ -75,6 +75,7 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
             handleEditSchedule={handleEditSchedule}
             handleDeleteSchedule={handleDeleteSchedule}
             handleCancelSchedule={handleCancelSchedule}
+            scheduleOwnerId={schedule.scheduleOwner.memberId}
           >
             <KebabMenuIcon css={scheduleModalIcon} />
           </OptionDropdown>

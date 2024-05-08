@@ -11,9 +11,9 @@ import {
   teamSectionStyle,
 } from "@/components/Team/TeamInfo/TeamInfo.style";
 import MemberSlider from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberSlider";
-import TeamLeaderAuthorizationContainer from "@/components/common/AuthorizationContainer/TeamLeaderAuthorizationContainer/TeamLeaderAuthorizationContainer";
+import TeamLeaderAuthorizationContainer from "@/components/common/AuthorizationContainer/TeamLeaderAuthorizationContainer";
 import ParticipationSliderSection from "@/components/Team/TeamInfo/ParticipationSliderSection";
-import LoginAuthorizationContainer from "@/components/common/AuthorizationContainer/LoginAuthorizationContainer/LoginAuthorizationContainer";
+import LoginAuthorizationContainer from "@/components/common/AuthorizationContainer/LoginAuthorizationContainer";
 
 // const memberList = [
 //   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
