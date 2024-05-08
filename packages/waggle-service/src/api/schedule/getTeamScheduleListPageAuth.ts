@@ -3,7 +3,6 @@ import { END_POINTS } from "@/constants/api";
 import type { TeamScheduleInfoType } from "@/types/schedule";
 
 export const getTeamScheduleListPageAuth = async (teamId: number, currentPage: unknown) => {
-  console.log("auth");
   const { data } = await authorizedAxiosInstance.get<TeamScheduleInfoType>(
     END_POINTS.GET_TEAM_SCHEDULE_PAGE(teamId, currentPage)
   );

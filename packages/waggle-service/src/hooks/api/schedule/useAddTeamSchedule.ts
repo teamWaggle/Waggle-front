@@ -13,6 +13,7 @@ export const useAddTeamSchedule = (teamId: number) => {
     mutationFn: (teamScheduleInput: FieldValues) => addTeamSchedule(teamId, teamScheduleInput),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEAM_SCHEDULE_PAGE, { teamId }] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SCHEDULE_MONTHLY] });
     },
   });
 };

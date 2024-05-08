@@ -1,4 +1,5 @@
 import TeamScheduleInputModal from "@/components/Team/TeamSchedule/Modal/TeamScheduleInputModal";
+import { EDIT_TEAM_SCHEMA } from "@/constants/schema";
 import { useEditTeamSchedule } from "@/hooks/api/schedule/useEditTeamSchedule";
 import useModal from "@/hooks/common/useModal";
 import type { ScheduleType } from "@/types/planning";
@@ -35,6 +36,7 @@ const EditTeamScheduleModal = ({
 
   return (
     <TeamScheduleInputModal
+      schema={EDIT_TEAM_SCHEMA}
       teamColor={teamColor}
       teamName={teamName}
       modalTitle="일정 수정"
