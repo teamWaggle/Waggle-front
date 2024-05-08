@@ -22,7 +22,7 @@ interface MemberListProps {
 
 const MemberList = ({ title, listData, handleClose }: MemberListProps) => {
   return (
-    <Box css={listBoxStyle}>
+    <Box css={listBoxStyle(title !== "좋아요")}>
       <CloseIcon width={10} height={10} onClick={handleClose} />
 
       <Flex styles={{ justify: "center" }} css={titleBoxStyle}>

@@ -5,7 +5,6 @@ import {
   Box,
   Divider,
   Heading,
-  Text,
   Theme,
   Button,
   getDefaultTextStyle,
@@ -14,6 +13,8 @@ import {
 import PasswordEditModal from "@/components/MyPage/MyPageProfile/PasswordEditModal/PasswordEditModal";
 import ProfileEditModal from "@/components/MyPage/MyPageProfile/ProfileEditModal/ProfileEditModal";
 import MyPageProfileTab from "@/components/MyPage/MyPageProfile/MyPageProfileTab/MyPageProfileTab";
+import FollowerList from "@/components/MyPage/MyPageProfile/FollowList/FollowerList";
+import FollowingList from "@/components/MyPage/MyPageProfile/FollowList/FollowingList";
 
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 import { usePostFollow } from "@/hooks/api/follow/usePostFollow";
@@ -73,10 +74,10 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
             {nickname}
           </Heading>
 
-          <Text size="small" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
-            <span>팔로워 {followerCount}</span>
-            <span>팔로잉 {followingCount}</span>
-          </Text>
+          <Flex styles={{ gap: "30px", marginTop: "8px" }}>
+            <FollowerList paramUrl={paramUrl} followCount={followerCount} />
+            <FollowingList paramUrl={paramUrl} followCount={followingCount} />
+          </Flex>
         </Box>
       </Flex>
 
