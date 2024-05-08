@@ -3,10 +3,7 @@ import type { FieldValues } from "react-hook-form";
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
 import { Box, Flex, Heading, Text } from "waggle-design-system";
-import * as yup from "yup";
-
-import { TEAM_TITLE } from "@/constants/team";
-import { TEAM_CONTENT } from "@/constants/team";
+import type * as yup from "yup";
 
 import {
   TeamScheduleModalAddButtonStyle,
@@ -20,28 +17,7 @@ import {
 } from "@/components/Team/TeamSchedule/Modal/TeamScheduleInputModal.style";
 import type { TeamColorType } from "@/types/team";
 import { Form } from "@/components/common";
-
-const schema = yup.object({
-  title: TEAM_TITLE.RULES(),
-  content: TEAM_CONTENT.RULES(),
-  startDate: yup
-    .date()
-    .min(new Date(new Date().setHours(0, 0, 0, 0)), "시작일은 오늘 혹은 이후여야 합니다.")
-    .max(yup.ref("endDate"), "시작일은 종료일 이전이어야 합니다."),
-  endDate: yup.date().min(yup.ref("startDate"), "종료일은 시작일이거나 이후여야 합니다."),
-  // 추후 변경
-  // startTime: yup.date().when(["startDate"], (values, schema) => {
-  //   const startDate = values[0];
-  //   const today = new Date();
-  //   if (startDate && format(startDate, "yyyy-mm-dd") === format(today, "yyyy-mm-dd")) {
-  //     return schema.min(today, "시작시간은 현재시간 이후여야 합니다.");
-  //   }
-  //   return schema;
-  // }),
-  startTime: yup.date(),
-
-  endTime: yup.date().min(yup.ref("startTime"), "종료시간은 시작시간 이후여야 합니다."),
-});
+import type { TeamScheduleInputType } from "@/types/schedule";
 
 const TeamScheduleInputModal = ({
   modalTitle,
@@ -49,12 +25,14 @@ const TeamScheduleInputModal = ({
   defaultValues,
   teamName,
   teamColor,
+  schema,
 }: {
   modalTitle: string;
   teamColor: TeamColorType;
   handleSubmit: (data: FieldValues) => void;
   defaultValues: FieldValues;
   teamName: string;
+  schema: yup.ObjectSchema<TeamScheduleInputType<Date | undefined>>;
 }) => {
   const onSubmit = (data: FieldValues) => {
     handleSubmit(data);
