@@ -11,19 +11,21 @@ import {
   commentTimeStyle,
   commentTextBoxStyle,
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/Comment/Comment.style";
+import type { CommentListInfoType } from "@/types/comment";
 
-const Comment = () => {
+const Comment = ({ comment }: { comment: CommentListInfoType }) => {
+  const { content, createdDate, member } = comment;
   return (
     <Flex styles={{ align: "center", marginBottom: "16px" }} css={commentBoxStyle}>
       <Box tag="figure">
-        <img css={imgStyle} src="https://source.unsplash.com/random/300x300" alt="" />
+        <img css={imgStyle} src={member.profileImgUrl} alt="profileImg" />
       </Box>
       <Flex tag="section" styles={{ width: "100%", direction: "column" }}>
         <Flex tag="article" styles={{ width: "300px", align: "center", justify: "space-between" }}>
           <Flex styles={{ gap: "16px" }}>
-            <Text css={commentUserNameStyle}>강아지몽몽</Text>
+            <Text css={commentUserNameStyle}>{member.nickname}</Text>
             <Text size="xSmall" css={commentTimeStyle}>
-              {format(new Date(), "yyyy.M.dd")}
+              {format(createdDate, "yyyy.M.dd")}
             </Text>
           </Flex>
           <Flex styles={{ gap: "8px" }}>
@@ -32,7 +34,7 @@ const Comment = () => {
           </Flex>
         </Flex>
         <Flex css={commentTextBoxStyle}>
-          <MentionChecker content="@[아아] 안녕허세요안녕허세요안녕허세요" />
+          <MentionChecker content={content} />
         </Flex>
       </Flex>
     </Flex>
