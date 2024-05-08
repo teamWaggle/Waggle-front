@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { createContext, useMemo } from "react";
 
 import { Flex, Box, Theme } from "waggle-design-system";
 
@@ -7,26 +8,42 @@ import ChatRoomInfoBox from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRo
 
 import { useChatRoomQuery } from "@/hooks/api/chat/useChatRoomQuery";
 
+export const ChatRoomContext = createContext<{
+  name: string;
+  description: string;
+  memberCount: number;
+  ownerId: number;
+  chatRoomId?: number;
+} | null>(null);
+
 const ChatRoomModal = ({ chatRoomId }: { chatRoomId?: number }) => {
   const { chatRoomData } = useChatRoomQuery(chatRoomId);
 
-  console.log(chatRoomData);
+  const { name, description } = chatRoomData.result;
+  const { memberCount } = chatRoomData.result.chatRoomMembers;
+  const { memberId } = chatRoomData.result.owner;
+
+  const context = useMemo(
+    () => ({
+      name,
+      description,
+      memberCount,
+      ownerId: memberId,
+      chatRoomId,
+    }),
+    [name, description, memberCount, memberId, chatRoomId]
+  );
 
   return (
-    <Box styles={{ width: "600px" }}>
-      <ChatRoomInfoBox
-        name={chatRoomData.result.name}
-        description={chatRoomData.result.description}
-        memberCount={chatRoomData.result.chatRoomMembers.memberCount}
-        ownerId={chatRoomData.result.owner.memberId}
-        roomId={chatRoomData.result.id}
-        isMember
-      />
+    <ChatRoomContext.Provider value={context}>
+      <Box styles={{ width: "600px" }}>
+        <ChatRoomInfoBox isMember />
 
-      <Flex css={contentBoxStyle}>
-        <ChatRoomContent />
-      </Flex>
-    </Box>
+        <Flex css={contentBoxStyle}>
+          <ChatRoomContent />
+        </Flex>
+      </Box>
+    </ChatRoomContext.Provider>
   );
 };
 

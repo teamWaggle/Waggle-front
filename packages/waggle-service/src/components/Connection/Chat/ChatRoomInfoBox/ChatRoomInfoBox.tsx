@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { useContext } from "react";
 
 import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
@@ -6,23 +7,15 @@ import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
 
 import RoomSettingButton from "@/components/Connection/Chat/ChatRoomInfoBox/RoomSettingButton";
 
-interface ChatRoomInfoBoxProps {
-  name: string;
-  description: string;
-  memberCount: number;
-  ownerId?: number;
-  isMember?: boolean;
-  roomId?: number;
-}
+import { ChatRoomContext } from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
-const ChatRoomInfoBox = ({
-  name,
-  description,
-  memberCount,
-  ownerId,
-  roomId,
-  isMember,
-}: ChatRoomInfoBoxProps) => {
+const ChatRoomInfoBox = ({ isMember }: { isMember?: boolean }) => {
+  const context = useContext(ChatRoomContext);
+
+  if (!context) throw Error("context error");
+
+  const { name, description, memberCount } = context;
+
   return (
     <Box css={titleBoxStyle}>
       <Flex styles={{ gap: "16px", align: "center" }}>
@@ -33,14 +26,7 @@ const ChatRoomInfoBox = ({
             {memberCount}/7
           </Text>
         </Flex>
-        {isMember && (
-          <RoomSettingButton
-            name={name}
-            description={description}
-            ownerId={ownerId}
-            roomId={roomId}
-          />
-        )}
+        {isMember && <RoomSettingButton />}
       </Flex>
       <Text css={getDefaultTextStyle(Theme.color.white, 500)}>{description}</Text>
     </Box>
