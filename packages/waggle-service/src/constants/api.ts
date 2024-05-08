@@ -65,6 +65,8 @@ export const END_POINTS = {
     `/api/comments/members/${userUrl}/question/paged?currentPage=${currentPage}`,
   FOLLOW: (userUrl?: string) => `/api/follows/follow?userUrl=${userUrl}`,
   UNFOLLOW: (userUrl?: string) => `/api/follows/unfollow?userUrl=${userUrl}`,
+  FOLLOWER_LIST: (userUrl?: string) => `/api/follows/list/follower/${userUrl}`,
+  FOLLOWING_LIST: (userUrl?: string) => `/api/follows/list/following/${userUrl}`,
   IS_FOLLOW: (userUrl?: string) => `/api/follows/following/${userUrl}`,
   // Schuedule
   MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
