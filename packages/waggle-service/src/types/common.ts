@@ -59,6 +59,7 @@ export interface DefaultApiResponseType<T> {
   code: number;
   message: string;
   result: T;
+  nextPageParam?: number;
 }
 
 export interface OptionModalItemType extends HTMLAttributes<HTMLButtonElement> {

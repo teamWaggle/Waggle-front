@@ -6,6 +6,8 @@ import { useAddTeamSchedule } from "@/hooks/api/schedule/useAddTeamSchedule";
 import type { TeamColorType } from "@/types/team";
 import { TEAM_SCHEDULE_DEFAULT_VALUES } from "@/constants/team";
 
+import { ADD_TEAM_SCHEMA } from "@/constants/schema";
+
 const AddTeamScheduleModal = ({
   teamId,
   teamName,
@@ -29,6 +31,7 @@ const AddTeamScheduleModal = ({
 
   return (
     <TeamScheduleInputModal
+      schema={ADD_TEAM_SCHEMA}
       teamColor={teamColor}
       teamName={teamName}
       modalTitle="일정 추가"
