@@ -17,16 +17,6 @@ export const profileInfoBoxStyle = css({
     borderRadius: "50%",
     objectFit: "cover",
   },
-
-  p: {
-    marginTop: "8px",
-  },
-
-  span: {
-    "&:first-of-type": {
-      marginRight: "30px",
-    },
-  },
 });
 
 export const menuItemStyle = (isActive: boolean) =>

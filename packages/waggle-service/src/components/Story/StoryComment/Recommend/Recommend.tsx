@@ -47,7 +47,7 @@ const Recommend = ({ boardId, recommendCount }: RecommendProps) => {
           {recommendCount}
         </Text>
 
-        {isMemberListOpen && (
+        {isMemberListOpen && recommendListData.result.memberList.length !== 0 && (
           <Suspense fallback={<div />}>
             <MemberList
               title="좋아요"
