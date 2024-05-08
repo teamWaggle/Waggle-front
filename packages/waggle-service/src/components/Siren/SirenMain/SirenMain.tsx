@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { Flex, Box, Text, Theme } from "waggle-design-system";
+import { Flex, Box, Text, Theme, SearchInput } from "waggle-design-system";
 
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
-import { SearchInput } from "@/components/common";
 import SortButton from "@/components/common/SortButton/SortButton";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
