@@ -9,6 +9,7 @@ export const QUERY_KEYS = {
   SIREN: "siren",
   SIREN_LIST: "sirenList",
   SIREN_REPRESENTATIVE: "sirenRepresentative",
+  SIREN_FILTER: "sirenFilter",
 
   QUESTION_LIST: "questionList",
   QUESTION: "question",
