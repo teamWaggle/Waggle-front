@@ -1,4 +1,5 @@
-import type { ComponentPropsWithoutRef, ElementType } from "react";
+import type { ComponentPropsWithoutRef, ElementType, ForwardedRef } from "react";
+import { forwardRef } from "react";
 
 import { getBoxStyling } from "@/components/Box/Box.styles";
 
@@ -9,14 +10,17 @@ export interface BoxProps extends ComponentPropsWithoutRef<"div"> {
   styles?: BoxStylingProps;
 }
 
-const Box = ({ tag = "div", styles = {}, children, ...attributes }: BoxProps) => {
+const Box = (
+  { tag = "div", styles = {}, children, ...attributes }: BoxProps,
+  ref: ForwardedRef<HTMLDivElement>
+) => {
   const Tag = tag;
 
   return (
-    <Tag css={getBoxStyling(styles)} {...attributes}>
+    <Tag css={getBoxStyling(styles)} {...attributes} ref={ref}>
       {children}
     </Tag>
   );
 };
 
-export default Box;
+export default forwardRef(Box);
