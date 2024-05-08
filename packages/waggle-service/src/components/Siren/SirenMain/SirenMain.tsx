@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 
 import { Flex, Box, Text, Theme, SearchInput } from "waggle-design-system";
 
@@ -8,22 +8,32 @@ import SortButton from "@/components/common/SortButton/SortButton";
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 import { QUESTION_FILTER } from "@/constants/filter";
 
-// import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";
-import { useSirenFilterQuery } from "@/hooks/api/siren/useSirenFilterQuery";
+import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";
+// import { useSirenFilterQuery } from "@/hooks/api/siren/useSirenFilterQuery";
 import { useFilter } from "@/hooks/post/useFilter";
+import useObserver from "@/hooks/common/useObserver";
 
 import { tagStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
 
 const SirenMain = () => {
-  const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
+  const { filterText, handleFilterOption, handleFilterText } = useFilter();
 
-  const { sirenListData, refetch } = useSirenFilterQuery(filterOption, 0);
+  const { sirenListData, hasNextPage, fetchNextPage, isFetching } = useSirenListQuery();
+  // const { sirenListData, refetch } = useSirenFilterQuery(filterOption, 0);
 
   const [category, setCategory] = useState("PROTECT");
 
-  useEffect(() => {
-    refetch();
-  }, [filterOption]);
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
+
+  // useEffect(() => {
+  //   refetch();
+  // }, [filterOption]);
 
   return (
     <Box>
@@ -62,12 +72,17 @@ const SirenMain = () => {
           align: "center",
           wrap: "wrap",
           gap: "20px",
-          marginTop: "76px",
+          marginTop: "50px",
         }}
       >
-        {sirenListData.result.sirenList.map((sirenInfo) => (
-          <SirenCard key={sirenInfo.boardId} sirenInfo={sirenInfo} />
+        {sirenListData.pages.map((sirenData, index) => (
+          <Fragment key={index}>
+            {sirenData.result.sirenList.map((sirenInfo) => (
+              <SirenCard key={sirenInfo.boardId} sirenInfo={sirenInfo} />
+            ))}
+          </Fragment>
         ))}
+        <div ref={ref} />
       </Flex>
     </Box>
   );
