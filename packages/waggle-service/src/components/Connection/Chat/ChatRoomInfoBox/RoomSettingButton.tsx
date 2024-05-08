@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { useContext } from "react";
 
 import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
@@ -7,17 +8,18 @@ import RoomOutIcon from "@/assets/svg/ic-room-out.svg?react";
 
 import ChatRoomEditModal from "@/components/Connection/Chat/ChatRoomEditModal/ChatRoomEditModal";
 
+import { ChatRoomContext } from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
+
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 import useModal from "@/hooks/common/useModal";
 
-interface RoomtSettingButtonProps {
-  name: string;
-  description: string;
-  ownerId?: number;
-  roomId?: number;
-}
+const RoomSettingButton = () => {
+  const context = useContext(ChatRoomContext);
 
-const RoomSettingButton = ({ name, description, ownerId, roomId }: RoomtSettingButtonProps) => {
+  if (!context) throw Error("context error");
+
+  const { ownerId } = context;
+
   const { memberId } = useMemberInfoSaveQuery();
 
   const { openModal, closeModal } = useModal();
@@ -28,7 +30,7 @@ const RoomSettingButton = ({ name, description, ownerId, roomId }: RoomtSettingB
     closeModal();
     openModal({
       key: "ChatRoomEditModal",
-      component: () => <ChatRoomEditModal name={name} description={description} roomId={roomId} />,
+      component: () => <ChatRoomEditModal />,
       isWhiteIcon: true,
     });
   };

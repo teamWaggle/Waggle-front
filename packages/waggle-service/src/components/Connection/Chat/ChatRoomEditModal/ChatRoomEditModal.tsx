@@ -1,10 +1,12 @@
 import type { FieldValues } from "react-hook-form";
-import { Suspense } from "react";
+import { Suspense, useContext } from "react";
 
 import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import { Form } from "@/components/common";
 import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
+
+import { ChatRoomContext } from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
 import {
   ROOM_TITLE_FORM,
@@ -24,20 +26,20 @@ import {
   buttonBoxStyle,
 } from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
 
-interface ChatRoomEditModalProps {
-  name: string;
-  description: string;
-  roomId?: number;
-}
+const ChatRoomEditModal = () => {
+  const context = useContext(ChatRoomContext);
 
-const ChatRoomEditModal = ({ name, description, roomId }: ChatRoomEditModalProps) => {
-  const { mutate: editChatRoomMutate } = useEditChatRoomMutation(roomId);
+  if (!context) throw Error("context error");
+
+  const { name, description, chatRoomId } = context;
+
+  const { mutate: editChatRoomMutate } = useEditChatRoomMutation(chatRoomId);
   const { mutate: deleteChatRoomMutate } = useDeleteChatRoomMutation();
 
   const { openModal, closeModal } = useModal();
 
   const handleDeleteChatRoom = () => {
-    deleteChatRoomMutate(roomId, {
+    deleteChatRoomMutate(chatRoomId, {
       onSuccess: () => {
         closeModal();
       },
@@ -49,7 +51,7 @@ const ChatRoomEditModal = ({ name, description, roomId }: ChatRoomEditModalProps
       name: data["title"],
       description: data["description"],
       password: data["password"],
-      chatRoomId: roomId,
+      chatRoomId,
     };
 
     editChatRoomMutate(chatRoomRequest, {
@@ -59,7 +61,7 @@ const ChatRoomEditModal = ({ name, description, roomId }: ChatRoomEditModalProps
           key: "ChatRoomModal",
           component: () => (
             <Suspense fallback={<div />}>
-              <ChatRoomModal chatRoomId={roomId} />
+              <ChatRoomModal chatRoomId={chatRoomId} />
             </Suspense>
           ),
           isWhiteIcon: true,

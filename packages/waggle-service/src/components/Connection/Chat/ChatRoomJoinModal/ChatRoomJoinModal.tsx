@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-import ChatRoomInfoBox from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRoomInfoBox";
+// import ChatRoomInfoBox from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRoomInfoBox";
 import ChattingRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 import { Form } from "@/components/common";
 
@@ -24,10 +24,10 @@ interface ChatRoomJoinModalProps {
 
 const ChatRoomJoinModal = ({
   chatRoomId,
-  name,
-  description,
-  memberCount,
-}: ChatRoomJoinModalProps) => {
+}: // name,
+// description,
+// memberCount,
+ChatRoomJoinModalProps) => {
   const { mutate: joinChatRoomMutate } = useJoinChatRoomMutation();
 
   const { openModal, closeModal } = useModal();
@@ -54,7 +54,7 @@ const ChatRoomJoinModal = ({
 
   return (
     <Box styles={{ width: "600px" }}>
-      <ChatRoomInfoBox name={name} description={description} memberCount={memberCount} />
+      {/* <ChatRoomInfoBox name={name} description={description} memberCount={memberCount} /> */}
 
       <Form onSubmit={handleSubmit} defaultValues={{ password: "" }} schema={ROOM_JOIN_FORM_SCHEMA}>
         <Flex
