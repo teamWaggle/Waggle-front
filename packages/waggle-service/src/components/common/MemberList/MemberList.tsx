@@ -4,29 +4,33 @@ import CloseIcon from "@/assets/svg/ic-close-modal.svg?react";
 
 import { PATH } from "@/constants/path";
 
-import { useRecommendListQuery } from "@/hooks/api/recommend/useRecommendListQuery";
+import type { MemberType } from "@/types/auth";
 
 import {
   listBoxStyle,
+  titleBoxStyle,
   contentBoxStyle,
   profileImgStyle,
   nicknameStyle,
-} from "@/components/Story/StoryComment/Recommend/Recommend.style";
+} from "@/components/common/MemberList/MemberList.style";
 
-interface RecommendListProps {
-  boardId: number;
+interface MemberListProps {
+  title: string;
+  listData: MemberType[];
   handleClose: () => void;
 }
 
-const RecommendList = ({ boardId, handleClose }: RecommendListProps) => {
-  const { recommendListData } = useRecommendListQuery(boardId);
-
+const MemberList = ({ title, listData, handleClose }: MemberListProps) => {
   return (
     <Box css={listBoxStyle}>
-      <CloseIcon width={12} height={12} onClick={handleClose} />
-      <Text size="xSmall">좋아요</Text>
-      <Flex styles={{ direction: "column", gap: "10px", marginTop: "20px" }} css={contentBoxStyle}>
-        {recommendListData.result.memberList.map((memberInfo) => (
+      <CloseIcon width={10} height={10} onClick={handleClose} />
+
+      <Flex styles={{ justify: "center" }} css={titleBoxStyle}>
+        <Text size="xSmall">{title}</Text>
+      </Flex>
+
+      <Flex styles={{ direction: "column", gap: "10px", marginTop: "4px" }} css={contentBoxStyle}>
+        {listData.map((memberInfo) => (
           <Flex styles={{ align: "center", gap: "10px" }} key={memberInfo.memberId}>
             <img
               src={memberInfo.profileImgUrl}
@@ -48,4 +52,4 @@ const RecommendList = ({ boardId, handleClose }: RecommendListProps) => {
   );
 };
 
-export default RecommendList;
+export default MemberList;
