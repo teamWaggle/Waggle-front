@@ -47,7 +47,7 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
 
   const { openModal } = useModal();
 
-  const follow = false;
+  const follow = true;
 
   const handleProfileEdit = () => {
     openModal({
@@ -98,7 +98,7 @@ const MyPageProfile = ({ paramUrl }: ParamUrlType) => {
           <Button
             style={{ width: "294px", height: "40px" }}
             variant={follow ? "disabled" : "default"}
-            onClick={() => (follow ? followMutate(memberId) : unfollowMutate(memberId))}
+            onClick={() => (follow ? followMutate(paramUrl) : unfollowMutate(paramUrl))}
           >
             {follow ? "팔로우" : "팔로잉"}
           </Button>
