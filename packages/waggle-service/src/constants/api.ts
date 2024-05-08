@@ -32,11 +32,11 @@ export const END_POINTS = {
   COMMENT: (commentId: number) => `/api/comments/${commentId}`,
   POST_COMMENT: (boardId?: number) => `/api/comments/${boardId}`,
   SIREN: (sirenId: number) => `/api/sirens/${sirenId}`,
-  SIREN_LIST: (curretPage: number) => `/api/sirens?currentPage=${curretPage}`,
   SIREN_FILTER: (filter: string, currentPage: unknown) =>
     `/api/sirens/filter?filterParam=${filter}&currentPage=${currentPage}`,
   SIREN_CATEGORY: (category: string, currentPage: unknown) =>
     `/api/sirens/category?category=${category}&currentPage=${currentPage}`,
+  SIREN_LIST: (curretPage: unknown) => `/api/sirens?currentPage=${curretPage}`,
   SIREN_REPRESENTATIVE: "/api/sirens/representative",
   POST_SIREN: "/api/sirens",
   REPLIES: (currentPage: number, commentId: number) =>

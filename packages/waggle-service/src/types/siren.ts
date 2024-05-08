@@ -39,9 +39,7 @@ export interface SirenListType extends CommonResponseBaseType {
 
 export interface SirenListResultType {
   sirenList: SirenListInfoType[];
-  sirenCount: number;
-  isFirst: boolean;
-  isLast: boolean;
+  nextPageParam: number;
 }
 
 export interface SirenListInfoType {
