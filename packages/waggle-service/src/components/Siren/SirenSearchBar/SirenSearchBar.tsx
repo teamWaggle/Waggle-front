@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Flex, Text, Theme } from "waggle-design-system";
 
 import { SearchInput } from "waggle-design-system";
-import SortButton from "@/components/common/SortButton/SortButton";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
@@ -15,10 +14,7 @@ const SirenSearchBar = () => {
   return (
     <Flex styles={{ justify: "space-between", align: "center", marginTop: "76px" }}>
       <Flex styles={{ gap: "22px" }}>
-        <Flex styles={{ gap: "10px" }}>
-          <SortButton defaultText="인기순" />
-          <SortButton defaultText="해결" />
-        </Flex>
+        <Flex styles={{ gap: "10px" }}></Flex>
 
         <Flex styles={{ gap: "14px" }}>
           {SIREN_TAG_CATEGORY.map((tag) => (
