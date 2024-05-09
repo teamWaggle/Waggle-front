@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { css } from "@emotion/react";
 
 import { Flex, Box, Text, Theme, SearchInput } from "waggle-design-system";
 
@@ -66,15 +67,7 @@ const SirenMain = () => {
         <SearchInput onChange={() => {}} width="508px" />
       </Flex>
 
-      <Flex
-        tag="section"
-        styles={{
-          align: "center",
-          wrap: "wrap",
-          gap: "20px",
-          marginTop: "50px",
-        }}
-      >
+      <Box tag="section" css={gridBoxStyle}>
         {sirenListData.pages.map((sirenData, index) => (
           <Fragment key={index}>
             {sirenData.result.sirenList.map((sirenInfo) => (
@@ -83,9 +76,16 @@ const SirenMain = () => {
           </Fragment>
         ))}
         <div ref={ref} />
-      </Flex>
+      </Box>
     </Box>
   );
 };
 
 export default SirenMain;
+
+export const gridBoxStyle = css({
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gap: "20px",
+  marginTop: "50px",
+});
