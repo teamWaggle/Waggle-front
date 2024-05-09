@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-import { Theme } from "waggle-design-system";
+import { Theme } from "@/styles/Theme";
 
 export const dropdownListStyle = css({
   position: "absolute",

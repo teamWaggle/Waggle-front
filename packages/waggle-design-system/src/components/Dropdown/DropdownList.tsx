@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { Box } from "waggle-design-system";
+import Box from "@/components/Box/Box";
 
 import type { DropdonwListType } from "@/types/common";
 import { DropdownContext } from "@/components/Dropdown/Dropdown";

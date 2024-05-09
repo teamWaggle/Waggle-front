@@ -1,4 +1,4 @@
-import { Flex } from "waggle-design-system";
+import Flex from "@/components/Flex/Flex";
 
 import type { DropDownItemType } from "@/types/common";
 import { dropdownItemStyle } from "@/components/Dropdown/Dropdown.style";
