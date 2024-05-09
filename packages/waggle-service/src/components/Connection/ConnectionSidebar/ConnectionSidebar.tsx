@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Button } from "waggle-design-system";
 
-import NewMessageList from "@/components/Connection/ConnectionSidebar/NewMessageList";
+import ChatRoomList from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomList";
 import ConnectionProfile from "@/components/Connection/ConnectionSidebar/ConnectionProfile";
 import ChatRoomCreateModal from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal";
 
@@ -27,7 +27,7 @@ const ConnectionSidebar = () => {
           방 만들기
         </Button>
       </Box>
-      <NewMessageList />
+      <ChatRoomList />
     </Flex>
   );
 };

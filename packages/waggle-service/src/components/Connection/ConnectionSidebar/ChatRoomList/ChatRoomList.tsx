@@ -2,26 +2,26 @@ import { css } from "@emotion/react";
 
 import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-import MessageCard from "@/components/Connection/ConnectionSidebar/MessageCard";
+import ChatRoomItem from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomItem";
 
-const NewMessageList = () => {
+const ChatRoomList = () => {
   return (
     <Flex styles={{ direction: "column", gap: "12px" }}>
       <Flex styles={{ gap: "6px", align: "center" }}>
         <span css={circleTextBoxStyle}>N</span>
         <Text size="small" css={getDefaultTextStyle(Theme.color.text, 500)}>
-          새로운 메시지
+          채팅방 메시지
         </Text>
       </Flex>
-      <MessageCard />
-      <MessageCard />
-      <MessageCard />
-      <MessageCard />
+      <ChatRoomItem />
+      <ChatRoomItem />
+      <ChatRoomItem />
+      <ChatRoomItem />
     </Flex>
   );
 };
 
-export default NewMessageList;
+export default ChatRoomList;
 
 export const circleTextBoxStyle = css({
   width: "17px",
