@@ -33,11 +33,7 @@ const AppRouter = () => {
         },
         {
           path: PATH.SIREN,
-          element: (
-            <Suspense fallback={<div>로딩중</div>}>
-              <Lazy.SirenPage />
-            </Suspense>
-          ),
+          element: <Lazy.SirenPage />,
         },
         {
           path: PATH.SIREN_DETAIL(":sirenId"),
