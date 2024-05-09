@@ -37,6 +37,14 @@ export interface PostCommentType extends CommentRequestType {
   boardId?: number;
 }
 
+export interface CommentPropsType {
+  boardId: number;
+  content: string;
+}
+export interface CommentApiRequestType {
+  content: string;
+}
+
 export interface CommentRequestType {
   content: string;
   mentionedMemberList: string[];
