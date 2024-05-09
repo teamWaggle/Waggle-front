@@ -25,7 +25,7 @@ import {
   textStyle,
 } from "@/components/Siren/SirenCard/SirenCard.style";
 
-interface SirenCardParams {
+export interface SirenCardParams {
   sirenInfo: SirenListInfoType;
   isMyPage?: boolean;
 }
