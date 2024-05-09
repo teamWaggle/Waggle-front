@@ -6,7 +6,13 @@ import ConnectionSearchbar from "@/components/Connection/ConnectionMain/Connecti
 import ConnectionCard from "@/components/Connection/ConnectionMain/ConnectionCard";
 import ConnectionSidebar from "@/components/Connection/ConnectionSidebar/ConnectionSidebar";
 
+import { useChatRoomListQuery } from "@/hooks/api/chat/useChatRoomListQuery";
+
 const ConnectionMain = () => {
+  const { chatRoomListData } = useChatRoomListQuery(0);
+
+  console.log(chatRoomListData);
+
   return (
     <Box tag="main" css={mainBoxStyle}>
       <Flex styles={{ gap: "24px" }}>
