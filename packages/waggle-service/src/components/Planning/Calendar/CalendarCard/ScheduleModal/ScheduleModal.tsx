@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import GroupIcon from "@/assets/svg/group.svg?react";
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
@@ -40,7 +40,6 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const { mutate: deleteTeamScheduleMutate } = useDeleteTeamSchedule();
   const { commentData, fetchNextPage, hasNextPage, isFetching } = useCommentQuery(schedule.boardId);
   useClickOutSide(scheduleModalRef, closeScheduleModal);
-  const [comment, setComment] = useState("");
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
@@ -70,9 +69,6 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
     });
   };
 
-  const handleComment = (comment: string) => {
-    setComment(comment);
-  };
   return (
     <section css={scheduleModalBoxStyle(position)} ref={scheduleModalRef}>
       <Flex
@@ -117,7 +113,7 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
         ))}
         <div ref={ref} />
       </Flex>
-      <CommentInput value={comment} handleOnChange={handleComment} />
+      <CommentInput boardId={schedule.boardId} />
     </section>
   );
 };

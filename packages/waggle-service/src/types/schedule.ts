@@ -44,3 +44,8 @@ export interface TeamScheduleInputType<T> {
   startTime: T;
   endTime: T;
 }
+
+export interface ScheduleMemberListType {
+  memberList: Array<TeamMemberType>;
+  memberCount: number;
+}

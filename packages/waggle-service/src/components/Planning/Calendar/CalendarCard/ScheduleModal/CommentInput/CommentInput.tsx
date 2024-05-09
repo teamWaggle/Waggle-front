@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import { Mention, MentionsInput } from "react-mentions";
 
 import { Box, Flex, Text } from "waggle-design-system";
@@ -9,44 +11,35 @@ import {
   mentionImageStyle,
   mentionStyle,
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentInput/CommentInput.style";
+import { useScheduleMembers } from "@/hooks/api/schedule/useScheduleMembers";
 
-const users = [
-  {
-    id: "isaac",
-    display: "Isaac Newton",
-  },
-  {
-    id: "sam",
-    display: "Sam Victor",
-  },
-  {
-    id: "emma",
-    display: "emmanuel@nobody.com",
-  },
-];
+const CommentInput = ({ boardId }: { boardId: number }) => {
+  const [comment, setComment] = useState("");
 
-const CommentInput = ({
-  value,
-  handleOnChange,
-}: {
-  value: string;
-  handleOnChange: (comment: string) => void;
-}) => {
+  const handleComment = (comment: string) => {
+    setComment(comment);
+  };
+
+  const memtionList = useScheduleMembers(boardId);
+  useEffect(() => {
+    console.log(memtionList);
+    console.log(comment);
+  }, [comment]);
   return (
     <>
       <Flex styles={{ width: "100%", marginTop: "8px" }} css={commentBoxStyle}>
         <MentionsInput
           singleLine={true}
           style={mentionInputStyle}
-          value={value}
-          onChange={(e) => handleOnChange(e.target.value)}
+          value={comment}
+          onChange={(e) => handleComment(e.target.value)}
           suggestionsPortalHost={document.body.querySelector("#mentionPortal") as HTMLElement}
           placeholder="댓글 입력 (@로 멘션 가능합니다)"
         >
           <Mention
             trigger="@"
             style={mentionStyle}
-            data={users}
+            data={memtionList}
             markup="@[__display__](__id__)"
             appendSpaceOnAdd={true}
             displayTransform={(_id, display) => `@${display}`}
