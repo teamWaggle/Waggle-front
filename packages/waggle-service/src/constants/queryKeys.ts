@@ -49,6 +49,7 @@ export const QUERY_KEYS = {
   CANCEL_MEMBER_SCHEDULE: "cancelMemberSchedule",
   DELETE_TEAM_SCHEDULE: "deleteTeamSchedule",
   EDIT_TEAM_SCHEDULE: "editTeamSchedule",
+  SCHEDULE_MEMBERS: "scheduleMembers",
   //Team
   MEMBER_TEAMS: "memberTeams",
   TEAM_INFO: "teamInfo",
