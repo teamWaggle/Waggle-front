@@ -4,9 +4,9 @@ import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-syste
 
 import SampleImg from "@/assets/png/post-sample.png";
 
-import { circleTextBoxStyle } from "@/components/Connection/ConnectionSidebar/NewMessageList";
+import { circleTextBoxStyle } from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomList";
 
-const MessageCard = () => {
+const ChatRoomItem = () => {
   return (
     <Flex styles={{ align: "center", gap: "10px" }} css={cardBoxStyle}>
       <img src={SampleImg} alt="profileImg" />
@@ -26,7 +26,7 @@ const MessageCard = () => {
   );
 };
 
-export default MessageCard;
+export default ChatRoomItem;
 
 const cardBoxStyle = css({
   width: "295px",
