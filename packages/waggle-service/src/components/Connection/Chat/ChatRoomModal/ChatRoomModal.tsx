@@ -37,7 +37,7 @@ const ChatRoomModal = ({ chatRoomId }: { chatRoomId?: number }) => {
   return (
     <ChatRoomContext.Provider value={context}>
       <Box styles={{ width: "600px" }}>
-        <ChatRoomInfoBox isMember />
+        <ChatRoomInfoBox />
 
         <Flex css={contentBoxStyle}>
           <ChatRoomContent />

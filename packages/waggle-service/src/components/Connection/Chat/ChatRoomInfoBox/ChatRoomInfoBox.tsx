@@ -9,7 +9,7 @@ import RoomSettingButton from "@/components/Connection/Chat/ChatRoomInfoBox/Room
 
 import { ChatRoomContext } from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
-const ChatRoomInfoBox = ({ isMember }: { isMember?: boolean }) => {
+const ChatRoomInfoBox = () => {
   const context = useContext(ChatRoomContext);
 
   if (!context) throw Error("context error");
@@ -26,7 +26,7 @@ const ChatRoomInfoBox = ({ isMember }: { isMember?: boolean }) => {
             {memberCount}/7
           </Text>
         </Flex>
-        {isMember && <RoomSettingButton />}
+        <RoomSettingButton />
       </Flex>
       <Text css={getDefaultTextStyle(Theme.color.white, 500)}>{description}</Text>
     </Box>
@@ -35,7 +35,7 @@ const ChatRoomInfoBox = ({ isMember }: { isMember?: boolean }) => {
 
 export default ChatRoomInfoBox;
 
-const titleBoxStyle = css({
+export const titleBoxStyle = css({
   backgroundColor: Theme.color.brand_primary,
   padding: "30px 40px",
   borderRadius: "20px 20px 0 0",
@@ -45,7 +45,7 @@ const titleBoxStyle = css({
   },
 });
 
-const personBoxStyle = css({
+export const personBoxStyle = css({
   border: `1px solid ${Theme.color.white}`,
   borderRadius: "20px",
   padding: "10px",
