@@ -11,7 +11,7 @@ const ColorRadioInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
   const { register } = useFormContext();
 
   return (
-    <Flex styles={{ align: "center", width: "100%", justify: "center" }}>
+    <Flex styles={{ align: "center", width: "100%", justify: "space-between" }}>
       {TEAM_COLOR.map((color) => {
         return <ColorRadioButton key={color} color={color} register={register(name)} />;
       })}
