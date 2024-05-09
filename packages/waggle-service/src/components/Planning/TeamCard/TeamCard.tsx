@@ -20,13 +20,10 @@ import { TEAM_INFO } from "@/constants/team";
 const TeamCard = ({ data }: { data: TeamCardType }) => {
   const { name, coverImageUrl, description, teamSize, teamColor, teamId } = data;
   const handleOnclick = useHandleLinkWithDetectKeys();
+
   return (
     <Box tag="a" css={boxStyle} onClick={(e) => handleOnclick(e, `/team/${teamId}`)}>
-      <img
-        src={coverImageUrl || "https://source.unsplash.com/random/300x300"}
-        alt={name}
-        css={imgStyle}
-      />
+      <img src={coverImageUrl} alt={name} css={imgStyle} />
       <Box css={textBoxStyle}>
         <Flex styles={{ align: "center", gap: "4px", marginBottom: "4px" }}>
           <Box css={circleDivStyle(teamColor)} />
