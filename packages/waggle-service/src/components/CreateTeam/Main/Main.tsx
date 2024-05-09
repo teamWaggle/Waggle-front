@@ -20,7 +20,6 @@ import {
   submitButtonStyle,
   teamContentBox,
   textInputBoxStyle,
-  titleBoxStyle,
   titleTextInputStyle,
 } from "@/components/CreateTeam/Main/Main.style";
 const schema = yup
@@ -47,7 +46,7 @@ const Main = () => {
   };
   return (
     <>
-      <Flex css={titleBoxStyle}>
+      <Flex styles={{ align: "center", marginTop: "52px", gap: "24px" }}>
         <LeftArrowIcon css={leftArrowIconStyle} onClick={() => navigate(-1)} />
         <Heading css={headingStyle} size="xLarge">
           PLANNING - 팀 만들기
@@ -56,7 +55,10 @@ const Main = () => {
       <Form onSubmit={onSubmit} defaultValues={TEAM_DEFAULT_VALUES} schema={schema}>
         <Flex css={teamContentBox}>
           <Form.ImageInputField name="coverImageUrl" />
-          <Flex css={textInputBoxStyle}>
+          <Flex
+            styles={{ marginLeft: "40px", direction: "column", height: "100%", width: "100%" }}
+            css={textInputBoxStyle}
+          >
             <Form.TextInputField
               inputStyle={titleTextInputStyle}
               placeholder={TEAM_TITLE.PLACEHOLDER}

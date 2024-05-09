@@ -2,13 +2,6 @@ import { css } from "@emotion/react";
 
 import { Theme } from "waggle-design-system";
 
-export const titleBoxStyle = css({
-  display: "flex",
-  alignItems: "center",
-  marginTop: "52px",
-  gap: "24px",
-});
-
 export const headingStyle = css({
   color: Theme.color.brand_primary,
   fontWeight: 600,
@@ -38,11 +31,7 @@ export const teamContentBox = css({
 });
 
 export const textInputBoxStyle = css({
-  marginLeft: "40px",
   maxWidth: "800px",
-  height: "100%",
-  width: "100%",
-  flexDirection: "column",
 });
 
 export const colorTitleStyle = css({

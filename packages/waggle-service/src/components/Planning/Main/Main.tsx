@@ -5,16 +5,14 @@ import { Box, Flex, Heading, Text, MainContainer } from "waggle-design-system";
 import MemberTeamSlider from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider";
 
 import { headingStyle, buttonStyle, gridBoxStyle } from "@/components/Planning/Main/Main.style";
-import { useRecoilValue } from "recoil";
-import { isLoggedInState } from "@/recoil/atoms/auth";
 import { SearchInput } from "waggle-design-system";
 import { useGetRecommendTeams } from "@/hooks/api/team/useGetRecommendTeams";
 import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 import useObserver from "@/hooks/common/useObserver";
+import LoginAuthorizationContainer from "@/components/common/AuthorizationContainer/LoginAuthorizationContainer";
 
 const Main = () => {
   const navigate = useNavigate();
-  const isLoggedIn = useRecoilValue(isLoggedInState);
   const { recommendTeamsData, fetchNextPage, hasNextPage, isFetching } = useGetRecommendTeams();
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -25,26 +23,24 @@ const Main = () => {
   });
   return (
     <MainContainer>
-      {isLoggedIn && (
-        <>
-          <Flex
-            styles={{
-              justify: "space-between",
-              align: "center",
-              marginTop: "52px",
-              marginBottom: "23px",
-            }}
-          >
-            <Heading css={headingStyle} size="medium">
-              My TEAM
-            </Heading>
-            <button css={buttonStyle} onClick={() => navigate("/planning/create-team")}>
-              <Text size="large">팀 만들기</Text>
-            </button>
-          </Flex>
-          <MemberTeamSlider />
-        </>
-      )}
+      <LoginAuthorizationContainer>
+        <Flex
+          styles={{
+            justify: "space-between",
+            align: "center",
+            marginTop: "52px",
+            marginBottom: "23px",
+          }}
+        >
+          <Heading css={headingStyle} size="medium">
+            My TEAM
+          </Heading>
+          <button css={buttonStyle} onClick={() => navigate("/planning/create-team")}>
+            <Text size="large">팀 만들기</Text>
+          </button>
+        </Flex>
+        <MemberTeamSlider />
+      </LoginAuthorizationContainer>
       <Flex
         styles={{
           justify: "space-between",
