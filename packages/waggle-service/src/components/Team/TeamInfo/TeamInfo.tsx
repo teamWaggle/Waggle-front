@@ -14,6 +14,7 @@ import MemberSlider from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider
 import TeamLeaderAuthorizationContainer from "@/components/common/AuthorizationContainer/TeamLeaderAuthorizationContainer";
 import ParticipationSliderSection from "@/components/Team/TeamInfo/ParticipationSliderSection";
 import LoginAuthorizationContainer from "@/components/common/AuthorizationContainer/LoginAuthorizationContainer";
+import { TEAM_INFO } from "@/constants/team";
 
 // const memberList = [
 //   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
@@ -50,7 +51,7 @@ const TeamInfo = () => {
           <Flex styles={{ align: "center", position: "relative" }}>
             <GroupIcon />
             <Text size="large" style={{ marginRight: "40px" }}>
-              {teamSize}/50
+              {teamSize}/{TEAM_INFO.TEAM_MAX_SIZE}
             </Text>
             <MemberSlider memberList={teamMemberList}>
               {teamMemberList?.map((member, index) => (

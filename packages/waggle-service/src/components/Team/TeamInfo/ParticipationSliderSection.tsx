@@ -5,7 +5,7 @@ import { useTeamParticipationList } from "@/hooks/api/team/useTeamParticipationL
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import { Flex, Text } from "waggle-design-system";
 
-const Srr = () => {
+const ParticipationSliderSection = () => {
   const teamId = useParamsTeamId();
   const participationMemberList = useTeamParticipationList(teamId);
 
@@ -24,4 +24,4 @@ const Srr = () => {
     </Flex>
   );
 };
-export default Srr;
+export default ParticipationSliderSection;

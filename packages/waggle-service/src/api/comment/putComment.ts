@@ -4,15 +4,14 @@ import { authorizedAxiosInstance } from "@/api/axiosInstance";
 
 import { END_POINTS } from "@/constants/api";
 
-import type { PutCommentType } from "@/types/comment";
+import type { CommentApiRequestType, CommentPropsType } from "@/types/comment";
 import type { CommonResponseType } from "@/types/common";
 
-export const putComment = async ({ content, mentionedMemberList, commentId }: PutCommentType) => {
-  return authorizedAxiosInstance.put<PutCommentType, AxiosResponse<CommonResponseType>>(
-    END_POINTS.COMMENT(commentId),
+export const putComment = async ({ content, boardId }: CommentPropsType) => {
+  return authorizedAxiosInstance.put<CommentApiRequestType, AxiosResponse<CommonResponseType>>(
+    END_POINTS.COMMENT(boardId),
     {
       content,
-      mentionedMemberList,
     }
   );
 };
