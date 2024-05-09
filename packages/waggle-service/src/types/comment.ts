@@ -37,10 +37,6 @@ export interface PostCommentType extends CommentRequestType {
   boardId?: number;
 }
 
-export interface CommentPropsType {
-  boardId: number;
-  content: string;
-}
 export interface CommentApiRequestType {
   content: string;
 }
@@ -62,4 +58,13 @@ export interface MemberCommentListInfoType {
   category: "FIND_PET" | "FIND_OWNER" | "PROTECT" | "ETC";
   createdDate: Date;
   member: MemberType;
+}
+
+export interface CommentPropsType {
+  boardId: number;
+  content: string;
+}
+export interface EditCommentPropsType {
+  commentId: number;
+  content: string;
 }

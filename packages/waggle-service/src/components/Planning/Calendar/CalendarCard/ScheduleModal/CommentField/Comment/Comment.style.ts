@@ -31,3 +31,7 @@ export const commentTextBoxStyle = css({
   color: Theme.color.text,
   width: "100%",
 });
+
+export const commentIconStyle = css({
+  cursor: "pointer",
+});

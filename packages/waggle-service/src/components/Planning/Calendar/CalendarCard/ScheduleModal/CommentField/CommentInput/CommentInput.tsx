@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useCallback, useEffect } from "react";
 
 import { Mention, MentionsInput } from "react-mentions";
 
@@ -10,33 +10,55 @@ import {
   commentBoxStyle,
   mentionImageStyle,
   mentionStyle,
-} from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentInput/CommentInput.style";
+} from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentField/CommentInput/CommentInput.style";
 import { useScheduleMembers } from "@/hooks/api/schedule/useScheduleMembers";
 import { usePostCommentMutation } from "@/hooks/api/comment/usePostCommentMutation";
+import { CommentFieldContext } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentField/CommentField";
+import { useEditCommentMutation } from "@/hooks/api/comment/useEditCommentMutation";
 
 const CommentInput = ({ boardId }: { boardId: number }) => {
   const [comment, setComment] = useState<string>("");
+  const { editCommentId, editCommentValue, handleEditCommentId } = useContext(CommentFieldContext);
+
+  const { memtionList } = useScheduleMembers(boardId);
+  const { mutate: postCommentMutate } = usePostCommentMutation();
+  const { mutate: editCommentMutate } = useEditCommentMutation();
 
   const handleComment = (comment: string) => {
     setComment(comment);
   };
 
-  const { memtionList } = useScheduleMembers(boardId);
-  const { mutate } = usePostCommentMutation();
+  const commentMutate = useCallback(
+    () =>
+      editCommentId
+        ? editCommentMutate({ content: comment, commentId: editCommentId })
+        : postCommentMutate({ content: comment, boardId: boardId }),
+    [comment, editCommentId, boardId, editCommentId]
+  );
 
-  const handleCommentOnClick = () => {
-    mutate({ content: comment, boardId: boardId });
+  const handleCommentSubmit = () => {
+    if (comment === "") return;
+
+    commentMutate();
     setComment("");
+    handleEditCommentId(null);
   };
 
   const handleCommentKeyDown = (
     e: React.KeyboardEvent<HTMLTextAreaElement> | React.KeyboardEvent<HTMLInputElement>
   ) => {
+    if (comment === "") return;
+
     if (e.key === "Enter" && e.nativeEvent.isComposing === false) {
-      mutate({ content: comment, boardId: boardId });
-      setComment("");
+      handleCommentSubmit();
     }
   };
+
+  useEffect(() => {
+    if (editCommentId) {
+      setComment(editCommentValue);
+    }
+  }, [editCommentId]);
   return (
     <>
       <Flex styles={{ width: "100%", marginTop: "8px" }} css={commentBoxStyle}>
@@ -68,8 +90,8 @@ const CommentInput = ({ boardId }: { boardId: number }) => {
             )}
           />
         </MentionsInput>
-        <button onClick={handleCommentOnClick} css={commentSubmitButtonStyle}>
-          등록
+        <button onClick={handleCommentSubmit} css={commentSubmitButtonStyle}>
+          {editCommentId ? "수정" : "등록"}
         </button>
       </Flex>
       <Box id="mentionPortal" />

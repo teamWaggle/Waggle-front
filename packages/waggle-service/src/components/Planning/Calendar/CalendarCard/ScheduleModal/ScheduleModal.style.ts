@@ -65,9 +65,3 @@ export const scheduleModalTeamName = (color: TeamColorType) =>
     padding: "0 16px",
     borderRadius: "16px",
   });
-
-export const scheduleCommentBoxStyle = css({
-  flex: "1 0 auto",
-  overflow: "auto",
-  overscrollBehavior: "contain",
-});
