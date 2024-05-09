@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { Mention, MentionsInput } from "react-mentions";
 
@@ -20,11 +20,8 @@ const CommentInput = ({ boardId }: { boardId: number }) => {
     setComment(comment);
   };
 
-  const memtionList = useScheduleMembers(boardId);
-  useEffect(() => {
-    console.log(memtionList);
-    console.log(comment);
-  }, [comment]);
+  const { memtionList } = useScheduleMembers(boardId);
+
   return (
     <>
       <Flex styles={{ width: "100%", marginTop: "8px" }} css={commentBoxStyle}>

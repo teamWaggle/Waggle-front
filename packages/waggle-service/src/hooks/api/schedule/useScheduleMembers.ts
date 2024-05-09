@@ -11,6 +11,9 @@ export const useScheduleMembers = (scheduleId: number) => {
   });
   const { result } = data;
   const { memberList } = result;
-  const list = memberList.map((member) => ({ id: member.userUrl, display: member.userUrl }));
-  return list;
+  const memtionList = memberList.map((member) => ({
+    id: member.userUrl,
+    display: member.nickname,
+  }));
+  return { memtionList };
 };
