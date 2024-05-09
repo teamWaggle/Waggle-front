@@ -29,3 +29,18 @@ interface ChatRoomMemberType {
 export interface ChatType extends CommonResponseBaseType {
   result: ChatRoomType;
 }
+
+export interface MemberChatListType extends CommonResponseBaseType {
+  result: MemberChatRoomListType[];
+}
+
+interface MemberChatRoomListType {
+  chatRooms: MemberChatRoomType;
+}
+
+interface MemberChatRoomType {
+  id: number;
+  name: string;
+  unreadCount: number;
+  lastMessageContent: string;
+}

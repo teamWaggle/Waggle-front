@@ -4,7 +4,11 @@ import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import ChatRoomItem from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomItem";
 
+// import { useMemberChatRoomListQuery } from "@/hooks/api/chat/useMemberChatRoomListQuery";
+
 const ChatRoomList = () => {
+  //   const { memberChatRoomListData } = useMemberChatRoomListQuery(0);
+
   return (
     <Flex styles={{ direction: "column", gap: "12px" }}>
       <Flex styles={{ gap: "6px", align: "center" }}>

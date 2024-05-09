@@ -38,6 +38,7 @@ export const QUERY_KEYS = {
   FOLLOWING_LIST: "followingList",
   CHAT_ROOM_LIST: "chatRoomList",
   CHAT_ROOM: "chatRoom",
+  MEMBER_CHAT_ROOM_LIST: "memberChatRoomList",
   // Schedule
   SCHEDULE: "schedule",
   SCHEDULE_MONTHLY: "scheduleMonthly",
