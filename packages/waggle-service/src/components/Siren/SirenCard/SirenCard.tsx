@@ -52,7 +52,7 @@ const SirenCard = ({ sirenInfo, isMyPage }: SirenCardParams) => {
       </Flex>
 
       <img src={thumbnail} alt="thumbnail" />
-      <Flex styles={{ direction: "column" }} css={infoStyle}>
+      <Flex styles={{ direction: "column" }} css={infoStyle(isMyPage)}>
         <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.brand_primary, 700)}>
           {title}
         </Heading>

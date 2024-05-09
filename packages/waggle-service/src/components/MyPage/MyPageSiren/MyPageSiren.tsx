@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { Fragment } from "react";
 
-import { Flex, Heading, getDefaultTextStyle, Theme } from "waggle-design-system";
+import { Flex, Box, Heading, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 
@@ -34,7 +34,7 @@ const MyPageSiren = ({ paramUrl }: ParamUrlType) => {
         작성한 글
       </Heading>
 
-      <Flex styles={{ align: "center", wrap: "wrap", gap: "20px" }}>
+      <Box css={gridBoxStyle}>
         {memberSirenData.pages.map((sirenData) => (
           <Fragment key={sirenData.result.nextPageParam}>
             {sirenData.result.sirenList.map((sirenInfo) => (
@@ -42,7 +42,7 @@ const MyPageSiren = ({ paramUrl }: ParamUrlType) => {
             ))}
           </Fragment>
         ))}
-      </Flex>
+      </Box>
       <div ref={ref} />
     </Flex>
   );
@@ -56,4 +56,10 @@ const layoutStyle = css({
   height: "100%",
   width: "calc(100% - 311px)",
   minHeight: "100vh",
+});
+
+const gridBoxStyle = css({
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "24px",
 });

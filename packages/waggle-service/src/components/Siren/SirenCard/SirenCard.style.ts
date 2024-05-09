@@ -11,7 +11,7 @@ export const cardStyle = (isMyPage?: boolean) =>
 
     "& > img": {
       width: isMyPage ? "255px" : "270px",
-      height: "224px",
+      height: isMyPage ? "204px" : "224px",
       objectFit: "cover",
       borderRadius: "20px 20px 0 0",
     },
@@ -22,11 +22,19 @@ export const tagBoxStyle = css({
   left: "16px",
 });
 
-export const infoStyle = css({
-  borderRadius: "0 0 20px 20px",
-  padding: "10px 16px 6px",
-  width: "100%",
-});
+export const infoStyle = (isMyPage?: boolean) =>
+  css({
+    borderRadius: "0 0 20px 20px",
+    padding: "10px 16px 6px",
+    width: isMyPage ? "255px" : "270px",
+
+    "& > h6": {
+      width: "238px",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+    },
+  });
 
 export const subStyle = css({
   color: Theme.color.readonly_text,
