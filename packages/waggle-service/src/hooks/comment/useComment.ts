@@ -34,7 +34,7 @@ export const useComment = ({ boardId, isTextArea, targetCommentId }: UseCommentP
 
   const handleAddComment = () => {
     postCommentMutation(
-      { content: commentContent, mentionedMemberList, boardId },
+      { content: commentContent, boardId: boardId || 0 },
       {
         onSuccess: () => {
           setCommentContent("");
@@ -47,8 +47,7 @@ export const useComment = ({ boardId, isTextArea, targetCommentId }: UseCommentP
     editCommentMutation(
       {
         content: commentContent,
-        mentionedMemberList,
-        commentId,
+        commentId: commentId,
       },
       {
         onSuccess: () => {

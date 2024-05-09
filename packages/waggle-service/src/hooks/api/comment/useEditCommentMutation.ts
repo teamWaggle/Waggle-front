@@ -5,12 +5,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { putComment } from "@/api/comment/putComment";
 
 import { QUERY_KEYS } from "@/constants/queryKeys";
+import type { EditCommentPropsType } from "@/types/comment";
 
 export const useEditCommentMutation = () => {
   const queryClient = useQueryClient();
 
   const editCommentMutation = useMutation({
-    mutationFn: putComment,
+    mutationFn: (comment: EditCommentPropsType) => putComment(comment),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.COMMENT] });
     },

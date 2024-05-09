@@ -5,8 +5,7 @@ import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
 import ScheduleModalCloseIcon from "@/assets/svg/scheduleModalClose.svg?react";
 
 import { Box, Flex, Heading, Text } from "waggle-design-system";
-import Comment from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/Comment/Comment";
-import CommentInput from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentInput/CommentInput";
+
 import OptionDropdown from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/OptionDropdown/OptionDropdown";
 import { format } from "date-fns";
 
@@ -21,7 +20,6 @@ import {
   scheduleTitleStyle,
   scheduleModalTime,
   scheduleModalTeamName,
-  scheduleCommentBoxStyle,
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal.style";
 import useModal from "@/hooks/common/useModal";
 import { useCancelMemberSchedule } from "@/hooks/api/schedule/useCancelMemberSchedule";
@@ -29,8 +27,7 @@ import { useDeleteTeamSchedule } from "@/hooks/api/schedule/useDeleteTeamSchedul
 import EditTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/EditTeamScheduleModal";
 import { useTeamInfo } from "@/hooks/team/useTeamInfo";
 import { ko } from "date-fns/locale";
-import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
-import useObserver from "@/hooks/common/useObserver";
+import CommentField from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentField/CommentField";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const scheduleModalRef = useRef<HTMLDivElement>(null);
@@ -38,24 +35,18 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const { name: teamName } = useTeamInfo(schedule.teamId);
   const { mutate: cancelMemberScheduleMutate } = useCancelMemberSchedule();
   const { mutate: deleteTeamScheduleMutate } = useDeleteTeamSchedule();
-  const { commentData, fetchNextPage, hasNextPage, isFetching } = useCommentQuery(schedule.boardId);
-  useClickOutSide(scheduleModalRef, closeScheduleModal);
-  const commentBoxRef = useRef<HTMLDivElement>(null);
-  const ref = useObserver(async (entry, observer) => {
-    observer.unobserve(entry.target);
 
-    if (hasNextPage && !isFetching) {
-      fetchNextPage();
-    }
-  });
+  useClickOutSide(scheduleModalRef, closeScheduleModal);
 
   const handleCloseModal = () => {
     closeScheduleModal();
   };
+
   const handleCancelSchedule = () => {
     cancelMemberScheduleMutate(schedule.boardId);
     closeScheduleModal();
   };
+
   const handleDeleteSchedule = () => {
     deleteTeamScheduleMutate(schedule.boardId);
     closeScheduleModal();
@@ -101,22 +92,7 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
         <GroupIcon />
         <Box css={scheduleModalTeamName(schedule.teamColor)}>{teamName}</Box>
       </Flex>
-      <Flex
-        styles={{ direction: "column", width: "100%", height: "300px", marginTop: "16px" }}
-        css={scheduleCommentBoxStyle}
-        tag="section"
-        ref={commentBoxRef}
-      >
-        {commentData?.pages?.map((commentData, page) => (
-          <Flex key={page} styles={{ direction: "column", gap: "8px" }}>
-            {commentData.result.commentList.map((comment) => (
-              <Comment key={comment.commentId} comment={comment} />
-            ))}
-          </Flex>
-        ))}
-        <div ref={ref} />
-      </Flex>
-      <CommentInput boardId={schedule.boardId} />
+      <CommentField boardId={schedule.boardId} />
     </section>
   );
 };

@@ -20,27 +20,25 @@ const MentionChecker = ({ content }: { content: string }) => {
     navigate(`/${userUrl}?tab=profile`);
   };
   return (
-    <Box tag="span" css={mentionBoxStyle}>
+    <Box css={mentionBoxStyle}>
       {parts.map((part, index) => {
         if (part.startsWith("@")) {
           const replacePart = part.replace(/[[\]]/g, "");
           const userUrl = extractUserUrl(replacePart);
           const exceptUserUrlString = replacePart.replace(`(${userUrl})`, "");
           return (
-            <>
-              <Box
-                tag="span"
-                css={mentionCheckerStyle}
-                key={index}
-                onClick={() => handleMentionOnClick(userUrl)}
-              >
-                {exceptUserUrlString}
-              </Box>
-            </>
+            <Box
+              tag="span"
+              css={mentionCheckerStyle}
+              key={index + part}
+              onClick={() => handleMentionOnClick(userUrl)}
+            >
+              {exceptUserUrlString}
+            </Box>
           );
         }
         return (
-          <Box tag="span" key={index} css={mentionCheckerDefaultStyle}>
+          <Box tag="span" key={index + part} css={mentionCheckerDefaultStyle}>
             &nbsp;{part}
           </Box>
         );

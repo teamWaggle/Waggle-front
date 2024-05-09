@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import PenIcon from "@/assets/svg/pen.svg?react";
 import TrashIcon from "@/assets/svg/trashCan.svg?react";
 
@@ -10,12 +11,31 @@ import {
   commentUserNameStyle,
   commentTimeStyle,
   commentTextBoxStyle,
-} from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/Comment/Comment.style";
+  commentIconStyle,
+} from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentField/Comment/Comment.style";
 import type { CommentListInfoType } from "@/types/comment";
 import MentionChecker from "@/components/common/MentionChecker/MentionChecker";
+import { useDeleteCommentMutation } from "@/hooks/api/comment/useDeleteCommentMutation";
+import { CommentFieldContext } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentField/CommentField";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
 const Comment = ({ comment }: { comment: CommentListInfoType }) => {
-  const { content, createdDate, member } = comment;
+  const { content, createdDate, member, commentId } = comment;
+  const { memberId: commentOwnerId } = member;
+
+  const { mutate: deleteComment } = useDeleteCommentMutation();
+  const { memberId } = useMemberInfoSaveQuery();
+  const { handleEditCommentId, handleCommentEditValue } = useContext(CommentFieldContext);
+
+  const handleDeleteComment = () => {
+    deleteComment(commentId);
+  };
+
+  const handleEditComment = () => {
+    handleEditCommentId(commentId);
+    handleCommentEditValue(content);
+  };
+
   return (
     <Flex styles={{ align: "center", marginBottom: "16px" }} css={commentBoxStyle}>
       <Box tag="figure">
@@ -30,8 +50,12 @@ const Comment = ({ comment }: { comment: CommentListInfoType }) => {
             </Text>
           </Flex>
           <Flex styles={{ gap: "8px" }}>
-            <PenIcon />
-            <TrashIcon />
+            {memberId === commentOwnerId && (
+              <>
+                <PenIcon css={commentIconStyle} onClick={handleEditComment} />
+                <TrashIcon css={commentIconStyle} onClick={handleDeleteComment} />
+              </>
+            )}
           </Flex>
         </Flex>
         <Flex css={commentTextBoxStyle}>
