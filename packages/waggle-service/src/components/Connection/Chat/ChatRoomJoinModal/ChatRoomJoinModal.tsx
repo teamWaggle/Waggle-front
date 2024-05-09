@@ -2,9 +2,11 @@ import type { FieldValues } from "react-hook-form";
 import { Suspense } from "react";
 import { css } from "@emotion/react";
 
-import { Flex, Box, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-system";
+import { Flex, Box, Text, Heading, Button, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-// import ChatRoomInfoBox from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRoomInfoBox";
+import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
+import LockIcon from "@/assets/svg/ic-lock.svg?react";
+
 import ChattingRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 import { Form } from "@/components/common";
 
@@ -14,6 +16,10 @@ import { useJoinChatRoomMutation } from "@/hooks/api/chat/useJoinChatRoomMutatio
 import useModal from "@/hooks/common/useModal";
 
 import { titleInputStyle } from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
+import {
+  titleBoxStyle,
+  personBoxStyle,
+} from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRoomInfoBox";
 
 interface ChatRoomJoinModalProps {
   chatRoomId: number;
@@ -24,10 +30,10 @@ interface ChatRoomJoinModalProps {
 
 const ChatRoomJoinModal = ({
   chatRoomId,
-}: // name,
-// description,
-// memberCount,
-ChatRoomJoinModalProps) => {
+  name,
+  description,
+  memberCount,
+}: ChatRoomJoinModalProps) => {
   const { mutate: joinChatRoomMutate } = useJoinChatRoomMutation();
 
   const { openModal, closeModal } = useModal();
@@ -54,7 +60,18 @@ ChatRoomJoinModalProps) => {
 
   return (
     <Box styles={{ width: "600px" }}>
-      {/* <ChatRoomInfoBox name={name} description={description} memberCount={memberCount} /> */}
+      <Box css={titleBoxStyle}>
+        <Flex styles={{ gap: "16px", align: "center" }}>
+          <Heading css={getDefaultTextStyle(Theme.color.white, 700)}>{name}</Heading>
+          <Flex styles={{ align: "center", gap: "4px" }} css={personBoxStyle}>
+            <PersonIcon />
+            <Text size="small" css={getDefaultTextStyle(Theme.color.white, 600)}>
+              {memberCount}/7
+            </Text>
+          </Flex>
+        </Flex>
+        <Text css={getDefaultTextStyle(Theme.color.white, 500)}>{description}</Text>
+      </Box>
 
       <Form onSubmit={handleSubmit} defaultValues={{ password: "" }} schema={ROOM_JOIN_FORM_SCHEMA}>
         <Flex
@@ -67,8 +84,9 @@ ChatRoomJoinModalProps) => {
           css={contentBoxStyle}
         >
           <Flex styles={{ direction: "column", align: "center", gap: "10px" }}>
+            <LockIcon />
             <Text size="xLarge" css={getDefaultTextStyle(Theme.color.readonly_text, 600)}>
-              비밀번호를 입력해주세요
+              비밀번호 6자리를 입력해주세요
             </Text>
 
             <Form.TextInputField

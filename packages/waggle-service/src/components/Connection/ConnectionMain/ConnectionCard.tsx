@@ -5,8 +5,7 @@ import { Flex, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-sy
 
 import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
 
-// import ChattingRoomJoinModal from "@/components/Connection/Chatting/ChattingRoomJoinModal/ChattingRoomJoinModal";
-import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
+import ChatRoomJoinModal from "@/components/Connection/Chat/ChatRoomJoinModal/ChatRoomJoinModal";
 
 import useModal from "@/hooks/common/useModal";
 
@@ -16,25 +15,16 @@ const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
   const { openModal } = useModal();
 
   const handleJoinRoomOpen = () => {
-    // openModal({
-    //   key: "JoinChatRoomModal",
-    //   component: () => (
-    //     <Suspense fallback={<div />}>
-    //       <ChattingRoomJoinModal
-    //         chatRoomId={chatRoomInfo.id}
-    //         name={chatRoomInfo.name}
-    //         description={chatRoomInfo.description}
-    //         memberCount={chatRoomInfo.chatRoomMembers.memberCount}
-    //       />
-    //     </Suspense>
-    //   ),
-    //   isWhiteIcon: true,
-    // });
     openModal({
-      key: "ChatRoomModal",
+      key: "JoinChatRoomModal",
       component: () => (
         <Suspense fallback={<div />}>
-          <ChatRoomModal chatRoomId={chatRoomInfo.id} />
+          <ChatRoomJoinModal
+            chatRoomId={chatRoomInfo.id}
+            name={chatRoomInfo.name}
+            description={chatRoomInfo.description}
+            memberCount={chatRoomInfo.chatRoomMembers.memberCount}
+          />
         </Suspense>
       ),
       isWhiteIcon: true,

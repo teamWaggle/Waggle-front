@@ -28,7 +28,7 @@ export const ROOM_DESCRIPTION_FORM = {
 
 export const ROOM_PASSWORD_FORM = {
   TITLE: "비밀번호",
-  PLACEHOLDER: "비밀번호 6자리",
+  PLACEHOLDER: "숫자 6자리를 입력해주세요",
   NAME: "password",
   MAX_LENGTH: 6,
   RULES() {

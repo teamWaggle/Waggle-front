@@ -1,14 +1,32 @@
 import { css } from "@emotion/react";
+import { Suspense } from "react";
 
 import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import SampleImg from "@/assets/png/post-sample.png";
 
 import { circleTextBoxStyle } from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomList";
+import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
+
+import useModal from "@/hooks/common/useModal";
 
 const ChatRoomItem = () => {
+  const { openModal } = useModal();
+
+  const handleChatRoomOpen = () => {
+    openModal({
+      key: "ChatRoomModal",
+      component: () => (
+        <Suspense fallback={<div />}>
+          <ChatRoomModal chatRoomId={7} />
+        </Suspense>
+      ),
+      isWhiteIcon: true,
+    });
+  };
+
   return (
-    <Flex styles={{ align: "center", gap: "10px" }} css={cardBoxStyle}>
+    <Flex styles={{ align: "center", gap: "10px" }} css={cardBoxStyle} onClick={handleChatRoomOpen}>
       <img src={SampleImg} alt="profileImg" />
       <Box>
         <Flex styles={{ gap: "8px", align: "center" }}>
