@@ -68,6 +68,8 @@ export const END_POINTS = {
   FOLLOWER_LIST: (userUrl?: string) => `/api/follows/list/follower/${userUrl}`,
   FOLLOWING_LIST: (userUrl?: string) => `/api/follows/list/following/${userUrl}`,
   IS_FOLLOW: (userUrl?: string) => `/api/follows/following/${userUrl}`,
+
+  CHAT_ROOM_LIST: (currentPage: number) => `/api/chat/rooms/paged?currentPage=${currentPage}`,
   // Schuedule
   MEMBER_SCHEDULES: (memberId: number) => `/api/schedules/members/${memberId}`,
   MEMBER_SCHEDULES_MONTHLY: (userUrl: string, year: number, month: number) =>
