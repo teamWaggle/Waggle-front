@@ -38,7 +38,7 @@ const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }
   };
   return (
     <Flex styles={{ align: "center", justify: "space-between" }} css={memberCardBoxStyle}>
-      <img css={memberCardImgStyle} src="https://source.unsplash.com/random/32x32" alt="" />
+      <img css={memberCardImgStyle} src={member.profileImgUrl} alt="" />
       <Text css={nicknameStyle}>{member.nickname}</Text>
       <TeamLeaderAuthorizationContainer>
         {member.memberId !== teamLeader.memberId && <KebabMenuIcon onClick={handleMenuOnclick} />}
