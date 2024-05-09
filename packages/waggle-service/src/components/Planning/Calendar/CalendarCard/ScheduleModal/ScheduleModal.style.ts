@@ -12,13 +12,14 @@ export const scheduleModalBoxStyle = ({ row, column, index }: SchedulePositionTy
     top: `${index / 7 < 3 ? row : row - 250}` + "px",
     left: `${index % 7 < 4 ? column + 161 : column - 450}` + "px",
     width: "450px",
-    height: "400px",
+    height: "600px",
     backgroundColor: Theme.color.white,
     boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
     borderRadius: "20px",
     padding: "24px",
     flexDirection: "column",
     display: "flex",
+    flexGrow: 1,
   });
 
 export const circleDivStyle = (color: TeamColorType) =>
@@ -66,6 +67,7 @@ export const scheduleModalTeamName = (color: TeamColorType) =>
   });
 
 export const scheduleCommentBoxStyle = css({
+  flex: "1 0 auto",
   overflow: "auto",
   overscrollBehavior: "contain",
 });

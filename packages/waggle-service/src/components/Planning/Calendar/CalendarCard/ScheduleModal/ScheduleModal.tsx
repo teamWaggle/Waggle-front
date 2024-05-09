@@ -40,6 +40,7 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const { mutate: deleteTeamScheduleMutate } = useDeleteTeamSchedule();
   const { commentData, fetchNextPage, hasNextPage, isFetching } = useCommentQuery(schedule.boardId);
   useClickOutSide(scheduleModalRef, closeScheduleModal);
+  const commentBoxRef = useRef<HTMLDivElement>(null);
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
@@ -101,8 +102,10 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
         <Box css={scheduleModalTeamName(schedule.teamColor)}>{teamName}</Box>
       </Flex>
       <Flex
-        styles={{ direction: "column", width: "100%", height: "200px", marginTop: "16px" }}
+        styles={{ direction: "column", width: "100%", height: "300px", marginTop: "16px" }}
         css={scheduleCommentBoxStyle}
+        tag="section"
+        ref={commentBoxRef}
       >
         {commentData?.pages?.map((commentData, page) => (
           <Flex key={page} styles={{ direction: "column", gap: "8px" }}>
