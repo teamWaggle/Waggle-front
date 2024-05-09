@@ -10,7 +10,6 @@ import Skeleton from "@/components/Skeleton/Skeleton";
 import Slider from "@/components/Slider/Slider";
 import Spinner from "@/components/Spinner/Spinner";
 import Tag from "@/components/Tag/Tag";
-import MentionChecker from "@/components/Text/MentionChecker/MentionChecker";
 import Text from "@/components/Text/Text";
 import Dropdown from "@/components/Dropdown/Dropdown";
 import { Theme } from "@/styles/Theme";
@@ -32,7 +31,6 @@ export {
   Skeleton,
   Slider,
   Tag,
-  MentionChecker,
   Text,
   Spinner,
   WaggleProvider,

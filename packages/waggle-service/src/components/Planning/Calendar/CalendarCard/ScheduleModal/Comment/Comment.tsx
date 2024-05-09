@@ -1,7 +1,7 @@
 import PenIcon from "@/assets/svg/pen.svg?react";
 import TrashIcon from "@/assets/svg/trashCan.svg?react";
 
-import { Box, Flex, MentionChecker, Text } from "waggle-design-system";
+import { Box, Flex, Text } from "waggle-design-system";
 import { format } from "date-fns";
 
 import {
@@ -12,6 +12,7 @@ import {
   commentTextBoxStyle,
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/Comment/Comment.style";
 import type { CommentListInfoType } from "@/types/comment";
+import MentionChecker from "@/components/common/MentionChecker/MentionChecker";
 
 const Comment = ({ comment }: { comment: CommentListInfoType }) => {
   const { content, createdDate, member } = comment;
