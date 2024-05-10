@@ -22,20 +22,21 @@ const ChatRoomInfoBox = () => {
   const { isMemberListOpen, handleMemberList, handleMemberListClose, memberListRef } =
     useMemberListTrigger();
 
-  console.log(memberList);
-
   return (
     <Box css={titleBoxStyle}>
       <Flex styles={{ gap: "16px", align: "center" }}>
         <Heading css={getDefaultTextStyle(Theme.color.white, 700)}>{name}</Heading>
         <Flex
-          styles={{ align: "center", gap: "4px" }}
+          styles={{ align: "center", gap: "4px", position: "relative" }}
           css={personBoxStyle}
           ref={memberListRef}
-          onClick={handleMemberList}
         >
           <PersonIcon />
-          <Text size="small" css={getDefaultTextStyle(Theme.color.white, 600)}>
+          <Text
+            size="small"
+            css={getDefaultTextStyle(Theme.color.white, 600)}
+            onClick={handleMemberList}
+          >
             {memberCount}/7
           </Text>
 
@@ -71,6 +72,7 @@ export const personBoxStyle = css({
   border: `1px solid ${Theme.color.white}`,
   borderRadius: "20px",
   padding: "10px",
+  cursor: "pointer",
 
   "& > svg > path": {
     fill: Theme.color.white,
