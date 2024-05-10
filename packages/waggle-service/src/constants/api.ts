@@ -74,6 +74,7 @@ export const END_POINTS = {
   CHAT_ROOM: (chatRoomId?: number) => `/api/chat/rooms/${chatRoomId}`,
   JOIN_CHAT_ROOM: (chatRoomId: number, password: string) =>
     `/api/chat/rooms/${chatRoomId}/join?password=${password}`,
+  LEAVE_CHAT_ROOM: (chatRoomId?: number) => `/api/chat/rooms/${chatRoomId}/leave`,
   MEMBER_CHAT_ROOM_LIST: (currentPage?: number) =>
     `/api/chat/rooms/active?currentPage=${currentPage}`,
   // Schuedule

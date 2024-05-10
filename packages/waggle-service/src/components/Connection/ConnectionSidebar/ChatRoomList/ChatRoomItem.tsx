@@ -18,7 +18,7 @@ const ChatRoomItem = () => {
       key: "ChatRoomModal",
       component: () => (
         <Suspense fallback={<div />}>
-          <ChatRoomModal chatRoomId={7} />
+          <ChatRoomModal chatRoomId={12} />
         </Suspense>
       ),
       isWhiteIcon: true,
