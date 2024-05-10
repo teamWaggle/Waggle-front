@@ -5,6 +5,7 @@ import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-des
 
 import { Form } from "@/components/common";
 import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 
 import {
   ROOM_TITLE_FORM,
@@ -36,11 +37,20 @@ const ChatRoomEditModal = ({ name, description, chatRoomId }: ChatRoomEditModalP
 
   const { openModal, closeModal } = useModal();
 
-  const handleDeleteChatRoom = () => {
+  const deleteMutate = () => {
     deleteChatRoomMutate(chatRoomId, {
       onSuccess: () => {
         closeModal();
       },
+    });
+  };
+
+  const handleDeleteChatRoom = () => {
+    openModal({
+      key: `DeleteWarningModal`,
+      component: () => <DeleteWarningModal targetText="채팅방" handleDelete={deleteMutate} />,
+      notCloseIcon: true,
+      isUpper: true,
     });
   };
 
