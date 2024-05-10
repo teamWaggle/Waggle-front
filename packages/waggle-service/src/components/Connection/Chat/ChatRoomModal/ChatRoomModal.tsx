@@ -8,19 +8,22 @@ import ChatRoomInfoBox from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRo
 
 import { useChatRoomQuery } from "@/hooks/api/chat/useChatRoomQuery";
 
+import type { MemberType } from "@/types/auth";
+
 export const ChatRoomContext = createContext<{
   name: string;
   description: string;
   memberCount: number;
   ownerId: number;
   chatRoomId?: number;
+  memberList: MemberType[];
 } | null>(null);
 
 const ChatRoomModal = ({ chatRoomId }: { chatRoomId?: number }) => {
   const { chatRoomData } = useChatRoomQuery(chatRoomId);
 
   const { name, description } = chatRoomData.result;
-  const { memberCount } = chatRoomData.result.chatRoomMembers;
+  const { memberCount, memberList } = chatRoomData.result.chatRoomMembers;
   const { memberId } = chatRoomData.result.owner;
 
   const context = useMemo(
@@ -30,8 +33,9 @@ const ChatRoomModal = ({ chatRoomId }: { chatRoomId?: number }) => {
       memberCount,
       ownerId: memberId,
       chatRoomId,
+      memberList,
     }),
-    [name, description, memberCount, memberId, chatRoomId]
+    [name, description, memberCount, memberId, chatRoomId, memberList]
   );
 
   return (
