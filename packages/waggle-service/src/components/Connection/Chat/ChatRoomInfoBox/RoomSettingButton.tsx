@@ -7,10 +7,12 @@ import RootSettingIcon from "@/assets/svg/ic-room-setting.svg?react";
 import RoomOutIcon from "@/assets/svg/ic-room-out.svg?react";
 
 import ChatRoomEditModal from "@/components/Connection/Chat/ChatRoomEditModal/ChatRoomEditModal";
+import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 
 import { ChatRoomContext } from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
+import { useLeaveChatRoomMutation } from "@/hooks/api/chat/useLeaveChatRoomMutation";
 import useModal from "@/hooks/common/useModal";
 
 const RoomSettingButton = () => {
@@ -22,9 +24,26 @@ const RoomSettingButton = () => {
 
   const { memberId } = useMemberInfoSaveQuery();
 
+  const { mutate: leaveChatRoomMutate } = useLeaveChatRoomMutation();
+
   const { openModal, closeModal } = useModal();
 
   const isOwner = memberId === ownerId;
+
+  const deleteMutate = () => {
+    leaveChatRoomMutate(chatRoomId);
+  };
+
+  const handleLeaveChatRoom = () => {
+    openModal({
+      key: `DeleteWarningModal`,
+      component: () => (
+        <DeleteWarningModal targetText="채팅방 나가기" handleDelete={deleteMutate} />
+      ),
+      notCloseIcon: true,
+      isUpper: true,
+    });
+  };
 
   const handleEditModalOpen = () => {
     closeModal();
@@ -41,7 +60,7 @@ const RoomSettingButton = () => {
     <Flex
       styles={{ align: "center", gap: "4px" }}
       css={buttonBoxStyle}
-      onClick={() => (isOwner ? handleEditModalOpen() : "")}
+      onClick={() => (isOwner ? handleEditModalOpen() : handleLeaveChatRoom())}
     >
       {isOwner ? <RootSettingIcon /> : <RoomOutIcon />}
       <Text size="small" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>
