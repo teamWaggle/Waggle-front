@@ -4,7 +4,6 @@ export const QUERY_KEYS = {
 
   STORY: "story",
   STORY_LIST: "storyList",
-  STORY_FILTER: "storyFilter",
 
   SIREN: "siren",
   SIREN_LIST: "sirenList",
