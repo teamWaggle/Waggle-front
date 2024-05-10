@@ -16,7 +16,7 @@ export const useStoryFilterQuery = (filter: string) => {
     isFetching,
     refetch,
   } = useSuspenseInfiniteQuery<StoryListType, AxiosError>({
-    queryKey: [QUERY_KEYS.STORY_FILTER],
+    queryKey: [QUERY_KEYS.STORY_LIST],
     queryFn: ({ pageParam: currentPage }) => getStoryFilter(filter, currentPage),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
