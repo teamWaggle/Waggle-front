@@ -13,7 +13,10 @@ export const ROOM_TITLE_FORM = {
   PLACEHOLDER: "채팅방 이름을 입력해주세요.",
   NAME: "title",
   RULES() {
-    return yup.string().required("채팅방 이름을 입력해주세요.");
+    return yup
+      .string()
+      .required("채팅방 이름을 입력해주세요.")
+      .max(15, `채팅방 제목은 15자 이하여야 합니다`);
   },
 };
 
@@ -36,7 +39,8 @@ export const ROOM_PASSWORD_FORM = {
       .string()
       .required("비밀번호를 입력해주세요")
       .max(this.MAX_LENGTH, `비밀번호는 ${this.MAX_LENGTH}자 이하여야 합니다`)
-      .matches(REGEX.EXCEPT_SPECIAL, "특수문자는 입력할 수 없습니다.");
+      .matches(REGEX.ONLY_NUM, "숫자만 입력 가능합니다");
+    // .matches(REGEX.ENG_EXCEPT_REG, "영어는 입력할 수 없습니다.");
   },
 };
 

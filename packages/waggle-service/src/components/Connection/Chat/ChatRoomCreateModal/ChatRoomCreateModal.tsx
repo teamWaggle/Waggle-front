@@ -2,6 +2,8 @@ import type { FieldValues } from "react-hook-form";
 
 import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
+import RequiredIcon from "@/assets/svg/RequiredIcon.svg?react";
+
 import { Form } from "@/components/common";
 
 import {
@@ -53,9 +55,13 @@ const ChatRoomCreateModal = () => {
           schema={ROOM_FORM_SCHEMA}
         >
           <Box styles={{ width: "100%" }}>
-            <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
-              {ROOM_TITLE_FORM.TITLE}
-            </Heading>
+            <Flex styles={{ align: "center", gap: "4px" }}>
+              <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+                {ROOM_TITLE_FORM.TITLE}
+              </Heading>
+              <RequiredIcon />
+            </Flex>
+
             <Form.TextInputField
               inputStyle={titleInputStyle()}
               name={ROOM_TITLE_FORM.NAME}
@@ -63,9 +69,13 @@ const ChatRoomCreateModal = () => {
             />
           </Box>
           <Box styles={{ width: "100%" }}>
-            <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
-              {ROOM_DESCRIPTION_FORM.TITLE}
-            </Heading>
+            <Flex styles={{ align: "center", gap: "4px" }}>
+              <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+                {ROOM_DESCRIPTION_FORM.TITLE}
+              </Heading>
+              <RequiredIcon />
+            </Flex>
+
             <Form.TextInputField
               inputStyle={titleInputStyle()}
               name={ROOM_DESCRIPTION_FORM.NAME}
