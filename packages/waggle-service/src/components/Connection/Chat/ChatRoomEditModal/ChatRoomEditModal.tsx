@@ -29,9 +29,10 @@ interface ChatRoomEditModalProps {
   name: string;
   description: string;
   chatRoomId?: number;
+  password: string;
 }
 
-const ChatRoomEditModal = ({ name, description, chatRoomId }: ChatRoomEditModalProps) => {
+const ChatRoomEditModal = ({ name, description, chatRoomId, password }: ChatRoomEditModalProps) => {
   const { mutate: editChatRoomMutate } = useEditChatRoomMutation(chatRoomId);
   const { mutate: deleteChatRoomMutate } = useDeleteChatRoomMutation();
 
@@ -90,7 +91,7 @@ const ChatRoomEditModal = ({ name, description, chatRoomId }: ChatRoomEditModalP
       <Flex css={contentBoxStyle}>
         <Form
           onSubmit={handleSubmit}
-          defaultValues={{ title: name, description, password: "" }}
+          defaultValues={{ title: name, description, password }}
           schema={ROOM_FORM_SCHEMA}
         >
           <Box styles={{ width: "100%" }}>

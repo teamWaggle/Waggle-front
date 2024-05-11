@@ -1,4 +1,5 @@
 import type { CommonResponseBaseType } from "@/types/common";
+import type { MemberType } from "@/types/auth";
 
 export interface ChatListType extends CommonResponseBaseType {
   result: ChatListResultType;
@@ -26,7 +27,22 @@ export interface MemberChatRoomInfoType {
 }
 
 export interface ChatType extends CommonResponseBaseType {
-  result: ChatRoomType;
+  result: ChatRoomDetailType;
+}
+
+export interface ChatRoomDetailType {
+  id: number;
+  name: string;
+  description: string;
+  isPrivate: boolean;
+  password: string;
+  chatRoomMembers: MemberListType;
+  owner: MemberType;
+}
+
+interface MemberListType {
+  memberList: MemberType[];
+  memberCount: number;
 }
 
 export interface MemberChatListType extends CommonResponseBaseType {
