@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { css } from "@emotion/react";
 
 import { Flex, Box, Divider } from "waggle-design-system";
@@ -7,11 +8,18 @@ import ConnectionCard from "@/components/Connection/ConnectionMain/ConnectionCar
 import ConnectionSidebar from "@/components/Connection/ConnectionSidebar/ConnectionSidebar";
 
 import { useChatRoomListQuery } from "@/hooks/api/chat/useChatRoomListQuery";
+import useObserver from "@/hooks/common/useObserver";
 
 const ConnectionMain = () => {
-  const { chatRoomListData } = useChatRoomListQuery(0);
+  const { chatRoomListData, fetchNextPage, hasNextPage, isFetching } = useChatRoomListQuery();
 
-  console.log(chatRoomListData);
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
 
   return (
     <Box tag="main" css={mainBoxStyle}>
@@ -20,10 +28,15 @@ const ConnectionMain = () => {
           <ConnectionSearchbar />
 
           <Box tag="ol" css={gridBoxStyle}>
-            {chatRoomListData.result.chatRooms.map((chatRoomInfo) => (
-              <ConnectionCard key={chatRoomInfo.id} chatRoomInfo={chatRoomInfo} />
+            {chatRoomListData.pages.map((chatRoomData) => (
+              <Fragment key={chatRoomData.result.nextPageParam}>
+                {chatRoomData.result.chatRooms.map((chatRoomInfo) => (
+                  <ConnectionCard key={chatRoomInfo.id} chatRoomInfo={chatRoomInfo} />
+                ))}
+              </Fragment>
             ))}
           </Box>
+          <div ref={ref} />
         </Flex>
 
         <Divider direction="vertical" length="100vh" />

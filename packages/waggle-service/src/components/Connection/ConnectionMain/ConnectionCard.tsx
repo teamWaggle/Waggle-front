@@ -23,7 +23,7 @@ const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
             chatRoomId={chatRoomInfo.id}
             name={chatRoomInfo.name}
             description={chatRoomInfo.description}
-            memberCount={chatRoomInfo.chatRoomMembers.memberCount}
+            memberCount={chatRoomInfo.chatRoomMemberCount}
           />
         </Suspense>
       ),
@@ -41,7 +41,7 @@ const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
         <Flex styles={{ gap: "12px" }}>
           <PersonIcon />
           <Text size="small" css={getDefaultTextStyle("#9a9a9a", 600)}>
-            {chatRoomInfo.chatRoomMembers.memberCount}/7
+            {chatRoomInfo.chatRoomMemberCount}/7
           </Text>
         </Flex>
         <Button style={{ padding: "6px 10px", borderRadius: "13px" }} onClick={handleJoinRoomOpen}>
