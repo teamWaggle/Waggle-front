@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { css } from "@emotion/react";
 
 import { Flex, Box, Text, Theme, SearchInput } from "waggle-design-system";
@@ -9,20 +9,21 @@ import SortButton from "@/components/common/SortButton/SortButton";
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 import { QUESTION_FILTER } from "@/constants/filter";
 
-import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";
-// import { useSirenFilterQuery } from "@/hooks/api/siren/useSirenFilterQuery";
+import { useSirenFilterQuery } from "@/hooks/api/siren/useSirenFilterQuery";
 import { useFilter } from "@/hooks/post/useFilter";
 import useObserver from "@/hooks/common/useObserver";
 
 import { tagStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
 
 const SirenMain = () => {
-  const { filterText, handleFilterOption, handleFilterText } = useFilter();
+  const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
 
-  const { sirenListData, hasNextPage, fetchNextPage, isFetching } = useSirenListQuery();
-  // const { sirenListData, refetch } = useSirenFilterQuery(filterOption, 0);
+  const [category, setCategory] = useState("ALL");
 
-  const [category, setCategory] = useState("PROTECT");
+  const { sirenListData, refetch, hasNextPage, fetchNextPage, isFetching } = useSirenFilterQuery(
+    category,
+    filterOption
+  );
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -32,9 +33,9 @@ const SirenMain = () => {
     }
   });
 
-  // useEffect(() => {
-  //   refetch();
-  // }, [filterOption]);
+  useEffect(() => {
+    refetch();
+  }, [filterOption, category]);
 
   return (
     <Box>

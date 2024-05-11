@@ -1,19 +1,19 @@
 export const QUESTION_FILTER = [
   {
     text: "최신순",
-    option: "latest",
+    option: "LATEST",
   },
   {
     text: "인기순",
-    option: "recommend",
+    option: "RECOMMEND",
   },
   {
     text: "해결",
-    option: "resolved",
+    option: "RESOLVED",
   },
   {
     text: "미해결",
-    option: "unresolved",
+    option: "UNRESOLVED",
   },
 ];
 
@@ -29,6 +29,6 @@ export const STORY_FILTER = [
 ];
 
 export const FILTER_DEFAULT = {
-  OPTION: "latest",
+  OPTION: "LATEST",
   TEXT: "최신순",
 };
