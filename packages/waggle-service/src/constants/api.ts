@@ -68,7 +68,8 @@ export const END_POINTS = {
   FOLLOWER_LIST: (userUrl?: string) => `/api/follows/list/follower/${userUrl}`,
   FOLLOWING_LIST: (userUrl?: string) => `/api/follows/list/following/${userUrl}`,
   IS_FOLLOW: (userUrl?: string) => `/api/follows/following/${userUrl}`,
-
+  CHAT_MESSAGE_LIST: (currentPage: unknown, chatRoomId?: number) =>
+    `/api/chat/rooms/${chatRoomId}/messages?currentPage=${currentPage}`,
   CHAT_ROOM_LIST: (currentPage: unknown) => `/api/chat/rooms/paged?currentPage=${currentPage}`,
   CREATE_CHAT_ROOM: `/api/chat/rooms`,
   CHAT_ROOM: (chatRoomId?: number) => `/api/chat/rooms/${chatRoomId}`,

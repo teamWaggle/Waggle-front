@@ -1,9 +1,15 @@
+import { useContext } from "react";
+
 import { Flex, Box } from "waggle-design-system";
 
 import SendButtonIcon from "@/assets/svg/ic-message-send.svg?react";
 
 import ChattingMessage from "@/components/Connection/Chat/ChatRoomContent/ChatMessage/ChatMessage";
 import ChattingMessageMine from "@/components/Connection/Chat/ChatRoomContent/ChatMessage/ChatMessageMine";
+
+import { ChatRoomContext } from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
+
+import { useChatMessageListQuery } from "@/hooks/api/chat/useChatMessageListQuery";
 
 import {
   chattingContentBoxStyle,
@@ -13,6 +19,16 @@ import {
 } from "@/components/Connection/Chat/ChatRoomContent/ChatRoomContent.style";
 
 const ChatRoomContent = () => {
+  const context = useContext(ChatRoomContext);
+
+  if (!context) throw Error("context error");
+
+  const { chatRoomId } = context;
+
+  const { chatMessageListData } = useChatMessageListQuery(chatRoomId);
+
+  console.log(chatMessageListData);
+
   return (
     <Box>
       <Flex styles={{ direction: "column", gap: "20px" }} css={chattingContentBoxStyle}>

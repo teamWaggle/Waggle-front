@@ -61,3 +61,20 @@ interface MemberChatRoomType {
   lastMessageContent: string;
   lastSenderProfileImgUrl: string;
 }
+
+export interface ChatMessageListType extends CommonResponseBaseType {
+  result: ChatMessagesType;
+}
+
+interface ChatMessagesType {
+  chatMessages: ChatMessageType[];
+  nextPageParam: number;
+}
+
+interface ChatMessageType {
+  id: string;
+  content: string;
+  sendTime: Date;
+  sender: MemberType;
+  chatMessageType: string;
+}
