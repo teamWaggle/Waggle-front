@@ -17,12 +17,13 @@ export const ChatRoomContext = createContext<{
   ownerId: number;
   chatRoomId?: number;
   memberList: MemberType[];
+  password: string;
 } | null>(null);
 
 const ChatRoomModal = ({ chatRoomId }: { chatRoomId?: number }) => {
   const { chatRoomData } = useChatRoomQuery(chatRoomId);
 
-  const { name, description } = chatRoomData.result;
+  const { name, description, password } = chatRoomData.result;
   const { memberCount, memberList } = chatRoomData.result.chatRoomMembers;
   const { memberId } = chatRoomData.result.owner;
 
@@ -34,8 +35,9 @@ const ChatRoomModal = ({ chatRoomId }: { chatRoomId?: number }) => {
       ownerId: memberId,
       chatRoomId,
       memberList,
+      password,
     }),
-    [name, description, memberCount, memberId, chatRoomId, memberList]
+    [name, description, memberCount, memberId, chatRoomId, memberList, password]
   );
 
   return (
