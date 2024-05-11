@@ -32,8 +32,8 @@ export const END_POINTS = {
   COMMENT: (commentId: number) => `/api/comments/${commentId}`,
   POST_COMMENT: (boardId?: number) => `/api/comments/${boardId}`,
   SIREN: (sirenId: number) => `/api/sirens/${sirenId}`,
-  SIREN_FILTER: (filter: string, currentPage: unknown) =>
-    `/api/sirens/filter?filterParam=${filter}&currentPage=${currentPage}`,
+  SIREN_FILTER: (filter: string, sort: string, currentPage: unknown) =>
+    `/api/sirens/browse?filterParam=${filter}&sortParam=${sort}&currentPage=${currentPage}`,
   SIREN_CATEGORY: (category: string, currentPage: unknown) =>
     `/api/sirens/category?category=${category}&currentPage=${currentPage}`,
   SIREN_LIST: (curretPage: unknown) => `/api/sirens?currentPage=${curretPage}`,
@@ -50,7 +50,7 @@ export const END_POINTS = {
   MEDIA: "/api/media/list",
   QUESTIONS: (currentPage: unknown) => `/api/questions?currentPage=${currentPage}`,
   QUESTION_FILTER: (filter: string, currentPage: unknown) =>
-    `/api/questions/filter?filterParam=${filter}&currentPage=${currentPage}`,
+    `/api/questions/sort?filterParam=${filter}&currentPage=${currentPage}`,
   QUESTION: (questionId: number) => `/api/questions/${questionId}`,
   QUESTION_REPRESENTATIVE: `/api/questions/representative`,
   POST_QUESTION: "/api/questions",

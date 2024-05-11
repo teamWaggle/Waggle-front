@@ -20,7 +20,7 @@ const StoryMain = () => {
   const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
 
   const { storyListData, hasNextPage, fetchNextPage, isFetching, refetch } =
-    useStoryFilterQuery(filterOption);
+    useStoryFilterQuery("latest");
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
