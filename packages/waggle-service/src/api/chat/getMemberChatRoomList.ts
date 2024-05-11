@@ -4,7 +4,7 @@ import { END_POINTS } from "@/constants/api";
 
 import type { MemberChatListType } from "@/types/chat";
 
-export const getMemberChatRoomList = async (currentPage: number) => {
+export const getMemberChatRoomList = async (currentPage: unknown) => {
   const { data } = await authorizedAxiosInstance.get<MemberChatListType>(
     END_POINTS.MEMBER_CHAT_ROOM_LIST(currentPage)
   );

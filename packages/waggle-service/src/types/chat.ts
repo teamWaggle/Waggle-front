@@ -21,16 +21,21 @@ export interface ChatRoomInfoType {
   chatRoomInfo: ChatRoomType;
 }
 
+export interface MemberChatRoomInfoType {
+  memberChatRoomInfo: MemberChatRoomType;
+}
+
 export interface ChatType extends CommonResponseBaseType {
   result: ChatRoomType;
 }
 
 export interface MemberChatListType extends CommonResponseBaseType {
-  result: MemberChatRoomListType[];
+  result: MemberChatRoomListType;
 }
 
 interface MemberChatRoomListType {
-  chatRooms: MemberChatRoomType;
+  chatRooms: MemberChatRoomType[];
+  nextPageParam: number;
 }
 
 interface MemberChatRoomType {
@@ -38,4 +43,5 @@ interface MemberChatRoomType {
   name: string;
   unreadCount: number;
   lastMessageContent: string;
+  lastSenderProfileImgUrl: string;
 }

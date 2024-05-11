@@ -11,6 +11,7 @@ export const usePostChatRoomMutation = () => {
     mutationFn: postChatRoom,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_ROOM_LIST] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBER_CHAT_ROOM_LIST] });
     },
   });
 
