@@ -4,10 +4,21 @@ import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import ChatRoomItem from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomItem";
 
-// import { useMemberChatRoomListQuery } from "@/hooks/api/chat/useMemberChatRoomListQuery";
+import { useMemberChatRoomListQuery } from "@/hooks/api/chat/useMemberChatRoomListQuery";
+import useObserver from "@/hooks/common/useObserver";
+import { Fragment } from "react";
 
 const ChatRoomList = () => {
-  //   const { memberChatRoomListData } = useMemberChatRoomListQuery(0);
+  const { memberChatRoomListData, fetchNextPage, hasNextPage, isFetching } =
+    useMemberChatRoomListQuery();
+
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
 
   return (
     <Flex styles={{ direction: "column", gap: "12px" }}>
@@ -17,10 +28,14 @@ const ChatRoomList = () => {
           채팅방 메시지
         </Text>
       </Flex>
-      <ChatRoomItem />
-      <ChatRoomItem />
-      <ChatRoomItem />
-      <ChatRoomItem />
+      {memberChatRoomListData.pages.map((chatRoomListData) => (
+        <Fragment key={chatRoomListData.result.nextPageParam}>
+          {chatRoomListData.result.chatRooms.map((chatRoomInfo) => (
+            <ChatRoomItem key={chatRoomInfo.id} memberChatRoomInfo={chatRoomInfo} />
+          ))}
+        </Fragment>
+      ))}
+      <div ref={ref} />
     </Flex>
   );
 };

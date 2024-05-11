@@ -13,6 +13,7 @@ export const useDeleteChatRoomMutation = () => {
     mutationFn: deleteChatRoom,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHAT_ROOM_LIST] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBER_CHAT_ROOM_LIST] });
       toast.success("채팅방이 삭제되었습니다");
     },
   });

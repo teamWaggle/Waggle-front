@@ -3,22 +3,24 @@ import { Suspense } from "react";
 
 import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-import SampleImg from "@/assets/png/post-sample.png";
-
 import { circleTextBoxStyle } from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomList";
 import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
 import useModal from "@/hooks/common/useModal";
 
-const ChatRoomItem = () => {
+import type { MemberChatRoomInfoType } from "@/types/chat";
+
+const ChatRoomItem = ({ memberChatRoomInfo }: MemberChatRoomInfoType) => {
   const { openModal } = useModal();
+
+  const { id, name, lastMessageContent, lastSenderProfileImgUrl, unreadCount } = memberChatRoomInfo;
 
   const handleChatRoomOpen = () => {
     openModal({
       key: "ChatRoomModal",
       component: () => (
         <Suspense fallback={<div />}>
-          <ChatRoomModal chatRoomId={12} />
+          <ChatRoomModal chatRoomId={id} />
         </Suspense>
       ),
       isWhiteIcon: true,
@@ -27,17 +29,17 @@ const ChatRoomItem = () => {
 
   return (
     <Flex styles={{ align: "center", gap: "10px" }} css={cardBoxStyle} onClick={handleChatRoomOpen}>
-      <img src={SampleImg} alt="profileImg" />
+      <img src={lastSenderProfileImgUrl} alt="profileImg" />
       <Box>
         <Flex styles={{ gap: "8px", align: "center" }}>
           <Text size="small" css={getDefaultTextStyle(Theme.color.text, 600)}>
-            채팅방 제목
+            {name}
           </Text>
-          <span css={circleTextBoxStyle}>5</span>
+          <span css={circleTextBoxStyle}>{unreadCount}</span>
         </Flex>
 
         <Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 400)}>
-          어제 새로운 카페를 발견했다.. 바로가자
+          {lastMessageContent}
         </Text>
       </Box>
     </Flex>
