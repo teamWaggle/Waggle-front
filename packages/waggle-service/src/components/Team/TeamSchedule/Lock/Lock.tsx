@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import LockIcon from "@/assets/svg/lock.svg?react";
 
 import { Flex, Text } from "waggle-design-system";
+import { PATH } from "@/constants/path";
 
 const Lock = () => {
   const navigate = useNavigate();
   const handleOtherTeam = () => {
-    navigate("/planning");
+    navigate(PATH.PLANNING);
   };
   return (
     <Flex styles={{ direction: "column", align: "center", width: "100%" }}>
