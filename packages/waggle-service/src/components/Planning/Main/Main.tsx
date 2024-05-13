@@ -10,6 +10,7 @@ import { useGetRecommendTeams } from "@/hooks/api/team/useGetRecommendTeams";
 import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 import useObserver from "@/hooks/common/useObserver";
 import LoginAuthorizationContainer from "@/components/common/AuthorizationContainer/LoginAuthorizationContainer";
+import { PATH } from "@/constants/path";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Main = () => {
           <Heading css={headingStyle} size="medium">
             My TEAM
           </Heading>
-          <button css={buttonStyle} onClick={() => navigate("/planning/create-team")}>
+          <button css={buttonStyle} onClick={() => navigate(PATH.TEAM_CREATE)}>
             <Text size="large">팀 만들기</Text>
           </button>
         </Flex>

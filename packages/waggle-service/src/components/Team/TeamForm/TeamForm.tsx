@@ -21,7 +21,7 @@ import {
   teamContentBox,
   textInputBoxStyle,
   titleTextInputStyle,
-} from "@/components/CreateTeam/Main/Main.style";
+} from "@/components/Team/TeamForm/TeamForm.style";
 const schema = yup
   .object({
     name: TEAM_TITLE.RULES(),
@@ -29,7 +29,7 @@ const schema = yup
   })
   .required();
 
-const Main = () => {
+const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
   const navigate = useNavigate();
   const { mutate: createTeamMutate } = useCreateTeam();
   const { convertToMediaUrl, uploadMedia } = useSingleImgUpload({});
@@ -37,10 +37,14 @@ const Main = () => {
   const onSubmit = async (data: FieldValues) => {
     const formData = new FormData();
     if (data.coverImageUrl) {
+      console.log("data.coverImageUrl", data.coverImageUrl);
+      console.log("data", data);
+      console.log(typeof data.coverImageUrl);
       convertToMediaUrl(data.coverImageUrl);
       data.coverImageUrl = uploadMedia;
+      console.log("data.coverImageUrl", uploadMedia);
     }
-    formData.append("createTeamRequest", JSON.stringify(data));
+    formData.append("createTeamRequest", JSON.stringify({ ...data, coverImageUrl: uploadMedia }));
     createTeamMutate(formData);
     navigate(-1);
   };
@@ -52,7 +56,11 @@ const Main = () => {
           PLANNING - 팀 만들기
         </Heading>
       </Flex>
-      <Form onSubmit={onSubmit} defaultValues={TEAM_DEFAULT_VALUES} schema={schema}>
+      <Form
+        onSubmit={onSubmit}
+        defaultValues={defaultValues || TEAM_DEFAULT_VALUES}
+        schema={schema}
+      >
         <Flex css={teamContentBox}>
           <Form.ImageInputField name="coverImageUrl" />
           <Flex
@@ -85,4 +93,4 @@ const Main = () => {
     </>
   );
 };
-export default Main;
+export default TeamForm;

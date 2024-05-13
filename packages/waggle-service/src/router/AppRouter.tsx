@@ -92,7 +92,7 @@ const AppRouter = () => {
           ),
         },
         {
-          path: "/planning/create-team",
+          path: PATH.TEAM_CREATE,
           element: (
             <Suspense fallback={<div></div>}>
               <Lazy.CreateTeamPage />
@@ -104,6 +104,14 @@ const AppRouter = () => {
           element: (
             <Suspense fallback={<div></div>}>
               <Lazy.TeamPage />
+            </Suspense>
+          ),
+        },
+        {
+          path: PATH.TEAM_EDIT,
+          element: (
+            <Suspense>
+              <Lazy.EditTeamPage />
             </Suspense>
           ),
         },
