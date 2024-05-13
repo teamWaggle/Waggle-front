@@ -1,6 +1,6 @@
 import type { AxiosError } from "axios";
 
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getMemberTeams } from "@/api/team/getMemberTeams";
 
@@ -13,11 +13,18 @@ import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuer
 export const useGetMemberTeams = () => {
   const { memberId } = useMemberInfoSaveQuery();
 
-  const { data } = useQuery<DefaultApiResponseType<TeamResultType>, AxiosError>({
+  const {
+    data: memberTeamsData,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+  } = useInfiniteQuery<DefaultApiResponseType<TeamResultType>, AxiosError>({
     queryKey: [QUERY_KEYS.MEMBER_TEAMS],
-    queryFn: () => getMemberTeams(memberId),
-    enabled: !!memberId,
+    queryFn: ({ pageParam: page }) => getMemberTeams(memberId, page),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      return lastPage.result.isLast ? undefined : lastPage.nextPageParam;
+    },
   });
-  const { teamList } = data?.result || {};
-  return teamList;
+  return { memberTeamsData, fetchNextPage, hasNextPage, isFetching };
 };

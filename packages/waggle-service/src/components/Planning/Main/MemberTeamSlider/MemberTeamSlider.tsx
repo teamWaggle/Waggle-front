@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 import LeftArrowIcon from "@/assets/svg/left-arrow-brand-primary.svg?react";
 import RightArrowIcon from "@/assets/svg/right-arrow-brand-primary.svg?react";
 
@@ -14,13 +16,23 @@ import {
   rightArrowIconStyle,
   sliderBoxStyle,
 } from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider.style";
+import useObserver from "@/hooks/common/useObserver";
 
 const MemberTeamSlider = () => {
-  const teamList = useGetMemberTeams();
+  const { memberTeamsData, fetchNextPage, hasNextPage, isFetching } = useGetMemberTeams();
 
+  const dataLength = memberTeamsData?.pages[0].result.teamCount;
+
+  const ref = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
   return (
     <>
-      {teamList?.length === 0 ? (
+      {dataLength === 0 ? (
         <EmptyMemberTeam />
       ) : (
         <Slider
@@ -28,11 +40,16 @@ const MemberTeamSlider = () => {
           rightIcon={<RightArrowIcon css={rightArrowIconStyle} />}
           cardBoxstyle={sliderBoxStyle}
           displayCount={PLANNING.PLANNING_MYTEAM_SLIDER_AMOUNT}
-          dataLength={teamList?.length || 0}
+          dataLength={dataLength || 0}
         >
-          {teamList?.map((data) => (
-            <TeamCard key={data.teamId} data={data} />
+          {memberTeamsData?.pages.map((memberTeamData) => (
+            <Fragment key={memberTeamData.nextPageParam}>
+              {memberTeamData.result.teamList.map((teamInfo) => (
+                <TeamCard key={teamInfo.teamId} data={teamInfo} />
+              ))}
+            </Fragment>
           ))}
+          <div ref={ref} />
         </Slider>
       )}
     </>

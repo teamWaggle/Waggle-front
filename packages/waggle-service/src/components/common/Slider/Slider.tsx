@@ -36,7 +36,7 @@ const Slider = ({
           <Box css={cardBoxstyle(currentIndex)}>{children}</Box>
         </SliderContext.Provider>
       </Flex>
-      {currentIndex <= dataLength - displayCount && (
+      {currentIndex < dataLength - displayCount && (
         <Box onClick={handleNextOnClick}>{rightIcon}</Box>
       )}
     </Box>
