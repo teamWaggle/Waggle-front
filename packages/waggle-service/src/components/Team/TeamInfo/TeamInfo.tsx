@@ -15,9 +15,12 @@ import TeamLeaderAuthorizationContainer from "@/components/common/AuthorizationC
 import ParticipationSliderSection from "@/components/Team/TeamInfo/ParticipationSliderSection";
 import LoginAuthorizationContainer from "@/components/common/AuthorizationContainer/LoginAuthorizationContainer";
 import { TEAM_INFO } from "@/constants/team";
+import { useNavigate } from "react-router-dom";
+import { PATH } from "@/constants/path";
 
 const TeamInfo = () => {
   const teamId = useParamsTeamId();
+  const navigate = useNavigate();
   const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId) || {};
   return (
     <Flex css={teamSectionStyle} styles={{ marginTop: "50px", align: "center" }} tag="section">
@@ -28,7 +31,7 @@ const TeamInfo = () => {
           <Flex styles={{ gap: "12px" }}>
             <TeamLeaderAuthorizationContainer>
               <Button>팀 삭제하기</Button>
-              <Button>팀 수정하기</Button>
+              <Button onClick={() => navigate(PATH.TEAM_EDIT(teamId))}>팀 수정하기</Button>
             </TeamLeaderAuthorizationContainer>
           </Flex>
         </Flex>

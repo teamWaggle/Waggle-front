@@ -21,6 +21,10 @@ export const TEAM_COLOR: TeamColorType[] = [
   "team_8",
 ];
 
+export const EDIT_TEAM_FORM_KEY = "updateTeamRequest";
+
+export const CREATE_TEAM_FORM_KEY = "createTeamRequest";
+
 export const TEAM_DEFAULT_VALUES = {
   name: "",
   description: "",

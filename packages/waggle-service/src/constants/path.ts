@@ -14,5 +14,5 @@ export const PATH = {
   CONNECTION: "/connection",
   RELOAD: 0,
   TEAM_CREATE: "/team/create",
-  TEAM_EDIT: "/team/:teamId/edit",
+  TEAM_EDIT: (teamId: ":teamId" | number) => `/team/${teamId}/edit`,
 } as const;

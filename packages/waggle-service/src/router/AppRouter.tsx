@@ -108,7 +108,7 @@ const AppRouter = () => {
           ),
         },
         {
-          path: PATH.TEAM_EDIT,
+          path: PATH.TEAM_EDIT(":teamId"),
           element: (
             <Suspense>
               <Lazy.EditTeamPage />
