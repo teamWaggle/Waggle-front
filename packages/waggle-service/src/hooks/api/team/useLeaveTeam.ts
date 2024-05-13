@@ -1,0 +1,16 @@
+import { leaveTeam } from "@/api/team/leaveTeam";
+import { QUERY_KEYS } from "@/constants/queryKeys";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+
+export const useLeaveTeam = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: leaveTeam,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBER_TEAMS] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SCHEDULE_MONTHLY] });
+      toast.success("팀을 탈퇴하였습니다.");
+    },
+  });
+};
