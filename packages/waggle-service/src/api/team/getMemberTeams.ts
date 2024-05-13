@@ -5,9 +5,9 @@ import { END_POINTS } from "@/constants/api";
 import type { DefaultApiResponseType } from "@/types/common";
 import type { TeamResultType } from "@/types/team";
 
-export const getMemberTeams = async (memberId: number) => {
+export const getMemberTeams = async (memberId: number, page: unknown) => {
   const { data } = await axiosInstance.get<DefaultApiResponseType<TeamResultType>>(
-    END_POINTS.MEMBER_TEAMS(memberId)
+    END_POINTS.MEMBER_TEAMS(memberId, page)
   );
-  return data;
+  return { ...data, nextPageParam: (page as number) + 1 };
 };

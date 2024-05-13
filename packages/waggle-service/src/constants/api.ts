@@ -94,7 +94,8 @@ export const END_POINTS = {
   EDIT_TEAM_SCHEDULE: (scheduleId: number) => `/api/schedules/${scheduleId}`,
   GET_SCHEDULE_MEMBERS: (scheduleId: number) => `/api/schedules/${scheduleId}/members`,
   //Team
-  MEMBER_TEAMS: (memberId: number) => `/api/teams/user/${memberId}/teams`,
+  MEMBER_TEAMS: (memberId: number, page: unknown) =>
+    `/api/teams/user/${memberId}/teams?page=${page}`,
   CREATE_TEAM: "/api/teams",
   TEAM_INFO: (teamId: number) => `/api/teams/${teamId}`,
   TEAM_PARTICIPATION_LIST: (teamId: number) => `/api/teams/${teamId}/participation`,
