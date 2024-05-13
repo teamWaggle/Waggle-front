@@ -27,7 +27,7 @@ export const alertModalConfirmButtonStyle = (isConfirm: boolean) =>
     padding: "16px 0",
     textAlign: "center",
     cursor: "pointer",
-    backgroundColor: isConfirm ? Theme.color.brand_primary : Theme.color.disabled_text,
+    backgroundColor: isConfirm ? Theme.color.btn_danger : Theme.color.disabled_text,
     borderRadius: "4px",
     color: Theme.color.white,
     fontSize: "14px",
