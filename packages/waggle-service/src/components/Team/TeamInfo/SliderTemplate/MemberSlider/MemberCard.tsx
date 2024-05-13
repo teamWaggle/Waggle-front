@@ -16,7 +16,7 @@ import { useContext } from "react";
 import { SliderContext } from "@/components/common/Slider/Slider";
 import MemberOptionModal from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/OptionModalTemplate/MemberOptionModal";
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
-import { useTeamInfo } from "@/hooks/team/useTeamInfo";
+import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import TeamLeaderAuthorizationContainer from "@/components/common/AuthorizationContainer/TeamLeaderAuthorizationContainer";
 
 const MemberCard = ({ member, index }: { member: TeamMemberType; index: number }) => {
