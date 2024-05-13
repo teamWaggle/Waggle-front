@@ -17,11 +17,32 @@ import LoginAuthorizationContainer from "@/components/common/AuthorizationContai
 import { TEAM_INFO } from "@/constants/team";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@/constants/path";
+import useModal from "@/hooks/common/useModal";
+import AlertModal from "@/components/common/AlertModal/AlerlModal";
+import { useDeleteTeam } from "@/hooks/api/team/useDeleteTeam";
 
 const TeamInfo = () => {
   const teamId = useParamsTeamId();
   const navigate = useNavigate();
+  const { openModal, closeModal } = useModal();
+  const { mutate: deleteTeamMutate } = useDeleteTeam();
   const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId) || {};
+  const handleDelete = () => {
+    deleteTeamMutate(teamId, { onSuccess: () => navigate(PATH.PLANNING, { replace: true }) });
+    closeModal();
+  };
+  const handleDeleteTeamModal = () => {
+    openModal({
+      key: "DeleteTeam",
+      component: () => (
+        <AlertModal title="팀을 삭제하시겠습니까?">
+          <AlertModal.Button onClick={closeModal} text="취소"></AlertModal.Button>
+          <AlertModal.Button onClick={handleDelete} isConfirm text="삭제"></AlertModal.Button>
+        </AlertModal>
+      ),
+      isWhiteIcon: true,
+    });
+  };
   return (
     <Flex css={teamSectionStyle} styles={{ marginTop: "50px", align: "center" }} tag="section">
       <img css={teamImgStyle} src={coverImageUrl} />
@@ -30,7 +51,9 @@ const TeamInfo = () => {
           <Heading size="xLarge">{name}</Heading>
           <Flex styles={{ gap: "12px" }}>
             <TeamLeaderAuthorizationContainer>
-              <Button>팀 삭제하기</Button>
+              <Button variant="danger" onClick={handleDeleteTeamModal}>
+                팀 삭제하기
+              </Button>
               <Button onClick={() => navigate(PATH.TEAM_EDIT(teamId))}>팀 수정하기</Button>
             </TeamLeaderAuthorizationContainer>
           </Flex>

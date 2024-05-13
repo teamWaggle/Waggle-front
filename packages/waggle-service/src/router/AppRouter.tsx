@@ -84,7 +84,7 @@ const AppRouter = () => {
           ),
         },
         {
-          path: "/planning",
+          path: PATH.PLANNING,
           element: (
             <Suspense fallback={<div></div>}>
               <Lazy.PlanningPage />

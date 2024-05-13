@@ -107,6 +107,7 @@ export const END_POINTS = {
     `/api/teams/${teamId}/members/${memberId}`,
   RECOMMEND_TEAMS: (currentPage: unknown) => `/api/teams/recommend?currentPage=${currentPage}`,
   EDIT_TEAM: (teamId: number) => `/api/teams/${teamId}`,
+  DELETE_TEAM: (teamId: number) => `/api/teams/${teamId}`,
 };
 
 export const HTTP_STATUS_CODE = {

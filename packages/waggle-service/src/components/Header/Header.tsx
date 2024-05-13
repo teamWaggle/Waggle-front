@@ -51,7 +51,7 @@ const Header = () => {
           <Text size="xLarge" css={textStyle} onClick={() => navigate(PATH.CONNECTION)}>
             CONNECTION
           </Text>
-          <Text size="xLarge" css={textStyle} onClick={() => navigate("/planning")}>
+          <Text size="xLarge" css={textStyle} onClick={() => navigate(PATH.PLANNING)}>
             PLANNING
           </Text>
         </Flex>

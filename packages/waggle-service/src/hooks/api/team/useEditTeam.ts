@@ -14,7 +14,7 @@ export const useEditTeam = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TEAM_INFO, { teamId }] });
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.SCHEDULE_MONTHLY] });
-      toast("팀 정보가 수정되었습니다.");
+      toast.success("팀 정보가 수정되었습니다.");
     },
   });
 };

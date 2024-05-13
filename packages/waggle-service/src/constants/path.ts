@@ -15,4 +15,5 @@ export const PATH = {
   RELOAD: 0,
   TEAM_CREATE: "/team/create",
   TEAM_EDIT: (teamId: ":teamId" | number) => `/team/${teamId}/edit`,
+  PLANNING: "/planning",
 } as const;
