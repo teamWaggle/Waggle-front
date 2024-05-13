@@ -14,9 +14,5 @@ export const useCreateTeam = () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.MEMBER_TEAMS] });
       toast("팀이 생성되었습니다.");
     },
-    onError: (error) => {
-      console.log(error);
-      console.log("create team error");
-    },
   });
 };

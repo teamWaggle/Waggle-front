@@ -40,3 +40,8 @@ export interface TeamParticipationListType {
   memberList: Array<TeamMemberType>;
   memberCount: number;
 }
+
+export interface EditTeamProps {
+  teamId: number;
+  formData: FormData;
+}

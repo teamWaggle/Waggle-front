@@ -7,7 +7,13 @@ import { Box, Flex, Heading, Text } from "waggle-design-system";
 import { Form } from "@/components/common";
 import * as yup from "yup";
 
-import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
+import {
+  CREATE_TEAM_FORM_KEY,
+  EDIT_TEAM_FORM_KEY,
+  TEAM_CONTENT,
+  TEAM_DEFAULT_VALUES,
+  TEAM_TITLE,
+} from "@/constants/team";
 
 import { useCreateTeam } from "@/hooks/api/team/useCreateTeam";
 import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
@@ -22,6 +28,8 @@ import {
   textInputBoxStyle,
   titleTextInputStyle,
 } from "@/components/Team/TeamForm/TeamForm.style";
+import { useEditTeam } from "@/hooks/api/team/useEditTeam";
+
 const schema = yup
   .object({
     name: TEAM_TITLE.RULES(),
@@ -32,6 +40,7 @@ const schema = yup
 const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
   const navigate = useNavigate();
   const { mutate: createTeamMutate } = useCreateTeam();
+  const { mutate: editTeamMutate } = useEditTeam();
   const { convertToMediaUrl, uploadMedia } = useSingleImgUpload({});
 
   const onSubmit = async (data: FieldValues) => {
@@ -44,16 +53,17 @@ const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
       data.coverImageUrl = uploadMedia;
       console.log("data.coverImageUrl", uploadMedia);
     }
-    formData.append("createTeamRequest", JSON.stringify({ ...data, coverImageUrl: uploadMedia }));
-    createTeamMutate(formData);
+    const formDataKey = defaultValues ? EDIT_TEAM_FORM_KEY : CREATE_TEAM_FORM_KEY;
+    formData.append(formDataKey, JSON.stringify({ ...data, coverImageUrl: uploadMedia }));
+    defaultValues ? editTeamMutate(formData) : createTeamMutate(formData);
     navigate(-1);
   };
   return (
     <>
-      <Flex styles={{ align: "center", marginTop: "52px", gap: "24px" }}>
+      <Flex styles={{ align: "center", marginTop: "52px", gap: "24px", marginBottom: "20px" }}>
         <LeftArrowIcon css={leftArrowIconStyle} onClick={() => navigate(-1)} />
         <Heading css={headingStyle} size="xLarge">
-          PLANNING - 팀 만들기
+          {defaultValues ? "팀 수정하기" : "팀 만들기"}
         </Heading>
       </Flex>
       <Form
@@ -86,7 +96,7 @@ const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
           <Text css={colorTitleStyle}>팀 대표 컬러</Text>
           <Form.ColorRadioInputField name="teamColor" />
           <button css={submitButtonStyle} type="submit">
-            팀 생성하기
+            {defaultValues ? "팀 수정하기" : "팀 생성하기"}
           </button>
         </Box>
       </Form>
