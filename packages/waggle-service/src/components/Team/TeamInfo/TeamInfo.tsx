@@ -1,6 +1,6 @@
 import GroupIcon from "@/assets/svg/group.svg?react";
 
-import { Flex, Heading, Text, Box } from "waggle-design-system";
+import { Flex, Heading, Text, Box, Button } from "waggle-design-system";
 import MemberCard from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberCard";
 import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
@@ -23,7 +23,15 @@ const TeamInfo = () => {
     <Flex css={teamSectionStyle} styles={{ marginTop: "50px", align: "center" }} tag="section">
       <img css={teamImgStyle} src={coverImageUrl} />
       <Box css={teamInfoBoxStyle}>
-        <Heading size="xLarge">{name}</Heading>
+        <Flex styles={{ justify: "space-between" }}>
+          <Heading size="xLarge">{name}</Heading>
+          <Flex styles={{ gap: "12px" }}>
+            <TeamLeaderAuthorizationContainer>
+              <Button>팀 삭제하기</Button>
+              <Button>팀 수정하기</Button>
+            </TeamLeaderAuthorizationContainer>
+          </Flex>
+        </Flex>
         <Text size="xLarge" css={teamInfoSubTitleStyle}>
           {description}
         </Text>

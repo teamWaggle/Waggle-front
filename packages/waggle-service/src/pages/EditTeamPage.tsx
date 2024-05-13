@@ -1,7 +1,7 @@
 import { TeamForm } from "@/components/Team";
 import { MainContainer } from "waggle-design-system";
 
-const CreateTeamPage = () => {
+const EditTeamPage = () => {
   return (
     <MainContainer>
       <TeamForm />
@@ -9,4 +9,4 @@ const CreateTeamPage = () => {
   );
 };
 
-export default CreateTeamPage;
+export default EditTeamPage;

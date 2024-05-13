@@ -13,3 +13,4 @@ export const QuestionUploadPage = lazy(() => import("@/pages/QuestionUploadPage"
 export const SignUpPage = lazy(() => import("@/pages/SignUpPage"));
 export const ConnectionPage = lazy(() => import("@/pages/ConnectionPage"));
 export const TeamPage = lazy(() => import("@/pages/TeamPage"));
+export const EditTeamPage = lazy(() => import("@/pages/EditTeamPage"));

@@ -13,4 +13,6 @@ export const PATH = {
   SIGN_UP: "/signup",
   CONNECTION: "/connection",
   RELOAD: 0,
+  TEAM_CREATE: "/team/create",
+  TEAM_EDIT: "/team/:teamId/edit",
 } as const;
