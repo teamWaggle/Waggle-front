@@ -56,7 +56,7 @@ const Main = () => {
         <SearchInput onChange={() => {}} width="247px" />
       </Flex>
       <Box css={gridBoxStyle}>
-        {recommendTeamsData?.pages?.map((recommendTeamData, page) => (
+        {recommendTeamsData.pages?.map((recommendTeamData, page) => (
           <Fragment key={page}>
             {recommendTeamData.result.teamList.map((team) => (
               <TeamCard key={team.teamId} data={team} />

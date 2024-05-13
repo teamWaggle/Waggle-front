@@ -3,8 +3,6 @@ import type { FieldPath, FieldValues } from "react-hook-form";
 
 import { Flex, Text } from "waggle-design-system";
 
-import ScheduleIcon from "@/assets/svg/schedule-icon.svg?react";
-
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 
@@ -18,11 +16,13 @@ const PickerTriggerButton = ({
   modalClose,
   handleTriggerOnClick,
   name,
+  icon,
 }: {
   children: React.ReactNode;
   modalClose: () => void;
   handleTriggerOnClick: () => void;
   name: FieldPath<FieldValues>;
+  icon?: React.ReactNode;
 }) => {
   const triggerRef = useRef(null);
   const { field } = useControlledForm(name);
@@ -51,7 +51,7 @@ const PickerTriggerButton = ({
       <Flex styles={{ align: "center", position: "relative", borderRadius: "2px" }}>
         <Text css={PickerTriggerButtonStyle} onClick={handleTriggerOnClick}>
           {dateToFormat}
-          <ScheduleIcon style={{ marginLeft: "6px" }} />
+          {icon}
         </Text>
         {children}
       </Flex>

@@ -9,8 +9,9 @@ import type { CommonResponseType } from "@/types/common";
 
 export const postComment = async ({ content, boardId }: CommentPropsType) => {
   const { data } = await authorizedAxiosInstance.post<
-    CommentApiRequestType,
-    AxiosResponse<CommonResponseType>
+    CommonResponseType,
+    AxiosResponse<CommonResponseType>,
+    CommentApiRequestType
   >(END_POINTS.POST_COMMENT(boardId), {
     content,
   });

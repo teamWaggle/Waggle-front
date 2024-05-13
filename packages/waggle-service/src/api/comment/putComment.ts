@@ -8,10 +8,11 @@ import type { CommentApiRequestType, EditCommentPropsType } from "@/types/commen
 import type { CommonResponseType } from "@/types/common";
 
 export const putComment = async ({ content, commentId }: EditCommentPropsType) => {
-  return authorizedAxiosInstance.put<CommentApiRequestType, AxiosResponse<CommonResponseType>>(
-    END_POINTS.COMMENT(commentId),
-    {
-      content,
-    }
-  );
+  return authorizedAxiosInstance.put<
+    CommonResponseType,
+    AxiosResponse<CommonResponseType>,
+    CommentApiRequestType
+  >(END_POINTS.COMMENT(commentId), {
+    content,
+  });
 };

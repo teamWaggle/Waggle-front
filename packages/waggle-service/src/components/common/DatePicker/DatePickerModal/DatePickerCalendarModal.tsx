@@ -1,4 +1,4 @@
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, Fragment } from "react";
 
 import { Flex, Box, Text, ModalContainer } from "waggle-design-system";
 
@@ -26,8 +26,12 @@ const DatePickerCalendarModal = () => {
       }
       return addDays(monthStart, i - firstDayOfMonth);
     });
-    return calendarArray.map((day) => {
-      return <DatePickerCalendarCard day={day} />;
+    return calendarArray.map((day, index) => {
+      return (
+        <Fragment key={day ? format(day, "yyyymd") : index}>
+          <DatePickerCalendarCard day={day} />
+        </Fragment>
+      );
     });
   }, [currentDate]);
 

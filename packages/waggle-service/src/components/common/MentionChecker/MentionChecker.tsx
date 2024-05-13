@@ -39,7 +39,7 @@ const MentionChecker = ({ content }: { content: string }) => {
         }
         return (
           <Box tag="span" key={index + part} css={mentionCheckerDefaultStyle}>
-            &nbsp;{part}
+            {part}
           </Box>
         );
       })}

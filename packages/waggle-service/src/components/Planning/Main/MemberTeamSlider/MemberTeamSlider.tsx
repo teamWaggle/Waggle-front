@@ -21,7 +21,7 @@ import useObserver from "@/hooks/common/useObserver";
 const MemberTeamSlider = () => {
   const { memberTeamsData, fetchNextPage, hasNextPage, isFetching } = useGetMemberTeams();
 
-  const dataLength = memberTeamsData?.pages[0].result.teamCount;
+  const dataLength = memberTeamsData.pages[0].result.teamCount;
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -42,7 +42,7 @@ const MemberTeamSlider = () => {
           displayCount={PLANNING.PLANNING_MYTEAM_SLIDER_AMOUNT}
           dataLength={dataLength || 0}
         >
-          {memberTeamsData?.pages.map((memberTeamData) => (
+          {memberTeamsData.pages.map((memberTeamData) => (
             <Fragment key={memberTeamData.nextPageParam}>
               {memberTeamData.result.teamList.map((teamInfo) => (
                 <TeamCard key={teamInfo.teamId} data={teamInfo} />
