@@ -2,7 +2,7 @@ import GroupIcon from "@/assets/svg/group.svg?react";
 
 import { Flex, Heading, Text, Box } from "waggle-design-system";
 import MemberCard from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberCard";
-import { useTeamInfo } from "@/hooks/team/useTeamInfo";
+import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import {
   teamImgStyle,
@@ -15,26 +15,6 @@ import TeamLeaderAuthorizationContainer from "@/components/common/AuthorizationC
 import ParticipationSliderSection from "@/components/Team/TeamInfo/ParticipationSliderSection";
 import LoginAuthorizationContainer from "@/components/common/AuthorizationContainer/LoginAuthorizationContainer";
 import { TEAM_INFO } from "@/constants/team";
-
-// const memberList = [
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-//   { userUrl: "s", memberId: 12, nickname: "김민수", profileImgUrl: "팀장" },
-// ];
 
 const TeamInfo = () => {
   const teamId = useParamsTeamId();

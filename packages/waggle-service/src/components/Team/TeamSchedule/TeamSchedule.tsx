@@ -23,7 +23,7 @@ import { getDate } from "@/utils/getDate";
 import { useTeamScheduleListPeriod } from "@/hooks/api/schedule/useTeamScheduleListPeriod";
 
 import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal";
-import { useTeamInfo } from "@/hooks/team/useTeamInfo";
+import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import { DatePicker, DatePickerCalendarModal, Form } from "@/components/common";
 
 const TeamSchedule = () => {

@@ -25,7 +25,7 @@ import useModal from "@/hooks/common/useModal";
 import { useCancelMemberSchedule } from "@/hooks/api/schedule/useCancelMemberSchedule";
 import { useDeleteTeamSchedule } from "@/hooks/api/schedule/useDeleteTeamSchedule";
 import EditTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/EditTeamScheduleModal";
-import { useTeamInfo } from "@/hooks/team/useTeamInfo";
+import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import { ko } from "date-fns/locale";
 import CommentField from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentField/CommentField";
 
