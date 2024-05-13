@@ -11,6 +11,7 @@ export interface ErrorResponseData {
   statusCode?: number;
   message?: string;
   code?: number;
+  detail?: string;
 }
 
 export const checkToken = (config: InternalAxiosRequestConfig) => {
@@ -81,6 +82,6 @@ export const handleAPIError = (error: AxiosError<ErrorResponseData>) => {
   if (status >= HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {
     throw new HTTPError(HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR, data.message);
   }
-
-  throw new HTTPError(status, data.message, data.code);
+  console.log(error);
+  throw new HTTPError(status, data.message, data.code, data.detail);
 };
