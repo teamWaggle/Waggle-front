@@ -27,9 +27,7 @@ const TeamCard = ({ data }: { data: TeamCardType }) => {
       <Box css={textBoxStyle}>
         <Flex styles={{ align: "center", gap: "4px", marginBottom: "4px" }}>
           <Box css={circleDivStyle(teamColor)} />
-          <Text size="medium" css={textStyle(teamColor)}>
-            {name}
-          </Text>
+          <Text css={textStyle(teamColor)}>{name}</Text>
         </Flex>
         <Text size="small" css={subtitleTextStyle}>
           {description}

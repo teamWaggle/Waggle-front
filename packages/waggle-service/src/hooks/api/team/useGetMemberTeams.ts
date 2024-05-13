@@ -1,6 +1,6 @@
 import type { AxiosError } from "axios";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 import { getMemberTeams } from "@/api/team/getMemberTeams";
 
@@ -18,7 +18,7 @@ export const useGetMemberTeams = () => {
     fetchNextPage,
     hasNextPage,
     isFetching,
-  } = useInfiniteQuery<DefaultApiResponseType<TeamResultType>, AxiosError>({
+  } = useSuspenseInfiniteQuery<DefaultApiResponseType<TeamResultType>, AxiosError>({
     queryKey: [QUERY_KEYS.MEMBER_TEAMS],
     queryFn: ({ pageParam: page }) => getMemberTeams(memberId, page),
     initialPageParam: 0,

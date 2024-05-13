@@ -29,7 +29,7 @@ const TeamInfo = () => {
   const navigate = useNavigate();
   const { mutate: deleteTeamMutate } = useDeleteTeam();
   const { mutate: leaveTeamMutate } = useLeaveTeam();
-  const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId) || {};
+  const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId);
 
   const handleDelete = () => {
     deleteTeamMutate(teamId, { onSuccess: () => navigate(PATH.PLANNING, { replace: true }) });
@@ -78,7 +78,7 @@ const TeamInfo = () => {
               <Button onClick={() => navigate(PATH.TEAM_EDIT(teamId))}>팀 수정하기</Button>
             </TeamLeaderAuthorizationContainer>
             <TeamMemberAuthorizationContainer>
-              <Button variant="danger" onClick={handleLeaveTeamModal}>
+              <Button variant="disabled" onClick={handleLeaveTeamModal}>
                 팀 탈퇴하기
               </Button>
             </TeamMemberAuthorizationContainer>
@@ -94,7 +94,7 @@ const TeamInfo = () => {
               {teamSize}/{TEAM_INFO.TEAM_MAX_SIZE}
             </Text>
             <MemberSlider memberList={teamMemberList}>
-              {teamMemberList?.map((member, index) => (
+              {teamMemberList.map((member, index) => (
                 <MemberCard key={index} member={member} index={index} />
               ))}
             </MemberSlider>

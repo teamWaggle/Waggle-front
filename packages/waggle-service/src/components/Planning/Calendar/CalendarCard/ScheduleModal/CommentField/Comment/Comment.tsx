@@ -43,7 +43,7 @@ const Comment = ({ comment }: { comment: CommentListInfoType }) => {
       </Box>
       <Flex tag="section" styles={{ width: "100%", direction: "column" }}>
         <Flex tag="article" styles={{ width: "300px", align: "center", justify: "space-between" }}>
-          <Flex styles={{ gap: "16px" }}>
+          <Flex styles={{ gap: "16px", align: "center" }}>
             <Text css={commentUserNameStyle}>{member.nickname}</Text>
             <Text size="xSmall" css={commentTimeStyle}>
               {format(createdDate, "yyyy.M.dd")}
