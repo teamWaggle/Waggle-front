@@ -50,6 +50,7 @@ export const QUERY_KEYS = {
   DELETE_TEAM_SCHEDULE: "deleteTeamSchedule",
   EDIT_TEAM_SCHEDULE: "editTeamSchedule",
   SCHEDULE_MEMBERS: "scheduleMembers",
+  OVERLAP_SCHEDULES: "overlapSchedules",
   //Team
   MEMBER_TEAMS: "memberTeams",
   TEAM_INFO: "teamInfo",

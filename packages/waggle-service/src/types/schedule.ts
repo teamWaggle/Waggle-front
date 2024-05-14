@@ -49,3 +49,8 @@ export interface ScheduleMemberListType {
   memberList: Array<TeamMemberType>;
   memberCount: number;
 }
+
+export interface OverlapScheduleType {
+  overlappedScheduleDtoList: Array<overlappedScheduleType>;
+  scheduleCount: number;
+}

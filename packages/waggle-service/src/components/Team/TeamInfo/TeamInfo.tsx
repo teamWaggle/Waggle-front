@@ -5,11 +5,15 @@ import MemberCard from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/M
 import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import {
+  buttonIconStyle,
   teamImgStyle,
   teamInfoBoxStyle,
   teamInfoSubTitleStyle,
   teamSectionStyle,
 } from "@/components/Team/TeamInfo/TeamInfo.style";
+import PenIcon from "@/assets/svg/pen.svg?react";
+import TrashIcon from "@/assets/svg/trashCan.svg?react";
+
 import MemberSlider from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberSlider";
 import TeamLeaderAuthorizationContainer from "@/components/common/AuthorizationContainer/team/TeamLeaderAuthorizationContainer";
 import ParticipationSliderSection from "@/components/Team/TeamInfo/ParticipationSliderSection";
@@ -74,14 +78,19 @@ const TeamInfo = () => {
             <TeamLeaderAuthorizationContainer>
               <Button variant="danger" onClick={handleDeleteTeamModal}>
                 팀 삭제하기
+                <TrashIcon css={buttonIconStyle} />
               </Button>
-              <Button onClick={() => navigate(PATH.TEAM_EDIT(teamId))}>팀 수정하기</Button>
+              <Button onClick={() => navigate(PATH.TEAM_EDIT(teamId))}>
+                팀 수정하기
+                <PenIcon css={buttonIconStyle} />
+              </Button>
             </TeamLeaderAuthorizationContainer>
             <TeamMemberAuthorizationContainer>
               <Button variant="disabled" onClick={handleLeaveTeamModal}>
                 팀 탈퇴하기
               </Button>
             </TeamMemberAuthorizationContainer>
+            <Button>팀 참여하기</Button>
           </Flex>
         </Flex>
         <Text size="xLarge" css={teamInfoSubTitleStyle}>

@@ -4,7 +4,7 @@ import type { TeamScheduleInfoType } from "@/types/schedule";
 
 export const getTeamScheduleListPageAuth = async (teamId: number, currentPage: unknown) => {
   const { data } = await authorizedAxiosInstance.get<TeamScheduleInfoType>(
-    END_POINTS.GET_TEAM_SCHEDULE_PAGE(teamId, currentPage)
+    END_POINTS.GET_TEAM_SCHEDULE_PAGE_AUTH(teamId, currentPage)
   );
 
   return { ...data, nextPageParam: (currentPage as number) + 1 };

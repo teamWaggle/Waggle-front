@@ -27,3 +27,10 @@ export const teamInfoSubTitleStyle = css({
 export const teamInfoNewApplyStyle = css({
   color: Theme.color.btn_danger,
 });
+
+export const buttonIconStyle = css({
+  "& > path": {
+    stroke: Theme.color.white,
+  },
+  marginLeft: "4px",
+});

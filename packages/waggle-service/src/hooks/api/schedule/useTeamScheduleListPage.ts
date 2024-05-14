@@ -1,7 +1,7 @@
 import { isLoggedInState } from "./../../../recoil/atoms/auth";
 import type { AxiosError } from "axios";
 
-import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getTeamScheduleListPage } from "@/api/schedule/getTeamScheduleListPage";
 
@@ -18,8 +18,9 @@ export const useTeamScheduleListPage = (teamId: number) => {
     fetchNextPage,
     hasNextPage,
     isFetching,
-  } = useSuspenseInfiniteQuery<TeamScheduleInfoType, AxiosError>({
+  } = useInfiniteQuery<TeamScheduleInfoType, AxiosError>({
     queryKey: [QUERY_KEYS.TEAM_SCHEDULE_PAGE, { teamId }],
+    enabled: !!isLoggedIn && !!teamId,
     queryFn: ({ pageParam }) =>
       isLoggedIn
         ? getTeamScheduleListPageAuth(teamId, pageParam)
