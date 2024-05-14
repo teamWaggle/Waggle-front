@@ -85,6 +85,8 @@ export const END_POINTS = {
     `/api/schedules/members/${userUrl}/monthly?year=${year}&month=${month}`,
   GET_TEAM_SCHEDULE_PAGE: (teamId: number, currentPage?: unknown) =>
     `/api/schedules/teams/${teamId}?currentPage=${currentPage}`,
+  GET_TEAM_SCHEDULE_PAGE_AUTH: (teamId: number, currentPage?: unknown) =>
+    `/api/schedules/teams/${teamId}/auth?currentPage=${currentPage}`,
   GET_TEAM_SCHEDULE_PERIOD: (teamId: number, startDate: string, endDate: string) =>
     `/api/schedules/teams/${teamId}/period?start=${startDate}&end=${endDate}`,
   ADD_TEAM_SCHEDULE: (teamId: number) => `/api/schedules/${teamId}`,
@@ -93,6 +95,7 @@ export const END_POINTS = {
   DELETE_TEAM_SCHEDULE: (scheduleId: number) => `/api/schedules/${scheduleId}`,
   EDIT_TEAM_SCHEDULE: (scheduleId: number) => `/api/schedules/${scheduleId}`,
   GET_SCHEDULE_MEMBERS: (scheduleId: number) => `/api/schedules/${scheduleId}/members`,
+  GET_OVERLAP_SCHEDULE: (scheduleId: number) => `/api/schedules/${scheduleId}/overlap`,
   //Team
   MEMBER_TEAMS: (memberId: number, page: unknown) =>
     `/api/teams/user/${memberId}/teams?page=${page}`,

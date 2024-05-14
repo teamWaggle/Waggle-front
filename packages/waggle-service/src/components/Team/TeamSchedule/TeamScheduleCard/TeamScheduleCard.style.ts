@@ -20,12 +20,6 @@ export const teamScheduleCardStatusBoxStyle = (isActivate: boolean) =>
     fontSize: "14px",
   });
 
-export const teamScheduleOverlapCount = (color: TeamColorType) =>
-  css({
-    color: Theme.color[color],
-    marginLeft: "8px",
-  });
-
 export const addScheduleButtonStyle = (color: TeamColorType) =>
   css({
     border: `2px solid ${Theme.color[color]}`,

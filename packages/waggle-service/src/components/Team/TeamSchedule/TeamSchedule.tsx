@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import type { FieldValues } from "react-hook-form";
 import AddIcon from "@/assets/svg/add-icon.svg?react";
 
-import { Box, Flex, Heading, Text, Spinner } from "waggle-design-system";
+import { Box, Flex, Heading, Text, Spinner, Button } from "waggle-design-system";
 import Lock from "@/components/Team/TeamSchedule/Lock/Lock";
 import TeamScheduleCard from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard";
 import * as yup from "yup";
@@ -105,14 +105,10 @@ const TeamSchedule = () => {
                 </Flex>
               </Form>
             </Flex>
-            <Box
-              onClick={handleAddSchedule}
-              tag="button"
-              css={teamScheduleAddButtonStyle("team_1")}
-            >
-              <Text size="xSmall">일정 추가</Text>
+            <Button onClick={handleAddSchedule} css={teamScheduleAddButtonStyle("team_1")}>
+              일정 추가
               <AddIcon />
-            </Box>
+            </Button>
           </Flex>
           {isLoading && (
             <Flex
