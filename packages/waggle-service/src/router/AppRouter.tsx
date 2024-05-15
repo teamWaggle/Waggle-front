@@ -20,6 +20,7 @@ import {
 } from "@/pages";
 import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
 import SirenPageSkeleton from "@/pages/SirenPage/SirenPageSkeleton";
+import QuestionPageSkeleton from "@/pages/QuestionPage/QuestionPageSkeleton";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -47,7 +48,7 @@ const AppRouter = () => {
         {
           path: PATH.SIREN_DETAIL(":sirenId"),
           element: (
-            <Suspense fallback={<div />}>
+            <Suspense>
               <Lazy.SirenDetailPage />
             </Suspense>
           ),
@@ -59,7 +60,7 @@ const AppRouter = () => {
         {
           path: PATH.QUESTION,
           element: (
-            <Suspense fallback={<div />}>
+            <Suspense fallback={<QuestionPageSkeleton />}>
               <Lazy.QuestionPage />
             </Suspense>
           ),
