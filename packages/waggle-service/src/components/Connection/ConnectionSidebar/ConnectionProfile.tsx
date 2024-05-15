@@ -37,6 +37,7 @@ const profileBoxStyle = css({
     width: "78px",
     height: "78px",
     borderRadius: "50%",
+    objectFit: "cover",
   },
 });
 
