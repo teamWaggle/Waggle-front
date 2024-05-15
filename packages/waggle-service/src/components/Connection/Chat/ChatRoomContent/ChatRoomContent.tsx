@@ -13,7 +13,7 @@ import { ChatRoomContext } from "@/components/Connection/Chat/ChatRoomModal/Chat
 
 import { ACCESS_TOKEN_KEY } from "@/constants/api";
 
-// import { useChatMessageListQuery } from "@/hooks/api/chat/useChatMessageListQuery";
+import { useChatMessageListQuery } from "@/hooks/api/chat/useChatMessageListQuery";
 
 // import type { ChatMessageType } from "@/types/chat";
 
@@ -38,13 +38,15 @@ const ChatRoomContent = () => {
 
   const { chatRoomId } = context;
 
-  // const { chatMessageListData } = useChatMessageListQuery(chatRoomId);
+  const { chatMessageListData } = useChatMessageListQuery(chatRoomId);
 
   const [stompClient, setStompClient] = useState<Client | null>(null);
   const [messages] = useState([]);
   const [newMessage, setNewMessage] = useState<string>("");
 
   const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
+
+  console.log(chatMessageListData);
 
   useEffect(() => {
     const client = new Client({
@@ -53,9 +55,9 @@ const ChatRoomContent = () => {
       connectHeaders: {
         Authorization: `Bearer ${accessToken}`,
       },
-      // debug: (str: string) => {
-      //   console.log(str);
-      // },
+      debug: (str: string) => {
+        console.log(str);
+      },
       // onConnect: () => {
       //   console.log("connect");
 
@@ -78,9 +80,13 @@ const ChatRoomContent = () => {
     client.onConnect = () => {
       console.log("socket connect");
 
-      client.subscribe(`/subscribe/${chatRoomId}`, () => {
-        console.log("연결");
-      });
+      client.subscribe(
+        `/subscribe/${chatRoomId}`,
+        () => {
+          console.log("연결");
+        },
+        { Authorization: `Bearer ${accessToken}` }
+      );
     };
 
     return () => {
@@ -100,9 +106,12 @@ const ChatRoomContent = () => {
       content: "test",
     };
 
+    console.log("test");
+
     stompClient.publish({
       destination: "/publish/message",
       body: JSON.stringify(chatMessage),
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
 
     console.log(messages);
