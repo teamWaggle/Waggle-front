@@ -14,6 +14,7 @@ import { ChatRoomContext } from "@/components/Connection/Chat/ChatRoomModal/Chat
 import { ACCESS_TOKEN_KEY } from "@/constants/api";
 
 import { useChatMessageListQuery } from "@/hooks/api/chat/useChatMessageListQuery";
+import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 
 // import type { ChatMessageType } from "@/types/chat";
 
@@ -27,7 +28,7 @@ import {
 interface ChatMessageRequest {
   chatMessageType: string;
   chatRoomId?: number;
-  sendUserUrl: string;
+  senderUserUrl: string;
   content: string;
 }
 
@@ -40,13 +41,14 @@ const ChatRoomContent = () => {
 
   const { chatMessageListData } = useChatMessageListQuery(chatRoomId);
 
+  console.log(chatMessageListData);
+
+  const { userUrl } = useMemberInfoSaveQuery();
+
   const [stompClient, setStompClient] = useState<Client | null>(null);
-  const [messages] = useState([]);
   const [newMessage, setNewMessage] = useState<string>("");
 
   const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
-
-  console.log(chatMessageListData);
 
   useEffect(() => {
     const client = new Client({
@@ -55,24 +57,11 @@ const ChatRoomContent = () => {
       connectHeaders: {
         Authorization: `Bearer ${accessToken}`,
       },
-      debug: (str: string) => {
-        console.log(str);
-      },
-      // onConnect: () => {
-      //   console.log("connect");
-
-      //   client.subscribe(
-      //     `/subscribe/${chatRoomId}`,
-      //     (message) => {
-      //       console.log(chatRoomId);
-
-      //       const msg = JSON.parse(message.body);
-
-      //       console.log(msg);
-      //     }
-      //   );
+      // debug: (str: string) => {
+      //   console.log(str);
       // },
     });
+
     setStompClient(client);
 
     client.activate();
@@ -82,7 +71,8 @@ const ChatRoomContent = () => {
 
       client.subscribe(
         `/subscribe/${chatRoomId}`,
-        () => {
+        (message) => {
+          console.log(JSON.parse(message.body));
           console.log("연결");
         },
         { Authorization: `Bearer ${accessToken}` }
@@ -96,17 +86,19 @@ const ChatRoomContent = () => {
     };
   }, [chatRoomId]);
 
+  // const recvMessage = () => {
+
+  // }
+
   const sendMessage = () => {
     if (!stompClient) return;
 
     const chatMessage: ChatMessageRequest = {
       chatMessageType: "TALK",
       chatRoomId,
-      sendUserUrl: "test1234!",
-      content: "test",
+      senderUserUrl: userUrl,
+      content: newMessage,
     };
-
-    console.log("test");
 
     stompClient.publish({
       destination: "/publish/message",
@@ -114,7 +106,8 @@ const ChatRoomContent = () => {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
 
-    console.log(messages);
+    console.log(chatMessage);
+
     setNewMessage("");
   };
 
