@@ -20,14 +20,14 @@ export const inputStyle = css({
   },
 });
 
-export const tagStyle = (color: string) => {
+export const tagStyle = (color: string, whiteText?: boolean) => {
   return css({
     justifyContent: "center",
     alignItems: "center",
     padding: "4px 10px",
     borderRadius: "18px",
     backgroundColor: color,
-    color: Theme.color.text,
+    color: whiteText ? Theme.color.white : Theme.color.text,
     cursor: "pointer",
     fontWeight: 500,
   });
