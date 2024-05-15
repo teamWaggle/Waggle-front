@@ -10,7 +10,8 @@ import { PATH } from "@/constants/path";
 
 import Error from "@/components/common/Error/Error";
 
-import { SignUpPage, Error404Page, AuthPage, ConnectionPage, TeamPage } from "@/pages";
+import Error404Page from "@/pages/Error404Page";
+import AuthPage from "@/pages/AuthPage/AuthPage";
 import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
 import SirenPageSkeleton from "@/pages/SirenPage/SirenPageSkeleton";
 import QuestionPageSkeleton from "@/pages/QuestionPage/QuestionPageSkeleton";
@@ -68,11 +69,19 @@ const AppRouter = () => {
         },
         {
           path: PATH.QUESTION_UPLOAD,
-          element: <Lazy.QuestionUploadPage />,
+          element: (
+            <Suspense>
+              <Lazy.QuestionUploadPage />
+            </Suspense>
+          ),
         },
         {
-          path: "/signup",
-          element: <SignUpPage />,
+          path: PATH.SIGN_UP,
+          element: (
+            <Suspense>
+              <Lazy.SignUpPage />
+            </Suspense>
+          ),
         },
         {
           path: "/planning",
@@ -94,7 +103,7 @@ const AppRouter = () => {
           path: "/team/:teamId",
           element: (
             <Suspense fallback={<div></div>}>
-              <TeamPage />
+              <Lazy.TeamPage />
             </Suspense>
           ),
         },
@@ -103,7 +112,7 @@ const AppRouter = () => {
           path: PATH.CONNECTION,
           element: (
             <Suspense fallback={<div />}>
-              <ConnectionPage />,
+              <Lazy.ConnectionPage />,
             </Suspense>
           ),
         },
