@@ -25,7 +25,7 @@ export const END_POINTS = {
   STORY: (storyId: number) => `/api/stories/${storyId}`,
   STORY_LIST: (currentPage: unknown) => `/api/stories?currentPage=${currentPage}`,
   STORY_FILTER: (filter: string, currentPage: unknown) =>
-    `/api/stories/filter?filterParam=${filter}&currentPage=${currentPage}`,
+    `/api/stories/sort?sortParam=${filter}&currentPage=${currentPage}`,
   POST_STORY: "/api/stories",
   COMMENTS: (currentPage: unknown, boardId: number) =>
     `/api/comments/${boardId}/paged?currentPage=${currentPage}`,
@@ -50,7 +50,7 @@ export const END_POINTS = {
   MEDIA: "/api/media/list",
   QUESTIONS: (currentPage: unknown) => `/api/questions?currentPage=${currentPage}`,
   QUESTION_FILTER: (filter: string, currentPage: unknown) =>
-    `/api/questions/sort?filterParam=${filter}&currentPage=${currentPage}`,
+    `/api/questions/sort?sortParam=${filter}&currentPage=${currentPage}`,
   QUESTION: (questionId: number) => `/api/questions/${questionId}`,
   QUESTION_REPRESENTATIVE: `/api/questions/representative`,
   POST_QUESTION: "/api/questions",

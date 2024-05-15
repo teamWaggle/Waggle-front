@@ -20,11 +20,11 @@ export const QUESTION_FILTER = [
 export const STORY_FILTER = [
   {
     text: "최신순",
-    option: "latest",
+    option: "LATEST",
   },
   {
     text: "인기순",
-    option: "recommend",
+    option: "RECOMMEND",
   },
 ];
 
