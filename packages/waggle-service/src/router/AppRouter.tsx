@@ -15,7 +15,6 @@ import {
   Error404Page,
   AuthPage,
   ConnectionPage,
-  SirenCreatePage,
   QuestionCreatePage,
   TeamPage,
 } from "@/pages";
@@ -54,8 +53,8 @@ const AppRouter = () => {
           ),
         },
         {
-          path: PATH.SIREN_CREATE,
-          element: <SirenCreatePage />,
+          path: PATH.SIREN_UPLOAD,
+          element: <Lazy.SirenUploadPage />,
         },
         {
           path: PATH.QUESTION,
@@ -74,7 +73,7 @@ const AppRouter = () => {
           ),
         },
         {
-          path: PATH.QUESTION_CREATE,
+          path: PATH.QUESTION_UPLOAD,
           element: <QuestionCreatePage />,
         },
         {
@@ -96,10 +95,6 @@ const AppRouter = () => {
               <Lazy.CreateTeamPage />
             </Suspense>
           ),
-        },
-        {
-          path: "/siren-new",
-          element: <SirenCreatePage />,
         },
         {
           path: "/team/:teamId",

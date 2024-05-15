@@ -24,7 +24,7 @@ const SirenBio = () => {
           <Heading>함께 문제를 해결해요</Heading>
         </Flex>
 
-        <Button onClick={() => navigate(PATH.SIREN_CREATE)}>글 작성하기</Button>
+        <Button onClick={() => navigate(PATH.SIREN_UPLOAD)}>글 작성하기</Button>
       </Flex>
 
       <Flex styles={{ gap: "12px" }}>
