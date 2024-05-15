@@ -13,6 +13,7 @@ export const widgetBoxStyle = css({
     width: "68px",
     height: "68px",
     borderRadius: "8px",
+    objectFit: "cover",
   },
 });
 

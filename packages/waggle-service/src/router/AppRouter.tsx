@@ -29,16 +29,24 @@ const AppRouter = () => {
       children: [
         {
           path: "",
-          element: <Lazy.StoryPage />,
+          element: (
+            <Suspense fallback={<div />}>
+              <Lazy.StoryPage />
+            </Suspense>
+          ),
         },
         {
           path: PATH.SIREN,
-          element: <Lazy.SirenPage />,
+          element: (
+            <Suspense fallback={<div />}>
+              <Lazy.SirenPage />
+            </Suspense>
+          ),
         },
         {
           path: PATH.SIREN_DETAIL(":sirenId"),
           element: (
-            <Suspense fallback={<div>로딩중</div>}>
+            <Suspense fallback={<div />}>
               <Lazy.SirenDetailPage />
             </Suspense>
           ),
@@ -50,7 +58,7 @@ const AppRouter = () => {
         {
           path: PATH.QUESTION,
           element: (
-            <Suspense fallback={<div>로딩중</div>}>
+            <Suspense fallback={<div />}>
               <Lazy.QuestionPage />
             </Suspense>
           ),
@@ -58,7 +66,7 @@ const AppRouter = () => {
         {
           path: PATH.QUESTION_DETAIL(":questionId"),
           element: (
-            <Suspense fallback={<div>로딩중</div>}>
+            <Suspense fallback={<div />}>
               <Lazy.QuestionDetailPage />
             </Suspense>
           ),
@@ -102,7 +110,11 @@ const AppRouter = () => {
         { path: PATH.AUTH, element: <AuthPage /> },
         {
           path: PATH.CONNECTION,
-          element: <ConnectionPage />,
+          element: (
+            <Suspense fallback={<div />}>
+              <ConnectionPage />,
+            </Suspense>
+          ),
         },
         {
           path: PATH.MY(":userUrl"),
