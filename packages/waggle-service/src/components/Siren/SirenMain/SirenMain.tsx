@@ -40,7 +40,7 @@ const SirenMain = () => {
   return (
     <Box>
       <Flex styles={{ justify: "space-between", align: "center", marginTop: "76px" }}>
-        <Flex styles={{ gap: "22px" }}>
+        <Flex styles={{ gap: "22px", align: "center" }}>
           <Flex styles={{ gap: "10px" }}>
             <SortButton
               defaultText={filterText}

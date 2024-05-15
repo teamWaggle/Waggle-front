@@ -9,6 +9,7 @@ const SirenBioSkeleton = () => {
             <Skeleton width="240px" height="36px" key={index} />
           ))}
         </Flex>
+        <Skeleton width="93px" height="35px" />
       </Flex>
 
       <Flex styles={{ gap: "12px" }}>

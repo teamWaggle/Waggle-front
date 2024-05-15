@@ -6,7 +6,7 @@ import QuestionPage from "./QuestionPage";
 import SignUpPage from "./SignUpPage";
 import SirenCreatePage from "./SirenCreatePage";
 import SirenDetailPage from "./SirenDetailPage";
-import SirenPage from "./SirenPage";
+import SirenPage from "./SirenPage/SirenPage";
 import StoryPage from "./StoryPage/StoryPage";
 import TeamPage from "./TeamPage";
 import LoadingPage from "./LoadingPage";
