@@ -49,10 +49,6 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
       <Flex style={{ alignItems: "center", justifyContent: "space-between" }}>
         {status !== "CLOSING" && !isScheduled && (
           <>
-            {/* <Flex style={{ alignItems: "center" }}>
-              겹치는 일정{" "}
-              <Text css={teamScheduleOverlapCount(teamColor)}>{overlappedScheduleCount}</Text>
-            </Flex> */}
             <OverlapScheduleButton
               overlappedScheduleCount={overlappedScheduleCount}
               teamColor={teamColor}
