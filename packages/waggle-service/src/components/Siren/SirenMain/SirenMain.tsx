@@ -6,7 +6,7 @@ import { Flex, Box, Text, Theme, SearchInput } from "waggle-design-system";
 import SirenCard from "@/components/Siren/SirenCard/SirenCard";
 import SortButton from "@/components/common/SortButton/SortButton";
 
-import { SIREN_TAG_CATEGORY } from "@/constants/siren";
+import { SIREN_FILTER_TAG_CATEGORY } from "@/constants/siren";
 import { QUESTION_FILTER } from "@/constants/filter";
 
 import { useSirenFilterQuery } from "@/hooks/api/siren/useSirenFilterQuery";
@@ -51,10 +51,13 @@ const SirenMain = () => {
           </Flex>
 
           <Flex styles={{ gap: "14px" }}>
-            {SIREN_TAG_CATEGORY.map((tag) => (
+            {SIREN_FILTER_TAG_CATEGORY.map((tag) => (
               <Flex
                 key={tag.tagName}
-                css={tagStyle(category === tag.category ? tag.color : Theme.color.border)}
+                css={tagStyle(
+                  category === tag.category ? tag.color : Theme.color.border,
+                  tag.category === "ALL"
+                )}
                 onClick={() => {
                   setCategory(tag.category);
                 }}
