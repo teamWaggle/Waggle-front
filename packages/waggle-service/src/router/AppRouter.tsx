@@ -19,6 +19,7 @@ import {
   QuestionCreatePage,
   TeamPage,
 } from "@/pages";
+import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -30,7 +31,7 @@ const AppRouter = () => {
         {
           path: "",
           element: (
-            <Suspense fallback={<div />}>
+            <Suspense fallback={<StoryPageSkeleton />}>
               <Lazy.StoryPage />
             </Suspense>
           ),

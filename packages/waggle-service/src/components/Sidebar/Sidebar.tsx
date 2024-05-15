@@ -1,10 +1,10 @@
-import { Suspense } from "react";
-
 import { useRecoilValue } from "recoil";
 
 import { Flex } from "waggle-design-system";
 
-import { Login, Profile, Widget } from "@/components/Sidebar";
+import Login from "@/components/Login/Login";
+import Profile from "@/components/Sidebar/Profile/Profile";
+import Widget from "@/components/Sidebar/Widget/Widget";
 
 import { isLoggedInState } from "@/recoil/atoms/auth";
 
@@ -19,7 +19,7 @@ const Sidebar = () => {
       }}
       tag="aside"
     >
-      <Suspense fallback={<div />}>{isLoggedIn ? <Profile /> : <Login />}</Suspense>
+      {isLoggedIn ? <Profile /> : <Login />}
       <Widget />
     </Flex>
   );
