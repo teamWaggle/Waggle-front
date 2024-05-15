@@ -10,3 +10,6 @@ export const PlanningPage = lazy(() => import("@/pages/PlanningPage"));
 export const MyPage = lazy(() => import("@/pages/MyPage"));
 export const SirenUploadPage = lazy(() => import("@/pages/SirenUploadPage/SirenUploadPage"));
 export const QuestionUploadPage = lazy(() => import("@/pages/QuestionUploadPage"));
+export const SignUpPage = lazy(() => import("@/pages/SignUpPage"));
+export const ConnectionPage = lazy(() => import("@/pages/ConnectionPage"));
+export const TeamPage = lazy(() => import("@/pages/TeamPage"));
