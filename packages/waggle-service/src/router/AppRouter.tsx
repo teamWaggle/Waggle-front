@@ -10,14 +10,7 @@ import { PATH } from "@/constants/path";
 
 import Error from "@/components/common/Error/Error";
 
-import {
-  SignUpPage,
-  Error404Page,
-  AuthPage,
-  ConnectionPage,
-  QuestionCreatePage,
-  TeamPage,
-} from "@/pages";
+import { SignUpPage, Error404Page, AuthPage, ConnectionPage, TeamPage } from "@/pages";
 import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
 import SirenPageSkeleton from "@/pages/SirenPage/SirenPageSkeleton";
 import QuestionPageSkeleton from "@/pages/QuestionPage/QuestionPageSkeleton";
@@ -75,7 +68,7 @@ const AppRouter = () => {
         },
         {
           path: PATH.QUESTION_UPLOAD,
-          element: <QuestionCreatePage />,
+          element: <Lazy.QuestionUploadPage />,
         },
         {
           path: "/signup",

@@ -16,9 +16,9 @@ import {
   keywordButtonBoxStyle,
   keywordStyle,
   tooltipBoxStyle,
-} from "@/components/Question/QuestionUpload/Keyword/Keyword.style";
+} from "@/components/Question/QuestionKeyword/QuestionKeyword.style";
 
-interface KeywordProps {
+interface QuestionKeywordProps {
   initialValue?: string[];
   updateInputValue: <Key extends keyof QuestionFormData>(
     key: Key,
@@ -26,7 +26,7 @@ interface KeywordProps {
   ) => void;
 }
 
-const Keyword = ({ initialValue, updateInputValue }: KeywordProps) => {
+const QuestionKeyword = ({ initialValue, updateInputValue }: QuestionKeywordProps) => {
   const [isToolTipOpen, setIsToolTipOpen] = useState(false);
   const [isInputOpen, setIsInputOpen] = useState(false);
 
@@ -103,4 +103,4 @@ const Keyword = ({ initialValue, updateInputValue }: KeywordProps) => {
   );
 };
 
-export default Keyword;
+export default QuestionKeyword;
