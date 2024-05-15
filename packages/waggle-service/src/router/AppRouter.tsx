@@ -20,6 +20,7 @@ import {
   TeamPage,
 } from "@/pages";
 import StoryPageSkeleton from "@/pages/StoryPage/StoryPageSkeleton";
+import SirenPageSkeleton from "@/pages/SirenPage/SirenPageSkeleton";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -39,7 +40,7 @@ const AppRouter = () => {
         {
           path: PATH.SIREN,
           element: (
-            <Suspense fallback={<div />}>
+            <Suspense fallback={<SirenPageSkeleton />}>
               <Lazy.SirenPage />
             </Suspense>
           ),
