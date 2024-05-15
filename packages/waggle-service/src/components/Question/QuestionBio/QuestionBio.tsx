@@ -30,7 +30,7 @@ const QuestionBio = () => {
             <Heading size="small">답을 찾아보세요!</Heading>
           </Flex>
 
-          <Button variant="white" onClick={() => navigate(PATH.QUESTION_CREATE)}>
+          <Button variant="white" onClick={() => navigate(PATH.QUESTION_UPLOAD)}>
             글 작성하기
           </Button>
         </Flex>

@@ -7,10 +7,7 @@ import MaleIcon from "@/assets/svg/ic-male.svg?react";
 
 import type { SirenFormData } from "@/types/siren";
 
-import {
-  textStyle,
-  inputStyle,
-} from "@/components/Siren/SirenUpload/SirenUploadInput/SirenUploadInput.style";
+import { textStyle, inputStyle } from "@/components/Siren/SirenUploadInput/SirenUploadInput.style";
 
 interface UploadInfoProps {
   value: SirenFormData;

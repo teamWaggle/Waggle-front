@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { Flex, Box, Heading, Text, Button, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
-import SirenUploadInput from "@/components/Siren/SirenUpload/SirenUploadInput/SirenUploadInput";
+import SirenUploadInput from "@/components/Siren/SirenUploadInput/SirenUploadInput";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
@@ -17,7 +17,7 @@ import {
   layoutStyle,
   inputStyle,
   buttonBoxStyle,
-} from "@/components/Siren/SirenUpload/SirenUpload.style";
+} from "@/pages/SirenUploadPage/SirenUploadPage.style";
 
 const SirenUploadPage = () => {
   const { sirenRequest, updateInputValue, handleSubmit } = useAddSirenForm({});

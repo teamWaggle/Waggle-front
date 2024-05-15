@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { Box, Heading, Button, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import PostUpload from "@/components/common/Post/PostUpload/PostUpload";
-import Keyword from "@/components/Question/QuestionUpload/Keyword/Keyword";
+import QuestionKeyword from "@/components/Question/QuestionKeyword/QuestionKeyword";
 
 import { useAddQuestionForm } from "@/hooks/post/useAddQuestionForm";
 import { useMultipleImgUpload } from "@/hooks/common/useMultipleImgUpload";
@@ -12,9 +12,9 @@ import {
   layoutStyle,
   inputStyle,
   buttonBoxStyle,
-} from "@/components/Siren/SirenUpload/SirenUpload.style";
+} from "@/pages/SirenUploadPage/SirenUploadPage.style";
 
-const QuestionUpload = () => {
+const QuestionUploadPage = () => {
   const { questionRequest, updateInputValue, handleSubmit } = useAddQuestionForm({});
 
   const handleMediaListChange = useCallback(
@@ -42,7 +42,7 @@ const QuestionUpload = () => {
         onChange={(e) => updateInputValue("title", e.target.value)}
       />
 
-      <Keyword updateInputValue={updateInputValue} />
+      <QuestionKeyword updateInputValue={updateInputValue} />
 
       <PostUpload
         value={questionRequest.content}
@@ -60,4 +60,4 @@ const QuestionUpload = () => {
   );
 };
 
-export default QuestionUpload;
+export default QuestionUploadPage;

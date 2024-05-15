@@ -8,4 +8,5 @@ export const QuestionDetailPage = lazy(() => import("@/pages/QuestionDetailPage"
 export const CreateTeamPage = lazy(() => import("@/pages/CreateTeamPage"));
 export const PlanningPage = lazy(() => import("@/pages/PlanningPage"));
 export const MyPage = lazy(() => import("@/pages/MyPage"));
-export const SirenUploadPage = lazy(() => import("@/pages/SirenUploadPage"));
+export const SirenUploadPage = lazy(() => import("@/pages/SirenUploadPage/SirenUploadPage"));
+export const QuestionUploadPage = lazy(() => import("@/pages/QuestionUploadPage"));

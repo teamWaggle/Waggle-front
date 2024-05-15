@@ -1,7 +1,7 @@
 import { Box, Heading, Button, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import PostEdit from "@/components/common/Post/PostEdit";
-import Keyword from "@/components/Question/QuestionUpload/Keyword/Keyword";
+import QuestionKeyword from "@/components/Question/QuestionKeyword/QuestionKeyword";
 
 import { useAddQuestionForm } from "@/hooks/post/useAddQuestionForm";
 
@@ -11,7 +11,7 @@ import {
   layoutStyle,
   inputStyle,
   buttonBoxStyle,
-} from "@/components/Siren/SirenUpload/SirenUpload.style";
+} from "@/pages/SirenUploadPage/SirenUploadPage.style";
 
 const QuestionEdit = ({ questionData }: QuestionDataType) => {
   const { boardId, title, content, mediaList, hashtagList } = questionData;
@@ -32,7 +32,7 @@ const QuestionEdit = ({ questionData }: QuestionDataType) => {
         Q&A - 질문 수정하기
       </Heading>
 
-      <Keyword initialValue={hashtagList} updateInputValue={updateInputValue} />
+      <QuestionKeyword initialValue={hashtagList} updateInputValue={updateInputValue} />
 
       <input
         type="text"

@@ -10,7 +10,7 @@ import {
 } from "waggle-design-system";
 
 import PostEdit from "@/components/common/Post/PostEdit";
-import SirenUploadInput from "@/components/Siren/SirenUpload/SirenUploadInput/SirenUploadInput";
+import SirenUploadInput from "@/components/Siren/SirenUploadInput/SirenUploadInput";
 
 import { SIREN_TAG_CATEGORY } from "@/constants/siren";
 
@@ -21,7 +21,7 @@ import { generateTagStyle, generateTagCategory } from "@/utils/generateTag";
 import type { SirenDataType } from "@/types/siren";
 
 import { layoutStyle, inputStyle, tagStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
-import { buttonBoxStyle } from "@/components/Siren/SirenUpload/SirenUpload.style";
+import { buttonBoxStyle } from "@/pages/SirenUploadPage/SirenUploadPage.style";
 
 const SirenEdit = ({ sirenData }: SirenDataType) => {
   const {
