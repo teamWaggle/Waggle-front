@@ -21,6 +21,7 @@
     "@emotion/styled": "^11.11.0",
     "@emotion/utils": "^1.2.1",
     "@hookform/resolvers": "^3.3.4",
+    "@stomp/stompjs": "^7.0.0",
     "@tanstack/react-query": "^5.29.2",
     "axios": "^1.6.2",
     "react": "^18.2.0",

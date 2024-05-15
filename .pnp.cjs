@@ -6764,6 +6764,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@stomp/stompjs", [\
+      ["npm:7.0.0", {\
+        "packageLocation": "./.yarn/cache/@stomp-stompjs-npm-7.0.0-c66e011389-b68d32625e.zip/node_modules/@stomp/stompjs/",\
+        "packageDependencies": [\
+          ["@stomp/stompjs", "npm:7.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@storybook/addon-a11y", [\
       ["npm:7.6.17", {\
         "packageLocation": "./.yarn/cache/@storybook-addon-a11y-npm-7.6.17-9272a488b6-2784a9caea.zip/node_modules/@storybook/addon-a11y/",\
@@ -26265,6 +26274,7 @@ const RAW_RUNTIME_STATE =
           ["@emotion/styled", "virtual:b87f6af78ce16849aedde052ee423fdb48db75040312d2f2f93643746fda40898388a71122eecbc567a8f0db83e07d16cfbcff4bf55d6765bb068cd7a28711f9#npm:11.11.5"],\
           ["@emotion/utils", "npm:1.2.1"],\
           ["@hookform/resolvers", "virtual:2c8b3fa8587a38c2be0a6af4a11deb5e882e9b78f972bbb3229327fce05bd7ab5a8b65fc1d9df7edebceeb0df972815f94126274a2cebd5380223222cf8a02c8#npm:3.3.4"],\
+          ["@stomp/stompjs", "npm:7.0.0"],\
           ["@storybook/addon-a11y", "npm:7.6.17"],\
           ["@storybook/addon-essentials", "virtual:b87f6af78ce16849aedde052ee423fdb48db75040312d2f2f93643746fda40898388a71122eecbc567a8f0db83e07d16cfbcff4bf55d6765bb068cd7a28711f9#npm:7.6.17"],\
           ["@storybook/addon-interactions", "npm:7.6.17"],\
