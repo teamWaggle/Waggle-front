@@ -2,13 +2,14 @@ import { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 
-import { Flex, Spinner, Text } from "waggle-design-system";
+import { Flex, Text } from "waggle-design-system";
 
 import Logo from "@/assets/svg/logo.svg?react";
 import NotiIcon from "@/assets/svg/ic-header-noti.svg?react";
 
 import LogInMenu from "@/components/Header/LogInMenu/LogInMenu";
 import LoginModal from "@/components/Login/LoginModal/LoginModal";
+import LogInMenuSkeleton from "@/components/Header/LogInMenu/LogInMenuSkeleton";
 
 import { PATH } from "@/constants/path";
 
@@ -56,7 +57,7 @@ const Header = () => {
         </Flex>
 
         {isLoggedIn ? (
-          <Suspense fallback={<Spinner size={30} width={3} />}>
+          <Suspense fallback={<LogInMenuSkeleton />}>
             <LogInMenu />
           </Suspense>
         ) : (
