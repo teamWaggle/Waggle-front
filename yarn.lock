@@ -4025,6 +4025,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stomp/stompjs@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@stomp/stompjs@npm:7.0.0"
+  checksum: 10c0/b68d32625efa71d12c57eb5174a83625277da306f9adb044ebf91000c6dec1a433abfd11e44a74d21f7b6fc27490e12997468f0c4f276767ab25c59f7ae93bd4
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-a11y@npm:^7.6.4":
   version: 7.6.17
   resolution: "@storybook/addon-a11y@npm:7.6.17"
@@ -19284,6 +19291,7 @@ __metadata:
     "@emotion/styled": "npm:^11.11.0"
     "@emotion/utils": "npm:^1.2.1"
     "@hookform/resolvers": "npm:^3.3.4"
+    "@stomp/stompjs": "npm:^7.0.0"
     "@storybook/addon-a11y": "npm:^7.6.4"
     "@storybook/addon-essentials": "npm:^7.6.4"
     "@storybook/addon-interactions": "npm:^7.6.4"

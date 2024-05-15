@@ -71,7 +71,7 @@ interface ChatMessagesType {
   nextPageParam: number;
 }
 
-interface ChatMessageType {
+export interface ChatMessageType {
   id: string;
   content: string;
   sendTime: Date;
