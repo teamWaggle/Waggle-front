@@ -1,4 +1,5 @@
 import { useSearchParams, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 import SirenDetail from "@/components/Siren/SirenDetail/SirenDetail";
 import SirenEdit from "@/components/Siren/SirenEdit/SirenEdit";
@@ -10,7 +11,13 @@ const SirenDetailPage = () => {
 
   const { sirenData } = useSirenQuery(Number(param.sirenId));
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams.size !== 0 && searchParams.get("mode") !== "edit") {
+      setSearchParams("mode=edit");
+    }
+  }, [searchParams]);
 
   return (
     <>
