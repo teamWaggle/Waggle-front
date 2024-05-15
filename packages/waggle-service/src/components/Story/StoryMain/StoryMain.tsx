@@ -9,7 +9,6 @@ import SortButton from "@/components/common/SortButton/SortButton";
 
 import { STORY_FILTER } from "@/constants/filter";
 
-// import { useStoryListQuery } from "@/hooks/api/story/useStoryListQuery";
 import { useStoryFilterQuery } from "@/hooks/api/story/useStoryFilterQuery";
 import useObserver from "@/hooks/common/useObserver";
 import { useFilter } from "@/hooks/post/useFilter";
@@ -20,7 +19,7 @@ const StoryMain = () => {
   const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
 
   const { storyListData, hasNextPage, fetchNextPage, isFetching, refetch } =
-    useStoryFilterQuery("latest");
+    useStoryFilterQuery(filterOption);
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
