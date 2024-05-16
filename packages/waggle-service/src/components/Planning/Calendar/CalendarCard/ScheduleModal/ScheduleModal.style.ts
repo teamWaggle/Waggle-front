@@ -11,7 +11,7 @@ export const scheduleModalBoxStyle = ({ row, column, index }: SchedulePositionTy
     zIndex: 2,
     top: `${index / 7 < 3 ? row : row - 250}` + "px",
     left: `${index % 7 < 4 ? column + 161 : column - 450}` + "px",
-    width: "450px",
+    width: "500px",
     height: "600px",
     backgroundColor: Theme.color.white,
     boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",

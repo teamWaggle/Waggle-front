@@ -29,18 +29,18 @@ const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
   const imagePreview = useImagePreview(value);
 
   const handleResetImage = () => {
-    onChange({ target: { value: "", name: "image" } });
+    onChange({ target: { value: "" } });
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files;
+    const file = e.target.files?.[0];
     if (!file) return;
-    if (file[0].size > FILE_SIZE_MAX_LIMIT) {
+    if (file.size > FILE_SIZE_MAX_LIMIT) {
       toast.error("업로드 가능한 최대 용량은 1MB입니다.");
       return;
     }
     if (file) {
-      onChange({ target: { value: file[0], name: "image" } });
+      onChange({ target: { value: file } });
     }
   };
   return (
