@@ -1,5 +1,4 @@
 import type { FieldValues } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
 import LeftArrowIcon from "@/assets/svg/left-arrow-brand-primary.svg?react";
 
@@ -7,16 +6,7 @@ import { Box, Flex, Heading, Text } from "waggle-design-system";
 import { Form } from "@/components/common";
 import * as yup from "yup";
 
-import {
-  CREATE_TEAM_FORM_KEY,
-  EDIT_TEAM_FORM_KEY,
-  TEAM_CONTENT,
-  TEAM_DEFAULT_VALUES,
-  TEAM_TITLE,
-} from "@/constants/team";
-
-import { useCreateTeam } from "@/hooks/api/team/useCreateTeam";
-import { useSingleImgUpload } from "@/hooks/common/useSingleImgUpload";
+import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
 
 import {
   colorTitleStyle,
@@ -28,7 +18,7 @@ import {
   textInputBoxStyle,
   titleTextInputStyle,
 } from "@/components/Team/TeamForm/TeamForm.style";
-import { useEditTeam } from "@/hooks/api/team/useEditTeam";
+import { useTeamForm } from "@/hooks/team/useTeamForm";
 
 const schema = yup
   .object({
@@ -38,30 +28,11 @@ const schema = yup
   .required();
 
 const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
-  const navigate = useNavigate();
-  const { mutate: createTeamMutate } = useCreateTeam();
-  const { mutate: editTeamMutate } = useEditTeam();
-  const { convertToMediaUrl, uploadMedia } = useSingleImgUpload({});
-
-  const onSubmit = async (data: FieldValues) => {
-    const formData = new FormData();
-    if (data.coverImageUrl) {
-      console.log("data.coverImageUrl", data.coverImageUrl);
-      console.log("data", data);
-      console.log(typeof data.coverImageUrl);
-      convertToMediaUrl(data.coverImageUrl);
-      data.coverImageUrl = uploadMedia;
-      console.log("data.coverImageUrl", uploadMedia);
-    }
-    const formDataKey = defaultValues ? EDIT_TEAM_FORM_KEY : CREATE_TEAM_FORM_KEY;
-    formData.append(formDataKey, JSON.stringify({ ...data, coverImageUrl: uploadMedia }));
-    defaultValues ? editTeamMutate(formData) : createTeamMutate(formData);
-    navigate(-1);
-  };
+  const { onSubmit, handleLeftArrowIconClick } = useTeamForm(defaultValues);
   return (
     <>
       <Flex styles={{ align: "center", marginTop: "52px", gap: "24px", marginBottom: "20px" }}>
-        <LeftArrowIcon css={leftArrowIconStyle} onClick={() => navigate(-1)} />
+        <LeftArrowIcon css={leftArrowIconStyle} onClick={handleLeftArrowIconClick} />
         <Heading css={headingStyle} size="xLarge">
           {defaultValues ? "팀 수정하기" : "팀 만들기"}
         </Heading>

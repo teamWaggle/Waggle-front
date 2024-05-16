@@ -41,7 +41,7 @@ const OverlapScheduleButton = ({
         <Text css={teamScheduleOverlapCount(teamColor)}>{overlappedScheduleCount}</Text>
         {isOpenOverlapSchedule && (
           <>
-            <Box css={overlapTransparentBackground}></Box>
+            <Box css={overlapTransparentBackground} />
             <Flex
               styles={{ position: "absolute", direction: "column", padding: "8px 12px" }}
               css={overlapScheduleModal}
