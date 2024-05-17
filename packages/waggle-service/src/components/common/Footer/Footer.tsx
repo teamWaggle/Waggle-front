@@ -2,7 +2,7 @@ import { footerFlexStyle } from "@/components/common/Footer/Footer.style";
 import { Flex } from "waggle-design-system";
 
 const Footer = () => {
-  return <Flex tag="footer" css={footerFlexStyle}></Flex>;
+  return <Flex tag="footer" styles={{ marginTop: "60px" }} css={footerFlexStyle}></Flex>;
 };
 
 export default Footer;
