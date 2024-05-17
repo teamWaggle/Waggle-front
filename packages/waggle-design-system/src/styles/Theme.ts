@@ -27,6 +27,7 @@ const color = {
   gray100: "#f3f3f3",
   gray200: "#e8e8e8",
   gray300: "#dddddd",
+  gray400: "#686868",
   saturday: "#0075FF",
 };
 
