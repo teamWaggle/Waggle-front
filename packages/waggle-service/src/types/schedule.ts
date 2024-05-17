@@ -32,6 +32,7 @@ interface TeamScheduleResultType {
   scheduleCount: number;
   isFirst: boolean;
   isLast: boolean;
+  isPrivate: boolean;
 }
 
 export type TeamScheduleDateTimeType = string;

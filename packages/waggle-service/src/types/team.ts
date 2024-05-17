@@ -12,6 +12,7 @@ export interface TeamCardType {
   coverImageUrl: string;
   teamColor: TeamColorType;
   teamSize: number;
+  isPrivate: boolean;
 }
 
 export interface TeamInfoType extends TeamCardType {

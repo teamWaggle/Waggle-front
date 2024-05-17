@@ -11,9 +11,8 @@ import { useTeamParticipationAccept } from "@/hooks/api/team/useTeamParticipatio
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import type { TeamMemberType } from "@/types/team";
 import { useNavigate } from "react-router-dom";
-
+import { PATH } from "@/constants/path";
 const ParticipationCard = ({ participatingMember }: { participatingMember: TeamMemberType }) => {
-  console.log(participatingMember);
   const { nickname, userUrl, profileImgUrl, memberId } = participatingMember;
   const teamId = useParamsTeamId();
 
@@ -29,7 +28,7 @@ const ParticipationCard = ({ participatingMember }: { participatingMember: TeamM
   };
   const navigate = useNavigate();
   const handleOnclickCard = () => {
-    navigate(userUrl);
+    navigate(PATH.MY(userUrl));
   };
   return (
     <Flex styles={{ gap: "4px" }}>
