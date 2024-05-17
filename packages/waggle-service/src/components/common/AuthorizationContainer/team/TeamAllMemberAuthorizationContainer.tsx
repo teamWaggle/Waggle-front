@@ -2,12 +2,18 @@ import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuer
 import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 
-const TeamMemberAuthorizationContainer = ({ children }: { children: React.ReactNode }) => {
+const TeamAllMemberAuthorizationContainer = ({
+  children,
+  renderLock = "",
+}: {
+  children: React.ReactNode;
+  renderLock?: React.ReactNode;
+}) => {
   const teamId = useParamsTeamId();
-  const { teamMemberList, teamLeader } = useTeamInfo(teamId);
+  const { teamMemberList } = useTeamInfo(teamId);
   const { memberId: myId } = useMemberInfoSaveQuery();
   const isMember = teamMemberList?.some((member) => member.memberId === myId);
-  const isLeader = teamLeader?.memberId === myId;
-  return <>{isMember && !isLeader && children}</>;
+  return <>{isMember ? children : renderLock}</>;
 };
-export default TeamMemberAuthorizationContainer;
+
+export default TeamAllMemberAuthorizationContainer;

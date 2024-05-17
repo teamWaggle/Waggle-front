@@ -25,12 +25,12 @@ import { useTeamScheduleListPeriod } from "@/hooks/api/schedule/useTeamScheduleL
 import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamScheduleModal";
 import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import { DatePicker, DatePickerCalendarModal, Form } from "@/components/common";
+import TeamAllMemberAuthorizationContainer from "@/components/common/AuthorizationContainer/team/TeamAllMemberAuthorizationContainer";
 
 const TeamSchedule = () => {
   const { getYearMonthDay } = getDate();
   const teamId = useParamsTeamId();
   const { openModal } = useModal();
-  const [isMember] = useState(true);
   const [isSearch, setIsSearch] = useState(false);
   const { teamScheduleListData, fetchNextPage, hasNextPage, isFetching } =
     useTeamScheduleListPage(teamId);
@@ -78,70 +78,65 @@ const TeamSchedule = () => {
 
   return (
     <>
-      {isMember ? (
-        <>
-          <Flex styles={{ justify: "space-between", align: "center", marginTop: "20px" }}>
-            <Flex style={{ alignItems: "center", gap: "16px" }}>
-              <Heading size="xLarge" css={teamScheduleTitleStyle}>
-                TEAM SCHEDULE
-              </Heading>
-              <Form schema={schema} onSubmit={onSubmit} defaultValues={TEAM_SCHEDULE_SEARCH_VALUES}>
-                <Flex style={{ gap: "4px", alignItems: "center" }}>
-                  <DatePicker name="startDate">
-                    <DatePickerCalendarModal />
-                  </DatePicker>
-                  ~
-                  <DatePicker name="endDate">
-                    <DatePickerCalendarModal />
-                  </DatePicker>
-                  <button type="submit" css={teamScheduleSearchButtonStyle}>
-                    <Text size="xSmall">일정 검색</Text>
-                  </button>
-                  <Form.ResetButton onClick={handleResetButton}>
-                    <Flex tag="button" css={teamScheduleSearchButtonStyle}>
-                      <ResetIcon />
-                    </Flex>
-                  </Form.ResetButton>
-                </Flex>
-              </Form>
-            </Flex>
-            <Button onClick={handleAddSchedule} css={teamScheduleAddButtonStyle("team_1")}>
-              일정 추가
-              <AddIcon />
-            </Button>
+      <TeamAllMemberAuthorizationContainer
+        renderLock={<Lock teamName={teamName} teamId={teamId} teamColor={teamColor} />}
+      >
+        <Flex styles={{ justify: "space-between", align: "center", marginTop: "20px" }}>
+          <Flex style={{ alignItems: "center", gap: "16px" }}>
+            <Heading size="xLarge" css={teamScheduleTitleStyle}>
+              TEAM SCHEDULE
+            </Heading>
+            <Form schema={schema} onSubmit={onSubmit} defaultValues={TEAM_SCHEDULE_SEARCH_VALUES}>
+              <Flex style={{ gap: "4px", alignItems: "center" }}>
+                <DatePicker name="startDate">
+                  <DatePickerCalendarModal />
+                </DatePicker>
+                ~
+                <DatePicker name="endDate">
+                  <DatePickerCalendarModal />
+                </DatePicker>
+                <button type="submit" css={teamScheduleSearchButtonStyle}>
+                  <Text size="xSmall">일정 검색</Text>
+                </button>
+                <Form.ResetButton onClick={handleResetButton}>
+                  <Flex tag="button" css={teamScheduleSearchButtonStyle}>
+                    <ResetIcon />
+                  </Flex>
+                </Form.ResetButton>
+              </Flex>
+            </Form>
           </Flex>
-          {isLoading && (
-            <Flex
-              style={{
-                height: "300px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Spinner />
-            </Flex>
-          )}
-          <Box css={teamScheduleGridBoxStyle}>
-            {!isSearch
-              ? teamScheduleListData?.pages.map((teamScheduleData, page) => (
-                  <Fragment key={page}>
-                    {teamScheduleData.result.scheduleList.map((teamSchedule) => (
-                      <TeamScheduleCard
-                        key={teamSchedule.boardId}
-                        teamScheduleData={teamSchedule}
-                      />
-                    ))}
-                  </Fragment>
-                ))
-              : TeamScheduleListPeriod?.result.scheduleList.map((teamSchedule) => (
-                  <TeamScheduleCard key={teamSchedule.boardId} teamScheduleData={teamSchedule} />
-                ))}
-          </Box>
-          <div ref={ref} />
-        </>
-      ) : (
-        <Lock />
-      )}
+          <Button onClick={handleAddSchedule} css={teamScheduleAddButtonStyle("team_1")}>
+            일정 추가
+            <AddIcon />
+          </Button>
+        </Flex>
+        {isLoading && (
+          <Flex
+            style={{
+              height: "300px",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Spinner />
+          </Flex>
+        )}
+        <Box css={teamScheduleGridBoxStyle}>
+          {!isSearch
+            ? teamScheduleListData?.pages.map((teamScheduleData, page) => (
+                <Fragment key={page}>
+                  {teamScheduleData.result.scheduleList.map((teamSchedule) => (
+                    <TeamScheduleCard key={teamSchedule.boardId} teamScheduleData={teamSchedule} />
+                  ))}
+                </Fragment>
+              ))
+            : TeamScheduleListPeriod?.result.scheduleList.map((teamSchedule) => (
+                <TeamScheduleCard key={teamSchedule.boardId} teamScheduleData={teamSchedule} />
+              ))}
+        </Box>
+        <div ref={ref} />
+      </TeamAllMemberAuthorizationContainer>
     </>
   );
 };

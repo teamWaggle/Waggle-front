@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 import { PATH } from "@/constants/path";
 import useModal from "@/hooks/common/useModal";
 import AlertModal from "@/components/common/AlertModal/AlerlModal";
-import TeamMemberAuthorizationContainer from "@/components/common/AuthorizationContainer/team/TeamMemberAuthorizationContainer";
+import TeamMemberOnlyAuthorizationContainer from "@/components/common/AuthorizationContainer/team/TeamMemberOnlyAuthorizationContainer";
 import { useLeaveTeam } from "@/hooks/api/team/useLeaveTeam";
 
 const TeamInfo = () => {
@@ -62,11 +62,11 @@ const TeamInfo = () => {
                 <PenIcon css={buttonIconStyle} />
               </Button>
             </TeamLeaderAuthorizationContainer>
-            <TeamMemberAuthorizationContainer>
+            <TeamMemberOnlyAuthorizationContainer>
               <Button variant="disabled" onClick={handleLeaveTeamModal}>
                 팀 탈퇴하기
               </Button>
-            </TeamMemberAuthorizationContainer>
+            </TeamMemberOnlyAuthorizationContainer>
             <Button>팀 참여하기</Button>
           </Flex>
         </Flex>
