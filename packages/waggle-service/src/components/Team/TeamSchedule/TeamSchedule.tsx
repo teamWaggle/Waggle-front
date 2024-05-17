@@ -6,7 +6,7 @@ import { Box, Flex, Heading, Text, Spinner, Button } from "waggle-design-system"
 import Lock from "@/components/Team/TeamSchedule/Lock/Lock";
 import TeamScheduleCard from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard";
 import * as yup from "yup";
-
+import ResetIcon from "@/assets/svg/reset.svg?react";
 import { TEAM_SCHEDULE_SEARCH_VALUES } from "@/constants/team";
 import { useTeamScheduleListPage } from "@/hooks/api/schedule/useTeamScheduleListPage";
 import useModal from "@/hooks/common/useModal";
@@ -99,7 +99,7 @@ const TeamSchedule = () => {
                   </button>
                   <Form.ResetButton onClick={handleResetButton}>
                     <Flex tag="button" css={teamScheduleSearchButtonStyle}>
-                      <Text size="xSmall">초기화</Text>
+                      <ResetIcon />
                     </Flex>
                   </Form.ResetButton>
                 </Flex>
