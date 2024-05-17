@@ -12,7 +12,6 @@ import {
   teamSectionStyle,
 } from "@/components/Team/TeamInfo/TeamInfo.style";
 import PenIcon from "@/assets/svg/pen.svg?react";
-import TrashIcon from "@/assets/svg/trashCan.svg?react";
 
 import MemberSlider from "@/components/Team/TeamInfo/SliderTemplate/MemberSlider/MemberSlider";
 import TeamLeaderAuthorizationContainer from "@/components/common/AuthorizationContainer/team/TeamLeaderAuthorizationContainer";
@@ -23,7 +22,6 @@ import { useNavigate } from "react-router-dom";
 import { PATH } from "@/constants/path";
 import useModal from "@/hooks/common/useModal";
 import AlertModal from "@/components/common/AlertModal/AlerlModal";
-import { useDeleteTeam } from "@/hooks/api/team/useDeleteTeam";
 import TeamMemberAuthorizationContainer from "@/components/common/AuthorizationContainer/team/TeamMemberAuthorizationContainer";
 import { useLeaveTeam } from "@/hooks/api/team/useLeaveTeam";
 
@@ -31,29 +29,12 @@ const TeamInfo = () => {
   const { openModal, closeModal } = useModal();
   const teamId = useParamsTeamId();
   const navigate = useNavigate();
-  const { mutate: deleteTeamMutate } = useDeleteTeam();
   const { mutate: leaveTeamMutate } = useLeaveTeam();
   const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId);
 
-  const handleDelete = () => {
-    deleteTeamMutate(teamId, { onSuccess: () => navigate(PATH.PLANNING, { replace: true }) });
-    closeModal();
-  };
   const handleLeaveTeam = () => {
     leaveTeamMutate(teamId, { onSuccess: () => navigate(PATH.PLANNING, { replace: true }) });
     closeModal();
-  };
-  const handleDeleteTeamModal = () => {
-    openModal({
-      key: "DeleteTeam",
-      component: () => (
-        <AlertModal title="팀을 삭제하시겠습니까?">
-          <AlertModal.Button onClick={closeModal} text="취소"></AlertModal.Button>
-          <AlertModal.Button onClick={handleDelete} isConfirm text="삭제"></AlertModal.Button>
-        </AlertModal>
-      ),
-      isWhiteIcon: true,
-    });
   };
 
   const handleLeaveTeamModal = () => {
@@ -76,10 +57,6 @@ const TeamInfo = () => {
           <Heading size="xLarge">{name}</Heading>
           <Flex styles={{ gap: "12px" }}>
             <TeamLeaderAuthorizationContainer>
-              <Button variant="danger" onClick={handleDeleteTeamModal}>
-                팀 삭제하기
-                <TrashIcon css={buttonIconStyle} />
-              </Button>
               <Button onClick={() => navigate(PATH.TEAM_EDIT(teamId))}>
                 팀 수정하기
                 <PenIcon css={buttonIconStyle} />

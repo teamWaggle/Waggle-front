@@ -11,6 +11,7 @@ import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team"
 import {
   colorTitleStyle,
   contentTextareaStyle,
+  deleteTeamTextStyle,
   headingStyle,
   leftArrowIconStyle,
   submitButtonStyle,
@@ -19,6 +20,12 @@ import {
   titleTextInputStyle,
 } from "@/components/Team/TeamForm/TeamForm.style";
 import { useTeamForm } from "@/hooks/team/useTeamForm";
+import useModal from "@/hooks/common/useModal";
+import AlertModal from "@/components/common/AlertModal/AlerlModal";
+import { PATH } from "@/constants/path";
+import { useDeleteTeam } from "@/hooks/api/team/useDeleteTeam";
+import { useNavigate } from "react-router-dom";
+import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 
 const schema = yup
   .object({
@@ -28,13 +35,34 @@ const schema = yup
   .required();
 
 const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
-  const { onSubmit, handleLeftArrowIconClick } = useTeamForm(defaultValues);
+  const { onSubmit, isEdit, handleLeftArrowIconClick } = useTeamForm(defaultValues);
+  const { openModal, closeModal } = useModal();
+  const { mutate: deleteTeamMutate } = useDeleteTeam();
+  const navigate = useNavigate();
+  const teamId = useParamsTeamId();
+
+  const handleDeleteTeamModal = () => {
+    openModal({
+      key: "DeleteTeam",
+      component: () => (
+        <AlertModal title="팀을 삭제하시겠습니까?">
+          <AlertModal.Button onClick={closeModal} text="취소"></AlertModal.Button>
+          <AlertModal.Button onClick={handleDelete} isConfirm text="삭제"></AlertModal.Button>
+        </AlertModal>
+      ),
+      isWhiteIcon: true,
+    });
+  };
+  const handleDelete = () => {
+    deleteTeamMutate(teamId, { onSuccess: () => navigate(PATH.PLANNING, { replace: true }) });
+    closeModal();
+  };
   return (
     <>
       <Flex styles={{ align: "center", marginTop: "52px", gap: "24px", marginBottom: "20px" }}>
         <LeftArrowIcon css={leftArrowIconStyle} onClick={handleLeftArrowIconClick} />
         <Heading css={headingStyle} size="xLarge">
-          {defaultValues ? "팀 수정하기" : "팀 만들기"}
+          {isEdit ? "팀 수정하기" : "팀 만들기"}
         </Heading>
       </Flex>
       <Form
@@ -67,10 +95,17 @@ const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
           <Text css={colorTitleStyle}>팀 대표 컬러</Text>
           <Form.ColorRadioInputField name="teamColor" />
           <button css={submitButtonStyle} type="submit">
-            {defaultValues ? "팀 수정하기" : "팀 생성하기"}
+            {isEdit ? "팀 수정하기" : "팀 생성하기"}
           </button>
         </Box>
       </Form>
+      {isEdit && (
+        <Flex styles={{ justify: "center" }}>
+          <Text css={deleteTeamTextStyle} onClick={handleDeleteTeamModal}>
+            팀 삭제하기
+          </Text>
+        </Flex>
+      )}
     </>
   );
 };

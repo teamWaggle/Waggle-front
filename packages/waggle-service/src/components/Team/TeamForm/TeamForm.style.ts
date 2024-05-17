@@ -82,3 +82,12 @@ export const contentTextareaStyle = css({
   border: `2px solid ${Theme.color.gray200}`,
   resize: "none",
 });
+
+export const deleteTeamTextStyle = css({
+  cursor: "pointer",
+  color: Theme.color.gray300,
+  fontSize: "16px",
+  marginTop: "20px",
+  width: "fit-content",
+  justifyContent: "center",
+});

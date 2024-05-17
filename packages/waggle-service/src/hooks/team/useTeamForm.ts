@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const useTeamForm = (defaultValues?: FieldValues) => {
   const navigate = useNavigate();
+  const isEdit = !!defaultValues;
   const { mutate: createTeamMutate } = useCreateTeam();
   const { mutate: editTeamMutate } = useEditTeam();
   const { mutateAsync } = usePostMediaMutation();
@@ -31,5 +32,5 @@ export const useTeamForm = (defaultValues?: FieldValues) => {
     navigate(-1);
   };
 
-  return { onSubmit, handleLeftArrowIconClick };
+  return { onSubmit, handleLeftArrowIconClick, isEdit };
 };

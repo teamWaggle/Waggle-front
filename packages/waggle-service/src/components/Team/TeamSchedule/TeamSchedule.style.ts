@@ -12,11 +12,14 @@ export const teamScheduleTitleStyle = css({
 });
 
 export const teamScheduleSearchButtonStyle = css({
-  padding: "6px 12px",
+  padding: "12px 12px",
   borderRadius: "2px",
   border: "none",
-  backgroundColor: Theme.color.border,
+  backgroundColor: "transparent",
   cursor: "pointer",
+  "&:hover": {
+    backgroundColor: Theme.color.gray100,
+  },
 });
 
 export const teamScheduleAddButtonStyle = (color: TeamColorType) =>
