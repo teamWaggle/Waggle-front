@@ -84,7 +84,7 @@ const ChatRoomContent = () => {
         stompClient.deactivate();
       }
     };
-  }, [chatRoomId]);
+  }, []);
 
   // const recvMessage = () => {
 
