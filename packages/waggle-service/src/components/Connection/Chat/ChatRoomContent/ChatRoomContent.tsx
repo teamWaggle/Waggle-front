@@ -52,7 +52,7 @@ const ChatRoomContent = () => {
 
   useEffect(() => {
     const client = new Client({
-      brokerURL: "wss://suddii01.store/ws/chat",
+      brokerURL: import.meta.env.VITE_SOCKET_URL,
       reconnectDelay: 10000,
       connectHeaders: {
         Authorization: `Bearer ${accessToken}`,
