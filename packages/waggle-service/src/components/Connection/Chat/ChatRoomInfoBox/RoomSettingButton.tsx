@@ -31,7 +31,11 @@ const RoomSettingButton = () => {
   const isOwner = memberId === ownerId;
 
   const deleteMutate = () => {
-    leaveChatRoomMutate(chatRoomId);
+    leaveChatRoomMutate(chatRoomId, {
+      onSuccess: () => {
+        closeModal();
+      },
+    });
   };
 
   const handleLeaveChatRoom = () => {
