@@ -85,9 +85,6 @@ const ChatRoomJoinModal = ({
         >
           <Flex styles={{ direction: "column", align: "center", gap: "10px" }}>
             <LockIcon />
-            <Text size="xLarge" css={getDefaultTextStyle(Theme.color.readonly_text, 600)}>
-              비밀번호 6자리를 입력해주세요
-            </Text>
 
             <Form.TextInputField
               inputStyle={titleInputStyle(true)}
@@ -97,11 +94,11 @@ const ChatRoomJoinModal = ({
             />
           </Flex>
 
-          <Flex styles={{ direction: "column", gap: "12px" }}>
-            <Button size="xLarge" type="submit">
+          <Flex styles={{ direction: "column", gap: "12px", align: "center" }}>
+            <Button size="large" type="submit">
               입장하기
             </Button>
-            <Button size="xLarge" variant="disabled">
+            <Button size="large" variant="disabled" onClick={() => closeModal()}>
               다른 채팅방 보기
             </Button>
           </Flex>
