@@ -84,6 +84,15 @@ const ChatRoomCreateModal = () => {
           </Box>
           <Box styles={{ width: "100%" }}>
             <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+              팀 공개
+            </Heading>
+            <Flex styles={{ align: "center", gap: "30px" }}>
+              <Text>공개</Text>
+              <Text>비공개</Text>
+            </Flex>
+          </Box>
+          <Box styles={{ width: "100%" }}>
+            <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
               {ROOM_PASSWORD_FORM.TITLE}
             </Heading>
             <Form.TextInputField
