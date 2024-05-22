@@ -40,10 +40,23 @@ const Comment = ({ boardId }: { boardId: number }) => {
   });
 
   return (
-    <Flex
-      styles={{ direction: "column", gap: "60px", margin: "60px auto 0" }}
-      css={commentBoxStyle}
-    >
+    <Flex styles={{ direction: "column", gap: "60px", margin: "60px auto" }} css={commentBoxStyle}>
+      <Box css={textareaBoxStyle}>
+        <textarea
+          placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."
+          css={commentTextareaStyle("100%", 113)}
+          value={commentContent}
+          onChange={(e) => handleCommentContent(e.target.value)}
+          ref={commentTextAreaRef}
+        />
+        <Box
+          css={buttonBoxStyle}
+          onClick={() => (commentButtonText === "등록" ? handleAddComment() : handleEditComment())}
+        >
+          <Button>{commentButtonText}</Button>
+        </Box>
+      </Box>
+
       <Flex styles={{ direction: "column", gap: "36px", width: "100%" }}>
         {commentData.pages.map((commentData, index) => (
           <Fragment key={index}>
@@ -58,22 +71,6 @@ const Comment = ({ boardId }: { boardId: number }) => {
         ))}
         <div ref={ref} />
       </Flex>
-
-      <Box css={textareaBoxStyle}>
-        <textarea
-          placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."
-          css={commentTextareaStyle("100%", 194)}
-          value={commentContent}
-          onChange={(e) => handleCommentContent(e.target.value)}
-          ref={commentTextAreaRef}
-        />
-        <Box
-          css={buttonBoxStyle}
-          onClick={() => (commentButtonText === "등록" ? handleAddComment() : handleEditComment())}
-        >
-          <Button>{commentButtonText}</Button>
-        </Box>
-      </Box>
     </Flex>
   );
 };
