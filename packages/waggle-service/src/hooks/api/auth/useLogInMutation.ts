@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 import { useSetRecoilState } from "recoil";
 
 import { useMutation } from "@tanstack/react-query";
@@ -26,8 +24,6 @@ export const useLogInMutation = () => {
       setIsLoggedIn(true);
     },
     onError: () => {
-      toast.error("오류가 발생했습니다. 잠시 후 다시 시도해주세요");
-
       setIsLoggedIn(false);
     },
   });
