@@ -11,15 +11,15 @@ export const radioLabelStyle = css({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-
-  "& > div": {
-    width: "14px",
-    height: "14px",
-    borderRadius: "50%",
-    backgroundColor: Theme.color.brand_primary,
-  },
 });
 
 export const radioButtonStyle = css({
-  display: "none",
+  appearance: "none",
+  width: "14px",
+  height: "14px",
+  borderRadius: "50%",
+
+  "&:checked": {
+    backgroundColor: Theme.color.brand_primary,
+  },
 });

@@ -10,14 +10,13 @@ interface PublicRadioButtonProps extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegisterReturn<string>;
 }
 
-const PublicRadioButton = ({ register, ...props }: PublicRadioButtonProps) => {
+const PublicRadioButton = ({ register, value, ...props }: PublicRadioButtonProps) => {
   return (
     <label css={radioLabelStyle} htmlFor="public">
-      <div />
       <input
         type="radio"
         css={radioButtonStyle}
-        value="test"
+        value={value}
         id="public"
         {...register}
         {...props}
