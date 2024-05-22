@@ -18,6 +18,8 @@ export const authorizedAxiosInstance = axios.create({
   withCredentials: true,
 });
 
+axiosInstance.interceptors.response.use((response) => response, handleAPIError);
+
 authorizedAxiosInstance.interceptors.request.use(checkToken, handleAPIError);
 
 authorizedAxiosInstance.interceptors.response.use((response) => response, handleTokenError);
