@@ -12,22 +12,21 @@ export const textareaBoxStyle = css({
   width: "100%",
 });
 
-export const commentTextareaStyle = (width: number | string, height: number) =>
-  css({
-    border: `1px solid ${Theme.color.border}`,
-    borderRadius: "4px",
-    width,
-    height,
-    padding: "20px 74px 20px 20px",
-    fontSize: "16px",
-    fontWeight: 500,
-    outline: "none",
-    overflowWrap: "break-word",
-    wordBreak: "break-all",
-    whiteSpace: "pre-wrap",
-    resize: "none",
-    fontFamily: "Pretendard",
-  });
+export const commentTextareaStyle = css({
+  border: `1px solid ${Theme.color.border}`,
+  borderRadius: "4px",
+  width: "100%",
+  height: "112px",
+  padding: "20px 74px 20px 20px",
+  fontSize: "16px",
+  fontWeight: 500,
+  outline: "none",
+  overflowWrap: "break-word",
+  wordBreak: "break-all",
+  whiteSpace: "pre-wrap",
+  resize: "none",
+  fontFamily: "Pretendard",
+});
 
 export const commentCardBoxStyle = css({
   width: "100%",
