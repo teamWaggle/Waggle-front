@@ -9,7 +9,6 @@ export const commentBoxStyle = css({
 
 export const textareaBoxStyle = css({
   position: "relative",
-  marginBottom: "60px",
   width: "100%",
 });
 

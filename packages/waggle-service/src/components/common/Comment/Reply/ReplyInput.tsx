@@ -24,7 +24,7 @@ const ReplyInput = ({
     <Box css={replyInputBoxStyle}>
       <textarea
         placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."
-        css={commentTextareaStyle("100%", 130)}
+        css={commentTextareaStyle("100%", 113)}
         value={content}
         onChange={(e) => handleCommentContent(e.target.value)}
         ref={replyRef}
