@@ -78,3 +78,7 @@ export interface ChatMessageType {
   sender: MemberType;
   chatMessageType: string;
 }
+
+export interface ChatMessageInfoType {
+  chatMessageInfo: ChatMessageType;
+}

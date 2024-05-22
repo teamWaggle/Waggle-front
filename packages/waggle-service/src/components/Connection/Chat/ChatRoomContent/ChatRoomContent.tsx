@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 
 import { Client } from "@stomp/stompjs";
 
@@ -41,9 +41,7 @@ const ChatRoomContent = () => {
 
   const { chatMessageListData } = useChatMessageListQuery(chatRoomId);
 
-  console.log(chatMessageListData);
-
-  const { userUrl } = useMemberInfoSaveQuery();
+  const { userUrl, memberId } = useMemberInfoSaveQuery();
 
   const [stompClient, setStompClient] = useState<Client | null>(null);
   const [newMessage, setNewMessage] = useState<string>("");
@@ -112,20 +110,21 @@ const ChatRoomContent = () => {
   };
 
   return (
-    <Box>
+    <Box style={{ width: "100%" }}>
       <Flex styles={{ direction: "column", gap: "20px" }} css={chattingContentBoxStyle}>
-        <ChattingMessage />
-        <ChattingMessageMine />
-        <ChattingMessage />
-        <ChattingMessageMine />
-        <ChattingMessageMine />
-        <ChattingMessage />
-        <ChattingMessageMine />
-        <ChattingMessage />
-        <ChattingMessageMine />
-
-        <ChattingMessage />
-        <ChattingMessage />
+        {chatMessageListData.pages.map((chatMessageData) => (
+          <Fragment key={chatMessageData.result.nextPageParam}>
+            {chatMessageData.result.chatMessages.map((chatMessageInfo) => (
+              <>
+                {chatMessageInfo.sender.memberId === memberId ? (
+                  <ChattingMessageMine key={chatMessageInfo.id} chatMessageInfo={chatMessageInfo} />
+                ) : (
+                  <ChattingMessage key={chatMessageInfo.id} chatMessageInfo={chatMessageInfo} />
+                )}
+              </>
+            ))}
+          </Fragment>
+        ))}
       </Flex>
       <Flex styles={{ gap: "14px" }} css={inputBoxStyle}>
         <input

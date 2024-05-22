@@ -2,14 +2,24 @@ import { css } from "@emotion/react";
 
 import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-const ChatMessageMine = () => {
+import { convertToUTC } from "@/utils/convertToUTC";
+
+import type { ChatMessageInfoType } from "@/types/chat";
+
+const ChatMessageMine = ({ chatMessageInfo }: ChatMessageInfoType) => {
   return (
     <Flex styles={{ direction: "column", marginLeft: "auto" }}>
       <Flex styles={{ gap: "16px", align: "center", marginLeft: "auto" }}>
-        <Text css={getDefaultTextStyle(Theme.color.text, 500)}>활발한 강아지</Text>
-        <Text css={getDefaultTextStyle(Theme.color.readonly_text, 300)}>오후 4:30</Text>
+        <Text css={getDefaultTextStyle(Theme.color.text, 500)}>
+          {chatMessageInfo.sender.nickname}
+        </Text>
+        <Text css={getDefaultTextStyle(Theme.color.readonly_text, 300)}>
+          {convertToUTC(new Date(chatMessageInfo.sendTime)).date}
+        </Text>
       </Flex>
-      <Box css={messageBoxStyle}>네..으으응믕므..고민네..으으응믕므</Box>
+      <Box css={messageBoxStyle}>
+        <Text>{chatMessageInfo.content}</Text>
+      </Box>
     </Flex>
   );
 };
@@ -23,4 +33,5 @@ const messageBoxStyle = css({
   borderRadius: "28px",
   marginTop: "6px",
   maxWidth: "436px",
+  marginLeft: "auto",
 });
