@@ -1,12 +1,13 @@
 import { css } from "@emotion/react";
 
+import { Fragment } from "react";
+
 import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import ChatRoomItem from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomItem";
 
 import { useMemberChatRoomListQuery } from "@/hooks/api/chat/useMemberChatRoomListQuery";
 import useObserver from "@/hooks/common/useObserver";
-import { Fragment } from "react";
 
 const ChatRoomList = () => {
   const { memberChatRoomListData, fetchNextPage, hasNextPage, isFetching } =

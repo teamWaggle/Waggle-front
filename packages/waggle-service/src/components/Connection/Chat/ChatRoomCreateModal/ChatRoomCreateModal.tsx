@@ -86,9 +86,19 @@ const ChatRoomCreateModal = () => {
             <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
               팀 공개
             </Heading>
-            <Flex styles={{ align: "center", gap: "30px" }}>
-              <Text>공개</Text>
-              <Text>비공개</Text>
+            <Flex styles={{ align: "center", gap: "30px", marginTop: "6px" }}>
+              <Flex styles={{ align: "center", gap: "12px" }}>
+                <Form.PublicRadioInputField name="public" />
+                <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+                  공개
+                </Heading>
+              </Flex>
+              <Flex styles={{ align: "center", gap: "12px" }}>
+                <Form.PublicRadioInputField name="public" />
+                <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+                  비공개
+                </Heading>
+              </Flex>
             </Flex>
           </Box>
           <Box styles={{ width: "100%" }}>
