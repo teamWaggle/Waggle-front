@@ -3,6 +3,13 @@ import { css } from "@emotion/react";
 import { Theme } from "waggle-design-system";
 
 import type { TeamColorType } from "@/types/team";
+import type { TeamScheduleStatusType } from "@/types/schedule";
+
+const teamScheduleStatusColor: { [key in TeamScheduleStatusType]: string } = {
+  IN_PROGRESS: Theme.color.btn_danger,
+  UPCOMING: Theme.color.brand_primary,
+  CLOSING: Theme.color.disabled_text,
+};
 
 export const teamScheduleCardBoxStyle = css({
   borderRadius: "16px",
@@ -10,11 +17,11 @@ export const teamScheduleCardBoxStyle = css({
   padding: "20px",
 });
 
-export const teamScheduleCardStatusBoxStyle = (isActivate: boolean) =>
+export const teamScheduleCardStatusBoxStyle = (teamScheduleStatus: TeamScheduleStatusType) =>
   css({
     alignItems: "center",
     padding: "6px 12px",
-    backgroundColor: isActivate ? Theme.color.btn_danger : Theme.color.disabled_text,
+    backgroundColor: teamScheduleStatusColor[teamScheduleStatus],
     borderRadius: "16px",
     color: Theme.color.white,
     fontSize: "14px",

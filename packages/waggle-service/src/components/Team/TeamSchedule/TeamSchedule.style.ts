@@ -12,7 +12,7 @@ export const teamScheduleTitleStyle = css({
 });
 
 export const teamScheduleSearchButtonStyle = css({
-  padding: "12px 12px",
+  padding: "7px 12px",
   borderRadius: "2px",
   border: "none",
   backgroundColor: "transparent",
@@ -24,7 +24,7 @@ export const teamScheduleSearchButtonStyle = css({
 
 export const teamScheduleAddButtonStyle = (color: TeamColorType) =>
   css({
-    padding: "6px 12px",
+    padding: "7px 12px",
     gap: "8px",
     alignItems: "center",
     borderRadius: "2px",
