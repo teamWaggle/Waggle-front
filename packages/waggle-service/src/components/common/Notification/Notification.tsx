@@ -9,7 +9,7 @@ import { layoutStyle } from "@/components/common/Notification/Notification.style
 const Notification = () => {
   const { notificationListData } = useNotificationListQuery(0);
 
-  console.log(notificationListData);
+  console.log(notificationListData.result.notificationList);
 
   return (
     <Flex styles={{ position: "absolute" }} css={layoutStyle}>

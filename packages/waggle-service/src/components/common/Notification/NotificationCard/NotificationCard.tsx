@@ -8,6 +8,8 @@ import {
   cardBoxStyle,
 } from "@/components/common/Notification/NotificationCard/NotificationCard.style";
 
+// type NotificationType = "MENTIONED" | "FOLLOWED" | "PARTICIPATION_REQUEST" | "COMMENT";
+
 interface NotificationCardProps {
   nickname: string;
   hasTitle?: boolean;
@@ -17,6 +19,7 @@ interface NotificationCardProps {
   createdDate: string;
   teamName?: string;
   isFollow?: boolean;
+  // notificationType: NotificationType;
 }
 
 const NotificationCard = ({
