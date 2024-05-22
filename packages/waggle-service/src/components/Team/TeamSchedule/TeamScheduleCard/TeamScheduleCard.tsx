@@ -36,9 +36,7 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
         <Heading style={{ textOverflow: "ellipsis" }} size="xSmall">
           {title}
         </Heading>
-        <Flex css={teamScheduleCardStatusBoxStyle(status !== "CLOSING")}>
-          {scheduleStatusString}
-        </Flex>
+        <Flex css={teamScheduleCardStatusBoxStyle(status)}>{scheduleStatusString}</Flex>
       </Flex>
       <Text>
         {format(startDate, "yyyy년 M월 d일")} ~ {format(endDate, "yyyy년 M월 d일")}
