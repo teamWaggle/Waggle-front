@@ -23,7 +23,7 @@ export const contentBoxStyle = css({
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    gap: "30px",
+    gap: "24px",
     position: "relative",
   },
 });
@@ -31,7 +31,7 @@ export const contentBoxStyle = css({
 export const titleInputStyle = (isPassword?: boolean) =>
   css({
     width: isPassword ? "240px" : "100%",
-    height: "62px",
+    height: "50px",
     border: `1px solid ${Theme.color.border}`,
     borderRadius: "16px",
     outline: "none",
