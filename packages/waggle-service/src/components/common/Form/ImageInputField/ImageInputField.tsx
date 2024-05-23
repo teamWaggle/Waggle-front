@@ -58,7 +58,7 @@ const ImageInputField = ({ name }: { name: FieldPath<FieldValues> }) => {
         {!imagePreview && <PhotoIcon style={{ width: "40px" }} />}
       </label>
       <Flex
-        styles={{ justify: "center", marginTop: "4px" }}
+        styles={{ justify: "center", marginTop: "4px", align: "center" }}
         onClick={handleResetImage}
         css={resetImageButtonStyle}
       >
