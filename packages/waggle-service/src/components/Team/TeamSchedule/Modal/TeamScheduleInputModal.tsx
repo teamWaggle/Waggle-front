@@ -43,7 +43,7 @@ const TeamScheduleInputModal = ({
         direction: "column",
         boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
         borderRadius: "16px",
-        width: "600px",
+        width: "500px",
       }}
       css={addTeamScheduleModalBoxStyle}
     >
@@ -67,7 +67,7 @@ const TeamScheduleInputModal = ({
               inputStyle={addTeamScheduleModalInputStyle}
             />
           </Box>
-          <Flex style={{ gap: "16px" }}>
+          <Flex style={{ justifyContent: "space-between", width: "100%" }}>
             <Box style={{ marginBottom: "16px", height: "100px" }}>
               <Heading size="xSmall" css={addTeamScheduleModalContentTitleStyle}>
                 시작 날짜 및 시간

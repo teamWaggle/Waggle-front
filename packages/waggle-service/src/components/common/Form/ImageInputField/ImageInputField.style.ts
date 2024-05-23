@@ -39,5 +39,6 @@ export const resetImageButtonStyle = css({
   cursor: "pointer",
   backgroundColor: Theme.color.brand_primary,
   width: "100%",
+  height: "26px",
   borderRadius: "20px",
 });

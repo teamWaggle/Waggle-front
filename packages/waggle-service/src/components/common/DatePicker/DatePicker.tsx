@@ -3,7 +3,6 @@ import type { FieldPath, FieldValues } from "react-hook-form";
 
 import PickerTriggerButton from "@/components/common/Button/PickerTriggerButton/PickerTriggerButton";
 import DatePickerCalendarModal from "@/components/common/DatePicker/DatePickerModal/DatePickerCalendarModal";
-import ScheduleIcon from "@/assets/svg/schedule-icon.svg?react";
 
 import useCalendar from "@/hooks/common/useCalendar";
 import useModalTrigger from "@/hooks/common/useModalTrigger";
@@ -55,7 +54,6 @@ const DatePicker = ({
         name={name}
         modalClose={modalClose}
         handleTriggerOnClick={handleTriggerOnClick}
-        icon={<ScheduleIcon style={{ marginLeft: "6px" }} />}
       >
         {isTrigger && children}
       </PickerTriggerButton>
