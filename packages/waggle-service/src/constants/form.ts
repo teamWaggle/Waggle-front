@@ -37,7 +37,6 @@ export const ROOM_PASSWORD_FORM = {
   RULES() {
     return yup
       .string()
-      .required("비밀번호를 입력해주세요")
       .max(this.MAX_LENGTH, `비밀번호는 ${this.MAX_LENGTH}자 이하여야 합니다`)
       .matches(REGEX.ONLY_NUM, "숫자만 입력 가능합니다");
     // .matches(REGEX.ENG_EXCEPT_REG, "영어는 입력할 수 없습니다.");

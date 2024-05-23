@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { FieldValues } from "react-hook-form";
 
 import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
@@ -24,10 +25,17 @@ import {
   buttonBoxStyle,
 } from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
 
+import {
+  radioLabelStyle,
+  radioButtonStyle,
+} from "@/components/common/Button/PublicRadioButton/PublicRadioButton.style";
+
 const ChatRoomCreateModal = () => {
   const { mutate: chatRoomMutate } = usePostChatRoomMutation();
 
   const { closeModal } = useModal();
+
+  const [isPublic, setIsPublic] = useState("public");
 
   const handleSubmit = (data: FieldValues) => {
     const chatRoomRequest = {
@@ -87,20 +95,55 @@ const ChatRoomCreateModal = () => {
               팀 공개
             </Heading>
             <Flex styles={{ align: "center", gap: "30px", marginTop: "6px" }}>
-              <Form.PublicRadioInputField name="public" />
+              <Flex styles={{ align: "center", gap: "30px" }}>
+                <Flex styles={{ align: "center", gap: "12px" }}>
+                  <label css={radioLabelStyle} htmlFor="isPrivate">
+                    <input
+                      type="radio"
+                      css={radioButtonStyle}
+                      value="public"
+                      id="isPrivate"
+                      name="isPrivate"
+                      defaultChecked
+                      onChange={(e) => setIsPublic(e.target.value)}
+                    />
+                  </label>
+                  <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+                    공개
+                  </Heading>
+                </Flex>
+                <Flex styles={{ align: "center", gap: "12px" }}>
+                  <label css={radioLabelStyle} htmlFor="isPrivate">
+                    <input
+                      type="radio"
+                      css={radioButtonStyle}
+                      value="private"
+                      id="isPrivate"
+                      name="isPrivate"
+                      onChange={(e) => setIsPublic(e.target.value)}
+                    />
+                  </label>
+                  <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+                    비공개
+                  </Heading>
+                </Flex>
+              </Flex>
             </Flex>
           </Box>
-          <Box styles={{ width: "100%" }}>
-            <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
-              {ROOM_PASSWORD_FORM.TITLE}
-            </Heading>
-            <Form.TextInputField
-              inputStyle={titleInputStyle(true)}
-              name={ROOM_PASSWORD_FORM.NAME}
-              placeholder={ROOM_PASSWORD_FORM.PLACEHOLDER}
-              maxLength={ROOM_PASSWORD_FORM.MAX_LENGTH}
-            />
-          </Box>
+
+          {isPublic === "private" && (
+            <Box styles={{ width: "100%" }}>
+              <Heading size="xSmall" css={getDefaultTextStyle(Theme.color.text, 600)}>
+                {ROOM_PASSWORD_FORM.TITLE}
+              </Heading>
+              <Form.TextInputField
+                inputStyle={titleInputStyle(true)}
+                name={ROOM_PASSWORD_FORM.NAME}
+                placeholder={ROOM_PASSWORD_FORM.PLACEHOLDER}
+                maxLength={ROOM_PASSWORD_FORM.MAX_LENGTH}
+              />
+            </Box>
+          )}
 
           <Box css={buttonBoxStyle}>
             <button>채팅방 만들기</button>

@@ -6,13 +6,36 @@ import { Flex, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-sy
 import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
 
 import ChatRoomJoinModal from "@/components/Connection/Chat/ChatRoomJoinModal/ChatRoomJoinModal";
+import ChattingRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
 import useModal from "@/hooks/common/useModal";
+import { useJoinChatRoomMutation } from "@/hooks/api/chat/useJoinChatRoomMutation";
 
 import type { ChatRoomInfoType } from "@/types/chat";
 
 const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
+  const { mutate: joinChatRoomMutate } = useJoinChatRoomMutation();
+
   const { openModal } = useModal();
+
+  const handlePublicRoomOpen = () => {
+    joinChatRoomMutate(
+      { chatRoomId: chatRoomInfo.id, password: "" },
+      {
+        onSuccess: () => {
+          openModal({
+            key: "ChattingRoomModal",
+            component: () => (
+              <Suspense fallback={<div />}>
+                <ChattingRoomModal chatRoomId={chatRoomInfo.id} />
+              </Suspense>
+            ),
+            isWhiteIcon: true,
+          });
+        },
+      }
+    );
+  };
 
   const handleJoinRoomOpen = () => {
     openModal({
@@ -44,7 +67,10 @@ const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
             {chatRoomInfo.chatRoomMemberCount}/7
           </Text>
         </Flex>
-        <Button style={{ padding: "6px 10px", borderRadius: "13px" }} onClick={handleJoinRoomOpen}>
+        <Button
+          style={{ padding: "6px 10px", borderRadius: "13px" }}
+          onClick={chatRoomInfo.isPrivate ? handleJoinRoomOpen : handlePublicRoomOpen}
+        >
           입장
         </Button>
       </Flex>
