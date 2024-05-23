@@ -22,13 +22,10 @@ import {
   titleBoxStyle,
   contentBoxStyle,
   titleInputStyle,
-  buttonBoxStyle,
-} from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
-
-import {
   radioLabelStyle,
   radioButtonStyle,
-} from "@/components/common/Button/PublicRadioButton/PublicRadioButton.style";
+  buttonBoxStyle,
+} from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
 
 const ChatRoomCreateModal = () => {
   const { mutate: chatRoomMutate } = usePostChatRoomMutation();

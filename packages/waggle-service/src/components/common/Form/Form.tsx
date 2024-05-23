@@ -8,7 +8,6 @@ import ImageInputField from "@/components/common/Form/ImageInputField/ImageInput
 import TimeRangeInputField from "@/components/common/Form/TimeRangeInputField/TimeRangeInputField";
 import TextInputField from "@/components/common/Form/TextInputField/TextInputField";
 import PasswordInputField from "@/components/common/Form/PasswordInputField/PasswordInputField";
-import PublicRadioInputField from "@/components/common/Form/PublicRadioInputField/PublicRadioInputField";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import type * as yup from "yup";
@@ -48,5 +47,5 @@ Form.DateRangeInputField = DateRangeInputField;
 Form.TimeRangeInputField = TimeRangeInputField;
 Form.PasswordInputField = PasswordInputField;
 Form.ResetButton = ResetButton;
-Form.PublicRadioInputField = PublicRadioInputField;
+
 export default Form;
