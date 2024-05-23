@@ -47,6 +47,28 @@ export const titleInputStyle = (isPassword?: boolean) =>
     },
   });
 
+export const radioLabelStyle = css({
+  width: "24px",
+  height: "24px",
+  backgroundColor: Theme.color.white,
+  border: `2px solid #b5b5b5`,
+  borderRadius: "50%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+export const radioButtonStyle = css({
+  appearance: "none",
+  width: "14px",
+  height: "14px",
+  borderRadius: "50%",
+
+  "&:checked": {
+    backgroundColor: Theme.color.brand_primary,
+  },
+});
+
 export const buttonBoxStyle = css({
   position: "absolute",
   width: "100%",
