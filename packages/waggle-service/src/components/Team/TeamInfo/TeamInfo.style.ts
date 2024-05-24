@@ -11,6 +11,7 @@ export const teamImgStyle = css({
   width: "195px",
   height: "195px",
   objectFit: "cover",
+  flexShrink: 0,
 });
 
 export const teamInfoBoxStyle = css({

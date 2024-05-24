@@ -49,7 +49,7 @@ const CommentField = ({ boardId }: { boardId: number }) => {
         tag="section"
         ref={commentBoxRef}
       >
-        {commentData?.pages?.map((commentData, page) => (
+        {commentData.pages.map((commentData, page) => (
           <Flex key={page} styles={{ direction: "column", gap: "8px" }}>
             {commentData.result.commentList.map((comment) => (
               <Comment key={comment.commentId} comment={comment} />
