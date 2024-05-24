@@ -40,3 +40,9 @@ export const addScheduleButtonStyle = (color: TeamColorType) =>
       color: Theme.color.white,
     },
   });
+
+export const dateTextStyle = css({
+  color: Theme.color.gray400,
+  marginBottom: "4px",
+  fontSize: "14px",
+});

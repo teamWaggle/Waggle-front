@@ -8,6 +8,7 @@ import type { TeamScheduleType } from "@/types/schedule";
 
 import {
   addScheduleButtonStyle,
+  dateTextStyle,
   teamScheduleCardBoxStyle,
   teamScheduleCardStatusBoxStyle,
 } from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard.style";
@@ -38,12 +39,9 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
         </Heading>
         <Flex css={teamScheduleCardStatusBoxStyle(status)}>{scheduleStatusString}</Flex>
       </Flex>
-      <Text>
-        {format(startDate, "yyyy년 M월 d일")} ~ {format(endDate, "yyyy년 M월 d일")}
-      </Text>
-      <Text>
-        {format(startDate, "a h:mm", { locale: ko })} ~ {format(endDate, "a h:mm", { locale: ko })}
-      </Text>
+      <Text css={dateTextStyle}>{format(startDate, "yyyy년 M월 d일 a h:mm", { locale: ko })}</Text>
+      <Text css={dateTextStyle}>~ {format(endDate, "yyyy년 M월 d일 a h:mm", { locale: ko })}</Text>
+
       <Flex style={{ alignItems: "center", justifyContent: "space-between" }}>
         {status !== "CLOSING" && !isScheduled && (
           <>
