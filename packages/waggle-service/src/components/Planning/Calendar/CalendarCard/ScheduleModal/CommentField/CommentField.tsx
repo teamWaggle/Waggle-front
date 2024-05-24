@@ -44,7 +44,7 @@ const CommentField = ({ boardId }: { boardId: number }) => {
       value={{ editCommentValue, handleCommentEditValue, editCommentId, handleEditCommentId }}
     >
       <Flex
-        styles={{ direction: "column", marginTop: "16px" }}
+        styles={{ direction: "column", marginTop: "16px", width: "100%" }}
         css={scheduleCommentBoxStyle}
         tag="section"
         ref={commentBoxRef}

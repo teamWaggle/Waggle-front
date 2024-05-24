@@ -39,7 +39,7 @@ export const mentionInputStyle = {
     padding: "4px 12px",
     color: "transparent",
   },
-  width: "330px",
+  width: "100%",
   fontSize: 16,
   height: "32px",
   input: {
