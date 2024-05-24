@@ -50,7 +50,11 @@ const TeamInfo = () => {
     });
   };
   return (
-    <Flex css={teamSectionStyle} styles={{ marginTop: "50px", align: "center" }} tag="section">
+    <Flex
+      css={teamSectionStyle}
+      styles={{ marginTop: "50px", align: "center", width: "100%" }}
+      tag="section"
+    >
       <img css={teamImgStyle} src={coverImageUrl} />
       <Box css={teamInfoBoxStyle}>
         <Flex styles={{ justify: "space-between" }}>
@@ -74,7 +78,7 @@ const TeamInfo = () => {
           {description}
         </Text>
         <LoginAuthorizationContainer>
-          <Flex styles={{ align: "center", position: "relative" }}>
+          <Flex styles={{ align: "center", gap: "6px", position: "relative" }}>
             <GroupIcon />
             <Text size="large" style={{ marginRight: "40px" }}>
               {teamSize}/{TEAM_INFO.TEAM_MAX_SIZE}
