@@ -24,6 +24,8 @@ import useModal from "@/hooks/common/useModal";
 import AlertModal from "@/components/common/AlertModal/AlerlModal";
 import TeamMemberOnlyAuthorizationContainer from "@/components/common/AuthorizationContainer/team/TeamMemberOnlyAuthorizationContainer";
 import { useLeaveTeam } from "@/hooks/api/team/useLeaveTeam";
+import NonMemberPublicOnly from "@/components/common/AuthorizationContainer/team/NonMemberPublicOnly";
+import { useRequestTeamParticipation } from "@/hooks/api/team/useRequestTeamParticipation";
 
 const TeamInfo = () => {
   const { openModal, closeModal } = useModal();
@@ -31,6 +33,11 @@ const TeamInfo = () => {
   const navigate = useNavigate();
   const { mutate: leaveTeamMutate } = useLeaveTeam();
   const { name, description, teamMemberList, coverImageUrl, teamSize } = useTeamInfo(teamId);
+  const { mutate: requestTeamParticipation } = useRequestTeamParticipation();
+
+  const handleRequestTeamParticipation = () => {
+    requestTeamParticipation(teamId);
+  };
 
   const handleLeaveTeam = () => {
     leaveTeamMutate(teamId, { onSuccess: () => navigate(PATH.PLANNING, { replace: true }) });
@@ -71,7 +78,9 @@ const TeamInfo = () => {
                 팀 탈퇴하기
               </Button>
             </TeamMemberOnlyAuthorizationContainer>
-            <Button>팀 참여하기</Button>
+            <NonMemberPublicOnly>
+              <Button onClick={handleRequestTeamParticipation}>팀 참여하기</Button>
+            </NonMemberPublicOnly>
           </Flex>
         </Flex>
         <Text size="xLarge" css={teamInfoSubTitleStyle}>
