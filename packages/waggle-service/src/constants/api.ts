@@ -28,6 +28,8 @@ export const END_POINTS = {
   STORY_LIST: (currentPage: unknown) => `/api/stories?currentPage=${currentPage}`,
   STORY_FILTER: (filter: string, currentPage: unknown) =>
     `/api/stories/sort?sortParam=${filter}&currentPage=${currentPage}`,
+  STORY_SEARCH: (keyword: string, currentPage: unknown) =>
+    `/api/stories/search?keyword=${keyword}&currentPage=${currentPage}`,
   POST_STORY: "/api/stories",
   COMMENTS: (currentPage: unknown, boardId: number, boardType: BoardType) =>
     `/api/comments/${boardId}/paged?currentPage=${currentPage}&boardType=${boardType}`,
