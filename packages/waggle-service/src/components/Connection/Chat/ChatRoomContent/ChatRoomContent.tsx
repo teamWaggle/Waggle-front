@@ -43,6 +43,7 @@ const ChatRoomContent = () => {
 
   const { userUrl, memberId } = useMemberInfoSaveQuery();
 
+  // const [messages, setMessages] = useState([]);
   const [stompClient, setStompClient] = useState<Client | null>(null);
   const [newMessage, setNewMessage] = useState<string>("");
 
@@ -65,13 +66,13 @@ const ChatRoomContent = () => {
     client.activate();
 
     client.onConnect = () => {
-      console.log("socket connect");
-
       client.subscribe(
         `/subscribe/${chatRoomId}`,
         (message) => {
-          console.log(JSON.parse(message.body));
-          console.log("연결");
+          const msg = JSON.parse(message.body);
+          console.log(msg);
+          // setMessages((prev) => [...prev, msg]);
+          // console.log(JSON.parse(message.body));
         },
         { Authorization: `Bearer ${accessToken}` }
       );
@@ -104,8 +105,6 @@ const ChatRoomContent = () => {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
 
-    console.log(chatMessage);
-
     setNewMessage("");
   };
 
@@ -115,16 +114,19 @@ const ChatRoomContent = () => {
         {chatMessageListData.pages.map((chatMessageData) => (
           <Fragment key={chatMessageData.result.nextPageParam}>
             {chatMessageData.result.chatMessages.map((chatMessageInfo) => (
-              <>
+              <Fragment key={chatMessageInfo.id}>
                 {chatMessageInfo.sender.memberId === memberId ? (
-                  <ChattingMessageMine key={chatMessageInfo.id} chatMessageInfo={chatMessageInfo} />
+                  <ChattingMessageMine chatMessageInfo={chatMessageInfo} />
                 ) : (
-                  <ChattingMessage key={chatMessageInfo.id} chatMessageInfo={chatMessageInfo} />
+                  <ChattingMessage chatMessageInfo={chatMessageInfo} />
                 )}
-              </>
+              </Fragment>
             ))}
           </Fragment>
         ))}
+        {/* {messages.map((data) => (
+          <ChattingMessage chatMessageInfo={data} />
+        ))} */}
       </Flex>
       <Flex styles={{ gap: "14px" }} css={inputBoxStyle}>
         <input
