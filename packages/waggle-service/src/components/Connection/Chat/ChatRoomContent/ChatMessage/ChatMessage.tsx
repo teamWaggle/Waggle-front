@@ -9,11 +9,11 @@ import type { ChatMessageInfoType } from "@/types/chat";
 const ChatMessage = ({ chatMessageInfo }: ChatMessageInfoType) => {
   return (
     <Flex styles={{ gap: "24px", width: "100%" }}>
-      <img src={chatMessageInfo.sender.profileImgUrl} alt="profileImg" css={profileImgStyle} />
+      <img src={chatMessageInfo.senderProfileImgUrl} alt="profileImg" css={profileImgStyle} />
       <Flex styles={{ direction: "column" }}>
         <Flex styles={{ gap: "16px", align: "center" }}>
           <Text css={getDefaultTextStyle(Theme.color.text, 500)}>
-            {chatMessageInfo.sender.nickname}
+            {chatMessageInfo.senderNickname}
           </Text>
           <Text css={getDefaultTextStyle(Theme.color.readonly_text, 300)}>
             {convertToUTC(new Date(chatMessageInfo.sendTime)).date}

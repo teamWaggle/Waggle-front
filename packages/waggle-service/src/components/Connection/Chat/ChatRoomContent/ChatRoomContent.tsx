@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState, useRef } from "react";
 
 import { Client } from "@stomp/stompjs";
 
@@ -15,8 +15,9 @@ import { ACCESS_TOKEN_KEY } from "@/constants/api";
 
 import { useChatMessageListQuery } from "@/hooks/api/chat/useChatMessageListQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
+import useObserver from "@/hooks/common/useObserver";
 
-// import type { ChatMessageType } from "@/types/chat";
+import type { ChatMessageType } from "@/types/chat";
 
 import {
   chattingContentBoxStyle,
@@ -39,55 +40,26 @@ const ChatRoomContent = () => {
 
   const { chatRoomId } = context;
 
-  const { chatMessageListData } = useChatMessageListQuery(chatRoomId);
+  const { chatMessageListData, fetchNextPage, hasNextPage, isFetching } =
+    useChatMessageListQuery(chatRoomId);
 
-  const { userUrl, memberId } = useMemberInfoSaveQuery();
+  const observeRef = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
 
-  // const [messages, setMessages] = useState([]);
+    if (hasNextPage && !isFetching) {
+      fetchNextPage();
+    }
+  });
+
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  const { userUrl } = useMemberInfoSaveQuery();
+
+  const [messages, setMessages] = useState<ChatMessageType[]>([]);
   const [stompClient, setStompClient] = useState<Client | null>(null);
   const [newMessage, setNewMessage] = useState<string>("");
 
   const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
-
-  useEffect(() => {
-    const client = new Client({
-      brokerURL: import.meta.env.VITE_SOCKET_URL,
-      reconnectDelay: 10000,
-      connectHeaders: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      // debug: (str: string) => {
-      //   console.log(str);
-      // },
-    });
-
-    setStompClient(client);
-
-    client.activate();
-
-    client.onConnect = () => {
-      client.subscribe(
-        `/subscribe/${chatRoomId}`,
-        (message) => {
-          const msg = JSON.parse(message.body);
-          console.log(msg);
-          // setMessages((prev) => [...prev, msg]);
-          // console.log(JSON.parse(message.body));
-        },
-        { Authorization: `Bearer ${accessToken}` }
-      );
-    };
-
-    return () => {
-      if (stompClient && stompClient.connected) {
-        stompClient.deactivate();
-      }
-    };
-  }, []);
-
-  // const recvMessage = () => {
-
-  // }
 
   const sendMessage = () => {
     if (!stompClient) return;
@@ -108,14 +80,60 @@ const ChatRoomContent = () => {
     setNewMessage("");
   };
 
+  useEffect(() => {
+    const client = new Client({
+      brokerURL: import.meta.env.VITE_SOCKET_URL,
+      reconnectDelay: 10000,
+      connectHeaders: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      // debug: (str: string) => {
+      //   console.log(str);
+      // },
+    });
+
+    client.activate();
+
+    client.onConnect = () => {
+      client.subscribe(
+        `/subscribe/${chatRoomId}`,
+        (message) => {
+          const msg = JSON.parse(message.body);
+          setMessages((prev) => [msg, ...prev]);
+        },
+        { Authorization: `Bearer ${accessToken}` }
+      );
+    };
+
+    setStompClient(client);
+
+    return () => {
+      if (stompClient && stompClient.connected) {
+        stompClient.deactivate();
+      }
+    };
+  }, [chatRoomId]);
+
+  useEffect(() => {
+    !hasNextPage &&
+      chatMessageListData.pages.forEach((value) => {
+        setMessages((prev) => [...value.result.chatMessages, ...prev]);
+      });
+  }, [chatMessageListData]);
+
   return (
     <Box style={{ width: "100%" }}>
-      <Flex styles={{ direction: "column", gap: "20px" }} css={chattingContentBoxStyle}>
-        {chatMessageListData.pages.map((chatMessageData) => (
+      <Flex
+        styles={{ direction: "column", gap: "20px" }}
+        css={chattingContentBoxStyle}
+        ref={chatRef}
+      >
+        <div ref={observeRef} />
+        {/* {chatMessageListData.pages.map((chatMessageData) => (
           <Fragment key={chatMessageData.result.nextPageParam}>
             {chatMessageData.result.chatMessages.map((chatMessageInfo) => (
               <Fragment key={chatMessageInfo.id}>
-                {chatMessageInfo.sender.memberId === memberId ? (
+                {chatMessageInfo.senderUserUrl === userUrl ? (
                   <ChattingMessageMine chatMessageInfo={chatMessageInfo} />
                 ) : (
                   <ChattingMessage chatMessageInfo={chatMessageInfo} />
@@ -123,11 +141,18 @@ const ChatRoomContent = () => {
               </Fragment>
             ))}
           </Fragment>
-        ))}
-        {/* {messages.map((data) => (
-          <ChattingMessage chatMessageInfo={data} />
         ))} */}
+        {messages.map((chatMessageInfo, index) => (
+          <Fragment key={index}>
+            {chatMessageInfo.senderUserUrl === userUrl ? (
+              <ChattingMessageMine chatMessageInfo={chatMessageInfo} />
+            ) : (
+              <ChattingMessage chatMessageInfo={chatMessageInfo} />
+            )}
+          </Fragment>
+        ))}
       </Flex>
+
       <Flex styles={{ gap: "14px" }} css={inputBoxStyle}>
         <input
           css={chattingInputStyle}

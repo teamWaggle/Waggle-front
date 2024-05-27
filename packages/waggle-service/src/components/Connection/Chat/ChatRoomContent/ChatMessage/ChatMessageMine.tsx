@@ -11,7 +11,7 @@ const ChatMessageMine = ({ chatMessageInfo }: ChatMessageInfoType) => {
     <Flex styles={{ direction: "column", marginLeft: "auto" }}>
       <Flex styles={{ gap: "16px", align: "center", marginLeft: "auto" }}>
         <Text css={getDefaultTextStyle(Theme.color.text, 500)}>
-          {chatMessageInfo.sender.nickname}
+          {chatMessageInfo.senderNickname}
         </Text>
         <Text css={getDefaultTextStyle(Theme.color.readonly_text, 300)}>
           {convertToUTC(new Date(chatMessageInfo.sendTime)).date}

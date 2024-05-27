@@ -74,8 +74,11 @@ interface ChatMessagesType {
 export interface ChatMessageType {
   id: string;
   content: string;
-  sendTime: Date;
-  sender: MemberType;
+  chatRoomId: number;
+  senderUserUrl: string;
+  senderNickname: string;
+  senderProfileImgUrl: string;
+  sendTime: number;
   chatMessageType: string;
 }
 
