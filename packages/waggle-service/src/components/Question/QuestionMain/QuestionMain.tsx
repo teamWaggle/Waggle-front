@@ -2,7 +2,7 @@ import { Fragment, useEffect } from "react";
 
 import { Flex, Box } from "waggle-design-system";
 
-import { SearchInput } from "waggle-design-system";
+import SearchInput from "@/components/common/SearchInput/SearchInput";
 import SortButton from "@/components/common/SortButton/SortButton";
 import QuestionCard from "@/components/Question/QuestionCard/QuestionCard";
 import QuestionSidebar from "@/components/Question/QuestionSidebar/QuestionSidebar";

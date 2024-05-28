@@ -4,7 +4,7 @@ import { Flex, Heading, Button } from "waggle-design-system";
 
 import LogIcon from "@/assets/svg/log.svg?react";
 
-import { SearchInput } from "waggle-design-system";
+import SearchInput from "@/components/common/SearchInput/SearchInput";
 
 import StoryUploadMediaModal from "@/components/Story/StoryUploadMediaModal/StoryUploadMediaModal";
 
