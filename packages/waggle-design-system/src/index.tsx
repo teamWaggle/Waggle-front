@@ -14,7 +14,6 @@ import Text from "@/components/Text/Text";
 import Dropdown from "@/components/Dropdown/Dropdown";
 import { Theme } from "@/styles/Theme";
 import { getDefaultTextStyle } from "@/styles/getDefaultTextStyle";
-import SearchInput from "@/components/SearchInput/SearchInput";
 import WaggleProvider from "@/WaggleProvider";
 
 import useSlider from "@/hooks/useSlider";
@@ -38,5 +37,4 @@ export {
   Theme,
   getDefaultTextStyle,
   Dropdown,
-  SearchInput,
 };
