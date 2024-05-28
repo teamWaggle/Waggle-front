@@ -1,13 +1,14 @@
 import type { ChangeEvent } from "react";
 
-import SearchButtonIcon from "@/assets/svg/search-button.svg?react";
+import { Flex } from "waggle-design-system";
 
-import Flex from "@/components/Flex/Flex";
+import SearchButtonIcon from "@/assets/svg/ic-search-button.svg?react";
+
 import {
   searchButtonStyle,
   searchInputStyle,
   searchStyle,
-} from "@/components/SearchInput/SearchInput.style";
+} from "@/components/common/SearchInput/SearchInput.style";
 
 interface SearchBarProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
