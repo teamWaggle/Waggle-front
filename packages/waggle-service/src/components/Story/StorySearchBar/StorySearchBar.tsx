@@ -41,7 +41,7 @@ const StorySearchBar = () => {
           {isLoggedIn && <Button onClick={handleStoryUploadOpen}>글 작성하기</Button>}
         </Flex>
 
-        <SearchInput onChange={() => {}} width="252px" />
+        <SearchInput handleSearch={() => {}} width="252px" />
       </Flex>
     </Flex>
   );
