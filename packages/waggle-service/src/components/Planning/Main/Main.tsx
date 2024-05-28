@@ -5,7 +5,7 @@ import { Box, Flex, Heading, Text, MainContainer } from "waggle-design-system";
 import MemberTeamSlider from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider";
 
 import { headingStyle, buttonStyle, gridBoxStyle } from "@/components/Planning/Main/Main.style";
-import { SearchInput } from "waggle-design-system";
+import SearchInput from "@/components/common/SearchInput/SearchInput";
 import { useGetRecommendTeams } from "@/hooks/api/team/useGetRecommendTeams";
 import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 import useObserver from "@/hooks/common/useObserver";
