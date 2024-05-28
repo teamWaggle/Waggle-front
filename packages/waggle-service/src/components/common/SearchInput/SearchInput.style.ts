@@ -7,7 +7,7 @@ export const searchStyle = (width: string) =>
     padding: "0 12px",
     borderRadius: "27.5px",
     border: `1px solid ${Theme.color.brand_primary}`,
-    width: width,
+    width,
     height: "34px",
     boxShadow: "0px 2px 5px 0px rgba(0, 40, 37, 0.1)",
   });
@@ -15,8 +15,7 @@ export const searchStyle = (width: string) =>
 export const searchInputStyle = (width: string) => {
   return css({
     height: "32px",
-    width: width,
-    paddingRight: "20px",
+    width,
     border: "none",
     outline: "none",
     borderRadius: "27.5px",

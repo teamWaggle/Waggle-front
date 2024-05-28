@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+import { useState } from "react";
 
 import { Flex } from "waggle-design-system";
 
@@ -10,21 +10,29 @@ import {
   searchStyle,
 } from "@/components/common/SearchInput/SearchInput.style";
 
-interface SearchBarProps {
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+interface SearchInputProps {
+  handleSearch: () => void;
   width: string;
 }
 
-const SearchInput = ({ onChange, width }: SearchBarProps) => {
+const SearchInput = ({ handleSearch, width }: SearchInputProps) => {
+  const [keyword, setKeyword] = useState("");
+
   return (
     <Flex styles={{ align: "center", position: "relative" }} css={searchStyle(width)}>
       <input
         css={searchInputStyle(width)}
         type="text"
+        value={keyword}
         placeholder="검색어를 입력해주세요."
-        onChange={onChange}
+        onChange={(e) => setKeyword(e.target.value)}
       />
-      <Flex tag="button" styles={{ align: "center", justify: "center" }} css={searchButtonStyle}>
+      <Flex
+        tag="button"
+        styles={{ align: "center", justify: "center" }}
+        css={searchButtonStyle}
+        onClick={handleSearch}
+      >
         <SearchButtonIcon />
       </Flex>
     </Flex>
