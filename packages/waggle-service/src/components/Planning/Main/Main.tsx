@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 import { Box, Flex, Heading, Text, MainContainer } from "waggle-design-system";
 import MemberTeamSlider from "@/components/Planning/Main/MemberTeamSlider/MemberTeamSlider";
@@ -11,15 +11,38 @@ import TeamCard from "@/components/Planning/TeamCard/TeamCard";
 import useObserver from "@/hooks/common/useObserver";
 import LoginAuthorizationContainer from "@/components/common/AuthorizationContainer/LoginAuthorizationContainer";
 import { PATH } from "@/constants/path";
+import { useGetSearchTeamsByName } from "@/hooks/api/team/useGetSearchTeamsByName";
 
 const Main = () => {
   const navigate = useNavigate();
-  const { recommendTeamsData, fetchNextPage, hasNextPage, isFetching } = useGetRecommendTeams();
+  const [searchNameValue, setSearchNameValue] = useState<string>("");
+  const {
+    recommendTeamsData,
+    fetchNextPage: recommendTeamsFetchNextPage,
+    hasNextPage: recommendTeamsHasNextPage,
+    isFetching: recommendIsFetching,
+  } = useGetRecommendTeams();
+  const {
+    searchTeamsData,
+    fetchNextPage: searchTeamsFetchNextPage,
+    hasNextPage: searchTeamsHasNextPage,
+    isFetching: searchTeamsIsFetching,
+  } = useGetSearchTeamsByName(searchNameValue);
+  const handleSearchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchNameValue(e.target.value);
+  };
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
-    if (hasNextPage && !isFetching) {
-      fetchNextPage();
+    if (recommendTeamsHasNextPage && !recommendIsFetching) {
+      recommendTeamsFetchNextPage();
+    }
+  });
+  const searchRef = useObserver(async (entry, observer) => {
+    observer.unobserve(entry.target);
+
+    if (searchTeamsHasNextPage && !searchTeamsIsFetching) {
+      searchTeamsFetchNextPage();
     }
   });
   return (
@@ -53,18 +76,34 @@ const Main = () => {
         <Heading css={headingStyle} size="medium">
           Waggle에서 모여봐요!
         </Heading>
-        <SearchInput onChange={() => {}} width="247px" />
+        <SearchInput onChange={handleSearchBar} width="247px" />
       </Flex>
       <Box css={gridBoxStyle}>
-        {recommendTeamsData.pages?.map((recommendTeamData, page) => (
+        {!searchNameValue
+          ? recommendTeamsData?.pages?.map((recommendTeamData, page) => (
+              <Fragment key={page}>
+                {recommendTeamData.result.teamList.map((team) => (
+                  <TeamCard key={team.teamId} data={team} />
+                ))}
+              </Fragment>
+            ))
+          : searchTeamsData?.pages.map((searchTeamData, page) => (
+              <Fragment key={page}>
+                {searchTeamData.result.teamList.map((team) => (
+                  <TeamCard key={team.teamId} data={team} />
+                ))}
+              </Fragment>
+            ))}
+        {/* {recommendTeamsData.pages?.map((recommendTeamData, page) => (
           <Fragment key={page}>
             {recommendTeamData.result.teamList.map((team) => (
               <TeamCard key={team.teamId} data={team} />
             ))}
           </Fragment>
-        ))}
+        ))} */}
       </Box>
-      <div ref={ref} />
+      <Box ref={ref} />
+      <Box ref={searchRef} />
     </MainContainer>
   );
 };

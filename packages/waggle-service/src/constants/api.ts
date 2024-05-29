@@ -113,6 +113,8 @@ export const END_POINTS = {
   DELETE_TEAM: (teamId: number) => `/api/teams/${teamId}`,
   LEAVE_TEAM: (teamId: number) => `/api/teams/${teamId}/members`,
   TEAM_PARTICIPATION_REQUEST: (teamId: number) => `/api/teams/${teamId}/participation`,
+  SEARCH_TEAM_BY_NAME: (name: string, currentPage: unknown) =>
+    `/api/teams/by-name/${name}?currentPage=${currentPage}&size=16`,
 };
 
 export const HTTP_STATUS_CODE = {
