@@ -9,17 +9,20 @@ import QuestionSidebar from "@/components/Question/QuestionSidebar/QuestionSideb
 
 import { QUESTION_FILTER } from "@/constants/filter";
 
-import { useQuestionFilterQuery } from "@/hooks/api/question/useQuestionFilterQuery";
+import { useQuestionListQuery } from "@/hooks/api/question/useQuestionListQuery";
 import useObserver from "@/hooks/common/useObserver";
 import { useFilter } from "@/hooks/post/useFilter";
+import { useSearch } from "@/hooks/post/useSearch";
 
 import { mainStyle } from "@/components/Question/QuestionMain/QuestionMain.style";
 
 const QuestionMain = () => {
   const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
 
+  const { keyword, handleChangeInput } = useSearch();
+
   const { questionListData, hasNextPage, fetchNextPage, isFetching, refetch } =
-    useQuestionFilterQuery(filterOption);
+    useQuestionListQuery(keyword, filterOption);
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -44,7 +47,12 @@ const QuestionMain = () => {
               handleFilterText={handleFilterText}
               filterData={QUESTION_FILTER}
             />
-            <SearchInput onChange={() => {}} width="644px" />
+            <SearchInput
+              keyword={keyword}
+              handleChangeInput={handleChangeInput}
+              handleSearchClick={() => refetch()}
+              width="644px"
+            />
           </Flex>
 
           <Flex styles={{ direction: "column", gap: "24px", marginTop: "60px" }}>

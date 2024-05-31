@@ -13,7 +13,6 @@ export const QUERY_KEYS = {
   QUESTION_LIST: "questionList",
   QUESTION: "question",
   QUESTION_REPRESENTATIVE: "questionRepresentative",
-  QUESTION_FILTER: "questionFilter",
 
   COMMENT: "comment",
 
