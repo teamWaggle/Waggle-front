@@ -26,10 +26,6 @@ const StoryMain = () => {
     filterOption
   );
 
-  const handleSearchClick = () => {
-    refetch();
-  };
-
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
@@ -49,7 +45,7 @@ const StoryMain = () => {
           <StorySearchBar
             keyword={keyword}
             handleChangeInput={handleChangeInput}
-            handleSearchClick={handleSearchClick}
+            handleSearchClick={() => refetch()}
           />
 
           <Flex styles={{ justify: "flex-end" }}>

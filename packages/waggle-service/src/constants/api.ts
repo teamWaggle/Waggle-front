@@ -27,21 +27,14 @@ export const END_POINTS = {
   STORY: (storyId: number) => `/api/stories/${storyId}`,
   STORY_LIST: (keyword: string, sortParam: string, currentPage: unknown) =>
     `/api/stories/v2/search?keyword=${keyword}&sortParam=${sortParam}&currentPage=${currentPage}`,
-  STORY_FILTER: (filter: string, currentPage: unknown) =>
-    `/api/stories/sort?sortParam=${filter}&currentPage=${currentPage}`,
-  STORY_SEARCH: (keyword: string, currentPage: unknown) =>
-    `/api/stories/search?keyword=${keyword}&currentPage=${currentPage}`,
   POST_STORY: "/api/stories",
   COMMENTS: (currentPage: unknown, boardId: number, boardType: BoardType) =>
     `/api/comments/${boardId}/paged?currentPage=${currentPage}&boardType=${boardType}`,
   COMMENT: (commentId: number) => `/api/comments/${commentId}`,
   POST_COMMENT: (boardId?: number) => `/api/comments/${boardId}`,
   SIREN: (sirenId: number) => `/api/sirens/${sirenId}`,
-  SIREN_FILTER: (filter: string, sort: string, currentPage: unknown) =>
-    `/api/sirens/browse?filterParam=${filter}&sortParam=${sort}&currentPage=${currentPage}`,
-  SIREN_CATEGORY: (category: string, currentPage: unknown) =>
-    `/api/sirens/category?category=${category}&currentPage=${currentPage}`,
-  SIREN_LIST: (curretPage: unknown) => `/api/sirens?currentPage=${curretPage}`,
+  SIREN_LIST: (keyword: string, sortParam: string, filterParam: string, curretPage: unknown) =>
+    `/api/sirens/v2/search?keyword=${keyword}&sortParam=${sortParam}&filterParam=${filterParam}&currentPage=${curretPage}`,
   SIREN_REPRESENTATIVE: "/api/sirens/representative",
   SIREN_RANDOM: "/api/sirens/random",
   POST_SIREN: "/api/sirens",

@@ -8,20 +8,22 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 
 import type { SirenListType } from "@/types/siren";
 
-export const useSirenListQuery = () => {
+export const useSirenListQuery = (keyword: string, sortParam: string, filterParam: string) => {
   const {
     data: sirenListData,
     fetchNextPage,
     hasNextPage,
     isFetching,
+    refetch,
   } = useSuspenseInfiniteQuery<SirenListType, AxiosError>({
     queryKey: [QUERY_KEYS.SIREN_LIST],
-    queryFn: ({ pageParam: currentPage }) => getSirenList(currentPage),
+    queryFn: ({ pageParam: currentPage }) =>
+      getSirenList(keyword, sortParam, filterParam, currentPage),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       return lastPage.result.nextPageParam === -1 ? undefined : lastPage.result.nextPageParam;
     },
   });
 
-  return { sirenListData, fetchNextPage, hasNextPage, isFetching };
+  return { sirenListData, fetchNextPage, hasNextPage, isFetching, refetch };
 };
