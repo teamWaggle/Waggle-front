@@ -9,17 +9,26 @@ import SortButton from "@/components/common/SortButton/SortButton";
 
 import { STORY_FILTER } from "@/constants/filter";
 
-import { useStoryFilterQuery } from "@/hooks/api/story/useStoryFilterQuery";
 import useObserver from "@/hooks/common/useObserver";
 import { useFilter } from "@/hooks/post/useFilter";
+import { useStoryListQuery } from "@/hooks/api/story/useStoryListQuery";
+import { useSearch } from "@/hooks/post/useSearch";
 
 import { gridBoxStyle } from "@/components/Story/StoryMain/StoryMain.style";
 
 const StoryMain = () => {
   const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
 
-  const { storyListData, hasNextPage, fetchNextPage, isFetching, refetch } =
-    useStoryFilterQuery(filterOption);
+  const { keyword, handleChangeInput } = useSearch();
+
+  const { storyListData, hasNextPage, fetchNextPage, isFetching, refetch } = useStoryListQuery(
+    keyword,
+    filterOption
+  );
+
+  const handleSearchClick = () => {
+    refetch();
+  };
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -37,7 +46,11 @@ const StoryMain = () => {
     <Box tag="section" styles={{ padding: "32px 0 60px" }}>
       <Flex styles={{ gap: "30px", justify: "center" }}>
         <Box>
-          <StorySearchBar />
+          <StorySearchBar
+            keyword={keyword}
+            handleChangeInput={handleChangeInput}
+            handleSearchClick={handleSearchClick}
+          />
 
           <Flex styles={{ justify: "flex-end" }}>
             <SortButton

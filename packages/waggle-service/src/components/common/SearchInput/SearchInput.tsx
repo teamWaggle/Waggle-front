@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Flex } from "waggle-design-system";
 
 import SearchButtonIcon from "@/assets/svg/ic-search-button.svg?react";
@@ -11,13 +9,18 @@ import {
 } from "@/components/common/SearchInput/SearchInput.style";
 
 interface SearchInputProps {
-  handleSearch: () => void;
+  keyword: string;
+  handleChangeInput: (value: string) => void;
+  handleSearchClick: () => void;
   width: string;
 }
 
-const SearchInput = ({ handleSearch, width }: SearchInputProps) => {
-  const [keyword, setKeyword] = useState("");
-
+const SearchInput = ({
+  keyword,
+  handleChangeInput,
+  width,
+  handleSearchClick,
+}: SearchInputProps) => {
   return (
     <Flex styles={{ align: "center", position: "relative" }} css={searchStyle(width)}>
       <input
@@ -25,13 +28,13 @@ const SearchInput = ({ handleSearch, width }: SearchInputProps) => {
         type="text"
         value={keyword}
         placeholder="검색어를 입력해주세요."
-        onChange={(e) => setKeyword(e.target.value)}
+        onChange={(e) => handleChangeInput(e.target.value)}
       />
       <Flex
         tag="button"
         styles={{ align: "center", justify: "center" }}
         css={searchButtonStyle}
-        onClick={handleSearch}
+        onClick={handleSearchClick}
       >
         <SearchButtonIcon />
       </Flex>
