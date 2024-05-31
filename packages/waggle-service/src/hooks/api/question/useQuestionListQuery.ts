@@ -8,20 +8,21 @@ import { QUERY_KEYS } from "@/constants/queryKeys";
 
 import type { QuestionListType } from "@/types/question";
 
-export const useQuestionListQuery = () => {
+export const useQuestionListQuery = (keyword: string, sortParam: string) => {
   const {
     data: questionListData,
     fetchNextPage,
     hasNextPage,
     isFetching,
+    refetch,
   } = useSuspenseInfiniteQuery<QuestionListType, AxiosError>({
     queryKey: [QUERY_KEYS.QUESTION_LIST],
-    queryFn: ({ pageParam: currentPage }) => getQuestionList(currentPage),
+    queryFn: ({ pageParam: currentPage }) => getQuestionList(keyword, sortParam, currentPage),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       return lastPage.result.nextPageParam === -1 ? undefined : lastPage.result.nextPageParam;
     },
   });
 
-  return { questionListData, fetchNextPage, hasNextPage, isFetching };
+  return { questionListData, fetchNextPage, hasNextPage, isFetching, refetch };
 };
