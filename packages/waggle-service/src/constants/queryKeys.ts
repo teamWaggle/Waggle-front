@@ -8,8 +8,6 @@ export const QUERY_KEYS = {
   SIREN: "siren",
   SIREN_LIST: "sirenList",
   SIREN_REPRESENTATIVE: "sirenRepresentative",
-  SIREN_FILTER: "sirenFilter",
-  SIREN_CATEGORY: "sirenCategory",
   SIREN_RANDOM: "sirenRandom",
 
   QUESTION_LIST: "questionList",

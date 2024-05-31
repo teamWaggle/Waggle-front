@@ -10,21 +10,27 @@ import SearchInput from "@/components/common/SearchInput/SearchInput";
 import { SIREN_FILTER_TAG_CATEGORY } from "@/constants/siren";
 import { QUESTION_FILTER } from "@/constants/filter";
 
-import { useSirenFilterQuery } from "@/hooks/api/siren/useSirenFilterQuery";
 import { useFilter } from "@/hooks/post/useFilter";
 import useObserver from "@/hooks/common/useObserver";
+import { useSirenListQuery } from "@/hooks/api/siren/useSirenListQuery";
+import { useSearch } from "@/hooks/post/useSearch";
 
 import { tagStyle } from "@/components/Siren/SirenEdit/SirenEdit.style";
 
 const SirenMain = () => {
   const { filterOption, filterText, handleFilterOption, handleFilterText } = useFilter();
 
+  const { keyword, handleChangeInput } = useSearch();
+
   const [category, setCategory] = useState("ALL");
 
-  const { sirenListData, refetch, hasNextPage, fetchNextPage, isFetching } = useSirenFilterQuery(
-    category,
-    filterOption
+  const { sirenListData, refetch, hasNextPage, fetchNextPage, isFetching } = useSirenListQuery(
+    keyword,
+    filterOption,
+    category
   );
+
+  console.log(sirenListData);
 
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -69,7 +75,12 @@ const SirenMain = () => {
           </Flex>
         </Flex>
 
-        <SearchInput onChange={() => {}} width="508px" />
+        <SearchInput
+          keyword={keyword}
+          handleChangeInput={handleChangeInput}
+          handleSearchClick={() => refetch()}
+          width="508px"
+        />
       </Flex>
 
       <Box tag="section" css={gridBoxStyle}>
