@@ -25,7 +25,8 @@ export const END_POINTS = {
   CHECK_USERURL: (userUrl: string) => `/api/members/check-user-url?userUrl=${userUrl}`,
   CHECK_EMAIL: (email: string) => `/api/members/check-email?email=${email}`,
   STORY: (storyId: number) => `/api/stories/${storyId}`,
-  STORY_LIST: (currentPage: unknown) => `/api/stories?currentPage=${currentPage}`,
+  STORY_LIST: (keyword: string, sortParam: string, currentPage: unknown) =>
+    `/api/stories/v2/search?keyword=${keyword}&sortParam=${sortParam}&currentPage=${currentPage}`,
   STORY_FILTER: (filter: string, currentPage: unknown) =>
     `/api/stories/sort?sortParam=${filter}&currentPage=${currentPage}`,
   STORY_SEARCH: (keyword: string, currentPage: unknown) =>

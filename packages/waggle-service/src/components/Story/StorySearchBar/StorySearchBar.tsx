@@ -14,7 +14,13 @@ import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import { headingStyle } from "@/components/Story/StorySearchBar/StorySearchBar.style";
 
-const StorySearchBar = () => {
+interface StorySearchBarProps {
+  keyword: string;
+  handleChangeInput: (value: string) => void;
+  handleSearchClick: () => void;
+}
+
+const StorySearchBar = ({ keyword, handleChangeInput, handleSearchClick }: StorySearchBarProps) => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const { openModal } = useModal();
@@ -41,7 +47,12 @@ const StorySearchBar = () => {
           {isLoggedIn && <Button onClick={handleStoryUploadOpen}>글 작성하기</Button>}
         </Flex>
 
-        <SearchInput handleSearch={() => {}} width="252px" />
+        <SearchInput
+          keyword={keyword}
+          handleChangeInput={handleChangeInput}
+          handleSearchClick={handleSearchClick}
+          width="252px"
+        />
       </Flex>
     </Flex>
   );
