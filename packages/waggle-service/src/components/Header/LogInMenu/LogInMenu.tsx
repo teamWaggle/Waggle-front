@@ -10,7 +10,6 @@ import Notification from "@/components/common/Notification/Notification";
 
 import { PATH } from "@/constants/path";
 
-import { useMemberInfoQuery } from "@/hooks/api/member/useMemberInfoQuery";
 import { useMemberInfoSaveQuery } from "@/hooks/api/member/useMemberInfoSaveQuery";
 import { useNotificationTrigger } from "@/hooks/common/useNotificationTrigger";
 
@@ -18,8 +17,6 @@ import { notiBoxStyle } from "@/components/Header/LogInMenu/LogInMenu.style";
 
 const LogInMenu = () => {
   const { userUrl } = useMemberInfoSaveQuery();
-
-  const { memberData } = useMemberInfoQuery(userUrl);
 
   const navigate = useNavigate();
 
@@ -32,7 +29,7 @@ const LogInMenu = () => {
         <ProfileIcon
           width={40}
           height={40}
-          onClick={() => navigate(`${PATH.MY(memberData.result.userUrl)}?tab=profile`)}
+          onClick={() => navigate(`${PATH.MY(userUrl)}?tab=profile`)}
         />
       </Flex>
 

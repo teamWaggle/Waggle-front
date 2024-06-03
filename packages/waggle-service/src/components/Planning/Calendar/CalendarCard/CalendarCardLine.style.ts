@@ -17,4 +17,5 @@ export const scheduleTextStyle = (color: TeamColorType, lastSchedule?: boolean) 
     paddingLeft: "16px",
     backgroundColor: Theme.color[color],
     fontsize: "12px",
+    cursor: "pointer",
   });

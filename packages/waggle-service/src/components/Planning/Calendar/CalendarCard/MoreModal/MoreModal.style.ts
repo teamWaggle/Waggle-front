@@ -38,4 +38,5 @@ export const moreModalScheduleTextStyle = (color: TeamColorType) =>
     backgroundColor: Theme.color[color],
     fontsize: "12px",
     borderRadius: "3px",
+    cursor: "pointer",
   });

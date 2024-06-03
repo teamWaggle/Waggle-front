@@ -1,14 +1,10 @@
 import { scheduleTextStyle } from "@/components/Planning/Calendar/CalendarCard/CalendarCardLine.style";
+import { ScheduleModalContext } from "@/components/Planning/Calendar/CalendarCard/context/ScheduleModalContext";
 import type { ScheduleType } from "@/types/planning";
 import { format, isSameDay } from "date-fns";
 import { useState } from "react";
-import { createContext } from "react";
 import { Box } from "waggle-design-system";
 
-export const CalendarCardLineContext = createContext({
-  isOpenModal: false,
-  closeModal: () => {},
-});
 const CalendarCardLine = ({
   modal,
   schedule,
@@ -28,7 +24,7 @@ const CalendarCardLine = ({
     setIsOpenModal(false);
   };
   return (
-    <CalendarCardLineContext.Provider value={{ isOpenModal, closeModal }}>
+    <ScheduleModalContext.Provider value={{ isOpenModal, closeModal }}>
       <Box
         key={schedule.boardId + dayString}
         css={scheduleTextStyle(schedule.teamColor, isSameDay(schedule.endDate, day))}
@@ -37,7 +33,7 @@ const CalendarCardLine = ({
         {isSameDay(schedule.startDate, day) ? schedule.title : ""}
       </Box>
       {isOpenModal && modal}
-    </CalendarCardLineContext.Provider>
+    </ScheduleModalContext.Provider>
   );
 };
 
