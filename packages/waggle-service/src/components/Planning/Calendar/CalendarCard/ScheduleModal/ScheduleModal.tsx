@@ -27,7 +27,7 @@ import { useDeleteTeamSchedule } from "@/hooks/api/schedule/useDeleteTeamSchedul
 import EditTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/EditTeamScheduleModal";
 import { ko } from "date-fns/locale";
 import CommentField from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentField/CommentField";
-import { CalendarCardLineContext } from "@/components/Planning/Calendar/CalendarCard/CalendarCardLine";
+import { ScheduleModalContext } from "@/components/Planning/Calendar/CalendarCard/context/ScheduleModalContext";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const { boardId, teamName, scheduleOwner, teamColor, title, startDate, endDate } = schedule;
@@ -35,7 +35,7 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
   const { openModal } = useModal();
   const { mutate: cancelMemberScheduleMutate } = useCancelMemberSchedule();
   const { mutate: deleteTeamScheduleMutate } = useDeleteTeamSchedule();
-  const { closeModal } = useContext(CalendarCardLineContext);
+  const { closeModal } = useContext(ScheduleModalContext);
   useClickOutSide(scheduleModalRef, closeModal);
 
   const handleCloseModal = () => {

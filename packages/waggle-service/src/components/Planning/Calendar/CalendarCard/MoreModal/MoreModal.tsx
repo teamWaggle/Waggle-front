@@ -1,34 +1,21 @@
 import { Box, Flex, Text } from "waggle-design-system";
 import ScheduleModal from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal";
-import { format } from "date-fns";
 
 import { MAX_CALENDAR_CONTENT } from "@/constants/calendar";
 
-import useModal from "@/hooks/common/useModal";
-
 import type { MoreModalType } from "@/types/modal";
-import type { ScheduleType } from "@/types/planning";
 
 import {
   moreModalContainerStyle,
   moreModalDateStyle,
   moreModalDayStyle,
-  moreModalScheduleTextStyle,
   moreModalScheduleBoxStyle,
 } from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreModal.style";
+import MoreModalLine from "@/components/Planning/Calendar/CalendarCard/MoreModal/MoreModalLine";
 
 const Week = ["일", "월", "화", "수", "목", "금", "토"];
 
 const MoreModal = ({ day, schedules, position }: MoreModalType) => {
-  const { openScheduleModal } = useModal();
-
-  const handleScheduleOnclick = (schedule: ScheduleType) => {
-    openScheduleModal({
-      key: format(day, "d"),
-      component: () => <ScheduleModal schedule={schedule} position={position} />,
-    });
-  };
-
   const schedulesSlice = schedules.slice(MAX_CALENDAR_CONTENT);
   return (
     <Flex
@@ -47,13 +34,11 @@ const MoreModal = ({ day, schedules, position }: MoreModalType) => {
       <Text css={moreModalDateStyle}>{day.getDate()}</Text>
       <Box css={moreModalScheduleBoxStyle}>
         {schedulesSlice.map((schedule, i) => (
-          <Box
+          <MoreModalLine
             key={i}
-            css={moreModalScheduleTextStyle(schedule.teamColor)}
-            onClick={() => handleScheduleOnclick(schedule)}
-          >
-            {schedule.title}
-          </Box>
+            schedule={schedule}
+            modal={<ScheduleModal schedule={schedule} position={position} />}
+          />
         ))}
       </Box>
     </Flex>
