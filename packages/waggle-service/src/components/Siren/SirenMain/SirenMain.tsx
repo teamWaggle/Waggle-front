@@ -30,8 +30,6 @@ const SirenMain = () => {
     category
   );
 
-  console.log(sirenListData);
-
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
