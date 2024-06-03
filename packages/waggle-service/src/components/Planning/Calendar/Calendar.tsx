@@ -1,7 +1,5 @@
 import { useMemo } from "react";
 
-import { useRecoilValue } from "recoil";
-
 import { Box } from "waggle-design-system";
 
 import CalendarCard from "@/components/Planning/Calendar/CalendarCard/CalendarCard";
@@ -15,8 +13,6 @@ import {
   isSameDay,
   isWithinInterval,
 } from "date-fns";
-
-import { scheduleModalSelector } from "@/recoil/selectors/modalSelector";
 
 import generateCalendarPosition from "@/utils/generateCalendarPosition";
 
@@ -34,8 +30,6 @@ const Calendar = ({
   handleNextDate: () => void;
   currentDate: Date;
 }) => {
-  const scheduleModals = useRecoilValue(scheduleModalSelector);
-
   const CalendarCards = useMemo(() => {
     const monthStart = startOfMonth(currentDate);
     const startDate = subDays(startOfWeek(monthStart), -1);
@@ -80,10 +74,6 @@ const Calendar = ({
         <Box tag="main" css={boxStyle}>
           {CalendarCards}
         </Box>
-        {scheduleModals.map((modal, index) => {
-          const ModalComponent: React.ComponentType = modal.component || (() => null);
-          return <ModalComponent key={scheduleModals[index].key} />;
-        })}
       </Box>
     </>
   );
