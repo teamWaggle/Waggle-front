@@ -57,7 +57,7 @@ const QuestionDetail = ({ questionData }: QuestionDataType) => {
 
       <Divider />
 
-      <Comment boardId={boardId} />
+      <Comment boardId={boardId} boardType="QUESTION" />
     </Box>
   );
 };

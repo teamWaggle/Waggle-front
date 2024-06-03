@@ -19,7 +19,7 @@ interface StoryCommentParams {
 }
 
 const StoryComment = ({ boardId, recommendCount }: StoryCommentParams) => {
-  const { commentData, hasNextPage, fetchNextPage, isFetching } = useCommentQuery(boardId);
+  const { commentData, hasNextPage, fetchNextPage, isFetching } = useCommentQuery(boardId, "STORY");
 
   const {
     commentContent,
