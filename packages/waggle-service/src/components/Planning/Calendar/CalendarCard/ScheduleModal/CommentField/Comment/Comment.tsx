@@ -41,8 +41,11 @@ const Comment = ({ comment }: { comment: CommentListInfoType }) => {
       <Box tag="figure">
         <img css={imgStyle} src={member.profileImgUrl} alt="profileImg" />
       </Box>
-      <Flex tag="section" styles={{ width: "100%", direction: "column" }}>
-        <Flex tag="article" styles={{ width: "300px", align: "center", justify: "space-between" }}>
+      <Flex tag="section" styles={{ width: "100%", direction: "column", grow: "1", shrink: "1" }}>
+        <Flex
+          tag="article"
+          styles={{ width: "100%", align: "center", justify: "space-between", grow: "1" }}
+        >
           <Flex styles={{ gap: "16px", align: "center" }}>
             <Text css={commentUserNameStyle}>{member.nickname}</Text>
             <Text size="xSmall" css={commentTimeStyle}>

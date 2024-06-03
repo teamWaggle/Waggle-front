@@ -20,7 +20,10 @@ export const CommentFieldContext = createContext<{
 
 const CommentField = ({ boardId }: { boardId: number }) => {
   const commentBoxRef = useRef<HTMLDivElement>(null);
-  const { commentData, fetchNextPage, hasNextPage, isFetching } = useCommentQuery(boardId);
+  const { commentData, fetchNextPage, hasNextPage, isFetching } = useCommentQuery(
+    boardId,
+    "SCHEDULE"
+  );
   const [editCommentValue, setEditComment] = useState<string>("");
   const [editCommentId, setEditCommentId] = useState<number | null>(null);
 
@@ -44,13 +47,13 @@ const CommentField = ({ boardId }: { boardId: number }) => {
       value={{ editCommentValue, handleCommentEditValue, editCommentId, handleEditCommentId }}
     >
       <Flex
-        styles={{ direction: "column", marginTop: "16px", width: "100%" }}
+        styles={{ direction: "column", marginTop: "16px", width: "100%", shrink: "1" }}
         css={scheduleCommentBoxStyle}
         tag="section"
         ref={commentBoxRef}
       >
         {commentData.pages.map((commentData, page) => (
-          <Flex key={page} styles={{ direction: "column", gap: "8px" }}>
+          <Flex key={page} styles={{ direction: "column", gap: "8px", width: "100%" }}>
             {commentData.result.commentList.map((comment) => (
               <Comment key={comment.commentId} comment={comment} />
             ))}

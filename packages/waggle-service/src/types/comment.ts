@@ -68,3 +68,5 @@ export interface EditCommentPropsType {
   commentId: number;
   content: string;
 }
+
+export type BoardType = "SIREN" | "QUESTION" | "STORY" | "SCHEDULE";
