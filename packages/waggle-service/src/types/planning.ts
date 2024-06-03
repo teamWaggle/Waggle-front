@@ -4,6 +4,7 @@ import type { TeamColorType } from "@/types/team";
 export interface ScheduleType {
   boardId: number;
   teamId: number;
+  teamName: string;
   teamColor: TeamColorType;
   title: string;
   content: string;

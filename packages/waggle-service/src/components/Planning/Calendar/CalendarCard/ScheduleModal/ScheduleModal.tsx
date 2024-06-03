@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useContext, Suspense } from "react";
 
 import GroupIcon from "@/assets/svg/group.svg?react";
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
@@ -25,31 +25,31 @@ import useModal from "@/hooks/common/useModal";
 import { useCancelMemberSchedule } from "@/hooks/api/schedule/useCancelMemberSchedule";
 import { useDeleteTeamSchedule } from "@/hooks/api/schedule/useDeleteTeamSchedule";
 import EditTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/EditTeamScheduleModal";
-import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import { ko } from "date-fns/locale";
 import CommentField from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentField/CommentField";
+import { CalendarCardLineContext } from "@/components/Planning/Calendar/CalendarCard/CalendarCardLine";
 
 const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
+  const { boardId, teamName, scheduleOwner, teamColor, title, startDate, endDate } = schedule;
   const scheduleModalRef = useRef<HTMLDivElement>(null);
-  const { closeScheduleModal, openModal } = useModal();
-  const { name: teamName } = useTeamInfo(schedule.teamId);
+  const { openModal } = useModal();
   const { mutate: cancelMemberScheduleMutate } = useCancelMemberSchedule();
   const { mutate: deleteTeamScheduleMutate } = useDeleteTeamSchedule();
-
-  useClickOutSide(scheduleModalRef, closeScheduleModal);
+  const { closeModal } = useContext(CalendarCardLineContext);
+  useClickOutSide(scheduleModalRef, closeModal);
 
   const handleCloseModal = () => {
-    closeScheduleModal();
+    closeModal();
   };
 
   const handleCancelSchedule = () => {
-    cancelMemberScheduleMutate(schedule.boardId);
-    closeScheduleModal();
+    cancelMemberScheduleMutate(boardId);
+    closeModal();
   };
 
   const handleDeleteSchedule = () => {
-    deleteTeamScheduleMutate(schedule.boardId);
-    closeScheduleModal();
+    deleteTeamScheduleMutate(boardId);
+    closeModal();
   };
 
   const handleEditSchedule = () => {
@@ -67,9 +67,9 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
         styles={{ width: "100%", justify: "space-between", align: "center", marginBottom: "16px" }}
       >
         <Flex styles={{ align: "center", gap: "8px" }}>
-          <Box css={circleDivStyle(schedule.teamColor)} />
+          <Box css={circleDivStyle(teamColor)} />
           <Heading size="small" css={scheduleTitleStyle}>
-            {schedule.title}
+            {title}
           </Heading>
         </Flex>
         <Flex styles={{ gap: "15px" }}>
@@ -77,7 +77,7 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
             handleEditSchedule={handleEditSchedule}
             handleDeleteSchedule={handleDeleteSchedule}
             handleCancelSchedule={handleCancelSchedule}
-            scheduleOwnerId={schedule.scheduleOwner.memberId}
+            scheduleOwnerId={scheduleOwner.memberId}
           >
             <KebabMenuIcon css={scheduleModalIcon} />
           </OptionDropdown>
@@ -85,14 +85,16 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
         </Flex>
       </Flex>
       <Text css={scheduleModalTime}>
-        {format(schedule.startDate, "yyyy년 M월d일 aa h시 m분", { locale: ko })} ~{" "}
-        {format(schedule.endDate, "yyyy년 M월d일 aa h시 m분", { locale: ko })}
+        {format(startDate, "yyyy년 M월d일 aa h시 m분", { locale: ko })} ~{" "}
+        {format(endDate, "yyyy년 M월d일 aa h시 m분", { locale: ko })}
       </Text>
       <Flex styles={{ gap: "8px" }}>
         <GroupIcon />
-        <Box css={scheduleModalTeamName(schedule.teamColor)}>{teamName}</Box>
+        <Box css={scheduleModalTeamName(teamColor)}>{teamName}</Box>
       </Flex>
-      <CommentField boardId={schedule.boardId} />
+      <Suspense fallback={<div></div>}>
+        <CommentField boardId={boardId} />
+      </Suspense>
     </section>
   );
 };
