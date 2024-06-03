@@ -1,3 +1,5 @@
+import type { BoardType } from "@/types/comment";
+
 export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const GOOGLE_AUTH_API_URL = `${BASE_URL}${import.meta.env.VITE_GOOGLE_REDIRECT_URI}`;
@@ -27,8 +29,8 @@ export const END_POINTS = {
   STORY_FILTER: (filter: string, currentPage: unknown) =>
     `/api/stories/sort?sortParam=${filter}&currentPage=${currentPage}`,
   POST_STORY: "/api/stories",
-  COMMENTS: (currentPage: unknown, boardId: number) =>
-    `/api/comments/${boardId}/paged?currentPage=${currentPage}`,
+  COMMENTS: (currentPage: unknown, boardId: number, boardType: BoardType) =>
+    `/api/comments/${boardId}/paged?currentPage=${currentPage}&boardType=${boardType}`,
   COMMENT: (commentId: number) => `/api/comments/${commentId}`,
   POST_COMMENT: (boardId?: number) => `/api/comments/${boardId}`,
   SIREN: (sirenId: number) => `/api/sirens/${sirenId}`,
