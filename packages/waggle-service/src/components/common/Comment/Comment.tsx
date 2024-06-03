@@ -8,6 +8,8 @@ import { useCommentQuery } from "@/hooks/api/comment/useCommentQuery";
 import useObserver from "@/hooks/common/useObserver";
 import { useComment } from "@/hooks/comment/useComment";
 
+import type { BoardType } from "@/types/comment";
+
 import {
   commentBoxStyle,
   textareaBoxStyle,
@@ -15,8 +17,16 @@ import {
   buttonBoxStyle,
 } from "@/components/common/Comment/Comment.style";
 
-const Comment = ({ boardId }: { boardId: number }) => {
-  const { commentData, hasNextPage, fetchNextPage, isFetching } = useCommentQuery(boardId);
+interface CommentProps {
+  boardId: number;
+  boardType: BoardType;
+}
+
+const Comment = ({ boardId, boardType }: CommentProps) => {
+  const { commentData, hasNextPage, fetchNextPage, isFetching } = useCommentQuery(
+    boardId,
+    boardType
+  );
 
   const {
     commentContent,

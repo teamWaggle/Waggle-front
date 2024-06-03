@@ -57,7 +57,7 @@ const SirenDetail = ({ sirenData }: SirenDataType) => {
 
       <Divider />
 
-      <Comment boardId={boardId} />
+      <Comment boardId={boardId} boardType="SIREN" />
     </Box>
   );
 };
