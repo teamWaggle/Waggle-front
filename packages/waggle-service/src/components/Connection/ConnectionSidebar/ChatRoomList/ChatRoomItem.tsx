@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { Flex, Box, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
 
-import { circleTextBoxStyle } from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomList";
+import { circleTextBoxStyle } from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomItemTitle";
 import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
 
 import useModal from "@/hooks/common/useModal";
@@ -35,7 +35,7 @@ const ChatRoomItem = ({ memberChatRoomInfo }: MemberChatRoomInfoType) => {
           <Text size="small" css={getDefaultTextStyle(Theme.color.text, 600)}>
             {name}
           </Text>
-          <span css={circleTextBoxStyle}>{unreadCount}</span>
+          <span css={circleTextBoxStyle()}>{unreadCount}</span>
         </Flex>
 
         <Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 400)}>
@@ -49,7 +49,7 @@ const ChatRoomItem = ({ memberChatRoomInfo }: MemberChatRoomInfoType) => {
 export default ChatRoomItem;
 
 const cardBoxStyle = css({
-  width: "295px",
+  width: "310px",
   border: `1px solid ${Theme.color.border}`,
   borderRadius: "45px",
   padding: "12px 14px",

@@ -84,5 +84,5 @@ const cardBoxStyle = css({
   border: `1px solid ${Theme.color.brand_primary}`,
   borderRadius: "20px",
   padding: "20px 18px",
-  width: "255px",
+  width: "250px",
 });
