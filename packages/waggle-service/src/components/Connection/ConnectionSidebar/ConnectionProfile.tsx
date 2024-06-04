@@ -18,7 +18,7 @@ const ConnectionProfile = () => {
           {memberData.result.nickname}
         </Text>
         <Text size="xSmall" css={getDefaultTextStyle(Theme.color.readonly_text, 500)}>
-          참여중인 채팅방 8
+          참여중인 채팅방 {memberData.result.chatRoomCount}
         </Text>
       </Box>
     </Flex>

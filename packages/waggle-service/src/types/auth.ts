@@ -49,6 +49,7 @@ export interface MemberInfoResultType {
   profileImgUrl: string;
   followingCount: number;
   followerCount: number;
+  chatRoomCount: number;
 }
 
 export interface FindEmailResponseType extends CommonResponseBaseType {
