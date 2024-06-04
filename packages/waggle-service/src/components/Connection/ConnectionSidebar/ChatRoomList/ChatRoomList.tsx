@@ -1,10 +1,10 @@
-import { css } from "@emotion/react";
-
 import { Fragment } from "react";
 
-import { Flex, Text, Theme, getDefaultTextStyle } from "waggle-design-system";
+import { Flex } from "waggle-design-system";
 
 import ChatRoomItem from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomItem";
+import ChatRoomItemTitle from "@/components/Connection/ConnectionSidebar/ChatRoomList/ChatRoomItemTitle";
+import EmptyChatRoomList from "@/components/Connection/ConnectionSidebar/EmptyChatRoomList/EmptyChatRoomList";
 
 import { useMemberChatRoomListQuery } from "@/hooks/api/chat/useMemberChatRoomListQuery";
 import useObserver from "@/hooks/common/useObserver";
@@ -21,14 +21,13 @@ const ChatRoomList = () => {
     }
   });
 
+  if (memberChatRoomListData.pages[0].result.chatRooms.length === 0) {
+    return <EmptyChatRoomList />;
+  }
+
   return (
     <Flex styles={{ direction: "column", gap: "12px" }}>
-      <Flex styles={{ gap: "6px", align: "center" }}>
-        <span css={circleTextBoxStyle}>N</span>
-        <Text size="small" css={getDefaultTextStyle(Theme.color.text, 500)}>
-          채팅방 메시지
-        </Text>
-      </Flex>
+      <ChatRoomItemTitle />
       {memberChatRoomListData.pages.map((chatRoomListData) => (
         <Fragment key={chatRoomListData.result.nextPageParam}>
           {chatRoomListData.result.chatRooms.map((chatRoomInfo) => (
@@ -42,16 +41,3 @@ const ChatRoomList = () => {
 };
 
 export default ChatRoomList;
-
-export const circleTextBoxStyle = css({
-  width: "17px",
-  height: "17px",
-  borderRadius: "50%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: Theme.color.btn_danger,
-  fontSize: "10px",
-  color: Theme.color.white,
-  fontWeight: 600,
-});

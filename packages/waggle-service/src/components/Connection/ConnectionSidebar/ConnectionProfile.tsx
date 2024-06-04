@@ -31,7 +31,7 @@ const profileBoxStyle = css({
   padding: "20px 28px",
   border: `1px solid ${Theme.color.border}`,
   borderRadius: "20px",
-  width: "295px",
+  width: "310px",
 
   "& > img": {
     width: "78px",
