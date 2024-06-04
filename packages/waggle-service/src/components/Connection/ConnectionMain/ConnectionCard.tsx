@@ -1,41 +1,47 @@
 import { Suspense } from "react";
 import { css } from "@emotion/react";
+import { useRecoilValue } from "recoil";
 
 import { Flex, Text, Button, Theme, getDefaultTextStyle } from "waggle-design-system";
 
 import PersonIcon from "@/assets/svg/ic-connection-person.svg?react";
 
 import ChatRoomJoinModal from "@/components/Connection/Chat/ChatRoomJoinModal/ChatRoomJoinModal";
-import ChattingRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
+// import ChattingRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
+import LoginModal from "@/components/Login/LoginModal/LoginModal";
 
 import useModal from "@/hooks/common/useModal";
-import { useJoinChatRoomMutation } from "@/hooks/api/chat/useJoinChatRoomMutation";
+// import { useJoinChatRoomMutation } from "@/hooks/api/chat/useJoinChatRoomMutation";
+
+import { isLoggedInState } from "@/recoil/atoms/auth";
 
 import type { ChatRoomInfoType } from "@/types/chat";
 
 const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
-  const { mutate: joinChatRoomMutate } = useJoinChatRoomMutation();
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+
+  // const { mutate: joinChatRoomMutate } = useJoinChatRoomMutation();
 
   const { openModal } = useModal();
 
-  const handlePublicRoomOpen = () => {
-    joinChatRoomMutate(
-      { chatRoomId: chatRoomInfo.id, password: "" },
-      {
-        onSuccess: () => {
-          openModal({
-            key: "ChattingRoomModal",
-            component: () => (
-              <Suspense fallback={<div />}>
-                <ChattingRoomModal chatRoomId={chatRoomInfo.id} />
-              </Suspense>
-            ),
-            isWhiteIcon: true,
-          });
-        },
-      }
-    );
-  };
+  // const handlePublicRoomOpen = () => {
+  //   joinChatRoomMutate(
+  //     { chatRoomId: chatRoomInfo.id, password: "" },
+  //     {
+  //       onSuccess: () => {
+  //         openModal({
+  //           key: "ChattingRoomModal",
+  //           component: () => (
+  //             <Suspense fallback={<div />}>
+  //               <ChattingRoomModal chatRoomId={chatRoomInfo.id} />
+  //             </Suspense>
+  //           ),
+  //           isWhiteIcon: true,
+  //         });
+  //       },
+  //     }
+  //   );
+  // };
 
   const handleJoinRoomOpen = () => {
     openModal({
@@ -54,6 +60,13 @@ const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
     });
   };
 
+  const handleLoginModal = () => {
+    openModal({
+      key: `LoginModal`,
+      component: () => <LoginModal />,
+    });
+  };
+
   return (
     <Flex styles={{ direction: "column", gap: "8px" }} css={cardBoxStyle}>
       <Text css={getDefaultTextStyle(Theme.color.text, 700)}>{chatRoomInfo.name}</Text>
@@ -69,7 +82,8 @@ const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
         </Flex>
         <Button
           style={{ padding: "6px 10px", borderRadius: "13px" }}
-          onClick={chatRoomInfo.isPrivate ? handleJoinRoomOpen : handlePublicRoomOpen}
+          // onClick={chatRoomInfo.isPrivate ? handleJoinRoomOpen : handlePublicRoomOpen}
+          onClick={() => (isLoggedIn ? handleJoinRoomOpen() : handleLoginModal())}
         >
           입장
         </Button>
