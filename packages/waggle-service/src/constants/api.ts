@@ -26,7 +26,7 @@ export const END_POINTS = {
   CHECK_EMAIL: (email: string) => `/api/members/check-email?email=${email}`,
   STORY: (storyId: number) => `/api/stories/${storyId}`,
   STORY_LIST: (keyword: string, sortParam: string, currentPage: unknown) =>
-    `/api/stories/v2/search?keyword=${keyword}&sortParam=${sortParam}&currentPage=${currentPage}`,
+    `/api/stories/search?keyword=${keyword}&sortParam=${sortParam}&currentPage=${currentPage}`,
   POST_STORY: "/api/stories",
   COMMENTS: (currentPage: unknown, boardId: number, boardType: BoardType) =>
     `/api/comments/${boardId}/paged?currentPage=${currentPage}&boardType=${boardType}`,
@@ -34,7 +34,7 @@ export const END_POINTS = {
   POST_COMMENT: (boardId?: number) => `/api/comments/${boardId}`,
   SIREN: (sirenId: number) => `/api/sirens/${sirenId}`,
   SIREN_LIST: (keyword: string, sortParam: string, filterParam: string, curretPage: unknown) =>
-    `/api/sirens/v2/search?keyword=${keyword}&sortParam=${sortParam}&filterParam=${filterParam}&currentPage=${curretPage}`,
+    `/api/sirens/search?keyword=${keyword}&sortParam=${sortParam}&filterParam=${filterParam}&currentPage=${curretPage}`,
   SIREN_REPRESENTATIVE: "/api/sirens/representative",
   SIREN_RANDOM: "/api/sirens/random",
   POST_SIREN: "/api/sirens",
@@ -47,7 +47,7 @@ export const END_POINTS = {
   PET: (petId: number) => `/api/pets/${petId}`,
   MEDIA: "/api/media/list",
   QUESTION_LIST: (keyword: string, sortParam: string, currentPage: unknown) =>
-    `/api/questions/v2/search?keyword=${keyword}&sortParam=${sortParam}&currentPage=${currentPage}`,
+    `/api/questions/search?keyword=${keyword}&sortParam=${sortParam}&currentPage=${currentPage}`,
   QUESTION: (questionId: number) => `/api/questions/${questionId}`,
   QUESTION_REPRESENTATIVE: `/api/questions/representative`,
   POST_QUESTION: "/api/questions",
