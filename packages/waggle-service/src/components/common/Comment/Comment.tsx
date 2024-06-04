@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-import { Flex, Box, Button } from "waggle-design-system";
+import { Flex, Box, Button, Text, getDefaultTextStyle, Theme } from "waggle-design-system";
 
 import CommentCard from "@/components/common/Comment/CommentCard";
 
@@ -12,6 +12,7 @@ import type { BoardType } from "@/types/comment";
 
 import {
   commentBoxStyle,
+  commentTopBoxStyle,
   textareaBoxStyle,
   commentTextareaStyle,
   buttonBoxStyle,
@@ -50,20 +51,30 @@ const Comment = ({ boardId, boardType }: CommentProps) => {
   });
 
   return (
-    <Flex styles={{ direction: "column", gap: "60px", margin: "60px auto" }} css={commentBoxStyle}>
-      <Box css={textareaBoxStyle}>
-        <textarea
-          placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."
-          css={commentTextareaStyle}
-          value={commentContent}
-          onChange={(e) => handleCommentContent(e.target.value)}
-          ref={commentTextAreaRef}
-        />
-        <Box
-          css={buttonBoxStyle}
-          onClick={() => (commentButtonText === "등록" ? handleAddComment() : handleEditComment())}
-        >
-          <Button>{commentButtonText}</Button>
+    <Flex
+      styles={{ direction: "column", gap: "60px", margin: "24px auto 60px" }}
+      css={commentBoxStyle}
+    >
+      <Box css={commentTopBoxStyle}>
+        <Text size="xLarge" css={getDefaultTextStyle(Theme.color.brand_primary, 700)}>
+          댓글 {commentData.pages[0].result.totalCount}개
+        </Text>
+        <Box css={textareaBoxStyle}>
+          <textarea
+            placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."
+            css={commentTextareaStyle}
+            value={commentContent}
+            onChange={(e) => handleCommentContent(e.target.value)}
+            ref={commentTextAreaRef}
+          />
+          <Box
+            css={buttonBoxStyle}
+            onClick={() =>
+              commentButtonText === "등록" ? handleAddComment() : handleEditComment()
+            }
+          >
+            <Button>{commentButtonText}</Button>
+          </Box>
         </Box>
       </Box>
 

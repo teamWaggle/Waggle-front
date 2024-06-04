@@ -7,9 +7,13 @@ export const commentBoxStyle = css({
   padding: "0 196px",
 });
 
+export const commentTopBoxStyle = css({
+  width: "100%",
+});
+
 export const textareaBoxStyle = css({
   position: "relative",
-  width: "100%",
+  marginTop: "24px",
 });
 
 export const commentTextareaStyle = css({

@@ -11,6 +11,7 @@ export interface CommentType {
 export interface CommentResultType {
   commentList: CommentListInfoType[];
   nextPageParam: number;
+  totalCount: number;
 }
 
 export interface CommentDataType extends EditCommentProps {
