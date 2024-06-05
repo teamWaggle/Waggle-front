@@ -91,6 +91,8 @@ export const END_POINTS = {
     `/api/schedules/teams/${teamId}/auth?currentPage=${currentPage}`,
   GET_TEAM_SCHEDULE_PERIOD: (teamId: number, startDate: string, endDate: string) =>
     `/api/schedules/teams/${teamId}/period?start=${startDate}&end=${endDate}`,
+  GET_TEAM_SCHEDULE_PERIOD_AUTH: (teamId: number, startDate: string, endDate: string) =>
+    `/api/schedules/teams/${teamId}/period/auth?start=${startDate}&end=${endDate}`,
   ADD_TEAM_SCHEDULE: (teamId: number) => `/api/schedules/${teamId}`,
   ADD_TEAM_SCHEDULE_TO_MY_SCHEDULE: (scheduleId: number) => `/api/schedules/members/${scheduleId}`,
   CANCEL_MEMBER_SCHEDULE: (scheduleId: number) => `/api/schedules/${scheduleId}/members`,

@@ -14,6 +14,7 @@ export const useTeamForm = (defaultValues?: FieldValues) => {
 
   const onSubmit = async (data: FieldValues) => {
     const formData = new FormData();
+    const formDataKey = defaultValues ? EDIT_TEAM_FORM_KEY : CREATE_TEAM_FORM_KEY;
     if (data.coverImageUrl instanceof File) {
       const imageFormData = new FormData();
       imageFormData.append("uploadImgFileList", data.coverImageUrl);
@@ -23,7 +24,6 @@ export const useTeamForm = (defaultValues?: FieldValues) => {
         },
       });
     }
-    const formDataKey = defaultValues ? EDIT_TEAM_FORM_KEY : CREATE_TEAM_FORM_KEY;
     formData.append(formDataKey, JSON.stringify({ ...data }));
     defaultValues ? editTeamMutate(formData) : createTeamMutate(formData);
     navigate(-1);
