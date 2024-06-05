@@ -3,11 +3,13 @@ import * as yup from "yup";
 import { REGEX } from "@/constants/regex";
 
 import type { TeamColorType } from "@/types/team";
-
+import LockIcon from "@/assets/svg/smallLock.svg?react";
+import EarthIcon from "@/assets/svg/earth.svg?react";
+import type { TeamOptionType } from "@/components/common/Form/DropdownInputField/DropdownInputField";
 export const TEAM_INFO = {
   MEMBERS_SLIDER_AMOUNT: 4,
   PARTICIPATION_SLIDER_AMOUNT: 3,
-  TEAM_MAX_SIZE: 50,
+  TEAM_MAX_SIZE: 20,
 };
 
 export const TEAM_COLOR: TeamColorType[] = [
@@ -30,7 +32,27 @@ export const TEAM_DEFAULT_VALUES = {
   description: "",
   coverImageUrl: "",
   teamColor: "team_1",
+  isPrivate: false,
 };
+
+export const TEAM_ISPRIVATE = {
+  name: "isPrivate",
+};
+
+export const TEAM_PRIVATE: TeamOptionType[] = [
+  {
+    name: "전체 공개",
+    value: false,
+    icon: EarthIcon(),
+    description: "팀의 일정을 누구나 열람할 수 있습니다.",
+  },
+  {
+    name: "팀원 공개",
+    value: true,
+    icon: LockIcon(),
+    description: "팀원만 팀의 일정을 열람할 수 있습니다.",
+  },
+];
 
 export const TEAM_TITLE = {
   MAX_LEGHTH: 30,
@@ -77,8 +99,3 @@ export const TEAM_SCHEDULE_SEARCH_VALUES = {
   startDate: "",
   endDate: "",
 };
-
-// export const TEAM_SCHEDULE_TITLE = {
-// 	MAX_L
-
-// }

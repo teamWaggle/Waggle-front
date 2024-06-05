@@ -14,7 +14,7 @@ export const useTeamForm = (defaultValues?: FieldValues) => {
 
   const onSubmit = async (data: FieldValues) => {
     const formData = new FormData();
-    if (data.coverImageUrl) {
+    if (data.coverImageUrl instanceof File) {
       const imageFormData = new FormData();
       imageFormData.append("uploadImgFileList", data.coverImageUrl);
       await mutateAsync(imageFormData, {

@@ -43,14 +43,17 @@ export const colorTitleStyle = css({
 });
 
 export const submitButtonStyle = css({
-  width: "100px",
   height: "40px",
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  fontSize: "20px",
   marginTop: "40px",
   marginLeft: "auto",
+  padding: "8px 12px",
+  fontWeight: 600,
+  fontFamily: "Pretendard",
   border: "none",
   borderRadius: "4px",
   color: Theme.color.white,
@@ -60,27 +63,29 @@ export const submitButtonStyle = css({
 export const titleTextInputStyle = css({
   width: "100%",
   height: "40px",
-  padding: "12px",
-  marginTop: "20px",
-  color: Theme.color.input_text,
+  fontFamily: "Pretendard",
   border: "none",
   fontSize: "24px",
   outline: "none",
   borderBottom: `2px solid  ${Theme.color.gray200}`,
   resize: "none",
+  flexShrink: 1,
+  marginBottom: "10px",
 });
 
 export const contentTextareaStyle = css({
   width: "100%",
   height: "100%",
-  padding: "0 12px",
+  padding: "10px 12px",
+  fontFamily: "Pretendard",
+  fontSize: "18px",
   marginTop: "20px",
   color: Theme.color.input_text,
-  fontSize: "16px",
   outline: "none",
   borderRadius: "6px",
   border: `2px solid ${Theme.color.gray200}`,
   resize: "none",
+  marginBottom: "10px",
 });
 
 export const deleteTeamTextStyle = css({
