@@ -5,6 +5,7 @@ import type { SerializedStyles } from "@emotion/react";
 import { InputNotice } from "@/components/common";
 
 import { useControlledForm } from "@/hooks/common/useControlledForm";
+import { Flex } from "waggle-design-system";
 
 interface TextInputFieldProps {
   name: FieldPath<FieldValues>;
@@ -30,7 +31,7 @@ const TextInputField = ({
   const message = isInitialNotice ? validateText : "";
 
   return (
-    <>
+    <Flex styles={{ direction: "column", width: "100%", shrink: "1" }}>
       {isContent ? (
         <textarea
           value={field.value}
@@ -50,7 +51,7 @@ const TextInputField = ({
       )}
 
       <InputNotice message={errorMessage || message} isValid={isValid} />
-    </>
+    </Flex>
   );
 };
 

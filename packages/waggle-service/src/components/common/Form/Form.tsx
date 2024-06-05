@@ -12,6 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import type * as yup from "yup";
 import ResetButton from "@/components/common/Form/ResetButton/ResetButton";
+import DropdownInputField from "@/components/common/Form/DropdownInputField/DropdownInputField";
 
 const Form = ({
   children,
@@ -38,6 +39,7 @@ const Form = ({
   );
 };
 
+Form.DropDownInputField = DropdownInputField;
 Form.ColorRadioInputField = ColorRadioInputField;
 Form.ImageInputField = ImageInputField;
 Form.TextInputField = TextInputField;

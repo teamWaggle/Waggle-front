@@ -6,7 +6,13 @@ import { Box, Flex, Heading, Text } from "waggle-design-system";
 import { Form } from "@/components/common";
 import * as yup from "yup";
 
-import { TEAM_CONTENT, TEAM_DEFAULT_VALUES, TEAM_TITLE } from "@/constants/team";
+import {
+  TEAM_CONTENT,
+  TEAM_DEFAULT_VALUES,
+  TEAM_ISPRIVATE,
+  TEAM_PRIVATE,
+  TEAM_TITLE,
+} from "@/constants/team";
 
 import {
   colorTitleStyle,
@@ -62,7 +68,7 @@ const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
       <Flex styles={{ align: "center", marginTop: "52px", gap: "24px", marginBottom: "20px" }}>
         <LeftArrowIcon css={leftArrowIconStyle} onClick={handleLeftArrowIconClick} />
         <Heading css={headingStyle} size="xLarge">
-          {isEdit ? "팀 수정하기" : "팀 만들기"}
+          {isEdit ? "팀 수정하기" : "팀 설정하기"}
         </Heading>
       </Flex>
       <Form
@@ -76,12 +82,15 @@ const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
             styles={{ marginLeft: "40px", direction: "column", height: "100%", width: "100%" }}
             css={textInputBoxStyle}
           >
-            <Form.TextInputField
-              inputStyle={titleTextInputStyle}
-              placeholder={TEAM_TITLE.PLACEHOLDER}
-              name={TEAM_TITLE.NAME}
-              validateText={TEAM_TITLE.VALIDATE_TEXT()}
-            />
+            <Flex styles={{ width: "100%", gap: "12px" }}>
+              <Form.DropDownInputField name={TEAM_ISPRIVATE.name} options={TEAM_PRIVATE} />
+              <Form.TextInputField
+                inputStyle={titleTextInputStyle}
+                placeholder={TEAM_TITLE.PLACEHOLDER}
+                name={TEAM_TITLE.NAME}
+                validateText={TEAM_TITLE.VALIDATE_TEXT()}
+              />
+            </Flex>
             <Form.TextInputField
               inputStyle={contentTextareaStyle}
               placeholder={TEAM_CONTENT.PLACEHOLDER}
@@ -92,10 +101,12 @@ const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
           </Flex>
         </Flex>
         <Box>
-          <Text css={colorTitleStyle}>팀 대표 컬러</Text>
+          <Text size="large" css={colorTitleStyle}>
+            팀 대표 컬러
+          </Text>
           <Form.ColorRadioInputField name="teamColor" />
           <button css={submitButtonStyle} type="submit">
-            {isEdit ? "팀 수정하기" : "팀 생성하기"}
+            {isEdit ? "팀 수정하기" : "팀 설정하기"}
           </button>
         </Box>
       </Form>
