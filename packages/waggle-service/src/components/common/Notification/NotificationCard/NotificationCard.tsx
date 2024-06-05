@@ -2,7 +2,6 @@ import { Flex, Text, Button } from "waggle-design-system";
 
 import {
   variantTextStyle,
-  titleStyle,
   contentStyle,
   dateTextStyle,
   cardBoxStyle,
@@ -12,7 +11,6 @@ import {
 
 interface NotificationCardProps {
   nickname: string;
-  hasTitle?: boolean;
   hasContent?: boolean;
   isRequest?: boolean;
   category: string;
@@ -24,7 +22,6 @@ interface NotificationCardProps {
 
 const NotificationCard = ({
   nickname,
-  hasTitle,
   hasContent,
   isRequest,
   category,
@@ -58,12 +55,6 @@ const NotificationCard = ({
             거절
           </Button>
         </Flex>
-      )}
-
-      {hasTitle && (
-        <Text size="xLarge" css={titleStyle}>
-          강아지 찾는거 도와주세요
-        </Text>
       )}
 
       {hasContent && (

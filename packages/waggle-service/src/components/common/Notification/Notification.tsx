@@ -14,13 +14,7 @@ const Notification = () => {
   return (
     <Flex styles={{ position: "absolute" }} css={layoutStyle}>
       <Flex styles={{ direction: "column", width: "100%" }}>
-        <NotificationCard
-          nickname="정한"
-          hasTitle
-          hasContent
-          category="SIREN"
-          createdDate="2024.03.25"
-        />
+        <NotificationCard nickname="정한" hasContent category="SIREN" createdDate="2024.03.25" />
         <NotificationCard
           nickname="정한"
           hasContent
