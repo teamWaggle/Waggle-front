@@ -37,7 +37,7 @@ const MoreModal = ({ day, schedules, position }: MoreModalType) => {
           <MoreModalLine
             key={i}
             schedule={schedule}
-            modal={<ScheduleModal schedule={schedule} position={position} />}
+            modal={<ScheduleModal schedule={schedule} isMoreModal position={position} />}
           />
         ))}
       </Box>

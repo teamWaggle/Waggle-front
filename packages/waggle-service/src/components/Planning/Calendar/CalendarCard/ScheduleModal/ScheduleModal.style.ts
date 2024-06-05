@@ -5,14 +5,24 @@ import { Theme } from "waggle-design-system";
 import type { SchedulePositionType } from "@/types/planning";
 import type { TeamColorType } from "@/types/team";
 
-export const scheduleModalBoxStyle = (position?: SchedulePositionType) =>
+export const scheduleModalBoxStyle = (position: SchedulePositionType, isMoreModal?: boolean) =>
   css({
     position: "absolute",
     zIndex: 2,
-    top: position ? `${position.index / 7 < 3 ? position.row : position.row - 250}` + "px" : "0px",
-    left: position
-      ? `${position.index % 7 < 4 ? position.column + 161 : position.column - 450}` + "px"
-      : "0px",
+    top: isMoreModal
+      ? `${
+          position.index / 7 < 3
+            ? position.row - (40 + 110 * (position.index / 7))
+            : position.row + (-100 - 110 * (position.index / 7))
+        }` + "px"
+      : `${position.index / 7 < 3 ? position.row : position.row - 250}` + "px",
+    left: isMoreModal
+      ? `${
+          position.index % 7 < 3
+            ? position.column + (180 - 160 * (position.index % 7))
+            : position.column - (486 + 160 * (position.index % 7))
+        }` + "px"
+      : `${position.index % 7 < 3 ? position.column + 161 : position.column - 500}` + "px",
     width: "500px",
     minHeight: "300px",
     maxHeight: "600px",
