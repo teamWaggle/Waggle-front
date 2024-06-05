@@ -25,22 +25,6 @@ export const variantTextStyle = css({
   },
 });
 
-export const titleStyle = css({
-  fontWeight: 600,
-  color: Theme.color.readonly_text,
-  position: "relative",
-  paddingLeft: "8px",
-
-  "&:before": {
-    content: "''",
-    width: "2px",
-    height: "100%",
-    backgroundColor: Theme.color.brand_primary,
-    position: "absolute",
-    left: 0,
-  },
-});
-
 export const contentStyle = css({
   fontWeight: 600,
   color: Theme.color.input_text,
