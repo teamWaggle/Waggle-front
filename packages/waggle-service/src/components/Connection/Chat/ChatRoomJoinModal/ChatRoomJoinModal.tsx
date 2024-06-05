@@ -15,32 +15,24 @@ import { ROOM_PASSWORD_FORM, ROOM_JOIN_FORM_SCHEMA } from "@/constants/form";
 import { useJoinChatRoomMutation } from "@/hooks/api/chat/useJoinChatRoomMutation";
 import useModal from "@/hooks/common/useModal";
 
+import type { ChatRoomInfoType } from "@/types/chat";
+
 import { titleInputStyle } from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
 import {
   titleBoxStyle,
   personBoxStyle,
 } from "@/components/Connection/Chat/ChatRoomInfoBox/ChatRoomInfoBox";
 
-interface ChatRoomJoinModalProps {
-  chatRoomId: number;
-  name: string;
-  description: string;
-  memberCount: number;
-}
+const ChatRoomJoinModal = ({ chatRoomInfo }: ChatRoomInfoType) => {
+  const { id, name, description, chatRoomMemberCount } = chatRoomInfo;
 
-const ChatRoomJoinModal = ({
-  chatRoomId,
-  name,
-  description,
-  memberCount,
-}: ChatRoomJoinModalProps) => {
   const { mutate: joinChatRoomMutate } = useJoinChatRoomMutation();
 
   const { openModal, closeModal } = useModal();
 
   const handleSubmit = (data: FieldValues) => {
     joinChatRoomMutate(
-      { chatRoomId, password: data["password"] },
+      { chatRoomId: id, password: data["password"] },
       {
         onSuccess: () => {
           closeModal();
@@ -48,7 +40,7 @@ const ChatRoomJoinModal = ({
             key: "ChattingRoomModal",
             component: () => (
               <Suspense fallback={<div />}>
-                <ChattingRoomModal chatRoomId={chatRoomId} />
+                <ChattingRoomModal chatRoomId={id} />
               </Suspense>
             ),
             isWhiteIcon: true,
@@ -66,7 +58,7 @@ const ChatRoomJoinModal = ({
           <Flex styles={{ align: "center", gap: "4px" }} css={personBoxStyle}>
             <PersonIcon />
             <Text size="small" css={getDefaultTextStyle(Theme.color.white, 600)}>
-              {memberCount}/7
+              {chatRoomMemberCount}/7
             </Text>
           </Flex>
         </Flex>

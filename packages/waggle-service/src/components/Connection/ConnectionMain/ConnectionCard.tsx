@@ -48,12 +48,7 @@ const ConnectionCard = ({ chatRoomInfo }: ChatRoomInfoType) => {
       key: "JoinChatRoomModal",
       component: () => (
         <Suspense fallback={<div />}>
-          <ChatRoomJoinModal
-            chatRoomId={chatRoomInfo.id}
-            name={chatRoomInfo.name}
-            description={chatRoomInfo.description}
-            memberCount={chatRoomInfo.chatRoomMemberCount}
-          />
+          <ChatRoomJoinModal chatRoomInfo={chatRoomInfo} />
         </Suspense>
       ),
       isWhiteIcon: true,
