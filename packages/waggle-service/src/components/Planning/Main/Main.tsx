@@ -94,13 +94,6 @@ const Main = () => {
                 ))}
               </Fragment>
             ))}
-        {/* {recommendTeamsData.pages?.map((recommendTeamData, page) => (
-          <Fragment key={page}>
-            {recommendTeamData.result.teamList.map((team) => (
-              <TeamCard key={team.teamId} data={team} />
-            ))}
-          </Fragment>
-        ))} */}
       </Box>
       <Box ref={ref} />
       <Box ref={searchRef} />

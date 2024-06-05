@@ -8,6 +8,7 @@ export const gridBoxStyle = css({
   gridTemplateColumns: "repeat(4, 1fr)",
   justifyContent: "space-evenly",
   gap: "20px",
+  minHeight: "50vh",
 });
 
 export const headingStyle = css({

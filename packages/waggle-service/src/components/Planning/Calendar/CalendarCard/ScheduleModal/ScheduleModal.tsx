@@ -29,7 +29,7 @@ import { ko } from "date-fns/locale";
 import CommentField from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/CommentField/CommentField";
 import { ScheduleModalContext } from "@/components/Planning/Calendar/CalendarCard/context/ScheduleModalContext";
 
-const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
+const ScheduleModal = ({ schedule, position, isMoreModal }: ScheduleModalType) => {
   const { boardId, teamName, scheduleOwner, teamColor, title, startDate, endDate } = schedule;
   const scheduleModalRef = useRef<HTMLDivElement>(null);
   const { openModal } = useModal();
@@ -60,9 +60,8 @@ const ScheduleModal = ({ schedule, position }: ScheduleModalType) => {
       isOutsideClose: false,
     });
   };
-
   return (
-    <section css={scheduleModalBoxStyle(position)} ref={scheduleModalRef}>
+    <section css={scheduleModalBoxStyle(position, isMoreModal)} ref={scheduleModalRef}>
       <Flex
         styles={{ width: "100%", justify: "space-between", align: "center", marginBottom: "16px" }}
       >

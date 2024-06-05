@@ -7,6 +7,7 @@ import type { TeamColorType } from "@/types/team";
 export const moreModalContainerStyle = css({
   zIndex: 1,
   backgroundColor: Theme.color.white,
+  left: "-20px",
 });
 
 export const moreModalDayStyle = css({ color: Theme.color.text, marginTop: "16px" });

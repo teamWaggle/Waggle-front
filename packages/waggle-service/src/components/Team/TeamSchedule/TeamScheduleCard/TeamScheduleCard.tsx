@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Box, Flex, Heading, Text } from "waggle-design-system";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
@@ -31,6 +32,7 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
   const handleAddToMySchedule = () => {
     addToMySchedule(boardId);
   };
+
   return (
     <Box css={teamScheduleCardBoxStyle}>
       <Flex styles={{ justify: "space-between", marginBottom: "20px" }}>
@@ -45,14 +47,16 @@ const TeamScheduleCard = ({ teamScheduleData }: { teamScheduleData: TeamSchedule
       <Flex style={{ alignItems: "center", justifyContent: "space-between" }}>
         {status !== "CLOSING" && !isScheduled && (
           <>
-            <OverlapScheduleButton
-              overlappedScheduleCount={overlappedScheduleCount}
-              teamColor={teamColor}
-              scheduleId={boardId}
-            />
-            <Flex onClick={handleAddToMySchedule} css={addScheduleButtonStyle(teamColor)}>
-              내 일정에 추가
-            </Flex>
+            <Suspense fallback={<div>Loading...</div>}>
+              <OverlapScheduleButton
+                overlappedScheduleCount={overlappedScheduleCount}
+                teamColor={teamColor}
+                scheduleId={boardId}
+              />
+              <Flex onClick={handleAddToMySchedule} css={addScheduleButtonStyle(teamColor)}>
+                내 일정에 추가
+              </Flex>
+            </Suspense>
           </>
         )}
       </Flex>
