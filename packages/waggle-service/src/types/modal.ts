@@ -21,7 +21,7 @@ export interface MoreModalStateType {
 
 export interface ScheduleModalType {
   schedule: ScheduleType;
-  position: SchedulePositionType;
+  position?: SchedulePositionType;
 }
 
 export interface MoreModalType {
