@@ -1,8 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
 import type { FieldValues } from "react-hook-form";
 import AddIcon from "@/assets/svg/add-icon.svg?react";
+import TildeIcon from "@/assets/svg/tilde.svg?react";
 
-import { Box, Flex, Heading, Text, Spinner, Button } from "waggle-design-system";
+import { Box, Flex, Heading, Spinner, Button } from "waggle-design-system";
 import Lock from "@/components/Team/TeamSchedule/Lock/Lock";
 import TeamScheduleCard from "@/components/Team/TeamSchedule/TeamScheduleCard/TeamScheduleCard";
 import * as yup from "yup";
@@ -15,6 +16,7 @@ import { useParamsTeamId } from "@/hooks/team/useParamsTeamId";
 import {
   teamScheduleAddButtonStyle,
   teamScheduleGridBoxStyle,
+  teamScheduleRefreshButtonStyle,
   teamScheduleSearchButtonStyle,
   teamScheduleTitleStyle,
 } from "@/components/Team/TeamSchedule/TeamSchedule.style";
@@ -81,35 +83,37 @@ const TeamSchedule = () => {
       <TeamAllMemberAuthorizationContainer
         renderLock={<Lock teamName={teamName} teamId={teamId} teamColor={teamColor} />}
       >
-        <Flex styles={{ justify: "space-between", align: "center", marginTop: "20px" }}>
-          <Flex style={{ alignItems: "center", gap: "16px" }}>
+        <Flex styles={{ direction: "column", marginTop: "20px" }}>
+          <Flex styles={{ align: "center", gap: "16px" }}>
             <Heading size="xLarge" css={teamScheduleTitleStyle}>
               TEAM SCHEDULE
             </Heading>
+          </Flex>
+          <Flex style={{ justifyContent: "space-between", width: "100%", margin: "28px 0 28px 0" }}>
             <Form schema={schema} onSubmit={onSubmit} defaultValues={TEAM_SCHEDULE_SEARCH_VALUES}>
-              <Flex style={{ gap: "4px", alignItems: "center" }}>
+              <Flex style={{ gap: "14px", alignItems: "center" }}>
                 <DatePicker name="startDate">
                   <DatePickerCalendarModal />
                 </DatePicker>
-                ~
+                <TildeIcon />
                 <DatePicker name="endDate">
                   <DatePickerCalendarModal />
                 </DatePicker>
-                <button type="submit" css={teamScheduleSearchButtonStyle}>
-                  <Text size="xSmall">일정 검색</Text>
-                </button>
+                <Button type="submit" size="small" css={teamScheduleSearchButtonStyle}>
+                  일정 검색
+                </Button>
                 <Form.ResetButton onClick={handleResetButton}>
-                  <Flex tag="button" css={teamScheduleSearchButtonStyle}>
+                  <Flex tag="button" css={teamScheduleRefreshButtonStyle}>
                     <ResetIcon />
                   </Flex>
                 </Form.ResetButton>
               </Flex>
             </Form>
+            <Button onClick={handleAddSchedule} css={teamScheduleAddButtonStyle("team_1")}>
+              일정 추가
+              <AddIcon />
+            </Button>
           </Flex>
-          <Button onClick={handleAddSchedule} css={teamScheduleAddButtonStyle("team_1")}>
-            일정 추가
-            <AddIcon />
-          </Button>
         </Flex>
         {isLoading && (
           <Flex
