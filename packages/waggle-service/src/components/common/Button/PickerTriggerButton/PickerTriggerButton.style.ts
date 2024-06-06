@@ -7,4 +7,7 @@ export const PickerTriggerButtonStyle = css({
   padding: "8px 7px",
   borderRadius: "4px",
   color: Theme.color.readonly_text,
+  minWidth: "100px",
+  maxWidth: "140px",
+  textAlign: "center",
 });

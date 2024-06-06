@@ -12,7 +12,14 @@ export const teamScheduleTitleStyle = css({
 });
 
 export const teamScheduleSearchButtonStyle = css({
-  padding: "7px 12px",
+  display: "flex",
+  height: "40px",
+  marginLeft: "20px",
+  alignItems: "center",
+});
+
+export const teamScheduleRefreshButtonStyle = css({
+  padding: "12px 16px",
   borderRadius: "2px",
   border: "none",
   backgroundColor: "transparent",
