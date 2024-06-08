@@ -106,7 +106,7 @@ const TeamForm = ({ defaultValues }: { defaultValues?: FieldValues }) => {
           </Text>
           <Form.ColorRadioInputField name="teamColor" />
           <button css={submitButtonStyle} type="submit">
-            {isEdit ? "팀 수정하기" : "팀 설정하기"}
+            {isEdit ? "팀 수정하기" : "팀 만들기"}
           </button>
         </Box>
       </Form>

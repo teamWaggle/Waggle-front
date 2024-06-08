@@ -84,8 +84,8 @@ const ScheduleModal = ({ schedule, position, isMoreModal }: ScheduleModalType) =
         </Flex>
       </Flex>
       <Text css={scheduleModalTime}>
-        {format(startDate, "yyyy년 M월d일 aa h시 m분", { locale: ko })} ~{" "}
-        {format(endDate, "yyyy년 M월d일 aa h시 m분", { locale: ko })}
+        {format(startDate, "yyyy년 M월 d일 aa h시 m분", { locale: ko })} ~{" "}
+        {format(endDate, "yyyy년 M월 d일 aa h시 m분", { locale: ko })}
       </Text>
       <Flex styles={{ gap: "8px" }}>
         <GroupIcon />

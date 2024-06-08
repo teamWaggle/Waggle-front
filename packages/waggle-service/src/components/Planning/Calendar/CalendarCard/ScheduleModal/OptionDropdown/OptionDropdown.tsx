@@ -24,7 +24,7 @@ const OptionDropdown = ({
       <Dropdown.Button css={dropdownButtonStyle}>{children}</Dropdown.Button>
       <Dropdown.List>
         {scheduleOwnerId !== memberId && (
-          <Dropdown.Item onClick={handleCancelSchedule}>일정 참여 취소</Dropdown.Item>
+          <Dropdown.Item onClick={handleCancelSchedule}>일정 취소</Dropdown.Item>
         )}
         {scheduleOwnerId === memberId && (
           <>

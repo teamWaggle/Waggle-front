@@ -28,6 +28,7 @@ import AddTeamScheduleModal from "@/components/Team/TeamSchedule/Modal/AddTeamSc
 import { useTeamInfo } from "@/hooks/api/team/useTeamInfo";
 import { DatePicker, DatePickerCalendarModal, Form } from "@/components/common";
 import TeamAllMemberAuthorizationContainer from "@/components/common/AuthorizationContainer/team/TeamAllMemberAuthorizationContainer";
+import { toast } from "react-toastify";
 
 const TeamSchedule = () => {
   const { getYearMonthDay } = getDate();
@@ -46,6 +47,7 @@ const TeamSchedule = () => {
       fetchNextPage();
     }
   });
+
   const handleAddSchedule = () => {
     openModal({
       key: "AddSchedule",
@@ -71,7 +73,9 @@ const TeamSchedule = () => {
 
   const schema = yup.object({
     startDate: yup.date(),
-    endDate: yup.date().min(yup.ref("startDate"), "종료일은 시작일 이후여야 합니다."),
+    endDate: yup
+      .date()
+      .min(yup.ref("startDate"), () => toast.warn("종료일은 시작일 이후여야 합니다.")),
   });
 
   useEffect(() => {
@@ -109,7 +113,7 @@ const TeamSchedule = () => {
                 </Form.ResetButton>
               </Flex>
             </Form>
-            <Button onClick={handleAddSchedule} css={teamScheduleAddButtonStyle("team_1")}>
+            <Button onClick={handleAddSchedule} css={teamScheduleAddButtonStyle(teamColor)}>
               일정 추가
               <AddIcon />
             </Button>
