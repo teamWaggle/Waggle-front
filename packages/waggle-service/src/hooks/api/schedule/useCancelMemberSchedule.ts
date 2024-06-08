@@ -51,6 +51,14 @@ export const useCancelMemberSchedule = () => {
         );
       }
     },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.TEAM_SCHEDULE_PAGE],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.SCHEDULE_PERIOD],
+      });
+    },
     onSuccess: () => {
       toast.success("스케줄이 취소되었습니다.");
     },

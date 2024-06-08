@@ -39,7 +39,7 @@ const OverlapScheduleButton = ({
       >
         <Text>겹치는 일정</Text>
         <Text css={teamScheduleOverlapCount(teamColor)}>{overlappedScheduleCount}</Text>
-        {isOpenOverlapSchedule && (
+        {overlappedScheduleCount !== 0 && isOpenOverlapSchedule && (
           <>
             <Box css={overlapTransparentBackground} />
             <Flex
