@@ -80,6 +80,8 @@ const ChatRoomContent = () => {
     setNewMessage("");
   };
 
+  // console.log(messages);
+
   useEffect(() => {
     const client = new Client({
       brokerURL: import.meta.env.VITE_SOCKET_URL,
@@ -87,23 +89,22 @@ const ChatRoomContent = () => {
       connectHeaders: {
         Authorization: `Bearer ${accessToken}`,
       },
+      onConnect: () => {
+        client.subscribe(
+          `/subscribe/${chatRoomId}`,
+          (message) => {
+            const msg = JSON.parse(message.body);
+            setMessages((prev) => [msg, ...prev]);
+          },
+          { Authorization: `Bearer ${accessToken}` }
+        );
+      },
       // debug: (str: string) => {
       //   console.log(str);
       // },
     });
 
     client.activate();
-
-    client.onConnect = () => {
-      client.subscribe(
-        `/subscribe/${chatRoomId}`,
-        (message) => {
-          const msg = JSON.parse(message.body);
-          setMessages((prev) => [msg, ...prev]);
-        },
-        { Authorization: `Bearer ${accessToken}` }
-      );
-    };
 
     setStompClient(client);
 
@@ -160,7 +161,7 @@ const ChatRoomContent = () => {
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <button css={buttonStyle} onClick={sendMessage}>
+        <button css={buttonStyle} onClick={sendMessage} disabled={newMessage === ""}>
           <SendButtonIcon />
         </button>
       </Flex>
