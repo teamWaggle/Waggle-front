@@ -69,28 +69,16 @@ export const radioButtonStyle = css({
   },
 });
 
-export const buttonBoxStyle = css({
-  position: "absolute",
+export const buttonStyle = css({
   width: "100%",
+  height: "50px",
+  borderRadius: "16px",
+  border: "none",
+  outline: "none",
+  backgroundColor: Theme.color.brand_primary,
+  color: Theme.color.white,
+  fontSize: "18px",
+  cursor: "pointer",
+  position: "absolute",
   bottom: 0,
-
-  "& > button": {
-    width: "100%",
-    height: "50px",
-    borderRadius: "16px",
-    border: "none",
-    outline: "none",
-    backgroundColor: Theme.color.brand_primary,
-    color: Theme.color.white,
-    fontSize: "18px",
-    cursor: "pointer",
-
-    "&.deleteButton": {
-      backgroundColor: Theme.color.disabled_text,
-    },
-
-    "&:last-of-type": {
-      marginTop: "18px",
-    },
-  },
 });

@@ -24,7 +24,7 @@ import {
   titleInputStyle,
   radioLabelStyle,
   radioButtonStyle,
-  buttonBoxStyle,
+  buttonStyle,
 } from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
 
 const ChatRoomCreateModal = () => {
@@ -142,9 +142,7 @@ const ChatRoomCreateModal = () => {
             </Box>
           )}
 
-          <Box css={buttonBoxStyle}>
-            <button>채팅방 만들기</button>
-          </Box>
+          <button css={buttonStyle}>채팅방 만들기</button>
         </Form>
       </Flex>
     </Box>

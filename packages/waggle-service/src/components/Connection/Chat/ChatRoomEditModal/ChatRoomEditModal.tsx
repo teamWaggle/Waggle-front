@@ -5,7 +5,6 @@ import { Flex, Box, Heading, Text, Theme, getDefaultTextStyle } from "waggle-des
 
 import { Form } from "@/components/common";
 import ChatRoomModal from "@/components/Connection/Chat/ChatRoomModal/ChatRoomModal";
-import DeleteWarningModal from "@/components/common/WarningModal/DeleteWarningModal";
 
 import {
   ROOM_TITLE_FORM,
@@ -15,14 +14,13 @@ import {
 } from "@/constants/form";
 
 import { useEditChatRoomMutation } from "@/hooks/api/chat/useEditChatRoomMutation";
-import { useDeleteChatRoomMutation } from "@/hooks/api/chat/useDeleteChatRoomMutation";
 import useModal from "@/hooks/common/useModal";
 
 import {
   titleBoxStyle,
   contentBoxStyle,
   titleInputStyle,
-  buttonBoxStyle,
+  buttonStyle,
 } from "@/components/Connection/Chat/ChatRoomCreateModal/ChatRoomCreateModal.style";
 
 interface ChatRoomEditModalProps {
@@ -34,26 +32,8 @@ interface ChatRoomEditModalProps {
 
 const ChatRoomEditModal = ({ name, description, chatRoomId, password }: ChatRoomEditModalProps) => {
   const { mutate: editChatRoomMutate } = useEditChatRoomMutation(chatRoomId);
-  const { mutate: deleteChatRoomMutate } = useDeleteChatRoomMutation();
 
   const { openModal, closeModal } = useModal();
-
-  const deleteMutate = () => {
-    deleteChatRoomMutate(chatRoomId, {
-      onSuccess: () => {
-        closeModal();
-      },
-    });
-  };
-
-  const handleDeleteChatRoom = () => {
-    openModal({
-      key: `DeleteWarningModal`,
-      component: () => <DeleteWarningModal targetText="채팅방" handleDelete={deleteMutate} />,
-      notCloseIcon: true,
-      isUpper: true,
-    });
-  };
 
   const handleSubmit = (data: FieldValues) => {
     const chatRoomRequest = {
@@ -126,12 +106,9 @@ const ChatRoomEditModal = ({ name, description, chatRoomId, password }: ChatRoom
             />
           </Box>
 
-          <Box css={buttonBoxStyle}>
-            <button className="deleteButton" onClick={handleDeleteChatRoom}>
-              채팅방 삭제하기
-            </button>
-            <button type="submit">채팅방 설정 저장하기</button>
-          </Box>
+          <button type="submit" css={buttonStyle}>
+            채팅방 설정 저장하기
+          </button>
         </Form>
       </Flex>
     </Box>
