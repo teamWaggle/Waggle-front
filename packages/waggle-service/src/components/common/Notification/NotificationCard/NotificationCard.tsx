@@ -7,7 +7,7 @@ import {
   cardBoxStyle,
 } from "@/components/common/Notification/NotificationCard/NotificationCard.style";
 
-// type NotificationType = "MENTIONED" | "FOLLOWED" | "PARTICIPATION_REQUEST" | "COMMENT";
+// type NotificationType = "MENTIONED" | "FOLLOWED" | "PARTICIPATION_REQUEST" | "COMMENT" | "PARTICIPATION_APPROVE";
 
 interface NotificationCardProps {
   nickname: string;
