@@ -51,6 +51,25 @@ export const scheduleTitleStyle = css({
   fontWeight: "600",
 });
 
+export const scheduleContentBoxStyle = css({
+  flex: "1 0 auto",
+  flexShrink: 1,
+  whiteSpace: "pre-wrap",
+  wordWrap: "break-word",
+  width: "100%",
+});
+
+export const scheduleContentStyle = css({
+  width: "100%",
+  whiteSpace: "pre-wrap",
+  wordWrap: "break-word",
+  flexShrink: 1,
+});
+
+export const scheduleContentIconStyle = css({
+  flexShrink: 0,
+});
+
 export const scheduleModalIcon = css({
   width: "22px",
   height: "22px",

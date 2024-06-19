@@ -1,6 +1,7 @@
 import { useRef, useContext, Suspense } from "react";
 
 import GroupIcon from "@/assets/svg/group.svg?react";
+import ContentIcon from "@/assets/svg/content.svg?react";
 import KebabMenuIcon from "@/assets/svg/kebabMenu.svg?react";
 import ScheduleModalCloseIcon from "@/assets/svg/scheduleModalClose.svg?react";
 
@@ -20,6 +21,9 @@ import {
   scheduleTitleStyle,
   scheduleModalTime,
   scheduleModalTeamName,
+  scheduleContentStyle,
+  scheduleContentIconStyle,
+  scheduleContentBoxStyle,
 } from "@/components/Planning/Calendar/CalendarCard/ScheduleModal/ScheduleModal.style";
 import useModal from "@/hooks/common/useModal";
 import { useCancelMemberSchedule } from "@/hooks/api/schedule/useCancelMemberSchedule";
@@ -30,7 +34,8 @@ import CommentField from "@/components/Planning/Calendar/CalendarCard/ScheduleMo
 import { ScheduleModalContext } from "@/components/Planning/Calendar/CalendarCard/context/ScheduleModalContext";
 
 const ScheduleModal = ({ schedule, position, isMoreModal }: ScheduleModalType) => {
-  const { boardId, teamName, scheduleOwner, teamColor, title, startDate, endDate } = schedule;
+  const { boardId, teamName, scheduleOwner, teamColor, title, startDate, endDate, content } =
+    schedule;
   const scheduleModalRef = useRef<HTMLDivElement>(null);
   const { openModal } = useModal();
   const { mutate: cancelMemberScheduleMutate } = useCancelMemberSchedule();
@@ -87,9 +92,16 @@ const ScheduleModal = ({ schedule, position, isMoreModal }: ScheduleModalType) =
         {format(startDate, "yyyy년 M월 d일 aa h시 m분", { locale: ko })} ~{" "}
         {format(endDate, "yyyy년 M월 d일 aa h시 m분", { locale: ko })}
       </Text>
-      <Flex styles={{ gap: "8px" }}>
+      <Flex styles={{ gap: "8px", marginBottom: "10px" }}>
         <GroupIcon />
         <Box css={scheduleModalTeamName(teamColor)}>{teamName}</Box>
+      </Flex>
+      <Flex styles={{ gap: "8px", width: "100%" }} css={scheduleContentBoxStyle}>
+        <ContentIcon css={scheduleContentIconStyle} />
+        <Text css={scheduleContentStyle}>
+          {content}안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요. 안녕하세요.
+          안녕하세요.
+        </Text>
       </Flex>
       <Suspense fallback={<div></div>}>
         <CommentField boardId={boardId} />
