@@ -15,7 +15,7 @@ import { useGetSearchTeamsByName } from "@/hooks/api/team/useGetSearchTeamsByNam
 
 const Main = () => {
   const navigate = useNavigate();
-  const [searchNameValue, setSearchNameValue] = useState<string>("");
+  const [searchNameValue] = useState<string>("");
   const {
     recommendTeamsData,
     fetchNextPage: recommendTeamsFetchNextPage,
@@ -28,9 +28,9 @@ const Main = () => {
     hasNextPage: searchTeamsHasNextPage,
     isFetching: searchTeamsIsFetching,
   } = useGetSearchTeamsByName(searchNameValue);
-  const handleSearchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchNameValue(e.target.value);
-  };
+  // const handleSearchBar = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearchNameValue(e.target.value);
+  // };
   const ref = useObserver(async (entry, observer) => {
     observer.unobserve(entry.target);
 
@@ -76,7 +76,12 @@ const Main = () => {
         <Heading css={headingStyle} size="medium">
           Waggle에서 모여봐요!
         </Heading>
-        <SearchInput onChange={handleSearchBar} width="247px" />
+        <SearchInput
+          keyword="test"
+          handleChangeInput={() => {}}
+          handleSearchClick={() => {}}
+          width="247px"
+        />
       </Flex>
       <Box css={gridBoxStyle}>
         {!searchNameValue

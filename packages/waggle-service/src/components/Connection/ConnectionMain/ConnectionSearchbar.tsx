@@ -8,7 +8,12 @@ const ConnectionSearchbar = () => {
       <Heading size="small" css={getDefaultTextStyle(Theme.color.brand_primary, 600)}>
         채팅방 검색
       </Heading>
-      <SearchInput onChange={() => {}} width="600px" />
+      <SearchInput
+        keyword="test"
+        handleChangeInput={() => {}}
+        handleSearchClick={() => {}}
+        width="600px"
+      />
     </Flex>
   );
 };
