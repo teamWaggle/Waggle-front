@@ -78,7 +78,7 @@ jobs:
               docker stop ${{secrets.DOCKER_CONTAINER_NAME}}
               docker rm ${{secrets.DOCKER_CONTAINER_NAME}}
               docker pull ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
-              docker run -d -p 3001:80 --name "${{secrets.DOCKER_CONTAINER_NAME}}" ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
+              docker run -d -p 80:80 --name "${{secrets.DOCKER_CONTAINER_NAME}}" ${{ secrets.DOCKER_USERNAME }}/waggle-front-waggle-service
 
         - name: Remove Github Actions IP from security group
           run: |

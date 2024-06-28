@@ -29,7 +29,7 @@ export default defineConfig({
   base: "/",
   server: {
     host: true,
-    port: 3001,
+    port: 80,
   },
   test: {
     globals: true,
