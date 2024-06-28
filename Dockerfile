@@ -13,12 +13,6 @@ FROM node:19-alpine AS Release
 WORKDIR /app
 
 COPY --from=builder /usr/src/app/packages/waggle-service/dist /app/packages/waggle-service/dist
-# COPY --from=builder /usr/src/app/packages/waggle-service/package.json /app/packages/waggle-service/package.json
-# COPY --from=builder /usr/src/app/.pnp.cjs /app/.pnp.cjs
-# COPY --from=builder /usr/src/app/.yarnrc.yml /app/.yarnrc.yml
-# COPY --from=builder /usr/src/app/.yarn /app/.yarn
-# COPY --from=builder /usr/src/app/package.json /app/package.json
-# COPY --from=builder /usr/src/app/yarn.lock /app/yarn.lock
 
 FROM nginx:latest
 
@@ -31,4 +25,6 @@ RUN rm -rf ./usr/share/nginx/html/*
 COPY --from=Release /app/packages/waggle-service/dist ./usr/share/nginx/html/
 
 EXPOSE 80
+EXPOSE 443
+
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
