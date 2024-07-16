@@ -7,6 +7,12 @@ import vitePluginSvgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import libCss from "vite-plugin-libcss";
 
+import type { UserConfig, InlineConfig } from "vite";
+
+interface VitestConfigExport extends UserConfig {
+  test: InlineConfig;
+}
+
 export default defineConfig({
   assetsInclude: ["/sb-preview/runtime.js"],
   build: {
@@ -43,4 +49,9 @@ export default defineConfig({
     tsconfigPaths(),
     libCss(),
   ],
-});
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "/setupVitest.ts",
+  },
+} as VitestConfigExport);
