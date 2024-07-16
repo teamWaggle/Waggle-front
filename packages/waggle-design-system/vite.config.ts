@@ -52,6 +52,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: "/setupVitest.ts",
+    setupFiles: "./vitest.setup.ts",
   },
 } as VitestConfigExport);
