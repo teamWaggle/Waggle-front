@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import Button from "@/components/Button/Button";
 
-import { containerStyle, informationStyle } from "../../../.storybook/styles";
+import { containerStyle, informationStyle, titleStyle } from "../../../.storybook/styles";
 
 const meta: Meta<typeof Button> = {
   title: "Button",
@@ -31,7 +31,7 @@ export const Primary: StoryObj<typeof meta> = {
   render: ({ variant, size, children }) => (
     <ul css={containerStyle}>
       <li css={informationStyle}>
-        <h6>
+        <h6 css={titleStyle}>
           <span>size : {size}</span>variants : {variant}
         </h6>
         <Button variant={variant} size={size}>

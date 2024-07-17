@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import Text from "@/components/Text/Text";
 
-import { containerStyle, informationStyle } from "../../../.storybook/styles";
+import { containerStyle, informationStyle, titleStyle } from "../../../.storybook/styles";
 
 const meta: Meta<typeof Text> = {
   title: "Text",
@@ -26,7 +26,7 @@ export const Primary: StoryObj<typeof meta> = {
   render: ({ size, children }) => (
     <ul css={containerStyle}>
       <li css={informationStyle}>
-        <h6>size : {size}</h6>
+        <h6 css={titleStyle}>size : {size}</h6>
         <Text size={size}>{children}</Text>
       </li>
     </ul>
