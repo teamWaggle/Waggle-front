@@ -1,26 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Box from "@/components/Box/Box";
-import { containerStyle } from "@/stories/styles";
 
 import { Theme } from "@/styles/Theme";
 
-const meta = {
+const meta: Meta<typeof Box> = {
   title: "Box",
   component: Box,
-  decorators: [
-    (Story) => (
-      <ul css={containerStyle}>
-        <Story />
-      </ul>
-    ),
-  ],
-} satisfies Meta<typeof Box>;
+};
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Stories: Story = {
+export const Primary: StoryObj<typeof meta> = {
   render: (args) => {
     return (
       <Box styles={args.styles}>
@@ -34,7 +23,7 @@ export const Stories: Story = {
       borderRadius: "5px",
       color: Theme.color.white,
       padding: "20px",
-      border: "2px solid red",
+      border: `2px solid ${Theme.color.black}`,
     },
   },
   argTypes: {
@@ -45,3 +34,5 @@ export const Stories: Story = {
     },
   },
 };
+
+export default meta;

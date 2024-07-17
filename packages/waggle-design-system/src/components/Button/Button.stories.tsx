@@ -4,7 +4,7 @@ import Button from "@/components/Button/Button";
 
 import { containerStyle, informationStyle } from "@/stories/styles";
 
-const meta = {
+const meta: Meta<typeof Button> = {
   title: "Button",
   component: Button,
   argTypes: {
@@ -25,12 +25,9 @@ const meta = {
     size: "small",
     children: "Button",
   },
-} satisfies Meta<typeof Button>;
+};
 
-export default meta;
-type Button = StoryObj<typeof meta>;
-
-export const Variants: Button = {
+export const Variants: StoryObj<typeof meta> = {
   render: ({ size, children }) => (
     <ul css={containerStyle}>
       <li css={informationStyle}>
@@ -72,7 +69,7 @@ export const Variants: Button = {
   },
 };
 
-export const Sizes: Button = {
+export const Sizes: StoryObj<typeof meta> = {
   render: ({ variant, children }) => (
     <ul css={containerStyle}>
       <li css={informationStyle}>
@@ -107,3 +104,5 @@ export const Sizes: Button = {
     },
   },
 };
+
+export default meta;
