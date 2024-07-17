@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import Button from "@/components/Button/Button";
 
-import { containerStyle, informationStyle } from "./styles";
+import { containerStyle, informationStyle } from "@/stories/styles";
 
 import type { ButtonProps } from "@/components/Button/Button";
 
@@ -42,8 +42,6 @@ const createButtonStory = (variant: ButtonProps["variant"]) => ({
     },
   },
 });
-
-export const Playground: Button = {};
 
 export const Variants: Button = {
   render: ({ size, children }) => (

@@ -10,7 +10,7 @@ import Button from "@/components/Button/Button";
 import { Theme } from "@/styles/Theme";
 
 describe("Button Components", () => {
-  it("Button is Defined", () => {
+  it("button is Defined", () => {
     expect(Button).toBeDefined();
   });
 
