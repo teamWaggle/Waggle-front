@@ -5,15 +5,12 @@ import Flex from "@/components/Flex/Flex";
 
 import { Theme } from "@/styles/Theme";
 
-const meta = {
+const meta: Meta<typeof Flex> = {
   title: "Flex",
   component: Flex,
-} satisfies Meta<typeof Flex>;
+};
 
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Stories: Story = {
+export const Primary: StoryObj<typeof meta> = {
   render: (args) => {
     return (
       <Flex styles={args.styles}>
@@ -58,3 +55,5 @@ export const Stories: Story = {
     },
   },
 };
+
+export default meta;
