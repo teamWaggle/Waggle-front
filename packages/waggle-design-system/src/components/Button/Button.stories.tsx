@@ -4,8 +4,6 @@ import Button from "@/components/Button/Button";
 
 import { containerStyle, informationStyle } from "@/stories/styles";
 
-import type { ButtonProps } from "@/components/Button/Button";
-
 const meta = {
   title: "Button",
   component: Button,
@@ -31,17 +29,6 @@ const meta = {
 
 export default meta;
 type Button = StoryObj<typeof meta>;
-
-const createButtonStory = (variant: ButtonProps["variant"]) => ({
-  args: {
-    variant,
-  },
-  argTypes: {
-    variant: {
-      control: false,
-    },
-  },
-});
 
 export const Variants: Button = {
   render: ({ size, children }) => (
@@ -120,13 +107,3 @@ export const Sizes: Button = {
     },
   },
 };
-
-export const Default: Button = createButtonStory("default");
-
-export const Disabled: Button = createButtonStory("disabled");
-
-export const White: Button = createButtonStory("white");
-
-export const Outline: Button = createButtonStory("outline");
-
-export const Danger: Button = createButtonStory("danger");
