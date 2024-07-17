@@ -13,16 +13,16 @@ const informationStyle = css({
   display: "flex",
   flexDirection: "column",
   gap: "12px",
+});
 
-  "& > h6": {
-    color: Theme.color.disabled_text,
-    fontSize: "12px",
-    fontWeight: 400,
+const titleStyle = css({
+  color: Theme.color.disabled_text,
+  fontSize: "12px",
+  fontWeight: 400,
 
-    "& > span": {
-      marginRight: "10px",
-    },
+  "& > span": {
+    marginRight: "10px",
   },
 });
 
-export { containerStyle, informationStyle };
+export { containerStyle, informationStyle, titleStyle };
