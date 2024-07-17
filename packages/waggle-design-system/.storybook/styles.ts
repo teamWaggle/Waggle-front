@@ -18,7 +18,10 @@ const informationStyle = css({
     color: Theme.color.disabled_text,
     fontSize: "12px",
     fontWeight: 400,
-    textTransform: "uppercase",
+
+    "& > span": {
+      marginRight: "10px",
+    },
   },
 });
 
