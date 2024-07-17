@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import Spinner from "@/components/Spinner/Spinner";
 
+import { containerStyle, informationStyle, titleStyle } from "../../../.storybook/styles";
+
 const meta: Meta<typeof Spinner> = {
   title: "Spinner",
   component: Spinner,
@@ -22,5 +24,15 @@ const meta: Meta<typeof Spinner> = {
 export default meta;
 
 export const Primary: StoryObj<typeof meta> = {
-  render: ({ size, width }) => <Spinner size={size} width={width} />,
+  render: ({ size, width }) => (
+    <ul css={containerStyle}>
+      <li css={informationStyle}>
+        <h6 css={titleStyle}>
+          <span>size : {size}</span>width : {width}
+        </h6>
+
+        <Spinner size={size} width={width} />
+      </li>
+    </ul>
+  ),
 };
